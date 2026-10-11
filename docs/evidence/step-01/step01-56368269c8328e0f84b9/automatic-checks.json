@@ -1,0 +1,33 @@
+{
+  "commit": "432ffdef8d18e13950b14f290de3ae4f2f83aacd",
+  "time": "2026-10-11T23:55:19.774794+08:00",
+  "checks": [
+    {
+      "command": [
+        "pnpm",
+        "typecheck"
+      ],
+      "exitCode": 0,
+      "stdout": "\n> ai-tileset-studio-step-01@0.0.1 typecheck /Users/dingshinn/Desktop/rpg-maker-maker\n> tsc --noEmit\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "pnpm",
+        "test"
+      ],
+      "exitCode": 0,
+      "stdout": "\n> ai-tileset-studio-step-01@0.0.1 test /Users/dingshinn/Desktop/rpg-maker-maker\n> vitest run --dir tests\n\n\n RUN  v4.0.18 /Users/dingshinn/Desktop/rpg-maker-maker\n\n \u2713 tests/copy-rect.test.ts (9 tests) 3ms\n \u2713 tests/mz-plugin-file.test.ts (4 tests) 3ms\n \u2713 tests/prototype.test.ts (15 tests) 257ms\n \u2713 tests/prepare-mz.test.ts (24 tests) 302ms\n\n Test Files  4 passed (4)\n      Tests  52 passed (52)\n   Start at  23:55:21\n   Duration  537ms (transform 317ms, setup 0ms, import 487ms, tests 565ms, environment 0ms)\n\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "stdout": "\n> ai-tileset-studio-step-01@0.0.1 build /Users/dingshinn/Desktop/rpg-maker-maker\n> tsc\n\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "reviewer": "/root/plugins_format_review",
+  "testedCommit": "432ffdef8d18e13950b14f290de3ae4f2f83aacd",
+  "buildId": "step01-56368269c8328e0f84b9",
+  "manifestSha256": "1be77467ae7d5fab2c574dce1918d3c4a9a4b54b64a7beda0a42e89c8461351b",
+  "recordedAt": "2026-10-11T23:57:15.624824+08:00",
+  "checks": [
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "testCount": 52,
+      "log": "test.log"
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "log": "typecheck.log"
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "log": "build.log"
+    },
+    {
+      "command": "node .local/plugins-format-review/probe.mjs",
+      "exitCode": 0,
+      "log": "probe.log"
+    }
+  ],
+  "codeReview": "PASS",
+  "step01": "BLOCKED",
+  "sourceDiffFromCandidate": ""
+}

@@ -1,0 +1,271 @@
+{
+  "testedCommit": "432ffdef8d18e13950b14f290de3ae4f2f83aacd",
+  "buildId": "step01-56368269c8328e0f84b9",
+  "manifestSha256": "1be77467ae7d5fab2c574dce1918d3c4a9a4b54b64a7beda0a42e89c8461351b",
+  "node": "v22.21.1",
+  "template": "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata",
+  "templatePluginsSha256": "2116dfda46bec80e7fab4b7e97b94931c47c9fb3642e6fa4c1625d0016b448a0",
+  "emittedPluginsSha256": "2116dfda46bec80e7fab4b7e97b94931c47c9fb3642e6fa4c1625d0016b448a0",
+  "exactBytes": true,
+  "noEnabledPlugins": true,
+  "boundaryCases": 25,
+  "boundaryResults": [
+    {
+      "name": "native",
+      "accepted": true,
+      "expected": true,
+      "message": ""
+    },
+    {
+      "name": "CRLF",
+      "accepted": true,
+      "expected": true,
+      "message": ""
+    },
+    {
+      "name": "no-final-newline",
+      "accepted": true,
+      "expected": true,
+      "message": ""
+    },
+    {
+      "name": "inline-array-after-newline",
+      "accepted": true,
+      "expected": true,
+      "message": ""
+    },
+    {
+      "name": "json-whitespace-only-array",
+      "accepted": true,
+      "expected": true,
+      "message": ""
+    },
+    {
+      "name": "previous-emitted-file",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "inline-declaration",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "BOM",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "missing-first-header",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "missing-second-header",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "modified-header",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "enabled-plugin",
+      "accepted": false,
+      "expected": false,
+      "message": "Native compatibility project requires an empty plugin list"
+    },
+    {
+      "name": "disabled-plugin",
+      "accepted": false,
+      "expected": false,
+      "message": "Native compatibility project requires an empty plugin list"
+    },
+    {
+      "name": "empty-object",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "null-value",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "malformed-json",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js contains an invalid plugin array"
+    },
+    {
+      "name": "trailing-comma",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js contains an invalid plugin array"
+    },
+    {
+      "name": "comment-in-json",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js contains an invalid plugin array"
+    },
+    {
+      "name": "code-after-list",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "code-after-semicolon",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "expression-after-list",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js contains an invalid plugin array"
+    },
+    {
+      "name": "JSON-string-code",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "leading-code",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "nul-after-list",
+      "accepted": false,
+      "expected": false,
+      "message": "Native template plugins.js must use the standard generated multiline format"
+    },
+    {
+      "name": "invalid-utf8-suffix",
+      "accepted": false,
+      "expected": false
+    }
+  ],
+  "invalidCliCases": 12,
+  "cliResults": [
+    {
+      "name": "enabled-plugin",
+      "existing": false,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:24\n        throw new Error('Native compatibility project requires an empty plugin list');\n              ^\n\nError: Native compatibility project requires an empty plugin list\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:24:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "enabled-plugin",
+      "existing": true,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:24\n        throw new Error('Native compatibility project requires an empty plugin list');\n              ^\n\nError: Native compatibility project requires an empty plugin list\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:24:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "disabled-plugin",
+      "existing": false,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:24\n        throw new Error('Native compatibility project requires an empty plugin list');\n              ^\n\nError: Native compatibility project requires an empty plugin list\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:24:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "disabled-plugin",
+      "existing": true,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:24\n        throw new Error('Native compatibility project requires an empty plugin list');\n              ^\n\nError: Native compatibility project requires an empty plugin list\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:24:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "old-inline",
+      "existing": false,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:15\n        throw new Error('Native template plugins.js must use the standard generated multiline format');\n              ^\n\nError: Native template plugins.js must use the standard generated multiline format\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:15:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "old-inline",
+      "existing": true,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:15\n        throw new Error('Native template plugins.js must use the standard generated multiline format');\n              ^\n\nError: Native template plugins.js must use the standard generated multiline format\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:15:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "broken-json",
+      "existing": false,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:21\n        throw new Error('Native template plugins.js contains an invalid plugin array', { cause });\n              ^\n\nError: Native template plugins.js contains an invalid plugin array\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:21:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1 {\n  [cause]: SyntaxError: Unexpected token 'b', \"[broken]\" is not valid JSON\n      at JSON.parse (<anonymous>)\n      at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:18:24)\n      at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n}\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "broken-json",
+      "existing": true,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:21\n        throw new Error('Native template plugins.js contains an invalid plugin array', { cause });\n              ^\n\nError: Native template plugins.js contains an invalid plugin array\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:21:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1 {\n  [cause]: SyntaxError: Unexpected token 'b', \"[broken]\" is not valid JSON\n      at JSON.parse (<anonymous>)\n      at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:18:24)\n      at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n}\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "appended-code",
+      "existing": false,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:15\n        throw new Error('Native template plugins.js must use the standard generated multiline format');\n              ^\n\nError: Native template plugins.js must use the standard generated multiline format\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:15:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "appended-code",
+      "existing": true,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:15\n        throw new Error('Native template plugins.js must use the standard generated multiline format');\n              ^\n\nError: Native template plugins.js must use the standard generated multiline format\n    at validateNativeEmptyPlugins (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:15:15)\n    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:14:1\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "missing",
+      "existing": false,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "node:internal/fs/promises:641\n  return new FileHandle(await PromisePrototypeThen(\n                        ^\n\nError: ENOENT: no such file or directory, open '/Users/dingshinn/Desktop/rpg-maker-maker/.local/plugins-format-review/invalid-templates/missing/js/plugins.js'\n    at async open (node:internal/fs/promises:641:25)\n    at async readFile (node:internal/fs/promises:1245:14)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:13:23 {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: '/Users/dingshinn/Desktop/rpg-maker-maker/.local/plugins-format-review/invalid-templates/missing/js/plugins.js'\n}\n\nNode.js v22.21.1\n"
+    },
+    {
+      "name": "missing",
+      "existing": true,
+      "status": 1,
+      "destinationUnchanged": true,
+      "stderr": "node:internal/fs/promises:641\n  return new FileHandle(await PromisePrototypeThen(\n                        ^\n\nError: ENOENT: no such file or directory, open '/Users/dingshinn/Desktop/rpg-maker-maker/.local/plugins-format-review/invalid-templates/missing/js/plugins.js'\n    at async open (node:internal/fs/promises:641:25)\n    at async readFile (node:internal/fs/promises:1245:14)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:13:23 {\n  errno: -2,\n  code: 'ENOENT',\n  syscall: 'open',\n  path: '/Users/dingshinn/Desktop/rpg-maker-maker/.local/plugins-format-review/invalid-templates/missing/js/plugins.js'\n}\n\nNode.js v22.21.1\n"
+    }
+  ],
+  "preparedProject": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/plugins-format-review/cli-good/.local/mz/step01-56368269c8328e0f84b9",
+  "preparedFileCount": 639,
+  "repeatRefused": true,
+  "repeatFilesUnchanged": true,
+  "immutableBuildUnchanged": true,
+  "buildHashes": {
+    "art_A1.png": "d896c5c8b62816e844865b2abe12a0d5c1694aceb6cd3c75f93eccbd6c55d9d2",
+    "art_A2.png": "7d60ac8c6072d38736e4027cc25fa23979de6e400b9c66d4f586a108506b2b2b",
+    "diagnostic_A1.png": "de08f8bc36b87017afbb62aba946d612e8f4536939c0db707bbbbcbfd93b337f",
+    "diagnostic_A2.png": "b493ecc86e938dc9aa4f389ba6b1b052222baeade6bb1d58dea7b003126330cd",
+    "manifest.json": "1be77467ae7d5fab2c574dce1918d3c4a9a4b54b64a7beda0a42e89c8461351b"
+  },
+  "statuses": {
+    "codeReview": "PASS",
+    "editorOpeningNewCandidate": "NOT_EXECUTED",
+    "editorDrawing": "NOT_EXECUTED",
+    "gameRuntime": "NOT_EXECUTED",
+    "nativeMzAcceptance": "NOT_EXECUTED",
+    "playtestHost": "NOT_VERIFIED",
+    "step01": "BLOCKED"
+  }
+}

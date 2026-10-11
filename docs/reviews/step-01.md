@@ -1,4 +1,42 @@
-# 步骤 01 — 两项 P2 整改交付报告
+# 步骤 01 — 最新验收候选与插件文件格式修复
+
+## 当前候选（2026-10-11，Asia/Shanghai）
+
+用户打开此前已准备工程时报告“无法读取文件plugins.js”。文件存在且可读，旧生成器写入
+自定义文件头和同一行的`var $plugins = [];`，与MZ生成格式不同。
+在外部备份后，只把旧工程的`js/plugins.js`换为正版空模板原字节，其他638文件哈希不变；
+用户明确反馈“已成功打开工程”。该结果记为**旧工程修补后打开PASS_USER_REPORTED**，
+没有推导新候选、手绘、游戏或Native Host通过。修补记录的过时“确认待定”备注已纠正。
+
+准备工具现先校验模板标准头、分行和空JSON插件数组，随后写缓存原字节，reference保存
+pluginsSHA；无效或非空模板在mkdir前拒绝，不执行模板代码。
+新增4项测试，**52/52、typecheck、build通过**；本轮原生oracle重新通过960次选图、
+2,211,840像素、241update。原48测试、Profile、Compiler、契约、母版及四PNG均不变。
+[本次独立复审](step-01-plugins-independent-review.md) **PASS**：另有25边界用例、12次无效
+模板CLI、完整新工程插件字节与原件一致、重复prepare保护639文件的真实验证。
+此前P2整改报告已归档为 [历史报告](step-01-before-plugins-fix.md)，所有独立结论保留。
+
+| 最新受测对象 | 身份 |
+|---|---|
+| Code Commit | `432ffdef8d18e13950b14f290de3ae4f2f83aacd` |
+| Build ID | `step01-56368269c8328e0f84b9` |
+| Manifest SHA-256 | `1be77467ae7d5fab2c574dce1918d3c4a9a4b54b64a7beda0a42e89c8461351b` |
+| plugins.js SHA-256 | `2116dfda46bec80e7fab4b7e97b94931c47c9fb3642e6fa4c1625d0016b448a0` |
+| ZIP SHA-256 | `050763997e005192e5382742d751f608c8faa9643cfb9434c17f483f46e03f39` |
+
+正式后续验收使用新工程：
+`/Users/dingshinn/Desktop/rpg-maker-maker/.local/mz/step01-56368269c8328e0f84b9/game.rmmzproject`。
+
+新素材包（21项，35,982字节；没有正版Runtime/RTP）：
+`/Users/dingshinn/Desktop/rpg-maker-maker/.local/delivery/step01-56368269c8328e0f84b9-acceptance.zip`。
+流程仍按 [验收指南](../step-01/mz-acceptance.md)。在新工程开始手绘前应实际重新打开确认，
+原工程与地图保留；不能把旧工程打开确认自动记为新工程通过。
+
+**步骤01仍BLOCKED**。新候选加载、Map002/003正常手绘、实际游戏动画/通行/图层、人工美术、
+Host核实及用户批准仍待完成。未更改全局MZ/NW/RPGReactor，未开始步骤02。
+正式证据见 [索引](../evidence/step-01/step01-56368269c8328e0f84b9/evidence-hashes.json)。
+
+## 此前P2整改记录（以下身份属于前一候选）
 
 日期：2026-10-11，Asia/Shanghai。**步骤状态：BLOCKED，等待正式 Native MZ 实机验收与用户批准。**
 本轮独立代码/工程复审 **PASS**，P2-01/R1、P2-02/R2 均 **CLOSED**。
