@@ -1,0 +1,14 @@
+node:internal/fs/promises:860
+  return await PromisePrototypeThen(
+         ^
+
+Error: EEXIST: file already exists, mkdir '/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/complete-prepare/.local/mz/step01-fdf7768b475e24c66cfd'
+    at async mkdir (node:internal/fs/promises:860:10)
+    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate/dist/scripts/prepare-mz.js:16:1 {
+  errno: -17,
+  code: 'EEXIST',
+  syscall: 'mkdir',
+  path: '/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/complete-prepare/.local/mz/step01-fdf7768b475e24c66cfd'
+}
+
+Node.js v22.21.1

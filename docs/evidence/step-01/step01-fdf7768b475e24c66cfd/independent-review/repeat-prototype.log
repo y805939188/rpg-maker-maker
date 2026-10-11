@@ -1,0 +1,17 @@
+
+> ai-tileset-studio-step-01@0.0.1 prototype /Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate
+> pnpm build && node dist/scripts/build-prototype.js
+
+
+> ai-tileset-studio-step-01@0.0.1 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate
+> tsc
+
+ ELIFECYCLE  Command failed with exit code 1.
+file:///Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate/dist/scripts/build-prototype.js:53
+        throw new Error(`Immutable build already exists: ${destination}`);
+              ^
+
+Error: Immutable build already exists: /Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate/artifacts/step01-fdf7768b475e24c66cfd
+    at file:///Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate/dist/scripts/build-prototype.js:53:15
+
+Node.js v22.21.1

@@ -1,0 +1,126 @@
+
+ RUN  v4.0.18 /Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/old-301d3cd
+
+ ❯ tests/review-copy-rect.test.ts (9 tests | 4 failed) 8ms
+     × 'down two rows' 5ms
+     ✓ 'up two rows' 0ms
+     × 'diagonal down-right' 1ms
+     ✓ 'horizontal right across two rows' 0ms
+     ✓ 'horizontal left across two rows' 0ms
+     ✓ 'identical rectangle including boundary' 0ms
+     × copies across distinct overlapping Buffer / buffer views with nonzero byte offsets 1ms
+     × copies across distinct overlapping Buffer / uint8 views with nonzero byte offsets 1ms
+     ✓ retains non-overlapping copies, source pixels and unrelated target bytes 0ms
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 5 passed (9)
+   Start at  23:16:04
+   Duration  540ms (transform 412ms, setup 0ms, import 444ms, tests 8ms, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/review-copy-rect.test.ts > P2-01: Buffer overlap snapshots > 'down two rows'
+AssertionError: expected [ Array(12) ] to deeply equal [ Array(12) ]
+
+- Expected
++ Received
+
+@@ -5,10 +5,10 @@
+    128,
+    1,
+    11,
+    21,
+    128,
+-   2,
+-   12,
+-   22,
++   1,
++   11,
++   21,
+    128,
+  ]
+
+ ❯ tests/review-copy-rect.test.ts:17:25
+     15|     const p={width:c.width,height:c.height,data:Buffer.from(rgba(c.ini…
+     16|     copyRect(p,p,c.sx,c.sy,c.w,c.h,c.dx,c.dy);
+     17|     expect([...p.data]).toEqual(rgba(c.expected));
+       |                         ^
+     18|   });
+     19|   it.each(['buffer','uint8'] as const)('copies across distinct overlap…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/review-copy-rect.test.ts > P2-01: Buffer overlap snapshots > 'diagonal down-right'
+AssertionError: expected [ 1, 11, 21, 128, 2, 12, 22, …(29) ] to deeply equal [ 1, 11, 21, 128, 2, 12, 22, …(29) ]
+
+- Expected
++ Received
+
+@@ -29,10 +29,10 @@
+    128,
+    4,
+    14,
+    24,
+    128,
+-   5,
+-   15,
+-   25,
++   1,
++   11,
++   21,
+    128,
+  ]
+
+ ❯ tests/review-copy-rect.test.ts:17:25
+     15|     const p={width:c.width,height:c.height,data:Buffer.from(rgba(c.ini…
+     16|     copyRect(p,p,c.sx,c.sy,c.w,c.h,c.dx,c.dy);
+     17|     expect([...p.data]).toEqual(rgba(c.expected));
+       |                         ^
+     18|   });
+     19|   it.each(['buffer','uint8'] as const)('copies across distinct overlap…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  tests/review-copy-rect.test.ts > P2-01: Buffer overlap snapshots > copies across distinct overlapping Buffer / buffer views with nonzero byte offsets
+ FAIL  tests/review-copy-rect.test.ts > P2-01: Buffer overlap snapshots > copies across distinct overlapping Buffer / uint8 views with nonzero byte offsets
+AssertionError: expected [ 1, 11, 21, 128, 2, 12, 22, …(25) ] to deeply equal [ 1, 11, 21, 128, 2, 12, 22, …(25) ]
+
+- Expected
++ Received
+
+@@ -13,17 +13,17 @@
+    128,
+    2,
+    12,
+    22,
+    128,
+-   3,
+-   13,
+-   23,
++   1,
++   11,
++   21,
+    128,
+-   4,
+-   14,
+-   24,
++   2,
++   12,
++   22,
+    128,
+    7,
+    17,
+    27,
+    128,
+
+ ❯ tests/review-copy-rect.test.ts:25:26
+     23|       new Uint8Array(backing.buffer,backing.byteOffset+8,24);
+     24|     copyRect(source,{width:2,height:3,data:targetBytes},0,0,2,2,0,0);
+     25|     expect([...backing]).toEqual(rgba([1,2,1,2,3,4,7,8]));
+       |                          ^
+     26|   });
+     27|   it('retains non-overlapping copies, source pixels and unrelated targ…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
