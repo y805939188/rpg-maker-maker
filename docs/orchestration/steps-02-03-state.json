@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "authorizationDate": "2026-10-12",
+  "timezone": "Asia/Shanghai",
+  "scope": ["step01_phase_exit", "step02", "step03", "merge_push", "safe_owned_worktree_cleanup"],
+  "stopAfter": "step03_published",
+  "step04": "NOT_STARTED_UNAUTHORIZED",
+  "approvalLabel": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+  "maxReviewsPerStep": 5,
+  "roles": {
+    "coding": {"role": "step_coder", "model": "gpt-6.1-sol", "effort": "xhigh", "serviceTierRequired": "default"},
+    "review": {"role": "step_reviewer", "model": "gpt-6.1-sol", "effort": "ultra", "serviceTierRequired": "default"}
+  },
+  "step01": {
+    "status": "PHASE_EXIT_APPROVED_BY_USER",
+    "codeCommit": "432ffdef8d18e13950b14f290de3ae4f2f83aacd",
+    "buildId": "step01-56368269c8328e0f84b9",
+    "auditedHead": "5e32604c00d20b4f08e9a4905f660f1c854a415f",
+    "postCandidateChanges": "DOCS_AND_EVIDENCE_ONLY",
+    "regression": "52_TESTS_TYPECHECK_BUILD_PASS",
+    "originalHostCompatibility": "NOT_EXECUTED_REQUIRED_BY_STEP10",
+    "map003_4_10": "PENDING_SAVED_MAP_EVIDENCE"
+  },
+  "currentPhase": "BASELINE_AND_AGENT_PREFLIGHT",
+  "step02": {"status": "NOT_STARTED", "reviews": [], "merge": "NOT_EXECUTED", "push": "NOT_EXECUTED"},
+  "step03": {"status": "NOT_STARTED", "reviews": [], "merge": "NOT_EXECUTED", "push": "NOT_EXECUTED"},
+  "initialGit": {"branch": "codex/step-01-mz-prototype", "main": "e8065e3", "fetch": "SUCCESS_NO_REMOTE_DIVERGENCE"},
+  "preserveWorktrees": [".local/independent-review-301d3cd", ".local/remediation/rebuild-e795bb6"],
+  "databaseInventory": {"installed": "Homebrew PostgreSQL 14.20", "port5432": "NO_RESPONSE", "existingCluster": "/opt/homebrew/var/postgresql@14", "mutation": "NOT_EXECUTED"},
+  "resumeRule": "Inspect actual HEAD, status, origin/main, last exact-commit review and hashes before retrying any merge/push; never infer publication from intent."
+}

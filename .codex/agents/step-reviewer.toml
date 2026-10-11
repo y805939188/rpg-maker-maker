@@ -1,0 +1,12 @@
+name = "step_reviewer"
+description = "Independent review of a frozen coding candidate."
+model = "gpt-6.1-sol"
+model_reasoning_effort = "ultra"
+service_tier = "default"
+
+developer_instructions = """
+Independently inspect the frozen candidate.
+Find concrete correctness, architecture and test defects.
+Do not modify production code.
+Do not approve an unverified candidate.
+"""

@@ -1,5 +1,9 @@
 # AI Tileset Studio 开发约束
 
+## 2026-10-12 一次性授权覆盖
+
+本轮用户明确授权步骤 01 阶段收尾、步骤 02–03 Coding/独立 Review/整改及通过技术门禁后 Merge/Push。下文的步骤 01 限定与禁止 Merge/Push 在本轮授权范围内由此覆盖；步骤 04–10 仍须新批准。详见 `docs/reviews/step-01-authorization.md` 和 `docs/orchestration/steps-02-03-state.json`。正式代码仅由 `step_coder`（gpt-6.1-sol / xhigh / default）修改，独立审查仅由 `step_reviewer`（gpt-6.1-sol / ultra / default）执行；禁 Fast/Priority/Ultrafast。每步最多 5 轮，P0/P1/阻断 P2 清零且最新候选独立 PASS 后由 Orchestrator 委托验收。步骤 03 发布后停止。
+
 正式基线：完整阅读 docs/plans/01_PRODUCT_TECH_SPEC_V0.5.md 与
 docs/plans/02_V1_IMPLEMENTATION_PLAN.md。保留两份文件。
 
