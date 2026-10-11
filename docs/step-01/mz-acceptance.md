@@ -4,9 +4,19 @@
 只在 `prepare:mz` 创建的全新本地工程操作。不要导入覆盖现有用户项目。
 MZ 核心/正版 RTP 不入库或对外发布；导出的原创 PNG 可以使用。
 
+先阅读 `docs/engineering/MZ_RUNTIME_ENVIRONMENT.md`。原生核心哈希相符只证明核心来源，
+不证明本机 Playtest Host 未修改。分别记录编辑器、实际 NW.js/Chromium/Node 版本与
+架构、Host来源、PixiJS版本、插件及所用工程；NW.js 的 Info.plist 可能报告Chromium
+版本，不能直接当作 NW.js 产品版本。无法核实的字段写 NOT_VERIFIED。
+Native MZ、Native Core + Modified NW.js、RPGReactor 的结果必须分别记录。
+正式原生基线未满足时，游戏验收仍 BLOCKED；不执行初始化、替换或重装全局环境。
+
 ## 准备与配置
 
-1. `pnpm prepare:mz "<正版安装>/Contents/Resources/newdata" "<候选构建目录>"`。
+1. 使用当前Review报告指定的新候选工程。**已准备好时直接打开，不必重跑prepare**；
+   同目录重跑的EEXIST是保护行为。自行准备时：
+   `pnpm prepare:mz "<正版安装>/Contents/Resources/newdata" "<候选构建目录>"`。
+   脚本先校验四张必需图集、PNG/尺寸/哈希和Manifest身份，失败时不创建目标工程。
 2. 在 MZ1.10.0 打开打印的 `game.rmmzproject`，不升级/修改核心脚本、不启用插件。
 3. 数据库→图块组：确认 Step01 diagnostic/art，模式 Area Type（区域类型），
    A1/A2分别为对应diagnostic/art图片，其他页空。草地○、水面×，无柜台/草丛/星号。
@@ -43,16 +53,19 @@ Map002 用 art 图块组，初始空白；Map003用diagnostic，初始空白。
 ### C. 游戏运行
 
 Map002已有起点(1,1)。工具栏「测试游戏」启动未修改 MZ，开始新游戏。
+该操作前必须确认实际Host符合正式Native基线；若为升级版NW.js，另记补充兼容测试，
+不可将其直接填入正式Native验收PASS。不得用RPGReactor工程替代本独立原生核心工程。
 检查草地可走，接触水格四方向均不能进入；草岸像素依旧属于阻挡的水格。
 至少观察两个动画周期：诊断F0→F1→F2→F1→F0，美术内部波纹可变，边岸不闪动。
 录屏或至少保存不同状态截图+观察记录。**单张截图不能证明动画顺序/时基**。
 计数规则自动 oracle单独报告；墙钟约0.5s/状态仅为名义60update/s，不作精确时钟承诺。
 要测试诊断游戏，在MZ事件模式临时移动玩家起点到Map003；记录配置和地图变更。
+记录测试后起点是否还原，通行测试不按Ctrl穿透。
 
 ## 反馈/记录模板
 
 复制 `docs/step-01/acceptance-record.template.json`，填真实结果。
-最少提交：MZ版本；buildId/manifestSHA；Map002/003原始JSON及SHA；数据库/绘图截图；
+最少提交：MZ版本及上述实际Host/Runtime资料；buildId/manifestSHA；Map002/003原始JSON及SHA；数据库/绘图截图；
 游戏截图或录像；形态/动画/岸线/通行逐项PASS或FAIL；视觉母版确认意见。
 未做项写NOT_EXECUTED，不能以“看起来应该可以”填PASS。
 失败注明地图坐标、槽位kind、预期/实际、截图；保留失败地图和原始构建。

@@ -110,8 +110,9 @@ export function copyRect(source: Pixels, target: Pixels, sx: number, sy: number,
   if (sx + width > source.width || sy + height > source.height ||
       dx + width > target.width || dy + height > target.height) throw new Error('Crop out of bounds');
   // Snapshot makes overlap deterministic even when source and target share storage.
-  const rows = Array.from({ length: height }, (_, y) => source.data.slice(
-    ((sy + y) * source.width + sx) * 4, ((sy + y) * source.width + sx + width) * 4));
+  // Buffer.slice() aliases storage. Construct owned bytes for every row before any write.
+  const rows = Array.from({ length: height }, (_, y) => new Uint8Array(source.data.subarray(
+    ((sy + y) * source.width + sx) * 4, ((sy + y) * source.width + sx + width) * 4)));
   rows.forEach((row, y) => target.data.set(row, ((dy + y) * target.width + dx) * 4));
 }
 

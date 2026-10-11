@@ -1,21 +1,16 @@
-import { strict as assert } from 'node:assert';
 import { cp,mkdir,readFile,writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { PROFILE } from '../src/profile.js';
 import { readJson,sha256 } from './io.js';
 import { loadNativeOracle } from './mz-oracle.js';
+import { preflightPrototypeBuild,REQUIRED_ATLASES } from './prototype-input.js';
 
 const [templateArg,buildArg] = process.argv.slice(2);
 if (!templateArg||!buildArg) throw new Error('Usage: pnpm prepare:mz <licensed MZ newdata directory> <immutable build directory>');
 const template = resolve(templateArg),build = resolve(buildArg);
-const m = await readJson<{buildId:string;commit:string;profile:typeof PROFILE;files:Record<string,string>}>(resolve(build,'manifest.json'));
-assert.deepEqual(m.profile,PROFILE);
-assert.match(m.buildId,/^step01-[a-f0-9]{20}$/);
+const input = await preflightPrototypeBuild(build);
+const m = input.manifest;
 await loadNativeOracle(resolve(template,'js/rmmz_core.js'));
-for (const [name,hash] of Object.entries(m.files)) {
-  assert.match(name,/^(art|diagnostic)_A[12]\.png$/);
-  assert.equal(sha256(await readFile(resolve(build,name))),hash);
-}
 const project = resolve('.local/mz',m.buildId);
 await mkdir(resolve('.local/mz'),{recursive:true});
 await mkdir(project); // refuses to overwrite any earlier project or handdrawn map
@@ -23,7 +18,8 @@ for (const dir of ['data','js','css','fonts','icon','effects']) await cp(resolve
 await cp(resolve(template,'index.html'),resolve(project,'index.html'),{errorOnExist:true});
 for (const dir of ['img/system','img/characters','img/faces','audio/se']) await cp(resolve(template,dir),resolve(project,dir),{recursive:true,errorOnExist:true});
 await mkdir(resolve(project,'img/tilesets'),{recursive:true});
-for (const name of Object.keys(m.files)) await cp(resolve(build,name),resolve(project,'img/tilesets',name),{errorOnExist:true});
+// Write the exact preflighted bytes, not a second read of potentially changed input paths.
+for (const name of REQUIRED_ATLASES) await writeFile(resolve(project,'img/tilesets',name),input.atlases[name],{flag:'wx'});
 await writeFile(resolve(project,'game.rmmzproject'),`RPGMZ ${PROFILE.engineVersion}`);
 // The official newdata skeleton omits files that the editor adds during project creation.
 // NW.js requires this launcher manifest for the editor's native playtest command.
@@ -80,8 +76,9 @@ for (const name of ['rmmz_core.js','rmmz_managers.js','rmmz_objects.js','rmmz_sc
 }
 await writeFile(resolve(project,'step01-build-reference.json'),JSON.stringify({
   buildId:m.buildId,commit:m.commit,profile:PROFILE.version,
-  manifestSha256:sha256(await readFile(resolve(build,'manifest.json'))),atlasHashes:m.files,
+  manifestSha256:input.manifestSha256,atlasHashes:m.files,
   coreFiles,editorDrawing:'NOT_EXECUTED',gameRuntime:'NOT_EXECUTED',
+  playtestHost:'NOT_VERIFIED',nativeMzAcceptance:'NOT_EXECUTED',
   launcherSha256:sha256(await readFile(resolve(project,'package.json'))),
   note:'Locally assembled from licensed MZ installation. Do not redistribute runtime or RTP. Store observations separately; retain handdrawn Map002/003.',
 },null,2)+'\n');
