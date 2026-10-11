@@ -4,7 +4,10 @@ ID `rgba8-srgb-integer-v1`。步骤 01 最小实现：`src/pixels.ts`。
 批准后步骤 03 按此规范扩展源处理；本步没有实现通用图像导入/IR。
 
 - **表示**：逐行、左上原点 RGBA8，非预乘 Alpha。输出 PNG single image、非调色板、8bit。
-- **色彩**：sRGB 字节值；输入必须 RGBA8 sRGB，无 ICC。ICC、灰度、RGB、索引色、
+- **色彩**：sRGB 字节值；输入必须 RGBA8 sRGB，无 ICC。无色彩标签的PNG明确按sRGB
+  字节解释；有标签只允许sRGB intent=0..3、gAMA=45455、标准sRGB cHRM坐标。
+  非标准gamma/chromaticity明确拒绝。先检查原始IHDR和动画/色彩chunk，不能只依靠
+  Sharp解码后的metadata。ICC、灰度、RGB、索引色、
   16bit、动画及非 PNG 拒绝，转换将来作为显式新 revision，不能暗中归一化。
 - **透明度**：Alpha=0 时 RGB 必须全 0；非法隐藏 RGB 拒绝。像素复制、裁切、
   最近邻与 PNG 编解码保持部分 Alpha 原值。当前唯一烘焙岸线的占用样板必须

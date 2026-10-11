@@ -8,7 +8,7 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "tsc",
-    "test": "vitest run",
+    "test": "vitest run --dir tests",
     "fixtures": "pnpm build && node dist/scripts/make-fixtures.js",
     "prototype": "pnpm build && node dist/scripts/build-prototype.js",
     "verify:mz": "pnpm build && node dist/scripts/verify-mz.js",

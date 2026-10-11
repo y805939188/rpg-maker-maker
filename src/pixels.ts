@@ -31,6 +31,7 @@ export function blank(width: number, height: number): Pixels {
 
 export async function decodePng(bytes: Uint8Array): Promise<Pixels> {
   if (bytes.length > 4 * 1024 * 1024) throw new Error('Prototype PNG byte limit exceeded');
+  checkPngContract(bytes);
   const input = sharp(bytes, { limitInputPixels: 768 * 576, failOn: 'warning' });
   const m = await input.metadata();
   // No implicit conversion. Indexed/RGB/gray/16-bit/ICC/animated inputs are deferred to step 03.
@@ -42,6 +43,45 @@ export async function decodePng(bytes: Uint8Array): Promise<Pixels> {
   const pixels = { width: info.width, height: info.height, data: new Uint8Array(data) };
   validatePixels(pixels);
   return pixels;
+}
+
+/** Inspect PNG container: libvips metadata describes decoded pixels, not original PNG encoding. */
+function checkPngContract(bytes: Uint8Array): void {
+  const b = Buffer.from(bytes);
+  if (b.length < 33 || !b.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]))) {
+    throw new Error('Expected RGBA8 PNG signature');
+  }
+  let offset = 8, headerSeen = false, endSeen = false;
+  const chromaticities = [31270,32900,64000,33000,30000,60000,15000,6000];
+  while (offset < b.length) {
+    if (offset + 12 > b.length) throw new Error('Truncated PNG chunk');
+    const length = b.readUInt32BE(offset);
+    const type = b.toString('ascii',offset+4,offset+8);
+    if (offset + length + 12 > b.length) throw new Error('Truncated PNG chunk data');
+    const data = b.subarray(offset+8,offset+8+length);
+    if (!headerSeen && type !== 'IHDR') throw new Error('PNG IHDR must be first');
+    if (type === 'IHDR') {
+      if (headerSeen || length !== 13 || data[8] !== 8 || data[9] !== 6) {
+        throw new Error('Expected RGBA8 PNG IHDR (color type 6, depth 8)');
+      }
+      headerSeen = true;
+    }
+    if (['acTL','fcTL','fdAT'].includes(type)) throw new Error('Animated PNG is unsupported: single RGBA8 frame required');
+    if (type === 'iCCP') throw new Error('Expected PNG without ICC');
+    if (type === 'gAMA' && (length !== 4 || data.readUInt32BE(0) !== 45455)) {
+      throw new Error('PNG gamma differs from supported sRGB encoding');
+    }
+    if (type === 'cHRM' && (length !== 32 || chromaticities.some((v,i)=>data.readUInt32BE(i*4)!==v))) {
+      throw new Error('PNG chromaticities differ from sRGB');
+    }
+    if (type === 'sRGB' && (length !== 1 || data[0]! > 3)) throw new Error('Invalid PNG sRGB intent');
+    offset += length + 12;
+    if (type === 'IEND') {
+      if (length !== 0 || offset !== b.length) throw new Error('Invalid PNG end/trailing data');
+      endSeen = true;
+    }
+  }
+  if (!endSeen) throw new Error('PNG IEND missing');
 }
 
 export async function encodePng(pixels: Pixels): Promise<Buffer> {

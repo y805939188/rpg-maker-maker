@@ -5,6 +5,7 @@ import { compileFixedPrototype } from '../src/compiler.js';
 import { blank,copyRect,decodePng,encodePng,scaleNearest,validatePixels } from '../src/pixels.js';
 import { PROFILE,sourceFrameAtUpdate } from '../src/profile.js';
 import { sha256,readJson } from '../scripts/io.js';
+import { chunk,pngSample } from './png-samples.js';
 
 async function fixture(name:string) { return decodePng(await readFile(`tests/fixtures/${name}.png`)); }
 describe('RGBA8 integer pixel contract',()=>{
@@ -50,6 +51,27 @@ describe('RGBA8 integer pixel contract',()=>{
     await expect(decodePng(sixteen)).rejects.toThrow(/RGBA8/);
     await expect(decodePng(await sharp(rgb).jpeg().toBuffer())).rejects.toThrow(/RGBA8/);
     await expect(decodePng(new Uint8Array([1,2,3]))).rejects.toThrow();
+  });
+  it('checks actual wire encoding: indexed Alpha and APNG are rejected despite decoded RGBA metadata',async()=>{
+    const palette=await sharp(Buffer.from([1,2,3,255,4,5,6,128]),{raw:{width:2,height:1,channels:4}}).png({palette:true}).toBuffer();
+    expect((await sharp(palette).metadata()).channels).toBe(4);
+    await expect(decodePng(palette)).rejects.toThrow(/IHDR/);
+    const animated=pngSample([],true);
+    expect((await sharp(animated).metadata()).channels).toBe(4);
+    await expect(decodePng(animated)).rejects.toThrow(/Animated/);
+  });
+  it('accepts untagged/sRGB gamma and chromaticities; rejects other color interpretation and truncated chunks',async()=>{
+    const gamma=Buffer.alloc(4);gamma.writeUInt32BE(100000);
+    await expect(decodePng(pngSample([chunk('gAMA',gamma)]))).rejects.toThrow(/gamma/);
+    gamma.writeUInt32BE(45455);
+    const chrm=Buffer.alloc(32);
+    [31270,32900,64000,33000,30000,60000,15000,6000].forEach((v,i)=>chrm.writeUInt32BE(v,i*4));
+    expect([...(await decodePng(pngSample([chunk('gAMA',gamma),chunk('cHRM',chrm),chunk('sRGB',Buffer.from([0]))]))).data])
+      .toEqual([1,2,3,255]);
+    chrm.writeUInt32BE(1,0);
+    await expect(decodePng(pngSample([chunk('cHRM',chrm)]))).rejects.toThrow(/chromaticities/);
+    await expect(decodePng(pngSample().subarray(0,40))).rejects.toThrow(/Truncated/);
+    await expect(decodePng(Buffer.concat([pngSample(),Buffer.from([0])]))).rejects.toThrow(/trailing/);
   });
 });
 
@@ -104,6 +126,20 @@ describe('Fixed prototype (spec §3, §8, step 01)',()=>{
   it('matches provenance hashes without regenerating expected fixtures during tests',async()=>{
     const p=await readJson<{files:Record<string,string>}>('tests/fixtures/provenance.json');
     for (const [file,hash] of Object.entries(p.files)) expect(sha256(await readFile(`tests/fixtures/${file}`))).toBe(hash);
+  });
+  it('maintains exact 2×2 logical pixels including all curved bank and mask edges',async()=>{
+    for (const name of ['art-ground','art-water-0','art-water-1','art-water-2','art-static-bank-mask']) {
+      const p=await fixture(name);
+      for(let y=0;y<p.height;y+=2) for(let x=0;x<p.width;x+=2) {
+        const base=(y*p.width+x)*4;
+        for(const [dx,dy] of [[1,0],[0,1],[1,1]]) {
+          const other=((y+dy!)*p.width+x+dx!)*4;
+          if(!Buffer.from(p.data.subarray(base,base+4)).equals(Buffer.from(p.data.subarray(other,other+4)))) {
+            throw new Error(`${name} violates logical pixel scale at ${x},${y}`);
+          }
+        }
+      }
+    }
   });
 });
 

@@ -14,11 +14,13 @@ const fileBytes: Record<string,Buffer> = {};
 const sourceHashes: Record<string,string> = {};
 for (const family of ['diagnostic','art']) {
   const names = [`${family}-ground.png`,...[0,1,2].map(f=>`${family}-water-${f}.png`)];
-  const sources = await Promise.all(names.map(async name => {
+  const loaded = await Promise.all(names.map(async name => {
     const bytes = await readFile(`tests/fixtures/${name}`);
-    sourceHashes[name] = sha256(bytes);
-    return decodePng(bytes);
+    return { name, hash:sha256(bytes), pixels:await decodePng(bytes) };
   }));
+  // Promise completion order must not affect serialized identity/key order.
+  for (const source of loaded) sourceHashes[source.name] = source.hash;
+  const sources = loaded.map(source=>source.pixels);
   const { a1,a2 } = compileFixedPrototype(sources[0]!,sources.slice(1));
   fileBytes[`${family}_A1.png`] = await encodePng(a1);
   fileBytes[`${family}_A2.png`] = await encodePng(a2);

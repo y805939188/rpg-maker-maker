@@ -50,19 +50,19 @@ function grassColor(x: number,y: number): Color {
 function boundary(qx: number,qy: number,x: number,y: number): number {
   if (qx < 2 && qy < 2) return 100; // representative tile
   if (qy < 2) { // four concave corners around a missing diagonal
-    const cx = qx === 2 ? x : 23-x;
-    const cy = qy === 0 ? y : 23-y;
+    const cx = qx === 2 ? x : 11-x;
+    const cy = qy === 0 ? y : 11-y;
     return Math.sqrt(cx*cx+cy*cy);
   }
-  return Math.min(qx === 0 ? x : qx === 3 ? 23-x : 100,
-    qy === 2 ? y : qy === 5 ? 23-y : 100);
+  return Math.min(qx === 0 ? x : qx === 3 ? 11-x : 100,
+    qy === 2 ? y : qy === 5 ? 11-y : 100);
 }
 function artwork(frame: number | null): { sheet: Pixels; mask: Pixels } {
   const sheet = blank(96,144), mask = blank(96,144);
   for (let sy = 0; sy < 144; sy++) for (let sx = 0; sx < 96; sx++) {
     const qx = Math.floor(sx/24), qy = Math.floor(sy/24);
     const x = Math.floor((sx % 48)/2), y = Math.floor((sy % 48)/2);
-    const d = boundary(qx,qy,sx%24,sy%24);
+    const d = boundary(qx,qy,Math.floor((sx%24)/2),Math.floor((sy%24)/2))*2;
     let color: Color;
     if (frame === null) color = d < 4 ? dirt : grassColor(x,y);
     else if (d < 4) color = grassColor(x,y);
@@ -93,7 +93,7 @@ for (let f = 0; f < 3; f++) {
 }
 await save('art-static-bank-mask.png',artwork(0).mask);
 await writeFile(`${out}/provenance.json`,JSON.stringify({
-  version: 'original-fixtures-v1', author: 'AI Tileset Studio project / Codex',
+  version: 'original-fixtures-v1.1', author: 'AI Tileset Studio project / Codex',
   method: 'Original authored pixel palette, integer drawing and fixed bank geometry; no AI image provider or third-party artwork',
   license: 'CC0-1.0 (these original fixture images only)',
   logicalPixelScale: 2, diagnosticQuarterSize: 24,
