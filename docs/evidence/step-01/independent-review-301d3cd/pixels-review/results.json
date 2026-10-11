@@ -1,0 +1,124 @@
+{
+  "version": "v22.21.1",
+  "pixelRoundtrips": 150,
+  "overlapCopies": 500,
+  "nearestChecks": 150,
+  "legalCompiles": 5,
+  "png": [
+    {
+      "name": "valid",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "unknownCritical",
+      "accepted": false,
+      "error": "Input buffer has corrupt header: pngload_buffer: unknown critical chunk"
+    },
+    {
+      "name": "invalidChunkName",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "reservedBit",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "srgbAfterIDAT",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "duplicateSRGB",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "srgbDifferentIntents",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "nonconsecutiveIDAT",
+      "accepted": false,
+      "error": "pngload_buffer: libspng read error"
+    },
+    {
+      "name": "noIDAT",
+      "accepted": false,
+      "error": "Input buffer has corrupt header: pngload_buffer: invalid chunk position"
+    },
+    {
+      "name": "idatExtraDeflate",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "tooLongScanline",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "sBIT4",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    },
+    {
+      "name": "transparencyNotPermitted",
+      "accepted": true,
+      "data": [
+        1,
+        2,
+        3,
+        255
+      ]
+    }
+  ]
+}

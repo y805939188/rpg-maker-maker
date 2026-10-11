@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-11",
+  "timezone": "Asia/Shanghai",
+  "reviewer": "Independent Principal Reviewer /root with three independent audit agents",
+  "targetCommit": "301d3cdb37743a53eff6046ccf2b23aea0ab8122",
+  "originalHead": "cf00baa464d9355900e4e7abc386b7a57cdfaa73",
+  "worktree": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-301d3cd",
+  "node": "22.21.1",
+  "pnpm": "10.20.0",
+  "commands": [
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "files": 1,
+      "testsPassed": 15,
+      "testsFailed": 0
+    },
+    {
+      "command": "pnpm build",
+      "exitCode": 0
+    },
+    {
+      "command": "pnpm prototype",
+      "exitCode": 0,
+      "buildId": "step01-ffc5300c7fb2cb94a48a",
+      "manifestSha256": "211790adf8aa421df3c0d525653141dbb4f545ddf1e9e83001199124e22c110a"
+    },
+    {
+      "command": "pnpm verify:mz <licensed-core> artifacts/step01-ffc5300c7fb2cb94a48a",
+      "exitCode": 0,
+      "tilesChecked": 960,
+      "pixelsChecked": 2211840,
+      "updatesChecked": 241
+    },
+    {
+      "command": "pnpm prepare:mz <licensed-template> artifacts/step01-ffc5300c7fb2cb94a48a",
+      "exitCode": 0
+    }
+  ],
+  "notes": [
+    "pnpm was rerun with Node22.21.1 first in PATH after detecting default worktree Node22.14.0; all recorded checks and rebuild used22.21.1.",
+    "This is a reviewer-created command/result index, not a verbatim terminal transcript."
+  ],
+  "gui": {
+    "appFound": true,
+    "getAppStateError": "screen recording not granted",
+    "specifiedShapeRendering": "NOT_EXECUTED",
+    "editorDrawing": "NOT_EXECUTED",
+    "gameRuntime": "NOT_EXECUTED",
+    "artVisualConfirmation": "NOT_EXECUTED"
+  },
+  "codeReview": "REQUIRES_REVISION",
+  "overall": "REQUIRES_REVISION",
+  "issues": [
+    "P2 Buffer multirow overlapping copy",
+    "P2 incomplete manifest file set accepted by prepare-mz"
+  ]
+}

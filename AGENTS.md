@@ -20,3 +20,17 @@ docs/plans/02_V1_IMPLEMENTATION_PLAN.md。保留两份文件。
 - Coding → 自动测试 → 独立 Agent Review → 修复 → 复测 → 用户 Review。
 - 不推送、不合并、不覆盖远端分支；提交只在本地 codex/ 分支进行。
 - .local/ 中正版 MZ 项目及 runtime 不入库、不对外发布。已有用户工程不可覆盖。
+
+
+## RPG Maker MZ Runtime Environment
+
+本地 RPG Maker MZ 可能使用升级版 NW.js 和 RPGReactor Runtime。
+
+当任务涉及 MZ 编辑器、Tileset、Autotile、游戏运行时、
+Playtest 或真实兼容性验收时，必须先阅读：
+
+`docs/engineering/MZ_RUNTIME_ENVIRONMENT.md`
+
+正式 V1.0 目标仍是原生 MZ。
+不得将 RPGReactor 测试结果当作原生兼容性验收。
+未经授权不得修改全局 MZ / NW.js 环境。
