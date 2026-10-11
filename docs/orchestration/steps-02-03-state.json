@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_REVIEW1_BLOCKING_FINDING_REPORT_FINALIZING",
+  "currentPhase": "STEP02_FIX_ROUND1",
   "step02": {
     "status": "CHANGES_REQUESTED",
     "reviews": [
@@ -47,11 +47,11 @@
         "round": 1,
         "candidate": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
         "reviewer": "/root/step02_reviewer",
-        "status": "IN_PROGRESS",
+        "status": "CHANGES_REQUESTED",
         "productionChanges": "PROHIBITED_HASH_AND_GIT_VERIFICATION_REQUIRED",
         "confirmedFindings": [
           {
-            "id": "S02-R1-P1-01",
+            "id": "STEP02-R1-001",
             "severity": "P1",
             "blocksExit": true,
             "status": "OPEN",
@@ -59,9 +59,22 @@
             "relatedFile": "scripts/local-postgres.mjs:76-85",
             "reproduction": "Actual independent Vite serves mode0600 fake private .local canary via /@fs plain/raw/import combinations; foreign localhost Origin readable",
             "secretSafety": "FAKE_CANARY_ONLY_NO_REAL_CREDENTIAL_REQUEST",
-            "report": "FINALIZING"
+            "report": "FINAL"
           }
-        ]
+        ],
+        "report": "docs/reviews/step-02-independent-round-1.md",
+        "reportSha256": "bb12df8bcd914264f13fcbe5bb38d9ee7325029afb82d2c3fbd5fbb255816ba9",
+        "evidence": "docs/evidence/step-02/review-8a7d4b9-round-1",
+        "nonblocking": [
+          {
+            "id": "STEP02-R1-NB-001",
+            "severity": "P2",
+            "scope": "Inherited Sharp nonaccepted formats / esbuild Windows standalone serve not exposed",
+            "blocksExit": false,
+            "followup": "Re-evaluate before media/upload exposure or affected Windows serve; preserve golden and encoder impact review"
+          }
+        ],
+        "sourceIntegrity": "233_TRACKED_HASHES_UNCHANGED_GIT_CLEAN"
       }
     ],
     "merge": "NOT_EXECUTED",

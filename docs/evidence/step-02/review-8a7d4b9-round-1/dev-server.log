@@ -1,0 +1,26 @@
+
+> @tileset/prototype@0.0.2 dev /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+> pnpm build:contracts && node scripts/run-local.mjs dev
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/web@0.0.2 dev /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/apps/web
+> vite
+
+
+  VITE v7.3.5  ready in 117 ms
+
+  ➜  Local:   http://127.0.0.1:5174/
+AI Tileset Studio (development) ready at http://127.0.0.1:4311
+ ELIFECYCLE  Command failed.

@@ -1,0 +1,55 @@
+{
+  "commit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+  "productionArgv": [
+    "node",
+    "apps/api/dist/main.js"
+  ],
+  "apiPort": 4311,
+  "databasePort": 55433,
+  "listener": "COMMAND   PID      USER   FD   TYPE            DEVICE SIZE/OFF NODE NAME\nnode    64113 dingshinn   19u  IPv4 0xd85be23bf97f125      0t0  TCP 127.0.0.1:4311 (LISTEN)\n",
+  "initial": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "database": "connected",
+      "stage": "02"
+    }
+  },
+  "databaseStopped": {
+    "status": 503,
+    "body": {
+      "error": {
+        "code": "SERVICE_UNAVAILABLE",
+        "message": "Local database is unavailable. Check the local service."
+      }
+    }
+  },
+  "databaseRestarted": {
+    "status": 200,
+    "body": {
+      "status": "ok",
+      "database": "connected",
+      "stage": "02"
+    }
+  },
+  "occupiedPort": {
+    "exitCode": 1,
+    "output": "Local startup failed. Check configuration, database migrations and production build.",
+    "environmentOverrides": {
+      "NODE_ENV": "production",
+      "API_PORT": "4311",
+      "WEB_PORT": "5174"
+    }
+  },
+  "invalidBind": {
+    "exitCode": 1,
+    "output": "Local startup failed. Check configuration, database migrations and production build.",
+    "environmentOverrides": {
+      "NODE_ENV": "production",
+      "API_PORT": "4311",
+      "WEB_PORT": "5174",
+      "API_HOST": "0.0.0.0"
+    }
+  },
+  "productionStoppedCleanly": true
+}
