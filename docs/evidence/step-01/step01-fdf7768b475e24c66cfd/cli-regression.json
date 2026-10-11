@@ -1,0 +1,72 @@
+{
+  "candidateCommit": "e795bb6495de8a4e147c68dac89bee58caab17da",
+  "cases": {
+    "complete": {
+      "exitCode": 0,
+      "stdout": "{\n  \"project\": \"/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/cli-regression/complete/.local/mz/step01-fdf7768b475e24c66cfd\",\n  \"projectFile\": \"/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/cli-regression/complete/.local/mz/step01-fdf7768b475e24c66cfd/game.rmmzproject\",\n  \"buildId\": \"step01-fdf7768b475e24c66cfd\",\n  \"coreFiles\": {\n    \"rmmz_core.js\": \"4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f\",\n    \"rmmz_managers.js\": \"ad61be483293aa4b4056abc0b309e8871d2bd66165ac4453dafd90c5d92529cd\",\n    \"rmmz_objects.js\": \"a857f8e8d0f5d6a73bb0c5d5066c9ecd4c4ed57f0c402af6a0d52b6b8778a9b7\",\n    \"rmmz_scenes.js\": \"71c70da515ac75558938e4aafeabbab8fca7e771e3902b63e891e83581c13d4d\",\n    \"rmmz_sprites.js\": \"8bae1b5e301e0ae2be6a87d63b65bc9efce858742bed84a60100e6c7bf97a098\",\n    \"rmmz_windows.js\": \"09607c12a717e1b7a5265f347feccb3e5defad456099b5f66d7887af80b09f75\"\n  }\n}\n",
+      "stderr": ""
+    },
+    "missing-list": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:27\n            throw new Error(`Manifest missing required atlas: ${name}`);\n                  ^\n\nError: Manifest missing required atlas: diagnostic_A2.png\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:27:19)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15\n\nNode.js v22.21.1\n",
+      "targetCreated": false
+    },
+    "empty-list": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:27\n            throw new Error(`Manifest missing required atlas: ${name}`);\n                  ^\n\nError: Manifest missing required atlas: diagnostic_A1.png\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:27:19)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15\n\nNode.js v22.21.1\n",
+      "targetCreated": false
+    },
+    "bad-hash": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:29\n            throw new Error(`Invalid SHA-256 for required atlas: ${name}`);\n                  ^\n\nError: Invalid SHA-256 for required atlas: art_A1.png\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:29:19)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15\n\nNode.js v22.21.1\n",
+      "targetCreated": false
+    },
+    "missing-file": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:55\n            throw new Error(`Cannot read required atlas: ${name}`, { cause });\n                  ^\n\nError: Cannot read required atlas: art_A2.png\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:55:19)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15 {\n  [cause]: Error: ENOENT: no such file or directory, open '/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/cli-regression/missing-file/art_A2.png'\n      at async open (node:internal/fs/promises:641:25)\n      at async readFile (node:internal/fs/promises:1245:14)\n      at async preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:52:21)\n      at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15 {\n    errno: -2,\n    code: 'ENOENT',\n    syscall: 'open',\n    path: '/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/cli-regression/missing-file/art_A2.png'\n  }\n}\n\nNode.js v22.21.1\n",
+      "targetCreated": false
+    },
+    "corrupt-file": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Required atlas SHA-256 mismatch: art_A1.png\n+ actual - expected\n\n+ '251d058d2872544d811f0f9ba5ca78f1de9da33a0237979e1844e73f5093d1ff'\n- 'd896c5c8b62816e844865b2abe12a0d5c1694aceb6cd3c75f93eccbd6c55d9d2'\n\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:57:16)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: '251d058d2872544d811f0f9ba5ca78f1de9da33a0237979e1844e73f5093d1ff',\n  expected: 'd896c5c8b62816e844865b2abe12a0d5c1694aceb6cd3c75f93eccbd6c55d9d2',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.21.1\n",
+      "targetCreated": false
+    },
+    "invalid-profile": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Manifest Target Profile differs from the fixed candidate\n+ actual - expected\n... Skipped lines\n\n  {\n    animation: {\n      sequence: [\n        0,\n        1,\n...\n    status: 'CANDIDATE_REQUIRES_EDITOR_AND_GAME_EVIDENCE',\n+   tileSize: 32,\n-   tileSize: 48,\n    version: '1.0.0-candidate.1',\n    waterSlots: [\n      {\n        kind: 4,\n        tileId: 2240,\n\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:19:12)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: {\n    id: 'mz-native-ground-water',\n    version: '1.0.0-candidate.1',\n    status: 'CANDIDATE_REQUIRES_EDITOR_AND_GAME_EVIDENCE',\n    engine: 'RPG Maker MZ',\n    engineVersion: '1.10.0',\n    coreSha256: '4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f',\n    mode: 1,\n    tileSize: 32,\n    quarterSize: 24,\n    atlas: { width: 768, height: 576 },\n    source: { width: 96, height: 144 },\n    groundSlots: [\n      { kind: 16, tileId: 2816, x: 0, y: 0 },\n      { kind: 17, tileId: 2864, x: 96, y: 0 }\n    ],\n    waterSlots: [\n      { kind: 4, tileId: 2240, x: 384, y: 0 },\n      { kind: 6, tileId: 2336, x: 384, y: 144 }\n    ],\n    capacity: { ground: 2, water: 2, pairedSets: 2 },\n    animation: { sourceFrames: 3, sequence: [ 0, 1, 2, 1 ], updatesPerState: 30 },\n    shoreline: 'opaque-water-owned-baked-grass-bank-v1',\n    flags: { ground: 0, water: 15, emptyUpperTile: 16 },\n    pixelContract: 'rgba8-srgb-integer-v1'\n  },\n  expected: {\n    id: 'mz-native-ground-water',\n    version: '1.0.0-candidate.1',\n    status: 'CANDIDATE_REQUIRES_EDITOR_AND_GAME_EVIDENCE',\n    engine: 'RPG Maker MZ',\n    engineVersion: '1.10.0',\n    coreSha256: '4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f',\n    mode: 1,\n    tileSize: 48,\n    quarterSize: 24,\n    atlas: { width: 768, height: 576 },\n    source: { width: 96, height: 144 },\n    groundSlots: [\n      { kind: 16, tileId: 2816, x: 0, y: 0 },\n      { kind: 17, tileId: 2864, x: 96, y: 0 }\n    ],\n    waterSlots: [\n      { kind: 4, tileId: 2240, x: 384, y: 0 },\n      { kind: 6, tileId: 2336, x: 384, y: 144 }\n    ],\n    capacity: { ground: 2, water: 2, pairedSets: 2 },\n    animation: { sourceFrames: 3, sequence: [ 0, 1, 2, 1 ], updatesPerState: 30 },\n    shoreline: 'opaque-water-owned-baked-grass-bank-v1',\n    flags: { ground: 0, water: 15, emptyUpperTile: 16 },\n    pixelContract: 'rgba8-srgb-integer-v1'\n  },\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.21.1\n",
+      "targetCreated": false
+    },
+    "wrong-id": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Manifest buildId does not match its identity\n+ actual - expected\n\n+ 'step01-00000000000000000000'\n- 'step01-fdf7768b475e24c66cfd'\n          ^\n\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:46:12)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'step01-00000000000000000000',\n  expected: 'step01-fdf7768b475e24c66cfd',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v22.21.1\n",
+      "targetCreated": false
+    },
+    "matching-invalid-png": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:63\n            throw new Error(`Invalid required atlas: ${name}`, { cause });\n                  ^\n\nError: Invalid required atlas: art_A1.png\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:63:19)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15 {\n  [cause]: Error: Expected RGBA8 PNG signature\n      at checkPngContract (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/src/pixels.js:46:15)\n      at decodePng (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/src/pixels.js:29:5)\n      at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:59:34)\n      at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15\n}\n\nNode.js v22.21.1\n",
+      "targetCreated": false
+    },
+    "invalid-existing-project": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:27\n            throw new Error(`Manifest missing required atlas: ${name}`);\n                  ^\n\nError: Manifest missing required atlas: diagnostic_A2.png\n    at preflightPrototypeBuild (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prototype-input.js:27:19)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:11:15\n\nNode.js v22.21.1\n",
+      "existingFiles": 639,
+      "allFileHashesUnchanged": true
+    },
+    "complete-existing-project": {
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "node:internal/fs/promises:860\n  return await PromisePrototypeThen(\n         ^\n\nError: EEXIST: file already exists, mkdir '/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/cli-regression/complete/.local/mz/step01-fdf7768b475e24c66cfd'\n    at async mkdir (node:internal/fs/promises:860:10)\n    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-mz.js:16:1 {\n  errno: -17,\n  code: 'EEXIST',\n  syscall: 'mkdir',\n  path: '/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/cli-regression/complete/.local/mz/step01-fdf7768b475e24c66cfd'\n}\n\nNode.js v22.21.1\n",
+      "existingFiles": 639,
+      "allFileHashesUnchanged": true
+    }
+  }
+}

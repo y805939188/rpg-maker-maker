@@ -1,0 +1,129 @@
+[
+  {
+    "label": "identity",
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:47.264645+00:00",
+    "exitCode": 0,
+    "log": "identity.log"
+  },
+  {
+    "label": "status-before",
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:47.282247+00:00",
+    "exitCode": 0,
+    "log": "status-before.log"
+  },
+  {
+    "label": "node",
+    "command": [
+      "node",
+      "--version"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:47.304230+00:00",
+    "exitCode": 0,
+    "log": "node.log"
+  },
+  {
+    "label": "pnpm",
+    "command": [
+      "pnpm",
+      "--version"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:47.321215+00:00",
+    "exitCode": 0,
+    "log": "pnpm.log"
+  },
+  {
+    "label": "install",
+    "command": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:47.469960+00:00",
+    "exitCode": 0,
+    "log": "install.log"
+  },
+  {
+    "label": "typecheck",
+    "command": [
+      "pnpm",
+      "typecheck"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:47.933887+00:00",
+    "exitCode": 0,
+    "log": "typecheck.log"
+  },
+  {
+    "label": "test",
+    "command": [
+      "pnpm",
+      "test"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:49.367995+00:00",
+    "exitCode": 0,
+    "log": "test.log"
+  },
+  {
+    "label": "build",
+    "command": [
+      "pnpm",
+      "build"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:52.103805+00:00",
+    "exitCode": 0,
+    "log": "build.log"
+  },
+  {
+    "label": "prototype",
+    "command": [
+      "pnpm",
+      "prototype"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:52.944028+00:00",
+    "exitCode": 0,
+    "log": "prototype.log"
+  },
+  {
+    "label": "verify-mz",
+    "command": [
+      "pnpm",
+      "verify:mz",
+      "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js",
+      "artifacts/step01-fdf7768b475e24c66cfd"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:54.092304+00:00",
+    "exitCode": 0,
+    "log": "verify-mz.log"
+  },
+  {
+    "label": "status-after",
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate",
+    "startedAt": "2026-10-11T15:12:56.106982+00:00",
+    "exitCode": 0,
+    "log": "status-after.log"
+  }
+]

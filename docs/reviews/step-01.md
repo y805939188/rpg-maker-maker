@@ -1,148 +1,144 @@
-# 步骤 01 — 实际交付与 Review 报告
+# 步骤 01 — 两项 P2 整改交付报告
 
-记录日期：2026-10-11，Asia/Shanghai。
+日期：2026-10-11，Asia/Shanghai。**步骤状态：BLOCKED，等待正式 Native MZ 实机验收与用户批准。**
+本轮独立代码/工程复审 **PASS**，P2-01/R1、P2-02/R2 均 **CLOSED**。
+未标记APPROVED，未开始步骤02，未调用付费模型、推送远端或修改全局环境。
 
-**状态：BLOCKED（等待 MZ 实机验收与用户 Review）。**
-步骤 01 的独立原型、候选契约、自动测试及独立代码 Review 已完成；
-必要的原生编辑器绘图/实际游戏与人工美术门禁尚未执行，不能宣称步骤 01 通过。
-未开始步骤 02–10，也未调用付费模型、推送或合并远端。
+## 基线与候选身份
 
-## 候选身份
+开始HEAD为 `cf00baa464d9355900e4e7abc386b7a57cdfaa73`。工作区已有AGENTS.md修改、环境说明、
+正式独立Review及证据，先保存逐文件哈希，再以 `a1e94af` 原样提交这些输入；未重置或覆盖其他工作。
+实现缺陷基线仍为301d3cd。本轮修复提交在本地 `codex/step-01-mz-prototype` 分支。
 
-| 项目 | 值 |
+| 项目 | 受测值 |
 |---|---|
-| 分支 | `codex/step-01-mz-prototype` |
-| **受测代码 Commit** | `301d3cdb37743a53eff6046ccf2b23aea0ab8122` |
-| 不可变构建 ID | `step01-ffc5300c7fb2cb94a48a` |
-| Target Profile | `mz-native-ground-water / 1.0.0-candidate.1`，尚未实机冻结 |
-| Pixel Contract | `rgba8-srgb-integer-v1` |
-| 母版来源版本 | `original-fixtures-v1.1`，原创 CC0 像素图，非 AI/第三方 RTP |
-| Compiler | `fixed-prototype-v1`，固定诊断放置原型 |
-| MZ 目标 | 编辑器/模板核心 1.10.0，Area Type、48px、无插件 |
-| 环境 | Node 22.21.1、pnpm 10.20.0、TypeScript 5.9.3、Sharp 0.34.5、Vitest 4.0.18 |
-| Manifest SHA-256 | `211790adf8aa421df3c0d525653141dbb4f545ddf1e9e83001199124e22c110a` |
+| **代码Commit** | **`e795bb6495de8a4e147c68dac89bee58caab17da`** |
+| **Build ID** | **`step01-fdf7768b475e24c66cfd`** |
+| Manifest SHA-256 | `94562db3c57c2496013b3655dd01ad7aa2929acf44115805f94455153e8c2eb2` |
+| Profile | `mz-native-ground-water / 1.0.0-candidate.1`，未改变、未实机冻结 |
+| Pixel Contract / Compiler | `rgba8-srgb-integer-v1` / `fixed-prototype-v1`，未改变 |
+| 母版 | `original-fixtures-v1.1`，图像与来源哈希未改变 |
+| 工具链 | Node22.21.1、pnpm10.20.0、TS5.9.3、Sharp0.34.5、Vitest4.0.18 |
 
-本报告及证据以**后续文档提交**入库；这不改变上面的受测代码或已发布构建。
-后续 MZ 证据必须引用此身份，保存在新的独立记录中，不修改已有 manifest。
+本报告与证据随后以文档提交入库，受测代码始终绑定上述Commit。
+新ID来自源码Commit变化；四PNG与旧版字节相同。新候选已重新构建、验证及复审，
+没有自动移用旧验收状态。不可变manifest保留发布时NOT_EXECUTED，后续证据外置。
 
-## 验证状态分别记录
+## 两项修复及回归
 
-| 门禁 | 实际状态 | 能证明什么 |
-|---|---|---|
-| 代码实现 | COMPLETE | 本步独立原型与验收准备已实现 |
-| 类型/单元测试/构建 | PASS | 15 个源测试及 TypeScript Strict 检查 |
-| 图集结构 | STRUCTURAL_PASS | 尺寸、固定地址、三源帧、像素保留、空区域 |
-| 原生脚本选图/像素/更新计数 | PASS | 未修改 Tilemap 在 Node VM 的规则；不包含 GPU |
-| 独立代码 Review | PASS | 绑定候选的独立反例、复审与问题修复 |
-| 指定形态的真实 MZ 渲染 | NOT_EXECUTED | CPU montage 不能代替实际 MZ 渲染 |
-| 原生编辑器正常手绘 | NOT_EXECUTED | 尚无由编辑器保存的手绘地图 |
-| 实际游戏动画/通行 | NOT_EXECUTED | 尚未在原生 NW.js/MZ 游戏内执行 |
-| 人工美术母版确认 | NOT_EXECUTED | AI Reviewer 看过 CPU 拼装图，未替代人工确认 |
-| Profile 实机冻结 | NOT_EXECUTED | 保持 candidate 状态 |
-| 用户最终批准 | NOT_EXECUTED | 「continue」只继续当前步骤，不解除下一步门禁 |
+**P2-01/R1：Buffer多行重叠污染。** 旧实现的Buffer.slice返回共享视图；向下写第一行会
+改变尚未读取的下一行，1×3最小反例得到`[1,1,1]`，应为`[1,1,2]`。
+`src/pixels.ts` 现在在任何写入前，每行显式构造拥有独立存储的`new Uint8Array(...)`。
+同Buffer及不同Buffer/Uint8Array共享视图、非零offset均真正快照；坐标、Alpha、精度与
+非重叠行为不变，没有改像素契约。
 
-不可变 manifest 内的后续验证字段保持发布时 NOT_EXECUTED。
-当前 PASS 证据由本报告、独立 Review 和外部 JSON 记录补充，不重新写入构建文件。
+`tests/copy-rect.test.ts` 新增9项独立字节期望：向下/上、斜向、横向左右、同矩形、
+共享底层视图与非重叠保护。独立Reviewer将相同9测试原样移入旧提交，**4 fail/5 pass**；
+另写8,704次不同stride、错位/非像素对齐视图及无关backing字节对照：旧226差异，
+新 **8,704/8,704**。作者最小反例修改前/后也已真实保存。
 
-## 实现范围与关键文件
+**P2-02/R2：缺图清单仍成功准备工程。** 旧CLI删除diagnostic_A2清单条目及文件后仍exit0。
+新增最小 `scripts/prototype-input.ts` 预检工具，要求prepare固定引用的精确四图集合
+diagnostic_A1/A2、art_A1/A2；检查字段类型、Profile、SHA格式、既有身份算法，再确认每图
+可读、哈希匹配、合格RGBA8 PNG且768×576。预检全部在目标mkdir/copy之前完成，错误指出图集名。
 
-- [Profile](../step-01/target-profile-v1.md) / `src/profile.ts`：精确候选槽位、容量、Tile ID、
-  版本、模式、通行和动画规则。草地 kind16/17，水面 Block D kind4/6；容量各2。
-- [Pixel Contract](../step-01/pixel-processing-contract-v1.md) / `src/pixels.ts`：
-  RGBA8/sRGB、整数裁切、最近邻、Alpha约束及PNG真实容器检查；拒绝不合格输入。
-- `src/compiler.ts`：从96×144源样板编译固定A1/A2布局；不依赖后端/数据库/模型。
-- `scripts/make-fixtures.ts`、`tests/fixtures/`：独立编号/方向/角落/F0–F2诊断图、
-  原创草地/水面/静态岸线遮罩及来源清单；正常测试不重生成期望值。
-- `scripts/build-prototype.ts`：源码commit/源哈希/锁文件/编码环境绑定的实验构建，
-  独占锁、暂存目录、单次rename发布，已有构建拒绝覆盖。
-- `scripts/mz-oracle.ts`、`scripts/verify-mz.ts`：运行本机正版原始Tilemap作外部对照；
-  不在复制型编译器里重写一套形态表自证。
-- `scripts/prepare-mz.ts`：从正版模板组装全新本地测试工程，含NW启动配置、
-  空插件、推荐数据库设置、程序指定形态地图与两张待手绘空白地图。
-- [研究记录](../step-01/research.md)、[操作指导](../step-01/mz-acceptance.md)、
-  [记录模板](../step-01/acceptance-record.template.json)、AGENTS.md、README.md。
+`scripts/prepare-mz.ts` 写入缓存的受检PNG字节，并使用同份缓存Manifest哈希，避免预检后
+重新读路径造成不一致；旧工程仍以EEXIST保护。reference明确Host未核实、Native未执行。
+`tests/prepare-mz.test.ts` 新增24项覆盖完整、四图分别缺项/缺文件、空/无效清单、坏hash、
+目录、损坏PNG、匹配hash但非PNG/错误尺寸、身份变异、额外路径和缓存字节。
 
-岸线唯一候选是**水格内不透明预合成配套草岸**：静态草岸/沙边/暗水边由同一遮罩
-固定，内部波纹变化。没有证明任意混搭、透明多层、瀑布等方案，也没有把这些加入范围。
-正式 IR/处理配方、Fragment、Pack分配/退役、任务/持久化、Studio/浏览器播放属于后续步骤。
+实际CLI验证也通过：作者完整工程成功、8种无效输入不创建目标，已有639文件不变；
+独立Reviewer **36种输入×两种目标状态=72次**全部拒绝且保护目标。另在CLI预检后立刻改写
+四PNG与Manifest，新工程仍写原受检字节和原reference哈希。此工具不是生产Pack schema。
 
-两份批准方案保持不变。完整阅读后，V0.0工作流B按执行计划归步骤02，未提前搭建。
+## 全部适用检查
 
-## 自动检查与真实证据
+原 `tests/prototype.test.ts` 的15项原样保留，未删用例、降阈值或重生成母版。
 
-最终候选在 `2026-10-11T22:10:39+08:00` 开始记录的检查：
-
-| 命令 | 真实结果 |
+| 实际命令/检查 | 真实结果 |
 |---|---|
-| `pnpm install --frozen-lockfile` | exit0；Reviewer在最终候选亲自安装 |
+| `pnpm install --frozen-lockfile`（隔离新候选） | exit0 |
 | `pnpm typecheck` | exit0 |
-| `pnpm test` | exit0，1个源文件，15/15；dist不再重复执行 |
-| `pnpm build` | exit0，独立CLI可运行 |
-| `pnpm prototype` | 初次exit0；后续3次对同身份预期exit1拒绝覆盖，5文件哈希不变 |
-| `pnpm verify:mz '<正版newdata>/js/rmmz_core.js' artifacts/step01-ffc5300c7fb2cb94a48a` | exit0；48索引、960图块状态、2,211,840像素、241更新计数 |
-| `pnpm prepare:mz '<正版newdata>' artifacts/step01-ffc5300c7fb2cb94a48a` | 初次exit0；重复EEXIST，639文件前后哈希不变 |
-| 独立PNG线格式反例 | 正常RGBA8接受；索引/APNG/gAMA/HDR与IHDR/IDAT/IEND坏CRC全部明确拒绝 |
-| 独立像素/渲染检查 | 5×3456个逻辑2×2块零错误；3056静态岸像素零漂移，10768内部像素变化；48形态CPU渲染，帧1=状态3 |
-| 新MZ工程静态依赖检查 | 50项入口/JS/WASM/字体/角色/音效/地图/图集存在，六core与正版哈希相同；**不是运行PASS** |
-| ZIP交付包校验 | ZIP CRC、manifest原文、全部源图和图集SHA-256一致 |
+| `pnpm test` | exit0，3源文件 **48/48 = 原15 + 新9 + 新24** |
+| `pnpm build` | exit0 |
+| `pnpm prototype`（主目录/隔离新候选） | exit0，ID、Manifest、四PNG字节一致 |
+| `pnpm verify:mz '<正版newdata>/js/rmmz_core.js' artifacts/step01-fdf7768b475e24c66cfd` | exit0，960次选图、2,211,840像素、241更新计数 |
+| `pnpm prepare:mz '<正版newdata>' artifacts/step01-fdf7768b475e24c66cfd` | exit0，新工程；重复预期EEXIST，639文件不变 |
+| 独立Buffer及旧新版回归 | 新8704次全过；旧226差异，原样新测试旧4fail |
+| 独立无效输入CLI/目标保护 | 72次拒绝且目标未污染；旧缺图反例exit0再次复现 |
+| 独立预检后输入变更 | PASS，写入原经校验字节/哈希 |
+| 新候选重复构建 | 预期拒绝覆盖，5文件hash不变，无stage/lock遗留 |
+| 新ZIP | CRC、Manifest原文、全部源/图集SHA-256通过 |
 
-具体stdout/JSON/probe快照：
-[证据目录](../evidence/step-01/step01-ffc5300c7fb2cb94a48a/automatic-checks.json)。
-目录内 `evidence-hashes.json` 记录所有证据快照哈希。
-独立脚本原样归档到 `independent-probes/`；复制回仓库 `.local/reviewer/` 后可按
-独立报告的命令复现，需要本机正版MZ模板。它们不向仓库重新分发原生核心代码。
+960是检查次数，包括水state1/3读取同一源1；不是960种不同邻接或实机行为。
+oracle只在Node执行外部固定哈希Tilemap和像素对照，不包含GPU、编辑器或玩家操作。
+作者及Reviewer各自隔离重建。隔离shell曾选到Node22.14.0，记录为非基线实验；随后
+显式选择22.21.1重装/检查/构建，正式ID及全部字节一致。未将非基线结果当正式PASS。
 
-## 构建产物
+完整stdout、前后反例、CLI日志、隔离重建及独立探针见
+[新证据索引](../evidence/step-01/step01-fdf7768b475e24c66cfd/evidence-hashes.json)。
+只归档日志/报告/JSON/探针和原创图片，未递归复制含正版Runtime/RTP的隔离工程。
 
-本地构建目录：
-`/Users/dingshinn/Desktop/rpg-maker-maker/artifacts/step01-ffc5300c7fb2cb94a48a/`
+## 独立复审与历史
 
-| 产物 | SHA-256 |
+本轮 `/root/p2_independent_review` 未参与Coding，重新安装、构建并设计独立反例。
+[整改复审](step-01-p2-independent-review.md)：**代码PASS，R1/R2 CLOSED，步骤仍BLOCKED**。
+复审报告SHA-256：`5b7a608527cb13dbdd7dd5cb75a51681b0233937feed4e50e75fa28835c2200d`。
+
+此前 [正式独立Review](step-01-independent-review.md) 对301d3cd的REQUIRES_REVISION原样保留；
+[此前Coding报告](step-01-before-p2-remediation.md)、更早Review/证据及旧包也保留。
+Profile、Compiler、母版、原15测试、锁文件与两份批准方案均未改变。
+
+## 最新产物与验收材料
+
+本轮使用 **step01-fdf7768b475e24c66cfd**，旧step01-ffc5300c7fb2cb94a48a仅供历史审计。
+目录：`/Users/dingshinn/Desktop/rpg-maker-maker/artifacts/step01-fdf7768b475e24c66cfd/`。
+
+| PNG | SHA-256（与旧图一致） |
 |---|---|
 | diagnostic_A1.png | `de08f8bc36b87017afbb62aba946d612e8f4536939c0db707bbbbcbfd93b337f` |
 | diagnostic_A2.png | `b493ecc86e938dc9aa4f389ba6b1b052222baeade6bb1d58dea7b003126330cd` |
 | art_A1.png | `d896c5c8b62816e844865b2abe12a0d5c1694aceb6cd3c75f93eccbd6c55d9d2` |
 | art_A2.png | `7d60ac8c6072d38736e4027cc25fa23979de6e400b9c66d4f586a108506b2b2b` |
 
-验收素材ZIP（25项，55,630字节；原创源/图集、契约、指导和CPU预览，**不包含正版runtime/RTP**）：
-`/Users/dingshinn/Desktop/rpg-maker-maker/.local/delivery/step01-ffc5300c7fb2cb94a48a-acceptance.zip`
+新ZIP（31项、78,012字节；原创素材、契约、环境说明、指导和本轮新生成CPU预览）：
+`/Users/dingshinn/Desktop/rpg-maker-maker/.local/delivery/step01-fdf7768b475e24c66cfd-acceptance.zip`
 
-ZIP SHA-256：`4fbe16d13479a2f1011dbc1e30e65dca945c9a03d3f18369dd4532296428f076`。
+ZIP SHA-256：`9b7bb11f32693b99667befb4b082e861102f8c8579ca4cc83eac5122875ec40a`。
 
-已准备的本机正版测试工程：
-`/Users/dingshinn/Desktop/rpg-maker-maker/.local/mz/step01-ffc5300c7fb2cb94a48a/game.rmmzproject`
+新本地测试工程：
+`/Users/dingshinn/Desktop/rpg-maker-maker/.local/mz/step01-fdf7768b475e24c66cfd/game.rmmzproject`
 
-Map001为程序指定48形态；Map002/003目前为空白，**不属于手绘验收证据**。
-core、launcher、图集引用及初始地图哈希另存于项目reference/待验收记录中。
+直接打开，**不必重跑prepare**。Map001是程序指定形态，Map002/003仍为空白，没有手绘证据。
+六core与模板字节相同、插件空、Area/48px/通行配置正确只属静态检查，不代表游戏启动。
+最新 [指南](../step-01/mz-acceptance.md) 和 [模板](../step-01/acceptance-record.template.json)
+已补Host分类与禁止全局替换规则。
 
-## 独立 Review 与修复
+## 环境与待完成门禁
 
-独立 Reviewer `/root/step01_independent_review` 未参与实现。
-[初审](step-01-independent-initial.md)：CHANGES_REQUESTED，绑定85e6e71旧候选。
-[最终复审](step-01-independent-final.md)：**代码PASS**，绑定301d3cd与最终构建。
+按 [新环境约束](../engineering/MZ_RUNTIME_ENVIRONMENT.md) 只读检查：编辑器/模板core1.10.0、
+模板PixiJS5.3.12；NW应用bundle报告154.0.8037.58、二进制arm64。bundle字段不能当作NW产品
+版本或实际运行测量。**实际NW/Host Node/Chromium版本和Host来源仍NOT_VERIFIED**。
+未启动Host/编辑器，未执行初始化、更换全局MZ/NW/RPGReactor或修改现有游戏工程。
+原生核心工程与增强工程分开，没有用Modified NW/RPGReactor结果证明Native通过。
 
-已修复：Sharp metadata接受索引/APNG/非sRGB Gamma；遗漏HDR色彩块和宽松CRC；
-并发属性插入造成身份不稳定；凹角1px绘制违反逻辑2px；dist测试重复；新工程缺NW
-launcher和菜单脸图。保留原失败用例，新增真实反例，没有降低阈值。
-母版以v1.1显式更新，所有最终验证重新绑定；旧构建保留且不复用为新候选PASS。
+| 验收层次 | 当前状态 |
+|---|---|
+| 实现、48测试、独立代码Review | COMPLETE / PASS |
+| 指定形态真实MZ显示 | NOT_EXECUTED |
+| 普通画笔Map002/003手绘、邻接/图层行为 | NOT_EXECUTED |
+| 游戏水面动画、静态岸线、四方向通行 | NOT_EXECUTED |
+| 人工草地/水面/岸线美术确认 | NOT_EXECUTED |
+| Modified NW兼容 / RPGReactor兼容 | 各自NOT_EXECUTED |
+| Profile实机冻结 / 用户批准 | 各自NOT_EXECUTED |
+| **步骤01** | **BLOCKED，未APPROVED** |
 
-## 尚未关闭的门禁与需要用户完成的操作
+用户需先确认独立、合法且符合正式Native基线的Host；无法核实时保持正式运行验收
+NOT_EXECUTED，升级NW另记补充测试，不替代基线，也不要求修改现有安装。
+在指定新工程按指南核对版本/数据库，留Map001显示证据，正常手绘并保存Map002/003，
+实际游戏验证两草/两水槽、0→1→2→1至少两周期、静态岸线、草可走/水不可走；
+反馈原始地图、截图/录像、实际Host资料、逐项结果及人工美术意见。
+后续保存新的外部验收记录，引用新Commit/Build/哈希，不改已发布manifest。
 
-MZ UI连接多次返回 `-10005 timeoutReached / noWindowsAvailable`，库存读取也在30s
-超时并重置。未成功操作本候选工程，因此真实MZ验证全部为NOT_EXECUTED。
-不能因本机已安装MZ或原生脚本测试通过而取消必要实机门禁。
-
-请按 [完整实机指导](../step-01/mz-acceptance.md) 在上面**指定的新工程**执行：
-
-1. 核对MZ1.10.0、Area Type、48px、A1/A2和两个草/水槽位、推荐通行属性。
-2. 查看Map001指定形态，再在Map002/003用普通画笔画孤立格、池塘长边/内外角/孔洞、
-   一格通道、对角接触和大面积区域；保存原始手绘地图，保留用于步骤05。
-3. 测试游戏：观察0→1→2→1三源水面、静态岸线、草可走/水不可走；留录像或
-   多状态截图加观察记录。人工确认美术母版；没有执行的子项仍记NOT_EXECUTED。
-4. 返回Map002/003文件及对应截图/录像、MZ版本、逐项结果和意见。后续由Agent
-   计算哈希并保存新的外部验收记录，引用本构建，不改其manifest。
-5. 技术门禁补齐后，由用户明确批准此候选；在批准前保持步骤01，不进入步骤02。
-
-非阻断已知限制：本步容量仅2对；输入严格收窄为完整基本样板；像素母版不代表后续
-AI高质量指标。更广输入、生产模块及质量评测按批准步骤实施。
-没有发现需要改变已批准兼容范围或降低验收门槛的问题。
+本轮无未关闭的已知代码问题。必要实机、人工证据及用户批准仍为步骤门禁；
+只有用户明确批准满足门禁的候选，才允许进入步骤02。

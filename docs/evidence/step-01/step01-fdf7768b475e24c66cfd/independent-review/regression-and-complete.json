@@ -1,0 +1,38 @@
+[
+  {
+    "label": "old-new-overlap-regressions",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "tests/review-copy-rect.test.ts"
+    ],
+    "exitCode": 1,
+    "copiedTestHash": "4bdd6593ea6495749d5fef33775e3e44bda24db6185cf7342f2455673887ce1d"
+  },
+  {
+    "label": "complete-prepare",
+    "command": [
+      "node",
+      "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate/dist/scripts/prepare-mz.js",
+      "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata",
+      "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate/artifacts/step01-fdf7768b475e24c66cfd"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/complete-prepare",
+    "exitCode": 0,
+    "projectFiles": 639
+  },
+  {
+    "label": "repeat-prepare",
+    "command": [
+      "node",
+      "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate/dist/scripts/prepare-mz.js",
+      "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata",
+      "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/candidate/artifacts/step01-fdf7768b475e24c66cfd"
+    ],
+    "cwd": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/remediation/reviewer/complete-prepare",
+    "exitCode": 1,
+    "projectFiles": 639
+  }
+]
