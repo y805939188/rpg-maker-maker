@@ -1,0 +1,189 @@
+[
+  {
+    "name": "install",
+    "argv": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 0.608,
+    "log": "install.log",
+    "sha256": "25ac25f7607aa718d9d938846ed2dc938857a9d36027d7759e1d34337b8cac3e"
+  },
+  {
+    "name": "prisma-generate",
+    "argv": [
+      "pnpm",
+      "db:generate"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.632,
+    "log": "prisma-generate.log",
+    "sha256": "7107a29453a75877e3214dbc349565772d5e69ea15a3e48e928103fc95469ad5"
+  },
+  {
+    "name": "check",
+    "argv": [
+      "pnpm",
+      "check"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 22.687,
+    "log": "check.log",
+    "sha256": "223bc051173dbd5009a5859bae7f4a269824d27caafa6b26ff3e59b33c482853"
+  },
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.115,
+    "log": "migrate.log",
+    "sha256": "7564767fbc0a0ebcdb56402452dbf08d581cfc53b135264e791d6375508480df"
+  },
+  {
+    "name": "dev-privacy",
+    "argv": [
+      "pnpm",
+      "test:dev-privacy"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 2.971,
+    "log": "dev-privacy.log",
+    "sha256": "f11b40755e1e13704ff5bd08b45261ed724364ee566c4ec49027a9b47a1b4e9b"
+  },
+  {
+    "name": "integration",
+    "argv": [
+      "pnpm",
+      "test:integration"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 3.018,
+    "log": "integration.log",
+    "sha256": "cdb581cb6aa3cda203a182e3c0f4708a165c1e156d4242e1efe94388aeda34ef"
+  },
+  {
+    "name": "browser-production",
+    "argv": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 6.743,
+    "log": "browser-production.log",
+    "sha256": "c0357d55da1f8e57a089b3f0c62c300fd0ca27707777f3fe8759294a0d2d81ac"
+  },
+  {
+    "name": "browser-development",
+    "argv": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "envOverrides": {
+      "E2E_MODE": "dev"
+    },
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 8.487,
+    "log": "browser-development.log",
+    "sha256": "241fa101edcf2950dd3ce0ce975196e8c1b480bfc7234d7acddf46cf65b0be05"
+  },
+  {
+    "name": "engineering-build",
+    "argv": [
+      "pnpm",
+      "build:engineering"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 8.192,
+    "log": "engineering-build.log",
+    "sha256": "1883729c4a32d5dd782145210f61c9d8a009a88c36990cb8514425478fd681d2"
+  },
+  {
+    "name": "prototype-build",
+    "argv": [
+      "pnpm",
+      "prototype"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.229,
+    "log": "prototype-build.log",
+    "sha256": "2f57fcd243b6148d9c42a117e1e09513248d4d5abfc48dbe422791d26a218199"
+  },
+  {
+    "name": "native-oracle",
+    "argv": [
+      "pnpm",
+      "verify:mz",
+      "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js",
+      "/Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/artifacts/step01-5126a8b175aa7d0707af"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.984,
+    "log": "native-oracle.log",
+    "sha256": "b858772bb4554211f1bb096fb700e121e66061a34577568bf0ffa696e7c7d09e"
+  },
+  {
+    "name": "engineering-overwrite-refusal",
+    "argv": [
+      "node",
+      "scripts/build-engineering.mjs"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 1,
+    "expectedExitCode": 1,
+    "durationSeconds": 0.081,
+    "log": "engineering-overwrite-refusal.log",
+    "sha256": "2fd0e9399b6328afe71b3e64d61671376fa63521305eb4afd99a0ad1b6ec020c"
+  },
+  {
+    "name": "prototype-overwrite-refusal",
+    "argv": [
+      "pnpm",
+      "prototype"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "396cefbdef6f22783e209722155c9088e685719b",
+    "exitCode": 1,
+    "expectedExitCode": 1,
+    "durationSeconds": 1.219,
+    "log": "prototype-overwrite-refusal.log",
+    "sha256": "5272fcf301fc8d766f32bb1fb20f3dc2fd3905132c2e26652ce2f164e8aa30a9"
+  }
+]
