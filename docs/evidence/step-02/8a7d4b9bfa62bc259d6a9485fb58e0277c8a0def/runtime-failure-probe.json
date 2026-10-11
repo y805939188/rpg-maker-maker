@@ -1,0 +1,59 @@
+{
+  "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+  "api": "http://127.0.0.1:4310",
+  "checks": [
+    {
+      "name": "before-offline",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      }
+    },
+    {
+      "name": "occupied-port",
+      "argv": [
+        "node",
+        "apps/api/dist/main.js"
+      ],
+      "envOverrides": {
+        "NODE_ENV": "production"
+      },
+      "exitCode": 1,
+      "stderr": "Local startup failed. Check configuration, database migrations and production build.\n"
+    },
+    {
+      "name": "invalid-bind",
+      "argv": [
+        "node",
+        "apps/api/dist/main.js"
+      ],
+      "envOverrides": {
+        "API_HOST": "0.0.0.0",
+        "NODE_ENV": "production"
+      },
+      "exitCode": 1,
+      "stderr": "Local startup failed. Check configuration, database migrations and production build.\n"
+    },
+    {
+      "name": "database-offline",
+      "status": 503,
+      "body": {
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "Local database is unavailable. Check the local service."
+        }
+      }
+    },
+    {
+      "name": "database-restarted",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      }
+    }
+  ]
+}

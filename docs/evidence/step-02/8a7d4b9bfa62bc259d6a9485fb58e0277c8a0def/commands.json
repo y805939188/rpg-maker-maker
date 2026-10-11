@@ -1,0 +1,175 @@
+[
+  {
+    "name": "install",
+    "argv": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 0.587,
+    "log": "install.log",
+    "sha256": "3bc7ceb29779ae8a64c16bb692a2e555070cc9bc3913d82116e99eb6be751f00"
+  },
+  {
+    "name": "prisma-generate",
+    "argv": [
+      "pnpm",
+      "db:generate"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.611,
+    "log": "prisma-generate.log",
+    "sha256": "2e7a271f051841b9f0ac103a017ff943c0b86283dbc506495cf9643f1e12cf17"
+  },
+  {
+    "name": "check",
+    "argv": [
+      "pnpm",
+      "check"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 21.554,
+    "log": "check.log",
+    "sha256": "a06fc609edee2b76a19598f2cb8a5afea6eedafb12ef2b6fc0e0302c49341df7"
+  },
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.112,
+    "log": "migrate.log",
+    "sha256": "7564767fbc0a0ebcdb56402452dbf08d581cfc53b135264e791d6375508480df"
+  },
+  {
+    "name": "integration",
+    "argv": [
+      "pnpm",
+      "test:integration"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 3.056,
+    "log": "integration.log",
+    "sha256": "726432be2364b45616fe988560354fb4a49d9d9472ca00ee44111c0c185bcc0b"
+  },
+  {
+    "name": "browser-production",
+    "argv": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 6.662,
+    "log": "browser-production.log",
+    "sha256": "2e98e7f913ba235fad86cbcd627d2b0b1ca95926ee051c8c8bc8e60650eb68cc"
+  },
+  {
+    "name": "browser-development",
+    "argv": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "envOverrides": {
+      "E2E_MODE": "dev"
+    },
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 7.726,
+    "log": "browser-development.log",
+    "sha256": "2a988f9afe4ffe669bdb1c35ef1b7ce75e76f040271eb584354f2aa7092ad318"
+  },
+  {
+    "name": "engineering-build",
+    "argv": [
+      "pnpm",
+      "build:engineering"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 8.097,
+    "log": "engineering-build.log",
+    "sha256": "ea22ac92c327625905466b14f7f210256dd18aee777730f68dd5eb757cab006a"
+  },
+  {
+    "name": "prototype-build",
+    "argv": [
+      "pnpm",
+      "prototype"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.221,
+    "log": "prototype-build.log",
+    "sha256": "8fb216523331cb8b512d15eae5dc29a1d55bafff959daf6b0ed0c2a1e173a0c9"
+  },
+  {
+    "name": "native-oracle",
+    "argv": [
+      "pnpm",
+      "verify:mz",
+      "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js",
+      "/Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/artifacts/step01-3b32cba0a6db7fad1fac"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.916,
+    "log": "native-oracle.log",
+    "sha256": "3d9fb8c16eaeb21ad8a0ea7e79c4f2efacdcd69eae92b2d8010cc96d96806245"
+  },
+  {
+    "name": "engineering-overwrite-refusal",
+    "argv": [
+      "node",
+      "scripts/build-engineering.mjs"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 1,
+    "expectedExitCode": 1,
+    "durationSeconds": 0.081,
+    "log": "engineering-overwrite-refusal.log",
+    "sha256": "2fd0e9399b6328afe71b3e64d61671376fa63521305eb4afd99a0ad1b6ec020c"
+  },
+  {
+    "name": "prototype-overwrite-refusal",
+    "argv": [
+      "pnpm",
+      "prototype"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "exitCode": 1,
+    "expectedExitCode": 1,
+    "durationSeconds": 1.214,
+    "log": "prototype-overwrite-refusal.log",
+    "sha256": "0881ee854c4a67f1878bf6b0ee00baf8002b23fb44e2ea72dae1e75c9fd7f74b"
+  }
+]
