@@ -27,6 +27,7 @@ ID `rgba8-srgb-integer-v1`。步骤 01 最小实现：`src/pixels.ts`。
   static-bank-mask，静态区域逐像素不变。内部水面必须有实际变化，纯色/相同帧
   不算视觉质量成功。没有用 AI Prompt 保证格式。
 - **边界**：本步 PNG 输入≤4MiB，解码像素≤768×576；缓冲长度必须width×height×4。
+  每个PNG chunk校验CRC；坏checksum即使Sharp能够解码也必须拒绝。
   明确拒绝不合格输入，当前不是接受任意 AI 输出的生产导入器。
 - **可复现**：锁定 Sharp 0.34.5、pnpm锁文件、Node版本；PNG使用compressionLevel=9、
   adaptiveFiltering=false、palette=false，无可变元数据。Manifest记录encoder/libvips

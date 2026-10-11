@@ -78,6 +78,17 @@ describe('RGBA8 integer pixel contract',()=>{
       await expect(decodePng(pngSample([chunk(name,data)]))).rejects.toThrow(/HDR\/color/);
     }
   });
+  it('rejects corrupted IHDR, IDAT and IEND checksums even when Sharp can decode the pixels',async()=>{
+    for(const bad of ['IHDR','IDAT','IEND']) {
+      const bytes=pngSample();
+      for(let offset=8;offset<bytes.length;) {
+        const length=bytes.readUInt32BE(offset),name=bytes.toString('ascii',offset+4,offset+8);
+        if(name===bad) { bytes[offset+8+length]=bytes[offset+8+length]!^1;break; }
+        offset+=length+12;
+      }
+      await expect(decodePng(bytes)).rejects.toThrow(/CRC/);
+    }
+  });
 });
 
 describe('Fixed prototype (spec §3, §8, step 01)',()=>{

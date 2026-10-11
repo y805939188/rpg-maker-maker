@@ -59,6 +59,13 @@ function checkPngContract(bytes: Uint8Array): void {
     const type = b.toString('ascii',offset+4,offset+8);
     if (offset + length + 12 > b.length) throw new Error('Truncated PNG chunk data');
     const data = b.subarray(offset+8,offset+8+length);
+    // libvips can ignore bad IDAT/IEND checksums; enforce container integrity ourselves.
+    let crc = 0xffffffff;
+    for (const value of b.subarray(offset+4,offset+8+length)) {
+      crc ^= value;
+      for (let bit=0;bit<8;bit++) crc=(crc>>>1)^((crc&1)?0xedb88320:0);
+    }
+    if (((crc^0xffffffff)>>>0) !== b.readUInt32BE(offset+8+length)) throw new Error(`PNG ${type} CRC mismatch`);
     if (!headerSeen && type !== 'IHDR') throw new Error('PNG IHDR must be first');
     if (type === 'IHDR') {
       if (headerSeen || length !== 13 || data[8] !== 8 || data[9] !== 6) {
