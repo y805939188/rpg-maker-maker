@@ -21,6 +21,7 @@ let server: ChildProcess | undefined;
 let origin: string;
 
 const privateFiles: string[] = [];
+const privateAliases: string[] = [];
 const artifacts: Record<string, unknown> = {};
 
 async function freePort(): Promise<number> {
@@ -31,7 +32,8 @@ async function freePort(): Promise<number> {
   await new Promise<void>((done, reject) =>
     socket.close((error) => (error ? reject(error) : done())),
   );
-  return address.port;
+  // The fixed foreign-Origin port must remain distinct from the randomly assigned server port.
+  return address.port === 51999 ? freePort() : address.port;
 }
 beforeAll(async () => {
   const port = await freePort();
@@ -57,11 +59,17 @@ beforeAll(async () => {
   const link = resolve(webFixture, 'private-symlink.json');
   await symlink(privateFiles[0]!, link);
   privateFiles.push(link);
+  const directoryAlias = resolve(webFixture, 'directory-alias');
+  await symlink(localFixture, directoryAlias, 'dir');
+  privateAliases.push(link, resolve(directoryAlias, 'private-state.json'));
   await writeFile(resolve(webFixture, 'public.json'), '{"public":"PUBLIC_ALLOWED_CANARY"}', {
     flag: 'wx',
   });
   artifacts['configSHA256'] = createHash('sha256')
     .update(await readFile(configFile))
+    .digest('hex');
+  artifacts['boundarySHA256'] = createHash('sha256')
+    .update(await readFile(resolve(webRoot, 'dev-boundary.ts')))
     .digest('hex');
   artifacts['configurationBaseline'] = process.env['TILESET_VITE_TEST_BASELINE_SHA'] ?? null;
   artifacts['sourceCommit'] = execFileSync('git', ['rev-parse', 'HEAD'], {
@@ -71,7 +79,25 @@ beforeAll(async () => {
   artifacts['testSHA256'] = createHash('sha256')
     .update(await readFile(fileURLToPath(import.meta.url)))
     .digest('hex');
-  server = spawn('pnpm', ['--filter', '@tileset/web', 'exec', 'vite', '--config', configFile], {
+  // Add only a pure registered virtual test module; all original server/FS/Origin options remain intact.
+  const actualConfig = resolve(webFixture, 'privacy-vite.config.ts');
+  await writeFile(
+    actualConfig,
+    `import base from ${JSON.stringify(configFile)};
+export default async (env) => {
+  const config = typeof base === 'function' ? await base(env) : await base;
+  return { ...config, plugins: [...(config.plugins ?? []), {
+    name: 'privacy-public-virtual-fixture',
+    resolveId(id) { if (id === 'virtual:privacy-public' || id === '\\0privacy-public') return '\\0privacy-public'; },
+    load(id) { if (id === '\\0privacy-public') return 'export const publicVirtual = "PUBLIC_VIRTUAL_CANARY";'; }
+  }] };
+};\n`,
+    { flag: 'wx' },
+  );
+  artifacts['virtualFixtureConfigSHA256'] = createHash('sha256')
+    .update(await readFile(actualConfig))
+    .digest('hex');
+  server = spawn('pnpm', ['--filter', '@tileset/web', 'exec', 'vite', '--config', actualConfig], {
     cwd: repository,
     env: { ...process.env, WEB_PORT: String(port) },
     detached: true,
@@ -106,7 +132,7 @@ beforeAll(async () => {
     'exec',
     'vite',
     '--config',
-    configFile,
+    actualConfig,
   ];
   artifacts['serverStartupLog'] = output;
   if (!ready) throw new Error('Vite privacy test server did not become ready.');
@@ -157,14 +183,16 @@ afterAll(async () => {
   }
 }, 30000);
 
-async function probe(path: string, requestOrigin?: string) {
-  const response = await fetch(
-    origin + path,
-    requestOrigin ? { headers: { Origin: requestOrigin } } : {},
-  );
+async function probe(path: string, requestOrigin?: string, init: RequestInit = {}) {
+  const response = await fetch(origin + path, {
+    ...init,
+    headers: { ...(requestOrigin ? { Origin: requestOrigin } : {}), ...init.headers },
+  });
   const body = await response.text();
   const record = {
     path,
+    method: init.method ?? 'GET',
+    requestHeaders: init.headers ?? {},
     origin: requestOrigin ?? null,
     status: response.status,
     accessControlAllowOrigin: response.headers.get('access-control-allow-origin'),
@@ -215,9 +243,60 @@ describe('actual Vite server privacy boundary (STEP02-R1-001)', () => {
       expect(preflight.headers.get('access-control-allow-origin')).toBeNull();
     }
   });
+  it('rejects effective module wrappers for both file and directory aliases across methods and encodings', async () => {
+    const results = [];
+    for (const file of privateAliases) {
+      const directFs = '/@fs/' + file.slice(1);
+      const variants = [
+        '/@id/' + directFs,
+        '/@id/' + file,
+        '/@id/' + '/@id/' + directFs,
+        '/@id/__x00__' + directFs,
+        '/@%69d/' + directFs,
+        '/@id/' + directFs.replace('/@fs/', '/@%66s/'),
+        '/@id/' + directFs.replace('/@fs/', '/@%2566s/'),
+        '/@id/' + directFs.replace('privacy', '%70rivacy'),
+        '/@id/' + directFs.replace('privacy', '%2570rivacy'),
+        '/@id/' + directFs.replaceAll('/', '%5C'),
+      ];
+      for (const path of variants)
+        for (const query of queries)
+          for (const requestOrigin of [origin, undefined]) {
+            results.push(await probe(path + query, requestOrigin));
+          }
+      for (const query of ['?import', '?raw&import', '?import&raw']) {
+        for (const init of [
+          { method: 'HEAD' },
+          { headers: { Range: 'bytes=0-1023' } },
+          { headers: { 'Sec-Fetch-Dest': 'script' } },
+          { method: 'OPTIONS', headers: { 'Access-Control-Request-Method': 'GET' } },
+        ])
+          results.push(await probe('/@id/' + directFs + query, origin, init));
+      }
+    }
+    const violations = results.filter(
+      (record) => record.status !== 403 || record.bodyContainsFakeMarker,
+    );
+    expect(violations.map(({ body: _body, ...record }) => record)).toEqual([]);
+  }, 30000);
+  it('fails closed on missing/pseudo-virtual paths instead of handing them to a later filesystem resolver', async () => {
+    for (const path of [
+      '/missing-privacy-fixture.js',
+      '/@fs/' + resolve(webFixture, 'missing.json').slice(1),
+      '/@id/__x00__unregistered-privacy-module?import',
+    ]) {
+      const response = await probe(path, origin);
+      expect(response.status).toBe(403);
+      expect(response.bodyContainsFakeMarker).toBe(false);
+    }
+  });
   it('still loads the normal frontend and shared compiled contract through HTTP', async () => {
     for (const path of [
       '/',
+      '/@vite/client',
+      '/@vite/env',
+      '/@react-refresh',
+      '/@id/__x00__privacy-public?import',
       '/src/main.tsx',
       '/@fs/' + resolve(repository, 'packages/contracts/dist/index.js').slice(1),
       '/' + fixtureName + '/public.json',
@@ -225,6 +304,8 @@ describe('actual Vite server privacy boundary (STEP02-R1-001)', () => {
       const result = await probe(path, origin);
       expect(result.status, path).toBe(200);
       expect(result.accessControlAllowOrigin).toBe(origin);
+      if (path.includes('__x00__privacy-public'))
+        expect(result.body).toContain('PUBLIC_VIRTUAL_CANARY');
     }
   });
 });

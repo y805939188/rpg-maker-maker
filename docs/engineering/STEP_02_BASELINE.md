@@ -50,6 +50,8 @@ E2E_MODE=dev pnpm test:e2e
 
 Vite 开发服务器是独立的安全表面。其文件允许根显式限定到 `apps/web`、`packages/contracts/dist` 和实际依赖 `node_modules`，不启用默认工作区根允许列表；所有深度的 `.local`（包括 PostgreSQL/MZ 私有状态）都禁止服务，保留 `.env`/证书/`.git` 默认保护并增加 `.key`。请求的真实文件路径必须在允许根内，符号链接不能指向私有目录。没有 public 目录静态服务，前端素材通过 src 导入，避免另一个绕过文件检查的静态处理入口。Origin/CORS 精确限定实际 Web 端口，其他 localhost 端口同样拒绝；预检必须穿过该边界。`pnpm test:dev-privacy` 启动真实独立 Vite CLI，使用新建的 0600 假哨兵验证 plain/raw/import/query/编码/符号链接、外来 Origin 和正常前端/共享包加载；不读取或请求真实凭据。该回归也由 CI 明确执行。
 
+第二轮路径整改后，边界以 Vite 实际 client resolver 的结果授权：先解除已固定版本的 ID 包装，再验证真实文件目标；缺失文件或未注册伪虚拟模块直接拒绝，不因 ENOENT 放行。模块 load 阶段也再次验证目标，覆盖 raw/asset loader；优化依赖仅等待 Vite 已登记的 processing 完成后验真。标准 Vite/React runtime 和实际注册的虚拟模块保留，API 代理按独立路由进入 Nest。隐私回归覆盖文件和目录别名、wrapped @id→@fs、重复/编码包装、查询顺序、HEAD/Range/script/OPTIONS，并用纯虚拟测试模块证明合法虚拟加载。
+
 ## 依赖与后续模块
 
 根工作区 `@tileset/prototype` 保留 `src/profile.ts` / `src/pixels.ts` / `src/compiler.ts`，作为步骤 01 独立诊断工具。未改算法、Profile、PNG、来源或 golden。没有把固定槽位复制为生产规划。原型仅依赖 Sharp；任何正式核心不应反向依赖 Web、Nest、Prisma 或供应商。
