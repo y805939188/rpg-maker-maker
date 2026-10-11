@@ -22,6 +22,7 @@
     "build": "node scripts/clean-build.mjs && pnpm build:prototype && pnpm build:contracts && pnpm --filter @tileset/api build && pnpm --filter @tileset/web build",
     "test": "pnpm build:contracts && vitest run",
     "test:e2e": "playwright test",
+    "test:dev-privacy": "pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts",
     "test:integration": "pnpm build:contracts && vitest run --config vitest.integration.config.ts",
     "lint": "eslint src scripts tests apps packages *.ts *.mjs",
     "format": "prettier --write .",

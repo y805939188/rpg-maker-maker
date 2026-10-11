@@ -32,6 +32,7 @@ pnpm format:check
 pnpm test
 pnpm build
 pnpm test:integration
+pnpm test:dev-privacy
 pnpm exec playwright install chromium
 pnpm test:e2e
 E2E_MODE=dev pnpm test:e2e
@@ -46,6 +47,8 @@ E2E_MODE=dev pnpm test:e2e
 生产 API 仅监听 `127.0.0.1`；Host 必须精确匹配该地址和配置端口，拒绝转发 Host/地址。Origin 限定生产同源；开发额外允许精确的 Vite 地址。变更接口额外要求 Origin、`X-Tileset-Client: local-v1` 和 JSON Content-Type，服务端执行检查，CORS 仅是浏览器读权限。拒绝跨站 Fetch Metadata、表单和 multipart。JSON 解压关闭且上限 8 KiB，Zod strict 输入拒绝路径、模型、未知属性；输出专门映射 UUID、名称和 ISO 字符串，不直接暴露 ORM 对象。没有 cookie 身份或用户登录，此边界面向 local-first，不是 SaaS 授权。
 
 `/api/openapi.json` 从 HTTP Zod 定义生成 OpenAPI 3.0.3；共享 ESM 包同时导出明确的 JS 和 `.d.ts`，不向生产 Node 导出 TS 源码。API 的 Prisma schema/迁移与 HTTP DTO 分开。API Key 不属于契约或前端环境；`VITE_*` 不可用于秘密。当前无上传端点；未来上传必须复用 Pixel Contract 的容器/CRC/体积/像素验证，不能只信后缀或 MIME。不可允许用户选择服务端路径。
+
+Vite 开发服务器是独立的安全表面。其文件允许根显式限定到 `apps/web`、`packages/contracts/dist` 和实际依赖 `node_modules`，不启用默认工作区根允许列表；所有深度的 `.local`（包括 PostgreSQL/MZ 私有状态）都禁止服务，保留 `.env`/证书/`.git` 默认保护并增加 `.key`。请求的真实文件路径必须在允许根内，符号链接不能指向私有目录。没有 public 目录静态服务，前端素材通过 src 导入，避免另一个绕过文件检查的静态处理入口。Origin/CORS 精确限定实际 Web 端口，其他 localhost 端口同样拒绝；预检必须穿过该边界。`pnpm test:dev-privacy` 启动真实独立 Vite CLI，使用新建的 0600 假哨兵验证 plain/raw/import/query/编码/符号链接、外来 Origin 和正常前端/共享包加载；不读取或请求真实凭据。该回归也由 CI 明确执行。
 
 ## 依赖与后续模块
 
