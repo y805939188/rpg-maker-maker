@@ -3,13 +3,15 @@ import { resolve } from 'node:path';
 import { PROFILE } from '../src/profile.js';
 import { readJson,sha256 } from './io.js';
 import { loadNativeOracle } from './mz-oracle.js';
-import { preflightPrototypeBuild,REQUIRED_ATLASES } from './prototype-input.js';
+import { preflightPrototypeBuild,REQUIRED_ATLASES,validateNativeEmptyPlugins } from './prototype-input.js';
 
 const [templateArg,buildArg] = process.argv.slice(2);
 if (!templateArg||!buildArg) throw new Error('Usage: pnpm prepare:mz <licensed MZ newdata directory> <immutable build directory>');
 const template = resolve(templateArg),build = resolve(buildArg);
 const input = await preflightPrototypeBuild(build);
 const m = input.manifest;
+const nativePlugins = await readFile(resolve(template,'js/plugins.js'));
+validateNativeEmptyPlugins(nativePlugins);
 await loadNativeOracle(resolve(template,'js/rmmz_core.js'));
 const project = resolve('.local/mz',m.buildId);
 await mkdir(resolve('.local/mz'),{recursive:true});
@@ -27,7 +29,8 @@ await writeFile(resolve(project,'package.json'),JSON.stringify({
   name:'rmmz-game',main:'index.html','chromium-args':'--force-color-profile=srgb',
   window:{title:`AI Tileset Step01 ${m.buildId}`,width:816,height:624,position:'center',icon:'icon/icon.png'},
 },null,2)+'\n');
-await writeFile(resolve(project,'js/plugins.js'),'// Native compatibility test: no plugins\nvar $plugins = [];\n');
+// Preserve the editor's native serialized form; the previous inline JS failed project opening.
+await writeFile(resolve(project,'js/plugins.js'),nativePlugins);
 const flags = Array<number>(8192).fill(0);
 flags[0]=PROFILE.flags.emptyUpperTile;
 // Unused slots are blocked; occupied ground slots are passable, occupied water slots impassable.
@@ -80,6 +83,7 @@ await writeFile(resolve(project,'step01-build-reference.json'),JSON.stringify({
   coreFiles,editorDrawing:'NOT_EXECUTED',gameRuntime:'NOT_EXECUTED',
   playtestHost:'NOT_VERIFIED',nativeMzAcceptance:'NOT_EXECUTED',
   launcherSha256:sha256(await readFile(resolve(project,'package.json'))),
+  pluginsSha256:sha256(nativePlugins),
   note:'Locally assembled from licensed MZ installation. Do not redistribute runtime or RTP. Store observations separately; retain handdrawn Map002/003.',
 },null,2)+'\n');
 console.log(JSON.stringify({project,projectFile:resolve(project,'game.rmmzproject'),buildId:m.buildId,coreFiles},null,2));
