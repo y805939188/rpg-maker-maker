@@ -7,5 +7,13 @@
   "credentialLocation": "ignored .local/orchestration/release-db.env (0600); not archived",
   "status": "READY_FOR_MERGED_CANDIDATE_PRISMA_REGRESSION",
   "realConnect": "PASS",
-  "readWrite": "NOT_EXECUTED"
+  "readWrite": "PASS_PSQL_TEMP_TABLE_TRANSACTION_EXACT_ROW",
+  "prisma": "NOT_EXECUTED",
+  "probeOutput": [
+    "BEGIN",
+    "CREATE TABLE",
+    "INSERT 0 1",
+    "1|real-postgres-write",
+    "ROLLBACK"
+  ]
 }
