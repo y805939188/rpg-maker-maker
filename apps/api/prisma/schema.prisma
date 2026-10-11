@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Only the step-02 engineering round-trip. Asset/task persistence belongs to step 06.
+model Project {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @db.VarChar(80)
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+}

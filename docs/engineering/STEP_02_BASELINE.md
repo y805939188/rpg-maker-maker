@@ -1,0 +1,66 @@
+# 步骤 02 工程基线
+
+当前只提供工程壳与项目创建/列表/读取的真实数据库链路。没有素材上传、完整 Studio、正式 Compiler/Pack、持久化任务运行器或真实 Provider 调用。MZ 的原装 Host 验收仍为 `NOT_EXECUTED`；步骤 01 的阶段放行与 Map003 待证据记录继续有效。
+
+## 安装和运行
+
+固定 Node `22.21.1`、pnpm `10.20.0`（`.nvmrc`、`.node-version`、`engines`、`packageManager`）。可用 `nvm use` 选择 Node；终端如果登录配置选择了旧 Node，先按版本文件修正 PATH。PostgreSQL 本地实测 `14.20`，CI 使用同版本服务。
+
+```sh
+pnpm install --frozen-lockfile
+pnpm db:local init
+pnpm db:generate
+pnpm build
+pnpm db:migrate
+pnpm dev
+```
+
+开发 Web 在 `http://127.0.0.1:5173`，API 在 `http://127.0.0.1:4310`。退出开发后执行 `pnpm start`，独立 Node 运行编译后的 API，同源提供构建后的 Web，访问 `http://127.0.0.1:4310`。生产启动不使用 tsx 或源码解析。`pnpm start` 不自动迁移数据库。
+
+`pnpm db:local init` 仅创建当前工作树内 `.local/postgres/data`，拒绝已有集群和已有 `.env`，使用独立端口 `55432`、环回 TCP、SCRAM 密码验证、不开放 Unix socket。随机密码只写入被忽略且权限 0600 的 `.env` / `.local/postgres/ownership.json`。不删除数据库，不操作 Homebrew 服务或已有 5432 集群。初始化失败后保留现场，由操作者检查，禁止为了重试删除未知数据。
+
+后续启动/停止：`pnpm db:local start` / `pnpm db:local stop`；状态：`pnpm db:local status`。独立 Review 使用另一个工作树与 `TILESET_PG_PORT=55433 pnpm db:local init`。Linux 或不同 Homebrew 位置可用 `TILESET_PG_BIN` 指定包含 `initdb` / `pg_ctl` / `createdb` 的 PostgreSQL 14 二进制目录。这两个变量仅作用于本次命令，不修改系统环境。初始化时写入的端口不可在已有集群中静默更改。
+
+如使用自行部署的本地数据库：复制 `.env.example` 到被忽略的 `.env`，设置自己的凭据；API 只接受 `127.0.0.1` 上名称以 `tileset_` 开头的独立数据库。不得把其他工程/系统数据库当测试数据库。应用启动会校验配置并连接；错误不输出密码、SQL 或本地文件路径。
+
+## 命令和证据
+
+```sh
+pnpm typecheck
+pnpm lint
+pnpm format:check
+pnpm test
+pnpm build
+pnpm test:integration
+pnpm exec playwright install chromium
+pnpm test:e2e
+E2E_MODE=dev pnpm test:e2e
+```
+
+`pnpm check` 包含类型、lint、格式、单元/原型测试和构建。数据库测试是单独且必要的门禁，缺少数据库时必须失败，不自动跳过；仅清理测试新建且记录 ID 的行。浏览器测试在两种运行模式下真实创建项目、刷新后读回并检查 Pixi 画布和浏览器异常，截图/JSON 写入被忽略的 `.local/e2e`。CI 服务数据库无需密码，仅在临时 runner 的环回端口可用；本地默认仍必须 SCRAM。CI 配置存在不等于远端 CI 已运行。
+
+先提交冻结候选，再执行 `pnpm build` 和 `pnpm build:engineering` 发布 `artifacts/step02-*`。Manifest 绑定完整 commit、唯一 Profile、Pixel/HTTP/Task 契约、Node、锁文件 SHA-256 和每个构建文件 SHA-256；已发布目录拒绝覆盖。验证、独立 Review、用户批准另存引用证据，不改 Manifest 加 PASS。证据文档提交不得被描述为新的源实现测试。原型命令继续保持根目录和 `dist/scripts` 路径：`pnpm prototype`、`pnpm verify:mz <本机正版 rmmz_core.js> <构建目录>`、`pnpm prepare:mz ...`。仅新目录可出版，不覆盖步骤 01 历史构建和人工工程。
+
+## 安全和 API 边界
+
+生产 API 仅监听 `127.0.0.1`；Host 必须精确匹配该地址和配置端口，拒绝转发 Host/地址。Origin 限定生产同源；开发额外允许精确的 Vite 地址。变更接口额外要求 Origin、`X-Tileset-Client: local-v1` 和 JSON Content-Type，服务端执行检查，CORS 仅是浏览器读权限。拒绝跨站 Fetch Metadata、表单和 multipart。JSON 解压关闭且上限 8 KiB，Zod strict 输入拒绝路径、模型、未知属性；输出专门映射 UUID、名称和 ISO 字符串，不直接暴露 ORM 对象。没有 cookie 身份或用户登录，此边界面向 local-first，不是 SaaS 授权。
+
+`/api/openapi.json` 从 HTTP Zod 定义生成 OpenAPI 3.0.3；共享 ESM 包同时导出明确的 JS 和 `.d.ts`，不向生产 Node 导出 TS 源码。API 的 Prisma schema/迁移与 HTTP DTO 分开。API Key 不属于契约或前端环境；`VITE_*` 不可用于秘密。当前无上传端点；未来上传必须复用 Pixel Contract 的容器/CRC/体积/像素验证，不能只信后缀或 MIME。不可允许用户选择服务端路径。
+
+## 依赖与后续模块
+
+根工作区 `@tileset/prototype` 保留 `src/profile.ts` / `src/pixels.ts` / `src/compiler.ts`，作为步骤 01 独立诊断工具。未改算法、Profile、PNG、来源或 golden。没有把固定槽位复制为生产规划。原型仅依赖 Sharp；任何正式核心不应反向依赖 Web、Nest、Prisma 或供应商。
+
+| 模块            | 拥有的职责                                  | 允许依赖                                  |
+| --------------- | ------------------------------------------- | ----------------------------------------- |
+| contracts       | HTTP JSON、Zod、OpenAPI                     | Zod/OpenAPI 库                            |
+| ai-gateway      | Provider/任务/Executor 类型、不可变快照构造 | Zod；不依赖 API/ORM                       |
+| api             | 输入/输出转换、环回安全、最小项目 DB 链路   | contracts、Nest/Express、Prisma           |
+| web             | React/Pixi 工程壳、项目列表                 | contracts；不能导入 API/ORM/Sharp/Gateway |
+| prototype（根） | 步骤 01 固定诊断布局/像素/Profile/CLI       | Sharp/Node；不依赖 apps                   |
+
+步骤 03 才增加引擎无关领域、像素/配方模块；步骤 04 Compiler 定义目标规则但不选槽；步骤 05 Pack 唯一分配稳定槽位；步骤 06 应用 Executor 实现持久化恢复与 CAS，Provider 仍只 submit/query。没有预建无内容的包或数据表。新包必须保持这个方向，并在本步依赖检查中登记。
+
+Task Contract 包含 `SUBMISSION_UNKNOWN`，提供 `KNOWN/UNKNOWN/REJECTED` 提交结果、远端状态与本地归档成功的区别。`RecoveryDirective` 类型显式区分已知 ID 查询、未知提交核对且不重提、只重试归档和本地取消；这些是契约，不声称故障恢复已实现。`freezeTaskSnapshot` 深拷贝解析并冻结完整模型/配置版本、主/任务模板版本与内容、可选补充、结构化参数、Style/Target Profile、引用 revision/hash。不含凭据，不读取运行中的默认模型。Mock 仅存在于契约测试 double，无完整 runner、SDK 安装或网络行为。真实模板 Composer 留步骤 08。
+
+新增依赖使用固定的可安装版本和锁文件，更新后执行安全审计和功能门禁。历史 Sharp `0.34.5` 单独保留以维持步骤 01 编码环境；其上游审计风险须在本步报告明确范围。未接到 HTTP/上传或不可信远端素材，只有诊断 CLI 与 golden 测试使用。升级该历史编码器需要影响 Review、四 PNG 字节与原生 oracle 复测，不能改母版或阈值掩盖差异。
