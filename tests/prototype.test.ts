@@ -73,6 +73,11 @@ describe('RGBA8 integer pixel contract',()=>{
     await expect(decodePng(pngSample().subarray(0,40))).rejects.toThrow(/Truncated/);
     await expect(decodePng(Buffer.concat([pngSample(),Buffer.from([0])]))).rejects.toThrow(/trailing/);
   });
+  it('rejects PNG third-edition HDR metadata rather than silently interpreting PQ as sRGB',async()=>{
+    for(const [name,data] of [['cICP',Buffer.from([9,16,0,1])],['mDCV',Buffer.alloc(24)],['cLLI',Buffer.alloc(8)]] as const) {
+      await expect(decodePng(pngSample([chunk(name,data)]))).rejects.toThrow(/HDR\/color/);
+    }
+  });
 });
 
 describe('Fixed prototype (spec §3, §8, step 01)',()=>{

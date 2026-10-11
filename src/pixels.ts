@@ -67,6 +67,7 @@ function checkPngContract(bytes: Uint8Array): void {
       headerSeen = true;
     }
     if (['acTL','fcTL','fdAT'].includes(type)) throw new Error('Animated PNG is unsupported: single RGBA8 frame required');
+    if (['cICP','mDCV','cLLI'].includes(type)) throw new Error('Unsupported PNG HDR/color metadata; sRGB contract required');
     if (type === 'iCCP') throw new Error('Expected PNG without ICC');
     if (type === 'gAMA' && (length !== 4 || data.readUInt32BE(0) !== 45455)) {
       throw new Error('PNG gamma differs from supported sRGB encoding');

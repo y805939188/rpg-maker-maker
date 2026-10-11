@@ -7,7 +7,9 @@ ID `rgba8-srgb-integer-v1`。步骤 01 最小实现：`src/pixels.ts`。
 - **色彩**：sRGB 字节值；输入必须 RGBA8 sRGB，无 ICC。无色彩标签的PNG明确按sRGB
   字节解释；有标签只允许sRGB intent=0..3、gAMA=45455、标准sRGB cHRM坐标。
   非标准gamma/chromaticity明确拒绝。先检查原始IHDR和动画/色彩chunk，不能只依靠
-  Sharp解码后的metadata。ICC、灰度、RGB、索引色、
+  Sharp解码后的metadata。PNG第三版cICP/mDCV/cLLI色彩/HDR块当前全部拒绝，
+  不隐式把PQ/HDR当作sRGB；依据[W3C PNG颜色信息规范](https://www.w3.org/TR/png/#cICP-chunk)。
+  ICC、灰度、RGB、索引色、
   16bit、动画及非 PNG 拒绝，转换将来作为显式新 revision，不能暗中归一化。
 - **透明度**：Alpha=0 时 RGB 必须全 0；非法隐藏 RGB 拒绝。像素复制、裁切、
   最近邻与 PNG 编解码保持部分 Alpha 原值。当前唯一烘焙岸线的占用样板必须
