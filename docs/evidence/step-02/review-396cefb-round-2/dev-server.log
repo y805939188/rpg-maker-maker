@@ -1,0 +1,66 @@
+
+> @tileset/prototype@0.0.2 dev /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+> pnpm build:contracts && node scripts/run-local.mjs dev
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/web@0.0.2 dev /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/apps/web
+> vite
+
+2:36:26 AM [vite] (client) Re-optimizing dependencies because vite config has changed
+
+  VITE v7.3.5  ready in 135 ms
+
+  ➜  Local:   http://127.0.0.1:5174/
+AI Tileset Studio (development) ready at http://127.0.0.1:4311
+The request id "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/.local/review/round2/api-audit/private-canary-bf6aa9928a254713bba79f05baa52bb6/canary.json?raw" is outside of Vite serving allow list.
+
+- /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/apps/web
+- /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/packages/contracts/dist
+- /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules
+
+Refer to docs https://vite.dev/config/server-options.html#server-fs-allow for configurations and more details.
+
+The request id "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/.local/review/round2/api-audit/private-canary-bf6aa9928a254713bba79f05baa52bb6/canary.json?raw" is outside of Vite serving allow list.
+The request id "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/.local/review/round2/api-audit/private-canary-bf6aa9928a254713bba79f05baa52bb6/canary.json?url" is outside of Vite serving allow list.
+2:37:01 AM [vite] Internal server error: ENOENT: no such file or directory, open '/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/apps/web/.review-privacy-22a6390078f4457bbb0dd7e9eeeba341/directory-%61lias/canary.json'
+      at async open (node:internal/fs/promises:641:25)
+      at async Object.readFile (node:internal/fs/promises:1245:14)
+      at async LoadPluginContext.handler (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:8683:46)
+      at async EnvironmentPluginContainer.load (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:28839:19)
+      at async loadAndTransform (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:22704:21)
+2:37:01 AM [vite] Internal server error: ENOENT: no such file or directory, open '/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/apps/web/.review-privacy-22a6390078f4457bbb0dd7e9eeeba341/directory-%61lias/canary.json'
+      at async open (node:internal/fs/promises:641:25)
+      at async Object.readFile (node:internal/fs/promises:1245:14)
+      at async LoadPluginContext.handler (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:8683:46)
+      at async EnvironmentPluginContainer.load (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:28839:19)
+      at async loadAndTransform (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:22704:21)
+      at async viteTransformMiddleware (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:24622:20)
+The request id "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/.local/review/round2/api-audit/private-canary-bf6aa9928a254713bba79f05baa52bb6/canary.json?raw" is outside of Vite serving allow list.
+The request id "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/.local/review/round2/api-audit/private-canary-bf6aa9928a254713bba79f05baa52bb6/canary.json?raw" is outside of Vite serving allow list.
+The request id "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/.local/review/round2/api-audit/private-canary-bf6aa9928a254713bba79f05baa52bb6/canary.json?url" is outside of Vite serving allow list.
+2:37:01 AM [vite] Internal server error: ENOENT: no such file or directory, open '/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/apps/web/.review-privacy-22a6390078f4457bbb0dd7e9eeeba341/file-%61lias.json'
+      at async open (node:internal/fs/promises:641:25)
+      at async Object.readFile (node:internal/fs/promises:1245:14)
+      at async LoadPluginContext.handler (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:8683:46)
+      at async EnvironmentPluginContainer.load (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:28839:19)
+      at async loadAndTransform (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:22704:21)
+2:37:01 AM [vite] Internal server error: ENOENT: no such file or directory, open '/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/apps/web/.review-privacy-22a6390078f4457bbb0dd7e9eeeba341/file-%61lias.json'
+      at async open (node:internal/fs/promises:641:25)
+      at async Object.readFile (node:internal/fs/promises:1245:14)
+      at async LoadPluginContext.handler (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:8683:46)
+      at async EnvironmentPluginContainer.load (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:28839:19)
+      at async loadAndTransform (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:22704:21)
+      at async viteTransformMiddleware (file:///Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/node_modules/.pnpm/vite@7.3.5_@types+node@22.19.0_jiti@2.7.0_tsx@4.20.6_yaml@2.9.1/node_modules/vite/dist/node/chunks/config.js:24622:20)
+ ELIFECYCLE  Command failed.

@@ -1,0 +1,107 @@
+{
+  "step": 2,
+  "round": 2,
+  "status": "CHANGES_REQUESTED",
+  "testedCommit": "396cefbdef6f22783e209722155c9088e685719b",
+  "supplementalDocumentationCommit": "a99b38229dae9c82c498f6bd12f9449a1000059b",
+  "reviewerRole": "step_reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "ultra",
+  "clientServiceTier": "default",
+  "serverFinalTier": "NOT_EXPOSED_NOT_VERIFIED",
+  "counts": {
+    "P0": 0,
+    "P1": 1,
+    "P2_BLOCKING": 0,
+    "P2_NONBLOCKING": 1,
+    "P3": 0
+  },
+  "previousFinding": {
+    "id": "STEP02-R1-001",
+    "status": "PARTIALLY_ADDRESSED_NOT_CLOSED"
+  },
+  "findings": [
+    {
+      "id": "STEP02-R2-001",
+      "severity": "P1",
+      "title": "Canonical symlink privacy check bypassed through Vite @id-wrapped @fs URLs",
+      "file": "apps/web/dev-boundary.ts",
+      "lineStart": 65,
+      "lineEnd": 73,
+      "relatedFile": "apps/web/tests/dev-privacy.test.ts",
+      "relatedLines": "178-198",
+      "trigger": "An existing file or directory symlink in apps/web points to a private .local file. Request /@id//@fs/<absolute-allowed-alias>/canary.json?import or ?raw&import from the allowed Web Origin. The independent probe exclusively created both aliases to a synthetic mode0600 canary, then removed them.",
+      "actual": "Middleware realpath lookup includes the unprocessed /@id/ prefix, produces ENOENT and calls next. Vite later unwraps /@id/, treats the resulting URL as explicit /@fs/, and loads through the allowed lexical symlink path. Both file and directory symlink cases returned HTTP200 JavaScript containing the fake private marker, despite normal /@fs paths returning403.",
+      "expected": "Any request variant resolving to .local or another forbidden real target must be rejected before static/transform/raw handlers can read it; the documented canonical symlink guarantee must hold across Vite ID wrappers.",
+      "runtimeEvidence": {
+        "totalRequests": 218,
+        "fakeMarkerLeaks": 14,
+        "fileAndDirectoryAliasesBothLeaked": true,
+        "queriesLeaking": [
+          "?import",
+          "?raw&import",
+          "?import&raw"
+        ],
+        "headWrappedAliases": "HTTP200",
+        "rangeAndScriptFetchVariants": "HTTP200 and fake marker present",
+        "realCredentialFilesReadOrRequested": false,
+        "ownedFixturesRemoved": true
+      },
+      "rootCauseEvidence": [
+        "apps/web/dev-boundary.ts:57-73 candidate selection and ENOENT fallback",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:76-77 unwrapId",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:24588-24630 transform middleware removes /@id before transformation",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:32575-32579 explicit @fs resolver returns lexical path",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:22579-22587 filesystem allow/deny checks lexical path"
+      ],
+      "recommendation": "Canonicalize supported Vite request wrappers before realpath authorization, or enforce canonical file-target authorization in a resolver/load boundary covering every transformed ID. Preserve intended virtual modules and normal shared dependency loading. Extend regression coverage to @id-wrapped @fs requests through both directory and file symlinks with raw/import variants.",
+      "testDefect": "New regression only probes /@fs and normal paths; its file-symlink checks do not reach the @id-wrapped resolver path. All existing checks can pass while this bypass remains.",
+      "blocksGate": true,
+      "relatedPreviousFinding": "STEP02-R1-001",
+      "reproducibilityEvidence": "api-audit/runtime-probes.json: results/privateFakeMarkerLeaks entries labeled wrapped-fs-alias and wrapped-fs-method-variant; exclusively-owned fixture paths and cleanup are in ownership. Existing probe source/privacy-probe.py is preserved; no new probes performed during report completion."
+    }
+  ],
+  "standardTests": 66,
+  "databaseIntegrationTests": 3,
+  "privacyRegression": {
+    "priorConfigRequests": 257,
+    "priorFakeLeaks": 156,
+    "fixedRequests": 259,
+    "fixed403": 255,
+    "fixed200": 4,
+    "fixedFakeLeaks": 0,
+    "foreignOrdinaryGets": 3,
+    "foreignOptions": 3
+  },
+  "independentSupplementalProbes": {
+    "requests": 218,
+    "fakeLeaks": 14,
+    "realCredentialsReadOrRequested": false,
+    "fixturesRemoved": true
+  },
+  "productionBrowser": "PASS",
+  "developmentBrowser": "NOT_EXECUTED",
+  "latestFaultProbes": "NOT_EXECUTED",
+  "latestOverwriteRefusal": "NOT_EXECUTED",
+  "sourceMutation": false,
+  "trackedFileCount": 265,
+  "originalNativeHost": "NOT_EXECUTED",
+  "Map003_4_10": "PENDING_USER_EVIDENCE",
+  "report": "step02-round2-report.md",
+  "completionMode": "Documentation only; existing observations and read-only integrity verification",
+  "createdAt": "2026-10-11T18:43:34.375256+00:00",
+  "nonblockingRecords": [
+    {
+      "id": "STEP02-R1-NB-001",
+      "severity": "P2_NONBLOCKING",
+      "blocksGate": false,
+      "file": "package.json",
+      "line": 45,
+      "reproduction": "Existing pnpm audit --json log; exit1",
+      "actual": "3high inherited Sharp advisories and1low Windows esbuild-serve advisory",
+      "expected": "Scope and track inherited risk before affected input/server exposure",
+      "scope": "Restricted prototype PNG CLI/goldens; no upload/remote media/API Sharp; standalone Windows esbuild server unused",
+      "recommendation": "Reassess before exposure; upgrades require retained PNG and native oracle regression"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{"command": ["pnpm", "install", "--frozen-lockfile"], "exitCode": 0, "seconds": 0.587, "log": ".local/review/round2/install.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "db:generate"], "exitCode": 0, "seconds": 1.605, "log": ".local/review/round2/db-generate.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "test:dev-privacy"], "exitCode": 1, "seconds": 5.284, "log": ".local/review/round2/prior-config-negative-regression.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "check"], "exitCode": 0, "seconds": 20.909, "log": ".local/review/round2/check.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "audit", "--json"], "exitCode": 1, "seconds": 1.612, "log": ".local/review/round2/audit.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["node", "scripts/build-engineering.mjs"], "exitCode": 0, "seconds": 0.098, "log": ".local/review/round2/engineering-publication.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "db:migrate"], "exitCode": 0, "seconds": 1.181, "log": ".local/review/round2/db-migrate.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "prototype"], "exitCode": 0, "seconds": 1.237, "log": ".local/review/round2/prototype-publication.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "test:integration"], "exitCode": 0, "seconds": 3.422, "log": ".local/review/round2/integration.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "verify:mz", "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js", "artifacts/step01-5126a8b175aa7d0707af"], "exitCode": 0, "seconds": 1.927, "log": ".local/review/round2/native-oracle.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}
+{"command": ["pnpm", "test:e2e", "--output=.local/review/round2/playwright-production"], "exitCode": 0, "seconds": 6.903, "log": ".local/review/round2/production-e2e.log", "environment": {"API_PORT": "4311", "WEB_PORT": "5174"}}

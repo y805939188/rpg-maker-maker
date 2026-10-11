@@ -1,0 +1,206 @@
+{
+  "step": "02",
+  "round": 2,
+  "commit": "396cefbdef6f22783e209722155c9088e685719b",
+  "previousCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+  "scope": [
+    "apps/web/dev-boundary.ts",
+    "apps/web/vite.config.ts",
+    "apps/web/tests/dev-privacy.test.ts",
+    "privacy script/CI/typecheck/Vitest inclusion"
+  ],
+  "preflight": {
+    "threadId": "01a12c1f-9f79-7b80-ab4e-078a1ddb6d75",
+    "actualRolloutRole": "step_reviewer",
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "ultra",
+    "feedbackTagsLogId": 2854381,
+    "clientServiceTier": "default",
+    "serverFinalTier": "NOT_EXPOSED_NOT_VERIFIED"
+  },
+  "installBuildMigrateTestOrServerStartExecutedByThisAgent": false,
+  "independentRuntimeProbesExecuted": true,
+  "productionTrackedEdits": false,
+  "candidateApproval": "NOT_GRANTED",
+  "result": "CHANGES_REQUESTED",
+  "previousFindingStatus": "Direct /@fs and other-localhost CORS leak fixed, but required canonical private-target protection still bypassable",
+  "findings": [
+    {
+      "id": "API-SEC-02",
+      "severity": "P1",
+      "blocking": true,
+      "title": "Canonical symlink privacy check bypassed through Vite @id-wrapped @fs URLs",
+      "file": "apps/web/dev-boundary.ts",
+      "lineStart": 65,
+      "lineEnd": 73,
+      "relatedFile": "apps/web/tests/dev-privacy.test.ts",
+      "relatedLines": "178-198",
+      "trigger": "An existing file or directory symlink in apps/web points to a private .local file. Request /@id//@fs/<absolute-allowed-alias>/canary.json?import or ?raw&import from the allowed Web Origin. The independent probe exclusively created both aliases to a synthetic mode0600 canary, then removed them.",
+      "actual": "Middleware realpath lookup includes the unprocessed /@id/ prefix, produces ENOENT and calls next. Vite later unwraps /@id/, treats the resulting URL as explicit /@fs/, and loads through the allowed lexical symlink path. Both file and directory symlink cases returned HTTP200 JavaScript containing the fake private marker, despite normal /@fs paths returning403.",
+      "expected": "Any request variant resolving to .local or another forbidden real target must be rejected before static/transform/raw handlers can read it; the documented canonical symlink guarantee must hold across Vite ID wrappers.",
+      "runtimeEvidence": {
+        "totalRequests": 218,
+        "fakeMarkerLeaks": 14,
+        "fileAndDirectoryAliasesBothLeaked": true,
+        "queriesLeaking": [
+          "?import",
+          "?raw&import",
+          "?import&raw"
+        ],
+        "headWrappedAliases": "HTTP200",
+        "rangeAndScriptFetchVariants": "HTTP200 and fake marker present",
+        "realCredentialFilesReadOrRequested": false,
+        "ownedFixturesRemoved": true
+      },
+      "rootCauseEvidence": [
+        "apps/web/dev-boundary.ts:57-73 candidate selection and ENOENT fallback",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:76-77 unwrapId",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:24588-24630 transform middleware removes /@id before transformation",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:32575-32579 explicit @fs resolver returns lexical path",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:22579-22587 filesystem allow/deny checks lexical path"
+      ],
+      "recommendation": "Canonicalize supported Vite request wrappers before realpath authorization, or enforce canonical file-target authorization in a resolver/load boundary covering every transformed ID. Preserve intended virtual modules and normal shared dependency loading. Extend regression coverage to @id-wrapped @fs requests through both directory and file symlinks with raw/import variants.",
+      "testDefect": "New regression only probes /@fs and normal paths; its file-symlink checks do not reach the @id-wrapped resolver path. All existing checks can pass while this bypass remains."
+    }
+  ],
+  "otherReviewedResults": {
+    "originalPrivateFileGuards": "No fake-marker leak through direct private, encoded, .env/.git/.key/.crt/.pem cases tested",
+    "corsHostMetadata": "Foreign localhost/null/remote Origin, OPTIONS, forged Host, cross-site Fetch Metadata and forwarded headers reject403; no matching foreign ACAO",
+    "normalLoading": "Index, main.tsx, @vite/client and shared contracts JS all HTTP200",
+    "testsWeakenedOrDeleted": false,
+    "ciPrivacyGatePresent": true
+  },
+  "probeGroups": {
+    "normal-alias": {
+      "requests": 14,
+      "statuses": {
+        "403": 14
+      },
+      "markerLeaks": 0
+    },
+    "fs-alias": {
+      "requests": 14,
+      "statuses": {
+        "403": 14
+      },
+      "markerLeaks": 0
+    },
+    "wrapped-fs-alias": {
+      "requests": 14,
+      "statuses": {
+        "200": 14
+      },
+      "markerLeaks": 6
+    },
+    "wrapped-absolute-alias": {
+      "requests": 14,
+      "statuses": {
+        "200": 8,
+        "403": 6
+      },
+      "markerLeaks": 0
+    },
+    "encoded-fs-prefix": {
+      "requests": 14,
+      "statuses": {
+        "403": 14
+      },
+      "markerLeaks": 0
+    },
+    "double-encoded-fs-prefix": {
+      "requests": 14,
+      "statuses": {
+        "200": 14
+      },
+      "markerLeaks": 0
+    },
+    "encoded-alias-character": {
+      "requests": 14,
+      "statuses": {
+        "403": 14
+      },
+      "markerLeaks": 0
+    },
+    "double-encoded-alias-character": {
+      "requests": 14,
+      "statuses": {
+        "200": 10,
+        "500": 4
+      },
+      "markerLeaks": 0
+    },
+    "encoded-backslash": {
+      "requests": 14,
+      "statuses": {
+        "200": 14
+      },
+      "markerLeaks": 0
+    },
+    "wrapped-fs-method-variant": {
+      "requests": 12,
+      "statuses": {
+        "200": 12
+      },
+      "markerLeaks": 8
+    },
+    "default-private-protections": {
+      "requests": 48,
+      "statuses": {
+        "403": 48
+      },
+      "markerLeaks": 0
+    },
+    "direct-private-encoding": {
+      "requests": 12,
+      "statuses": {
+        "403": 9,
+        "200": 3
+      },
+      "markerLeaks": 0
+    },
+    "foreign-origin-public": {
+      "requests": 4,
+      "statuses": {
+        "403": 4
+      },
+      "markerLeaks": 0
+    },
+    "foreign-origin-alias": {
+      "requests": 4,
+      "statuses": {
+        "403": 4
+      },
+      "markerLeaks": 0
+    },
+    "foreign-preflight": {
+      "requests": 4,
+      "statuses": {
+        "403": 4
+      },
+      "markerLeaks": 0
+    },
+    "host-fetch-forwarded": {
+      "requests": 4,
+      "statuses": {
+        "403": 4
+      },
+      "markerLeaks": 0
+    },
+    "normal-loading": {
+      "requests": 4,
+      "statuses": {
+        "200": 4
+      },
+      "markerLeaks": 0
+    }
+  },
+  "runtimeReport": "runtime-probes.json",
+  "probeSource": "privacy-probe.py",
+  "probeSHA256": "2d8d8ccee6b9797756e8ea1cd55078cdbd949cc0d196835b3a0b70bc7d434a62",
+  "sourceAfter": {
+    "allUnchanged": true,
+    "allMatchFrozen": true,
+    "gitStatusClean": true
+  },
+  "recordedAt": "2026-10-11T18:38:11.003555+00:00"
+}
