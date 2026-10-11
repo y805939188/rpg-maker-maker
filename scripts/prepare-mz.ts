@@ -21,10 +21,16 @@ await mkdir(resolve('.local/mz'),{recursive:true});
 await mkdir(project); // refuses to overwrite any earlier project or handdrawn map
 for (const dir of ['data','js','css','fonts','icon','effects']) await cp(resolve(template,dir),resolve(project,dir),{recursive:true,errorOnExist:true});
 await cp(resolve(template,'index.html'),resolve(project,'index.html'),{errorOnExist:true});
-for (const dir of ['img/system','img/characters','audio/se']) await cp(resolve(template,dir),resolve(project,dir),{recursive:true,errorOnExist:true});
+for (const dir of ['img/system','img/characters','img/faces','audio/se']) await cp(resolve(template,dir),resolve(project,dir),{recursive:true,errorOnExist:true});
 await mkdir(resolve(project,'img/tilesets'),{recursive:true});
 for (const name of Object.keys(m.files)) await cp(resolve(build,name),resolve(project,'img/tilesets',name),{errorOnExist:true});
 await writeFile(resolve(project,'game.rmmzproject'),`RPGMZ ${PROFILE.engineVersion}`);
+// The official newdata skeleton omits files that the editor adds during project creation.
+// NW.js requires this launcher manifest for the editor's native playtest command.
+await writeFile(resolve(project,'package.json'),JSON.stringify({
+  name:'rmmz-game',main:'index.html','chromium-args':'--force-color-profile=srgb',
+  window:{title:`AI Tileset Step01 ${m.buildId}`,width:816,height:624,position:'center',icon:'icon/icon.png'},
+},null,2)+'\n');
 await writeFile(resolve(project,'js/plugins.js'),'// Native compatibility test: no plugins\nvar $plugins = [];\n');
 const flags = Array<number>(8192).fill(0);
 flags[0]=PROFILE.flags.emptyUpperTile;
@@ -76,6 +82,7 @@ await writeFile(resolve(project,'step01-build-reference.json'),JSON.stringify({
   buildId:m.buildId,commit:m.commit,profile:PROFILE.version,
   manifestSha256:sha256(await readFile(resolve(build,'manifest.json'))),atlasHashes:m.files,
   coreFiles,editorDrawing:'NOT_EXECUTED',gameRuntime:'NOT_EXECUTED',
+  launcherSha256:sha256(await readFile(resolve(project,'package.json'))),
   note:'Locally assembled from licensed MZ installation. Do not redistribute runtime or RTP. Store observations separately; retain handdrawn Map002/003.',
 },null,2)+'\n');
 console.log(JSON.stringify({project,projectFile:resolve(project,'game.rmmzproject'),buildId:m.buildId,coreFiles},null,2));
