@@ -193,6 +193,24 @@
         "preservedPath": "artifacts/step01-5126a8b175aa7d0707af",
         "allFilesExactMatch": true,
         "manifestSha256": "9e47bb386853895301554569b666aea83fcb926b9c40c4cf65b46927a75fca6c"
+      },
+      {
+        "buildId": "step02-c3914ec1929e-c718a9846c1ce18a",
+        "sourceCommit": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
+        "files": 69,
+        "preservedPath": "artifacts/step02-c3914ec1929e-c718a9846c1ce18a",
+        "allFilesExactMatch": true,
+        "manifestSha256": "c790e873616a7925a20a9ff1bc799220a79352de28e1108ea54029debaab6893",
+        "independentReview": "NOT_EXECUTED_PLATFORM_INTERRUPTED"
+      },
+      {
+        "buildId": "step01-c512ed0c899ac99d4694",
+        "sourceCommit": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
+        "files": 5,
+        "preservedPath": "artifacts/step01-c512ed0c899ac99d4694",
+        "allFilesExactMatch": true,
+        "manifestSha256": "414df504306bd0f5022ea06af4578116a21b73b944f57d26bba178ba2d5d9711",
+        "independentReview": "NOT_EXECUTED_PLATFORM_INTERRUPTED"
       }
     ],
     "prototypeRegression": "EXACT_FOUR_PNG_MATCH_UNCHANGED_LEGACY_SOURCE_AND_FIXTURES",
@@ -207,8 +225,8 @@
     "repairMilestone": "NEW_FROZEN_C3914EC_CHECK68_DB3_DEV_PROD_COLD_DEV_PASS_CODING_REPORTED",
     "repairNotes": "Exact396 config+boundary negativecontrol528requests60fakeMarkerReads6HEAD200; preserved snapshots and same current test; registered NUL virtual fixture success; not yet frozen",
     "currentBuilds": [
-      "step02-396cefbdef6f-736ff6eb0f5e6054",
-      "step01-5126a8b175aa7d0707af"
+      "step02-c3914ec1929e-c718a9846c1ce18a",
+      "step01-c512ed0c899ac99d4694"
     ],
     "fixReport": "docs/reviews/step-02-fix-round-1-coding.md",
     "privacyCountsCorrection": "3 foreign GET + 3 foreign OPTIONS, not6preflights"
@@ -263,5 +281,6 @@
     "noAlternateModelsTiersOrPrivileges": true,
     "requiredToResume": "Restore permitted designated step_reviewer execution, verify live Git/source/build state, complete exact-candidate independent round3 and all gates before any merge/push/step03"
   },
-  "cleanup": "RETAIN_UNMERGED_OWNED_WORKTREES_BRANCHES_EVIDENCE; STOP_ONLY_OWNED_SERVICES_AFTER_FINALIZATION"
+  "cleanup": "RETAIN_UNMERGED_OWNED_WORKTREES_BRANCHES_EVIDENCE; STOP_ONLY_OWNED_SERVICES_AFTER_FINALIZATION",
+  "finalRemoteMain": "f004d6c74abe64ea853619390aa9dc2bc34654c1_VERIFIED_FETCH_AND_LS_REMOTE"
 }
