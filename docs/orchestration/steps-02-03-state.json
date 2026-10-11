@@ -214,10 +214,10 @@
       }
     ],
     "prototypeRegression": "EXACT_FOUR_PNG_MATCH_UNCHANGED_LEGACY_SOURCE_AND_FIXTURES",
-    "evidenceHead": "a99b38229dae9c82c498f6bd12f9449a1000059b",
+    "evidenceHead": "e7f40efdc53613f1353278ad324436e815407252",
     "evidenceLedger": {
-      "sha256": "dc50f6e88ada52b4234b18dac7b7cf4cf8055b4799a064089761ea3a54313469",
-      "entries": 30,
+      "sha256": "e3b8286e1f5e8d7ff0d3938fc7878fd00b77063621144a3ef12fd2bb5399e78a",
+      "entries": 33,
       "verification": "PASS_ORCHESTRATOR_HASH_CHECK",
       "postFreezeDiff": "DOCS_ONLY"
     },
@@ -228,8 +228,18 @@
       "step02-c3914ec1929e-c718a9846c1ce18a",
       "step01-c512ed0c899ac99d4694"
     ],
-    "fixReport": "docs/reviews/step-02-fix-round-1-coding.md",
-    "privacyCountsCorrection": "3 foreign GET + 3 foreign OPTIONS, not6preflights"
+    "fixReport": "docs/reviews/step-02-fix-round-2-coding.md",
+    "privacyCountsCorrection": "3 foreign GET + 3 foreign OPTIONS, not6preflights",
+    "latestCodingChecks": {
+      "fullCheck": "68/68_AND_TYPES_LINT_FORMAT_BUILD_EXPORTS_PASS",
+      "realDB": "3/3_PASS",
+      "devProductionBrowser": "BOTH_PASS",
+      "coldDevBrowser": "PASS",
+      "pixelNativeOracle": "FOUR_PNG_EXACT_960_SELECTIONS_2211840_PIXELS_241_UPDATES_PASS",
+      "immutableRefusal": "PASS",
+      "latestStandaloneBackendFaultProbes": "NOT_EXECUTED_STOPPED_BEFORE_START",
+      "independentReview": "ROUND3_NOT_EXECUTED_PLATFORM_INTERRUPTED"
+    }
   },
   "step03": {
     "status": "NOT_STARTED_BLOCKED_BY_STEP02",
@@ -270,7 +280,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP01_PUBLISHED_STEP02_AGENTS_CONFIG_VERIFIED_RELEASE_DB_READY",
+  "lastSuccessfulCheckpoint": "C391_FROZEN_CODE_E7F40EF_DOCS_HASHED_33FILES_PRESERVED_MAIN_F004_VERIFIED",
   "blockingCondition": {
     "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
     "observations": [
