@@ -39,9 +39,9 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_FIX_ROUND1",
+  "currentPhase": "STEP02_INDEPENDENT_REVIEW_ROUND2",
   "step02": {
-    "status": "CHANGES_REQUESTED",
+    "status": "READY_FOR_REVIEW",
     "reviews": [
       {
         "round": 1,
@@ -75,6 +75,15 @@
           }
         ],
         "sourceIntegrity": "233_TRACKED_HASHES_UNCHANGED_GIT_CLEAN"
+      },
+      {
+        "round": 2,
+        "candidate": "396cefbdef6f22783e209722155c9088e685719b",
+        "reviewer": "/root/step02_reviewer",
+        "status": "IN_PROGRESS",
+        "mustVerifyClosure": [
+          "STEP02-R1-001"
+        ]
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -95,10 +104,10 @@
       "fullApiWebRoundtrip": "API_PASS_BROWSER_PENDING",
       "migration": "202610120001_step02_project_PASS_CODING_REPORTED"
     },
-    "candidate": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "candidate": "396cefbdef6f22783e209722155c9088e685719b",
     "independentReview": "NOT_EXECUTED",
     "reviewWorktree": "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker",
-    "reviewWorktreeHead": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+    "reviewWorktreeHead": "396cefbdef6f22783e209722155c9088e685719b",
     "reviewDatabasePort": 55433,
     "codingReportedChecks": {
       "unitAndPrototype": "63/63_PASS_ORIGINAL52_PRESERVED",
@@ -135,7 +144,7 @@
       "postFreezeDiff": "DOCS_ONLY"
     },
     "codingReport": "docs/reviews/step-02-coding.md",
-    "repairMilestone": "OLD8A_EXACT_CONFIG_FAIL_PROVEN_257_HTTP_156_CANARY_LEAKS; FIX_PRIVACY3_PASS_FULL_CHECKS_PENDING",
+    "repairMilestone": "NEW_FROZEN396CEFB_CHECK66_DB3_DEV_PROD_BROWSER_PASS_PRIVACY_ZERO_LEAKS_CODING_REPORTED",
     "repairNotes": "Actual pnpm/Vite CLI ephemeral loopback; narrowed fs roots/.local/default private denies/realpath symlink guard/exact Origin/preflight; publicDir disabled to avoid separate bypass; no real credentials"
   },
   "step03": {
