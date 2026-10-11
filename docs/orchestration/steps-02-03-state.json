@@ -39,9 +39,9 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_INDEPENDENT_REVIEW_ROUND3",
+  "currentPhase": "BLOCKED_INDEPENDENT_REVIEW_PLATFORM_LIMITATION_FINAL_EVIDENCE_CHECKPOINT",
   "step02": {
-    "status": "READY_FOR_REVIEW",
+    "status": "BLOCKED",
     "reviews": [
       {
         "round": 1,
@@ -114,7 +114,7 @@
         "round": 3,
         "candidate": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
         "reviewer": "/root/step02_reviewer",
-        "status": "IN_PROGRESS",
+        "status": "INTERRUPTED_NOT_EXECUTED",
         "mustVerifyClosure": [
           "STEP02-R1-001",
           "STEP02-R2-001"
@@ -126,7 +126,8 @@
           "development browser cold cache",
           "build/hash binding",
           "necessary runtime/failure/refusal checks"
-        ]
+        ],
+        "platformError": "Agent turn flagged for possible cybersecurity risk; no latest-candidate PASS"
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -213,7 +214,7 @@
     "privacyCountsCorrection": "3 foreign GET + 3 foreign OPTIONS, not6preflights"
   },
   "step03": {
-    "status": "NOT_STARTED",
+    "status": "NOT_STARTED_BLOCKED_BY_STEP02",
     "reviews": [],
     "merge": "NOT_EXECUTED",
     "push": "NOT_EXECUTED"
@@ -251,5 +252,16 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP01_PUBLISHED_STEP02_AGENTS_CONFIG_VERIFIED_RELEASE_DB_READY"
+  "lastSuccessfulCheckpoint": "STEP01_PUBLISHED_STEP02_AGENTS_CONFIG_VERIFIED_RELEASE_DB_READY",
+  "blockingCondition": {
+    "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
+    "observations": [
+      "Round2 report completion interrupted; safely completed existing-results documentation only",
+      "Round3 designated reviewer task interrupted again before final verification"
+    ],
+    "latestSource": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
+    "noAlternateModelsTiersOrPrivileges": true,
+    "requiredToResume": "Restore permitted designated step_reviewer execution, verify live Git/source/build state, complete exact-candidate independent round3 and all gates before any merge/push/step03"
+  },
+  "cleanup": "RETAIN_UNMERGED_OWNED_WORKTREES_BRANCHES_EVIDENCE; STOP_ONLY_OWNED_SERVICES_AFTER_FINALIZATION"
 }
