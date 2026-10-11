@@ -1,0 +1,125 @@
+
+> @tileset/prototype@0.0.2 check /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> pnpm check:boundaries && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm verify:exports
+
+
+> @tileset/prototype@0.0.2 check:boundaries /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> node scripts/check-boundaries.mjs
+
+Five workspace members: dependency directions and exact direct pins verified.
+
+> @tileset/prototype@0.0.2 typecheck /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> pnpm build:contracts && tsc --noEmit && tsc -p tsconfig.tests.json && pnpm -r --filter './apps/*' --filter './packages/*' typecheck
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+Scope: 4 of 5 workspace projects
+packages/ai-gateway typecheck$ tsc -p tsconfig.json --noEmit
+packages/contracts typecheck$ tsc -p tsconfig.json --noEmit
+packages/ai-gateway typecheck: Done
+packages/contracts typecheck: Done
+apps/web typecheck$ tsc --noEmit
+apps/api typecheck$ tsc -p tsconfig.json --noEmit
+apps/api typecheck: Done
+apps/web typecheck: Done
+
+> @tileset/prototype@0.0.2 lint /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> eslint src scripts tests apps packages *.ts *.mjs
+
+
+> @tileset/prototype@0.0.2 format:check /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @tileset/prototype@0.0.2 test /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> pnpm build:contracts && vitest run
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+
+
+ Test Files  8 passed (8)
+      Tests  68 passed (68)
+   Start at  03:07:52
+   Duration  1.58s (transform 484ms, setup 0ms, import 951ms, tests 2.01s, environment 0ms)
+
+
+> @tileset/prototype@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> node scripts/clean-build.mjs && pnpm build:prototype && pnpm build:contracts && pnpm --filter @tileset/api build && pnpm --filter @tileset/web build
+
+
+> @tileset/prototype@0.0.2 build:prototype /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/api@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/apps/api
+> tsc -p tsconfig.json
+
+
+> @tileset/web@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/apps/web
+> tsc --noEmit && vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 773 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               0.41 kB │ gzip:   0.27 kB
+dist/assets/index-Ct5qn-We.css                1.34 kB │ gzip:   0.67 kB
+dist/assets/CanvasPool-CtiDp_nj.js            2.75 kB │ gzip:   1.20 kB
+dist/assets/getTexelRangeRects-CaIjLaXE.js    3.58 kB │ gzip:   1.22 kB
+dist/assets/canvasUtils-_4VzRMqQ.js           5.71 kB │ gzip:   1.80 kB
+dist/assets/webworkerAll-Dl9XGgJw.js         15.47 kB │ gzip:   4.88 kB
+dist/assets/CanvasRenderer-CW2L8Xnr.js       17.89 kB │ gzip:   6.00 kB
+dist/assets/browserAll-DvJmM9v2.js           43.97 kB │ gzip:  11.41 kB
+dist/assets/WebGPURenderer-dTXppYLu.js       53.75 kB │ gzip:  15.37 kB
+dist/assets/RenderTargetSystem-C47O4byW.js   53.91 kB │ gzip:  14.75 kB
+dist/assets/WebGLRenderer-FaMWPK_N.js        56.78 kB │ gzip:  15.68 kB
+dist/assets/index-0F2Mcn8-.js               536.27 kB │ gzip: 160.49 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.45s
+
+> @tileset/prototype@0.0.2 verify:exports /Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker
+> node scripts/verify-exports.mjs
+
+Production Node ESM imports through all three package export maps passed.
