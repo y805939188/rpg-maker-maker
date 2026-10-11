@@ -51,20 +51,31 @@
     "baseCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "reviewAgent": "/root/step02_reviewer",
     "reviewPreflight": "PASS_CLIENT_GPT6_1_SOL_ULTRA_DEFAULT_SERVER_FINAL_NOT_EXPOSED",
-    "milestone": "PRISMA_CLIENT_GENERATED_INITIAL_TYPECHECK_FIXES_AND_DEPENDENCY_AUDIT",
+    "milestone": "CODING_CHECKS_PASS_BROWSER_DEV_PRODUCTION_PENDING_CANDIDATE_FREEZE",
     "database": {
       "engine": "PostgreSQL14.20",
       "cluster": ".local/postgres (coding worktree)",
       "listen": "127.0.0.1:55432",
       "auth": "SCRAM unique local credentials",
       "prismaGenerate": "PASS_CODING_REPORTED",
-      "fullApiWebRoundtrip": "NOT_EXECUTED_OR_NOT_YET_REPORTED"
+      "fullApiWebRoundtrip": "API_PASS_BROWSER_PENDING",
+      "migration": "202610120001_step02_project_PASS_CODING_REPORTED"
     },
     "candidate": "NOT_FROZEN",
     "independentReview": "NOT_EXECUTED",
     "reviewWorktree": "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker",
     "reviewWorktreeHead": "f004d6c74abe64ea853619390aa9dc2bc34654c1_ENV_PREP_ONLY_SWITCH_TO_FROZEN_CANDIDATE_REQUIRED",
-    "reviewDatabasePort": 55433
+    "reviewDatabasePort": 55433,
+    "codingReportedChecks": {
+      "unitAndPrototype": "63/63_PASS_ORIGINAL52_PRESERVED",
+      "apiIntegration": "3/3_PASS_REAL_POSTGRES_PRISMA",
+      "typecheck": "PASS",
+      "lint": "PASS",
+      "productionWebBuild": "PASS",
+      "browserDevProduction": "IN_PROGRESS",
+      "prisma": "6.19.3_GENERATE_MIGRATE_PASS"
+    },
+    "reviewEnvironment": "READY_ISOLATED_SCRAM_POSTGRES14_20_55433_TRACKED_HASHES_UNCHANGED"
   },
   "step03": {
     "status": "NOT_STARTED",
