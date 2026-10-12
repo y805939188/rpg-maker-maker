@@ -1,0 +1,91 @@
+{
+  "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+  "apiOrigin": "http://127.0.0.1:4310",
+  "checks": [
+    {
+      "name": "compiled-node-health",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      },
+      "pid": 45411
+    },
+    {
+      "name": "occupied-port",
+      "argv": [
+        "node",
+        "apps/api/dist/main.js"
+      ],
+      "envOverrides": {
+        "NODE_ENV": "production"
+      },
+      "exitCode": 1,
+      "stderr": "Local startup failed. Check configuration, database migrations and production build.\n"
+    },
+    {
+      "name": "invalid-bind",
+      "argv": [
+        "node",
+        "apps/api/dist/main.js"
+      ],
+      "envOverrides": {
+        "NODE_ENV": "production",
+        "API_HOST": "0.0.0.0"
+      },
+      "exitCode": 1,
+      "stderr": "Local startup failed. Check configuration, database migrations and production build.\n"
+    },
+    {
+      "name": "equal-ports",
+      "argv": [
+        "node",
+        "apps/api/dist/main.js"
+      ],
+      "envOverrides": {
+        "NODE_ENV": "production",
+        "WEB_PORT": "4310"
+      },
+      "exitCode": 1,
+      "stderr": "Local startup failed. Check configuration, database migrations and production build.\n"
+    },
+    {
+      "name": "database-unavailable-startup",
+      "argv": [
+        "node",
+        "apps/api/dist/main.js"
+      ],
+      "envOverrides": {
+        "NODE_ENV": "production"
+      },
+      "exitCode": 1,
+      "stderr": "Local startup failed. Check configuration, database migrations and production build.\n"
+    },
+    {
+      "name": "database-offline-health",
+      "status": 503,
+      "body": {
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "Local database is unavailable. Check the local service."
+        }
+      }
+    },
+    {
+      "name": "database-restarted-health",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      }
+    },
+    {
+      "name": "project-read-after-restart",
+      "status": 200
+    }
+  ],
+  "listener": "COMMAND   PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    45411 dingshinn   19u  IPv4 0x1c54958ed74cb2af      0t0  TCP 127.0.0.1:4310 (LISTEN)\n",
+  "status": "PASS"
+}

@@ -1,0 +1,238 @@
+[
+  {
+    "name": "install",
+    "argv": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 0.585,
+    "log": "install.log",
+    "sha256": "0e82633dc931cc3878413de2b4eb346f9ab58ecd82449ea229b37e08e71fe40c"
+  },
+  {
+    "name": "prisma-generate",
+    "argv": [
+      "pnpm",
+      "db:generate"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.581,
+    "log": "prisma-generate.log",
+    "sha256": "13a5d8ba6a483df270044f8287709e47c44edbfed32e03a7f16b9cdef1e23bca"
+  },
+  {
+    "name": "check",
+    "argv": [
+      "pnpm",
+      "check"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 24.941,
+    "log": "check.log",
+    "sha256": "1293dc4f0ce69b1be0d8ecb4d86c29907640f978ece81549b3641fbcc20e3c15"
+  },
+  {
+    "name": "migrate",
+    "argv": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.203,
+    "log": "migrate.log",
+    "sha256": "7564767fbc0a0ebcdb56402452dbf08d581cfc53b135264e791d6375508480df"
+  },
+  {
+    "name": "dev-privacy",
+    "argv": [
+      "pnpm",
+      "test:dev-privacy"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 3.263,
+    "log": "dev-privacy.log",
+    "sha256": "e753f57d0079c518beb66f280ad35a24905daddcaedbae9901c4e54964a7163a"
+  },
+  {
+    "name": "integration",
+    "argv": [
+      "pnpm",
+      "test:integration"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 3.201,
+    "log": "integration.log",
+    "sha256": "726a8ee69a708858e56c86ab7b2f6d388703f9ab0751e8fdc10dd235f6e5d864"
+  },
+  {
+    "name": "browser-production",
+    "argv": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 6.568,
+    "log": "browser-production.log",
+    "sha256": "e53cbf923efb0a33bc1cebc98c5f44a3577f6d086fed2ce81dc2042ddafe8243"
+  },
+  {
+    "name": "browser-development",
+    "argv": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "envOverrides": {
+      "E2E_MODE": "dev"
+    },
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 8.861,
+    "log": "browser-development.log",
+    "sha256": "4167201c929da26cf601911addb8c770bad1fbddc7dff8916d7d0650abf96804"
+  },
+  {
+    "name": "engineering-build",
+    "argv": [
+      "pnpm",
+      "build:engineering"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 8.092,
+    "log": "engineering-build.log",
+    "sha256": "d2afad6cdd417757267f86a9e532b2a9810bb6aa77d341cd055f707b3f74aa38"
+  },
+  {
+    "name": "prototype-build",
+    "argv": [
+      "pnpm",
+      "prototype"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.238,
+    "log": "prototype-build.log",
+    "sha256": "3b843a0dcbfe8d725b8eeae0b6981ed2d65236652c8bb969f86eb5f189a65d9e"
+  },
+  {
+    "name": "native-oracle",
+    "argv": [
+      "pnpm",
+      "verify:mz",
+      "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js",
+      "/Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker/artifacts/step01-0c4bab5226bff144467a"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 1.94,
+    "log": "native-oracle.log",
+    "sha256": "2bb8fab535e40bf7200cf78b7f344c6ba32ffb5c36529c7018058b433c7f3178"
+  },
+  {
+    "name": "engineering-overwrite-refusal",
+    "argv": [
+      "node",
+      "scripts/build-engineering.mjs"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 1,
+    "expectedExitCode": 1,
+    "durationSeconds": 0.081,
+    "log": "engineering-overwrite-refusal.log",
+    "sha256": "2fd0e9399b6328afe71b3e64d61671376fa63521305eb4afd99a0ad1b6ec020c"
+  },
+  {
+    "name": "prototype-overwrite-refusal",
+    "argv": [
+      "pnpm",
+      "prototype"
+    ],
+    "envOverrides": {},
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 1,
+    "expectedExitCode": 1,
+    "durationSeconds": 1.245,
+    "log": "prototype-overwrite-refusal.log",
+    "sha256": "2c6fa1daa120814cb3a45e1082b62a147e2fa366a733ee749c539bfc1fecf252"
+  },
+  {
+    "name": "compiled-backend-faults",
+    "argv": [
+      "python3",
+      ".local/verify-frozen-backend.py"
+    ],
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 2.286,
+    "log": "runtime-faults.json",
+    "sha256": "baa93cbc7f2f3e7caca226920b97900e2202b30f740cf9692c941e2bf2834c2b",
+    "envOverrides": {
+      "NODE_ENV": "production"
+    }
+  },
+  {
+    "name": "browser-development-cold",
+    "argv": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "envOverrides": {
+      "E2E_MODE": "dev"
+    },
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "durationSeconds": 9.514,
+    "log": "browser-development-cold.log",
+    "sha256": "e1e1f35baff150f5bd936b40d8a376c86e5b7248356dda8583a0f18a6473bd45",
+    "setup": "Moved only owned generated Vite cache into ignored backup; original Vite options unchanged."
+  },
+  {
+    "name": "dependency-audit",
+    "argv": [
+      "pnpm",
+      "audit",
+      "--json"
+    ],
+    "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+    "exitCode": 1,
+    "expectedExitCode": 1,
+    "durationSeconds": 1.109,
+    "log": "dependency-audit.json",
+    "sha256": "2ca573b72c957d1a04cae497a5b279600d1be54962f65597d74436c7a5906cd6",
+    "envOverrides": {},
+    "scope": "Only existing conditional esbuild Windows standalone serve low advisory remains; not globally clean."
+  }
+]
