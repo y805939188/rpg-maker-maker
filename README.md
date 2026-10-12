@@ -1,8 +1,8 @@
 # AI Tileset Studio — 当前开发基线
 
-步骤02工程基础与步骤03领域/像素处理及联合复审修复已发布。受审修复源码为 `aad1f72`，已完成main源码检查点为 `9fb02c9`；独立复审PASS、候选及该main CI成功。已发布 main 仍为步骤02–03基线。步骤04 Compiler 已在本地独立技术 Review PASS，随后用户阶段验收补齐。步骤05原候选 `c09027f` 独立审查为REQUIRES_REVISION；稳定Pack/Atlas、成功导出内容和验收材料获得独立支持，目录归属缺陷STEP05-IR-001为阻断P2。最新整改候选 `ad669a0` 已修复四发布入口并通过作者复测，当前 **READY_FOR_REVIEW**，仍需该候选独立复审及用户批准。既有人工观察为PASS_USER_REPORTED，16张PNG/布局等56文件与原观察产物相同，已作影响复核；没有合并或推送，不宣称完整Studio/真实AI已实现。
+步骤 01–05 的已审成果现已发布至 main `fa0b4a6`，候选及 main CI 均成功。步骤 05 最新功能 `ad669a0` 已取得独立复审 PASS，原发布归属阻断已关闭，用户已批准开始步骤 06。当前本轮仅授权步骤 06、07 串行开发与独立 Review/发布，步骤 07 发布后停止；完整人工 Studio 与真实 AI 尚不能声明完成。
 
-当前本地交接：[本轮整改报告](docs/reviews/step-05-fix-round-1-coding.md)、[原候选独立审查](docs/reviews/step-05-independent-review.md)、[当前整改候选状态](docs/engineering/STEP_05_BASELINE.md#当前整改候选2026-10-13)、[冻结时Coding报告](docs/reviews/step-05-coding.md)、[两类MZ验收](docs/step-05/mz-acceptance.md)。步骤06未启动。
+当前入口：[步骤 04/05 发布记录](docs/orchestration/step-05-release.md)、[本轮授权](docs/orchestration/steps-06-07-authorization.md)、[唯一步骤 06–07 状态](docs/orchestration/steps-06-07-state.json)、[步骤 05 最新独立复审](docs/reviews/step-05-fix-round-1-independent-review.md)。历史工程、Review 和 MZ 观察保留原边界。
 
 已发布基线入口：[发布与仓库维护](docs/orchestration/pre-step-04-repository-maintenance.md)、[需求证据映射](docs/engineering/V1_REQUIREMENTS_EVIDENCE.md)、[最新独立复审](docs/reviews/steps-02-03-global-rereview-aad1f72.md)。正式范围仍以保留的[产品方案](docs/plans/01_PRODUCT_TECH_SPEC_V0.5.md)及[十步计划](docs/plans/02_V1_IMPLEMENTATION_PLAN.md)为准。
 

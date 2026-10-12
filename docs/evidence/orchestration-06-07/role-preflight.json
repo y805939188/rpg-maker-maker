@@ -1,0 +1,76 @@
+{
+  "step-coder": {
+    "manifestSha256": "3f7bc1355eaab8ea42e34447ba991c0b1755033853ae0428f86caeaf5ab094db",
+    "content": "name = \"step_coder\"\ndescription = \"Execute the currently authorized implementation step.\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"xhigh\"\nservice_tier = \"default\"\n\ndeveloper_instructions = \"\"\"\nOnly implement the currently authorized step.\nRun tests and prepare a versioned candidate.\nDo not independently approve, merge or push.\n\"\"\""
+  },
+  "step-reviewer": {
+    "manifestSha256": "a03e99271325fb09e79855614f9cda7dab105f3f7f89e4e32c66298e2c0b5bd7",
+    "content": "name = \"step_reviewer\"\ndescription = \"Independent review of a frozen coding candidate.\"\nmodel = \"gpt-6.1-sol\"\nmodel_reasoning_effort = \"ultra\"\nservice_tier = \"default\"\n\ndeveloper_instructions = \"\"\"\nIndependently inspect the frozen candidate.\nFind concrete correctness, architecture and test defects.\nDo not modify production code.\nDo not approve an unverified candidate.\n\"\"\""
+  },
+  "coderPreflight": {
+    "events": [
+      {
+        "type": "thread.started",
+        "thread_id": "01a131a6-31b8-7720-9497-9bad7c25d39b"
+      },
+      {
+        "type": "turn.started"
+      },
+      {
+        "type": "item.completed",
+        "item": {
+          "id": "item_0",
+          "type": "agent_message",
+          "text": "CONFIG_PREFLIGHT_OK"
+        }
+      },
+      {
+        "type": "turn.completed",
+        "usage": {
+          "input_tokens": 17737,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8,
+          "reasoning_output_tokens": 0
+        }
+      }
+    ],
+    "requestedModel": "gpt-6.1-sol",
+    "requestedEffort": "xhigh",
+    "clientServiceTier": "default",
+    "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
+  },
+  "reviewerPreflight": {
+    "events": [
+      {
+        "type": "thread.started",
+        "thread_id": "01a131a6-d3b9-7c12-8137-fe0588f5f131"
+      },
+      {
+        "type": "turn.started"
+      },
+      {
+        "type": "item.completed",
+        "item": {
+          "id": "item_0",
+          "type": "agent_message",
+          "text": "CONFIG_PREFLIGHT_OK"
+        }
+      },
+      {
+        "type": "turn.completed",
+        "usage": {
+          "input_tokens": 17784,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8,
+          "reasoning_output_tokens": 0
+        }
+      }
+    ],
+    "requestedModel": "gpt-6.1-sol",
+    "requestedEffort": "ultra",
+    "clientServiceTier": "default",
+    "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
+  }
+}

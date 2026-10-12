@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "VERIFYING_STEP05_PUBLICATION_BASELINE",
+  "phase": "STEP06_CODING_ENVIRONMENT_READY",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -18,8 +18,20 @@
     "buildId": "step05-ad669a06218b-deec5d4376173aaf",
     "manifestSha256": "a262d9f49d95b3bf97db947e846b6e3d1e11559726c8733a4725748aaeb524b2",
     "userApproval": "APPROVED_BY_USER_START_AUTHORIZATION_2026_10_13",
-    "publication": "NOT_PUBLISHED",
-    "initialMain": "fc407198eefad9336ba97fb9482bdd832ca78f83"
+    "publication": "PUBLISHED",
+    "initialMain": "fc407198eefad9336ba97fb9482bdd832ca78f83",
+    "publishedSourceSha": "fa0b4a6d8d3eebd54d96dd541df33a92de5b6b00",
+    "candidateCI": {
+      "runId": 38299948538,
+      "status": "SUCCESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38299948538"
+    },
+    "mainCI": {
+      "runId": 38300491031,
+      "status": "SUCCESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38300491031"
+    },
+    "releaseRecord": "docs/orchestration/step-05-release.md"
   },
   "agents": {
     "dispatch": "NATIVE_INDEPENDENT_CODEX_EXEC_SESSIONS",
@@ -41,7 +53,10 @@
   },
   "step06": {
     "status": "NOT_STARTED",
-    "reviewRounds": 0
+    "reviewRounds": 0,
+    "branch": "codex/step-06-persistence",
+    "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
+    "baseMain": "fa0b4a6d8d3eebd54d96dd541df33a92de5b6b00"
   },
   "step07": {
     "status": "NOT_STARTED",
@@ -56,8 +71,22 @@
   "step10": {
     "status": "NOT_STARTED"
   },
-  "resources": [],
-  "lastSuccessfulCheckpoint": "LATEST_STEP05_REVIEW_AND_DOCUMENTATION_BINDING_VERIFIED",
+  "resources": [
+    {
+      "owner": "step06_coder",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
+      "branch": "codex/step-06-persistence",
+      "pgPort": 55466,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/assets",
+      "temporaryRoot": ".local/step06",
+      "apiPort": 4366,
+      "webPort": 5266,
+      "serviceStatus": "NOT_STARTED"
+    }
+  ],
+  "lastSuccessfulCheckpoint": "STEP04_05_PUBLISHED_MAIN_CI_SUCCESS",
   "blockers": [],
-  "nextSafeAction": "Verify native Standard reviewer configuration; preserve original review bytes; publish approved step04/05 baseline after candidate and main CI."
+  "nextSafeAction": "Dispatch step06 step_coder in its dedicated worktree using verified native Standard configuration."
 }
