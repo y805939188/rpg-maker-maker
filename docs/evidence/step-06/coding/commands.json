@@ -1,0 +1,98 @@
+[
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "pnpm check",
+    "exitCode": 0,
+    "result": "230/230,12 directions,10 ESM exports",
+    "evidence": "check-frozen-677-final.log.txt",
+    "sha256": "9ade3aab7808e57b90bdea5f626d0af6fb442c3e27e0399bd03a500cf211484c"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "pnpm test:step06",
+    "exitCode": 0,
+    "result": "10/10,104.08s; original60000ms per-case budget",
+    "evidence": "test-step06-frozen-a2878a9.log.txt",
+    "sha256": "37551b29ea80689182ca7c5084b253b6765c99e511131acb8caacb503b2a473e"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "INTEGRATION_API_PORT=4366 pnpm test:integration",
+    "exitCode": 0,
+    "result": "3/3",
+    "evidence": "integration-frozen-a2878a9.log.txt",
+    "sha256": "72dc98703f8343c05aaceadebeb8a025098c5508fbcceb4913ca9586473e101c"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "API_PORT=4366 WEB_PORT=5266 pnpm test:e2e",
+    "exitCode": 0,
+    "result": "1/1",
+    "evidence": "browser-production-frozen-a2878a9.log.txt",
+    "sha256": "c3b99f417655aef4b19164018555ecfa32fba2c3e47409171ea1c31eb3018caa"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "E2E_MODE=dev API_PORT=4366 WEB_PORT=5266 pnpm test:e2e",
+    "exitCode": 0,
+    "result": "1/1",
+    "evidence": "browser-dev-frozen-a2878a9.log.txt",
+    "sha256": "c6409a4858b52b70c17c6ee9c1d0a172f29087bdece7f43cdaf6a290339bdca6"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "rm only generated root dist; pnpm test:step05",
+    "exitCode": 0,
+    "result": "37/37,cold root-dist regression for STEP05-RR-001",
+    "evidence": "step05-cold-entry-frozen-a2878a9.log.txt",
+    "sha256": "8003b38cd58b2d4e8e036f47994362f70b274e08b682d03e834ad95ace45c2a2"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "pnpm db:migrate",
+    "exitCode": 0,
+    "result": "no pending migration; no reset",
+    "evidence": "migration-final.log.txt",
+    "sha256": "e8d2378ff762e47914a4420117e9704e20c14ff04711722674722a0a24198ce6"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "node .local/step06/scalars.mjs",
+    "exitCode": 0,
+    "result": "78/78 on final a2878a9 production exports; original probe SHA506ec056e7eecde0410e7f05093531ed3d62a5f83b7a2d61482ef662c6c801b9",
+    "evidence": "legacy-78-frozen-a2878a9.json",
+    "sha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "pnpm build:step06",
+    "exitCode": 0,
+    "result": "165 payload files + manifest, clean source bind",
+    "evidence": "build-engineering.json",
+    "sha256": "224ad14b00912fb67858897432e1527fb3d344f10e35e5afd00ca87d13bfc6e2"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "node --env-file=.env .local/step06/bound-publication.mjs",
+    "exitCode": 0,
+    "result": "real persisted ADOPTED build; same ID on repeat;IR/MZ stages both actual",
+    "evidence": "bound-publication.json",
+    "sha256": "9b7f3ba3e9daef32eb4e61811f7b8a42b7bf88317e5cb4a72c053f9b328f39a9"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "pnpm build:pack-sample",
+    "exitCode": 0,
+    "result": "8 sets/16PNG;56 payload hashes match approved step05",
+    "evidence": "pack-regression.json",
+    "sha256": "a43abc6acb4d8d75dd20fcd5427ac3a9a9d9313b12b50453faaa63678bbaa612"
+  },
+  {
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "command": "node dist/scripts/verify-step05.js <licensed pinned core> <each of8 packs>",
+    "exitCode": 0,
+    "result": "3600 shapes/states,8294400 pixels;CPU only",
+    "evidence": "oracle-summary.json",
+    "sha256": "b8a8788604334d45209f16dc5073e8c1a22d343fde6a0480519063a68479ab4b"
+  }
+]

@@ -1,0 +1,76 @@
+
+> @tileset/prototype@0.0.2 test:step06 <WORKTREE>
+> pnpm build:prototype && vitest run --config vitest.step06.config.ts
+
+
+> @tileset/prototype@0.0.2 build:prototype <WORKTREE>
+> pnpm build:contracts && tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts <WORKTREE>
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build <WORKTREE>/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build <WORKTREE>/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build <WORKTREE>/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build <WORKTREE>/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build <WORKTREE>/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build <WORKTREE>/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build <WORKTREE>/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build <WORKTREE>/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build <WORKTREE>/packages/local-executor
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 <WORKTREE>
+
+ ❯ packages/persistence/tests/integration.test.ts (5 tests | 1 failed) 146588ms
+     × retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild 60003ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/persistence/tests/integration.test.ts > real PostgreSQL + immutable files publication > retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild
+Error: Test timed out in 60000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ packages/persistence/tests/integration.test.ts:41:3
+     39|     }finally{await s.store.close();}
+     40|   });
+     41|   it('retired dependencies, consistent DB+files backup, empty-environm…
+       |   ^
+     42|     const s=await setup();let restored:Persistence|undefined;
+     43|     try{
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 9 passed (10)
+   Start at  04:10:24
+   Duration  173.09s (transform 156ms, setup 0ms, import 1.16s, tests 171.75s, environment 0ms)
+
+ ELIFECYCLE  Command failed with exit code 1.

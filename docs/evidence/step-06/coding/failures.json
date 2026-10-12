@@ -1,0 +1,37 @@
+[
+  {
+    "command": "Prisma migrate resolve without root environment",
+    "log": "migration-baseline-resolve.log.txt",
+    "result": "FAIL missing DATABASE_URL; retried with this Worktree own .env"
+  },
+  {
+    "command": "Prettier explicit Prisma schema selection",
+    "log": "format-first.log.txt",
+    "result": "FAIL parser cannot infer Prisma; current formatter checks all registered supported sources"
+  },
+  {
+    "command": "pnpm test:step06 first",
+    "log": "test-step06-first.log.txt",
+    "result": "FAIL9/10 backup60000ms; cache reduced repeated work without changing threshold"
+  },
+  {
+    "command": "pnpm build:prototype second",
+    "log": "build-second.log.txt",
+    "result": "FAIL TS7022; actual validated PackSnapshot explicitly typed"
+  },
+  {
+    "command": "pnpm typecheck second",
+    "log": "typecheck-second.log.txt",
+    "result": "FAIL readonly mutation fixture; mutable caller-owned copies constructed"
+  },
+  {
+    "command": "pnpm test:step06 c010b90",
+    "log": "test-step06-frozen-c010b90.log.txt",
+    "result": "FAIL9/10 accumulated global backup fixture timeout; native deferred COMMIT rejection passed; fixture now new owned DB, old evidence retained"
+  },
+  {
+    "command": "pnpm check164a11b",
+    "log": "check-frozen-final.log.txt",
+    "result": "FAIL helper env not wired; corrected and final complete checks passed"
+  }
+]
