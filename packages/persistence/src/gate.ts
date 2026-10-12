@@ -9,6 +9,12 @@ export class GateLostError extends Error {
     this.name = 'GateLostError';
   }
 }
+class GateEndedError extends Error {
+  constructor() {
+    super('Write gate lifetime ended');
+    this.name = 'GateEndedError';
+  }
+}
 export interface GateLease {
   readonly signal: AbortSignal;
   readonly backendPid: number;
@@ -21,7 +27,10 @@ export interface GateLease {
 // Session locks cover I/O; short transaction locks keep DB commits ahead of maintenance
 // and serialize same-scope transactions if their original session disappears.
 export class WriteGate {
-  #context = new AsyncLocalStorage<GateLease>();
+  // Reconstructing a store for the same database must not erase an enclosing
+  // lifetime. ALS still isolates independent async call chains.
+  static #contexts = new Map<string, AsyncLocalStorage<readonly GateLease[]>>();
+  #context: AsyncLocalStorage<readonly GateLease[]>;
   constructor(readonly databaseUrl: string) {
     const u = new URL(databaseUrl);
     if (
@@ -33,9 +42,13 @@ export class WriteGate {
       u.hash
     )
       throw Error('Dedicated loopback database required');
+    const databaseKey = `${u.hostname}:${u.port || '5432'}${u.pathname}`;
+    this.#context =
+      WriteGate.#contexts.get(databaseKey) ?? new AsyncLocalStorage<readonly GateLease[]>();
+    WriteGate.#contexts.set(databaseKey, this.#context);
   }
   current() {
-    return this.#context.getStore();
+    return this.#context.getStore()?.at(-1);
   }
   require() {
     const lease = this.current();
@@ -48,25 +61,59 @@ export class WriteGate {
     operation: (lease: GateLease) => Promise<T>,
     scope?: string,
   ): Promise<T> {
+    let parents = this.#context.getStore() ?? [],
+      parent = parents.at(-1);
+    // A new session cannot replace an invalid inherited lifetime. Maintenance is
+    // top-level only; repeated scoped locks would deadlock across our sessions.
+    await parent?.checkpoint();
+    if (parent && exclusive) throw Error('Nested maintenance is unsupported');
+    if (scope && parents.some((lease) => lease.scope === scope))
+      throw Error('Scoped write gate reentry is unsupported');
     const client = new pg.Client({
       connectionString: this.databaseUrl,
       connectionTimeoutMillis: 5000,
     });
     const controller = new AbortController();
+    let ending = false,
+      endPromise: Promise<void> | undefined;
+    const end = () => (endPromise ??= client.end().catch(() => {}));
     const lost = () => {
-      if (!controller.signal.aborted) controller.abort(new GateLostError());
+      if (!ending && !controller.signal.aborted) controller.abort(new GateLostError());
     };
+    const inheritedEnd = () => {
+      const reason: unknown = parent!.signal.reason;
+      if (parent!.exclusive && reason instanceof GateEndedError) {
+        // Writers queued during a live maintenance window may start after its
+        // normal release. They keep waiting for the actual PG lock release.
+        // A lost maintenance lease instead cancels that pending session.
+        parents = [];
+        parent = undefined;
+      } else controller.abort(reason);
+    };
+    parent?.signal.addEventListener('abort', inheritedEnd, { once: true });
+    controller.signal.addEventListener('abort', () => void end(), { once: true });
     client.on('error', lost);
     client.on('end', lost);
-    const check = () => controller.signal.throwIfAborted();
+    const check = () => {
+      parent?.check();
+      controller.signal.throwIfAborted();
+    };
     try {
+      check();
       await client.connect();
       check();
       await client.query("SET lock_timeout = '30s'");
       check();
-      await client.query(
-        exclusive ? 'SELECT pg_advisory_lock(6006,0)' : 'SELECT pg_advisory_lock_shared(6006,0)',
-      );
+      if (parent && !parent.exclusive) {
+        // Do not wait behind maintenance which is itself waiting for our parent.
+        const acquired = await client.query<{ locked: boolean }>(
+          'SELECT pg_try_advisory_lock_shared(6006,0) AS locked',
+        );
+        if (!acquired.rows[0]?.locked) throw Error('Nested write blocked by queued maintenance');
+      } else
+        await client.query(
+          exclusive ? 'SELECT pg_advisory_lock(6006,0)' : 'SELECT pg_advisory_lock_shared(6006,0)',
+        );
       check();
       if (scope) {
         await client.query('SELECT pg_advisory_lock(6007,hashtext($1))', [scope]);
@@ -76,6 +123,7 @@ export class WriteGate {
       check();
       const checkpoint = async () => {
         check();
+        await parent?.checkpoint();
         try {
           const locks = await client.query<{ maintenance: boolean; scope: boolean }>(
             `SELECT
@@ -100,6 +148,9 @@ export class WriteGate {
         fence: async (tx: Prisma.TransactionClient) => {
           check();
           assert.equal(exclusive, false, 'Mutation transactions cannot run under maintenance');
+          // Every enclosing scope must be fenced until this transaction ends,
+          // even if its session vanishes between a checkpoint and COMMIT.
+          await parent?.fence(tx);
           await tx.$queryRaw`SELECT pg_advisory_xact_lock_shared(6006,0)::text`;
           check();
           if (scope) {
@@ -110,14 +161,18 @@ export class WriteGate {
         },
       });
       await checkpoint();
-      return await this.#context.run(lease, async () => {
+      return await this.#context.run([...parents, lease], async () => {
         const value = await operation(lease);
         await checkpoint();
         return value;
       });
     } finally {
-      lost();
-      await client.end();
+      ending = true;
+      parent?.signal.removeEventListener('abort', inheritedEnd);
+      // Normal completion closes a lifetime too, but is not connection loss.
+      // Unawaited descendants cannot outlive the operation that owns their locks.
+      if (!controller.signal.aborted) controller.abort(new GateEndedError());
+      await end();
     }
   }
   write<T>(operation: (lease: GateLease) => Promise<T>, scope?: string) {

@@ -15,10 +15,14 @@ export async function resolveAssetRoot(
     isAbsolute(key) ||
     key === '..' ||
     key.startsWith('..' + sep) ||
-    key.split(sep)[0] === 'postgres'
+    key.split(sep)[0]?.toLowerCase() === 'postgres'
   )
     throw Error('Asset root must be owned by this project .local and separate from PostgreSQL');
   // No existing ancestor may redirect the configured root outside its ownership boundary.
+  const postgres = await lstat(resolve(local, 'postgres')).catch((error: unknown) => {
+    if (!(error instanceof Error && 'code' in error && error.code === 'ENOENT')) throw error;
+    return undefined;
+  });
   let path = local;
   for (const part of ['', ...key.split(sep)]) {
     if (part) path = resolve(path, part);
@@ -26,6 +30,8 @@ export async function resolveAssetRoot(
       const stat = await lstat(path);
       if (stat.isSymbolicLink() || !stat.isDirectory())
         throw Error('Asset root ancestor must be a real directory');
+      if (postgres && stat.dev === postgres.dev && stat.ino === postgres.ino)
+        throw Error('Asset root ancestor aliases PostgreSQL storage');
     } catch (error) {
       if (!(error instanceof Error && 'code' in error && error.code === 'ENOENT')) throw error;
     }
