@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_MAIN_INTEGRATION",
+  "currentPhase": "STEP03_MAIN_POSTMERGE_REGRESSION",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -608,8 +608,8 @@
         "independentResults": "129_TESTS_52_PUBLIC_EXPORT_CASES_DB_PRIVACY_DEV_PROD_COLD_BUDGETS_PIXEL_HISTORY_ARTIFACT_NATIVE_ORACLE_PASS"
       }
     ],
-    "merge": "NOT_EXECUTED",
-    "push": "NOT_EXECUTED",
+    "merge": "SUCCESS_LOCAL_MAIN_NORMAL_FAST_FORWARD",
+    "push": "NOT_YET_EXECUTED",
     "baseMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
     "codingAgent": "/root/step03_coder",
     "reviewAgent": "/root/step03_reviewer",
@@ -868,7 +868,8 @@
         "blockingP2": 0
       },
       "timeUTC": "2026-10-12T06:25:46.879418+00:00"
-    }
+    },
+    "mergeCommit": "0793c948da3bf3a8967579253f27ab2e234b8e70"
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -903,7 +904,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "R2PASS_DBCF_VERIFICATION_BRANCH_PUSHED_REMOTE_CONFIRMED_MAIN_C021",
+  "lastSuccessfulCheckpoint": "STEP03_MAIN_LOCAL_0793_SOURCE_EXACT_A0E_POSTMERGE_GATES_RUNNING",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -938,7 +939,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Fetchmain andnormalmerge exactreviewedsource+docs; postmergeregression; normalpush/readback/postmainCI thenstopformaldev",
+  "nextSafeAction": "Completepostmergeregressions; normalpush/readback main; postmainCIthenstopdevelopment",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
