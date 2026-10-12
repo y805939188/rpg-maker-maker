@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_CODING_FIX_ROUND1",
+  "currentPhase": "STEP03_REPAIRED_CANDIDATE_EVIDENCE_PREPARATION",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "FIXING_REVIEW_ROUND1",
+    "status": "REMEDIATION_FROZEN_EVIDENCE_FINALIZING",
     "reviews": [
       {
         "round": 1,
@@ -547,7 +547,7 @@
     "codingContext": "FRESH_NO_HISTORY_FORK",
     "reviewContext": "FRESH_NO_HISTORY_FORK",
     "serviceTier": "VERIFIED_DEFAULT",
-    "candidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+    "candidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
     "clientConfiguration": {
       "coding": {
         "thread": "01a12e44-090b-7a43-a6f3-07f34d6086b6",
@@ -642,9 +642,9 @@
       "standalonePrivacy": "PASS_CODING_REPORTED5",
       "dependencyAudit": "0HIGH_CRITICAL_MODERATE_1_SCOPEDLOW_CODING_REPORTED"
     },
-    "candidateSourceTrackedFiles": 625,
+    "candidateSourceTrackedFiles": 669,
     "sourceEditsAfterFreeze": "PROHIBITED_AWAIT_REVIEW",
-    "evidenceHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
+    "evidenceHead": "NEW_FIX_DOC_HEAD_NOT_YET_FINAL",
     "independentReview": "CHANGES_REQUESTED",
     "codingReport": "docs/reviews/step-03-coding.md",
     "codingReportSha256": "171995481729342c33be9c4c19fc46826121d569a7ac2872fc6305b2dc15fa70",
@@ -686,7 +686,7 @@
       "round": 1,
       "sourceReviewed": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
       "author": "/root/step03_coder",
-      "status": "IN_PROGRESS",
+      "status": "FROZEN_NEW_CODE_FINAL_EVIDENCE_IN_PROGRESS",
       "clientConfiguration": {
         "logId": 2948775,
         "turn": "01a12e89-2a1e-7743-ab3f-a76773d23d47",
@@ -702,7 +702,17 @@
         "STEP03-R1-004",
         "STEP03-R1-005"
       ],
-      "newCandidate": "NOT_YET_FROZEN"
+      "newCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+      "changedPaths": [
+        "docs/engineering/STEP_03_BASELINE.md",
+        "packages/asset-core/src/index.ts",
+        "packages/asset-core/tests/review-round1.test.ts",
+        "packages/material-processing/src/index.ts",
+        "packages/material-processing/tests/review-round1.test.ts"
+      ],
+      "newRegression": "13_PASS_OLD10_FAIL_3_CONTROLS_CODING_REPORTED",
+      "fullCheck": "129_PASS_DRAFT_CODING_REPORTED",
+      "independentClosure": "PENDING_R2"
     },
     "integrationWorktree": "/Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker",
     "integrationBranch": "codex/step-03-integration",
@@ -747,7 +757,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP03_R1_COMPLETE_5_BLOCKING_P2_REPORT_AND_SAFE50FILE_ARCHIVED",
+  "lastSuccessfulCheckpoint": "A0E_FROZEN_5PATH_REMEDIATION_129_DRAFT_PASS",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -782,7 +792,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "WaitsameCoder newfreezeclosingall5; isolatedReviewerR2; retainR1andoldimmutablebuilds; noCandidateCIorMainPublication yet",
+  "nextSafeAction": "WaitfinalexactA0Eauthorready/docHEAD/builds; newisolatedsourceR2reviewwith5P2closure; no mainpromotion",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
