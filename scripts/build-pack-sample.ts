@@ -15,9 +15,12 @@ const context=await currentBuildContext(git('rev-parse','HEAD'),hashBytes(await 
 const base=resolve('artifacts',`step05-suite-${context.commit.slice(0,12)}`);
 const stage=base+`.stage-${process.pid}`,lock=base+'.lock';
 await mkdir(resolve('artifacts'),{recursive:true});await mkdir(lock);
+// Acquire only after exclusive mkdir; rename ends ownership of the stage path.
+let stageOwned = false;
 try {
 try {await lstat(base);throw Error('Immutable suite already exists.');}catch(e){if((e as NodeJS.ErrnoException).code !== 'ENOENT')throw e;}
 await mkdir(stage);
+stageOwned = true;
 const index: unknown[] = [];
 async function emit(name:string,operations:Operation[],history:readonly PackSnapshot[],archives:readonly RecipeArchive[],fragments:ReturnType<typeof fragmentsFor>[number][],packId:string) {
   const build=planPack(PROFILE,{packId,version:history.length+1,operations},history,fragments);
@@ -43,5 +46,9 @@ for(const family of ['art','diagnostic'] as const) {
 }
 await writeFile(resolve(stage,'index.json'),jsonBytes({commit:context.commit,builds:index,capacityProbe:'PASS_REJECTED_NO_NEVER_USED_SLOTS'}),{flag:'wx'});
 await rename(stage,base);
+stageOwned = false;
 console.log(JSON.stringify({path:base,builds:index},null,2));
-} finally {await rm(stage,{recursive:true,force:true});await rm(lock,{recursive:true,force:true});}
+} finally {
+  try {if(stageOwned) await rm(stage,{recursive:true,force:true});}
+  finally {await rm(lock,{recursive:true,force:true});}
+}

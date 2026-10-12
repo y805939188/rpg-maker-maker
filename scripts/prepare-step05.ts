@@ -31,9 +31,13 @@ for(const family of families) {
   for(const atlas of ['A1','A2'])assert.equal(hashBytes(await readFile(resolve(source,'img/tilesets',`${family.name}_${atlas}.png`))),family.baseline.manifest.identity.files[`${atlas}.png`]!.sha256,'Baseline Pack must reproduce the original installed atlas exactly.');
 }
 await mkdir(resolve(destination,'..'),{recursive:true});await mkdir(lock);
+// Acquire only after exclusive mkdir; rename ends ownership of the stage path.
+let stageOwned = false;
 try {
   try {await lstat(destination);throw Error('Project copy already exists.');}catch(e){if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}
   try {await lstat(stage);throw Error('Project staging directory already exists.');}catch(e){if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}
+  await mkdir(stage);
+  stageOwned = true;
   await cp(source,stage,{recursive:true,errorOnExist:true,force:false});
   for(const family of families)for(const atlas of ['A1','A2'])await writeFile(resolve(stage,'img/tilesets',`${family.name}_${atlas}.png`),family.next.files[`${atlas}.png`]!);
   const reference={sourceProject:source,sourceMaps:before,mapTileIds:'UNCHANGED_BYTE_FOR_BYTE',database:'UNCHANGED_BYTE_FOR_BYTE',
@@ -43,5 +47,10 @@ try {
   await writeFile(resolve(stage,'step05-build-reference.json'),jsonBytes(reference),{flag:'wx'});
   for(const name of Object.keys(before)){assert.equal(hashBytes(await readFile(resolve(stage,'data',name))),before[name]);assert.equal(hashBytes(await readFile(resolve(source,'data',name))),before[name]);}
   for(const family of families)for(const atlas of ['A1','A2'])assert.equal(hashBytes(await readFile(resolve(stage,'img/tilesets',`${family.name}_${atlas}.png`))),family.next.manifest.identity.files[`${atlas}.png`]!.sha256);
-  await rename(stage,destination);console.log(JSON.stringify({project:destination,reference},null,2));
-} finally {await rm(stage,{force:true,recursive:true});await rm(lock,{force:true,recursive:true});}
+  await rename(stage,destination);
+  stageOwned = false;
+  console.log(JSON.stringify({project:destination,reference},null,2));
+} finally {
+  try {if(stageOwned) await rm(stage,{force:true,recursive:true});}
+  finally {await rm(lock,{force:true,recursive:true});}
+}

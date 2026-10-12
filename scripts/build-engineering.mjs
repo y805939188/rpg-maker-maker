@@ -70,6 +70,8 @@ const stage = resolve(base, `.stage-${buildId}-${process.pid}`);
 const lock = resolve(base, `.lock-${buildId}`);
 await mkdir(base, { recursive: true });
 await mkdir(lock);
+// Acquire only after exclusive mkdir; rename ends ownership of the stage path.
+let stageOwned = false;
 try {
   try {
     await lstat(destination);
@@ -78,6 +80,7 @@ try {
     if (error.code !== 'ENOENT') throw error;
   }
   await mkdir(stage);
+  stageOwned = true;
   for (const [path, bytes] of Object.entries(files)) {
     const target = resolve(stage, path);
     await mkdir(resolve(target, '..'), { recursive: true });
@@ -98,6 +101,7 @@ try {
     flag: 'wx',
   });
   await rename(stage, destination);
+  stageOwned = false;
   console.log(
     JSON.stringify(
       {
@@ -111,6 +115,9 @@ try {
     ),
   );
 } finally {
-  await rm(stage, { force: true, recursive: true });
-  await rm(lock, { force: true, recursive: true });
+  try {
+    if (stageOwned) await rm(stage, { force: true, recursive: true });
+  } finally {
+    await rm(lock, { force: true, recursive: true });
+  }
 }

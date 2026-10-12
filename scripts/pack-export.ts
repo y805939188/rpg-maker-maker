@@ -129,13 +129,20 @@ export async function readPackExport(directory: string) {
 export async function publishDirectory(destination: string, files: Record<string,Uint8Array>, verify: (directory:string)=>Promise<unknown>) {
   const target = resolve(destination), parent = resolve(target,'..'), stage = `${target}.stage-${process.pid}`, lock = `${target}.lock`;
   await mkdir(parent,{recursive:true}); await mkdir(lock);
+  // Acquire only after exclusive mkdir; rename ends ownership of the stage path.
+  let stageOwned = false;
   try {
     try { await lstat(target); throw Error('Immutable destination already exists.'); } catch(e) { if((e as NodeJS.ErrnoException).code !== 'ENOENT') throw e; }
     await mkdir(stage);
+    stageOwned = true;
     for(const [name,bytes] of Object.entries(files)) { assert.match(name,/^[A-Za-z0-9][A-Za-z0-9.-]*$/); await writeFile(resolve(stage,name),bytes,{flag:'wx'}); }
     await verify(stage);
     await rename(stage,target);
-  } finally { await rm(stage,{force:true,recursive:true}); await rm(lock,{force:true,recursive:true}); }
+    stageOwned = false;
+  } finally {
+    try { if(stageOwned) await rm(stage,{force:true,recursive:true}); }
+    finally { await rm(lock,{force:true,recursive:true}); }
+  }
 }
 export async function exportRequest(request: unknown, context: BuildContext) {
   const data = freezeJson(request) as {packId:string;version:number;operations:unknown;history:readonly PackSnapshot[];archives:readonly RecipeArchive[]};

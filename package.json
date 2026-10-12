@@ -48,7 +48,7 @@
     "build:mz-sample": "pnpm build:prototype && node scripts/build-mz-sample.mjs",
     "verify:step04": "node dist/scripts/verify-step04.js",
     "prepare:step04": "node dist/scripts/prepare-step04.js",
-    "test:step05": "pnpm build:contracts && vitest run packages/pack-assembly/tests tests/pack-export.test.ts",
+    "test:step05": "pnpm build:contracts && vitest run packages/pack-assembly/tests tests/pack-export.test.ts tests/publication-ownership.test.ts",
     "build:pack-sample": "pnpm build:prototype && node dist/scripts/build-pack-sample.js",
     "verify:step05": "node dist/scripts/verify-step05.js",
     "export:pack": "node dist/scripts/export-pack.js",
