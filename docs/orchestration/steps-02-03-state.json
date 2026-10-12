@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "DEVELOPMENT_STOPPED_FINAL_RECORDS_AND_SAFE_CLEANUP",
+  "currentPhase": "COMPLETE_SOURCE_PUBLISHED_FINAL_METADATA_READY",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -914,12 +914,12 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "BOTH_STEPS_PUBLISHED_REVIEWED_APPROVED_MAIN0793_AND_ALL_REQUIRED_CI_SUCCESS",
+  "lastSuccessfulCheckpoint": "BOTH_SOURCE_RELEASES_AND_CI_SUCCESS_14BUILDS10MAPS_PRESERVED_OWNED_SERVICES_OFF_CLEANUP_COMPLETE",
   "blockingCondition": null,
-  "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
+  "cleanup": "SAFE_OWNED_STEP03_WT_ARCHIVED_BRANCHES_DELETED_PRIVATE_PG_AND_MZ_PRESERVED",
   "finalRemoteMain": "0793c948da3bf3a8967579253f27ab2e234b8e70",
-  "finalReport": null,
-  "ownedServices": "OWNED_POSTGRES55432_55433_55434_READY_APPS_MANAGED_BY_INTEGRATION_TESTS",
+  "finalReport": "docs/orchestration/steps-02-03-final-report.md",
+  "ownedServices": "ALL_OWNED_APPS_AND_POSTGRES55432_55433_55434_STOPPED_DATA_CREDENTIALS_PRESERVED",
   "resumeAttempts": [
     {
       "event": "MAIN_PLATFORM_INTERRUPTION",
@@ -949,7 +949,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "No moreCoding/Review; verifyownedworktreeancestry/data/archives; safecleanupandownedserviceStop; finalreport/metadata only",
+  "nextSafeAction": "Only final metadata publication/readback/CI if interrupted; noCoding/Review/Step04",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
@@ -964,6 +964,23 @@
       "action": "NORMAL_BRANCH_DELETE_SUCCESS",
       "containedInRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
       "worktree": "RETAINED_CURRENT_MAIN_FOR_STEP03_INTEGRATION"
+    },
+    {
+      "item": "managed Step03 coding/review worktrees",
+      "action": "ARCHIVED_CONFIRMED_IN_APP_INVENTORY",
+      "sourceCommitsInRemoteMain": true,
+      "importantIgnoredArtifacts": "PRESERVED_AND_HASH_VERIFIED_PRIMARY14BUILDS",
+      "databaseCredentialPresence": "NONE_IN_ARCHIVED_WT"
+    },
+    {
+      "item": "local codex/step-03-coding and codex/step-03-integration",
+      "action": "NORMAL_DELETE_AFTER_MAIN_ANCESTRY_VERIFIED"
+    },
+    {
+      "item": "remote codex/step-03-validation-r2",
+      "action": "DELETED_READBACK_ABSENT",
+      "headWas": "dbcf0e82c0ee030cbdd3e9682cfd1504ac1a3cd6",
+      "containedInMain": "0793c948da3bf3a8967579253f27ab2e234b8e70"
     }
   ],
   "mzPreservationAtStep03Start": {
@@ -986,5 +1003,15 @@
     "status": "RESOLVED_BY_SAME_REQUIRED_REVIEWER_R3_R4_AND_STEP02_PUBLICATION"
   },
   "historicalFinalReport": "docs/orchestration/steps-02-03-blocked-report.md",
-  "formalDevelopmentStopped": true
+  "formalDevelopmentStopped": true,
+  "finalPreservationEvidence": "docs/orchestration/evidence/final-preservation-and-service-check.json",
+  "finalServiceEvidence": "docs/orchestration/evidence/final-owned-postgres-stop.json",
+  "primaryEnvironment": "FROZEN_INSTALL_AND_PRISMA6_19_3_GENERATE_PASS",
+  "finalization": {
+    "sourcePublicationMain": "0793c948da3bf3a8967579253f27ab2e234b8e70",
+    "sourceCI": "38212585754_SUCCESS",
+    "metadataPublication": "PENDING_NORMAL_MAIN_PUSH_AFTER_THIS_CHECKPOINT",
+    "completionCheckpointBranch": "codex/orchestration-02-03",
+    "rule": "Read actual main and latest canonical state on orchestration branch; never assume metadata publication from intent"
+  }
 }
