@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_CONTEXT_HANDOFF_PREPARATION",
+  "currentPhase": "STEP03_FRESH_ROLE_PREFLIGHT",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -468,10 +468,21 @@
     }
   },
   "step03": {
-    "status": "AUTHORIZED_NOT_YET_STARTED",
+    "status": "PREFLIGHT_IN_PROGRESS",
     "reviews": [],
     "merge": "NOT_EXECUTED",
-    "push": "NOT_EXECUTED"
+    "push": "NOT_EXECUTED",
+    "baseMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+    "codingAgent": "/root/step03_coder",
+    "reviewAgent": "/root/step03_reviewer",
+    "codingBranch": "codex/step-03-coding",
+    "codingWorktree": "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker",
+    "reviewWorktree": "/Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker",
+    "handoff": "docs/orchestration/step-03-handoff.md",
+    "codingContext": "FRESH_NO_HISTORY_FORK",
+    "reviewContext": "FRESH_NO_HISTORY_FORK",
+    "serviceTier": "PREFLIGHT_PENDING_REQUIRE_DEFAULT",
+    "candidate": "NOT_YET_FROZEN"
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -553,5 +564,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Create fresh isolated Step03 Coding/Review contexts; verify actual role/model/effort/default then release only Step03"
+  "nextSafeAction": "Verify both fresh clientrole/model/effort/default preflights; release onlyStep03Coding then independent frozenreview"
 }
