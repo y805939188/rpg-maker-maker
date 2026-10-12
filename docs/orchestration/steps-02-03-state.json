@@ -517,7 +517,14 @@
         "logId": 2933288,
         "model": "gpt-6.1-sol",
         "effort": "ultra",
-        "serviceTier": "default"
+        "serviceTier": "default",
+        "preparation": {
+          "logId": 2934680,
+          "turn": "01a12e48-2a0e-72f2-a69e-341a8f87a423",
+          "model": "gpt-6.1-sol",
+          "effort": "ultra",
+          "serviceTier": "default"
+        }
       },
       "serverFinal": "UNVERIFIED_NOT_EXPOSED"
     },
@@ -537,7 +544,8 @@
         "API": 4313,
         "Web": 5175
       }
-    }
+    },
+    "reviewPreparation": "INDEPENDENT_EXPECTATIONS_FROM_FROZEN_SPEC_ONLY_NO_FORMAL_REVIEW_OR_PASS_YET"
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -586,7 +594,7 @@
     "supportRecord": "docs/orchestration/evidence/resume-main-platform-interruption-2905000.json",
     "status": "HISTORICAL_RESOLVED_EXECUTION_RESUMED_ROUND4_IN_PROGRESS"
   },
-  "cleanup": "UNMERGED_WORKTREES_BRANCHES_RETAINED_NO_FORCE_DELETE",
+  "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
   "finalReport": "docs/orchestration/steps-02-03-blocked-report.md",
   "ownedServices": "OWNED_POSTGRES55432_55433_55434_READY_APPS_MANAGED_BY_INTEGRATION_TESTS",
@@ -619,5 +627,15 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "WaitfrozenStep03candidate; inspectsourcefreeze/evidence then releaseindependentReviewer exactSHA"
+  "nextSafeAction": "WaitfrozenStep03candidate; inspectsourcefreeze/evidence then releaseindependentReviewer exactSHA",
+  "cleanupRecords": [
+    {
+      "item": "remote codex/step-02-validation-r4",
+      "action": "DELETED_SUCCESS_READBACK_ABSENT",
+      "owned": "CREATED_THIS_RESUME",
+      "containedInRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+      "candidate": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+      "CIRecords": "PRESERVED_GITHUB_AND_REPO_EVIDENCE"
+    }
+  ]
 }
