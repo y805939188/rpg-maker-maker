@@ -1,0 +1,97 @@
+{
+  "schema": "step05-user-manual-observation-v1",
+  "date": "2026-10-13T02:53:15.056936+08:00",
+  "testedCommit": "c09027f921e7d67469b301083db89acc44433d9e",
+  "source": "Direct current user statement and user-filled result text; read-only current saved-map/atlas verification",
+  "userStatement": "我没有把截图或者录像放进去，但是就我肉眼观察，我觉得全都符合预期。",
+  "manualChecks": {
+    "editorDrawingAndNeighborRecalculation": "PASS_USER_REPORTED",
+    "waterAnimationAndFixedBank": "PASS_USER_REPORTED",
+    "passability": "PASS_USER_REPORTED",
+    "addBKeepA": "PASS_USER_REPORTED",
+    "updateAKeepB": "PASS_USER_REPORTED",
+    "retirementKeepsB": "PASS_USER_REPORTED",
+    "oldArtMapReplacement": "PASS_USER_REPORTED",
+    "oldDiagnosticMapReplacement": "PASS_USER_REPORTED",
+    "artAcceptedForDevelopmentTesting": "PASS_USER_REPORTED"
+  },
+  "savedMapAtlasVerification": "PASS_READ_ONLY",
+  "screenshots": "NOT_PROVIDED",
+  "video": "NOT_PROVIDED",
+  "runtimeObserverLogs": "NOT_CAPTURED_DIRECTORY_EMPTY",
+  "hostEnvironment": "NOT_INDEPENDENTLY_VERIFIED_THIS_RUN",
+  "nativeCore": "PASS_FILE_SHA_VERIFIED",
+  "originalNativeHost": "NOT_EXECUTED_DEFERRED_REQUIRED_BY_STEP10",
+  "codeReview": "REQUIRES_REVISION",
+  "openCodeBlockers": [
+    "STEP05-IR-001"
+  ],
+  "step05Approval": "NOT_GRANTED_BY_THIS_READINESS_QUESTION",
+  "step06": "NOT_STARTED",
+  "userResultTextSha256": "3746dba72e9c33ad213e1e3f6fc396d8747811a60f5038778dc11e467a6f6204",
+  "projects": [
+    {
+      "project": "<user-test-project>",
+      "currentPack": "incremental-v4",
+      "coreSha256": "4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f",
+      "maps": [
+        {
+          "mapId": 2,
+          "sha256": "84628e67f4e65eac1e4cab9508c419847191786eb9111713c99b9e102ea43948",
+          "tilesetId": 7,
+          "waterCells": 67
+        },
+        {
+          "mapId": 3,
+          "sha256": "b4009843049cebbf6d398afed5b2cee41950c7652d6a7bb8f8a41fc2aa36e225",
+          "tilesetId": 7,
+          "waterCells": 28
+        }
+      ],
+      "atlasBindingsVerified": true,
+      "note": ""
+    },
+    {
+      "project": "<user-test-kit>/old-map-test",
+      "currentPack": "old-map-v2",
+      "coreSha256": "4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f",
+      "maps": [
+        {
+          "mapId": 2,
+          "sha256": "250a17a5fb092898a94a2a44c5572fafebc30441a01be979ed4b7c54be0ac52e",
+          "tilesetId": 2,
+          "waterCells": 51
+        },
+        {
+          "mapId": 3,
+          "sha256": "d4c15be39f93f629bb90b56f7b21e6e67086dece0eb4745c7a90814ac1b9b8ee",
+          "tilesetId": 1,
+          "waterCells": 51
+        }
+      ],
+      "atlasBindingsVerified": true,
+      "note": ""
+    },
+    {
+      "project": "<user-test-kit>/old-map-diagnostic",
+      "currentPack": "old-map-v2",
+      "coreSha256": "4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f",
+      "maps": [
+        {
+          "mapId": 2,
+          "sha256": "250a17a5fb092898a94a2a44c5572fafebc30441a01be979ed4b7c54be0ac52e",
+          "tilesetId": 2,
+          "waterCells": 51
+        },
+        {
+          "mapId": 3,
+          "sha256": "d4c15be39f93f629bb90b56f7b21e6e67086dece0eb4745c7a90814ac1b9b8ee",
+          "tilesetId": 1,
+          "waterCells": 51
+        }
+      ],
+      "atlasBindingsVerified": true,
+      "note": "Diagnostic copy has the previously declared start-map-only navigation change"
+    }
+  ]
+}
