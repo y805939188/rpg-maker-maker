@@ -1,0 +1,40 @@
+[
+  {
+    "name": "migration",
+    "command": "pnpm db:migrate",
+    "extraEnvironment": {},
+    "sourceCommit": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+    "startedUTC": "2026-10-12T03:48:00.209578+00:00",
+    "exitCode": 0,
+    "log": "migration.log"
+  },
+  {
+    "name": "db-integration",
+    "command": "pnpm test:integration",
+    "extraEnvironment": {},
+    "sourceCommit": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+    "startedUTC": "2026-10-12T03:48:01.905763+00:00",
+    "exitCode": 0,
+    "log": "db-integration.log"
+  },
+  {
+    "name": "browser-production",
+    "command": "pnpm test:e2e",
+    "extraEnvironment": {},
+    "sourceCommit": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+    "startedUTC": "2026-10-12T03:48:05.118458+00:00",
+    "exitCode": 0,
+    "log": "browser-production.log"
+  },
+  {
+    "name": "browser-development",
+    "command": "pnpm test:e2e",
+    "extraEnvironment": {
+      "E2E_MODE": "dev"
+    },
+    "sourceCommit": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+    "startedUTC": "2026-10-12T03:48:11.012063+00:00",
+    "exitCode": 0,
+    "log": "browser-development.log"
+  }
+]
