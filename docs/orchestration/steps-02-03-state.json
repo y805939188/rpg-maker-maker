@@ -39,9 +39,9 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_PUSH_VERIFIED_POST_MAIN_CI_PENDING",
+  "currentPhase": "STEP03_CONTEXT_HANDOFF_PREPARATION",
   "step02": {
-    "status": "PUSHED_PENDING_POST_MAIN_CI",
+    "status": "PUBLISHED",
     "reviews": [
       {
         "round": 1,
@@ -462,12 +462,13 @@
       "runId": 38201664942,
       "head": "c021b20991281317fbbbb1fc398c0ae496ef648d",
       "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38201664942",
-      "status": "IN_PROGRESS",
-      "result": "PENDING"
+      "status": "COMPLETED",
+      "result": "SUCCESS_ALL_REQUIRED_JOBS",
+      "evidence": "docs/orchestration/evidence/step02-main-remote-ci.json"
     }
   },
   "step03": {
-    "status": "NOT_STARTED_BLOCKED_BY_STEP02",
+    "status": "AUTHORIZED_NOT_YET_STARTED",
     "reviews": [],
     "merge": "NOT_EXECUTED",
     "push": "NOT_EXECUTED"
@@ -505,7 +506,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP02_MAIN_PUSHED_AND_READBACK_VERIFIED_POSTMERGE_REGRESSION_PASS",
+  "lastSuccessfulCheckpoint": "STEP02_PUBLISHED_C021_REMOTE_AND_BOTH_CI_RUNS_SUCCESS",
   "blockingCondition": {
     "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
     "observations": [
@@ -552,5 +553,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Get postmainCI38201664942 PASS then markStep02PUBLISHED and start freshStep03 contexts"
+  "nextSafeAction": "Create fresh isolated Step03 Coding/Review contexts; verify actual role/model/effort/default then release only Step03"
 }
