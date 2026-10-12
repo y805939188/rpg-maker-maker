@@ -28,3 +28,7 @@ Original Native MZ Host Compatibility remains NOT_EXECUTED, required before V1.0
 ## Delegated acceptance
 
 Candidate validation CI run 38201263354 completed SUCCESS, including both browser jobs. Documentation presentation integrity supplement PASS. All necessary local and independent current gates are satisfied: **APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR**, under the existing user delegation, for frozen source 5356d66. Main integration/push remain pending until the corresponding Git actions are verified.
+
+## Publication checkpoint
+
+Normal main fast-forward and push succeeded at `c021b20991281317fbbbb1fc398c0ae496ef648d`; remote HEAD readback matches. Postmerge format, export imports, real PostgreSQL and production browser regressions passed. Main CI run 38201664942 remains in progress. Step 03 has not started.

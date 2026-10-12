@@ -39,9 +39,9 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_MAIN_MERGED_POSTMERGE_REGRESSION",
+  "currentPhase": "STEP02_PUSH_VERIFIED_POST_MAIN_CI_PENDING",
   "step02": {
-    "status": "APPROVED_PENDING_MAIN_PUBLICATION",
+    "status": "PUSHED_PENDING_POST_MAIN_CI",
     "reviews": [
       {
         "round": 1,
@@ -262,7 +262,7 @@
       }
     ],
     "merge": "SUCCESS_LOCAL_MAIN_FAST_FORWARD",
-    "push": "NOT_EXECUTED",
+    "push": "SUCCESS_REMOTE_HEAD_VERIFIED",
     "agent": "/root/step02_coder",
     "branch": "codex/step-02-coding",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker",
@@ -455,7 +455,16 @@
       },
       "timeUTC": "2026-10-12T03:54:01.669998+00:00"
     },
-    "mergeCommit": "c021b20"
+    "mergeCommit": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+    "postmergeRegression": "PASS_FORMAT_EXPORTS_REALDB3_PRODUCTION_BROWSER",
+    "postmergeEvidence": "docs/evidence/step-02/postmerge-c021b20",
+    "postMainCI": {
+      "runId": 38201664942,
+      "head": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38201664942",
+      "status": "IN_PROGRESS",
+      "result": "PENDING"
+    }
   },
   "step03": {
     "status": "NOT_STARTED_BLOCKED_BY_STEP02",
@@ -496,7 +505,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "INDEPENDENT_R4_PASS_PLUS_INTEGRATION_CHECK_DB_BROWSERS_PASS",
+  "lastSuccessfulCheckpoint": "STEP02_MAIN_PUSHED_AND_READBACK_VERIFIED_POSTMERGE_REGRESSION_PASS",
   "blockingCondition": {
     "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
     "observations": [
@@ -511,7 +520,7 @@
     "status": "HISTORICAL_RESOLVED_EXECUTION_RESUMED_ROUND4_IN_PROGRESS"
   },
   "cleanup": "UNMERGED_WORKTREES_BRANCHES_RETAINED_NO_FORCE_DELETE",
-  "finalRemoteMain": "f004d6c74abe64ea853619390aa9dc2bc34654c1_VERIFIED_FETCH_AND_LS_REMOTE",
+  "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
   "finalReport": "docs/orchestration/steps-02-03-blocked-report.md",
   "ownedServices": "OWNED_POSTGRES55432_55433_55434_READY_APPS_MANAGED_BY_INTEGRATION_TESTS",
   "resumeAttempts": [
@@ -543,5 +552,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Complete postmerge regressions; normal push current main; read remote head and required postmainCI before Step03"
+  "nextSafeAction": "Get postmainCI38201664942 PASS then markStep02PUBLISHED and start freshStep03 contexts"
 }
