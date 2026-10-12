@@ -1,0 +1,25 @@
+
+> @tileset/prototype@0.0.2 test:integration /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker
+> pnpm build:contracts && vitest run --config vitest.integration.config.ts
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  11:48:04
+   Duration  1.04s (transform 53ms, setup 0ms, import 297ms, tests 667ms, environment 0ms)
+

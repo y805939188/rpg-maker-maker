@@ -1,0 +1,13 @@
+
+> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker
+> pnpm --filter @tileset/api db:migrate
+
+
+> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/apps/api
+> node scripts/migrate.mjs
+
+/Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/apps/api:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @tileset/api@0.0.2 db:migrate: `node scripts/migrate.mjs`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.
+Migration configuration invalid. Use a dedicated loopback tileset_ database.

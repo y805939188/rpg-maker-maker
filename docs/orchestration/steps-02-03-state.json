@@ -39,9 +39,9 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_INTEGRATION_REGRESSION_AND_REMOTE_CI",
+  "currentPhase": "STEP02_APPROVED_MAIN_INTEGRATION",
   "step02": {
-    "status": "INDEPENDENT_PASS_PENDING_CI_INTEGRATION",
+    "status": "APPROVED_PENDING_MAIN_PUBLICATION",
     "reviews": [
       {
         "round": 1,
@@ -245,7 +245,20 @@
         ],
         "sourceIntegrity": "334_TRACKED_SHA256_UNCHANGED_EXACT_SHA_GIT_CLEAN",
         "originalReportSha256": "c3bffaf06311145d94463ca39144aba604b82c798b9e7128d1dc27ad523335a5",
-        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED",
+        "documentationIntegritySupplement": {
+          "reviewer": "/root/step02_resume_review3",
+          "turn": "01a12e37-95b3-7541-9aaa-a30d74538d53",
+          "clientLogId": 2925394,
+          "model": "gpt-6.1-sol",
+          "effort": "ultra",
+          "serviceTier": "default",
+          "serverFinal": "UNVERIFIED_NOT_EXPOSED",
+          "status": "PASS",
+          "evidence": "docs/evidence/step-02/presentation-6efe637",
+          "reportSha256": "8bb6cabec4bd1d673060d228b523e7793f8348a288bda524b18addbdee75f6eb",
+          "ledgerSha256": "bef670fb1735ee0bc5798f872839cd4a35df5b9f89fcb7f3b0ee987a8cb43a83"
+        }
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -376,7 +389,7 @@
       "runtimeFaults": "CURRENT_COMPILED_BACKEND_PASS"
     },
     "latestIndependentPass": "ROUND4_5356",
-    "delegatedApproval": "NOT_ISSUED",
+    "delegatedApproval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
     "remoteCIGate": "RUN_VALIDATION_BRANCH_CI_BEFORE_MAIN_PUBLICATION; POST_MAIN_CHECK_IF_TRIGGERED",
     "integrationWorktree": "/Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker",
     "integrationBranch": "codex/step-02-integration",
@@ -390,13 +403,17 @@
       "serverFinal": "UNVERIFIED_NOT_EXPOSED"
     },
     "integrationCandidate": {
-      "head": "c786385ec371cedda28e843d3efd90a35e21a6e3",
+      "head": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
       "mainMerged": false,
       "nonDocsDiffAgainstReviewedCandidate": "NONE",
-      "validation": "IN_PROGRESS",
+      "validation": "PASS_CHECK72_PRIVACY5_REALDB3_PRODUCTION_AND_DEV_BROWSER",
       "firstAttempt": "GENERATION_PASS_MIGRATION_ORDER_TOO_EARLY_DIST_MISSING_NO_CODE_CHANGE",
       "secondAttempt": "FAILED_PRETTIER_ON_ROOT_RAW_INDEPENDENT_REPORT_PRESENTATION_NO_FUNCTIONAL_FAILURE",
-      "remedy": "Format only canonical presentation copies; immutable reviewer raw reports preserved; no checks disabled"
+      "remedy": "Format only canonical presentation copies; immutable reviewer raw reports preserved; no checks disabled",
+      "regressionCheck": "PASS72_TYPES_LINT_FORMAT_BUILD_EXPORTS",
+      "standaloneBoundary": "PASS5",
+      "thirdAttempt": "CHECK_AND_PRIVACY_PASS_LEGACY_RELEASE_ENV_SCHEMA_QUERY_REJECTED_BY_FROZEN_CONFIG",
+      "fourthAttempt": "PASS_MIGRATION_REALDB3_PRODUCTION_AND_DEVELOPMENT_BROWSER"
     },
     "currentNonblocking": [
       {
@@ -408,7 +425,36 @@
         "owner": "engineering step_coder before affected exposure",
         "blocksExit": false
       }
-    ]
+    ],
+    "integrationEvidence": "docs/evidence/step-02/integration-947be372",
+    "candidateVerificationBranch": {
+      "branch": "codex/step-02-validation-r4",
+      "head": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+      "push": "SUCCESS",
+      "release": "NOT_MAIN_NOT_PUBLISHED"
+    },
+    "remoteCI": {
+      "runId": 38201263354,
+      "event": "push",
+      "head": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38201263354",
+      "status": "COMPLETED",
+      "result": "SUCCESS_ALL_REQUIRED_JOBS",
+      "evidence": "docs/orchestration/evidence/step02-validation-remote-ci.json"
+    },
+    "delegatedApprovalBasis": {
+      "source": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+      "reviewRound": 4,
+      "metadata": "85fefc1d4638cec79ea00797a0be50e2018444bd",
+      "validationHead": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+      "CI": 38201263354,
+      "counts": {
+        "P0": 0,
+        "P1": 0,
+        "blockingP2": 0
+      },
+      "timeUTC": "2026-10-12T03:54:01.669998+00:00"
+    }
   },
   "step03": {
     "status": "NOT_STARTED_BLOCKED_BY_STEP02",
@@ -449,7 +495,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "R4_INDEPENDENT_PASS_EXACT_5356_SAFE59FILE_ARCHIVE",
+  "lastSuccessfulCheckpoint": "INDEPENDENT_R4_PASS_PLUS_INTEGRATION_CHECK_DB_BROWSERS_PASS",
   "blockingCondition": {
     "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
     "observations": [
@@ -496,5 +542,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Finish integration regression; push verification branch/CI; only then delegated approval/main publication"
+  "nextSafeAction": "Fetch main then fast-forward reviewed source+validated integration+docs; applicable regression; normal push and exact remote verification/postmainCI"
 }
