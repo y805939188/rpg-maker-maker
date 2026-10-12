@@ -30,29 +30,29 @@ Recommended repair: prohibit the complete `.local` tree in development file serv
 
 All commands used the frozen SHA and own database. Full stdout/stderr and command records are preserved in this directory; credential values are not in the public evidence index.
 
-| Gate | Independent result | Evidence |
-| --- | --- | --- |
-| Frozen install/generation | pnpm install --frozen-lockfile; pnpm db:generate, exit0 | install.log, db-generate.log |
-| Dependency directions/exact direct pins | pnpm check includes boundary check, passed | check.log |
-| Strict source and new test typing | passed all workspaces | check.log |
-| ESLint/Prettier | passed | check.log |
-| Vitest |63/63, including52 preserved prototype tests | check.log |
-| Clean full production build | all5 workspaces passed | check.log |
-| Production ESM runtime exports | all3 export maps imported in actual Node | check.log |
-| Own PostgreSQL migration | migration202610120001_step02_project applied | db-migrate.log |
-| Real HTTP→Prisma write/read |3/3 integration tests | integration.log |
-| Production browser loop/Pixi | project creation, HTTP201, refresh persistence, Pixi ready, no pageerror; screenshot visually inspected | production-e2e.log, e2e/production.json, e2e/production.png |
-| Development browser loop/Pixi | same actual DB/API/browser loop,1/1 | dev-e2e.log, e2e/dev.json, e2e/dev.png |
-| Independent boundary edge probes |13/13 expected statuses and safe DTO errors | api-audit/runtime-probes.json |
-| Direct production Node startup/listener | node apps/api/dist/main.js, actual127.0.0.1:4311 listener | runtime-faults.json |
-| Production DB stop/restart |health200→503SERVICE_UNAVAILABLE→200; own55433 only | runtime-faults.json, database-lifecycle.log |
-| Occupied port/invalid bind | direct built Node exits1, generic message, no URL/password/local-path disclosure | runtime-faults.json |
-| Engineering independent publication |same68-file identity/manifest as author | artifact-integrity.json |
-| Prototype independent publication |same4-PNG identity/manifest as author | artifact-integrity.json |
-| No overwrite | both repeated publications reject with expected exit1; all hashes unchanged | *overwrite-refusal.log, post-refusal-artifact-integrity.json |
-| External native-core oracle |960 selected tiles,2,211,840 pixels,241updates, passed | native-oracle.log, native-evidence/*.json |
-| Author evidence binding |all28 archived file hashes and12 command commit/exit/log bindings verified; supplemental docs only | supplemental-evidence-verification.json, author-command-bindings.json |
-| No source mutation |233tracked hashes unchanged, exact frozenHEAD, clean Git | round1-source-before.json, round1-source-after.json |
+| Gate                                    | Independent result                                                                                      | Evidence                                                              |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| Frozen install/generation               | pnpm install --frozen-lockfile; pnpm db:generate, exit0                                                 | install.log, db-generate.log                                          |
+| Dependency directions/exact direct pins | pnpm check includes boundary check, passed                                                              | check.log                                                             |
+| Strict source and new test typing       | passed all workspaces                                                                                   | check.log                                                             |
+| ESLint/Prettier                         | passed                                                                                                  | check.log                                                             |
+| Vitest                                  | 63/63, including52 preserved prototype tests                                                            | check.log                                                             |
+| Clean full production build             | all5 workspaces passed                                                                                  | check.log                                                             |
+| Production ESM runtime exports          | all3 export maps imported in actual Node                                                                | check.log                                                             |
+| Own PostgreSQL migration                | migration202610120001_step02_project applied                                                            | db-migrate.log                                                        |
+| Real HTTP→Prisma write/read             | 3/3 integration tests                                                                                   | integration.log                                                       |
+| Production browser loop/Pixi            | project creation, HTTP201, refresh persistence, Pixi ready, no pageerror; screenshot visually inspected | production-e2e.log, e2e/production.json, e2e/production.png           |
+| Development browser loop/Pixi           | same actual DB/API/browser loop,1/1                                                                     | dev-e2e.log, e2e/dev.json, e2e/dev.png                                |
+| Independent boundary edge probes        | 13/13 expected statuses and safe DTO errors                                                             | api-audit/runtime-probes.json                                         |
+| Direct production Node startup/listener | node apps/api/dist/main.js, actual127.0.0.1:4311 listener                                               | runtime-faults.json                                                   |
+| Production DB stop/restart              | health200→503SERVICE_UNAVAILABLE→200; own55433 only                                                     | runtime-faults.json, database-lifecycle.log                           |
+| Occupied port/invalid bind              | direct built Node exits1, generic message, no URL/password/local-path disclosure                        | runtime-faults.json                                                   |
+| Engineering independent publication     | same68-file identity/manifest as author                                                                 | artifact-integrity.json                                               |
+| Prototype independent publication       | same4-PNG identity/manifest as author                                                                   | artifact-integrity.json                                               |
+| No overwrite                            | both repeated publications reject with expected exit1; all hashes unchanged                             | *overwrite-refusal.log, post-refusal-artifact-integrity.json          |
+| External native-core oracle             | 960 selected tiles,2,211,840 pixels,241updates, passed                                                  | native-oracle.log, native-evidence/*.json                             |
+| Author evidence binding                 | all28 archived file hashes and12 command commit/exit/log bindings verified; supplemental docs only      | supplemental-evidence-verification.json, author-command-bindings.json |
+| No source mutation                      | 233tracked hashes unchanged, exact frozenHEAD, clean Git                                                | round1-source-before.json, round1-source-after.json                   |
 
 The actual source and architecture satisfy the scoped Step02 separation: root diagnostic prototype depends on Sharp/Node; HTTP contracts own Zod/OpenAPI3.0.3; API maps separate Prisma entities to safe JSON DTOs; React/Pixi consumes contracts only; Gateway contains Provider/Executor/recovery/state/default-model/template-snapshot contracts and deep-copy/deep-freeze logic. Completed TaskRecord requires durable artifacts and distinguishes unknown submission, known-ID query and archive retry. No full provider runner, paid call, domain recipe/IR, production slot planner or later-step feature was introduced. CI contains pinned actions/tools and equivalent checks; remote CI itself is NOT_EXECUTED.
 
@@ -62,12 +62,12 @@ Engineering: `step02-8a7d4b9bfa62-c52e6a5508a18928`, manifestSHA256 `23d5f59a8bd
 
 Profile remains `mz-native-ground-water/1.0.0-candidate.1`; Pixel Contract remains `rgba8-srgb-integer-v1`; HTTP `http-v1`, Task `task-snapshot-v1`. Approved archived step01 manifest was independently compared: all4PNG hashes, Profile and Pixel Contract are identical. The old core/pixel/compiler algorithms, prototype TS scripts, fixtures, provenance and two plans are unchanged against phase-exit baselinef004d6c; src/index.ts only adds package exports. Original MZ core SHA256 `4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f` is the external oracle.
 
-| PNG | SHA-256 |
-| --- | --- |
-| diagnostic_A1.png |de08f8bc36b87017afbb62aba946d612e8f4536939c0db707bbbbcbfd93b337f |
-| diagnostic_A2.png |b493ecc86e938dc9aa4f389ba6b1b052222baeade6bb1d58dea7b003126330cd |
-| art_A1.png |d896c5c8b62816e844865b2abe12a0d5c1694aceb6cd3c75f93eccbd6c55d9d2 |
-| art_A2.png |7d60ac8c6072d38736e4027cc25fa23979de6e400b9c66d4f586a108506b2b2b |
+| PNG               | SHA-256                                                          |
+| ----------------- | ---------------------------------------------------------------- |
+| diagnostic_A1.png | de08f8bc36b87017afbb62aba946d612e8f4536939c0db707bbbbcbfd93b337f |
+| diagnostic_A2.png | b493ecc86e938dc9aa4f389ba6b1b052222baeade6bb1d58dea7b003126330cd |
+| art_A1.png        | d896c5c8b62816e844865b2abe12a0d5c1694aceb6cd3c75f93eccbd6c55d9d2 |
+| art_A2.png        | 7d60ac8c6072d38736e4027cc25fa23979de6e400b9c66d4f586a108506b2b2b |
 
 This oracle is NodeVM raw core selection/pixel/update verification, not GPU, normal editor painting or game Host acceptance. New MZ drawing/game animation/visual confirmation are NOT_EXECUTED. User-authorized Native Core+upgradedHost phase exit remains valid; Original Native MZ Host remains NOT_EXECUTED until final acceptance no later than Step10; Map003(4,10) remains PENDING_USER_EVIDENCE. None of these statuses were promoted to PASS.
 

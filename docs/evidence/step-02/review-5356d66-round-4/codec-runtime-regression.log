@@ -1,0 +1,13 @@
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+
+ ✓ tests/codec-runtime.test.ts > STEP02-R3-001: patched native codec at public PNG ingress > loads the pinned Sharp and a vendor-patched libvips rather than merely checking package metadata 1ms
+ ✓ tests/codec-runtime.test.ts > STEP02-R3-001: patched native codec at public PNG ingress > preserves source pixels while safely decoding valid RGBA8 PNG with harmless EXIF 2ms
+ ✓ tests/codec-runtime.test.ts > STEP02-R3-001: patched native codec at public PNG ingress > exercises the built public package export and actual native runtime in production Node 72ms
+ ✓ tests/codec-runtime.test.ts > STEP02-R3-001: patched native codec at public PNG ingress > validates a self-consistent supplied build containing harmless metadata using the patched decoder 2533ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  11:27:22
+   Duration  2.83s (transform 44ms, setup 0ms, import 88ms, tests 2.66s, environment 0ms)
+

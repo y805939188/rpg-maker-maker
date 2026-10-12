@@ -1,0 +1,25 @@
+
+> @tileset/prototype@0.0.2 test:dev-privacy /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+> pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  11:28:47
+   Duration  878ms (transform 26ms, setup 0ms, import 44ms, tests 754ms, environment 0ms)
+

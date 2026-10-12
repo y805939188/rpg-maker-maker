@@ -39,9 +39,9 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_INDEPENDENT_REVIEW_ROUND4",
+  "currentPhase": "STEP02_INTEGRATION_REGRESSION_AND_REMOTE_CI",
   "step02": {
-    "status": "READY_FOR_REVIEW",
+    "status": "INDEPENDENT_PASS_PENDING_CI_INTEGRATION",
     "reviews": [
       {
         "round": 1,
@@ -63,7 +63,7 @@
           }
         ],
         "report": "docs/reviews/step-02-independent-round-1.md",
-        "reportSha256": "bb12df8bcd914264f13fcbe5bb38d9ee7325029afb82d2c3fbd5fbb255816ba9",
+        "reportSha256": "248540928e3806d3a1dea8d2ea3ac65f501827e17ba22018a1aff209671f323a",
         "evidence": "docs/evidence/step-02/review-8a7d4b9-round-1",
         "nonblocking": [
           {
@@ -74,7 +74,9 @@
             "followup": "Re-evaluate before media/upload exposure or affected Windows serve; preserve golden and encoder impact review"
           }
         ],
-        "sourceIntegrity": "233_TRACKED_HASHES_UNCHANGED_GIT_CLEAN"
+        "sourceIntegrity": "233_TRACKED_HASHES_UNCHANGED_GIT_CLEAN",
+        "originalReportSha256": "bb12df8bcd914264f13fcbe5bb38d9ee7325029afb82d2c3fbd5fbb255816ba9",
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
       },
       {
         "round": 2,
@@ -99,7 +101,7 @@
         "priorClosure": "STEP02-R1-001_PARTIAL_NOT_CLOSED",
         "platformInterruption": "Reviewer report completion turn flagged for possible cybersecurity risk; same role asked only to document existing results, no new probes or access escalation",
         "report": "docs/reviews/step-02-independent-round-2.md",
-        "reportSha256": "c197dc9893ee0c0901856361c0bfdfb4ab575c545263654f119564167a120695",
+        "reportSha256": "e1bfc42fb61946d9c5959a2718512b55f5443b7f178a9afa372d4401b14acba6",
         "evidence": "docs/evidence/step-02/review-396cefb-round-2",
         "sourceIntegrity": "265_TRACKED_UNCHANGED_GIT_CLEAN",
         "documentationRecovery": "COMPLETED_EXISTING_OBSERVATIONS_ONLY_NO_NEW_PROBES",
@@ -108,7 +110,9 @@
           "standalone privacy command (same tests passed inside check)",
           "latest fault probes",
           "latest overwrite attempts"
-        ]
+        ],
+        "originalReportSha256": "c197dc9893ee0c0901856361c0bfdfb4ab575c545263654f119564167a120695",
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
       },
       {
         "round": 3,
@@ -172,7 +176,7 @@
           }
         },
         "report": "docs/reviews/step-02-independent-round-3.md",
-        "reportSha256": "881a720ac82aaebb98722b3fcfae069cd25be029ed3e2ca9faecbcc5ba762381",
+        "reportSha256": "ff4e0fad674e660971f46df7eb2df9311afe63980ebe3eaa7829638a5f1c48a3",
         "evidence": "docs/evidence/step-02/review-c3914ec-round-3",
         "sourceIntegrity": "297_TRACKED_UNCHANGED_GIT_CLEAN",
         "historicalResolution": {
@@ -195,13 +199,15 @@
             "advisory": "GHSA-jmwm-wc68-mhwm/CVE-2026-35590",
             "condition": "Accepted PNG EXIF enters affected libvips; supplied manifest integrity is not source trust"
           }
-        ]
+        ],
+        "originalReportSha256": "881a720ac82aaebb98722b3fcfae069cd25be029ed3e2ca9faecbcc5ba762381",
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
       },
       {
         "round": 4,
         "candidate": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
         "reviewer": "/root/step02_resume_review3",
-        "status": "IN_PROGRESS",
+        "status": "PASS",
         "mustVerifyClosure": [
           "STEP02-R3-001"
         ],
@@ -220,8 +226,26 @@
           "actualRuntime": "SHARP0.35.5_VIPS8.18.7_EXIF0.6.26",
           "audit": "0HIGH_0CRITICAL_1SCOPED_LOW",
           "legacy31Paths": "UNCHANGED",
-          "finalPass": "NOT_ISSUED"
-        }
+          "finalPass": "ISSUED"
+        },
+        "report": "docs/reviews/step-02-independent-round-4.md",
+        "reportSha256": "eb1b65d885bd563e7d0cb1bdcfd5adcf26212b0133060dce013012d3feaff368",
+        "evidence": "docs/evidence/step-02/review-5356d66-round-4",
+        "evidenceLedgerSha256": "f84bf1fd90ddef4ca83a49f000e30e61479bebedbb386a9cf17db86a94b75f85",
+        "counts": {
+          "P0": 0,
+          "P1": 0,
+          "blockingP2": 0,
+          "nonblockingP2": 1
+        },
+        "closedFindings": [
+          "STEP02-R1-001",
+          "STEP02-R2-001",
+          "STEP02-R3-001"
+        ],
+        "sourceIntegrity": "334_TRACKED_SHA256_UNCHANGED_EXACT_SHA_GIT_CLEAN",
+        "originalReportSha256": "c3bffaf06311145d94463ca39144aba604b82c798b9e7128d1dc27ad523335a5",
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -239,22 +263,23 @@
       "listen": "127.0.0.1:55432",
       "auth": "SCRAM unique local credentials",
       "prismaGenerate": "PASS_CODING_REPORTED",
-      "fullApiWebRoundtrip": "API_PASS_BROWSER_PENDING",
+      "fullApiWebRoundtrip": "PASS_CODING_AND_INDEPENDENT_REAL_DB_DEV_PROD_COLD",
       "migration": "202610120001_step02_project_PASS_CODING_REPORTED"
     },
     "candidate": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
-    "independentReview": "NOT_EXECUTED",
+    "independentReview": "PASS_EXACT_5356",
     "reviewWorktree": "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker",
     "reviewWorktreeHead": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
     "reviewDatabasePort": 55433,
     "codingReportedChecks": {
-      "unitAndPrototype": "63/63_PASS_ORIGINAL52_PRESERVED",
-      "apiIntegration": "3/3_PASS_REAL_POSTGRES_PRISMA",
-      "typecheck": "PASS",
-      "lint": "PASS",
-      "productionWebBuild": "PASS",
-      "browserDevProduction": "IN_PROGRESS",
-      "prisma": "6.19.3_GENERATE_MIGRATE_PASS"
+      "fullCheck": "72/72_PASS_ORIGINAL52_PRESERVED",
+      "realDB": "3/3_PASS",
+      "devProductionBrowser": "PASS",
+      "patchedNative": "SHARP0.35.5_LIBVIPS8.18.7_ACTUALLY_LOADED",
+      "fourPNG": "EXACT_BYTE_AND_PIXEL_MATCH_EXPERIMENTAL_CODING",
+      "audit": "0HIGH_0CRITICAL_1SCOPED_LOW",
+      "frozenFinalEvidence": "16_COMMANDS_PASS_COMMITTED",
+      "runtimeFaults": "CURRENT_COMPILED_BACKEND_PASS"
     },
     "reviewEnvironment": "READY_ISOLATED_SCRAM_POSTGRES14_20_55433_TRACKED_HASHES_UNCHANGED",
     "builds": [
@@ -328,7 +353,7 @@
     "evidenceLedger": {
       "sha256": "2e1da7ed51775c46ebd0d0cf2305078fe5e797b414289eb5518bf56a7344bde8",
       "entries": 39,
-      "verification": "CODING_VERIFIED_INDEPENDENT_PENDING",
+      "verification": "PASS_INDEPENDENT39_HASHES_16_COMMAND_BINDINGS",
       "postFreezeDiff": "42_DOCS_REPORT_EVIDENCE_PATHS_SOURCE_IDENTICAL"
     },
     "codingReport": "docs/reviews/step-02-coding.md",
@@ -350,7 +375,7 @@
       "frozenFinalEvidence": "16_COMMANDS_PASS_COMMITTED",
       "runtimeFaults": "CURRENT_COMPILED_BACKEND_PASS"
     },
-    "latestIndependentPass": "NONE",
+    "latestIndependentPass": "ROUND4_5356",
     "delegatedApproval": "NOT_ISSUED",
     "remoteCIGate": "RUN_VALIDATION_BRANCH_CI_BEFORE_MAIN_PUBLICATION; POST_MAIN_CHECK_IF_TRIGGERED",
     "integrationWorktree": "/Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker",
@@ -363,7 +388,27 @@
       "serviceTier": "default",
       "logId": 2913237,
       "serverFinal": "UNVERIFIED_NOT_EXPOSED"
-    }
+    },
+    "integrationCandidate": {
+      "head": "c786385ec371cedda28e843d3efd90a35e21a6e3",
+      "mainMerged": false,
+      "nonDocsDiffAgainstReviewedCandidate": "NONE",
+      "validation": "IN_PROGRESS",
+      "firstAttempt": "GENERATION_PASS_MIGRATION_ORDER_TOO_EARLY_DIST_MISSING_NO_CODE_CHANGE",
+      "secondAttempt": "FAILED_PRETTIER_ON_ROOT_RAW_INDEPENDENT_REPORT_PRESENTATION_NO_FUNCTIONAL_FAILURE",
+      "remedy": "Format only canonical presentation copies; immutable reviewer raw reports preserved; no checks disabled"
+    },
+    "currentNonblocking": [
+      {
+        "id": "STEP02-R1-NB-001",
+        "advisory": "GHSA-g7r4-m6w7-qqqr",
+        "package": "esbuild0.27.7",
+        "affectedCondition": "Windows standalone serve+servedir; not invoked; currentDarwin/deployedCI Linux",
+        "fixVersion": ">=0.28.1",
+        "owner": "engineering step_coder before affected exposure",
+        "blocksExit": false
+      }
+    ]
   },
   "step03": {
     "status": "NOT_STARTED_BLOCKED_BY_STEP02",
@@ -404,7 +449,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "5356_FROZEN_PATCHED_CODEC_ARTIFACTS_PRESERVED_85FEFC1_EVIDENCE_COMMITTED",
+  "lastSuccessfulCheckpoint": "R4_INDEPENDENT_PASS_EXACT_5356_SAFE59FILE_ARCHIVE",
   "blockingCondition": {
     "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
     "observations": [
@@ -421,7 +466,7 @@
   "cleanup": "UNMERGED_WORKTREES_BRANCHES_RETAINED_NO_FORCE_DELETE",
   "finalRemoteMain": "f004d6c74abe64ea853619390aa9dc2bc34654c1_VERIFIED_FETCH_AND_LS_REMOTE",
   "finalReport": "docs/orchestration/steps-02-03-blocked-report.md",
-  "ownedServices": "CODING_POSTGRES55432_RESTORED_REVIEW55433_RUNNING_INTEGRATION55434_STOPPED",
+  "ownedServices": "OWNED_POSTGRES55432_55433_55434_READY_APPS_MANAGED_BY_INTEGRATION_TESTS",
   "resumeAttempts": [
     {
       "event": "MAIN_PLATFORM_INTERRUPTION",
@@ -451,5 +496,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Independent round4 final patched codec/current-candidate gates; no main publication before review+CI"
+  "nextSafeAction": "Finish integration regression; push verification branch/CI; only then delegated approval/main publication"
 }
