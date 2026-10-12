@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_FRESH_ROLE_PREFLIGHT",
+  "currentPhase": "STEP03_CODING",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -468,7 +468,7 @@
     }
   },
   "step03": {
-    "status": "PREFLIGHT_IN_PROGRESS",
+    "status": "CODING_IN_PROGRESS",
     "reviews": [],
     "merge": "NOT_EXECUTED",
     "push": "NOT_EXECUTED",
@@ -481,8 +481,63 @@
     "handoff": "docs/orchestration/step-03-handoff.md",
     "codingContext": "FRESH_NO_HISTORY_FORK",
     "reviewContext": "FRESH_NO_HISTORY_FORK",
-    "serviceTier": "PREFLIGHT_PENDING_REQUIRE_DEFAULT",
-    "candidate": "NOT_YET_FROZEN"
+    "serviceTier": "VERIFIED_DEFAULT",
+    "candidate": "NOT_YET_FROZEN",
+    "clientConfiguration": {
+      "coding": {
+        "thread": "01a12e44-090b-7a43-a6f3-07f34d6086b6",
+        "preflightTurn": "01a12e44-09ae-7e70-886e-39a123c5ae82",
+        "logIds": [
+          2932174,
+          2932323
+        ],
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "serviceTier": "default",
+        "releaseLogs": [
+          {
+            "logId": 2934472,
+            "turn": "01a12e47-0920-73f0-8e89-886a948b07b2",
+            "model": "gpt-6.1-sol",
+            "effort": "xhigh",
+            "serviceTier": "default"
+          },
+          {
+            "logId": 2934268,
+            "turn": "01a12e47-0920-73f0-8e89-886a948b07b2",
+            "model": "gpt-6.1-sol",
+            "effort": "xhigh",
+            "serviceTier": "default"
+          }
+        ]
+      },
+      "review": {
+        "thread": "01a12e44-4928-7f32-b3ac-681dfc380284",
+        "preflightTurn": "01a12e44-49ba-7be2-ae39-a93a1b27966e",
+        "logId": 2933288,
+        "model": "gpt-6.1-sol",
+        "effort": "ultra",
+        "serviceTier": "default"
+      },
+      "serverFinal": "UNVERIFIED_NOT_EXPOSED"
+    },
+    "runtimeRegressionAssignments": {
+      "coding": {
+        "existingOwnedPG": "55432_STEP02_CODING_PRIVATE_ENV",
+        "API": 4314,
+        "Web": 5176
+      },
+      "review": {
+        "existingOwnedPG": "55433_STEP02_REVIEW_PRIVATE_ENV",
+        "API": 4315,
+        "Web": 5177
+      },
+      "integration": {
+        "existingOwnedPG": "55434_PRIMARY_RELEASE_PRIVATE_ENV_QUERY_REMOVED_IN_MEMORY",
+        "API": 4313,
+        "Web": 5175
+      }
+    }
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -517,7 +572,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP02_PUBLISHED_C021_REMOTE_AND_BOTH_CI_RUNS_SUCCESS",
+  "lastSuccessfulCheckpoint": "STEP03_FRESH_BOTH_ROLE_PREFLIGHTS_ACTUAL_STANDARD_VERIFIED",
   "blockingCondition": {
     "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
     "observations": [
@@ -564,5 +619,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Verify both fresh clientrole/model/effort/default preflights; release onlyStep03Coding then independent frozenreview"
+  "nextSafeAction": "WaitfrozenStep03candidate; inspectsourcefreeze/evidence then releaseindependentReviewer exactSHA"
 }
