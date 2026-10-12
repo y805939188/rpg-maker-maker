@@ -20,7 +20,7 @@
     "build:prototype": "tsc",
     "build:contracts": "pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build",
     "build": "node scripts/clean-build.mjs && pnpm build:prototype && pnpm build:contracts && pnpm --filter @tileset/api build && pnpm --filter @tileset/web build",
-    "test": "pnpm build:contracts && vitest run",
+    "test": "pnpm build:prototype && pnpm build:contracts && vitest run",
     "test:e2e": "playwright test",
     "test:dev-privacy": "pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts",
     "test:integration": "pnpm build:contracts && vitest run --config vitest.integration.config.ts",
@@ -42,7 +42,7 @@
     "verify:exports": "node scripts/verify-exports.mjs"
   },
   "dependencies": {
-    "sharp": "0.34.5"
+    "sharp": "0.35.5"
   },
   "devDependencies": {
     "@types/node": "22.19.0",
