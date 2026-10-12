@@ -1,0 +1,40 @@
+{
+  "passing": 18,
+  "failing": [],
+  "observations": [
+    {
+      "case": "opaque must be boolean true",
+      "input": "false",
+      "accepted": false,
+      "error": "IR_SEMANTICS"
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": 1,
+      "accepted": false,
+      "error": "IR_SEMANTICS"
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": [],
+      "accepted": false,
+      "error": "IR_SEMANTICS"
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": {},
+      "accepted": false,
+      "error": "IR_SEMANTICS"
+    },
+    {
+      "case": "Built stable string ID",
+      "accepted": false,
+      "error": "BUILD_STATE"
+    },
+    {
+      "case": "Region names must be unique strings",
+      "accepted": false,
+      "error": "GEOMETRY"
+    }
+  ]
+}

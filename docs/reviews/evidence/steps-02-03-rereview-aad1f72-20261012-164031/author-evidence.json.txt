@@ -1,0 +1,33 @@
+{
+  "fileCount": 47,
+  "ledgerMismatches": [],
+  "commandCount": 21,
+  "logBindingMismatches": [],
+  "docHeadOutsideDocs": [],
+  "commandExample": {
+    "name": "final-whitespace",
+    "cwd": "/private/tmp/tileset-global-fix-20261012",
+    "head": "aad1f7223baacd042f43bd6cfbba0619e822b00f",
+    "statusBefore": "M  docs/engineering/V1_REQUIREMENTS_EVIDENCE.md\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/artifact-verification.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/candidate-before.json.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/check.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/client-configuration.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/commands.jsonl.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/db-generate.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/draft-lint.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/draft-regressions.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/draft-runtime.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/draft-typecheck-final.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/draft-typecheck.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/engineering-step03.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/engineering.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/final-doc-format.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/frozen-integrity.json.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/frozen-runtime.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/install-pinned.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/install.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/ledger.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/material-sample.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/old-build-contracts.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/old-final-regressions.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/old-install.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/old-regressions.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/old-runtime.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/original-review/domain-confirmation.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/original-review/domain-probe.mjs.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/original-review/domain-results.json.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/original-review/ledger.json.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/original-review/reviewer-configuration.json.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/original-review/steps-02-03-global-review.md.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/original-selection.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/prototype.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/red-green-binding.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/refuse-engineering-step03.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/refuse-engineering.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/refuse-material.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/refuse-prototype.log\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/run.py.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/scalars.mjs.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/setup-records.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/step01-a597fd2148d556e4854f-manifest.snapshot.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/step02-aad1f7223baa-23b2e4279b331cba-manifest.snapshot.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/step03-aad1f7223baa-d58bd3763fb93c23-manifest.snapshot.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/step03-material-aad1f7223baa-8655597eab0f35b9-manifest.snapshot.json\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/verify-artifacts.py.txt\nA  docs/evidence/steps-02-03-global-fix-aad1f72-20261012/workspace-after.json\nAM docs/reviews/steps-02-03-global-fix-coding.md\n",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "HEAD",
+      "--",
+      "packages/asset-core/src/index.ts",
+      "packages/material-processing/tests/global-review.test.ts",
+      "docs/engineering/V1_REQUIREMENTS_EVIDENCE.md",
+      "docs/reviews/steps-02-03-global-fix-coding.md"
+    ],
+    "environment": {
+      "pinnedNode": "22.21.1",
+      "XDG_CACHE_HOME": "/private/tmp/tileset-global-fix-20261012/.local/cache"
+    },
+    "startedUtc": "2026-10-12T08:36:54.070237+00:00",
+    "seconds": 0.018,
+    "expectedExit": 0,
+    "actualExit": 0,
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

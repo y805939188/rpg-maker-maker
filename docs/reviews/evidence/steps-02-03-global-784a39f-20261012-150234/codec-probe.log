@@ -1,0 +1,147 @@
+[
+  {
+    "name": "actual patched native runtime",
+    "pass": true,
+    "detail": {
+      "aom": "3.15.1",
+      "archive": "3.8.9",
+      "cairo": "1.18.6",
+      "cgif": "0.5.4",
+      "exif": "0.6.26",
+      "expat": "2.8.5",
+      "ffi": "3.8.0",
+      "fontconfig": "2.18.3",
+      "freetype": "2.14.3",
+      "fribidi": "1.0.17",
+      "glib": "2.90.0",
+      "harfbuzz": "14.5.0",
+      "heif": "1.23.5",
+      "highway": "1.4.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.19.1",
+      "mozjpeg": "0826579",
+      "pango": "1.58.2",
+      "pixman": "0.46.4",
+      "png": "1.6.58",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.63.2",
+      "tiff": "4.7.2",
+      "uhdr": "2.0.2",
+      "vips": "8.18.7",
+      "webp": "1.6.0",
+      "xml2": "2.15.4",
+      "zlib-ng": "2.3.3",
+      "sharp": "0.35.5"
+    }
+  },
+  {
+    "name": "independent wire PNG streaming and owned bytes",
+    "pass": true,
+    "detail": {
+      "state": "VALIDATED_SOURCE",
+      "measurement": {
+        "rssBytes": 81854464,
+        "durationMs": 2.200249999999997,
+        "versions": {
+          "aom": "3.15.1",
+          "archive": "3.8.9",
+          "cairo": "1.18.6",
+          "cgif": "0.5.4",
+          "exif": "0.6.26",
+          "expat": "2.8.5",
+          "ffi": "3.8.0",
+          "fontconfig": "2.18.3",
+          "freetype": "2.14.3",
+          "fribidi": "1.0.17",
+          "glib": "2.90.0",
+          "harfbuzz": "14.5.0",
+          "heif": "1.23.5",
+          "highway": "1.4.0",
+          "imagequant": "2.4.1",
+          "lcms": "2.19.1",
+          "mozjpeg": "0826579",
+          "pango": "1.58.2",
+          "pixman": "0.46.4",
+          "png": "1.6.58",
+          "proxy-libintl": "0.5",
+          "rsvg": "2.63.2",
+          "tiff": "4.7.2",
+          "uhdr": "2.0.2",
+          "vips": "8.18.7",
+          "webp": "1.6.0",
+          "xml2": "2.15.4",
+          "zlib-ng": "2.3.3",
+          "sharp": "0.35.5"
+        }
+      }
+    }
+  },
+  {
+    "name": "encode/decode transparent and straight partial alpha",
+    "pass": true
+  },
+  {
+    "name": "ordinary EXIF requires repair before native decode",
+    "pass": true,
+    "detail": {
+      "status": "repair-required",
+      "diagnostic": {
+        "code": "METADATA_REPAIR",
+        "message": "Remove unsupported metadata in an explicit new source revision; no orientation, density or color conversion was performed."
+      }
+    }
+  },
+  {
+    "name": "bounded oversized pull cancels self producer",
+    "pass": true,
+    "detail": {
+      "reads": 1,
+      "returned": 1
+    }
+  },
+  {
+    "name": "maximum ordinary entropy plane within frozen bounds",
+    "pass": true,
+    "detail": {
+      "encodedBytes": 1514097,
+      "decodedBytes": 1769472,
+      "totalMs": 241.09166699999997,
+      "measurement": {
+        "rssBytes": 99680256,
+        "durationMs": 72.596666,
+        "versions": {
+          "aom": "3.15.1",
+          "archive": "3.8.9",
+          "cairo": "1.18.6",
+          "cgif": "0.5.4",
+          "exif": "0.6.26",
+          "expat": "2.8.5",
+          "ffi": "3.8.0",
+          "fontconfig": "2.18.3",
+          "freetype": "2.14.3",
+          "fribidi": "1.0.17",
+          "glib": "2.90.0",
+          "harfbuzz": "14.5.0",
+          "heif": "1.23.5",
+          "highway": "1.4.0",
+          "imagequant": "2.4.1",
+          "lcms": "2.19.1",
+          "mozjpeg": "0826579",
+          "pango": "1.58.2",
+          "pixman": "0.46.4",
+          "png": "1.6.58",
+          "proxy-libintl": "0.5",
+          "rsvg": "2.63.2",
+          "tiff": "4.7.2",
+          "uhdr": "2.0.2",
+          "vips": "8.18.7",
+          "webp": "1.6.0",
+          "xml2": "2.15.4",
+          "zlib-ng": "2.3.3",
+          "sharp": "0.35.5"
+        }
+      },
+      "note": "ordinary-input point-in-time child RSS, not peak or OS cap"
+    }
+  }
+]

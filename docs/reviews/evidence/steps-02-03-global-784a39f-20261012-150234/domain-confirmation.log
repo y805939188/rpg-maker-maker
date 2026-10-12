@@ -1,0 +1,74 @@
+{
+  "passing": 18,
+  "failing": [],
+  "observations": [
+    {
+      "case": "opaque must be boolean true",
+      "input": "false",
+      "accepted": true,
+      "state": "BUILT_ARTIFACT",
+      "actualType": "string",
+      "stored": "false"
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": 1,
+      "accepted": true,
+      "state": "BUILT_ARTIFACT",
+      "actualType": "number",
+      "stored": 1
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": [],
+      "accepted": true,
+      "state": "BUILT_ARTIFACT",
+      "actualType": "object",
+      "stored": []
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": {},
+      "accepted": true,
+      "state": "BUILT_ARTIFACT",
+      "actualType": "object",
+      "stored": {}
+    },
+    {
+      "case": "Built stable string ID and immutability",
+      "accepted": true,
+      "builtFrozen": true,
+      "idFrozen": false,
+      "storedId": [
+        "build-two"
+      ],
+      "changedAfterCallerMutation": true,
+      "artifactHashUnchanged": true
+    },
+    {
+      "case": "Region names must be unique strings",
+      "accepted": true,
+      "regionNames": [
+        [
+          "same"
+        ],
+        [
+          "same"
+        ]
+      ]
+    },
+    {
+      "case": "Malformed region names through real recipe -> Compilable -> Built",
+      "state": "BUILT_ARTIFACT",
+      "regionNames": [
+        [
+          "same"
+        ],
+        [
+          "same"
+        ]
+      ],
+      "targetCompilation": "NOT_EXECUTED"
+    }
+  ]
+}

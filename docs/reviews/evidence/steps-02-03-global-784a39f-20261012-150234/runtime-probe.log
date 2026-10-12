@@ -1,0 +1,116 @@
+[
+  {
+    "name": "compiled invalid bind",
+    "pass": true,
+    "detail": {
+      "exit": 1,
+      "output": "Local startup failed. Check configuration, database migrations and production build."
+    }
+  },
+  {
+    "name": "compiled equal ports",
+    "pass": true,
+    "detail": {
+      "exit": 1,
+      "output": "Local startup failed. Check configuration, database migrations and production build."
+    }
+  },
+  {
+    "name": "compiled unavailable DB startup",
+    "pass": true,
+    "detail": {
+      "exit": 1,
+      "output": "Local startup failed. Check configuration, database migrations and production build."
+    }
+  },
+  {
+    "name": "compiled same-row HTTP/Prisma and exact DTO",
+    "pass": true,
+    "detail": {
+      "projectId": "3581bcca-cee6-4f58-824c-bb02926a1116",
+      "keys": [
+        "id",
+        "name",
+        "createdAt"
+      ]
+    }
+  },
+  {
+    "name": "compiled write boundary foreign origin",
+    "pass": true,
+    "detail": {
+      "status": 403,
+      "body": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Request origin is not allowed."
+        }
+      }
+    }
+  },
+  {
+    "name": "compiled write boundary missing custom header",
+    "pass": true,
+    "detail": {
+      "status": 403,
+      "body": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Write requests require the local client boundary."
+        }
+      }
+    }
+  },
+  {
+    "name": "compiled write boundary wrong media",
+    "pass": true,
+    "detail": {
+      "status": 415,
+      "body": {
+        "error": {
+          "code": "UNSUPPORTED_MEDIA_TYPE",
+          "message": "Only JSON requests are supported."
+        }
+      }
+    }
+  },
+  {
+    "name": "compressed body rejected safely",
+    "pass": true,
+    "detail": {
+      "status": 415,
+      "body": {
+        "error": {
+          "code": "UNSUPPORTED_MEDIA_TYPE",
+          "message": "Only JSON requests are supported."
+        }
+      }
+    }
+  },
+  {
+    "name": "occupied own API port",
+    "pass": true,
+    "detail": {
+      "exit": 1,
+      "output": "Local startup failed. Check configuration, database migrations and production build."
+    }
+  },
+  {
+    "name": "database offline is a safe 503 and recovery retains row",
+    "pass": true,
+    "detail": {
+      "healthStatuses": [
+        200,
+        503,
+        200
+      ],
+      "offlineBody": {
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "Local database is unavailable. Check the local service."
+        }
+      },
+      "restoredRow": true
+    }
+  }
+]

@@ -1,0 +1,14 @@
+
+> @tileset/prototype@0.0.2 db:generate /Users/dingshinn/Desktop/rpg-maker-maker/.local/global-review-784a39f-20261012
+> pnpm --filter @tileset/api db:generate
+
+
+> @tileset/api@0.0.2 db:generate /Users/dingshinn/Desktop/rpg-maker-maker/.local/global-review-784a39f-20261012/apps/api
+> prisma generate --schema prisma/schema.prisma
+
+Prisma schema loaded from prisma/schema.prisma
+Error: EPERM: operation not permitted, utime '/Users/dingshinn/.cache/prisma/master/c2990dca591cba766e3b7ef5d9e8a84796e47ab7/darwin-arm64/libquery-engine'
+/Users/dingshinn/Desktop/rpg-maker-maker/.local/global-review-784a39f-20261012/apps/api:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @tileset/api@0.0.2 db:generate: `prisma generate --schema prisma/schema.prisma`
+Exit status 1
+ ELIFECYCLE  Command failed with exit code 1.

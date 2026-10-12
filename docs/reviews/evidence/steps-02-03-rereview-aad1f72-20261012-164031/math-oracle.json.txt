@@ -1,0 +1,200 @@
+[
+  {
+    "name": "white-half-black",
+    "bottom": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "top": [
+      255,
+      255,
+      255,
+      128
+    ],
+    "expected": [
+      188,
+      188,
+      188,
+      255
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  },
+  {
+    "name": "partial-both",
+    "bottom": [
+      120,
+      40,
+      230,
+      77
+    ],
+    "top": [
+      20,
+      200,
+      10,
+      88
+    ],
+    "expected": [
+      76,
+      165,
+      147,
+      138
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  },
+  {
+    "name": "transparent-both",
+    "bottom": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "top": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "expected": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  },
+  {
+    "name": "transparent-top",
+    "bottom": [
+      34,
+      129,
+      250,
+      128
+    ],
+    "top": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "expected": [
+      34,
+      129,
+      250,
+      128
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  },
+  {
+    "name": "alpha-one",
+    "bottom": [
+      40,
+      100,
+      30,
+      255
+    ],
+    "top": [
+      255,
+      0,
+      0,
+      1
+    ],
+    "expected": [
+      44,
+      100,
+      30,
+      255
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  },
+  {
+    "name": "alpha-tiny",
+    "bottom": [
+      250,
+      2,
+      89,
+      1
+    ],
+    "top": [
+      24,
+      212,
+      13,
+      1
+    ],
+    "expected": [
+      184,
+      156,
+      64,
+      2
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  },
+  {
+    "name": "low-transfer",
+    "bottom": [
+      10,
+      11,
+      12,
+      150
+    ],
+    "top": [
+      9,
+      12,
+      11,
+      200
+    ],
+    "expected": [
+      9,
+      12,
+      11,
+      232
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  },
+  {
+    "name": "opaque-top",
+    "bottom": [
+      19,
+      200,
+      1,
+      100
+    ],
+    "top": [
+      212,
+      123,
+      69,
+      255
+    ],
+    "expected": [
+      212,
+      123,
+      69,
+      255
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  },
+  {
+    "name": "partial-over-empty",
+    "bottom": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "top": [
+      255,
+      17,
+      82,
+      2
+    ],
+    "expected": [
+      255,
+      17,
+      82,
+      2
+    ],
+    "method": "80-digit Decimal, IEC sRGB, straight alpha, ROUND_HALF_UP"
+  }
+]

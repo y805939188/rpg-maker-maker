@@ -1,0 +1,65 @@
+import hashlib,json,pathlib,struct,zlib
+
+root=pathlib.Path('/private/tmp/tileset-global-review-784a39f-20261012')
+original=pathlib.Path('/Users/dingshinn/Desktop/rpg-maker-maker')
+def sha(data):return hashlib.sha256(data).hexdigest()
+def png_pixels(path):
+ b=path.read_bytes();assert b[:8]==b'\x89PNG\r\n\x1a\n';offset=8;idat=b'';chunks=[]
+ while offset<len(b):
+  size=struct.unpack_from('>I',b,offset)[0];tag=b[offset+4:offset+8];data=b[offset+8:offset+8+size];crc=struct.unpack_from('>I',b,offset+8+size)[0];assert zlib.crc32(tag+data)&0xffffffff==crc
+  if tag==b'IHDR':w,h,depth,kind,compression,filtering,interlace=struct.unpack('>IIBBBBB',data);assert (depth,kind,compression,filtering,interlace)==(8,6,0,0,0)
+  if tag==b'IDAT':idat+=data
+  chunks.append(tag.decode());offset+=size+12
+ assert chunks[-1]=='IEND' and offset==len(b)
+ raw=zlib.decompress(idat);stride=w*4;assert len(raw)==h*(stride+1);pixels=bytearray();previous=bytearray(stride)
+ for y in range(h):
+  method=raw[y*(stride+1)];row=bytearray(raw[y*(stride+1)+1:(y+1)*(stride+1)])
+  for x in range(stride):
+   left=row[x-4] if x>=4 else 0;up=previous[x];corner=previous[x-4] if x>=4 else 0
+   if method==0:p=0
+   elif method==1:p=left
+   elif method==2:p=up
+   elif method==3:p=(left+up)//2
+   else:
+    assert method==4;pred=left+up-corner;dist=[abs(pred-v) for v in (left,up,corner)];p=(left,up,corner)[dist.index(min(dist))]
+   row[x]=(row[x]+p)&255
+  pixels.extend(row);previous=row
+ return {'width':w,'height':h,'chunks':chunks,'rgba':bytes(pixels)}
+def verify_manifest(directory):
+ manifest=directory/'manifest.json';m=json.loads(manifest.read_text());bad=[]
+ for name,h in m['files'].items():
+  if sha((directory/name).read_bytes())!=h:bad.append(name)
+ assert not bad,bad
+ return m
+new={}
+for p in (root/'artifacts').glob('*/manifest.json'):
+ m=verify_manifest(p.parent);new[m['buildId']]={'manifestSha256':sha(p.read_bytes()),'payloadFiles':len(m['files']),'commit':m['commit']}
+engineering=next((root/'artifacts').glob('step03-784a*/manifest.json')).parent
+oldeng=original/'artifacts/step03-a0e9f07ae265-4ecf0ddf8cce1edf'
+assert verify_manifest(engineering)['files']==verify_manifest(oldeng)['files']
+sample=next((root/'artifacts').glob('step03-material-784a*/manifest.json')).parent
+oldsample=original/'artifacts/step03-material-a0e9f07ae265-cd0467ddf07df105'
+assert verify_manifest(sample)['files']==verify_manifest(oldsample)['files']
+legacy=next((root/'artifacts').glob('step01-*/manifest.json')).parent
+approved=original/'artifacts/step01-56368269c8328e0f84b9'
+legacy_result=[]
+for name in verify_manifest(legacy)['files']:
+ current=png_pixels(legacy/name);old=png_pixels(approved/name)
+ assert (legacy/name).read_bytes()==(approved/name).read_bytes();assert current['rgba']==old['rgba']
+ legacy_result.append({'file':name,'pngSha256':sha((legacy/name).read_bytes()),'rgbaSha256':sha(current['rgba']),'bytesAndRgbaEqual':True})
+art=json.loads((root/'packages/material-processing/tests/fixtures/fixed-shoreline.json').read_text())
+expected={'sources/grass.png':art['grass'],'sources/mask.png':art['mask'],'sources/bank-detail.png':art['overlay'],'processed/ground.png':art['grass'],'processed/static-mask.png':art['mask']}
+for i in range(3):expected[f'sources/water-{i}.png']=art['water'][i];expected[f'processed/water-{i}.png']=art['expected'][i]
+sample_result=[]
+for name,rows in expected.items():
+ d=png_pixels(sample/name);assert (d['width'],d['height'])==(4,2);assert list(d['rgba'])==[v for row in rows for v in row]
+ sample_result.append({'file':name,'rgbaSha256':sha(d['rgba']),'literalExpectedExact':True})
+ir=json.loads((sample/'tile-ir.json').read_text());revisions=json.loads((sample/'revisions.json').read_text());assert ir['parameters']==revisions['parameters']['ref'];assert ir['parameters'] in ir['dependencies']
+historical=json.loads((root/'docs/orchestration/evidence/final-preservation-and-service-check.json').read_text());preserved=[]
+for build in historical['builds']:
+ directory=original/'artifacts'/build['buildId'];m=verify_manifest(directory);assert sha((directory/'manifest.json').read_bytes())==build['manifestSha256']
+ preserved.append({'buildId':build['buildId'],'payloadFiles':len(m['files']),'manifestExact':True})
+for m in historical['maps']:assert sha((original/m['path']).read_bytes())==m['sha256']
+result={'newBuilds':new,'engineering88PayloadsEqualReviewedA0':True,'material13PayloadsEqualReviewedA0':True,'sampleParameterBindingExact':True,'legacyIndependentDecoder':legacy_result,'sampleIndependentDecoder':sample_result,'historicalBuilds':preserved,'historicalMapsExact':len(historical['maps'])}
+(root/'.local/audit/artifact-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'builds':new,'engineeringAndMaterialPayloadsExact':True,'legacyPngCount':len(legacy_result),'literalSamplePngCount':len(sample_result),'historicalBuildsExact':len(preserved),'historicalMapsExact':len(historical['maps'])},indent=2))

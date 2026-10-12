@@ -1,0 +1,24 @@
+{"label": "db-init", "command": ["env", "TILESET_PG_PORT=55439", "pnpm", "db:local", "init"], "start": "2026-10-12T07:11:34.371961+00:00", "end": "2026-10-12T07:11:35.418399+00:00", "exit": 0}
+{"label": "install-approved", "command": ["pnpm", "install", "--frozen-lockfile", "--store-dir", ".local/pnpm-store"], "start": "2026-10-12T07:11:13.566261+00:00", "end": "2026-10-12T07:11:36.045574+00:00", "exit": 0}
+{"label": "db-generate-approved", "command": ["env", "XDG_CACHE_HOME=/private/tmp/tileset-global-review-784a39f-20261012/.local/cache", "pnpm", "db:generate"], "start": "2026-10-12T07:12:37.162754+00:00", "end": "2026-10-12T07:12:39.767925+00:00", "exit": 0}
+{"label": "check", "command": ["pnpm", "check"], "start": "2026-10-12T07:13:17.094834+00:00", "end": "2026-10-12T07:13:57.820311+00:00", "exit": 0}
+{"label": "migrate", "command": ["env", "XDG_CACHE_HOME=/private/tmp/tileset-global-review-784a39f-20261012/.local/cache", "pnpm", "db:migrate"], "start": "2026-10-12T07:14:21.401871+00:00", "end": "2026-10-12T07:14:22.545943+00:00", "exit": 0}
+{"label": "integration", "command": ["env", "INTEGRATION_API_PORT=4340", "pnpm", "test:integration"], "start": "2026-10-12T07:15:22.730740+00:00", "end": "2026-10-12T07:15:28.023788+00:00", "exit": 0}
+{"label": "privacy", "command": ["pnpm", "test:dev-privacy"], "start": "2026-10-12T07:15:31.054060+00:00", "end": "2026-10-12T07:15:36.231776+00:00", "exit": 0}
+{"label": "e2e-production", "command": ["env", "API_PORT=4339", "WEB_PORT=5199", "pnpm", "test:e2e"], "start": "2026-10-12T07:17:02.393944+00:00", "end": "2026-10-12T07:17:10.751688+00:00", "exit": 0}
+{"label": "domain-probe", "command": ["node", ".local/audit/domain-probe.mjs"], "start": "2026-10-12T07:19:01.147822+00:00", "end": "2026-10-12T07:19:01.191975+00:00", "exit": 0}
+{"label": "e2e-development", "command": ["env", "API_PORT=4339", "WEB_PORT=5199", "E2E_MODE=dev", "pnpm", "test:e2e"], "start": "2026-10-12T07:19:41.950097+00:00", "end": "2026-10-12T07:19:52.170834+00:00", "exit": 0}
+{"label": "codec-probe", "command": ["node", ".local/audit/codec-probe.mjs"], "start": "2026-10-12T07:21:35.466349+00:00", "end": "2026-10-12T07:21:36.193561+00:00", "exit": 0}
+{"label": "e2e-cold", "command": ["env", "API_PORT=4339", "WEB_PORT=5199", "E2E_MODE=dev", "pnpm", "test:e2e"], "start": "2026-10-12T07:22:28.941403+00:00", "end": "2026-10-12T07:22:39.031663+00:00", "exit": 0}
+{"label": "engineering", "command": ["pnpm", "build:engineering"], "start": "2026-10-12T07:24:35.491650+00:00", "end": "2026-10-12T07:24:45.570944+00:00", "exit": 0}
+{"label": "step03-engineering", "command": ["node", "scripts/build-engineering.mjs", "step03"], "start": "2026-10-12T07:26:50.774640+00:00", "end": "2026-10-12T07:26:50.885046+00:00", "exit": 0}
+{"label": "runtime-probe", "command": ["node", ".local/audit/runtime-probe.mjs"], "start": "2026-10-12T07:26:49.623137+00:00", "end": "2026-10-12T07:26:51.367951+00:00", "exit": 0}
+{"label": "material-sample", "command": ["pnpm", "build:material-sample"], "start": "2026-10-12T07:27:12.821105+00:00", "end": "2026-10-12T07:27:18.270286+00:00", "exit": 0}
+{"label": "prototype", "command": ["pnpm", "prototype"], "start": "2026-10-12T07:27:29.961427+00:00", "end": "2026-10-12T07:27:31.200405+00:00", "exit": 0}
+{"label": "native-oracle", "command": ["pnpm", "verify:mz", "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js", "artifacts/step01-c013b8835a6c1b1e488b"], "start": "2026-10-12T07:28:32.575736+00:00", "end": "2026-10-12T07:28:34.530461+00:00", "exit": 0}
+{"label": "artifact-verification", "command": ["python3", ".local/audit/verify-artifacts.py"], "start": "2026-10-12T07:31:20.791868+00:00", "end": "2026-10-12T07:31:23.066064+00:00", "exit": 0}
+{"label": "engineering-refusal", "command": ["node", "scripts/build-engineering.mjs", "step03"], "start": "2026-10-12T07:32:05.391112+00:00", "end": "2026-10-12T07:32:05.491285+00:00", "exit": 1}
+{"label": "prototype-refusal", "command": ["node", "dist/scripts/build-prototype.js"], "start": "2026-10-12T07:32:05.386169+00:00", "end": "2026-10-12T07:32:05.562864+00:00", "exit": 1}
+{"label": "material-refusal", "command": ["node", "scripts/build-material-sample.mjs"], "start": "2026-10-12T07:32:05.384767+00:00", "end": "2026-10-12T07:32:06.916089+00:00", "exit": 1}
+{"label": "domain-confirmation", "command": ["node", ".local/audit/domain-probe.mjs"], "start": "2026-10-12T07:35:04.384144+00:00", "end": "2026-10-12T07:35:04.429414+00:00", "exit": 0}
+{"label": "db-stop", "command": ["pnpm", "db:local", "stop"], "start": "2026-10-12T07:38:04.914282+00:00", "end": "2026-10-12T07:38:05.231084+00:00", "exit": 0}

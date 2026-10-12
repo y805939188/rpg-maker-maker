@@ -1,0 +1,16 @@
+import datetime, json, os, pathlib, subprocess, sys
+
+root = pathlib.Path(__file__).resolve().parents[2]
+out = root / '.local/audit'
+label, *command = sys.argv[1:]
+env = os.environ.copy()
+env['PATH'] = '/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:' + env['PATH']
+start = datetime.datetime.now(datetime.timezone.utc).isoformat()
+with (out / (label + '.log')).open('w') as log:
+    result = subprocess.run(command, cwd=root, env=env, stdout=log, stderr=subprocess.STDOUT)
+record = {'label': label, 'command': command, 'start': start, 'end': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'exit': result.returncode}
+with (out / 'commands.jsonl').open('a') as file:
+    file.write(json.dumps(record) + '\n')
+print(json.dumps(record))
+print((out / (label + '.log')).read_text()[-3500:])
+sys.exit(result.returncode)

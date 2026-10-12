@@ -1,0 +1,32 @@
+
+> @tileset/prototype@0.0.2 db:migrate /private/tmp/tileset-global-review-784a39f-20261012
+> pnpm --filter @tileset/api db:migrate
+
+
+> @tileset/api@0.0.2 db:migrate /private/tmp/tileset-global-review-784a39f-20261012/apps/api
+> node scripts/migrate.mjs
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "tileset_studio", schema "public" at "127.0.0.1:55439"
+
+1 migration found in prisma/migrations
+
+Applying migration `202610120001_step02_project`
+
+┌─────────────────────────────────────────────────────────┐
+│  Update available 6.19.3 -> 8.0.0-rc.22                 │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+The following migration(s) have been applied:
+
+migrations/
+  └─ 202610120001_step02_project/
+    └─ migration.sql
+      
+All migrations have been successfully applied.

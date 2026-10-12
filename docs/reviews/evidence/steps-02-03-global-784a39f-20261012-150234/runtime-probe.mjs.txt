@@ -1,0 +1,38 @@
+import assert from 'node:assert/strict';
+import {spawn,spawnSync} from 'node:child_process';
+import {once} from 'node:events';
+import {writeFileSync,createWriteStream} from 'node:fs';
+import {randomUUID} from 'node:crypto';
+import {setTimeout as sleep} from 'node:timers/promises';
+import {createRequire} from 'node:module';
+const require=createRequire(new URL('../../apps/api/package.json',import.meta.url));
+const {PrismaClient}=require('@prisma/client');
+const dotenv=require('dotenv');dotenv.config({quiet:true});
+const env={...process.env,API_PORT:'4339',WEB_PORT:'5199',NODE_ENV:'production'};
+const base='http://127.0.0.1:4339',results=[],children=[];let dbStopped=false;
+async function fetchBounded(path,init={}){return fetch(base+path,{...init,signal:AbortSignal.timeout(8000)});}
+async function ready(){for(let i=0;i<80;i++){try{if((await fetchBounded('/api/health')).status===200)return;}catch{}await sleep(100);}throw Error('owned API did not become ready');}
+async function check(name,fn){try{results.push({name,pass:true,detail:await fn()});}catch(e){results.push({name,pass:false,error:e.message});}}
+function cluster(command){const r=spawnSync(process.execPath,['scripts/local-postgres.mjs',command],{env,encoding:'utf8'});assert.equal(r.status,0,'owned cluster command failed');return {command,exit:r.status};}
+async function invalidStart(name,patch){await check(name,async()=>{const child=spawn(process.execPath,['apps/api/dist/main.js'],{env:{...env,...patch},stdio:['ignore','pipe','pipe']});children.push(child);let output='';child.stdout.on('data',b=>output+=b);child.stderr.on('data',b=>output+=b);const timeout=setTimeout(()=>child.kill('SIGKILL'),12000);const [code]=await once(child,'close');clearTimeout(timeout);assert.equal(code,1);assert.match(output,/Local startup failed/);assert(!output.includes('postgresql://')&&!output.includes('synthetic-password')&&!output.includes('/private/tmp'));return{exit:code,output:output.trim()};});}
+const log=createWriteStream(new URL('compiled-api.log',import.meta.url));
+let running;const ids=[];
+try{
+ await invalidStart('compiled invalid bind', {API_HOST:'0.0.0.0'});
+ await invalidStart('compiled equal ports', {API_PORT:'5199'});
+ await invalidStart('compiled unavailable DB startup', {DATABASE_URL:'postgresql://review:synthetic-password@127.0.0.1:55438/tileset_unavailable'});
+ running=spawn(process.execPath,['apps/api/dist/main.js'],{env,stdio:['ignore','pipe','pipe']});children.push(running);running.stdout.pipe(log);running.stderr.pipe(log);await ready();
+ await check('compiled same-row HTTP/Prisma and exact DTO',async()=>{const response=await fetchBounded('/api/projects',{method:'POST',headers:{Origin:base,'Content-Type':'application/json','X-Tileset-Client':'local-v1'},body:JSON.stringify({name:'global-review-'+randomUUID()})});assert.equal(response.status,201);const data=await response.json();assert.deepEqual(Object.keys(data).sort(),['createdAt','id','name']);ids.push(data.id);const db=new PrismaClient();try{const row=await db.project.findUniqueOrThrow({where:{id:data.id}});assert.equal(row.name,data.name);assert.equal(row.createdAt.toISOString(),data.createdAt);}finally{await db.$disconnect();}const reread=await(await fetchBounded('/api/projects/'+data.id)).json();assert.deepEqual(reread,data);return {projectId:data.id,keys:Object.keys(data)};});
+ for(const [name,patch,status] of [['foreign origin',{Origin:'http://127.0.0.1:5199'},403],['missing custom header',{'X-Tileset-Client':''},403],['wrong media',{'Content-Type':'text/plain'},415]])await check('compiled write boundary '+name,async()=>{const r=await fetchBounded('/api/projects',{method:'POST',headers:{Origin:base,'Content-Type':'application/json','X-Tileset-Client':'local-v1',...patch},body:'{"name":"rejected"}'});assert.equal(r.status,status);return {status:r.status,body:await r.json()};});
+ await check('compressed body rejected safely',async()=>{const r=await fetchBounded('/api/projects',{method:'POST',headers:{Origin:base,'Content-Type':'application/json','Content-Encoding':'gzip','X-Tileset-Client':'local-v1'},body:'ordinary synthetic bytes'});assert.equal(r.status,415);return {status:r.status,body:await r.json()};});
+ await invalidStart('occupied own API port',{});
+ await check('database offline is a safe 503 and recovery retains row',async()=>{cluster('stop');dbStopped=true;const r=await fetchBounded('/api/health');assert.equal(r.status,503);const body=await r.json();assert.equal(body.error.code,'SERVICE_UNAVAILABLE');cluster('start');dbStopped=false;await ready();assert.equal((await fetchBounded('/api/projects/'+ids[0])).status,200);return {healthStatuses:[200,503,200],offlineBody:body,restoredRow:true};});
+}finally{
+ if(dbStopped){cluster('start');dbStopped=false;}
+ if(running?.exitCode===null){running.kill('SIGTERM');await once(running,'close');}
+ for(const c of children)if(c.exitCode===null)c.kill('SIGTERM');
+ log.end();
+ const db=new PrismaClient();try{await db.project.deleteMany({where:{id:{in:ids}}});}finally{await db.$disconnect();}
+ writeFileSync(new URL('runtime-results.json',import.meta.url),JSON.stringify({databasePort:55439,apiPort:4339,checks:results,closedOwnedApi:true,ownRowsCleaned:ids},null,2)+'\n');
+}
+console.log(JSON.stringify(results,null,2));if(results.some(r=>!r.pass))process.exitCode=1;

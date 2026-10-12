@@ -1,0 +1,715 @@
+{
+  "remoteQueryTimeUTC": "2026-10-12T07:25:14.065Z",
+  "remoteMain": {
+    "sha": "784a39fb9739c01750b4b6cbf5da78df24b227b7",
+    "url": "https://github.com/y805939188/rpg-maker-maker/commit/784a39fb9739c01750b4b6cbf5da78df24b227b7",
+    "message": "docs: finalize steps02-03 delivery, preserved evidence and safe cleanup report"
+  },
+  "knownJobs": [
+    {
+      "jobs": [
+        {
+          "id": 114689885469,
+          "name": "baseline",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38212585754,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run pnpm install --frozen-lockfile",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Run pnpm db:generate",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run pnpm check",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Run pnpm test:dev-privacy",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Run pnpm db:migrate",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Run pnpm test:integration",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Run pnpm exec playwright install --with-deps chromium",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Run pnpm test:e2e",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Run E2E_MODE=dev pnpm test:e2e",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            },
+            {
+              "name": "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "jobs": [
+        {
+          "id": 114656201744,
+          "name": "baseline",
+          "status": "completed",
+          "conclusion": "success",
+          "run_id": 38201664942,
+          "logs_url": null,
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1
+            },
+            {
+              "name": "Initialize containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3
+            },
+            {
+              "name": "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5
+            },
+            {
+              "name": "Run pnpm install --frozen-lockfile",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6
+            },
+            {
+              "name": "Run pnpm db:generate",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run pnpm check",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Run pnpm test:dev-privacy",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Run pnpm db:migrate",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            },
+            {
+              "name": "Run pnpm test:integration",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11
+            },
+            {
+              "name": "Run pnpm exec playwright install --with-deps chromium",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12
+            },
+            {
+              "name": "Run pnpm test:e2e",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13
+            },
+            {
+              "name": "Run E2E_MODE=dev pnpm test:e2e",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25
+            },
+            {
+              "name": "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27
+            },
+            {
+              "name": "Stop containers",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 28
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 29
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "additionalJobs": [
+    {
+      "run_id": 38201263354,
+      "data": {
+        "jobs": [
+          {
+            "id": 114654981502,
+            "name": "baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 38201263354,
+            "logs_url": null,
+            "steps": [
+              {
+                "name": "Set up job",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 1
+              },
+              {
+                "name": "Initialize containers",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 2
+              },
+              {
+                "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 3
+              },
+              {
+                "name": "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 4
+              },
+              {
+                "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 5
+              },
+              {
+                "name": "Run pnpm install --frozen-lockfile",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 6
+              },
+              {
+                "name": "Run pnpm db:generate",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 7
+              },
+              {
+                "name": "Run pnpm check",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 8
+              },
+              {
+                "name": "Run pnpm test:dev-privacy",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 9
+              },
+              {
+                "name": "Run pnpm db:migrate",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 10
+              },
+              {
+                "name": "Run pnpm test:integration",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 11
+              },
+              {
+                "name": "Run pnpm exec playwright install --with-deps chromium",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 12
+              },
+              {
+                "name": "Run pnpm test:e2e",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 13
+              },
+              {
+                "name": "Run E2E_MODE=dev pnpm test:e2e",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 14
+              },
+              {
+                "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 25
+              },
+              {
+                "name": "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 26
+              },
+              {
+                "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 27
+              },
+              {
+                "name": "Stop containers",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 28
+              },
+              {
+                "name": "Complete job",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 29
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "run_id": 38212088525,
+      "data": {
+        "jobs": [
+          {
+            "id": 114688308561,
+            "name": "baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 38212088525,
+            "logs_url": null,
+            "steps": [
+              {
+                "name": "Set up job",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 1
+              },
+              {
+                "name": "Initialize containers",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 2
+              },
+              {
+                "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 3
+              },
+              {
+                "name": "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 4
+              },
+              {
+                "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 5
+              },
+              {
+                "name": "Run pnpm install --frozen-lockfile",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 6
+              },
+              {
+                "name": "Run pnpm db:generate",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 7
+              },
+              {
+                "name": "Run pnpm check",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 8
+              },
+              {
+                "name": "Run pnpm test:dev-privacy",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 9
+              },
+              {
+                "name": "Run pnpm db:migrate",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 10
+              },
+              {
+                "name": "Run pnpm test:integration",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 11
+              },
+              {
+                "name": "Run pnpm exec playwright install --with-deps chromium",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 12
+              },
+              {
+                "name": "Run pnpm test:e2e",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 13
+              },
+              {
+                "name": "Run E2E_MODE=dev pnpm test:e2e",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 14
+              },
+              {
+                "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 25
+              },
+              {
+                "name": "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 26
+              },
+              {
+                "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 27
+              },
+              {
+                "name": "Stop containers",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 28
+              },
+              {
+                "name": "Complete job",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 29
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "run_id": 38213568627,
+      "data": {
+        "jobs": [
+          {
+            "id": 114693003347,
+            "name": "baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "run_id": 38213568627,
+            "logs_url": null,
+            "steps": [
+              {
+                "name": "Set up job",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 1
+              },
+              {
+                "name": "Initialize containers",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 2
+              },
+              {
+                "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 3
+              },
+              {
+                "name": "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 4
+              },
+              {
+                "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 5
+              },
+              {
+                "name": "Run pnpm install --frozen-lockfile",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 6
+              },
+              {
+                "name": "Run pnpm db:generate",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 7
+              },
+              {
+                "name": "Run pnpm check",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 8
+              },
+              {
+                "name": "Run pnpm test:dev-privacy",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 9
+              },
+              {
+                "name": "Run pnpm db:migrate",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 10
+              },
+              {
+                "name": "Run pnpm test:integration",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 11
+              },
+              {
+                "name": "Run pnpm exec playwright install --with-deps chromium",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 12
+              },
+              {
+                "name": "Run pnpm test:e2e",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 13
+              },
+              {
+                "name": "Run E2E_MODE=dev pnpm test:e2e",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 14
+              },
+              {
+                "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 25
+              },
+              {
+                "name": "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 26
+              },
+              {
+                "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 27
+              },
+              {
+                "name": "Stop containers",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 28
+              },
+              {
+                "name": "Complete job",
+                "status": "completed",
+                "conclusion": "success",
+                "number": 29
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "ciLogSelections": [
+    {
+      "job": 114689885469,
+      "lines": [
+        "2026-10-12T06:27:39.8987539Z [command]/usr/bin/git log -1 --format=%H",
+        "2026-10-12T06:27:39.9010285Z 0793c948da3bf3a8967579253f27ab2e234b8e70",
+        "2026-10-12T06:27:39.9179156Z ##[group]Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+        "2026-10-12T06:27:45.8679822Z ##[group]Run pnpm install --frozen-lockfile",
+        "2026-10-12T06:27:51.1829828Z ##[group]Run pnpm db:generate",
+        "2026-10-12T06:27:52.3423050Z ##[group]Run pnpm check",
+        "2026-10-12T06:28:29.7560918Z \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m15 passed\u001b[39m\u001b[22m\u001b[90m (15)\u001b[39m",
+        "2026-10-12T06:28:29.7561490Z \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m129 passed\u001b[39m\u001b[22m\u001b[90m (129)\u001b[39m",
+        "2026-10-12T06:28:43.6136899Z Production Node ESM imports through all 6 package export maps passed.",
+        "2026-10-12T06:28:43.6311124Z ##[group]Run pnpm test:dev-privacy",
+        "2026-10-12T06:28:50.2323963Z \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m",
+        "2026-10-12T06:28:50.2324873Z \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m5 passed\u001b[39m\u001b[22m\u001b[90m (5)\u001b[39m",
+        "2026-10-12T06:28:50.2576992Z ##[group]Run pnpm db:migrate",
+        "2026-10-12T06:28:51.5040146Z ##[group]Run pnpm test:integration",
+        "2026-10-12T06:28:57.5739219Z \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m",
+        "2026-10-12T06:28:57.5739778Z \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m3 passed\u001b[39m\u001b[22m\u001b[90m (3)\u001b[39m",
+        "2026-10-12T06:28:57.6002354Z ##[group]Run pnpm exec playwright install --with-deps chromium",
+        "2026-10-12T06:29:15.7532340Z ##[group]Run pnpm test:e2e",
+        "2026-10-12T06:29:18.6022517Z   1 passed (2.2s)",
+        "2026-10-12T06:29:18.6256475Z ##[group]Run E2E_MODE=dev pnpm test:e2e",
+        "2026-10-12T06:29:27.8653201Z   1 passed (8.6s)"
+      ]
+    },
+    {
+      "job": 114656201744,
+      "lines": [
+        "2026-10-12T03:55:31.3192877Z [command]/usr/bin/git log -1 --format=%H",
+        "2026-10-12T03:55:31.3222035Z c021b20991281317fbbbb1fc398c0ae496ef648d",
+        "2026-10-12T03:55:31.3434087Z ##[group]Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+        "2026-10-12T03:55:37.5875653Z ##[group]Run pnpm install --frozen-lockfile",
+        "2026-10-12T03:55:44.4127082Z ##[group]Run pnpm db:generate",
+        "2026-10-12T03:55:45.9695892Z ##[group]Run pnpm check",
+        "2026-10-12T03:56:17.8098587Z \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m9 passed\u001b[39m\u001b[22m\u001b[90m (9)\u001b[39m",
+        "2026-10-12T03:56:17.8099633Z \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m72 passed\u001b[39m\u001b[22m\u001b[90m (72)\u001b[39m",
+        "2026-10-12T03:56:33.9151680Z Production Node ESM imports through all three package export maps passed.",
+        "2026-10-12T03:56:33.9346917Z ##[group]Run pnpm test:dev-privacy",
+        "2026-10-12T03:56:39.7792776Z \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m",
+        "2026-10-12T03:56:39.7793470Z \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m5 passed\u001b[39m\u001b[22m\u001b[90m (5)\u001b[39m",
+        "2026-10-12T03:56:39.8058817Z ##[group]Run pnpm db:migrate",
+        "2026-10-12T03:56:41.7213529Z ##[group]Run pnpm test:integration",
+        "2026-10-12T03:56:46.8201569Z \u001b[2m Test Files \u001b[22m \u001b[1m\u001b[32m1 passed\u001b[39m\u001b[22m\u001b[90m (1)\u001b[39m",
+        "2026-10-12T03:56:46.8202193Z \u001b[2m      Tests \u001b[22m \u001b[1m\u001b[32m3 passed\u001b[39m\u001b[22m\u001b[90m (3)\u001b[39m",
+        "2026-10-12T03:56:46.8468677Z ##[group]Run pnpm exec playwright install --with-deps chromium",
+        "2026-10-12T03:57:04.6718641Z ##[group]Run pnpm test:e2e",
+        "2026-10-12T03:57:09.9027384Z   1 passed (4.2s)",
+        "2026-10-12T03:57:09.9290628Z ##[group]Run E2E_MODE=dev pnpm test:e2e",
+        "2026-10-12T03:57:19.5264498Z   1 passed (8.6s)"
+      ]
+    }
+  ]
+}

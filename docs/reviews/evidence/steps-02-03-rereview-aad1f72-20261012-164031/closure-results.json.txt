@@ -1,0 +1,148 @@
+{
+  "functionCandidate": "aad1f7223baacd042f43bd6cfbba0619e822b00f",
+  "originalControlCount": 18,
+  "originalObservations": [
+    {
+      "case": "opaque must be boolean true",
+      "input": "false",
+      "accepted": false,
+      "error": "IR_SEMANTICS"
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": 1,
+      "accepted": false,
+      "error": "IR_SEMANTICS"
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": [],
+      "accepted": false,
+      "error": "IR_SEMANTICS"
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": {},
+      "accepted": false,
+      "error": "IR_SEMANTICS"
+    },
+    {
+      "case": "Built stable string ID",
+      "accepted": false,
+      "error": "BUILD_STATE"
+    },
+    {
+      "case": "Region names must be unique strings",
+      "accepted": false,
+      "error": "GEOMETRY"
+    }
+  ],
+  "closure": [
+    {
+      "name": "all original malformed observations now rejected",
+      "pass": true
+    },
+    {
+      "name": "assessBuild rejects history",
+      "pass": true
+    },
+    {
+      "name": "assessBuild rejects [object Object]",
+      "pass": true
+    },
+    {
+      "name": "assessBuild rejects true",
+      "pass": true
+    },
+    {
+      "name": "assessBuild rejects null",
+      "pass": true
+    },
+    {
+      "name": "assessBuild rejects undefined",
+      "pass": true
+    },
+    {
+      "name": "assessBuild rejects 1",
+      "pass": true
+    },
+    {
+      "name": "assessBuild rejects history",
+      "pass": true
+    },
+    {
+      "name": "ground opaque exact scalar \"false\"",
+      "pass": true
+    },
+    {
+      "name": "ground opaque exact scalar 0",
+      "pass": true
+    },
+    {
+      "name": "ground opaque exact scalar 1",
+      "pass": true
+    },
+    {
+      "name": "ground opaque exact scalar []",
+      "pass": true
+    },
+    {
+      "name": "ground opaque exact scalar {}",
+      "pass": true
+    },
+    {
+      "name": "ground opaque exact scalar false",
+      "pass": true
+    },
+    {
+      "name": "ground opaque exact scalar null",
+      "pass": true
+    },
+    {
+      "name": "ground opaque exact scalar undefined",
+      "pass": true
+    },
+    {
+      "name": "water opaque exact scalar \"false\"",
+      "pass": true
+    },
+    {
+      "name": "water opaque exact scalar 0",
+      "pass": true
+    },
+    {
+      "name": "water opaque exact scalar 1",
+      "pass": true
+    },
+    {
+      "name": "water opaque exact scalar []",
+      "pass": true
+    },
+    {
+      "name": "water opaque exact scalar {}",
+      "pass": true
+    },
+    {
+      "name": "water opaque exact scalar false",
+      "pass": true
+    },
+    {
+      "name": "water opaque exact scalar null",
+      "pass": true
+    },
+    {
+      "name": "water opaque exact scalar undefined",
+      "pass": true
+    },
+    {
+      "name": "hashed malformed generic parameters cannot bypass processing geometry",
+      "pass": true
+    },
+    {
+      "name": "valid string ID boundary and unchanged artifact meaning",
+      "pass": true
+    }
+  ],
+  "total": 26,
+  "passed": 26
+}

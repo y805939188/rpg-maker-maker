@@ -1,0 +1,58 @@
+Scope: all 8 workspace projects
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +357
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 357, reused 0, downloaded 26, added 26
+Progress: resolved 357, reused 0, downloaded 61, added 61
+Progress: resolved 357, reused 0, downloaded 97, added 97
+Progress: resolved 357, reused 0, downloaded 121, added 121
+Progress: resolved 357, reused 0, downloaded 142, added 142
+Progress: resolved 357, reused 0, downloaded 154, added 154
+Progress: resolved 357, reused 0, downloaded 167, added 166
+Progress: resolved 357, reused 0, downloaded 177, added 177
+Progress: resolved 357, reused 0, downloaded 199, added 198
+Progress: resolved 357, reused 0, downloaded 222, added 222
+Progress: resolved 357, reused 0, downloaded 248, added 248
+Progress: resolved 357, reused 0, downloaded 277, added 276
+Progress: resolved 357, reused 0, downloaded 300, added 300
+Progress: resolved 357, reused 0, downloaded 323, added 323
+Progress: resolved 357, reused 0, downloaded 352, added 352
+Progress: resolved 357, reused 0, downloaded 354, added 354
+Progress: resolved 357, reused 0, downloaded 356, added 356
+Progress: resolved 357, reused 0, downloaded 357, added 356
+Progress: resolved 357, reused 0, downloaded 357, added 357, done
+.../node_modules/@prisma/engines postinstall$ node scripts/postinstall.js
+.../esbuild@0.25.12/node_modules/esbuild postinstall$ node install.js
+.../esbuild@0.27.7/node_modules/esbuild postinstall$ node install.js
+.../esbuild@0.27.7/node_modules/esbuild postinstall: Done
+.../esbuild@0.25.12/node_modules/esbuild postinstall: Done
+.../node_modules/@prisma/engines postinstall: Done
+.../node_modules/prisma preinstall$ node scripts/preinstall-entry.js
+.../node_modules/prisma preinstall: Done
+.../node_modules/@prisma/client postinstall$ node scripts/postinstall.js
+.../node_modules/@prisma/client postinstall: prisma:warn We could not find your Prisma schema in the default locations (see: https://pris.ly/d/prisma-schema-location).
+.../node_modules/@prisma/client postinstall: If you have a Prisma schema file in a custom path, you will need to run
+.../node_modules/@prisma/client postinstall: `prisma generate --schema=./path/to/your/schema.prisma` to generate Prisma Client.
+.../node_modules/@prisma/client postinstall: If you do not have a Prisma schema file yet, you can ignore this message.
+.../node_modules/@prisma/client postinstall: Done
+
+dependencies:
++ sharp 0.35.5
+
+devDependencies:
++ @eslint/js 10.0.1
++ @playwright/test 1.64.0
++ @tileset/asset-core 0.0.3 <- packages/asset-core
++ @tileset/image-adapter 0.0.3 <- packages/image-adapter
++ @tileset/material-processing 0.0.3 <- packages/material-processing
++ @types/node 22.19.0
++ eslint 10.12.0
++ prettier 3.9.10
++ typescript 5.9.3
++ typescript-eslint 8.71.1
++ vitest 4.1.11
+
+. preinstall$ node scripts/toolchain.mjs
+. preinstall: Done
+Done in 25.7s using pnpm v10.20.0
