@@ -1,0 +1,12 @@
+import {readPackExport} from '../../dist/scripts/pack-export.js';
+import {validatePack} from '@tileset/pack-assembly';
+import {fingerprint} from '@tileset/asset-core';
+import {PROFILE} from '../../dist/src/profile.js';
+const input=await readPackExport('artifacts/step05-suite-5062f1c77b48/incremental-v1');
+const fake=JSON.parse(JSON.stringify(input.input.snapshot));
+for(const slot of fake.slots)if(slot.state==='ACTIVE')slot.state='RETIRED';
+const {contentHash:_hash,...body}=fake;fake.contentHash=fingerprint(body);
+let accepted=true,code=null;
+try{validatePack(PROFILE,fake,[],input.fragments);}catch(e){accepted=false;code=e.code;}
+console.log(JSON.stringify({accepted,code,claim:'retirement without an earlier ACTIVE snapshot',expected:'REJECTED'}));
+if(accepted)process.exitCode=1;

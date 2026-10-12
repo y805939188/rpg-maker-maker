@@ -1,0 +1,39 @@
+
+> @tileset/prototype@0.0.2 build:contracts <repo>
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build
+
+
+> @tileset/contracts@0.0.2 build <repo>/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build <repo>/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build <repo>/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build <repo>/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build <repo>/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build <repo>/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build <repo>/packages/pack-assembly
+> tsc -p tsconfig.json
+
+src/index.ts(222,3): error TS2322: Type '{ contentHash: string; contract: string; assembly: string; snapshotHash: string; profileHash: string; placements: { atlas: "A1" | "A2"; kind: number; tileId: number; x: number; y: number; width: number; height: number; state: "ACTIVE" | "RETIRED"; binding: Binding; }[]; }' is not assignable to type 'LayoutPlan'.
+  Types of property 'contract' are incompatible.
+    Type 'string' is not assignable to type '"mz-layout-v1"'.
+<repo>/packages/pack-assembly:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @tileset/pack-assembly@0.0.5 build: `tsc -p tsconfig.json`
+Exit status 2
+ ELIFECYCLE  Command failed with exit code 2.

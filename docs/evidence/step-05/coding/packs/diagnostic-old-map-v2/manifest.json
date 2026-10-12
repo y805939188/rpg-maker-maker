@@ -1,0 +1,793 @@
+{
+  "buildId": "step05-pack-c09027f921e7-11ec0663a75746d6",
+  "identity": {
+    "assembly": "stable-slots-v1",
+    "atlases": {
+      "A1.png": {
+        "height": 576,
+        "pixelHash": "70db14e5622bf2514c1591368a0afb02526d8dfb8624c7e0754d43b05867f4bf",
+        "width": 768
+      },
+      "A2.png": {
+        "height": 576,
+        "pixelHash": "537e3441eda907e761dad7be64088266e3c01bd1de9dd90134d7318dc27a7bc5",
+        "width": 768
+      }
+    },
+    "bindings": [
+      {
+        "atlas": "A1",
+        "binding": {
+          "fragment": {
+            "category": "a1-water",
+            "compiler": "mz-single-material-v1",
+            "contentHash": "92c6a380a9aca259b960b1dfa29d1da66e8bca5b059d28e752a68514f5e310f7",
+            "contract": "mz-compiled-fragment-v1",
+            "image": {
+              "height": 144,
+              "pixelHash": "31247bea8dfbc9045fb3cd819d314187dc8b8a7d9b1aa0f8663e725865e4a49b",
+              "width": 288
+            },
+            "layout": {
+              "frameHeight": 144,
+              "frameWidth": 96,
+              "offsets": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 96,
+                  "y": 0
+                },
+                {
+                  "x": 192,
+                  "y": 0
+                }
+              ],
+              "playback": {
+                "loop": true,
+                "sequence": [
+                  0,
+                  1,
+                  2,
+                  1
+                ],
+                "timebase": "updates",
+                "updatesPerState": 30
+              }
+            },
+            "placement": {
+              "alignment": {
+                "x": 96,
+                "y": 144
+              },
+              "allowedKinds": [
+                4,
+                6
+              ],
+              "height": 144,
+              "slotClass": "a1-block-d-water",
+              "width": 288
+            },
+            "source": {
+              "components": [
+                {
+                  "contentHash": "2cb5cbe0ae5eb86ab54b21c52d94c2d9839a6614878096c907f8f022b05da7c5",
+                  "id": "diagnostic-water-0",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "d69b6ce264d978af132903ff87a33e5deaf58dacd4ac076ad6981f3e72b421b4",
+                  "id": "diagnostic-water-1",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "f3378c3c0ec75343ec341f6d3904f9f406f0308a19f42b4927c5bd163e74f98a",
+                  "id": "diagnostic-water-2",
+                  "kind": "source",
+                  "revision": 2
+                }
+              ],
+              "density": 1,
+              "dependencies": [
+                {
+                  "contentHash": "07fcccf11931be32cb080580aa533fe7dea9bcc603e73eb08541c11bd563f565",
+                  "id": "diagnostic-grass",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "2cb5cbe0ae5eb86ab54b21c52d94c2d9839a6614878096c907f8f022b05da7c5",
+                  "id": "diagnostic-water-0",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "d69b6ce264d978af132903ff87a33e5deaf58dacd4ac076ad6981f3e72b421b4",
+                  "id": "diagnostic-water-1",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "f3378c3c0ec75343ec341f6d3904f9f406f0308a19f42b4927c5bd163e74f98a",
+                  "id": "diagnostic-water-2",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "efb0208156b6a18505ef553dce6b64dd615244f49c2ceb3569a33657b46944fa",
+                  "id": "diagnostic-static-mask",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "47130d7b1da2db2504f20ab700b32b6699dfa72142187d7c98b8bf5e1ddbe346",
+                  "id": "diagnostic-bank-overlay",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "3628a005193c72a18b00e73f03e902381f8207e905eae8d15b2203e2a7c6e70e",
+                  "id": "diagnostic-style",
+                  "kind": "style",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+                  "id": "diagnostic-parameters",
+                  "kind": "parameters",
+                  "revision": 4
+                },
+                {
+                  "contentHash": "03994ea96aadde2f7108f9ea46b99ef7e8e26371108e842927f0c86d0df1bb6b",
+                  "id": "diagnostic-recipe",
+                  "kind": "recipe",
+                  "revision": 4
+                }
+              ],
+              "irHash": "ac3308bc6783c3038669d250e21a147acda3343e4e95c30ed271e6b84c1ecbc3",
+              "materialId": "diagnostic-water-0",
+              "parameters": {
+                "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+                "id": "diagnostic-parameters",
+                "kind": "parameters",
+                "revision": 4
+              },
+              "recipe": {
+                "contentHash": "03994ea96aadde2f7108f9ea46b99ef7e8e26371108e842927f0c86d0df1bb6b",
+                "id": "diagnostic-recipe",
+                "kind": "recipe",
+                "revision": 4
+              }
+            },
+            "target": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            }
+          },
+          "groundId": "a-ground",
+          "logicalId": "a-water",
+          "revision": 2
+        },
+        "height": 144,
+        "kind": 4,
+        "state": "ACTIVE",
+        "tileId": 2240,
+        "width": 288,
+        "x": 384,
+        "y": 0
+      },
+      {
+        "atlas": "A1",
+        "binding": {
+          "fragment": {
+            "category": "a1-water",
+            "compiler": "mz-single-material-v1",
+            "contentHash": "a5c3ac52b9a96400bc9baf255ba1c3b41fbb575cccd45fdbaf4ff7e126198291",
+            "contract": "mz-compiled-fragment-v1",
+            "image": {
+              "height": 144,
+              "pixelHash": "c38a11ceac8b1db95e2148cc000763687112812b3d1e321b7ca0bdcafd67af1a",
+              "width": 288
+            },
+            "layout": {
+              "frameHeight": 144,
+              "frameWidth": 96,
+              "offsets": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 96,
+                  "y": 0
+                },
+                {
+                  "x": 192,
+                  "y": 0
+                }
+              ],
+              "playback": {
+                "loop": true,
+                "sequence": [
+                  0,
+                  1,
+                  2,
+                  1
+                ],
+                "timebase": "updates",
+                "updatesPerState": 30
+              }
+            },
+            "placement": {
+              "alignment": {
+                "x": 96,
+                "y": 144
+              },
+              "allowedKinds": [
+                4,
+                6
+              ],
+              "height": 144,
+              "slotClass": "a1-block-d-water",
+              "width": 288
+            },
+            "source": {
+              "components": [
+                {
+                  "contentHash": "5e7ad7a5e7d1fcd4ea6667bb8627e9fab0b3e1ff519dedffaa4e280375a295de",
+                  "id": "diagnostic-water-0",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "dbb6f3e8f938fdb6562b08487e7a2fb529348fc3e33177f178e4c0644a1cb885",
+                  "id": "diagnostic-water-1",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "510e30504412c91cdccb8f471bab5e4f41be130bb5d53abd3254d99847751ca4",
+                  "id": "diagnostic-water-2",
+                  "kind": "source",
+                  "revision": 1
+                }
+              ],
+              "density": 1,
+              "dependencies": [
+                {
+                  "contentHash": "a0f62c6a2a081e4a4361bf8112f24d4645af51d037115819915f55f37313373f",
+                  "id": "diagnostic-grass",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "5e7ad7a5e7d1fcd4ea6667bb8627e9fab0b3e1ff519dedffaa4e280375a295de",
+                  "id": "diagnostic-water-0",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "dbb6f3e8f938fdb6562b08487e7a2fb529348fc3e33177f178e4c0644a1cb885",
+                  "id": "diagnostic-water-1",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "510e30504412c91cdccb8f471bab5e4f41be130bb5d53abd3254d99847751ca4",
+                  "id": "diagnostic-water-2",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "255aa69ebf87d1e36f22fe81ba4f7fad8f3e4296ffd10d084637d22abfcd982b",
+                  "id": "diagnostic-mask",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "1ca0c1c701b29b580936546aa17d10ce15c732fcb51b36342a77d4dcb4cf9c02",
+                  "id": "diagnostic-bank-overlay",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "e660126e69e324f7aaa33c7e3886fa53917d22ca1b10358eb021b321540b3f4c",
+                  "id": "diagnostic-style",
+                  "kind": "style",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+                  "id": "diagnostic-parameters",
+                  "kind": "parameters",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "bed0159674378de69ceb8573b381faad1c113c38be11bf410e2b4bc988988146",
+                  "id": "diagnostic-recipe",
+                  "kind": "recipe",
+                  "revision": 2
+                }
+              ],
+              "irHash": "1299171bf0b6707e0a175348453340c985f38587ec8ecff92c40a32cb30b6deb",
+              "materialId": "diagnostic-water-0",
+              "parameters": {
+                "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+                "id": "diagnostic-parameters",
+                "kind": "parameters",
+                "revision": 2
+              },
+              "recipe": {
+                "contentHash": "bed0159674378de69ceb8573b381faad1c113c38be11bf410e2b4bc988988146",
+                "id": "diagnostic-recipe",
+                "kind": "recipe",
+                "revision": 2
+              }
+            },
+            "target": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            }
+          },
+          "groundId": "b-ground",
+          "logicalId": "b-water",
+          "revision": 1
+        },
+        "height": 144,
+        "kind": 6,
+        "state": "RETIRED",
+        "tileId": 2336,
+        "width": 288,
+        "x": 384,
+        "y": 144
+      },
+      {
+        "atlas": "A2",
+        "binding": {
+          "fragment": {
+            "category": "a2-ground",
+            "compiler": "mz-single-material-v1",
+            "contentHash": "25110c29d9205bc6eef18e0712f721d0703cf6b6af9ecae5b68765e73cc447ca",
+            "contract": "mz-compiled-fragment-v1",
+            "image": {
+              "height": 144,
+              "pixelHash": "e6cb62459a04098075022c1c42f025f91fa48060441b9be2af0187befff93df5",
+              "width": 96
+            },
+            "layout": {
+              "frameHeight": 144,
+              "frameWidth": 96,
+              "offsets": [
+                {
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "playback": null
+            },
+            "placement": {
+              "alignment": {
+                "x": 96,
+                "y": 144
+              },
+              "allowedKinds": [
+                16,
+                17
+              ],
+              "height": 144,
+              "slotClass": "a2-ordinary-ground",
+              "width": 96
+            },
+            "source": {
+              "components": [
+                {
+                  "contentHash": "07fcccf11931be32cb080580aa533fe7dea9bcc603e73eb08541c11bd563f565",
+                  "id": "diagnostic-grass",
+                  "kind": "source",
+                  "revision": 2
+                }
+              ],
+              "density": 1,
+              "dependencies": [
+                {
+                  "contentHash": "07fcccf11931be32cb080580aa533fe7dea9bcc603e73eb08541c11bd563f565",
+                  "id": "diagnostic-grass",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "2cb5cbe0ae5eb86ab54b21c52d94c2d9839a6614878096c907f8f022b05da7c5",
+                  "id": "diagnostic-water-0",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "d69b6ce264d978af132903ff87a33e5deaf58dacd4ac076ad6981f3e72b421b4",
+                  "id": "diagnostic-water-1",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "f3378c3c0ec75343ec341f6d3904f9f406f0308a19f42b4927c5bd163e74f98a",
+                  "id": "diagnostic-water-2",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "efb0208156b6a18505ef553dce6b64dd615244f49c2ceb3569a33657b46944fa",
+                  "id": "diagnostic-static-mask",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "47130d7b1da2db2504f20ab700b32b6699dfa72142187d7c98b8bf5e1ddbe346",
+                  "id": "diagnostic-bank-overlay",
+                  "kind": "source",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "3628a005193c72a18b00e73f03e902381f8207e905eae8d15b2203e2a7c6e70e",
+                  "id": "diagnostic-style",
+                  "kind": "style",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+                  "id": "diagnostic-parameters",
+                  "kind": "parameters",
+                  "revision": 4
+                },
+                {
+                  "contentHash": "03994ea96aadde2f7108f9ea46b99ef7e8e26371108e842927f0c86d0df1bb6b",
+                  "id": "diagnostic-recipe",
+                  "kind": "recipe",
+                  "revision": 4
+                }
+              ],
+              "irHash": "ac3308bc6783c3038669d250e21a147acda3343e4e95c30ed271e6b84c1ecbc3",
+              "materialId": "diagnostic-grass",
+              "parameters": {
+                "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+                "id": "diagnostic-parameters",
+                "kind": "parameters",
+                "revision": 4
+              },
+              "recipe": {
+                "contentHash": "03994ea96aadde2f7108f9ea46b99ef7e8e26371108e842927f0c86d0df1bb6b",
+                "id": "diagnostic-recipe",
+                "kind": "recipe",
+                "revision": 4
+              }
+            },
+            "target": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            }
+          },
+          "groundId": null,
+          "logicalId": "a-ground",
+          "revision": 2
+        },
+        "height": 144,
+        "kind": 16,
+        "state": "ACTIVE",
+        "tileId": 2816,
+        "width": 96,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "atlas": "A2",
+        "binding": {
+          "fragment": {
+            "category": "a2-ground",
+            "compiler": "mz-single-material-v1",
+            "contentHash": "7b71eef657db70dfcdef6ba59eaa0902589ac8e1d12bdeb6e792f1453d15faf3",
+            "contract": "mz-compiled-fragment-v1",
+            "image": {
+              "height": 144,
+              "pixelHash": "209962acd96dc3e0963e9e926a562d1563e65f6e2fdc73f6e454e8688c1937e1",
+              "width": 96
+            },
+            "layout": {
+              "frameHeight": 144,
+              "frameWidth": 96,
+              "offsets": [
+                {
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "playback": null
+            },
+            "placement": {
+              "alignment": {
+                "x": 96,
+                "y": 144
+              },
+              "allowedKinds": [
+                16,
+                17
+              ],
+              "height": 144,
+              "slotClass": "a2-ordinary-ground",
+              "width": 96
+            },
+            "source": {
+              "components": [
+                {
+                  "contentHash": "a0f62c6a2a081e4a4361bf8112f24d4645af51d037115819915f55f37313373f",
+                  "id": "diagnostic-grass",
+                  "kind": "source",
+                  "revision": 1
+                }
+              ],
+              "density": 1,
+              "dependencies": [
+                {
+                  "contentHash": "a0f62c6a2a081e4a4361bf8112f24d4645af51d037115819915f55f37313373f",
+                  "id": "diagnostic-grass",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "5e7ad7a5e7d1fcd4ea6667bb8627e9fab0b3e1ff519dedffaa4e280375a295de",
+                  "id": "diagnostic-water-0",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "dbb6f3e8f938fdb6562b08487e7a2fb529348fc3e33177f178e4c0644a1cb885",
+                  "id": "diagnostic-water-1",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "510e30504412c91cdccb8f471bab5e4f41be130bb5d53abd3254d99847751ca4",
+                  "id": "diagnostic-water-2",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "255aa69ebf87d1e36f22fe81ba4f7fad8f3e4296ffd10d084637d22abfcd982b",
+                  "id": "diagnostic-mask",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "1ca0c1c701b29b580936546aa17d10ce15c732fcb51b36342a77d4dcb4cf9c02",
+                  "id": "diagnostic-bank-overlay",
+                  "kind": "source",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "e660126e69e324f7aaa33c7e3886fa53917d22ca1b10358eb021b321540b3f4c",
+                  "id": "diagnostic-style",
+                  "kind": "style",
+                  "revision": 1
+                },
+                {
+                  "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+                  "id": "diagnostic-parameters",
+                  "kind": "parameters",
+                  "revision": 2
+                },
+                {
+                  "contentHash": "bed0159674378de69ceb8573b381faad1c113c38be11bf410e2b4bc988988146",
+                  "id": "diagnostic-recipe",
+                  "kind": "recipe",
+                  "revision": 2
+                }
+              ],
+              "irHash": "1299171bf0b6707e0a175348453340c985f38587ec8ecff92c40a32cb30b6deb",
+              "materialId": "diagnostic-grass",
+              "parameters": {
+                "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+                "id": "diagnostic-parameters",
+                "kind": "parameters",
+                "revision": 2
+              },
+              "recipe": {
+                "contentHash": "bed0159674378de69ceb8573b381faad1c113c38be11bf410e2b4bc988988146",
+                "id": "diagnostic-recipe",
+                "kind": "recipe",
+                "revision": 2
+              }
+            },
+            "target": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            }
+          },
+          "groundId": null,
+          "logicalId": "b-ground",
+          "revision": 1
+        },
+        "height": 144,
+        "kind": 17,
+        "state": "RETIRED",
+        "tileId": 2864,
+        "width": 96,
+        "x": 96,
+        "y": 0
+      }
+    ],
+    "compiler": "mz-single-material-v1",
+    "context": {
+      "codec": {
+        "aom": "3.15.1",
+        "archive": "3.8.9",
+        "cairo": "1.18.6",
+        "cgif": "0.5.4",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "fontconfig": "2.18.3",
+        "freetype": "2.14.3",
+        "fribidi": "1.0.17",
+        "glib": "2.90.0",
+        "harfbuzz": "14.5.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "pango": "1.58.2",
+        "pixman": "0.46.4",
+        "png": "1.6.58",
+        "proxy-libintl": "0.5",
+        "rsvg": "2.63.2",
+        "sharp": "0.35.5",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "xml2": "2.15.4",
+        "zlib-ng": "2.3.3"
+      },
+      "commit": "c09027f921e7d67469b301083db89acc44433d9e",
+      "lockSha256": "84fb659323f051d6aad3a0951b8aa4bb25de85c07a90d4135e62d5d946a6b6c5",
+      "node": "22.21.1"
+    },
+    "files": {
+      "A1.png": {
+        "bytes": 11120,
+        "sha256": "cca72e32977567291f2a278f804a77bf1c38d03c9e1ff3c0c342c6b30a3c668b"
+      },
+      "A2.png": {
+        "bytes": 4886,
+        "sha256": "44eacc0a7b4ada40870fac5f42fe1028ce16f7047c3285c090307bd29574f61f"
+      },
+      "INSTALL.md": {
+        "bytes": 1577,
+        "sha256": "b5c324c156b889969041d2d1f18a238f4bf622ec5209d37f96f66c94e8b69c74"
+      },
+      "history.json": {
+        "bytes": 21208,
+        "sha256": "ce2af7714b1363745a2f91d71d3cf9da98a28ecad1177241524f95a7edd142a5"
+      },
+      "layout.json": {
+        "bytes": 20325,
+        "sha256": "b14cba63677a823c74bb12015681720cc3f4779a28e46f70c8ab52df13e1703e"
+      },
+      "pack.json": {
+        "bytes": 20092,
+        "sha256": "77b5e493442eb7e62c70eb8285b285956a8ee4d79d1936783abb0748c50aee7d"
+      },
+      "sources.json": {
+        "bytes": 63898,
+        "sha256": "405084adcd99f138a2636c953f6653293c5f5dfd17b50b6ee91acdbfbea02e86"
+      }
+    },
+    "fragmentContract": "mz-compiled-fragment-v1",
+    "layoutContract": "mz-layout-v1",
+    "layoutHash": "05a5f86978afa46f8c9d28cfa4bb743dab2a8f72beb623101ec923ef7d6902df",
+    "pack": {
+      "contentHash": "bdb891c15c2e2aab377f3e56ab78abb4412600257277aa0fbd4d2c947a387d3e",
+      "id": "diagnostic-old-map",
+      "previousHash": "0ae098a2caa0eb943f2d11be38f78982afbea2a14c882f0cabb4ae09f6de67b2",
+      "version": 2
+    },
+    "packContract": "mz-pack-v1",
+    "pixelContract": "rgba8-srgb-integer-v1",
+    "profile": {
+      "animation": {
+        "sequence": [
+          0,
+          1,
+          2,
+          1
+        ],
+        "sourceFrames": 3,
+        "updatesPerState": 30
+      },
+      "atlas": {
+        "height": 576,
+        "width": 768
+      },
+      "capacity": {
+        "ground": 2,
+        "pairedSets": 2,
+        "water": 2
+      },
+      "coreSha256": "4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f",
+      "engine": "RPG Maker MZ",
+      "engineVersion": "1.10.0",
+      "flags": {
+        "emptyUpperTile": 16,
+        "ground": 0,
+        "water": 15
+      },
+      "groundSlots": [
+        {
+          "kind": 16,
+          "tileId": 2816,
+          "x": 0,
+          "y": 0
+        },
+        {
+          "kind": 17,
+          "tileId": 2864,
+          "x": 96,
+          "y": 0
+        }
+      ],
+      "id": "mz-native-ground-water",
+      "mode": 1,
+      "pixelContract": "rgba8-srgb-integer-v1",
+      "quarterSize": 24,
+      "shoreline": "opaque-water-owned-baked-grass-bank-v1",
+      "source": {
+        "height": 144,
+        "width": 96
+      },
+      "status": "CANDIDATE_REQUIRES_EDITOR_AND_GAME_EVIDENCE",
+      "tileSize": 48,
+      "version": "1.0.0-candidate.1",
+      "waterSlots": [
+        {
+          "kind": 4,
+          "tileId": 2240,
+          "x": 384,
+          "y": 0
+        },
+        {
+          "kind": 6,
+          "tileId": 2336,
+          "x": 384,
+          "y": 144
+        }
+      ]
+    },
+    "profileHash": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+    "recommendedMZ": {
+      "engineVersion": "1.10.0",
+      "flags": {
+        "emptyUpperTile": 16,
+        "ground": 0,
+        "water": 15
+      },
+      "mode": 1,
+      "tileSize": 48
+    },
+    "schema": "mz-pack-build-v1",
+    "validation": {
+      "atlas": "PASS",
+      "editorDrawing": "NOT_EXECUTED",
+      "fragment": "PASS",
+      "gameRuntime": "NOT_EXECUTED",
+      "history": "PASS",
+      "independentReview": "NOT_EXECUTED_BY_DESIGN",
+      "layout": "PASS",
+      "manifestConsistency": "PASS",
+      "pngRoundtrip": "PASS",
+      "sourceReplay": "PASS",
+      "userApproval": "NOT_EXECUTED",
+      "visual": "NOT_EXECUTED"
+    }
+  }
+}

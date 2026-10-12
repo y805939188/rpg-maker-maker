@@ -1,0 +1,45 @@
+{
+  "role": "CODING_SELF_TEST",
+  "initialFunctionalCandidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+  "finalFunctionalCandidate": "c09027f921e7d67469b301083db89acc44433d9e",
+  "retirementRed": {
+    "accepted": true,
+    "observedCommit": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "root-retired-red.log.txt",
+    "script": "root-retired-probe.mjs.txt"
+  },
+  "retirementGreen": {
+    "accepted": false,
+    "errorCode": "PACK_TRANSITION",
+    "observedCommit": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "root-retired-green-final.log.txt"
+  },
+  "developmentFailures": [
+    {
+      "log": "build-contracts.log.txt",
+      "reason": "Layout contract literal widening; explicit Omit<LayoutPlan, contentHash> body type fixed."
+    },
+    {
+      "log": "pack-tests-1.log.txt",
+      "reason": "Expected-invalid width equaled the legal 288; corrected the invalid input to 96, kept the case."
+    },
+    {
+      "log": "build-dev-3.log.txt",
+      "reason": "Strict noUncheckedIndexedAccess in negative test byte/index handling."
+    },
+    {
+      "log": "check-1.log.txt",
+      "reason": "Unused imports; removed."
+    },
+    {
+      "log": "check-2.log.txt",
+      "reason": "Previously untracked immutable independent markdown had noncanonical formatting; exact file excluded to preserve original SHA."
+    }
+  ],
+  "fixtureIdentityCorrection": "Derived recipe/parameter revisions advance instead of overwriting the retained revision; source/recipe conflicts across the registry are hard rejected and tested.",
+  "testsRemoved": false,
+  "thresholdsLowered": false,
+  "oldMastersReset": false,
+  "historicalBuildsOverwritten": false,
+  "firstZIPRetained": "A second immutable packaging version restores docs hierarchy and includes MZ runtime instructions; all Pack payloads unchanged."
+}

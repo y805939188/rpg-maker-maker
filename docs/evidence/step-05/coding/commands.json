@@ -1,0 +1,642 @@
+[
+  {
+    "command": [
+      "pnpm",
+      "install",
+      "--lockfile-only"
+    ],
+    "exitCode": 0,
+    "log": "install-lock.log.txt",
+    "logSha256": "166ef0717483664dffb66639eb622fcfd459fabba9df9a5b2188eecfd3831e60",
+    "phase": "pre-freeze",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "rawLogSha256": "166ef0717483664dffb66639eb622fcfd459fabba9df9a5b2188eecfd3831e60"
+  },
+  {
+    "command": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "exitCode": 0,
+    "log": "install.log.txt",
+    "logSha256": "cd2b17279813a4ddc49ed11b44e3e62964f6d2d1e6d3cf089b5dd59780d3d03e",
+    "phase": "pre-freeze",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "rawLogSha256": "cd2b17279813a4ddc49ed11b44e3e62964f6d2d1e6d3cf089b5dd59780d3d03e"
+  },
+  {
+    "command": [
+      "pnpm",
+      "check"
+    ],
+    "exitCode": 0,
+    "log": "check-3.log.txt",
+    "logSha256": "57865996a6e44796a6221302db4608093694165c51b3710c63c6a9ad8d2807ea",
+    "phase": "pre-freeze",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "rawLogSha256": "f5f13fb6aa363ed3571155c537e8d45346ff93eafc77e145c27368703052ef19"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/build-engineering.mjs",
+      "step05"
+    ],
+    "exitCode": 0,
+    "log": "build-engineering.json",
+    "logSha256": "366a1ea6461a173d8c4b1c9cf55d8fce01d8aebc9c203201953e0f277b8bb467",
+    "phase": "frozen",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "rawLogSha256": "366a1ea6461a173d8c4b1c9cf55d8fce01d8aebc9c203201953e0f277b8bb467"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/build-pack-sample.js"
+    ],
+    "exitCode": 0,
+    "log": "build-suite.json",
+    "logSha256": "edaa4cc7b676b0997784937a22e0514df4e2f948fcbbee771fda4d4ea5de29aa",
+    "phase": "frozen",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "rawLogSha256": "106c9b4955a6cd46fc781146e177f5f6b1bc31342cfc786fbbe45afa622debc6"
+  },
+  {
+    "command": [
+      "pnpm",
+      "check"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T16:50:20.012607+00:00",
+    "finishedUTC": "2026-10-12T16:51:04.887496+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "check-frozen.log.txt",
+    "logSha256": "4a04bfeef0b08bc1e5f875a5d35b7f87f1dfe9341455947a9d0f88f4bfd5df2a",
+    "phase": "frozen",
+    "rawLogSha256": "734d46dffb6293598c704419b6b42e8a45f682d23bac2946481e383791a091ac"
+  },
+  {
+    "command": [
+      "node",
+      ".local/step04-initial/scalars.mjs"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T16:51:04.889197+00:00",
+    "finishedUTC": "2026-10-12T16:51:04.935275+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "legacy-78.log.txt",
+    "logSha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc",
+    "phase": "frozen",
+    "rawLogSha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/build-material-sample.mjs"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T16:51:04.935942+00:00",
+    "finishedUTC": "2026-10-12T16:51:06.529071+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "step03-regression.json",
+    "logSha256": "41ace15474ed9859fda0bed9c9d4a619243f63066deb94e9990124d196a03b46",
+    "phase": "frozen",
+    "rawLogSha256": "41ace15474ed9859fda0bed9c9d4a619243f63066deb94e9990124d196a03b46"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/build-prototype.js"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T16:51:06.529606+00:00",
+    "finishedUTC": "2026-10-12T16:51:06.758462+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "prototype-regression.json",
+    "logSha256": "90e661dc285a7865528070f512a69dc45c7e24372ddfc133deca6bbac5e4d261",
+    "phase": "frozen",
+    "rawLogSha256": "159b702ab8d98eec8495fd706165a8128dd842b8286eeb7cf926163136b94efc"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-5062f1c77b48/incremental-v1"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:37.266894+00:00",
+    "finishedUTC": "2026-10-12T16:51:39.564922+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "oracle-incremental-v1.json",
+    "logSha256": "2a2728aa5d840585a73f55ef0169721cd363f9cd9e37871127811474bdab920b",
+    "phase": "frozen",
+    "rawLogSha256": "2a2728aa5d840585a73f55ef0169721cd363f9cd9e37871127811474bdab920b"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-5062f1c77b48/incremental-v2",
+      ".local/step05-acceptance/gallery-incremental-v2"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:39.565536+00:00",
+    "finishedUTC": "2026-10-12T16:51:42.802525+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "oracle-incremental-v2.json",
+    "logSha256": "2606471ef7e2dcc7b8094de8a83e6cdf4b743254f04e0fb9e26b099e682dd919",
+    "phase": "frozen",
+    "rawLogSha256": "2606471ef7e2dcc7b8094de8a83e6cdf4b743254f04e0fb9e26b099e682dd919"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-5062f1c77b48/incremental-v3"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:42.803224+00:00",
+    "finishedUTC": "2026-10-12T16:51:45.616268+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "oracle-incremental-v3.json",
+    "logSha256": "99db2b5f3f29a09242b6dde93b87c57dad8530c9fe46c61d64252f6fe82c694d",
+    "phase": "frozen",
+    "rawLogSha256": "99db2b5f3f29a09242b6dde93b87c57dad8530c9fe46c61d64252f6fe82c694d"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-5062f1c77b48/incremental-v4"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:45.620784+00:00",
+    "finishedUTC": "2026-10-12T16:51:48.376671+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "oracle-incremental-v4.json",
+    "logSha256": "d6ed9f7360954ada32a33aa126d1955cfeed7858d6973c6a2ac23f9ae429933f",
+    "phase": "frozen",
+    "rawLogSha256": "d6ed9f7360954ada32a33aa126d1955cfeed7858d6973c6a2ac23f9ae429933f"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-5062f1c77b48/art-old-map-v1"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:48.377624+00:00",
+    "finishedUTC": "2026-10-12T16:51:50.630742+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "oracle-art-old-map-v1.json",
+    "logSha256": "1f37337c12959b9e2e062bee4af23d33f3c19ee0985481fa9dd2214fbe077012",
+    "phase": "frozen",
+    "rawLogSha256": "1f37337c12959b9e2e062bee4af23d33f3c19ee0985481fa9dd2214fbe077012"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-5062f1c77b48/art-old-map-v2",
+      ".local/step05-acceptance/gallery-art-old-map-v2"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:50.631424+00:00",
+    "finishedUTC": "2026-10-12T16:51:53.351261+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "oracle-art-old-map-v2.json",
+    "logSha256": "de36cad29247c5f199d659cc4609a6ef51ab9c53c7a1ca6d8e6408ea3264c292",
+    "phase": "frozen",
+    "rawLogSha256": "de36cad29247c5f199d659cc4609a6ef51ab9c53c7a1ca6d8e6408ea3264c292"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-5062f1c77b48/diagnostic-old-map-v1"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:53.354505+00:00",
+    "finishedUTC": "2026-10-12T16:51:55.678254+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "oracle-diagnostic-old-map-v1.json",
+    "logSha256": "2b84ddf173e6615f15fb2cdd6315903499508c55a48d12c7be484f2b36d1c4d4",
+    "phase": "frozen",
+    "rawLogSha256": "2b84ddf173e6615f15fb2cdd6315903499508c55a48d12c7be484f2b36d1c4d4"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-5062f1c77b48/diagnostic-old-map-v2",
+      ".local/step05-acceptance/gallery-diagnostic-old-map-v2"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:55.679648+00:00",
+    "finishedUTC": "2026-10-12T16:51:58.518616+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "oracle-diagnostic-old-map-v2.json",
+    "logSha256": "5882eb076f8e60f397a60a0ccadde1e067484cde48fe117769b2c535f286bfdc",
+    "phase": "frozen",
+    "rawLogSha256": "5882eb076f8e60f397a60a0ccadde1e067484cde48fe117769b2c535f286bfdc"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/prepare-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8",
+      "artifacts/step05-suite-5062f1c77b48/art-old-map-v1",
+      "artifacts/step05-suite-5062f1c77b48/art-old-map-v2",
+      "artifacts/step05-suite-5062f1c77b48/diagnostic-old-map-v1",
+      "artifacts/step05-suite-5062f1c77b48/diagnostic-old-map-v2",
+      ".local/mz/step05-update-5062f1c77b48"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:51:58.519429+00:00",
+    "finishedUTC": "2026-10-12T16:52:04.488115+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "prepare-old-map.json",
+    "logSha256": "820a68b1f770eb6d06643b316877abaa3152eb6255271034baff4981fc38ebec",
+    "phase": "frozen",
+    "rawLogSha256": "d7cc7ececb9b6f0e1b9e2166c93d0ac1cec1f4852358122abdba83827500bff1"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/export-pack.js",
+      "artifacts/step05-suite-5062f1c77b48/incremental-v2.request.json",
+      ".local/step05-coding/repeated-export"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:52:04.488713+00:00",
+    "finishedUTC": "2026-10-12T16:52:10.264241+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "cli-export-repeat.json",
+    "logSha256": "e5d062807111a218192a326167ff656fb0cab4c154937f6419acb94f5975c17b",
+    "phase": "frozen",
+    "rawLogSha256": "e5d062807111a218192a326167ff656fb0cab4c154937f6419acb94f5975c17b"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/export-pack.js",
+      "artifacts/step05-suite-5062f1c77b48/incremental-v2.request.json",
+      ".local/step05-coding/repeated-export"
+    ],
+    "exitCode": 1,
+    "expectedExit": 1,
+    "startedUTC": "2026-10-12T16:52:10.264975+00:00",
+    "finishedUTC": "2026-10-12T16:52:14.022020+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "duplicate-export.log.txt",
+    "logSha256": "38b3bce52c0aa82919a1d7d4d1e5683332190f781752b4ac59177f00dbfc0515",
+    "phase": "frozen",
+    "rawLogSha256": "ad573e80069f68972e11202f77662c278161c7814a9c9f3c117e6e9371faa392"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/build-pack-sample.js"
+    ],
+    "exitCode": 1,
+    "expectedExit": 1,
+    "startedUTC": "2026-10-12T16:52:14.022856+00:00",
+    "finishedUTC": "2026-10-12T16:52:14.238776+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "duplicate-suite.log.txt",
+    "logSha256": "2542956cfd9f36ba9a1ce3acc0d9b6ff73f9ff9386e312fe33b9d9a258d38673",
+    "phase": "frozen",
+    "rawLogSha256": "7a2958fcead34f043c303cf283d3f25362485d90af25305f8ff1aed0a8d3bdbb"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/build-engineering.mjs",
+      "step05"
+    ],
+    "exitCode": 1,
+    "expectedExit": 1,
+    "startedUTC": "2026-10-12T16:52:14.239544+00:00",
+    "finishedUTC": "2026-10-12T16:52:14.384558+00:00",
+    "candidate": "5062f1c77b4817edb0acaddf275b56a4371a5d25",
+    "log": "duplicate-engineering.log.txt",
+    "logSha256": "444c6e91a2a819c38c3dc59e123ea3787c9e7005179fc0a3b66f0a5b93fc7e9e",
+    "phase": "frozen",
+    "rawLogSha256": "75cd26285dac828c732cadfa708a578f0d133ae974f992ab22c0a89470bf289f"
+  },
+  {
+    "command": [
+      "pnpm",
+      "check"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T16:54:59.751580+00:00",
+    "finishedUTC": "2026-10-12T16:55:43.125090+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "check-final-frozen.log.txt",
+    "logSha256": "0159c181cde54684b986e43a69f4bcc21a21b3f8431d4f4b0c413bc83c0f9113",
+    "phase": "final frozen",
+    "rawLogSha256": "ba5b433d24ef687c7a4d5232ff36c39226a149ce75fe400e5454ffc13c718069"
+  },
+  {
+    "command": [
+      "node",
+      ".local/step04-initial/scalars.mjs"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T16:55:43.126112+00:00",
+    "finishedUTC": "2026-10-12T16:55:43.175031+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "legacy-78-final.log.txt",
+    "logSha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc",
+    "phase": "final frozen",
+    "rawLogSha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/build-engineering.mjs",
+      "step05"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T16:55:43.175737+00:00",
+    "finishedUTC": "2026-10-12T16:55:43.326943+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "build-engineering-final.json",
+    "logSha256": "7fd8d97ecd51bd084ff609d3b7b06449efd6127119a8a9edf692135efdcfd524",
+    "phase": "final frozen",
+    "rawLogSha256": "7fd8d97ecd51bd084ff609d3b7b06449efd6127119a8a9edf692135efdcfd524"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/build-pack-sample.js"
+    ],
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T16:55:43.327610+00:00",
+    "finishedUTC": "2026-10-12T16:56:15.185825+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "build-suite-final.json",
+    "logSha256": "dd21136420a93a66751c3d92f9a18fedb5ccf5f081b3cb8671ba2d880b9c58df",
+    "phase": "final frozen",
+    "rawLogSha256": "679964fb4c06a169ab502416b37a99a59f0abdca5f7982aba78f37368486af7b"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-c09027f921e7/incremental-v1"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:09.067502+00:00",
+    "finishedUTC": "2026-10-12T16:57:11.372141+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "final-oracle-incremental-v1.json",
+    "logSha256": "a490e57073cf91163d289fc2f862f1fcad411151173d101ac57eaac3b13544f0",
+    "phase": "final frozen",
+    "rawLogSha256": "a490e57073cf91163d289fc2f862f1fcad411151173d101ac57eaac3b13544f0"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-c09027f921e7/incremental-v2",
+      ".local/step05-acceptance/gallery-c09027f921e7-incremental-v2"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:11.373080+00:00",
+    "finishedUTC": "2026-10-12T16:57:14.460851+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "final-oracle-incremental-v2.json",
+    "logSha256": "e5b2af4ee616886efdbbec296881a1d0e46365e5fab1087302b9703602202fc0",
+    "phase": "final frozen",
+    "rawLogSha256": "e5b2af4ee616886efdbbec296881a1d0e46365e5fab1087302b9703602202fc0"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-c09027f921e7/incremental-v3"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:14.461770+00:00",
+    "finishedUTC": "2026-10-12T16:57:17.200106+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "final-oracle-incremental-v3.json",
+    "logSha256": "45ba13302c5ac25a59c7bb54be3fad1ec9157fa10ead655bcab124767b528f73",
+    "phase": "final frozen",
+    "rawLogSha256": "45ba13302c5ac25a59c7bb54be3fad1ec9157fa10ead655bcab124767b528f73"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-c09027f921e7/incremental-v4"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:17.200869+00:00",
+    "finishedUTC": "2026-10-12T16:57:19.865063+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "final-oracle-incremental-v4.json",
+    "logSha256": "be965f1471c4c8f1d3d7de25020a321299e8000cc8ba5ae66ae2baa94eb02eae",
+    "phase": "final frozen",
+    "rawLogSha256": "be965f1471c4c8f1d3d7de25020a321299e8000cc8ba5ae66ae2baa94eb02eae"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-c09027f921e7/art-old-map-v1"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:19.866107+00:00",
+    "finishedUTC": "2026-10-12T16:57:22.054159+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "final-oracle-art-old-map-v1.json",
+    "logSha256": "587c233c6e6f9fb2338db998e5765f3a14fabcdd7e327148d5438e658abfb691",
+    "phase": "final frozen",
+    "rawLogSha256": "587c233c6e6f9fb2338db998e5765f3a14fabcdd7e327148d5438e658abfb691"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-c09027f921e7/art-old-map-v2",
+      ".local/step05-acceptance/gallery-c09027f921e7-art-old-map-v2"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:22.055191+00:00",
+    "finishedUTC": "2026-10-12T16:57:24.643415+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "final-oracle-art-old-map-v2.json",
+    "logSha256": "949b42875b1b5b418a17c53fd51c131a6eefd32e9a6a574baa0d525cb22c2801",
+    "phase": "final frozen",
+    "rawLogSha256": "949b42875b1b5b418a17c53fd51c131a6eefd32e9a6a574baa0d525cb22c2801"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v1"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:24.644141+00:00",
+    "finishedUTC": "2026-10-12T16:57:26.846046+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "final-oracle-diagnostic-old-map-v1.json",
+    "logSha256": "4904efe7c01d543f73ecc4a3e10c8253d735a773f856aa71bf56b8681fe7665e",
+    "phase": "final frozen",
+    "rawLogSha256": "4904efe7c01d543f73ecc4a3e10c8253d735a773f856aa71bf56b8681fe7665e"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v2",
+      ".local/step05-acceptance/gallery-c09027f921e7-diagnostic-old-map-v2"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:26.846974+00:00",
+    "finishedUTC": "2026-10-12T16:57:29.503379+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "final-oracle-diagnostic-old-map-v2.json",
+    "logSha256": "2147c8b5f7e22ed8bb5eaa0773da581ed744e5acf08dfacefd7ec1c7fde7debc",
+    "phase": "final frozen",
+    "rawLogSha256": "2147c8b5f7e22ed8bb5eaa0773da581ed744e5acf08dfacefd7ec1c7fde7debc"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/prepare-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8",
+      "artifacts/step05-suite-c09027f921e7/art-old-map-v1",
+      "artifacts/step05-suite-c09027f921e7/art-old-map-v2",
+      "artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v1",
+      "artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v2",
+      ".local/mz/step05-update-c09027f921e7"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:29.504187+00:00",
+    "finishedUTC": "2026-10-12T16:57:34.933287+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "prepare-old-map-final.json",
+    "logSha256": "9068bd475defaa39072d9c6012ac188a2dbff0e0b811b95f652b1b69dc56aa5f",
+    "phase": "final frozen",
+    "rawLogSha256": "c7f258e1af68fb683b9bbacec4f9409c1b5e0f5dcc649e5a56ed131a38180f79"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/prepare-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8",
+      "artifacts/step05-suite-c09027f921e7/art-old-map-v1",
+      "artifacts/step05-suite-c09027f921e7/art-old-map-v2",
+      "artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v1",
+      "artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v2",
+      ".local/mz/step05-update-c09027f921e7"
+    ],
+    "exitCode": 1,
+    "expectedExit": 1,
+    "startedUTC": "2026-10-12T16:57:34.933967+00:00",
+    "finishedUTC": "2026-10-12T16:57:39.992792+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "duplicate-project-final.log.txt",
+    "logSha256": "6a5a3f35b2bf496b5b8d130f654f2600d2c4d4a19f0983aca0467b900bb1b0ee",
+    "phase": "final frozen",
+    "rawLogSha256": "3b22849ab1bbb7b78437c7cfe2f059df00e60e8bfd305cf091481a27049ba78d"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/export-pack.js",
+      "artifacts/step05-suite-c09027f921e7/incremental-v2.request.json",
+      ".local/step05-coding/repeated-export-final"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T16:57:39.993518+00:00",
+    "finishedUTC": "2026-10-12T16:57:45.421136+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "cli-export-repeat-final.json",
+    "logSha256": "6f838218df5bd4d3f1d6d04a98b410cc7bf81dd85e0385c36e2458e8160b59b6",
+    "phase": "final frozen",
+    "rawLogSha256": "6f838218df5bd4d3f1d6d04a98b410cc7bf81dd85e0385c36e2458e8160b59b6"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/export-pack.js",
+      "artifacts/step05-suite-c09027f921e7/incremental-v2.request.json",
+      ".local/step05-coding/repeated-export-final"
+    ],
+    "exitCode": 1,
+    "expectedExit": 1,
+    "startedUTC": "2026-10-12T16:57:45.422075+00:00",
+    "finishedUTC": "2026-10-12T16:57:49.142312+00:00",
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "duplicate-export-final.log.txt",
+    "logSha256": "38b3bce52c0aa82919a1d7d4d1e5683332190f781752b4ac59177f00dbfc0515",
+    "phase": "final frozen",
+    "rawLogSha256": "ad573e80069f68972e11202f77662c278161c7814a9c9f3c117e6e9371faa392"
+  },
+  {
+    "command": [
+      "python3",
+      ".local/step05-coding/png-literal-probe.py"
+    ],
+    "exitCode": 0,
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "png-literal-probe.json",
+    "phase": "final frozen",
+    "rawLogSha256": "6ffee71bc6a91b4b68e2b5a149c9580e0d83014a1fb824f0fbfc2fda35bdb6f2",
+    "logSha256": "6ffee71bc6a91b4b68e2b5a149c9580e0d83014a1fb824f0fbfc2fda35bdb6f2"
+  },
+  {
+    "command": [
+      "node",
+      ".local/step05-coding/root-retired-probe.mjs"
+    ],
+    "exitCode": 0,
+    "candidate": "c09027f921e7d67469b301083db89acc44433d9e",
+    "log": "root-retired-green-final.log.txt",
+    "phase": "final frozen",
+    "rawLogSha256": "3ec5ed6ef64f9c448a2e214944056f3eba384caf0ba4452ce13038595a8b4655",
+    "logSha256": "3ec5ed6ef64f9c448a2e214944056f3eba384caf0ba4452ce13038595a8b4655"
+  }
+]

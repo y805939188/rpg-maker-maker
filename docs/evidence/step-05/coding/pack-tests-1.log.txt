@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/pack-assembly/tests/pack.test.ts (15 tests | 1 failed) 4350ms
+     × rejects modified/rehashed layouts and histories; no cloned Fragment can counterfeit compilation 29ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/pack-assembly/tests/pack.test.ts > Stable production Pack contract > rejects modified/rehashed layouts and histories; no cloned Fragment can counterfeit compilation
+AssertionError: expected [Function] to throw an error
+ ❯ packages/pack-assembly/tests/pack.test.ts:75:80
+     73|     for(const change of [{x:-96},{x:768},{width:288},{kind:6},{state:'…
+     74|       const p=copy(built.plan); Object.assign(p.placements[0]!,change);
+     75|       expect(()=>validateLayout(PROFILE,hash(p),built.snapshot,[],regi…
+       |                                                                                ^
+     76|     }
+     77|     const p=copy(built.plan);(p.placements as unknown[]).push(p.placem…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 14 passed (15)
+   Start at  00:38:28
+   Duration  4.55s (transform 89ms, setup 0ms, import 111ms, tests 4.35s, environment 0ms)
+
