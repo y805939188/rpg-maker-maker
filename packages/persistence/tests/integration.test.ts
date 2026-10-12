@@ -1,8 +1,10 @@
+import { randomUUID } from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 import { describe, it, expect } from 'vitest';
 import { readFile, writeFile, lstat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import pg from 'pg';
-import { Persistence, backup, restore, verifyBackup, verifyDatabase } from '@tileset/persistence';
+import { Persistence, backup, restore, verifyBackup } from '@tileset/persistence';
 import {
   setup,
   context,
@@ -12,6 +14,7 @@ import {
   fragmentsFor,
   databaseUrl,
   pgBin,
+  runRoot,
   snapshot,
 } from './helpers.js';
 import { runProcess, encodePrepared } from './process-helper.js';
@@ -260,7 +263,35 @@ describe('real PostgreSQL + immutable files publication', () => {
     }
   });
   it('retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild', async () => {
-    const s = await setup();
+    const fixtureName = 'tileset_backup_fixture_' + randomUUID().replaceAll('-', ''),
+      fixtureUrl = new URL(databaseUrl!);
+    fixtureUrl.pathname = '/' + fixtureName;
+    const owner = new pg.Client({ connectionString: databaseUrl! });
+    await owner.connect();
+    try {
+      await owner.query(`CREATE DATABASE "${fixtureName}"`);
+    } finally {
+      await owner.end();
+    }
+    const migrated = spawnSync(
+      'pnpm',
+      [
+        '--filter',
+        '@tileset/api',
+        'exec',
+        'prisma',
+        'migrate',
+        'deploy',
+        '--schema',
+        'prisma/schema.prisma',
+      ],
+      { env: { ...process.env, DATABASE_URL: fixtureUrl.href }, encoding: 'utf8' },
+    );
+    expect(migrated.status).toBe(0);
+    const s = await setup(undefined, {
+      url: fixtureUrl.href,
+      assetRoot: resolve(runRoot, fixtureName, 'assets'),
+    });
     let restored: Persistence | undefined;
     try {
       const first = await s.store.prepareBuild(
@@ -341,8 +372,8 @@ describe('real PostgreSQL + immutable files publication', () => {
         resolve(s.root, 'new-restore-parent', 'assets'),
         PROFILE,
       );
-      await restore(restored, destination, pgBin);
-      expect(await verifyDatabase(restored)).toBe(manifest.databaseDigest);
+      const restoredManifest = await restore(restored, destination, pgBin);
+      expect(restoredManifest.databaseDigest).toBe(manifest.databaseDigest);
       const executor = new Executor(
         restored,
         { adapterFor: () => provider },
@@ -366,6 +397,22 @@ describe('real PostgreSQL + immutable files publication', () => {
       expect(rebuilt.replay.atlases.a2.pixelHash).toBe(replay.replay.atlases.a2.pixelHash);
       await evidence('backup-restore', {
         manifest,
+        sourceDatabase: fixtureName,
+        sourceAssetRoot: s.store.storage.root,
+        fixtureMigration: {
+          command: [
+            'pnpm',
+            '--filter',
+            '@tileset/api',
+            'exec',
+            'prisma',
+            'migrate',
+            'deploy',
+            '--schema',
+            'prisma/schema.prisma',
+          ],
+          exitCode: migrated.status,
+        },
         restoreDatabase: name,
         restorePort: target.port,
         assetRoot: restored.storage.root,

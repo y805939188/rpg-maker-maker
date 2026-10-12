@@ -25,7 +25,7 @@ export const context = {
   node: process.versions.node,
   codec: await codecRuntime(),
 };
-export async function setup(fault?: FaultHook) {
+export async function setup(fault?: FaultHook, environment?: { url: string; assetRoot: string }) {
   const root = resolve(runRoot, randomUUID());
   await mkdir(root, { recursive: true });
   const store = new Persistence(
