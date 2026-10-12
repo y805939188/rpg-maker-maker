@@ -35,13 +35,13 @@
     "postCandidateChanges": "DOCS_AND_EVIDENCE_ONLY",
     "regression": "52_TESTS_TYPECHECK_BUILD_PASS",
     "originalHostCompatibility": "NOT_EXECUTED_REQUIRED_BY_STEP10",
-    "map003_4_10": "PENDING_SAVED_MAP_EVIDENCE",
+    "map003_4_10": "PENDING_USER_EVIDENCE",
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_APPROVED_MAIN_INTEGRATION",
+  "currentPhase": "STEP03_INDEPENDENT_REVIEW_ROUND1",
   "step02": {
-    "status": "APPROVED_PENDING_MAIN_PUBLICATION",
+    "status": "PUBLISHED",
     "reviews": [
       {
         "round": 1,
@@ -261,15 +261,15 @@
         }
       }
     ],
-    "merge": "NOT_EXECUTED",
-    "push": "NOT_EXECUTED",
+    "merge": "SUCCESS_LOCAL_MAIN_FAST_FORWARD",
+    "push": "SUCCESS_REMOTE_HEAD_VERIFIED",
     "agent": "/root/step02_coder",
     "branch": "codex/step-02-coding",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-02-coding/rpg-maker-maker",
     "baseCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "reviewAgent": "/root/step02_resume_review3",
     "reviewPreflight": "PASS_CLIENT_GPT6_1_SOL_ULTRA_DEFAULT_SERVER_FINAL_NOT_EXPOSED",
-    "milestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING",
+    "milestone": "PUBLISHED_C021_AFTER_R4_AND_BOTH_CI_SUCCESS",
     "database": {
       "engine": "PostgreSQL14.20",
       "cluster": ".local/postgres (coding worktree)",
@@ -454,13 +454,188 @@
         "blockingP2": 0
       },
       "timeUTC": "2026-10-12T03:54:01.669998+00:00"
-    }
+    },
+    "mergeCommit": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+    "postmergeRegression": "PASS_FORMAT_EXPORTS_REALDB3_PRODUCTION_BROWSER",
+    "postmergeEvidence": "docs/evidence/step-02/postmerge-c021b20",
+    "postMainCI": {
+      "runId": 38201664942,
+      "head": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38201664942",
+      "status": "COMPLETED",
+      "result": "SUCCESS_ALL_REQUIRED_JOBS",
+      "evidence": "docs/orchestration/evidence/step02-main-remote-ci.json"
+    },
+    "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "NOT_STARTED_BLOCKED_BY_STEP02",
-    "reviews": [],
+    "status": "INDEPENDENT_REVIEW_ROUND1_IN_PROGRESS",
+    "reviews": [
+      {
+        "round": 1,
+        "candidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+        "metadataHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
+        "reviewer": "/root/step03_reviewer",
+        "thread": "01a12e44-4928-7f32-b3ac-681dfc380284",
+        "status": "IN_PROGRESS",
+        "clientConfiguration": {
+          "logId": 2942417,
+          "turn": "01a12e71-ea8f-7c90-81b9-4ccf9af012c1",
+          "model": "gpt-6.1-sol",
+          "effort": "ultra",
+          "serviceTier": "default",
+          "serverFinal": "UNVERIFIED_NOT_EXPOSED"
+        },
+        "productionWrites": "PROHIBITED_BEFORE_AFTER625_HASHES_AND_CLEAN_SHA_REQUIRED"
+      }
+    ],
     "merge": "NOT_EXECUTED",
-    "push": "NOT_EXECUTED"
+    "push": "NOT_EXECUTED",
+    "baseMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+    "codingAgent": "/root/step03_coder",
+    "reviewAgent": "/root/step03_reviewer",
+    "codingBranch": "codex/step-03-coding",
+    "codingWorktree": "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker",
+    "reviewWorktree": "/Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker",
+    "handoff": "docs/orchestration/step-03-handoff.md",
+    "codingContext": "FRESH_NO_HISTORY_FORK",
+    "reviewContext": "FRESH_NO_HISTORY_FORK",
+    "serviceTier": "VERIFIED_DEFAULT",
+    "candidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+    "clientConfiguration": {
+      "coding": {
+        "thread": "01a12e44-090b-7a43-a6f3-07f34d6086b6",
+        "preflightTurn": "01a12e44-09ae-7e70-886e-39a123c5ae82",
+        "logIds": [
+          2932174,
+          2932323
+        ],
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "serviceTier": "default",
+        "releaseLogs": [
+          {
+            "logId": 2934472,
+            "turn": "01a12e47-0920-73f0-8e89-886a948b07b2",
+            "model": "gpt-6.1-sol",
+            "effort": "xhigh",
+            "serviceTier": "default"
+          },
+          {
+            "logId": 2934268,
+            "turn": "01a12e47-0920-73f0-8e89-886a948b07b2",
+            "model": "gpt-6.1-sol",
+            "effort": "xhigh",
+            "serviceTier": "default"
+          }
+        ]
+      },
+      "review": {
+        "thread": "01a12e44-4928-7f32-b3ac-681dfc380284",
+        "preflightTurn": "01a12e44-49ba-7be2-ae39-a93a1b27966e",
+        "logId": 2933288,
+        "model": "gpt-6.1-sol",
+        "effort": "ultra",
+        "serviceTier": "default",
+        "preparation": {
+          "logId": 2934680,
+          "turn": "01a12e48-2a0e-72f2-a69e-341a8f87a423",
+          "model": "gpt-6.1-sol",
+          "effort": "ultra",
+          "serviceTier": "default"
+        }
+      },
+      "serverFinal": "UNVERIFIED_NOT_EXPOSED"
+    },
+    "runtimeRegressionAssignments": {
+      "coding": {
+        "existingOwnedPG": "55432_STEP02_CODING_PRIVATE_ENV",
+        "API": 4314,
+        "Web": 5176
+      },
+      "review": {
+        "existingOwnedPG": "55433_STEP02_REVIEW_PRIVATE_ENV",
+        "API": 4315,
+        "Web": 5177
+      },
+      "integration": {
+        "existingOwnedPG": "55434_PRIMARY_RELEASE_PRIVATE_ENV_QUERY_REMOVED_IN_MEMORY",
+        "API": 4313,
+        "Web": 5175
+      }
+    },
+    "reviewPreparation": {
+      "status": "COMPLETE_NOT_A_CANDIDATE_REVIEW_OR_PASS",
+      "evidence": "docs/evidence/step-03/independent-preparation",
+      "expectationProvenance": "80_DIGIT_DECIMAL_MANUAL_LITERALS_FROM_FROZEN_CONTRACT_BEFORE_CODE_FREEZE",
+      "literalSha256": "b0ae5493d1a6f3c20a7a267ab22f5d36a5a6eb3690f9d8cac7de4669f60307d8",
+      "reportSha256": "a19745658bd6d5dbee3803671cb7b8db2b7cec02723226fcc96a199b51d95671",
+      "ledgerSha256": "1270c7fe1e89c496d9335420a33b4b007877177526ed582832e946431c80307e",
+      "productionIntegrity": "604_BASE_TRACKED_HASHES_UNCHANGED_CLEAN"
+    },
+    "codingMilestone": {
+      "source": "CODING_AGENT_REPORTED_NOT_INDEPENDENT_PASS",
+      "workspaces": 8,
+      "modules": {
+        "asset-core": "owned immutable pixels/sourcebytes/revisions/provenance/genericclips/semanticIR/historical-current-newavailability",
+        "material-processing": "explicit pixel operations/versioned shoreline and overlap-safe copy",
+        "image-adapter": "Sharp isolatedchild,singleprocessslot,noqueue,5sdeadline,boundedcontainer/metadata/pixels,noFSpathinput"
+      },
+      "initialInstallClientGenerationModuleBuild": "PASS_CODING_REPORTED",
+      "golden": "HAND_AUTHORED_SHORELINE_JSON_EXPECTATIONS",
+      "currentWork": "EXACT_COMMIT_COMMAND_EVIDENCE_BUILD_PUBLICATION_LEGACY4PNG_AND_NATIVE_ORACLE",
+      "frozenCandidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+      "fullCheck": "PASS_CODING_REPORTED116_OLD72_PRESERVED_NEW44",
+      "strictLintFormatCleanBuild": "PASS_CODING_REPORTED",
+      "publicProductionESMExports": "6_PASS_CODING_REPORTED",
+      "realDB": "3_PASS_CODING_REPORTED_ASSIGNED55432",
+      "devProductionBrowser": "PASS_CODING_REPORTED_REAL_API_DB",
+      "legacyAlgorithmsAndFixtures": "UNCHANGED_CODING_REPORTED",
+      "nativeBudget": "DECLARED_HEAP_PIXEL_BYTE_TIME_CONCURRENCY_BOUNDS_WITH_RSS_CAVEAT_NOT_ARBITRARY_IMAGE_SAFETY",
+      "coldDevelopmentBrowser": "PASS_CODING_REPORTED",
+      "standalonePrivacy": "PASS_CODING_REPORTED5",
+      "dependencyAudit": "0HIGH_CRITICAL_MODERATE_1_SCOPEDLOW_CODING_REPORTED"
+    },
+    "candidateSourceTrackedFiles": 625,
+    "sourceEditsAfterFreeze": "PROHIBITED_AWAIT_REVIEW",
+    "evidenceHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
+    "independentReview": "IN_PROGRESS",
+    "codingReport": "docs/reviews/step-03-coding.md",
+    "codingReportSha256": "171995481729342c33be9c4c19fc46826121d569a7ac2872fc6305b2dc15fa70",
+    "codingEvidence": "docs/evidence/step-03/coding-7ca928f",
+    "codingEvidenceLedgerSha256": "4793caffde28712db880e1673987543020c0bb8c66a394964302c8b0060c5bab",
+    "postFreezeDiff": {
+      "paths": 43,
+      "meaning": "DOCUMENTATION_REPORT_EVIDENCE_ONLY_NO_BEHAVIOR_CHANGE"
+    },
+    "builds": [
+      {
+        "buildId": "step03-7ca928f2c1ac-4f67c752343684ec",
+        "sourceCommit": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+        "filesIncludingManifest": 89,
+        "manifestSha256": "71d4764dd41b3a9b1b80b88ac117d98ff7c6a1167429368b7c288493471fadf0",
+        "preservedPath": "artifacts/step03-7ca928f2c1ac-4f67c752343684ec",
+        "allFilesExactMatch": true
+      },
+      {
+        "buildId": "step03-material-7ca928f2c1ac-ea62343b13d105af",
+        "sourceCommit": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+        "filesIncludingManifest": 14,
+        "manifestSha256": "245c79afd8527f3f53cfd217377b96dd575916a49fdea914c26b4ba8bdc3a3de",
+        "preservedPath": "artifacts/step03-material-7ca928f2c1ac-ea62343b13d105af",
+        "allFilesExactMatch": true
+      },
+      {
+        "buildId": "step01-507f3627a46d19ce6cbf",
+        "sourceCommit": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+        "filesIncludingManifest": 5,
+        "manifestSha256": "5c01da441c0426d30daa786d6097004d6334240a457ee9befa641239fe25e0a2",
+        "preservedPath": "artifacts/step01-507f3627a46d19ce6cbf",
+        "allFilesExactMatch": true
+      }
+    ],
+    "reviewWorktreeHead": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+    "protectedPaths": "ROOT_VERIFIED_ALL_PREVIOUS_PROTOTYPE_APP_CONTRACT_GATEWAY_PLAN_PROFILE_PIXELCONTRACT_AND_OLDTESTS_UNCHANGED"
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -495,23 +670,11 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "INDEPENDENT_R4_PASS_PLUS_INTEGRATION_CHECK_DB_BROWSERS_PASS",
-  "blockingCondition": {
-    "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
-    "observations": [
-      "Round2 report completion interrupted; safely completed existing-results documentation only",
-      "Round3 designated reviewer task interrupted again before final verification"
-    ],
-    "latestSource": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
-    "noAlternateModelsTiersOrPrivileges": true,
-    "requiredToResume": "Restore permitted designated step_reviewer execution, verify live Git/source/build state, complete exact-candidate independent round3 and all gates before any merge/push/step03",
-    "latestResumeEvent": "MAIN_TURN_FLAGGED_DURING_READ_ONLY_RECOVERY_BEFORE_NEW_REVIEWER",
-    "supportRecord": "docs/orchestration/evidence/resume-main-platform-interruption-2905000.json",
-    "status": "HISTORICAL_RESOLVED_EXECUTION_RESUMED_ROUND4_IN_PROGRESS"
-  },
-  "cleanup": "UNMERGED_WORKTREES_BRANCHES_RETAINED_NO_FORCE_DELETE",
-  "finalRemoteMain": "f004d6c74abe64ea853619390aa9dc2bc34654c1_VERIFIED_FETCH_AND_LS_REMOTE",
-  "finalReport": "docs/orchestration/steps-02-03-blocked-report.md",
+  "lastSuccessfulCheckpoint": "STEP03_R1_RELEASE_ACTUAL_ULTRA_DEFAULT_EXACT7CA",
+  "blockingCondition": null,
+  "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
+  "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+  "finalReport": null,
   "ownedServices": "OWNED_POSTGRES55432_55433_55434_READY_APPS_MANAGED_BY_INTEGRATION_TESTS",
   "resumeAttempts": [
     {
@@ -542,5 +705,41 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Fetch main then fast-forward reviewed source+validated integration+docs; applicable regression; normal push and exact remote verification/postmainCI"
+  "nextSafeAction": "IndependentRound1 result; necessaryCoderfix/re-review withoutresettingmax5; no03approval/CIpublication yet",
+  "cleanupRecords": [
+    {
+      "item": "remote codex/step-02-validation-r4",
+      "action": "DELETED_SUCCESS_READBACK_ABSENT",
+      "owned": "CREATED_THIS_RESUME",
+      "containedInRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+      "candidate": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+      "CIRecords": "PRESERVED_GITHUB_AND_REPO_EVIDENCE"
+    },
+    {
+      "item": "local codex/step-02-integration",
+      "action": "NORMAL_BRANCH_DELETE_SUCCESS",
+      "containedInRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+      "worktree": "RETAINED_CURRENT_MAIN_FOR_STEP03_INTEGRATION"
+    }
+  ],
+  "mzPreservationAtStep03Start": {
+    "evidence": "docs/orchestration/evidence/mz-map-preservation-step03-start.json",
+    "files": 10,
+    "unchanged": 10,
+    "manualAcceptance": "NOT_PERFORMED_PENDING_STATUSES_UNCHANGED"
+  },
+  "historicalBlockingCondition": {
+    "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
+    "observations": [
+      "Round2 report completion interrupted; safely completed existing-results documentation only",
+      "Round3 designated reviewer task interrupted again before final verification"
+    ],
+    "latestSource": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
+    "noAlternateModelsTiersOrPrivileges": true,
+    "requiredToResume": "Restore permitted designated step_reviewer execution, verify live Git/source/build state, complete exact-candidate independent round3 and all gates before any merge/push/step03",
+    "latestResumeEvent": "MAIN_TURN_FLAGGED_DURING_READ_ONLY_RECOVERY_BEFORE_NEW_REVIEWER",
+    "supportRecord": "docs/orchestration/evidence/resume-main-platform-interruption-2905000.json",
+    "status": "RESOLVED_BY_SAME_REQUIRED_REVIEWER_R3_R4_AND_STEP02_PUBLICATION"
+  },
+  "historicalFinalReport": "docs/orchestration/steps-02-03-blocked-report.md"
 }
