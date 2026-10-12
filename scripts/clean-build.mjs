@@ -8,5 +8,6 @@ for (const path of [
   'packages/asset-core/dist',
   'packages/material-processing/dist',
   'packages/image-adapter/dist',
+  'packages/mz-compiler/dist',
 ])
   await rm(new URL('../' + path, import.meta.url), { recursive: true, force: true });

@@ -30,6 +30,9 @@ importers:
       '@tileset/material-processing':
         specifier: workspace:*
         version: link:packages/material-processing
+      '@tileset/mz-compiler':
+        specifier: workspace:*
+        version: link:packages/mz-compiler
       '@types/node':
         specifier: 22.19.0
         version: 22.19.0
@@ -181,6 +184,16 @@ importers:
         version: 5.9.3
 
   packages/material-processing:
+    dependencies:
+      '@tileset/asset-core':
+        specifier: workspace:*
+        version: link:../asset-core
+    devDependencies:
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
+  packages/mz-compiler:
     dependencies:
       '@tileset/asset-core':
         specifier: workspace:*

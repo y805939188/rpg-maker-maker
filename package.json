@@ -17,10 +17,10 @@
   "scripts": {
     "preinstall": "node scripts/toolchain.mjs",
     "typecheck": "pnpm build:contracts && tsc --noEmit && tsc -p tsconfig.tests.json && pnpm -r --filter './apps/*' --filter './packages/*' typecheck",
-    "build:prototype": "tsc",
-    "build:contracts": "pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build",
-    "build": "node scripts/clean-build.mjs && pnpm build:prototype && pnpm build:contracts && pnpm --filter @tileset/api build && pnpm --filter @tileset/web build",
-    "test": "pnpm build:prototype && pnpm build:contracts && vitest run",
+    "build:prototype": "pnpm build:contracts && tsc",
+    "build:contracts": "pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build",
+    "build": "node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && pnpm --filter @tileset/web build",
+    "test": "pnpm build:prototype && vitest run",
     "test:e2e": "playwright test",
     "test:dev-privacy": "pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts",
     "test:integration": "pnpm build:contracts && vitest run --config vitest.integration.config.ts",
@@ -42,7 +42,12 @@
     "verify:exports": "node scripts/verify-exports.mjs",
     "test:step03": "pnpm build:contracts && vitest run packages/asset-core/tests packages/material-processing/tests packages/image-adapter/tests",
     "build:step03": "pnpm build && node scripts/build-engineering.mjs step03",
-    "build:material-sample": "pnpm build:contracts && node scripts/build-material-sample.mjs"
+    "build:material-sample": "pnpm build:contracts && node scripts/build-material-sample.mjs",
+    "test:step04": "pnpm build:contracts && vitest run packages/mz-compiler/tests",
+    "build:step04": "pnpm build && node scripts/build-engineering.mjs step04",
+    "build:mz-sample": "pnpm build:prototype && node scripts/build-mz-sample.mjs",
+    "verify:step04": "node dist/scripts/verify-step04.js",
+    "prepare:step04": "node dist/scripts/prepare-step04.js"
   },
   "dependencies": {
     "sharp": "0.35.5"
@@ -58,7 +63,8 @@
     "@playwright/test": "1.64.0",
     "@tileset/asset-core": "workspace:*",
     "@tileset/material-processing": "workspace:*",
-    "@tileset/image-adapter": "workspace:*"
+    "@tileset/image-adapter": "workspace:*",
+    "@tileset/mz-compiler": "workspace:*"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

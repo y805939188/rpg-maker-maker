@@ -6,7 +6,8 @@ import { PROFILE } from '../dist/src/profile.js';
 
 const root = process.cwd();
 const step = process.argv[2] ?? 'step02';
-if (!['step02', 'step03'].includes(step)) throw new Error('Unsupported engineering step.');
+if (!['step02', 'step03', 'step04'].includes(step))
+  throw new Error('Unsupported engineering step.');
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim();
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
 if (git('status', '--porcelain', '--untracked-files=all'))
@@ -27,6 +28,7 @@ for (const directory of [
   'packages/asset-core/dist',
   'packages/material-processing/dist',
   'packages/image-adapter/dist',
+  'packages/mz-compiler/dist',
   'apps/api/dist',
   'apps/web/dist',
 ])
@@ -42,12 +44,15 @@ const identity = {
   pixelContract: PROFILE.pixelContract,
   httpContract: 'http-v1',
   taskContract: 'task-snapshot-v1',
-  ...(step === 'step03'
+  ...(step !== 'step02'
     ? {
         domainContract: 'asset-revision-v1',
         irContract: 'tile-ir-v1',
         processing: 'fixed-shoreline-v1',
       }
+    : {}),
+  ...(step === 'step04'
+    ? { fragmentContract: 'mz-compiled-fragment-v1', compiler: 'mz-single-material-v1' }
     : {}),
   node: process.versions.node,
   pnpm: '10.20.0',
@@ -83,7 +88,7 @@ try {
       userApproval: 'NOT_EXECUTED',
       nativeMZHost: 'NOT_EXECUTED',
     },
-    note: `${step} engineering baseline. MZ compatibility remains the step01 candidate and separate evidence. Requires pinned dependencies and generated Prisma client; no provider runner or formal target compiler/pack.`,
+    note: `${step} engineering baseline. MZ compatibility remains the step01 candidate and separate evidence. Requires pinned dependencies and generated Prisma client; ${step === 'step04' ? 'single-material Compiler only; no production Pack or provider runner.' : 'no provider runner or formal target compiler/pack.'}`,
   };
   await writeFile(resolve(stage, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n', {
     flag: 'wx',

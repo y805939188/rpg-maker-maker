@@ -4,7 +4,12 @@ import { resolve } from 'node:path';
 const rules = [
   {
     path: '.',
-    allowed: ['@tileset/asset-core', '@tileset/material-processing', '@tileset/image-adapter'],
+    allowed: [
+      '@tileset/asset-core',
+      '@tileset/material-processing',
+      '@tileset/image-adapter',
+      '@tileset/mz-compiler',
+    ],
     sources: ['src'],
     forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|wavespeed|@tileset\//,
   },
@@ -37,6 +42,12 @@ const rules = [
     allowed: ['@tileset/asset-core'],
     sources: ['src'],
     forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|wavespeed/,
+  },
+  {
+    path: 'packages/mz-compiler',
+    allowed: ['@tileset/asset-core'],
+    sources: ['src'],
+    forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|sharp|wavespeed|node:/,
   },
   {
     path: 'apps/api',
