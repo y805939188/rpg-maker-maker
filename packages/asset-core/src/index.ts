@@ -513,7 +513,8 @@ export function geometry(input: Geometry): Geometry {
   const coverage = new Uint8Array(input.width * input.height);
   for (const region of input.regions) {
     requireRule(
-      /^[a-z][a-z0-9-]{0,63}$/.test(region.name) &&
+      typeof region.name === 'string' &&
+        /^[a-z][a-z0-9-]{0,63}$/.test(region.name) &&
         !names.has(region.name) &&
         ['center', 'edge', 'outer-corner', 'inner-corner'].includes(region.role),
       'GEOMETRY',
@@ -571,8 +572,8 @@ export function validateTileIR(ir: TileIR): void {
   requireRule(
     ir.ground.material.kind === 'grass' &&
       ir.water.material.kind === 'water' &&
-      ir.ground.opaque &&
-      ir.water.opaque &&
+      ir.ground.opaque === true &&
+      ir.water.opaque === true &&
       ir.transition.strategy === 'opaque-water-owned-baked-grass-bank-v1' &&
       ir.transition.boundaryOwner === 'water',
     'IR_SEMANTICS',
@@ -722,7 +723,9 @@ export interface BuiltAsset {
 }
 export function buildProcessedAsset(input: CompilableAsset, id: string): BuiltAsset {
   requireRule(
-    input.state === 'COMPILABLE_RECIPE' && /^[a-z][a-z0-9-]{0,63}$/.test(id),
+    input.state === 'COMPILABLE_RECIPE' &&
+      typeof id === 'string' &&
+      /^[a-z][a-z0-9-]{0,63}$/.test(id),
     'BUILD_STATE',
     'A processed build requires a compilable recipe and stable ID.',
   );
@@ -785,6 +788,8 @@ export function assessBuild(
 } {
   requireRule(
     build.state === 'BUILT_ARTIFACT' &&
+      typeof build.id === 'string' &&
+      /^[a-z][a-z0-9-]{0,63}$/.test(build.id) &&
       build.artifactHash === build.ir.contentHash &&
       build.targetCompilation === 'NOT_EXECUTED',
     'BUILD_STATE',
