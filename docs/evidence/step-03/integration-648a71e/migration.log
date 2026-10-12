@@ -1,0 +1,15 @@
+
+> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker
+> pnpm --filter @tileset/api db:migrate
+
+
+> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/apps/api
+> node scripts/migrate.mjs
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "tileset_release", schema "public" at "127.0.0.1:55434"
+
+1 migration found in prisma/migrations
+
+
+No pending migrations to apply.
