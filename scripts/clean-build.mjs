@@ -5,5 +5,8 @@ for (const path of [
   'apps/web/dist',
   'packages/contracts/dist',
   'packages/ai-gateway/dist',
+  'packages/asset-core/dist',
+  'packages/material-processing/dist',
+  'packages/image-adapter/dist',
 ])
   await rm(new URL('../' + path, import.meta.url), { recursive: true, force: true });

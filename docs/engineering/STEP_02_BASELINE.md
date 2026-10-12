@@ -69,3 +69,7 @@ Vite 开发服务器是独立的安全表面。其文件允许根显式限定到
 Task Contract 包含 `SUBMISSION_UNKNOWN`，提供 `KNOWN/UNKNOWN/REJECTED` 提交结果、远端状态与本地归档成功的区别。`RecoveryDirective` 类型显式区分已知 ID 查询、未知提交核对且不重提、只重试归档和本地取消；这些是契约，不声称故障恢复已实现。`freezeTaskSnapshot` 深拷贝解析并冻结完整模型/配置版本、主/任务模板版本与内容、可选补充、结构化参数、Style/Target Profile、引用 revision/hash。不含凭据，不读取运行中的默认模型。Mock 仅存在于契约测试 double，无完整 runner、SDK 安装或网络行为。真实模板 Composer 留步骤 08。
 
 新增依赖使用固定的可安装版本和锁文件，更新后执行安全审计和功能门禁。当前 Sharp 固定 `0.35.5`，因第三轮 Review 证实公开 decoder 与 supplied-build preflight 可达到旧 native EXIF 解码器，已选择补丁运行库并验证四 PNG 字节与像素保持一致。历史 Sharp `0.34.5` 的构建/契约记录原样保留；当前安全修订与实际版本见 [Codec runtime](STEP_02_CODEC_RUNTIME.md)。没有 HTTP/上传或远端素材路径不等于所有本地输入可信，不再以此把可达 EXIF 风险降为非阻断。完整新候选报告与独立 Review 仍是关闭门禁，不能改母版或阈值掩盖差异。
+
+## 步骤 03 扩展记录
+
+步骤 02 已发布于 c021b20991281317fbbbb1fc398c0ae496ef648d，第四轮独立 Review PASS，候选及 main CI SUCCESS（最终发布记录由 Orchestrator 管理）。现有五模块的工程职责保留；步骤 03 增加 asset-core、material-processing 和 image-adapter，方向/清理/构建/生产导出均登记为八成员。新处理语义与入口政策见 [步骤 03 基线](STEP_03_BASELINE.md)，没有增加 HTTP 上传、供应商调用或正式 Compiler/Pack。

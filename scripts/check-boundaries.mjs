@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 const rules = [
   {
     path: '.',
-    allowed: [],
+    allowed: ['@tileset/asset-core', '@tileset/material-processing', '@tileset/image-adapter'],
     sources: ['src'],
     forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|wavespeed|@tileset\//,
   },
@@ -19,6 +19,24 @@ const rules = [
     allowed: [],
     sources: ['src'],
     forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|sharp|wavespeed|node:/,
+  },
+  {
+    path: 'packages/asset-core',
+    allowed: [],
+    sources: ['src'],
+    forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|sharp|wavespeed|node:(?!crypto$)/,
+  },
+  {
+    path: 'packages/material-processing',
+    allowed: ['@tileset/asset-core'],
+    sources: ['src'],
+    forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|sharp|wavespeed|node:/,
+  },
+  {
+    path: 'packages/image-adapter',
+    allowed: ['@tileset/asset-core'],
+    sources: ['src'],
+    forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|wavespeed/,
   },
   {
     path: 'apps/api',
@@ -62,4 +80,17 @@ for (const rule of rules) {
   }
   for (const source of rule.sources) await scan(resolve(rule.path, source), rule);
 }
-console.log('Five workspace members: dependency directions and exact direct pins verified.');
+const workspaceNames = (
+  await Promise.all(
+    ['apps', 'packages'].map(async (directory) =>
+      (await readdir(directory, { withFileTypes: true }))
+        .filter((entry) => entry.isDirectory())
+        .map((entry) => `${directory}/${entry.name}`),
+    ),
+  )
+).flat();
+if (workspaceNames.some((path) => !rules.some((rule) => rule.path === path)))
+  throw new Error('Unregistered workspace: add its dependency direction before implementation.');
+console.log(
+  `${rules.length} workspace members: dependency directions and exact direct pins verified.`,
+);
