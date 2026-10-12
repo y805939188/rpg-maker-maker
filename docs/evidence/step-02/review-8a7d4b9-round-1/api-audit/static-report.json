@@ -1,0 +1,72 @@
+{
+  "commit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+  "auditScope": [
+    "apps/api",
+    "packages/contracts",
+    "Vite development file-serving secrecy boundary"
+  ],
+  "preflight": {
+    "threadId": "01a12c1f-9f79-7b80-ab4e-078a1ddb6d75",
+    "rolloutRole": "step_reviewer",
+    "rolloutModel": "gpt-6.1-sol",
+    "rolloutEffort": "ultra",
+    "feedbackTagsLogId": 2840781,
+    "feedbackTagsServiceTier": "default",
+    "serverFinalTier": "NOT_EXPOSED_NOT_VERIFIED"
+  },
+  "productionChanges": false,
+  "checksExecutedByThisAgent": [
+    "static source and dependency inspection",
+    "frozen source byte comparison",
+    "8 Vite private-file read-only canary probes",
+    "13 read-only API edge probes"
+  ],
+  "installBuildMigrateTestsExecutedByThisAgent": false,
+  "dynamicChecks": "EXECUTED_READ_ONLY",
+  "candidateApproval": "NOT_GRANTED_STATIC_SUBREVIEW_ONLY",
+  "findings": [
+    {
+      "id": "API-SEC-01",
+      "severity": "P1",
+      "blocking": true,
+      "status": "RUNTIME_REPRODUCED_WITH_BENIGN_MODE_0600_CANARY",
+      "location": "apps/web/vite.config.ts:15-20",
+      "relatedLocation": "scripts/local-postgres.mjs:76-85",
+      "title": "Vite serves private local files containing database credentials",
+      "trigger": "After documented local database initialization and pnpm dev, /@fs/<workspace-root>/.local/postgres/ownership.json falls inside Vite file allow rules. Runtime verification used only .local/review/public-canary.json containing a fake marker with mode0600; plain, raw, import and raw/import variants returned HTTP200. A different localhost browser origin received matching ACAO.",
+      "actual": "Private mode0600 .local JSON is served byte-for-byte by the dev server; transformed import responses also expose its content. A separate localhost origin receives read permission via matching ACAO. The same unprotected .local tree holds generated database password/root/port metadata. API middleware does not run on Vite file requests.",
+      "expected": "Private .local state, database credentials and local-only runtime/assets cannot be served by the development browser server.",
+      "dependencyEvidence": [
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:22534-22587 /@fs and allow/deny evaluation",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:25787-25812 default deny and workspace allow resolution",
+        "apps/web/node_modules/vite/dist/node/chunks/config.js:22417-22424 dev file lookup",
+        "apps/web/node_modules/vite/dist/node/chunks/logger.js:224 default localhost CORS origins"
+      ],
+      "recommendation": "Constrain frontend/shared-package file serving and explicitly deny the entire private .local tree while retaining default secret-file protections. Add browser/dev-server regression coverage for benign private canaries including normal /@fs and raw/import variants, and validate expected frontend/shared package loading.",
+      "testGap": "Existing API security tests cover Express/Nest only and do not exercise Vite private-file serving.",
+      "runtimeEvidence": {
+        "plainCanarySuccess": true,
+        "otherLocalhostOriginReceivesCanary": true,
+        "transformedVariantsExposeFakeMarker": true
+      }
+    }
+  ],
+  "additionalApiContractFindings": [],
+  "sourceAfter": {
+    "allUnchanged": true,
+    "allMatchFrozen": true,
+    "gitStatusClean": true
+  },
+  "auditedAt": "2026-10-11T18:06:49.584532+00:00",
+  "dynamicPreflight": {
+    "rolloutRole": "step_reviewer",
+    "id": 2846340,
+    "model": "gpt-6.1-sol",
+    "effort": "Ultra",
+    "serviceTier": "default",
+    "serverFinalTier": "NOT_EXPOSED_NOT_VERIFIED",
+    "sourceMatchesFrozenBefore": true
+  },
+  "runtimeReport": "runtime-probes.json",
+  "apiReadOnlyProbeAllExpectedStatuses": true
+}

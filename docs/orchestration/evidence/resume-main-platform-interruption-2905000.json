@@ -1,0 +1,22 @@
+{
+  "event": "RESUME_MAIN_TURN_PLATFORM_INTERRUPTION",
+  "logId": 2905000,
+  "utc": "2026-10-12T02:28:20+00:00",
+  "asiaShanghai": "2026-10-12T10:28:20+08:00",
+  "threadId": "01a12c06-fa91-7961-9024-465d74ed9227",
+  "turnId": "01a12def-e3b9-7c43-b10d-8d2a78d8b25c",
+  "level": "INFO",
+  "target": "codex_core::session::turn",
+  "rawError": "session_loop{thread_id=01a12c06-fa91-7961-9024-465d74ed9227}:submission_dispatch{otel.name=\"op.dispatch.turn_input\" submission.id=\"01a12def-e3b9-7c43-b10d-8d2a78d8b25c\" codex.op=\"turn_input\"}:codex.turn_input{conversation.id=01a12c06-fa91-7961-9024-465d74ed9227 turn.id=\"01a12def-e3b9-7c43-b10d-8d2a78d8b25c\"}:turn{otel.name=\"session_task.turn\" thread.id=01a12c06-fa91-7961-9024-465d74ed9227 turn.id=01a12def-e3b9-7c43-b10d-8d2a78d8b25c model=gpt-6.1-sol codex.turn.reasoning_effort=ultra}:session_task.run:run_turn: Turn error: This content was flagged for possible cybersecurity risk. If this seems wrong, try rephrasing your request. If you’re doing authorized security work that requires more cyber permissive safeguards, apply for Daybreak access via https://platform.openai.com/settings/organization/status-and-access before retrying.",
+  "performedActions": [
+    "Read AGENTS/runtime/checkpoint/blocked report",
+    "Read Git status, branch, worktree, history, candidate docs diff and role TOMLs",
+    "Query existing agent status"
+  ],
+  "newReviewerStarted": false,
+  "newTestsOrHttpProbes": false,
+  "settingsOrPrivilegesChanged": false,
+  "specificTrigger": "NOT_EXPOSED; do not attribute to a specific command or account state",
+  "status": "RECOVERY_STOPPED_BEFORE_REVIEWER_START",
+  "supportPurpose": "Sanitized current-thread record; contains no credentials or private file content"
+}

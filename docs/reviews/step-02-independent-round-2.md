@@ -1,0 +1,62 @@
+CHANGES_REQUESTED — Step 02 independent Review round 2/5.
+
+Frozen tested implementation: `396cefbdef6f22783e209722155c9088e685719b`. Independent worktree: `/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker`. Supplemental author documentation: `a99b38229dae9c82c498f6bd12f9449a1000059b`; its diff from the freeze is documentation only. This report completes documentation of previously executed checks and observations. No new HTTP requests, security probes or tests were performed during completion.
+
+Current findings: P0=0, P1=1, blocking P2=0, nonblocking P2=1 scoped inherited dependency record, P3=0. **STEP02-R1-001 is partially addressed but NOT_CLOSED**: direct private-file paths and unrelated localhost CORS are fixed, while canonical private-target protection remains bypassable. The remaining concrete defect is recorded once as STEP02-R2-001. No candidate approval, merge, push or Step03 work was performed by Reviewer.
+
+Role/model/effort/client request tier were verified before review as `step_reviewer / gpt-6.1-sol / ultra / default` from actual rollout and targeted feedback_tags log2854425. Focused privacy subreview independently verified the same configuration (log2854381). Server-final tier remains NOT_EXPOSED_NOT_VERIFIED. No model, tier or privilege changes were made.
+
+## STEP02-R2-001 — P1, blocks gate=true
+
+Verified source location: `apps/web/dev-boundary.ts:65` (ENOENT fallback through line73). The affected candidate-path construction is lines57–59. Related test gap: `apps/web/tests/dev-privacy.test.ts:178` (only direct /@fs and normal paths at178–198).
+
+Precondition and saved inputs: the independent probe exclusively created a fresh file alias and directory alias inside the allowed Web tree, each pointing to a synthetic mode0600 `.local` canary. No real credential file was read or requested. Saved `api-audit/runtime-probes.json` records the exact temporary paths, methods, Origins, headers, statuses, response hashes and cleanup. Its `wrapped-fs-alias` records contain requests shaped as `/@id//@fs/<absolute allowed-tree alias>/canary.json?import`, `?raw&import` and `?import&raw`; `wrapped-fs-method-variant` records include HEAD/Range/script-fetch variants. Reproduction evidence is the already executed `api-audit/privacy-probe.py` and its recorded SHA in `api-audit/review-report.json`; this report does not generate or execute a new test.
+
+Actual: 218 supplemental requests contained14 fake-marker leaks. Both file and directory symlinks returned HTTP200 JavaScript containing the private marker via the wrapped /@fs route; HEAD returned200. Ordinary alias and direct /@fs alias requests correctly returned403. The same middleware sees an unprocessed /@id path, builds a nonexistent candidate and calls next on ENOENT. Vite later unwraps /@id and resolves explicit /@fs using the allowed lexical alias, so the actual private target is never checked by this middleware. Dependency source locations establishing that second-stage behavior are saved in the focused report.
+
+Expected: every static/transform/raw/import request resolving to a private real target is rejected before content is read, even when Vite ID wrappers or aliases change the effective filesystem path. An arbitrary ENOENT cannot establish that a request is a harmless virtual module.
+
+Affected scope: Vite development requests when an allowed-tree file/directory symlink points into private `.local` state or another forbidden target. The test uses only fake data. The repaired CORS does deny foreign localhost Origins; this finding does not claim that those previously fixed cross-origin reads still succeed. Private content remains reachable to permitted/no-Origin local clients through the wrapped alias route, contrary to the documented canonical-path guarantee.
+
+Recommendation: authorize the effective Vite-resolved filesystem target across supported wrappers and every relevant resolution/load stage, or reject filesystem-bearing pseudo-virtual wrappers before the ENOENT fallback. Preserve genuine virtual modules, normal shared packages and default secret protections. Extend the running-server regression with wrapped /@id→/@fs paths through both directory and file aliases, raw/import query orders and method variants. Keep the privacy expectation; do not remove the saved failure or relax it to a status-only/Origin-only assertion.
+
+No other concrete blocking correctness, architecture or test defect was found in the completed scope. The regression gap is part of this P1, not a duplicate issue.
+
+## Completed independent checks and honest limits
+
+Independent environment was unchanged: Node22.21.1/pnpm10.20.0, login:false, own PostgreSQL14.20 at127.0.0.1:55433/database tileset_review, API4311/Web5174. Credentials and DB state remain private and excluded from the ledger. The manually launched development service was stopped after the recorded probes. The completed production browser test managed its own server lifecycle. No other cluster, MZ project/global environment or paid provider was touched.
+
+| Check | Existing result/evidence |
+| --- | --- |
+| Frozen install/Prisma generate | exit0; install.log, db-generate.log |
+| Full engineering gate | pnpm check exit0: boundaries/exact pins, Strict including tests, lint, format,66/66 tests, clean build,3actual production ESM imports; check.log |
+| New privacy regression positive | ran inside pnpm check against frozen396;259 recorded requests,255forbidden/4normal-and-shared successes/0marker leaks; dev-privacy/latest.json |
+| Regression negative control | current regression replayed exact Git8a config bytes with explicit local environment;257records/156marker leaks,2failed+1passed, expected exit1; old configuration and current test SHAs recorded; prior-config-negative-regression.log, dev-privacy/prior-candidate.json |
+| Privacy test quality/CI | actual pnpm/Vite CLI, fresh mode0600 canaries, owned cleanup, no real credentials, unchanged strict privacy assertions; normal Vitest/Strict and explicit CI command include it |
+| Latest migration deploy | exit0, no pending migration; db-migrate.log |
+| Latest actual DB/API write/read |3/3integration tests passed using ownDB; integration.log |
+| Supplemental privacy edge checks |218requests/14fake-marker leaks; expected guards and normal loading also recorded; api-audit/runtime-probes.json |
+| Latest production browser |1/1passed: project create201, refresh persistence, Pixi ready, no pageerror; production-e2e.log, e2e/production.json/png |
+| Latest independent development browser create/refresh | NOT_EXECUTED; fixed dev CLI and HTTP module/Pixi source loading were observed, but these do not substitute for the full browser flow |
+| Latest standalone positive test:dev-privacy command | NOT_EXECUTED separately; the same3testcases and actual CLI ran successfully inside the full check |
+| Latest direct Node fault/listener/DB-stop probes | NOT_EXECUTED; unchanged backend reasoning and round1evidence retained, not relabeled as new execution |
+| Latest engineering/prototype independent publication | exact authored68+4file identities reproduced and verified; artifact-integrity.json |
+| Latest repeated-publication refusal | NOT_EXECUTED; scripts unchanged and round1refusal retained, not claimed as new execution |
+| Latest external native-core oracle |960selected tiles/2,211,840pixels/241updates, passed; native-oracle.log and native-evidence JSON |
+| Latest dependency audit | exit1;3high inherited Sharp and1low Windows esbuild-serve advisories remain; audit.log |
+| Supplemental author evidence binding |30file hashes,13command commit/expected-exit/log hashes verified; metadata source identical; supplemental-evidence-verification.json |
+| Source integrity |all265tracked hashes match before-review freeze; staged/unstaged/untracked Git status clean; source-before.json/source-after.json |
+
+Author reports of full dev/prod browser and standalone privacy checks are preserved and hash-bound in the supplemental archive; they are not substituted for missing independent latest-candidate execution. Remote CI remains NOT_EXECUTED. Missing independent checks and the confirmed P1 preclude PASS.
+
+## Artifact and scope binding
+
+Engineering identity `step02-396cefbdef6f-736ff6eb0f5e6054`,68payload files, manifestSHA256 `e3eb890c013337dafb8df46015ae05e03b84b47b01341130b013d730bebdb6ef`. Prototype identity `step01-5126a8b175aa7d0707af`,4PNGs, manifestSHA256 `9e47bb386853895301554569b666aea83fcb926b9c40c4cf65b46927a75fca6c`. Both were independently built and exactly matched author manifests, commit/lock/Profile/contracts, file sets and every file hash. Original8a artifacts and round1failure reports remain untouched.
+
+Four PNG hashes/Profile/Pixel Contract exactly match the approved archived step01 build. Profile remains `mz-native-ground-water/1.0.0-candidate.1`, Pixel Contract `rgba8-srgb-integer-v1`, HTTP `http-v1`, Task `task-snapshot-v1`. The freeze changes only the scoped development privacy implementation/test/config/CI and documentation; backend/Gateway/prototype algorithms, mother assets and plans retain prior validated behavior. The new tests do not weaken or delete the52original cases.
+
+Original Native Host and new MZ editor/game/visual acceptance remain NOT_EXECUTED; Map003(4,10) remains PENDING_USER_EVIDENCE under the user's phase-exit authorization. The external oracle is NodeVM raw-core rectangle/pixel/update verification, not GPU/editor/Host acceptance.
+
+Inherited dependency record STEP02-R1-NB-001 remains P2_NONBLOCKING, blocks gate=false, at package.json:45 and the frozen lockfile. Existing reproduction: pnpm audit --json returns exit1 (audit.log). The new audit still reports3Sharp highs and1esbuild low. Sharp remains restricted prototype PNG CLI/goldens, with container/RGBA8 checks before decode and no HTTP upload/remote media path; Windows standalone esbuild serve is not used. Those are bounded exposure inferences, not a globally clean audit. The privacy fix adds no affected media execution surface. Reassess before untrusted media/affected server exposure and preserve approved PNG/oracle regressions for any upgrade.
+
+The current candidate remains CHANGES_REQUESTED. STEP02-R1-001 cannot be marked closed until the effective-target bypass is repaired and independently verified on a new freeze. Only the Orchestrator/user can approve, merge or push after required gates.

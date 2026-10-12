@@ -1,0 +1,60 @@
+{
+  "step": 2,
+  "round": 1,
+  "status": "CHANGES_REQUESTED",
+  "testedCommit": "8a7d4b9bfa62bc259d6a9485fb58e0277c8a0def",
+  "supplementalDocumentationCommit": "3f2a82ffef91b9ed926e5a11acb2c64dc001d2f9",
+  "reviewerRole": "step_reviewer",
+  "model": "gpt-6.1-sol",
+  "effort": "ultra",
+  "clientServiceTier": "default",
+  "serverFinalTier": "NOT_EXPOSED_NOT_VERIFIED",
+  "counts": {
+    "P0": 0,
+    "P1": 1,
+    "P2_BLOCKING": 0,
+    "P2_NONBLOCKING": 1,
+    "P3": 0
+  },
+  "findings": [
+    {
+      "id": "STEP02-R1-001",
+      "severity": "P1",
+      "blocksGate": true,
+      "file": "apps/web/vite.config.ts",
+      "line": 15,
+      "relatedFile": "scripts/local-postgres.mjs",
+      "relatedLine": 76,
+      "title": "Vite development server exposes private .local files and generated DB credentials",
+      "reproduction": "With pnpm dev on API4311/Web5174, mode0600 benign .local/review/public-canary.json: GET /@fs/<absolute-workspace>/.local/review/public-canary.json, ?raw, ?import, ?raw&import, with Origin http://127.0.0.1:5174 and http://127.0.0.1:51999.",
+      "actual": "All eight requests returned200 and contained fake marker; other localhost origin received matching ACAO. Plain/raw bytes exactly matched private file. Real secrets were never read/requested.",
+      "expected": "Private .local files and generated credentials must never be served to browser clients in development; unrelated localhost origins should not be granted private-file read permissions.",
+      "affectedScope": "Documented pnpm db:local init + pnpm dev workflow; .local/postgres/ownership.json contains plaintext DB bootstrap password. All other private .local state is under same broad allow list. Express API security middleware does not guard Vite /@fs.",
+      "recommendation": "Explicitly deny whole .local tree and retain default secret protections; constrain dev file-serving to required frontend/shared code, narrow allowed dev origins, and add actual Vite-server canary regression covering plain/raw/import, other-localhost origins and legitimate shared-package loading.",
+      "evidence": "api-audit/runtime-probes.json"
+    }
+  ],
+  "nonblockingRecords": [
+    {
+      "id": "STEP02-R1-NB-001",
+      "severity": "P2_NONBLOCKING",
+      "blocksGate": false,
+      "file": "package.json",
+      "line": 44,
+      "title": "Pinned inherited Sharp and transitive esbuild retain scoped advisories",
+      "reproduction": "pnpm audit --json (exit1), using frozen pnpm lockfile.",
+      "actual": "Three high Sharp0.34.5 advisories; one low esbuild Windows standalone serve advisory. Audit is not globally clean.",
+      "expected": "Dependency risk must be recorded, bounded and re-evaluated before affected untrusted input/server surfaces become reachable.",
+      "affectedScope": "Sharp remains diagnostic prototype CLI/golden tests; PNG container/signature/CRC/RGBA8 validation precedes decoding; API/Web do not import Sharp and no upload/remote image path exists. esbuild is used for transforms/builds, not standalone serve; current host Mac and CI Linux.",
+      "recommendation": "Track compatible dependency upgrade with existing four-PNG byte regression and native oracle; re-evaluate before any untrusted image/import/upload or Windows esbuild serve exposure.",
+      "evidence": "audit.log"
+    }
+  ],
+  "independentStandardChecks": "PASS",
+  "sourceMutation": false,
+  "sourceTrackedFileCount": 233,
+  "originalNativeHost": "NOT_EXECUTED",
+  "Map003_4_10": "PENDING_USER_EVIDENCE",
+  "report": "step02-round1-report.md",
+  "createdAt": "2026-10-11T18:12:43.427041+00:00"
+}

@@ -1,0 +1,15 @@
+{"command": ["pnpm", "install", "--frozen-lockfile"], "exitCode": 0, "seconds": 6.006, "log": ".local/review/install.log"}
+{"command": ["pnpm", "audit", "--json"], "exitCode": 1, "seconds": 1.19, "log": ".local/review/audit.log"}
+{"command": ["pnpm", "db:generate"], "exitCode": 0, "seconds": 1.53, "log": ".local/review/db-generate.log"}
+{"command": ["pnpm", "check"], "exitCode": 0, "seconds": 24.058, "log": ".local/review/check.log"}
+{"command": ["node", "scripts/build-engineering.mjs"], "exitCode": 0, "seconds": 0.13, "log": ".local/review/engineering-publication.log"}
+{"command": ["pnpm", "db:migrate"], "exitCode": 0, "seconds": 1.147, "log": ".local/review/db-migrate.log"}
+{"command": ["pnpm", "prototype"], "exitCode": 0, "seconds": 1.269, "log": ".local/review/prototype-publication.log"}
+{"command": ["pnpm", "test:integration"], "exitCode": 0, "seconds": 3.494, "log": ".local/review/integration.log"}
+{"command": ["pnpm", "verify:mz", "/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js", "artifacts/step01-3b32cba0a6db7fad1fac"], "exitCode": 0, "seconds": 1.96, "log": ".local/review/native-oracle.log"}
+{"command": ["pnpm", "test:e2e", "--output=.local/review/playwright-production"], "exitCode": 0, "seconds": 6.926, "log": ".local/review/production-e2e.log"}
+{"command": ["pnpm", "test:e2e", "--output=.local/review/playwright-dev"], "exitCode": 0, "seconds": 9.095, "log": ".local/review/dev-e2e.log"}
+{"command": ["pnpm", "--filter", "@tileset/api", "start"], "exitCode": 1, "seconds": 0.51, "log": ".local/review/invalid-bind.log"}
+{"command": ["pnpm", "--filter", "@tileset/api", "start"], "exitCode": 1, "seconds": 0.539, "log": ".local/review/occupied-port.log"}
+{"command": ["node", "scripts/build-engineering.mjs"], "exitCode": 1, "seconds": 0.093, "log": ".local/review/engineering-overwrite-refusal.log"}
+{"command": ["node", "dist/scripts/build-prototype.js"], "exitCode": 1, "seconds": 0.183, "log": ".local/review/prototype-overwrite-refusal.log"}

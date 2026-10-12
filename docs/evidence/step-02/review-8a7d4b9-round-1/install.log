@@ -1,0 +1,36 @@
+Scope: all 5 workspace projects
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +357
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 357, reused 357, downloaded 0, added 332
+Progress: resolved 357, reused 357, downloaded 0, added 357, done
+.../esbuild@0.25.12/node_modules/esbuild postinstall$ node install.js
+.../esbuild@0.27.7/node_modules/esbuild postinstall$ node install.js
+.../esbuild@0.25.12/node_modules/esbuild postinstall: Done
+.../esbuild@0.27.7/node_modules/esbuild postinstall: Done
+.../node_modules/prisma preinstall$ node scripts/preinstall-entry.js
+.../node_modules/prisma preinstall: Done
+.../node_modules/@prisma/client postinstall$ node scripts/postinstall.js
+.../node_modules/@prisma/client postinstall: prisma:warn We could not find your Prisma schema in the default locations (see: https://pris.ly/d/prisma-schema-location).
+.../node_modules/@prisma/client postinstall: If you have a Prisma schema file in a custom path, you will need to run
+.../node_modules/@prisma/client postinstall: `prisma generate --schema=./path/to/your/schema.prisma` to generate Prisma Client.
+.../node_modules/@prisma/client postinstall: If you do not have a Prisma schema file yet, you can ignore this message.
+.../node_modules/@prisma/client postinstall: Done
+
+dependencies:
++ sharp 0.34.5
+
+devDependencies:
++ @eslint/js 10.0.1
++ @playwright/test 1.64.0
++ @types/node 22.19.0
++ eslint 10.12.0
++ prettier 3.9.10
++ typescript 5.9.3
++ typescript-eslint 8.71.1
++ vitest 4.1.11
+
+. preinstall$ node scripts/toolchain.mjs
+. preinstall: Done
+Done in 5.9s using pnpm v10.20.0

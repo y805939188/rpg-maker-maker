@@ -1,0 +1,59 @@
+{
+  "sourceCommit": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
+  "evidenceHashesVerified": {
+    "artifact-hashes-verification.json": true,
+    "browser-dev.json": true,
+    "browser-dev.png": true,
+    "browser-development-cold.log": true,
+    "browser-development.log": true,
+    "browser-production.json": true,
+    "browser-production.log": true,
+    "browser-production.png": true,
+    "builds.json": true,
+    "check.log": true,
+    "commands.json": true,
+    "dev-privacy.log": true,
+    "engineering-build.log": true,
+    "engineering-manifest.snapshot.json": true,
+    "engineering-overwrite-refusal.log": true,
+    "fixed-dev-privacy.json": true,
+    "install.log": true,
+    "integration.log": true,
+    "migrate.log": true,
+    "native-oracle.json": true,
+    "native-oracle.log": true,
+    "prior-396-dev-boundary.snapshot.txt": true,
+    "prior-396-dev-privacy.json": true,
+    "prior-396-failing-regression.final2.log": true,
+    "prior-396-regression-summary.final2.json": true,
+    "prior-396-vite.config.snapshot.txt": true,
+    "prisma-generate.log": true,
+    "prototype-build.log": true,
+    "prototype-manifest.snapshot.json": true,
+    "prototype-overwrite-refusal.log": true,
+    "prototype-regression.json": true,
+    "stop-status.json": true,
+    "unchanged-source-after-evidence.json": true
+  },
+  "negativeControlSnapshotExactGit": {
+    "vite.config": true,
+    "dev-boundary": true
+  },
+  "negativeControlTestMatchesFrozen": true,
+  "savedNegativeSummary": {
+    "exitCode": 1,
+    "baseline": "396cefbdef6f22783e209722155c9088e685719b",
+    "configAndGuardExactlyFromGit": true,
+    "actualViteCLI": true,
+    "sameOptionsWithOnlyPureVirtualTestFixture": true,
+    "checks": 528,
+    "fakeCanaryLeaks": 60,
+    "headReturned200": 6
+  },
+  "savedNegativeCounts": {
+    "requests": 528,
+    "fakeMarkerReads": 60,
+    "head200": 6
+  },
+  "negativeControlExecution": "AUTHOR_SAVED_EVIDENCE_ONLY_NOT_NEW_INDEPENDENT_EXECUTION"
+}
