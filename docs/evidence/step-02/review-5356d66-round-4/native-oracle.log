@@ -1,0 +1,66 @@
+
+> @tileset/prototype@0.0.2 verify:mz /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+> pnpm build:prototype && node dist/scripts/verify-mz.js '/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js' artifacts/step01-0c4bab5226bff144467a
+
+
+> @tileset/prototype@0.0.2 build:prototype /Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker
+> tsc
+
+{
+  "buildId": "step01-0c4bab5226bff144467a",
+  "commit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+  "profile": "1.0.0-candidate.1",
+  "manifestSha256": "6730f1299a71cae5908c7a94407e7f3d98e46c4b6bcfdd7f0ea30d87a92af5fb",
+  "coreSha256": "4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f",
+  "engineVersion": "1.10.0",
+  "result": "PASS",
+  "scope": "Unmodified native Tilemap rectangle selection + exact pixels, executed in Node VM with stub layer; not GPU rendering, not editor drawing, not game play",
+  "shapes": 48,
+  "tilesChecked": 960,
+  "pixelsChecked": 2211840,
+  "updatesChecked": 241,
+  "sampleUpdates": [
+    {
+      "update": 0,
+      "frame": 0
+    },
+    {
+      "update": 29,
+      "frame": 0
+    },
+    {
+      "update": 30,
+      "frame": 1
+    },
+    {
+      "update": 59,
+      "frame": 1
+    },
+    {
+      "update": 60,
+      "frame": 2
+    },
+    {
+      "update": 89,
+      "frame": 2
+    },
+    {
+      "update": 90,
+      "frame": 1
+    },
+    {
+      "update": 119,
+      "frame": 1
+    },
+    {
+      "update": 120,
+      "frame": 0
+    },
+    {
+      "update": 240,
+      "frame": 0
+    }
+  ],
+  "editorDrawing": "NOT_EXECUTED",
+  "gameRuntime": "NOT_EXECUTED"
+}

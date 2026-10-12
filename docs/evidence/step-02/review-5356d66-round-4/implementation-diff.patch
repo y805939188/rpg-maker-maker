@@ -1,0 +1,612 @@
+diff --git a/docs/engineering/STEP_02_BASELINE.md b/docs/engineering/STEP_02_BASELINE.md
+index e449783..c38edf4 100644
+--- a/docs/engineering/STEP_02_BASELINE.md
++++ b/docs/engineering/STEP_02_BASELINE.md
+@@ -68,4 +68,4 @@ Vite 开发服务器是独立的安全表面。其文件允许根显式限定到
+ 
+ Task Contract 包含 `SUBMISSION_UNKNOWN`，提供 `KNOWN/UNKNOWN/REJECTED` 提交结果、远端状态与本地归档成功的区别。`RecoveryDirective` 类型显式区分已知 ID 查询、未知提交核对且不重提、只重试归档和本地取消；这些是契约，不声称故障恢复已实现。`freezeTaskSnapshot` 深拷贝解析并冻结完整模型/配置版本、主/任务模板版本与内容、可选补充、结构化参数、Style/Target Profile、引用 revision/hash。不含凭据，不读取运行中的默认模型。Mock 仅存在于契约测试 double，无完整 runner、SDK 安装或网络行为。真实模板 Composer 留步骤 08。
+ 
+-新增依赖使用固定的可安装版本和锁文件，更新后执行安全审计和功能门禁。历史 Sharp `0.34.5` 单独保留以维持步骤 01 编码环境；其上游审计风险须在本步报告明确范围。未接到 HTTP/上传或不可信远端素材，只有诊断 CLI 与 golden 测试使用。升级该历史编码器需要影响 Review、四 PNG 字节与原生 oracle 复测，不能改母版或阈值掩盖差异。
++新增依赖使用固定的可安装版本和锁文件，更新后执行安全审计和功能门禁。当前 Sharp 固定 `0.35.5`，因第三轮 Review 证实公开 decoder 与 supplied-build preflight 可达到旧 native EXIF 解码器，已选择补丁运行库并验证四 PNG 字节与像素保持一致。历史 Sharp `0.34.5` 的构建/契约记录原样保留；当前安全修订与实际版本见 [Codec runtime](STEP_02_CODEC_RUNTIME.md)。没有 HTTP/上传或远端素材路径不等于所有本地输入可信，不再以此把可达 EXIF 风险降为非阻断。完整新候选报告与独立 Review 仍是关闭门禁，不能改母版或阈值掩盖差异。
+diff --git a/docs/engineering/STEP_02_CODEC_RUNTIME.md b/docs/engineering/STEP_02_CODEC_RUNTIME.md
+new file mode 100644
+index 0000000..c98698c
+--- /dev/null
++++ b/docs/engineering/STEP_02_CODEC_RUNTIME.md
+@@ -0,0 +1,11 @@
++# 步骤 02 图像运行库安全修订
++
++当前实现固定 Sharp `0.35.5`，官方预编译依赖包 `1.3.4`；本机实际加载 libvips `8.18.7`、libexif `0.6.26`、libpng `1.6.58`、zlib-ng `2.3.3`。Node 仍为 `22.21.1`，没有系统 libvips/MZ/NW.js 或全局设置变更。
++
++这修复了公开 `decodePng` / supplied-build preflight 中目前可达的 EXIF 元数据解码路径。libvips 的 [CVE-2026-35590 官方说明](https://github.com/libvips/libvips/security/advisories/GHSA-jmwm-wc68-mhwm) 将 `<=8.18.1` 列为受影响、`>=8.18.2` 列为补丁版本；Sharp 的 [官方覆盖说明](https://github.com/lovell/sharp/security/advisories/GHSA-f88m-g3jw-g9cj) 与 [0.35.5 原生包版本表](https://github.com/lovell/sharp-libvips/releases/tag/v1.3.4) 支持本次固定版本选择。旧的“PNG/本地使用所以所有 Sharp 风险不可达”结论已被第三轮 Review 的普通 Orientation=1 证据纠正，不再适用于当前入口。这里没有进行 crash 或 RCE 验证。
++
++保留 `docs/step-01/pixel-processing-contract-v1.md` 与 `src/profile.ts` 的历史内容和 ID，不改批准的像素/引擎/槽位/帧/输入规则，也不重置母版或黄金值。旧契约中 Sharp 0.34.5 的锁定描述对应已批准历史实现；此 companion 文档明确记录当前步骤 02 的安全运行库修订。每个新 Manifest 继续记录实际 encoder/libvips 全版本、锁文件 SHA 与源码 commit，旧 Manifest 不改写。
++
++目前无输入接受范围变更：符合原检查的无害 EXIF 仍可被修复后的库解码，CRC/ICC/色彩/动画/Alpha/尺寸拒绝规则保留；不增加一般图片规范化、旋转、元数据转换或 Step03 功能。`tests/codec-runtime.test.ts` 检查实际已加载的补丁 runtime，并通过源码入口、构建后的正式 package export 和自洽 supplied-build preflight 验证普通 EXIF/像素。测试命令先构建原型 JS，使全新环境的 package-export 用例也验证实际生产模块。原 52 个测试断言、fixtures、provenance 均保留。
++
++初步真实编译对照表明四 PNG 全字节 SHA 和解码 RGBA 均与批准的 `step01-56368269c8328e0f84b9` 相同；这不是仅凭依赖版本推断。最终冻结候选仍需完整门禁、四文件/容器与解码对照、外部原生 oracle、独立 Review。实际库与差异证据应保存在新候选报告中；若以后更换 codec 产生任何差异，必须明确分析，不能覆盖旧产物、调低阈值或复用旧 MZ 截图宣称新产物验收。
+diff --git a/package.json b/package.json
+index f4840b0..1608b22 100644
+--- a/package.json
++++ b/package.json
+@@ -20,7 +20,7 @@
+     "build:prototype": "tsc",
+     "build:contracts": "pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build",
+     "build": "node scripts/clean-build.mjs && pnpm build:prototype && pnpm build:contracts && pnpm --filter @tileset/api build && pnpm --filter @tileset/web build",
+-    "test": "pnpm build:contracts && vitest run",
++    "test": "pnpm build:prototype && pnpm build:contracts && vitest run",
+     "test:e2e": "playwright test",
+     "test:dev-privacy": "pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts",
+     "test:integration": "pnpm build:contracts && vitest run --config vitest.integration.config.ts",
+@@ -42,7 +42,7 @@
+     "verify:exports": "node scripts/verify-exports.mjs"
+   },
+   "dependencies": {
+-    "sharp": "0.34.5"
++    "sharp": "0.35.5"
+   },
+   "devDependencies": {
+     "@types/node": "22.19.0",
+diff --git a/pnpm-lock.yaml b/pnpm-lock.yaml
+index c86abf8..91801c7 100644
+--- a/pnpm-lock.yaml
++++ b/pnpm-lock.yaml
+@@ -12,8 +12,8 @@ importers:
+   .:
+     dependencies:
+       sharp:
+-        specifier: 0.34.5
+-        version: 0.34.5
++        specifier: 0.35.5
++        version: 0.35.5(@types/node@22.19.0)
+     devDependencies:
+       '@eslint/js':
+         specifier: 10.0.1
+@@ -629,136 +629,145 @@ packages:
+     resolution: {integrity: sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ==}
+     engines: {node: '>=18'}
+ 
+-  '@img/sharp-darwin-arm64@0.34.5':
+-    resolution: {integrity: sha512-imtQ3WMJXbMY4fxb/Ndp6HBTNVtWCUI0WdobyheGf5+ad6xX8VIDO8u2xE4qc/fr08CKG/7dDseFtn6M6g/r3w==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-darwin-arm64@0.35.5':
++    resolution: {integrity: sha512-QRUlFQ0WxvdWyqqG/WtI3iupfD5rBzmCHXSdPsY91sAtVtTo7Q4cb6zOccZ3gqEqkr0f1As1ehLqmEpDsRf+lg==}
++    engines: {node: '>=20.9.0'}
+     cpu: [arm64]
+     os: [darwin]
+ 
+-  '@img/sharp-darwin-x64@0.34.5':
+-    resolution: {integrity: sha512-YNEFAF/4KQ/PeW0N+r+aVVsoIY0/qxxikF2SWdp+NRkmMB7y9LBZAVqQ4yhGCm/H3H270OSykqmQMKLBhBJDEw==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-darwin-x64@0.35.5':
++    resolution: {integrity: sha512-+BR255RhDlpygUpOc/Jdt1nT6DQ3XG/ERo5wbcdOf5Q320dKtPCKPLR1LJs9VGXRaMa8l1uUa0tkCNOXiAxZUw==}
++    engines: {node: '>=20.9.0'}
+     cpu: [x64]
+     os: [darwin]
+ 
+-  '@img/sharp-libvips-darwin-arm64@1.2.4':
+-    resolution: {integrity: sha512-zqjjo7RatFfFoP0MkQ51jfuFZBnVE2pRiaydKJ1G/rHZvnsrHAOcQALIi9sA5co5xenQdTugCvtb1cuf78Vf4g==}
++  '@img/sharp-freebsd-wasm32@0.35.5':
++    resolution: {integrity: sha512-Y/z91nEZ4uIBX5X3nfTovjU9lHNKFYbL2lpHCLVNmXQK03VIZvXBBt0KxbPGp2SdGSF+2mQU4e+hQaWOt86iAw==}
++    engines: {node: '>=20.9.0'}
++    os: [freebsd]
++
++  '@img/sharp-libvips-darwin-arm64@1.3.4':
++    resolution: {integrity: sha512-5R89nBYiRdUlSWJxPhO+GVtaXzXSxKnRu/xqMn3KTA3L9EB9Oy/P+Nn2f2vlhPuUdy/Zusb2DarbyTpGCfEDuw==}
+     cpu: [arm64]
+     os: [darwin]
+ 
+-  '@img/sharp-libvips-darwin-x64@1.2.4':
+-    resolution: {integrity: sha512-1IOd5xfVhlGwX+zXv2N93k0yMONvUlANylbJw1eTah8K/Jtpi15KC+WSiaX/nBmbm2HxRM1gZ0nSdjSsrZbGKg==}
++  '@img/sharp-libvips-darwin-x64@1.3.4':
++    resolution: {integrity: sha512-iR2OKH80yi0U+dUplyh3/xdpFvps6YkCwsXenIJxqxR1v9o+xtKTGbS9H7cps+2Vxjc8B1j96p75NmTGjIhtpQ==}
+     cpu: [x64]
+     os: [darwin]
+ 
+-  '@img/sharp-libvips-linux-arm64@1.2.4':
+-    resolution: {integrity: sha512-excjX8DfsIcJ10x1Kzr4RcWe1edC9PquDRRPx3YVCvQv+U5p7Yin2s32ftzikXojb1PIFc/9Mt28/y+iRklkrw==}
++  '@img/sharp-libvips-linux-arm64@1.3.4':
++    resolution: {integrity: sha512-Y3dgX/6lE2QhQb+Gxy0WZxfg9MEm/JBjamZpS2IklP7xIQoKN4hzAm7KcMVGtaVDt3neE9OKBC7vAfonA/Lr1A==}
+     cpu: [arm64]
+     os: [linux]
+ 
+-  '@img/sharp-libvips-linux-arm@1.2.4':
+-    resolution: {integrity: sha512-bFI7xcKFELdiNCVov8e44Ia4u2byA+l3XtsAj+Q8tfCwO6BQ8iDojYdvoPMqsKDkuoOo+X6HZA0s0q11ANMQ8A==}
++  '@img/sharp-libvips-linux-arm@1.3.4':
++    resolution: {integrity: sha512-LmRtTsOHuvM2+wlO2Db37dx5MiZhB0FvSunciw48YjdOkZz9KAiRbm8ujeMOA1INqmei5NapFxYEK1D1ZSidmw==}
+     cpu: [arm]
+     os: [linux]
+ 
+-  '@img/sharp-libvips-linux-ppc64@1.2.4':
+-    resolution: {integrity: sha512-FMuvGijLDYG6lW+b/UvyilUWu5Ayu+3r2d1S8notiGCIyYU/76eig1UfMmkZ7vwgOrzKzlQbFSuQfgm7GYUPpA==}
++  '@img/sharp-libvips-linux-ppc64@1.3.4':
++    resolution: {integrity: sha512-Le6boB8Tai0Nis+gIxIpKx68UDVVIqdR8Tin5Yf1z2LJJQLDJvCDRqRu+jC2qCoD+eIomonmOwB4smBRxfVpYQ==}
+     cpu: [ppc64]
+     os: [linux]
+ 
+-  '@img/sharp-libvips-linux-riscv64@1.2.4':
+-    resolution: {integrity: sha512-oVDbcR4zUC0ce82teubSm+x6ETixtKZBh/qbREIOcI3cULzDyb18Sr/Wcyx7NRQeQzOiHTNbZFF1UwPS2scyGA==}
++  '@img/sharp-libvips-linux-riscv64@1.3.4':
++    resolution: {integrity: sha512-aHkkIEHPRdQEegJN20MLmGtxYD9R2wQr3Cwpddnu5+YKMt6Uzax7S9h5gpZTo8wyrGuZSlfQ63OevL5mTyOC7Q==}
+     cpu: [riscv64]
+     os: [linux]
+ 
+-  '@img/sharp-libvips-linux-s390x@1.2.4':
+-    resolution: {integrity: sha512-qmp9VrzgPgMoGZyPvrQHqk02uyjA0/QrTO26Tqk6l4ZV0MPWIW6LTkqOIov+J1yEu7MbFQaDpwdwJKhbJvuRxQ==}
++  '@img/sharp-libvips-linux-s390x@1.3.4':
++    resolution: {integrity: sha512-ra/mB6MikESDUO7Yg+Mi95bFBb9GsObURuhnOv3OqknjGe9sZrG8tCe9q0xSIGrtLgvgw0gKnFWcK4blSgQOuQ==}
+     cpu: [s390x]
+     os: [linux]
+ 
+-  '@img/sharp-libvips-linux-x64@1.2.4':
+-    resolution: {integrity: sha512-tJxiiLsmHc9Ax1bz3oaOYBURTXGIRDODBqhveVHonrHJ9/+k89qbLl0bcJns+e4t4rvaNBxaEZsFtSfAdquPrw==}
++  '@img/sharp-libvips-linux-x64@1.3.4':
++    resolution: {integrity: sha512-GJ//SSXbnwSDes02umB3nDJLFcQzw8a18V8fyhqr6tV515tOEMdImjjxj1AoafMRz56F3PHgftnj1QEKSU1zkw==}
+     cpu: [x64]
+     os: [linux]
+ 
+-  '@img/sharp-libvips-linuxmusl-arm64@1.2.4':
+-    resolution: {integrity: sha512-FVQHuwx1IIuNow9QAbYUzJ+En8KcVm9Lk5+uGUQJHaZmMECZmOlix9HnH7n1TRkXMS0pGxIJokIVB9SuqZGGXw==}
++  '@img/sharp-libvips-linuxmusl-arm64@1.3.4':
++    resolution: {integrity: sha512-hvulFwtjUcagsis6BBxHwGFwWoNZjgYmULGVrZcyfNbjA8hKILbRxGg15/7w5HDyXHXUos/j6baAWqnCyQ2DWA==}
+     cpu: [arm64]
+     os: [linux]
+ 
+-  '@img/sharp-libvips-linuxmusl-x64@1.2.4':
+-    resolution: {integrity: sha512-+LpyBk7L44ZIXwz/VYfglaX/okxezESc6UxDSoyo2Ks6Jxc4Y7sGjpgU9s4PMgqgjj1gZCylTieNamqA1MF7Dg==}
++  '@img/sharp-libvips-linuxmusl-x64@1.3.4':
++    resolution: {integrity: sha512-6zXKeE/p39I1AmA3cJG35eyBGNqNddLnUXjhwBnsGjFPWqf5VKkDBEqaEkPDoTEtkxwi2vv8Tcr2mDyP4So7Fg==}
+     cpu: [x64]
+     os: [linux]
+ 
+-  '@img/sharp-linux-arm64@0.34.5':
+-    resolution: {integrity: sha512-bKQzaJRY/bkPOXyKx5EVup7qkaojECG6NLYswgktOZjaXecSAeCWiZwwiFf3/Y+O1HrauiE3FVsGxFg8c24rZg==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-linux-arm64@0.35.5':
++    resolution: {integrity: sha512-LYVx5JTsOM2CBzmxreh+nl64/3H6Xb09iSLknqH47z2T2DFFxDeFLP5y4dJwe6H7uGQlHPyEEtIqyo3DYsRwdQ==}
++    engines: {node: '>=20.9.0'}
+     cpu: [arm64]
+     os: [linux]
+ 
+-  '@img/sharp-linux-arm@0.34.5':
+-    resolution: {integrity: sha512-9dLqsvwtg1uuXBGZKsxem9595+ujv0sJ6Vi8wcTANSFpwV/GONat5eCkzQo/1O6zRIkh0m/8+5BjrRr7jDUSZw==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-linux-arm@0.35.5':
++    resolution: {integrity: sha512-LEaXK2WdXVK5ykcw0buWyPMsmLLL2vpHLD6yrNSW+JGEL3BZPA4tpKN6iaMc4AxTTAoaX/sU1rOL51lcIz48ZQ==}
++    engines: {node: '>=20.9.0'}
+     cpu: [arm]
+     os: [linux]
+ 
+-  '@img/sharp-linux-ppc64@0.34.5':
+-    resolution: {integrity: sha512-7zznwNaqW6YtsfrGGDA6BRkISKAAE1Jo0QdpNYXNMHu2+0dTrPflTLNkpc8l7MUP5M16ZJcUvysVWWrMefZquA==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-linux-ppc64@0.35.5':
++    resolution: {integrity: sha512-QVxAAq8evVRI9ia2vqgwrmWucn5Dfv+JdWzj75pD8omHLPSP7f8p20O8jxzjCcuCEQEOtYOZUmX1hkiZ0kdevA==}
++    engines: {node: '>=20.9.0'}
+     cpu: [ppc64]
+     os: [linux]
+ 
+-  '@img/sharp-linux-riscv64@0.34.5':
+-    resolution: {integrity: sha512-51gJuLPTKa7piYPaVs8GmByo7/U7/7TZOq+cnXJIHZKavIRHAP77e3N2HEl3dgiqdD/w0yUfiJnII77PuDDFdw==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-linux-riscv64@0.35.5':
++    resolution: {integrity: sha512-LtdreXguaavKODPIfzJ4kffx7UNt1omwtK0rch4EBbbSTXPnxWmYSayXdLJw0fJzQ97kHt1gL/yh4tvU+nCyRQ==}
++    engines: {node: '>=20.9.0'}
+     cpu: [riscv64]
+     os: [linux]
+ 
+-  '@img/sharp-linux-s390x@0.34.5':
+-    resolution: {integrity: sha512-nQtCk0PdKfho3eC5MrbQoigJ2gd1CgddUMkabUj+rBevs8tZ2cULOx46E7oyX+04WGfABgIwmMC0VqieTiR4jg==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-linux-s390x@0.35.5':
++    resolution: {integrity: sha512-UZasTOFiYzotTsGOCu42BfUzP6Tu6Do/947iRm1RsLKvlllxwGcn4RN27LibGWceix4Y+Pmw3jsnTcCQIgWjqA==}
++    engines: {node: '>=20.9.0'}
+     cpu: [s390x]
+     os: [linux]
+ 
+-  '@img/sharp-linux-x64@0.34.5':
+-    resolution: {integrity: sha512-MEzd8HPKxVxVenwAa+JRPwEC7QFjoPWuS5NZnBt6B3pu7EG2Ge0id1oLHZpPJdn3OQK+BQDiw9zStiHBTJQQQQ==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-linux-x64@0.35.5':
++    resolution: {integrity: sha512-SxFtLTeJInhAA9Q836kux2vZNeOBQEx658qvbboZScr0wIARym3IcGmW7KpVD5sbVg0Ojy+udFQdayYIZyoNog==}
++    engines: {node: '>=20.9.0'}
+     cpu: [x64]
+     os: [linux]
+ 
+-  '@img/sharp-linuxmusl-arm64@0.34.5':
+-    resolution: {integrity: sha512-fprJR6GtRsMt6Kyfq44IsChVZeGN97gTD331weR1ex1c1rypDEABN6Tm2xa1wE6lYb5DdEnk03NZPqA7Id21yg==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-linuxmusl-arm64@0.35.5':
++    resolution: {integrity: sha512-9HbMclmI1zlNkFRs3z9/eBtDjfD0sGlrX1z6b1qwmiFY5ElDLh4BC0LPBdVp7z1DXFiKlIcznf+ZlsuZzLxQqg==}
++    engines: {node: '>=20.9.0'}
+     cpu: [arm64]
+     os: [linux]
+ 
+-  '@img/sharp-linuxmusl-x64@0.34.5':
+-    resolution: {integrity: sha512-Jg8wNT1MUzIvhBFxViqrEhWDGzqymo3sV7z7ZsaWbZNDLXRJZoRGrjulp60YYtV4wfY8VIKcWidjojlLcWrd8Q==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-linuxmusl-x64@0.35.5':
++    resolution: {integrity: sha512-4KOphqB035HrVdqLZfCgMzzERrQkkzOwRhl4OAkRO1YCldbaFjySXMaK534Mo0V+LndnlJk+sbUyLeU0ULyD1A==}
++    engines: {node: '>=20.9.0'}
+     cpu: [x64]
+     os: [linux]
+ 
+-  '@img/sharp-wasm32@0.34.5':
+-    resolution: {integrity: sha512-OdWTEiVkY2PHwqkbBI8frFxQQFekHaSSkUIJkwzclWZe64O1X4UlUjqqqLaPbUpMOQk6FBu/HtlGXNblIs0huw==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-wasm32@0.35.5':
++    resolution: {integrity: sha512-Ptsga1su4tQx+LLF1ECS9U6nz5kmrXKo6XVbtR48Ke3ZRxxgaWBu7IDtEe1quo8hiupwm6WFqxVlXaSf7IINGQ==}
++    engines: {node: '>=20.9.0'}
++
++  '@img/sharp-webcontainers-wasm32@0.35.5':
++    resolution: {integrity: sha512-hfhF/FmoQyTUkA0bIKFOtw536BQSeBMe6BF6QyWlrPxT754+TFLaZ7sKKTfvvM0yJgKgaYTwnFCIZ/GuDw5SUA==}
++    engines: {node: '>=20.9.0'}
+     cpu: [wasm32]
+ 
+-  '@img/sharp-win32-arm64@0.34.5':
+-    resolution: {integrity: sha512-WQ3AgWCWYSb2yt+IG8mnC6Jdk9Whs7O0gxphblsLvdhSpSTtmu69ZG1Gkb6NuvxsNACwiPV6cNSZNzt0KPsw7g==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-win32-arm64@0.35.5':
++    resolution: {integrity: sha512-X4t7g+7ZA5DKblCBEXGjUqqemj4vczING/5viFwAL8h4N3qYeyjwdCvRLHi4EdOUI+2Z7UFlp1VM+p/AuEtm6Q==}
++    engines: {node: '>=20.9.0'}
+     cpu: [arm64]
+     os: [win32]
+ 
+-  '@img/sharp-win32-ia32@0.34.5':
+-    resolution: {integrity: sha512-FV9m/7NmeCmSHDD5j4+4pNI8Cp3aW+JvLoXcTUo0IqyjSfAZJ8dIUmijx1qaJsIiU+Hosw6xM5KijAWRJCSgNg==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-win32-ia32@0.35.5':
++    resolution: {integrity: sha512-5Zm82LoBc43nhwNybZlG7Y1KO//Zhsn306fQl29ZOuStHLGTo3BWL83q3cznX0poxSAMuYL1On/BHBxkBeKr6A==}
++    engines: {node: ^20.9.0}
+     cpu: [ia32]
+     os: [win32]
+ 
+-  '@img/sharp-win32-x64@0.34.5':
+-    resolution: {integrity: sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  '@img/sharp-win32-x64@0.35.5':
++    resolution: {integrity: sha512-x76eH0vEiHlcMQu8Y8IenntaACtddpT6W0wmXtWrnKcnKI7ME5DdgqhAD6SEWOEl1v2zDvkZDhFA9KnURwpfqg==}
++    engines: {node: '>=20.9.0'}
+     cpu: [x64]
+     os: [win32]
+ 
+@@ -1966,9 +1975,14 @@ packages:
+   setprototypeof@1.2.0:
+     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
+ 
+-  sharp@0.34.5:
+-    resolution: {integrity: sha512-Ou9I5Ft9WNcCbXrU9cMgPBcCK8LiwLqcbywW3t4oDV37n1pzpuNLsYiAV8eODnjbtQlSDwZ2cUEeQz4E54Hltg==}
+-    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
++  sharp@0.35.5:
++    resolution: {integrity: sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g==}
++    engines: {node: '>=20.9.0'}
++    peerDependencies:
++      '@types/node': '*'
++    peerDependenciesMeta:
++      '@types/node':
++        optional: true
+ 
+   shebang-command@2.0.0:
+     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}
+@@ -2571,98 +2585,108 @@ snapshots:
+ 
+   '@img/colour@1.1.0': {}
+ 
+-  '@img/sharp-darwin-arm64@0.34.5':
++  '@img/sharp-darwin-arm64@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-darwin-arm64': 1.2.4
++      '@img/sharp-libvips-darwin-arm64': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-darwin-x64@0.34.5':
++  '@img/sharp-darwin-x64@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-darwin-x64': 1.2.4
++      '@img/sharp-libvips-darwin-x64': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-libvips-darwin-arm64@1.2.4':
++  '@img/sharp-freebsd-wasm32@0.35.5':
++    dependencies:
++      '@img/sharp-wasm32': 0.35.5
++    optional: true
++
++  '@img/sharp-libvips-darwin-arm64@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-darwin-x64@1.2.4':
++  '@img/sharp-libvips-darwin-x64@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-linux-arm64@1.2.4':
++  '@img/sharp-libvips-linux-arm64@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-linux-arm@1.2.4':
++  '@img/sharp-libvips-linux-arm@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-linux-ppc64@1.2.4':
++  '@img/sharp-libvips-linux-ppc64@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-linux-riscv64@1.2.4':
++  '@img/sharp-libvips-linux-riscv64@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-linux-s390x@1.2.4':
++  '@img/sharp-libvips-linux-s390x@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-linux-x64@1.2.4':
++  '@img/sharp-libvips-linux-x64@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-linuxmusl-arm64@1.2.4':
++  '@img/sharp-libvips-linuxmusl-arm64@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-libvips-linuxmusl-x64@1.2.4':
++  '@img/sharp-libvips-linuxmusl-x64@1.3.4':
+     optional: true
+ 
+-  '@img/sharp-linux-arm64@0.34.5':
++  '@img/sharp-linux-arm64@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-linux-arm64': 1.2.4
++      '@img/sharp-libvips-linux-arm64': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-linux-arm@0.34.5':
++  '@img/sharp-linux-arm@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-linux-arm': 1.2.4
++      '@img/sharp-libvips-linux-arm': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-linux-ppc64@0.34.5':
++  '@img/sharp-linux-ppc64@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-linux-ppc64': 1.2.4
++      '@img/sharp-libvips-linux-ppc64': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-linux-riscv64@0.34.5':
++  '@img/sharp-linux-riscv64@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-linux-riscv64': 1.2.4
++      '@img/sharp-libvips-linux-riscv64': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-linux-s390x@0.34.5':
++  '@img/sharp-linux-s390x@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-linux-s390x': 1.2.4
++      '@img/sharp-libvips-linux-s390x': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-linux-x64@0.34.5':
++  '@img/sharp-linux-x64@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-linux-x64': 1.2.4
++      '@img/sharp-libvips-linux-x64': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-linuxmusl-arm64@0.34.5':
++  '@img/sharp-linuxmusl-arm64@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-linuxmusl-arm64': 1.2.4
++      '@img/sharp-libvips-linuxmusl-arm64': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-linuxmusl-x64@0.34.5':
++  '@img/sharp-linuxmusl-x64@0.35.5':
+     optionalDependencies:
+-      '@img/sharp-libvips-linuxmusl-x64': 1.2.4
++      '@img/sharp-libvips-linuxmusl-x64': 1.3.4
+     optional: true
+ 
+-  '@img/sharp-wasm32@0.34.5':
++  '@img/sharp-wasm32@0.35.5':
+     dependencies:
+       '@emnapi/runtime': 1.11.3
+     optional: true
+ 
+-  '@img/sharp-win32-arm64@0.34.5':
++  '@img/sharp-webcontainers-wasm32@0.35.5':
++    dependencies:
++      '@img/sharp-wasm32': 0.35.5
+     optional: true
+ 
+-  '@img/sharp-win32-ia32@0.34.5':
++  '@img/sharp-win32-arm64@0.35.5':
+     optional: true
+ 
+-  '@img/sharp-win32-x64@0.34.5':
++  '@img/sharp-win32-ia32@0.35.5':
++    optional: true
++
++  '@img/sharp-win32-x64@0.35.5':
+     optional: true
+ 
+   '@jridgewell/gen-mapping@0.3.13':
+@@ -3976,36 +4000,38 @@ snapshots:
+ 
+   setprototypeof@1.2.0: {}
+ 
+-  sharp@0.34.5:
++  sharp@0.35.5(@types/node@22.19.0):
+     dependencies:
+       '@img/colour': 1.1.0
+       detect-libc: 2.1.2
+       semver: 7.8.5
+     optionalDependencies:
+-      '@img/sharp-darwin-arm64': 0.34.5
+-      '@img/sharp-darwin-x64': 0.34.5
+-      '@img/sharp-libvips-darwin-arm64': 1.2.4
+-      '@img/sharp-libvips-darwin-x64': 1.2.4
+-      '@img/sharp-libvips-linux-arm': 1.2.4
+-      '@img/sharp-libvips-linux-arm64': 1.2.4
+-      '@img/sharp-libvips-linux-ppc64': 1.2.4
+-      '@img/sharp-libvips-linux-riscv64': 1.2.4
+-      '@img/sharp-libvips-linux-s390x': 1.2.4
+-      '@img/sharp-libvips-linux-x64': 1.2.4
+-      '@img/sharp-libvips-linuxmusl-arm64': 1.2.4
+-      '@img/sharp-libvips-linuxmusl-x64': 1.2.4
+-      '@img/sharp-linux-arm': 0.34.5
+-      '@img/sharp-linux-arm64': 0.34.5
+-      '@img/sharp-linux-ppc64': 0.34.5
+-      '@img/sharp-linux-riscv64': 0.34.5
+-      '@img/sharp-linux-s390x': 0.34.5
+-      '@img/sharp-linux-x64': 0.34.5
+-      '@img/sharp-linuxmusl-arm64': 0.34.5
+-      '@img/sharp-linuxmusl-x64': 0.34.5
+-      '@img/sharp-wasm32': 0.34.5
+-      '@img/sharp-win32-arm64': 0.34.5
+-      '@img/sharp-win32-ia32': 0.34.5
+-      '@img/sharp-win32-x64': 0.34.5
++      '@img/sharp-darwin-arm64': 0.35.5
++      '@img/sharp-darwin-x64': 0.35.5
++      '@img/sharp-freebsd-wasm32': 0.35.5
++      '@img/sharp-libvips-darwin-arm64': 1.3.4
++      '@img/sharp-libvips-darwin-x64': 1.3.4
++      '@img/sharp-libvips-linux-arm': 1.3.4
++      '@img/sharp-libvips-linux-arm64': 1.3.4
++      '@img/sharp-libvips-linux-ppc64': 1.3.4
++      '@img/sharp-libvips-linux-riscv64': 1.3.4
++      '@img/sharp-libvips-linux-s390x': 1.3.4
++      '@img/sharp-libvips-linux-x64': 1.3.4
++      '@img/sharp-libvips-linuxmusl-arm64': 1.3.4
++      '@img/sharp-libvips-linuxmusl-x64': 1.3.4
++      '@img/sharp-linux-arm': 0.35.5
++      '@img/sharp-linux-arm64': 0.35.5
++      '@img/sharp-linux-ppc64': 0.35.5
++      '@img/sharp-linux-riscv64': 0.35.5
++      '@img/sharp-linux-s390x': 0.35.5
++      '@img/sharp-linux-x64': 0.35.5
++      '@img/sharp-linuxmusl-arm64': 0.35.5
++      '@img/sharp-linuxmusl-x64': 0.35.5
++      '@img/sharp-webcontainers-wasm32': 0.35.5
++      '@img/sharp-win32-arm64': 0.35.5
++      '@img/sharp-win32-ia32': 0.35.5
++      '@img/sharp-win32-x64': 0.35.5
++      '@types/node': 22.19.0
+ 
+   shebang-command@2.0.0:
+     dependencies:
+diff --git a/tests/codec-runtime.test.ts b/tests/codec-runtime.test.ts
+new file mode 100644
+index 0000000..06ac177
+--- /dev/null
++++ b/tests/codec-runtime.test.ts
+@@ -0,0 +1,109 @@
++import { beforeAll, describe, expect, it } from 'vitest';
++import { execFileSync } from 'node:child_process';
++import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
++import { tmpdir } from 'node:os';
++import { join } from 'node:path';
++import sharp from 'sharp';
++import { decodePng, encodePng } from '../src/pixels.js';
++import { compileFixedPrototype } from '../src/compiler.js';
++import { preflightPrototypeBuild, REQUIRED_ATLASES } from '../scripts/prototype-input.js';
++import { sha256 } from '../scripts/io.js';
++import { chunk, pngSample } from './png-samples.js';
++
++// Ordinary, valid little-endian TIFF EXIF: a single Orientation=1 SHORT tag.
++// No malformed offsets, exploit or crash payload is used.
++const harmlessExif = Buffer.from('49492a0008000000010012010300010000000100000000000000', 'hex');
++const exifChunk = chunk('eXIf', harmlessExif);
++const atlases: Record<string, Buffer> = {};
++beforeAll(async () => {
++  for (const family of ['diagnostic', 'art']) {
++    const sources = await Promise.all(
++      [`${family}-ground`, ...[0, 1, 2].map((frame) => `${family}-water-${frame}`)].map(
++        async (name) => decodePng(await readFile(`tests/fixtures/${name}.png`)),
++      ),
++    );
++    const { a1, a2 } = compileFixedPrototype(sources[0]!, sources.slice(1));
++    atlases[`${family}_A1.png`] = await encodePng(a1);
++    atlases[`${family}_A2.png`] = await encodePng(a2);
++  }
++});
++
++describe('STEP02-R3-001: patched native codec at public PNG ingress', () => {
++  it('loads the pinned Sharp and a vendor-patched libvips rather than merely checking package metadata', () => {
++    expect(sharp.versions.sharp).toBe('0.35.5');
++    const [major, minor, patch] = sharp.versions.vips!.split('.').map(Number);
++    expect(major! > 8 || (major === 8 && (minor! > 18 || (minor === 18 && patch! >= 2)))).toBe(
++      true,
++    );
++  });
++  it('preserves source pixels while safely decoding valid RGBA8 PNG with harmless EXIF', async () => {
++    const png = pngSample([exifChunk]);
++    const metadata = await sharp(png).metadata();
++    expect(metadata.exif).toBeDefined();
++    expect(metadata.orientation).toBe(1);
++    const decoded = await decodePng(png);
++    expect([decoded.width, decoded.height]).toEqual([1, 1]);
++    expect([...decoded.data]).toEqual([1, 2, 3, 255]);
++  });
++  it('exercises the built public package export and actual native runtime in production Node', () => {
++    const png = pngSample([exifChunk]).toString('base64');
++    const program = `import {decodePng} from '@tileset/prototype';
++import sharp from 'sharp';
++const bytes=Buffer.from(${JSON.stringify(png)},'base64');
++const metadata=await sharp(bytes).metadata();
++const decoded=await decodePng(bytes);
++console.log(JSON.stringify({sharp:sharp.versions.sharp,vips:sharp.versions.vips,hasExif:Boolean(metadata.exif),width:decoded.width,height:decoded.height,pixels:[...decoded.data]}));`;
++    const result = JSON.parse(
++      execFileSync(process.execPath, ['--input-type=module', '-e', program], { encoding: 'utf8' }),
++    ) as {
++      sharp: string;
++      vips: string;
++      hasExif: boolean;
++      width: number;
++      height: number;
++      pixels: number[];
++    };
++    expect(result.sharp).toBe('0.35.5');
++    expect(result.vips).toBe(sharp.versions.vips);
++    expect(result.hasExif).toBe(true);
++    expect([result.width, result.height, ...result.pixels]).toEqual([1, 1, 1, 2, 3, 255]);
++  });
++  it('validates a self-consistent supplied build containing harmless metadata using the patched decoder', async () => {
++    const directory = await mkdtemp(join(tmpdir(), 'tileset-benign-exif-'));
++    try {
++      const manifest = JSON.parse(
++        await readFile(
++          'docs/evidence/step-01/step01-ffc5300c7fb2cb94a48a/manifest.snapshot.json',
++          'utf8',
++        ),
++      ) as Record<string, unknown> & { files: Record<string, string>; buildId: string };
++      const original = atlases['diagnostic_A1.png']!;
++      const withExif = Buffer.concat([original.subarray(0, 33), exifChunk, original.subarray(33)]);
++      for (const name of REQUIRED_ATLASES) {
++        const bytes = name === 'diagnostic_A1.png' ? withExif : atlases[name]!;
++        manifest.files[name] = sha256(bytes);
++        await writeFile(join(directory, name), bytes, { flag: 'wx' });
++      }
++      const {
++        commit,
++        profile,
++        pixelContract,
++        compiler,
++        sources,
++        lockSha256,
++        node,
++        encoder,
++        files,
++      } = manifest;
++      manifest.buildId = `step01-${sha256(JSON.stringify({ commit, profile, pixelContract, compiler, sources, lockSha256, node, encoder, files })).slice(0, 20)}`;
++      await writeFile(join(directory, 'manifest.json'), JSON.stringify(manifest), { flag: 'wx' });
++      const accepted = await preflightPrototypeBuild(directory);
++      expect(accepted.manifest.buildId).toBe(manifest.buildId);
++      expect(accepted.atlases['diagnostic_A1.png']).toEqual(withExif);
++      expect((await sharp(accepted.atlases['diagnostic_A1.png']).metadata()).exif).toBeDefined();
++      expect((await decodePng(withExif)).data).toEqual((await decodePng(original)).data);
++    } finally {
++      await rm(directory, { recursive: true, force: true });
++    }
++  });
++});
