@@ -1,0 +1,11 @@
+file://<review-root>/state-probe.mjs:19
+const a=fragments.filter(f=>f.source.material.id.startsWith('art-'));
+                                              ^
+
+TypeError: Cannot read properties of undefined (reading 'id')
+    at file://<review-root>/state-probe.mjs:19:47
+    at Array.filter (<anonymous>)
+    at file://<review-root>/state-probe.mjs:19:19
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Node.js v22.21.1

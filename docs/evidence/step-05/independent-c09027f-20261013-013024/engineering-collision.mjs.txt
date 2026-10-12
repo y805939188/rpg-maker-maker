@@ -1,0 +1,9 @@
+import fs from 'node:fs/promises';import sync from 'node:fs';import {spawn} from 'node:child_process';import assert from 'node:assert/strict';
+const base='<review-root>',root=base+'/checkout';
+const result=JSON.parse(await fs.readFile(base+'/evidence/engineering.log','utf8'));
+const child=spawn(process.execPath,['scripts/build-engineering.mjs','step05'],{cwd:root,stdio:['ignore','pipe','pipe']});
+const stage=root+'/artifacts/.stage-'+result.buildId+'-'+child.pid;sync.mkdirSync(stage);sync.writeFileSync(stage+'/unrelated-sentinel.txt','pre-existing engineering staging content');
+let output='';child.stdout.on('data',b=>output+=b);child.stderr.on('data',b=>output+=b);
+const code=await new Promise(r=>child.on('exit',r));let preserved;try{await fs.lstat(stage+'/unrelated-sentinel.txt');preserved=true;}catch{preserved=false;}
+const record={entry:'engineering',exitCode:code,stageCreatedByReviewerBeforeChildMkdir:true,unownedStagePreserved:preserved,targetManifestSha256:result.manifestSha256,inheritedCleanupPattern:true};
+await fs.writeFile(base+'/evidence/engineering-collision.json',JSON.stringify(record,null,2)+'\n');await fs.writeFile(base+'/evidence/engineering-collision-child.log',output);console.log(JSON.stringify(record,null,2));assert.equal(code,1);

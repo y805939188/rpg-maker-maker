@@ -1,0 +1,420 @@
+[
+  {
+    "name": "install-unpinned",
+    "argv": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile",
+      "--store-dir",
+      "<review-root>/pnpm-store"
+    ],
+    "exitCode": 1,
+    "log": "install.log",
+    "startUtc": "NOT_RECORDED",
+    "classification": "ENVIRONMENT_TOOLCHAIN_REJECTION"
+  },
+  {
+    "name": "install-pinned",
+    "argv": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile",
+      "--store-dir",
+      "<review-root>/pnpm-store"
+    ],
+    "exitCode": 0,
+    "log": "install-pinned.log",
+    "startUtc": "NOT_RECORDED",
+    "pathOverride": "Node22.21.1 bin first"
+  },
+  {
+    "name": "db-generate",
+    "argv": [
+      "pnpm",
+      "db:generate"
+    ],
+    "exitCode": 0,
+    "log": "db-generate.log",
+    "startUtc": "NOT_RECORDED",
+    "scope": "Client generation only; no database"
+  },
+  {
+    "name": "check",
+    "argv": [
+      "pnpm",
+      "check"
+    ],
+    "exitCode": 0,
+    "log": "check.log",
+    "startUtc": "NOT_RECORDED",
+    "pathOverride": "Node22.21.1 bin first"
+  },
+  {
+    "name": "engineering",
+    "argv": [
+      "node",
+      "scripts/build-engineering.mjs",
+      "step05"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:33:46.784199+00:00",
+    "seconds": 0.156,
+    "exitCode": 0,
+    "log": "engineering.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "pack-tests",
+    "argv": [
+      "pnpm",
+      "test:step05"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:33:46.784199+00:00",
+    "seconds": 16.516,
+    "exitCode": 0,
+    "log": "pack-tests.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "suite",
+    "argv": [
+      "node",
+      "dist/scripts/build-pack-sample.js"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:33:46.784199+00:00",
+    "seconds": 35.363,
+    "exitCode": 0,
+    "log": "suite.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "legacy-78",
+    "argv": [
+      "node",
+      "--input-type=module",
+      "--eval",
+      "import fs from 'node:fs'; const s=fs.readFileSync('docs/evidence/step-04/coding-44a5239/scalars.mjs.txt','utf8'); await import('data:text/javascript;base64,'+Buffer.from(s).toString('base64'));"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:35:48.563843+00:00",
+    "seconds": 0.034,
+    "exitCode": 1,
+    "log": "legacy-78.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "legacy-78-final",
+    "argv": [
+      "node",
+      ".local/scalars.mjs"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:36:20.229340+00:00",
+    "seconds": 0.053,
+    "exitCode": 0,
+    "log": "legacy-78-final.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "material-regression",
+    "argv": [
+      "node",
+      "scripts/build-material-sample.mjs"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:36:20.229295+00:00",
+    "seconds": 1.706,
+    "exitCode": 0,
+    "log": "material-regression.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "state-probe",
+    "argv": [
+      "node",
+      "<review-root>/state-probe.mjs"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:36:20.229199+00:00",
+    "seconds": 2.044,
+    "exitCode": 1,
+    "log": "state-probe.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "publish-probe",
+    "argv": [
+      "node",
+      "<review-root>/publish-probe.mjs"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:36:20.229214+00:00",
+    "seconds": 5.92,
+    "exitCode": 0,
+    "log": "publish-probe.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "prototype-regression",
+    "argv": [
+      "node",
+      "dist/scripts/build-prototype.js"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:37:06.650089+00:00",
+    "seconds": 0.187,
+    "exitCode": 0,
+    "log": "prototype-regression.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "png-probe",
+    "argv": [
+      "python3",
+      "<review-root>/png-probe.py"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:37:05.498521+00:00",
+    "seconds": 10.396,
+    "exitCode": 0,
+    "log": "png-probe.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "prepare-positive",
+    "argv": [
+      "node",
+      "dist/scripts/prepare-step05.js",
+      "<review-root>/source-project",
+      "artifacts/step05-suite-c09027f921e7/art-old-map-v1",
+      "artifacts/step05-suite-c09027f921e7/art-old-map-v2",
+      "artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v1",
+      "artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v2",
+      "<review-root>/prepared-project"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:37:52.143768+00:00",
+    "seconds": 5.757,
+    "exitCode": 0,
+    "log": "prepare-positive.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "oracle-incremental-v1",
+    "argv": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      "<review-root>/source-project/js/rmmz_core.js",
+      "artifacts/step05-suite-c09027f921e7/incremental-v1"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:11.393570+00:00",
+    "seconds": 2.457,
+    "exitCode": 0,
+    "log": "oracle-incremental-v1.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "oracle-incremental-v2",
+    "argv": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      "<review-root>/source-project/js/rmmz_core.js",
+      "artifacts/step05-suite-c09027f921e7/incremental-v2",
+      "<review-root>/gallery/incremental-v2"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:13.899420+00:00",
+    "seconds": 3.387,
+    "exitCode": 0,
+    "log": "oracle-incremental-v2.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "state-probe-final",
+    "argv": [
+      "node",
+      "<review-root>/state-probe.mjs"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:10.132559+00:00",
+    "seconds": 8.302,
+    "exitCode": 0,
+    "log": "state-probe-final.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "oracle-incremental-v3",
+    "argv": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      "<review-root>/source-project/js/rmmz_core.js",
+      "artifacts/step05-suite-c09027f921e7/incremental-v3"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:17.335276+00:00",
+    "seconds": 2.906,
+    "exitCode": 0,
+    "log": "oracle-incremental-v3.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "oracle-incremental-v4",
+    "argv": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      "<review-root>/source-project/js/rmmz_core.js",
+      "artifacts/step05-suite-c09027f921e7/incremental-v4"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:20.288830+00:00",
+    "seconds": 2.943,
+    "exitCode": 0,
+    "log": "oracle-incremental-v4.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "oracle-art-old-map-v1",
+    "argv": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      "<review-root>/source-project/js/rmmz_core.js",
+      "artifacts/step05-suite-c09027f921e7/art-old-map-v1"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:23.281744+00:00",
+    "seconds": 2.333,
+    "exitCode": 0,
+    "log": "oracle-art-old-map-v1.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "oracle-art-old-map-v2",
+    "argv": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      "<review-root>/source-project/js/rmmz_core.js",
+      "artifacts/step05-suite-c09027f921e7/art-old-map-v2",
+      "<review-root>/gallery/art-old-map-v2"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:25.663559+00:00",
+    "seconds": 2.853,
+    "exitCode": 0,
+    "log": "oracle-art-old-map-v2.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "oracle-diagnostic-old-map-v1",
+    "argv": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      "<review-root>/source-project/js/rmmz_core.js",
+      "artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v1"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:28.566823+00:00",
+    "seconds": 2.417,
+    "exitCode": 0,
+    "log": "oracle-diagnostic-old-map-v1.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "oracle-diagnostic-old-map-v2",
+    "argv": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      "<review-root>/source-project/js/rmmz_core.js",
+      "artifacts/step05-suite-c09027f921e7/diagnostic-old-map-v2",
+      "<review-root>/gallery/diagnostic-old-map-v2"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:38:31.031880+00:00",
+    "seconds": 2.933,
+    "exitCode": 0,
+    "log": "oracle-diagnostic-old-map-v2.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "cli-replay",
+    "argv": [
+      "node",
+      "dist/scripts/export-pack.js",
+      "artifacts/step05-suite-c09027f921e7/incremental-v4.request.json",
+      "<review-root>/offline-export-v4"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:39:19.627308+00:00",
+    "seconds": 5.905,
+    "exitCode": 0,
+    "log": "cli-replay.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "boundary-probe",
+    "argv": [
+      "node",
+      "<review-root>/boundary-probe.mjs"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:40:49.045367+00:00",
+    "seconds": 5.442,
+    "exitCode": 0,
+    "log": "boundary-probe.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "duplicate-cli",
+    "argv": [
+      "node",
+      "dist/scripts/export-pack.js",
+      "artifacts/step05-suite-c09027f921e7/incremental-v4.request.json",
+      "<review-root>/offline-export-v4"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:41:04.927662+00:00",
+    "seconds": 3.99,
+    "exitCode": 1,
+    "log": "duplicate-cli.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  {
+    "name": "engineering-collision",
+    "argv": [
+      "node",
+      "<review-root>/engineering-collision.mjs"
+    ],
+    "cwd": "<review-root>/checkout",
+    "startUtc": "2026-10-12T17:42:06.640055+00:00",
+    "seconds": 0.169,
+    "exitCode": 0,
+    "log": "engineering-collision.log",
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  }
+]

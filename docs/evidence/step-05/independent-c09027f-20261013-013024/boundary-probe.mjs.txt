@@ -1,0 +1,28 @@
+import fs from 'node:fs/promises';import assert from 'node:assert/strict';import {pathToFileURL} from 'node:url';
+const base='<review-root>',root=base+'/checkout';
+const c=await import(pathToFileURL(root+'/packages/asset-core/dist/index.js'));
+const p=await import(pathToFileURL(root+'/packages/pack-assembly/dist/index.js'));
+const e=await import(pathToFileURL(root+'/dist/scripts/pack-export.js'));
+const {PROFILE}=await import(pathToFileURL(root+'/dist/src/profile.js'));
+const suite=root+'/artifacts/step05-suite-c09027f921e7';const first=await e.readPackExport(suite+'/incremental-v1');
+const second=await e.readPackExport(suite+'/incremental-v2');const copy=x=>JSON.parse(JSON.stringify(x));
+const rehash=x=>{const {contentHash,...body}=x;return {...x,contentHash:c.fingerprint(body)};};const results=[];
+function rejection(name,fn,code){let error;try{fn();}catch(x){error=x;}assert.ok(error,name);if(code)assert.equal(error.code,code);results.push({name,result:'PASS',code:error.code??error.name});}
+const request={packId:'incremental',version:1,operations:[]};
+rejection('fragment count 1025 early bounded',()=>p.planPack(PROFILE,request,[],Array(1025).fill(first.fragments[0])),'PACK_LIMIT');
+rejection('256 prior snapshots early bounded',()=>p.planPack(PROFILE,request,Array(256).fill(first.input.snapshot),first.fragments),'PACK_LIMIT');
+rejection('9 operations early bounded',()=>p.planPack(PROFILE,{...request,operations:Array(9).fill({operation:'retire',logicalId:'a-water'})},[],first.fragments),'PACK_LIMIT');
+const later=copy(second.input.snapshot);later.slots[1].state='RETIRED';later.slots[3].state='RETIRED';
+rejection('NEVER_USED cannot directly retire in subsequent JSON snapshot',()=>p.validatePack(PROFILE,rehash(later),first.input.history.concat(first.input.snapshot),first.fragments),'PACK_TRANSITION');
+const rootRetired=copy(first.input.snapshot);rootRetired.slots[0].state='RETIRED';rootRetired.slots[2].state='RETIRED';
+const directory=base+'/rehashed-root-retirement';await fs.cp(suite+'/incremental-v1',directory,{recursive:true,errorOnExist:true});
+const snapshot=rehash(rootRetired),plan=copy(first.input.plan);for(const placement of plan.placements)placement.state='RETIRED';plan.snapshotHash=snapshot.contentHash;
+const layout=rehash(plan);await fs.writeFile(directory+'/pack.json',e.jsonBytes(snapshot));await fs.writeFile(directory+'/layout.json',e.jsonBytes(layout));
+const manifest=copy(first.manifest);manifest.identity.pack.contentHash=snapshot.contentHash;manifest.identity.bindings=layout.placements;manifest.identity.layoutHash=layout.contentHash;
+for(const name of ['pack.json','layout.json']){const data=await fs.readFile(directory+'/'+name);manifest.identity.files[name]={bytes:data.length,sha256:c.hashBytes(data)};}
+manifest.buildId='step05-pack-'+manifest.identity.context.commit.slice(0,12)+'-'+c.fingerprint(manifest.identity).slice(0,16);
+await fs.writeFile(directory+'/manifest.json',e.jsonBytes(manifest));
+let error;try{await e.readPackExport(directory);}catch(x){error=x;}assert.equal(error?.code,'PACK_TRANSITION');results.push({name:'root retirement actual JSON reread after Pack/Layout/Manifest rehash',result:'PASS',code:error.code});
+const offline=base+'/offline-export-v4',canonical=suite+'/incremental-v4';for(const name of await fs.readdir(canonical))assert.deepEqual(await fs.readFile(offline+'/'+name),await fs.readFile(canonical+'/'+name));
+results.push({name:'clean-process CLI replay all eight bytes exact',result:'PASS'});
+const final={result:'PASS',checks:results.length,results};await fs.writeFile(base+'/evidence/boundary-probe.json',JSON.stringify(final,null,2)+'\n');console.log(JSON.stringify(final,null,2));

@@ -1,0 +1,35 @@
+{
+  "result": "PASS",
+  "checks": 6,
+  "results": [
+    {
+      "name": "fragment count 1025 early bounded",
+      "result": "PASS",
+      "code": "PACK_LIMIT"
+    },
+    {
+      "name": "256 prior snapshots early bounded",
+      "result": "PASS",
+      "code": "PACK_LIMIT"
+    },
+    {
+      "name": "9 operations early bounded",
+      "result": "PASS",
+      "code": "PACK_LIMIT"
+    },
+    {
+      "name": "NEVER_USED cannot directly retire in subsequent JSON snapshot",
+      "result": "PASS",
+      "code": "PACK_TRANSITION"
+    },
+    {
+      "name": "root retirement actual JSON reread after Pack/Layout/Manifest rehash",
+      "result": "PASS",
+      "code": "PACK_TRANSITION"
+    },
+    {
+      "name": "clean-process CLI replay all eight bytes exact",
+      "result": "PASS"
+    }
+  ]
+}

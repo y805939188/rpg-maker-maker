@@ -1,8 +1,8 @@
 # AI Tileset Studio — 当前开发基线
 
-步骤02工程基础与步骤03领域/像素处理及联合复审修复已发布。受审修复源码为 `aad1f72`，已完成main源码检查点为 `9fb02c9`；独立复审PASS、候选及该main CI成功。已发布 main 仍为步骤02–03基线。步骤04 Compiler 已在本地独立技术 Review PASS，随后用户阶段验收补齐。步骤05本地 Coding候选已实现稳定Pack/Atlas/标准导出，尚待本步独立Review、实机验收和用户批准；没有合并或推送，不宣称完整Studio/真实AI已实现。
+步骤02工程基础与步骤03领域/像素处理及联合复审修复已发布。受审修复源码为 `aad1f72`，已完成main源码检查点为 `9fb02c9`；独立复审PASS、候选及该main CI成功。已发布 main 仍为步骤02–03基线。步骤04 Compiler 已在本地独立技术 Review PASS，随后用户阶段验收补齐。步骤05本地候选 `c09027f` 已完成独立Review：稳定Pack/Atlas、成功导出内容和验收材料获得独立支持；总体 **REQUIRES_REVISION / CHANGES_REQUESTED**，存在1个阻断P2（未拥有暂存目录被失败清理）。本步MZ实机仍NOT_EXECUTED，须整改、独立复审、实机验收和用户批准；没有合并或推送，不宣称完整Studio/真实AI已实现。
 
-当前本地 Coding 交接：[步骤05报告](docs/reviews/step-05-coding.md)、[Pack契约](docs/engineering/STEP_05_BASELINE.md)、[两类MZ验收](docs/step-05/mz-acceptance.md)。步骤06未启动。
+当前本地交接：[步骤05独立审查](docs/reviews/step-05-independent-review.md)、[认可项与待整改状态](docs/engineering/STEP_05_BASELINE.md#独立审查检查点2026-10-13)、[冻结时Coding报告](docs/reviews/step-05-coding.md)、[两类MZ验收](docs/step-05/mz-acceptance.md)。步骤06未启动。
 
 已发布基线入口：[发布与仓库维护](docs/orchestration/pre-step-04-repository-maintenance.md)、[需求证据映射](docs/engineering/V1_REQUIREMENTS_EVIDENCE.md)、[最新独立复审](docs/reviews/steps-02-03-global-rereview-aad1f72.md)。正式范围仍以保留的[产品方案](docs/plans/01_PRODUCT_TECH_SPEC_V0.5.md)及[十步计划](docs/plans/02_V1_IMPLEMENTATION_PLAN.md)为准。
 

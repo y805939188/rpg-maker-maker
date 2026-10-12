@@ -1,0 +1,262 @@
+{
+  "result": "PASS",
+  "checks": 64,
+  "records": [
+    {
+      "name": "literal allocation A1 kind4 384,0 and A2 kind16 0,0",
+      "result": "PASS"
+    },
+    {
+      "name": "ASCII ordering independent of reverse input",
+      "result": "PASS"
+    },
+    {
+      "name": "operations are copied; later caller edits preserve snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "history arrays and nested caller metadata independently held",
+      "result": "PASS"
+    },
+    {
+      "name": "omission and no-op preserve bindings",
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate identical fragment entries preserve content identity",
+      "result": "PASS"
+    },
+    {
+      "name": "logical revision boolean",
+      "result": "PASS"
+    },
+    {
+      "name": "logical revision string",
+      "result": "PASS"
+    },
+    {
+      "name": "logical revision zero",
+      "result": "PASS"
+    },
+    {
+      "name": "logical revision fraction",
+      "result": "PASS"
+    },
+    {
+      "name": "logical revision null",
+      "result": "PASS"
+    },
+    {
+      "name": "logical revision unsafe",
+      "result": "PASS"
+    },
+    {
+      "name": "operation conflict/unknown/hole 12",
+      "result": "PASS"
+    },
+    {
+      "name": "operation conflict/unknown/hole 13",
+      "result": "PASS"
+    },
+    {
+      "name": "operation conflict/unknown/hole 14",
+      "result": "PASS"
+    },
+    {
+      "name": "operation conflict/unknown/hole 15",
+      "result": "PASS"
+    },
+    {
+      "name": "operation conflict/unknown/hole 16",
+      "result": "PASS"
+    },
+    {
+      "name": "unknown retire rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "missing fragment rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "plain JSON cannot impersonate compiled execution",
+      "result": "PASS"
+    },
+    {
+      "name": "same revision exact no-op legal",
+      "result": "PASS"
+    },
+    {
+      "name": "retired water still rendered with last content",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat retire is idempotent binding",
+      "result": "PASS"
+    },
+    {
+      "name": "retired cannot be put again",
+      "result": "PASS"
+    },
+    {
+      "name": "retired capacity stays occupied",
+      "result": "PASS"
+    },
+    {
+      "name": "root retirement validatePack",
+      "result": "PASS"
+    },
+    {
+      "name": "root retirement history planPack",
+      "result": "PASS"
+    },
+    {
+      "name": "root retirement validateLayout",
+      "result": "PASS"
+    },
+    {
+      "name": "root retirement renderAtlas",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot wrong previousHash",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot version gap",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot wrong packId",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot active clear",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot active replace identity",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot same revision changes pairing",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot duplicate logicalId",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot wrong slot kind",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot numeric state",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed snapshot string kind",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout boolean x",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout string x",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout fraction",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout reserved slot",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout overlap",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout wrong dimensions",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout wrong tileId",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout retired state mismatch",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout extra field",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout missing field",
+      "result": "PASS"
+    },
+    {
+      "name": "rehashed layout duplicate placement",
+      "result": "PASS"
+    },
+    {
+      "name": "sparse history",
+      "result": "PASS"
+    },
+    {
+      "name": "sparse placements",
+      "result": "PASS"
+    },
+    {
+      "name": "old water plus newly adopted grass rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "batch exact pair update legal, binding stable",
+      "result": "PASS"
+    },
+    {
+      "name": "retired-water exact dependency blocks solo grass update",
+      "result": "PASS"
+    },
+    {
+      "name": "old Pack remains valid when later exact fragments are available",
+      "result": "PASS"
+    },
+    {
+      "name": "pixel getter copies do not mutate history",
+      "result": "PASS"
+    },
+    {
+      "name": "archive invalid base64",
+      "result": "PASS"
+    },
+    {
+      "name": "archive noncanonical base64",
+      "result": "PASS"
+    },
+    {
+      "name": "archive wrong validationHash",
+      "result": "PASS"
+    },
+    {
+      "name": "archive unknown archived field",
+      "result": "PASS"
+    },
+    {
+      "name": "archive duplicate recipe",
+      "result": "PASS"
+    },
+    {
+      "name": "archive 129 archives",
+      "result": "PASS"
+    },
+    {
+      "name": "async export owns input before await",
+      "result": "PASS"
+    }
+  ]
+}

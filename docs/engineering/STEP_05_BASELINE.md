@@ -2,6 +2,24 @@
 
 2026-10-13 用户授权当前会话 Coding、自测、构建、文档、MZ 验收准备及本地提交。步骤 04 功能 `44a5239a979cd549e893df705df7704d043216be`、文档 `af5b8e1c61175ca5627b15df37405e248bf26b37`、独立技术 PASS 与随后补齐的用户阶段验收为真实开发基线。新启动授权覆盖此前停止文字；不继承 Merge/Push/Reviewer 调度，不启动步骤 06。完整绑定见本轮 Coding 报告及唯一 evidence 目录。
 
+## 独立审查检查点（2026-10-13）
+
+[独立审查报告](../reviews/step-05-independent-review.md)绑定功能候选 `c09027f921e7d67469b301083db89acc44433d9e`、文档/证据基线 `ed189f7c274a7f397d261630bae396abb456665d`。报告 SHA-256 为 `cb858df3d9a6096c76f492630f5ef3f83c5e739eee81f2b788ffa31595821a4c`，44份脱敏证据及报告哈希已按 [独立ledger](../evidence/step-05/independent-c09027f-20261013-013024/ledger.json)核对。当前技术结论 **REQUIRES_REVISION**，独立验证覆盖 **COMPLETE_FOR_SCOPE**，统一步骤状态 **CHANGES_REQUESTED**；MZ实机 **NOT_EXECUTED**，步骤06未启动。
+
+| 已获独立支持的部分                               | 证据与边界                                                                                                                                       |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Compiler → Planner → Renderer → 标准成功导出链路 | 真实六源PNG重放及Compiler-owned Fragment；职责分离、Profile来源、模块方向、八文件内容一致性获得支持                                              |
+| Pack身份、历史、稳定槽位、退役与固定配套         | 新增/更新/遗漏/冲突/容量、根状态、序列化重读、退役保留、不复用、精确水草依赖及所有权校验获得支持；不表示未来数据库/CAS已经实现                   |
+| Layout与完整图集/Manifest                        | 独立字面量坐标与PNG解码核对16张完整A1/A2，包括保留透明区和退役像素；八套64个标准文件及新进程导出逐字节复现                                       |
+| 工程及既有回归                                   | 210/210测试（含22项Pack测试）、78/78旧公开JS断言、十workspace、八生产ESM exports、121工程payload独立复核；统计不相加为覆盖率                     |
+| 原生CPU矩形/像素与动画选择                       | 八套共3600次形态/播放状态检查、8,294,400像素；每套600次update调用产生601个观测，不是编辑器/游戏/美术PASS                                         |
+| 首次安装和旧手绘地图验收材料                     | 95成员ZIP逐项SHA匹配；旧图五份JSON原字节、原Tile ID/逻辑映射和四张替换PNG匹配，材料可用；用户实际安装/旧图替换、动画/岸线/通行和视觉验收仍待执行 |
+| 历史文件与refs保护                               | 独立审查期间4002个保护文件未变/未缺失，refs与现存检出状态保持；属于该次审查的保护记录                                                            |
+
+**未关闭阻断：STEP05-IR-001，P2。** `publishDirectory`、Pack suite、旧地图prepare及engineering build四入口在尚未取得stage所有权时也会递归清理该目录；已有目标提前拒绝和stage创建失败路径均须整改，补四入口回归后重新冻结/构建并独立复审。成功产物和自有stage失败清理得到支持，不代表所有失败保护已经通过。[发布反例](../evidence/step-05/independent-c09027f-20261013-013024/publish-probe.json)、[工程入口反例](../evidence/step-05/independent-c09027f-20261013-013024/engineering-collision.json)。本次仅登记认可项和当前状态，没有修复代码或关闭该问题。
+
+冻结时Coding报告、作者ledger、独立原文/证据和已发布Manifest保持原字节；当前审查结果另行记录于本节及需求索引。后续实机证据继续单独绑定最终候选/Build/PNG，不将材料可用或CPU结果升级为MZ实机通过。
+
 ## 模块方向与唯一规则来源
 
 `pack-assembly → asset-core + mz-compiler`，核心无文件 I/O、codec、ORM、框架、供应商。根导出工具调用 image-adapter 和素材处理，新增成员先登记方向/构建/清理/ESM exports/工程构建。生产只读 dist 包声明，无 TS alias。
@@ -42,7 +60,7 @@ RETIRED 仍占用图集并按最后有效配套验证。若保留的退役水面
 
 readPackExport 核对精确文件清单、普通文件/体积、所有源实际重放、Pack历史、Plan、真实PNG逐像素、说明和Manifest重建一致，不仅各自JSON合法。后续 Review/MZ/视觉结果另存，Manifest不修改。PNG字节确定性限相同encoder环境，像素身份与新commit包装身份分开。
 
-publishDirectory 拒绝已有目标，以新stage写wx、完整重读校验、rename发布，失败清理自身stage，保留以前成功目录；仅单机CLI本步机制，不是步骤06的DB事务/CAS。suite同样在stage完成所有子导出和index后发布。相同目标重复执行明确拒绝，可在新的目标目录重建并比较哈希。
+发布契约要求 publishDirectory 拒绝已有目标，以新stage写wx、完整重读校验、rename发布，只清理本次拥有的stage并保留以前成功目录；仅单机CLI本步机制，不是步骤06的DB事务/CAS。suite同样在stage完成所有子导出和index后发布。相同目标重复执行明确拒绝，可在新的目标目录重建并比较哈希。当前成功路径、已有成功目标保护和自有stage失败清理得到独立支持；未拥有stage的失败保护不满足要求，仍由STEP05-IR-001阻断。
 
 ```sh
 pnpm build

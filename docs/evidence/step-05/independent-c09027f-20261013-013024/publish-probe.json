@@ -1,0 +1,52 @@
+{
+  "confirmedRootCause": "finally recursively removes stage without proving this attempt created it",
+  "records": [
+    {
+      "entry": "publishDirectory",
+      "case": "stage already exists",
+      "error": "EEXIST: file already exists, mkdir '<review-root>/publisher-tests/stage-collision.stage-66853'",
+      "unownedStagePreserved": false,
+      "priorSuccessPreserved": null,
+      "targetPublished": false
+    },
+    {
+      "entry": "publishDirectory",
+      "case": "target already exists",
+      "error": "Immutable destination already exists.",
+      "unownedStagePreserved": false,
+      "priorSuccessPreserved": true,
+      "targetPublished": true
+    },
+    {
+      "entry": "publishDirectory",
+      "case": "owned stage verify failure",
+      "error": "reviewer synthetic failure",
+      "targetAbsent": true,
+      "stageAbsent": true,
+      "lockAbsent": true
+    },
+    {
+      "entry": "publishDirectory",
+      "case": "same-process concurrent target",
+      "fulfilled": 1,
+      "rejected": 1,
+      "content": "new result"
+    },
+    {
+      "entry": "suite",
+      "case": "pre-existing unowned stage",
+      "childPid": 66860,
+      "exitCode": 1,
+      "unownedStagePreserved": false,
+      "targetExists": true
+    },
+    {
+      "entry": "prepare",
+      "case": "pre-existing unowned stage",
+      "childPid": 66872,
+      "exitCode": 1,
+      "unownedStagePreserved": false,
+      "targetExists": false
+    }
+  ]
+}

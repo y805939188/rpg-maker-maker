@@ -1,0 +1,10 @@
+import os,sys,subprocess,time,json,pathlib,datetime
+base=pathlib.Path(__file__).parent
+name,*cmd=sys.argv[1:]
+env=os.environ.copy(); env['PATH']='<nvm-home>/versions/node/v22.21.1/bin:/usr/bin:/bin:/usr/sbin:/sbin'
+start=datetime.datetime.now(datetime.timezone.utc).isoformat(); clock=time.monotonic()
+with (base/'evidence'/f'{name}.log').open('w') as output:
+ result=subprocess.run(cmd,cwd=base/'checkout',env=env,stdout=output,stderr=subprocess.STDOUT)
+record={'name':name,'argv':cmd,'cwd':str(base/'checkout'),'startUtc':start,'seconds':round(time.monotonic()-clock,3),'exitCode':result.returncode,'log':f'{name}.log','node':'22.21.1','pnpm':'10.20.0'}
+with (base/'evidence'/'commands.jsonl').open('a') as f:f.write(json.dumps(record)+'\n')
+print(json.dumps(record)); sys.exit(result.returncode)

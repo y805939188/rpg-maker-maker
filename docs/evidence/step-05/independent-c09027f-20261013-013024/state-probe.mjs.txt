@@ -1,0 +1,83 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {pathToFileURL} from 'node:url';
+const base='<review-root>';
+const root=base+'/checkout';
+const load=p=>import(pathToFileURL(root+'/'+p));
+const core=await load('packages/asset-core/dist/index.js');
+const pack=await load('packages/pack-assembly/dist/index.js');
+const {PROFILE}=await load('dist/src/profile.js');
+const exp=await load('dist/scripts/pack-export.js');
+const suite=root+'/artifacts/step05-suite-c09027f921e7';
+const records=[];
+const copy=x=>JSON.parse(JSON.stringify(x));
+function rehash(x){const {contentHash,...body}=x;return {...x,contentHash:core.fingerprint(body)};}
+function check(name,fn){try{fn();records.push({name,result:'PASS'});}catch(e){records.push({name,result:'FAIL',error:e.message});}}
+function rejects(name,fn,code){check(name,()=>assert.throws(fn,e=>!code||e.code===code));}
+const first=await exp.readPackExport(suite+'/incremental-v1');
+const fragments=first.fragments;
+const binding=first.input.snapshot.slots.find(s=>s.atlas==='A2'&&s.binding).binding;
+const water=first.input.snapshot.slots.find(s=>s.atlas==='A1'&&s.binding).binding;
+const grassF=fragments.find(f=>f.contentHash===binding.fragment.contentHash);
+const waterF=fragments.find(f=>f.contentHash===water.fragment.contentHash);
+const operations=(label,revision=1,g=grassF,w=waterF)=>[
+ {operation:'put',logicalId:label+'-ground',revision,fragmentHash:g.contentHash,groundId:null},
+ {operation:'put',logicalId:label+'-water',revision,fragmentHash:w.contentHash,groundId:label+'-ground'}];
+const run=(ops,h=[])=>pack.planPack(PROFILE,{packId:'independent',version:h.length+1,operations:ops},h,fragments);
+const v1=run(operations('a'));
+check('literal allocation A1 kind4 384,0 and A2 kind16 0,0',()=>assert.deepEqual(v1.plan.placements.map(p=>[p.atlas,p.kind,p.x,p.y,p.tileId]),[['A1',4,384,0,2240],['A2',16,0,0,2816]]));
+check('ASCII ordering independent of reverse input',()=>assert.deepEqual(run([...operations('z'),...operations('a')]),run([...operations('a'),...operations('z')].reverse())));
+check('operations are copied; later caller edits preserve snapshot',()=>{const ops=operations('q'),r=run(ops),hash=r.snapshot.contentHash;ops[0].revision=99;ops.splice(0);assert.equal(r.snapshot.contentHash,hash);assert.equal(r.snapshot.slots[2].binding.revision,1);});
+const mutable=copy(v1.snapshot),v2=run(operations('b'),[mutable]),saved=copy(v2);
+check('history arrays and nested caller metadata independently held',()=>{mutable.slots[2].binding.logicalId='changed';mutable.slots.splice(0);assert.deepEqual(v2,saved);});
+check('omission and no-op preserve bindings',()=>assert.deepEqual(run([],[v1.snapshot]).snapshot.slots,v1.snapshot.slots));
+check('duplicate identical fragment entries preserve content identity',()=>assert.deepEqual(pack.planPack(PROFILE,{packId:'independent',version:1,operations:operations('a')},[],[...fragments,grassF]),v1));
+for(const [label,value] of [['boolean',true],['string','2'],['zero',0],['fraction',1.5],['null',null],['unsafe',Number.MAX_SAFE_INTEGER+1]])rejects('logical revision '+label,()=>run([{...operations('a')[0],revision:value}]));
+for(const ops of [[...operations('a'),...operations('a')],[{operation:'retire',logicalId:'a-ground'},operations('a')[0]],[{operation:'delete',logicalId:'a-ground'}],[{operation:'reactivate',logicalId:'a-ground'}],new Array(1)])rejects('operation conflict/unknown/hole '+records.length,()=>run(ops));
+rejects('unknown retire rejected',()=>run([{operation:'retire',logicalId:'missing'}]));
+rejects('missing fragment rejected',()=>run([{...operations('a')[0],fragmentHash:'0'.repeat(64)}]));
+rejects('plain JSON cannot impersonate compiled execution',()=>pack.planPack(PROFILE,{packId:'independent',version:1,operations:operations('a')},[],fragments.map(copy)));
+check('same revision exact no-op legal',()=>assert.deepEqual(run(operations('a'),[v1.snapshot]).snapshot.slots,v1.snapshot.slots));
+const retire=run([{operation:'retire',logicalId:'a-water'}],[v1.snapshot]);
+check('retired water still rendered with last content',()=>assert.equal(pack.renderAtlas(PROFILE,retire.plan,retire.snapshot,retire.history,fragments).a1.pixelHash,first.atlases.a1.pixelHash));
+check('repeat retire is idempotent binding',()=>assert.deepEqual(run([{operation:'retire',logicalId:'a-water'}],[v1.snapshot,retire.snapshot]).snapshot.slots,retire.snapshot.slots));
+rejects('retired cannot be put again',()=>run([operations('a',2)[1]],[v1.snapshot,retire.snapshot]),'PACK_RETIRED');
+const allRetired=run([{operation:'retire',logicalId:'b-ground'},{operation:'retire',logicalId:'b-water'}],[v1.snapshot,v2.snapshot]);
+rejects('retired capacity stays occupied',()=>run(operations('c'),[v1.snapshot,v2.snapshot,allRetired.snapshot]),'PACK_CAPACITY');
+const rootRetired=copy(v1.snapshot);rootRetired.slots[0].state='RETIRED';const rr=rehash(rootRetired);
+rejects('root retirement validatePack',()=>pack.validatePack(PROFILE,rr,[],fragments),'PACK_TRANSITION');
+rejects('root retirement history planPack',()=>run([],[rr]),'PACK_TRANSITION');
+rejects('root retirement validateLayout',()=>pack.validateLayout(PROFILE,v1.plan,rr,[],fragments),'PACK_TRANSITION');
+rejects('root retirement renderAtlas',()=>pack.renderAtlas(PROFILE,v1.plan,rr,[],fragments),'PACK_TRANSITION');
+for(const [name,mutate] of [
+ ['wrong previousHash',s=>s.previousHash='0'.repeat(64)],['version gap',s=>s.version=3],['wrong packId',s=>s.packId='other'],
+ ['active clear',s=>{s.slots[2].state='NEVER_USED';s.slots[2].binding=null;}],['active replace identity',s=>s.slots[2].binding.logicalId='c-ground'],
+ ['same revision changes pairing',s=>s.slots[0].binding.groundId='b-ground'],['duplicate logicalId',s=>s.slots[3].binding.logicalId='a-ground'],
+ ['wrong slot kind',s=>s.slots[0].kind=5],['numeric state',s=>s.slots[0].state=1],['string kind',s=>s.slots[0].kind='4']]){
+ const s=copy(v2.snapshot);mutate(s);rejects('rehashed snapshot '+name,()=>pack.validatePack(PROFILE,rehash(s),[v1.snapshot],fragments));
+}
+for(const [name,mutate] of [
+ ['boolean x',p=>p.placements[0].x=true],['string x',p=>p.placements[0].x='384'],['fraction',p=>p.placements[0].y=.5],['reserved slot',p=>p.placements[0].x=0],
+ ['overlap',p=>p.placements[1].y=0],['wrong dimensions',p=>p.placements[0].height=145],['wrong tileId',p=>p.placements[0].tileId=2336],
+ ['retired state mismatch',p=>p.placements[0].state='RETIRED'],['extra field',p=>p.extra=1],['missing field',p=>delete p.placements[0].width],['duplicate placement',p=>p.placements.push(copy(p.placements[0]))]]){
+ const p=copy(v2.plan);mutate(p);rejects('rehashed layout '+name,()=>pack.validateLayout(PROFILE,rehash(p),v2.snapshot,v2.history,fragments));
+}
+const h=new Array(1);rejects('sparse history',()=>run([],h));
+const p=copy(v2.plan);delete p.placements[0];rejects('sparse placements',()=>pack.validateLayout(PROFILE,p,v2.snapshot,v2.history,fragments));
+const newer=await exp.readPackExport(suite+'/incremental-v3');
+const newerG=fragments.find(f=>f.contentHash===newer.input.snapshot.slots[2].binding.fragment.contentHash),newerW=fragments.find(f=>f.contentHash===newer.input.snapshot.slots[0].binding.fragment.contentHash);
+rejects('old water plus newly adopted grass rejected',()=>run([operations('a',2,newerG,newerW)[0]],[v1.snapshot]),'PACK_PAIRING');
+check('batch exact pair update legal, binding stable',()=>{const r=run(operations('a',2,newerG,newerW),[v1.snapshot]);assert.equal(r.snapshot.slots[2].kind,16);assert.equal(r.snapshot.slots[0].kind,4);});
+rejects('retired-water exact dependency blocks solo grass update',()=>run([operations('a',2,newerG,newerW)[0]],[v1.snapshot,retire.snapshot]),'PACK_PAIRING');
+check('old Pack remains valid when later exact fragments are available',()=>assert.deepEqual(pack.validatePack(PROFILE,v1.snapshot,[],fragments),v1.snapshot));
+const pixels=pack.renderAtlas(PROFILE,v1.plan,v1.snapshot,[],fragments);const hash=pixels.a1.pixelHash;
+check('pixel getter copies do not mutate history',()=>{pixels.a1.bytes().fill(0);waterF.image.bytes().fill(0);assert.equal(pixels.a1.pixelHash,hash);assert.equal(pack.renderAtlas(PROFILE,v1.plan,v1.snapshot,[],fragments).a1.pixelHash,hash);});
+for(const [name,mutate] of [['invalid base64',x=>x[0].sources[0].png='!'],['noncanonical base64',x=>x[0].sources[0].png+='='],['wrong validationHash',x=>x[0].sources[0].validationHash='0'.repeat(64)],['unknown archived field',x=>x[0].extra=1],['duplicate recipe',x=>x.push(copy(x[0]))],['129 archives',x=>{while(x.length<129)x.push(copy(x[0]));}]]){
+ const x=copy(first.input.archives);mutate(x);try{await exp.replayArchives(x);records.push({name:'archive '+name,result:'FAIL',error:'accepted'});}catch{records.push({name:'archive '+name,result:'PASS'});}
+}
+const mutableInput=copy(first.input),pending=exp.assembleExport(mutableInput,first.manifest.identity.context);
+mutableInput.snapshot.packId='changed';mutableInput.archives[0].sources[0].descriptor.role='water';mutableInput.plan.placements[0].x=0;
+const assembled=await pending;check('async export owns input before await',()=>assert.deepEqual(assembled.manifest,first.manifest));
+const result={result:records.every(r=>r.result==='PASS')?'PASS':'FAIL',checks:records.length,records};
+await fs.writeFile(base+'/evidence/state-probe.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+assert.equal(result.result,'PASS');
