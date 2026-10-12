@@ -1,0 +1,6 @@
+CREATE TABLE "Project" (
+  "id" UUID NOT NULL,
+  "name" VARCHAR(80) NOT NULL,
+  "createdAt" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT "Project_pkey" PRIMARY KEY ("id")
+);

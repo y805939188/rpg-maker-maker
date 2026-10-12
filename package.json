@@ -1,24 +1,70 @@
 {
-  "name": "ai-tileset-studio-step-01",
-  "version": "0.0.1",
+  "name": "@tileset/prototype",
+  "version": "0.0.2",
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.20.0",
-  "engines": { "node": ">=22.21.1 <23" },
-  "scripts": {
-    "typecheck": "tsc --noEmit",
-    "build": "tsc",
-    "test": "vitest run --dir tests",
-    "fixtures": "pnpm build && node dist/scripts/make-fixtures.js",
-    "prototype": "pnpm build && node dist/scripts/build-prototype.js",
-    "verify:mz": "pnpm build && node dist/scripts/verify-mz.js",
-    "prepare:mz": "pnpm build && node dist/scripts/prepare-mz.js"
+  "engines": {
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
   },
-  "dependencies": { "sharp": "0.34.5" },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    }
+  },
+  "scripts": {
+    "preinstall": "node scripts/toolchain.mjs",
+    "typecheck": "pnpm build:contracts && tsc --noEmit && tsc -p tsconfig.tests.json && pnpm -r --filter './apps/*' --filter './packages/*' typecheck",
+    "build:prototype": "tsc",
+    "build:contracts": "pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build",
+    "build": "node scripts/clean-build.mjs && pnpm build:prototype && pnpm build:contracts && pnpm --filter @tileset/api build && pnpm --filter @tileset/web build",
+    "test": "pnpm build:prototype && pnpm build:contracts && vitest run",
+    "test:e2e": "playwright test",
+    "test:dev-privacy": "pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts",
+    "test:integration": "pnpm build:contracts && vitest run --config vitest.integration.config.ts",
+    "lint": "eslint src scripts tests apps packages *.ts *.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm check:boundaries && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm verify:exports",
+    "db:generate": "pnpm --filter @tileset/api db:generate",
+    "db:migrate": "pnpm --filter @tileset/api db:migrate",
+    "db:local": "node scripts/local-postgres.mjs",
+    "dev": "pnpm build:contracts && node scripts/run-local.mjs dev",
+    "start": "node scripts/run-local.mjs production",
+    "fixtures": "pnpm build:prototype && node dist/scripts/make-fixtures.js",
+    "prototype": "pnpm build:prototype && node dist/scripts/build-prototype.js",
+    "verify:mz": "pnpm build:prototype && node dist/scripts/verify-mz.js",
+    "prepare:mz": "pnpm build:prototype && node dist/scripts/prepare-mz.js",
+    "build:engineering": "pnpm build && node scripts/build-engineering.mjs",
+    "check:boundaries": "node scripts/check-boundaries.mjs",
+    "verify:exports": "node scripts/verify-exports.mjs"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  },
   "devDependencies": {
     "@types/node": "22.19.0",
     "typescript": "5.9.3",
-    "vitest": "4.0.18"
+    "vitest": "4.1.11",
+    "@eslint/js": "10.0.1",
+    "eslint": "10.12.0",
+    "typescript-eslint": "8.71.1",
+    "prettier": "3.9.10",
+    "@playwright/test": "1.64.0"
   },
-  "pnpm": { "onlyBuiltDependencies": ["sharp"] }
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild",
+      "@prisma/client",
+      "@prisma/engines",
+      "prisma",
+      "@nestjs/core"
+    ],
+    "overrides": {
+      "deepmerge-ts": "8.0.2"
+    }
+  }
 }

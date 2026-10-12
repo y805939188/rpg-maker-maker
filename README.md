@@ -43,3 +43,9 @@ Map001 是程序指定形态；Map002/003 留空供实际编辑器手绘。
 [Pixel Contract](docs/step-01/pixel-processing-contract-v1.md)、
 [研究记录](docs/step-01/research.md)。最终候选与门禁见
 [步骤报告](docs/reviews/step-01.md)。
+
+# 正式工程入口（步骤 02）
+
+Node 22.21.1 / pnpm 10.20.0。安装：`pnpm install --frozen-lockfile`；独立 PostgreSQL：`pnpm db:local init`；然后 `pnpm db:generate`、`pnpm build`、`pnpm db:migrate`。开发执行 `pnpm dev`；生产执行 `pnpm start`。统一检查：`pnpm check`，另执行 `pnpm test:integration` 和两种模式的浏览器测试。完整命令、边界与环境说明见 [工程基线](docs/engineering/STEP_02_BASELINE.md)，需求覆盖见 [要求证据映射](docs/engineering/V1_REQUIREMENTS_EVIDENCE.md)。
+
+这是项目保存与 Pixi 画布工程壳；素材工作流和 AI 尚未开放。以下步骤 01 原型及证据全部保留，原装 Native MZ Host 验收仍未执行。

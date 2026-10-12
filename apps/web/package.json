@@ -1,0 +1,25 @@
+{
+  "name": "@tileset/web",
+  "version": "0.0.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tileset/contracts": "workspace:*",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "pixi.js": "8.22.0"
+  },
+  "devDependencies": {
+    "vite": "7.3.5",
+    "@vitejs/plugin-react": "5.2.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@types/node": "22.19.0",
+    "typescript": "5.9.3"
+  }
+}
