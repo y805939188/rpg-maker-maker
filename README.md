@@ -1,16 +1,17 @@
-# AI Tileset Studio — 步骤 01 原型
+# AI Tileset Studio — 当前开发基线
 
-当前仅实现 **MZ 原生可行性实验**。本地分支 `codex/step-01-mz-prototype`。
-正式范围与依赖见 [产品方案](docs/plans/01_PRODUCT_TECH_SPEC_V0.5.md) 和
-[十步计划](docs/plans/02_V1_IMPLEMENTATION_PLAN.md)。步骤 02 尚未授权。
+步骤02工程基础与步骤03领域/像素处理及联合复审修复已发布。受审修复源码为 `aad1f72`，已完成main源码检查点为 `9fb02c9`；独立复审PASS、候选及该main CI成功。步骤04尚未授权、未启动。当前提供项目保存/Pixi工程壳和引擎无关素材处理，不宣称正式Compiler、Pack、Studio或真实AI已实现。
 
-Node `22.21.1`、pnpm `10.20.0`；安装后可以独立编译，不需要 AI、Web、数据库。
+当前入口：[发布与仓库维护](docs/orchestration/pre-step-04-repository-maintenance.md)、[需求证据映射](docs/engineering/V1_REQUIREMENTS_EVIDENCE.md)、[最新独立复审](docs/reviews/steps-02-03-global-rereview-aad1f72.md)。正式范围仍以保留的[产品方案](docs/plans/01_PRODUCT_TECH_SPEC_V0.5.md)及[十步计划](docs/plans/02_V1_IMPLEMENTATION_PLAN.md)为准。
+
+## 保留的步骤01诊断原型
+
+Node `22.21.1`、pnpm `10.20.0`。原型业务和 `pnpm build:prototype` 不需要 AI、Web 或数据库；完整工作区检查须先生成Prisma Client。
 
 ```sh
 pnpm install --frozen-lockfile
-pnpm typecheck
-pnpm test
-pnpm build
+pnpm db:generate
+pnpm check
 # 编译产物要求源码/母版已提交且 Git 工作树干净
 pnpm prototype
 ```
@@ -49,3 +50,5 @@ Map001 是程序指定形态；Map002/003 留空供实际编辑器手绘。
 Node 22.21.1 / pnpm 10.20.0。安装：`pnpm install --frozen-lockfile`；独立 PostgreSQL：`pnpm db:local init`；然后 `pnpm db:generate`、`pnpm build`、`pnpm db:migrate`。开发执行 `pnpm dev`；生产执行 `pnpm start`。统一检查：`pnpm check`，另执行 `pnpm test:integration` 和两种模式的浏览器测试。完整命令、边界与环境说明见 [工程基线](docs/engineering/STEP_02_BASELINE.md)，需求覆盖见 [要求证据映射](docs/engineering/V1_REQUIREMENTS_EVIDENCE.md)。
 
 这是项目保存与 Pixi 画布工程壳；素材工作流和 AI 尚未开放。以下步骤 01 原型及证据全部保留，原装 Native MZ Host 验收仍未执行。
+
+统一开发/生产启动需要按[步骤02工程基线](docs/engineering/STEP_02_BASELINE.md)配置私有.env及独立PostgreSQL。干净Git检出不包含凭据；已有数据库和验收目录保留原位，不自动搬迁或复用。新环境使用现有db:local脚本时应确认空闲专属端口（TILESET_PG_PORT），初始化拒绝已有.env/.local/postgres。原装Native MZ Host、Map003(4,10)及其他延期事项见维护记录。

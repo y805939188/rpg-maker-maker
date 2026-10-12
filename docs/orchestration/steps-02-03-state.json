@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "COMPLETE_SOURCE_PUBLISHED_FINAL_METADATA_READY",
+  "currentPhase": "GLOBAL_FIX_PUBLISHED_STEP04_NOT_STARTED",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -914,10 +914,10 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "BOTH_SOURCE_RELEASES_AND_CI_SUCCESS_14BUILDS10MAPS_PRESERVED_OWNED_SERVICES_OFF_CLEANUP_COMPLETE",
+  "lastSuccessfulCheckpoint": "GLOBAL_FIX9FB_SOURCE_MAIN_AND_CI_SUCCESS",
   "blockingCondition": null,
   "cleanup": "SAFE_OWNED_STEP03_WT_ARCHIVED_BRANCHES_DELETED_PRIVATE_PG_AND_MZ_PRESERVED",
-  "finalRemoteMain": "0793c948da3bf3a8967579253f27ab2e234b8e70",
+  "finalRemoteMain": "9fb02c98e89a145dfaf46a863ce7b6d29febe4b7",
   "finalReport": "docs/orchestration/steps-02-03-final-report.md",
   "ownedServices": "ALL_OWNED_APPS_AND_POSTGRES55432_55433_55434_STOPPED_DATA_CREDENTIALS_PRESERVED",
   "resumeAttempts": [
@@ -949,7 +949,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Only final metadata publication/readback/CI if interrupted; noCoding/Review/Step04",
+  "nextSafeAction": "STOP. New numbered steps require explicit user authorization; Step04 has not started.",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
@@ -1010,8 +1010,42 @@
   "finalization": {
     "sourcePublicationMain": "0793c948da3bf3a8967579253f27ab2e234b8e70",
     "sourceCI": "38212585754_SUCCESS",
-    "metadataPublication": "PENDING_NORMAL_MAIN_PUSH_AFTER_THIS_CHECKPOINT",
+    "metadataPublication": "SUCCESS_REMOTE_MAIN_READBACK_VERIFIED",
     "completionCheckpointBranch": "codex/orchestration-02-03",
-    "rule": "Read actual main and latest canonical state on orchestration branch; never assume metadata publication from intent"
+    "rule": "Read actual main and latest canonical state on orchestration branch; never assume metadata publication from intent",
+    "finalMain": "784a39fb9739c01750b4b6cbf5da78df24b227b7",
+    "mainMetadataCI": {
+      "runId": 38213568627,
+      "status": "COMPLETED_SUCCESS",
+      "evidence": "docs/orchestration/evidence/final-main-metadata-ci.json"
+    },
+    "checkpointRule": "This completed operational checkpoint follows final main publication; no recursive main SHA rewrite is required."
+  },
+  "finalLocalMain": "784a39fb9739c01750b4b6cbf5da78df24b227b7",
+  "fixRelease": {
+    "status": "PUBLISHED",
+    "reviewedSource": "aad1f7223baacd042f43bd6cfbba0619e822b00f",
+    "codingDocumentation": "d8347372174721df63455dd0c6f4d3a31a6a8267",
+    "independentReview": "PASS",
+    "reviewReport": "docs/reviews/steps-02-03-global-rereview-aad1f72.md",
+    "findings": {
+      "GR-0203-001": "FIXED",
+      "GR-0203-002": "FIXED"
+    },
+    "publishedSourceCheckpoint": "9fb02c98e89a145dfaf46a863ce7b6d29febe4b7",
+    "candidateCI": {
+      "runId": 38232285621,
+      "result": "SUCCESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38232285621"
+    },
+    "sourceMainCI": {
+      "runId": 38232892665,
+      "result": "SUCCESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38232892665"
+    },
+    "authorization": "USER_AUTHORIZED_RELEASE_AND_REPOSITORY_MAINTENANCE_2026_10_12",
+    "step04": "NOT_STARTED_UNAUTHORIZED",
+    "maintenanceReport": "docs/orchestration/pre-step-04-repository-maintenance.md",
+    "mainIdentityPolicy": "Published source SHA is a verified checkpoint; final docs-only HEAD/CI and cleanup receipt are read from Git and repository-external final-receipt.json. No recursive SHA rewrite."
   }
 }

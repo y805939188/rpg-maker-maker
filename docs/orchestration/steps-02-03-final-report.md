@@ -55,3 +55,16 @@ PNG 适配通过实际补丁版原生库和隔离子进程运行，具有编码�
 - 步骤 04 须另行授权，从合法 IR 与已批准 Profile 恢复；未来 Compiler 必须明确处理通用 Clip 与原生 MZ 帧数/时基的兼容，不得静默删帧。本轮没有启动它。
 
 用户当前无需补做操作才能完成步骤 02、03。本轮停止；后续人工 Host/地图证据及下一编号步骤另行安排。
+
+## 最后操作核对
+
+最终本地/远端 main：`784a39fb9739c01750b4b6cbf5da78df24b227b7`，读回一致，最终 main CI [38213568627](https://github.com/y805939188/rpg-maker-maker/actions/runs/38213568627) SUCCESS。它相对受审源码 a0e9f07 没有功能代码差异。完成检查点位于同一 canonical 状态文件的 codex/orchestration-02-03 分支；该检查点追加于已成功的 main 文档发布之后。正式开发停止，步骤 04 未启动。
+
+
+## 联合复审修复发布检查点（2026-10-12）
+
+当前步骤02、03修复已正常发布：受审功能 `aad1f7223baacd042f43bd6cfbba0619e822b00f`，Coding文档 `d8347372174721df63455dd0c6f4d3a31a6a8267`，独立联合复审PASS，GR-0203-001/002 FIXED。发布main源码检查点 `9fb02c98e89a145dfaf46a863ce7b6d29febe4b7` 已推送并读回一致；候选CI [38232285621](https://github.com/y805939188/rpg-maker-maker/actions/runs/38232285621) 和该main CI [38232892665](https://github.com/y805939188/rpg-maker-maker/actions/runs/38232892665) SUCCESS，含真实DB和生产/开发浏览器门禁。
+
+上文784a及更早记录属于历史发布检查点；784a上的联合审查REQUIRES_REVISION保留原文，没有改写为PASS。本轮发布重新执行144测试、78公开JS断言、六个生产导出及合法素材/原型PNG一致性，未改变受审功能、正式测试或依赖。当前入口见[发布与仓库维护记录](pre-step-04-repository-maintenance.md)、[最新独立复审](../reviews/steps-02-03-global-rereview-aad1f72.md)。canonical状态已将该修复发布单独记录于fixRelease。
+
+本次后续提交仅整理文档入口与状态，不预写未来Push/CI成功。最终实际main SHA、最终CI及分支/Worktree清理结果由Git和仓库外维护日志核对，避免提交自引用。Original Native Host、Map003(4,10)、范围限定esbuild及未来图片入口资源门禁仍保留；步骤04未授权、未启动。
