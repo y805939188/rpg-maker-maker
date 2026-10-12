@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_CODING",
+  "phase": "STEP06_INDEPENDENT_REVIEW_ROUND_1",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -55,18 +55,154 @@
       "model": "gpt-6.1-sol",
       "effort": "ultra",
       "serviceTier": "default",
-      "preflight": "PASS"
+      "preflight": "PASS",
+      "threadId": "01a13203-9fb0-78e1-a67e-9ded70e71360",
+      "nativeClientConfiguration": ".local/orchestration-06-07/step06-review-round1/client-configuration.json"
     },
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
     "status": "IN_PROGRESS",
-    "reviewRounds": 0,
+    "reviewRounds": 1,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
     "baseMain": "d1439bb81e9843358f591590c6a433c4a62be33d",
     "codingCheckpoint": ".local/step06/coding-progress.json",
-    "implementationPhase": "IMMUTABLE_STORAGE_AND_RUNTIME_REPLAY"
+    "implementationPhase": "INDEPENDENT_REVIEW_DISPATCH_READY",
+    "authorFirstFaultRun": {
+      "status": "FAILED_RETAINED_FIX_SELF_TESTED_PENDING_INDEPENDENT_REVIEW",
+      "passed": 9,
+      "failed": 1,
+      "failure": "backup/restore integration timeout at 60003ms",
+      "log": ".local/step06/test-step06-first.log",
+      "independentReview": "NOT_EXECUTED"
+    },
+    "authorSecondFaultRun": {
+      "status": "PASS_UNFROZEN_AUTHOR_ONLY",
+      "testFiles": 2,
+      "tests": 10,
+      "log": ".local/step06/test-step06-cache.log",
+      "timeoutThresholdChanged": false
+    },
+    "candidateSha": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "candidateState": "FROZEN_AUTHOR_GATES_PASS",
+    "authorFullCheck": {
+      "testFiles": 21,
+      "tests": 229,
+      "productionExports": 10,
+      "status": "PASS_PRE_FREEZE_SAME_SOURCE_TREE"
+    },
+    "supersededCodingCandidates": [
+      {
+        "sha": "e032f05ad9268fa78ba8539bd0c2289511d4049b",
+        "reviewed": false,
+        "reason": "Further recovery directive and backup destination boundary fixes before independent review"
+      },
+      {
+        "sha": "5103198c1ae85fdbbe5215ccb07221218e29fd7a",
+        "reviewed": false,
+        "reason": "Actual PostgreSQL deferred COMMIT rejection probe and restored-file readonly protection before independent review"
+      },
+      {
+        "sha": "c010b90a20e12db397a860ac1a2ab179c371ba6d",
+        "reviewed": false,
+        "reason": "Backup test isolated in a new owned fixture DB; retained original accumulated DB and timeout evidence"
+      },
+      {
+        "sha": "164a11b0d14f7e57c54757f5c45e94ffe5a77ff0",
+        "reviewed": false,
+        "reason": "Separate generic domain source/processed IR persistence from MZ compilation and preserve raw RGBA before review"
+      }
+    ],
+    "authorFrozenCheck": {
+      "status": "PASS_AUTHOR_EXECUTED",
+      "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+      "tests": 230,
+      "productionExports": 10
+    },
+    "authorFrozenPostgres": {
+      "status": "PASS_AUTHOR_EXECUTED",
+      "candidate": "5103198c1ae85fdbbe5215ccb07221218e29fd7a",
+      "tests": 10,
+      "log": ".local/step06/test-step06-frozen-5103198.log",
+      "existingApiIntegrationTests": 3
+    },
+    "compatibilityImpact": {
+      "comparedFrom": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+      "candidate": "c010b90a20e12db397a860ac1a2ab179c371ba6d",
+      "protectedCorePaths": [
+        "src/profile.ts",
+        "src/pixels.ts",
+        "src/compiler.ts",
+        "packages/asset-core",
+        "packages/material-processing",
+        "packages/image-adapter",
+        "packages/mz-compiler",
+        "packages/pack-assembly",
+        "tests/fixtures",
+        "scripts/make-fixtures.ts"
+      ],
+      "changed": [],
+      "newMZManualAcceptance": "NOT_EXECUTED_NOT_REQUIRED_FOR_UNCHANGED_CORE_PER_AUTHORIZATION",
+      "originalHostDeferral": "PRESERVED"
+    },
+    "latestAuthorRun": {
+      "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+      "status": "PASS_AUTHOR_FROZEN_POSTGRES",
+      "tests": 10,
+      "testFiles": 2,
+      "log": ".local/step06/test-step06-frozen-a2878a9.log",
+      "independentReview": "NOT_EXECUTED"
+    },
+    "pendingCodingFixes": [],
+    "authorBrowserRegression": {
+      "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+      "production": "PASS",
+      "development": "PASS",
+      "scope": "EXISTING_ENGINEERING_SHELL_ONLY",
+      "apiIntegrationTests": 3
+    },
+    "reviewEnvironment": {
+      "preparation": "READY_FROZEN_CLEAN",
+      "operationId": "6eded982-e64e-446d-8243-20c7b5205a9e",
+      "reviewNotStarted": true,
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-06-independent-review/rpg-maker-maker",
+      "candidateSha": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+      "pgPort": 55467,
+      "apiPort": 4367,
+      "webPort": 5267
+    },
+    "engineeringBuild": {
+      "buildId": "step06-a2878a922db9-5f73046cf5c7dfac",
+      "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+      "manifestSha256": "7c97adbf203a1fb15bdfb65f5687cf3f47aa40d1fb0fe20fac65625b5afd3d19",
+      "actualManifestVerified": true,
+      "independentReview": "NOT_EXECUTED"
+    },
+    "authorNativeCpuRegression": {
+      "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+      "packs": 8,
+      "tilesChecked": 3600,
+      "pixelsChecked": 8294400,
+      "status": "PASS_AUTHOR_EXECUTED",
+      "editorGameGpu": "NOT_EXECUTED"
+    },
+    "docsHead": "bae84fd83ae85b2e1aa3a449726a15a47f5df852",
+    "codingReport": "docs/reviews/step-06-coding.md",
+    "codingReportSha256": "1ae3f27e9c42d5d1915fcd9a77a58df01b92de948e29d10ad6099fdee2064c16",
+    "codingEvidenceLedgerFiles": 50,
+    "postCandidateDiff": "README_AND_DOCS_ONLY",
+    "reviews": [
+      {
+        "round": 1,
+        "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+        "docsHead": "bae84fd83ae85b2e1aa3a449726a15a47f5df852",
+        "status": "IN_PROGRESS",
+        "threadId": "01a13203-9fb0-78e1-a67e-9ded70e71360",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-06-independent-review/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round1-client.json"
+      }
+    ]
   },
   "step07": {
     "status": "NOT_STARTED",
@@ -94,9 +230,21 @@
       "apiPort": 4366,
       "webPort": 5266,
       "serviceStatus": "POSTGRES_RUNNING_CODING_OWNED"
+    },
+    {
+      "owner": "step06_reviewer",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-06-independent-review/rpg-maker-maker",
+      "pgPort": 55467,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step06-review/assets",
+      "temporaryRoot": ".local/step06-review",
+      "apiPort": 4367,
+      "webPort": 5267,
+      "serviceStatus": "NOT_STARTED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_NATIVE_STANDARD_CODING_SESSION_DISPATCHED",
+  "lastSuccessfulCheckpoint": "STEP06_INDEPENDENT_STANDARD_REVIEW_ROUND_1_DISPATCHED",
   "blockers": [],
-  "nextSafeAction": "Monitor Coding checkpoints, then freeze the completed candidate and dispatch a new independent Standard step_reviewer."
+  "nextSafeAction": "Wait for frozen independent review; route blocking fixes to the same step06 Coding context; do not publish or begin step07."
 }
