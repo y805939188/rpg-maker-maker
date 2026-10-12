@@ -161,7 +161,15 @@
           "developmentBrowser": "PASS_INDEPENDENT",
           "coldCache": "IN_PROGRESS",
           "finalDecision": "NOT_ISSUED",
-          "dependencyReachability": "PNG_EXIF_SCOPE_REFINEMENT_UNDER_REVIEW_STAGE03_REASSESSMENT_REQUIRED"
+          "dependencyReachability": "PNG_EXIF_SCOPE_REFINEMENT_UNDER_REVIEW_STAGE03_REASSESSMENT_REQUIRED",
+          "historicalP1Resolution": "BOTH_FIXED_REVIEWER_REPORTED_FINAL_REPORT_PENDING",
+          "newBlockingFinding": {
+            "id": "STEP02-R3-001",
+            "severity": "P2",
+            "condition": "Accepted PNG eXIf can reach Sharp0.34.5/libvips8.17.3 EXIF parser; supplied manifest integrity does not establish source trust",
+            "verification": "BENIGN_ORIENTATION1_METADATA_REACHABILITY_NO_CRASH_PAYLOAD",
+            "requiredBeforeExit": "Coder remediation+new candidate+independent review"
+          }
         }
       }
     ],
@@ -277,7 +285,9 @@
     },
     "latestIndependentPass": "NONE",
     "delegatedApproval": "NOT_ISSUED",
-    "remoteCIGate": "RUN_VALIDATION_BRANCH_CI_BEFORE_MAIN_PUBLICATION; POST_MAIN_CHECK_IF_TRIGGERED"
+    "remoteCIGate": "RUN_VALIDATION_BRANCH_CI_BEFORE_MAIN_PUBLICATION; POST_MAIN_CHECK_IF_TRIGGERED",
+    "integrationWorktree": "/Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker",
+    "integrationBranch": "codex/step-02-integration"
   },
   "step03": {
     "status": "NOT_STARTED_BLOCKED_BY_STEP02",
@@ -364,5 +374,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Wait current third-round independent report; handle ordinary defects via designated coder; no main merge or step03 yet"
+  "nextSafeAction": "Receive full third-round report, release minimal designated-coder dependency/decoder fix; main remains unchanged"
 }
