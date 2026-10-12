@@ -217,6 +217,7 @@ async function write(path: string, bytes: Uint8Array) {
 export async function backup(store: Persistence, destination: string, pgBin: string) {
   return store.gate.pause(async () => {
     const databaseDigest = await verifyDatabase(store);
+    await mkdir(resolve(destination, '..'), { recursive: true, mode: 0o700 });
     await mkdir(destination, { mode: 0o700 });
     await command(
       resolve(pgBin, 'pg_dump'),
@@ -282,9 +283,14 @@ export async function restore(store: Persistence, directory: string, pgBin: stri
     const tables: unknown = await store.db
       .$queryRaw`SELECT table_name FROM information_schema.tables WHERE table_schema='public'`;
     assert.ok(Array.isArray(tables) && tables.length === 0, 'Restore database must be empty');
+    await mkdir(resolve(store.storage.root, '..'), { recursive: true, mode: 0o700 });
     await mkdir(store.storage.root, { mode: 0o700 });
     for (const [key, source] of Object.entries(checked.files))
-      if (key.startsWith('assets/')) await copy(source, resolve(store.storage.root, key.slice(7)));
+      if (key.startsWith('assets/')) {
+        const target = resolve(store.storage.root, key.slice(7));
+        await copy(source, target);
+        assert.deepEqual(await fileHash(target), checked.manifest.files[key]);
+      }
     await sync(store.storage.root);
     // All immutable files are durable before the atomic database restore registers references.
     await command(

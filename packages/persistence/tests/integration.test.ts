@@ -293,7 +293,7 @@ describe('real PostgreSQL + immutable files publication', () => {
       });
       await writer;
 
-      const destination = resolve(s.root, 'backup'),
+      const destination = resolve(s.root, 'new-backup-parent', 'backup'),
         manifest = await backup(s.store, destination, pgBin);
       expect((await verifyBackup(destination)).manifest).toEqual(manifest);
       const target = new URL(databaseUrl!),
@@ -306,7 +306,11 @@ describe('real PostgreSQL + immutable files publication', () => {
       } finally {
         await client.end();
       }
-      restored = new Persistence(target.href, resolve(s.root, 'restored-assets'), PROFILE);
+      restored = new Persistence(
+        target.href,
+        resolve(s.root, 'new-restore-parent', 'assets'),
+        PROFILE,
+      );
       await restore(restored, destination, pgBin);
       expect(await verifyDatabase(restored)).toBe(manifest.databaseDigest);
       const executor = new Executor(

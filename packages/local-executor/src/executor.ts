@@ -96,7 +96,7 @@ export class Executor implements LocalTaskExecutor {
       assert.equal(adapter.adapterVersion, task.snapshot.model.adapterVersion);
       const signal = new AbortController().signal;
       if (task.state === 'QUEUED' || task.state === 'CREATED') {
-        if (directive === 'RECONCILE_UNKNOWN_NO_RESUBMIT') return;
+        if (directive !== 'WAIT') return;
         const attempt = await this.store.taskIntent(id, task.version);
         await this.fault('intent-durable');
         task = await this.store.task(id);
@@ -131,6 +131,7 @@ export class Executor implements LocalTaskExecutor {
         task.state === 'VALIDATING_AND_INGESTING'
       ) {
         const detail = await this.store.taskDetail(id);
+        if (directive === 'RETRY_ARCHIVE_ONLY' && !detail.result) return;
         let result: RemoteResult;
         if (detail.result) {
           // Persisted remote success is parsed through the provider-neutral result boundary.

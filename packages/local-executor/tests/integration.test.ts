@@ -39,6 +39,15 @@ describe('durable generic Executor with process-persistent Mock remote', () => {
         { adapterFor: () => s.provider },
         new Archiver(s.store, s.provider),
       ).requestLocalCancellation(newer.id);
+      const recoveryOnly = new Executor(
+        s.store,
+        { adapterFor: () => s.provider },
+        new Archiver(s.store, s.provider),
+      );
+      await recoveryOnly.resume(s.task.id, 'QUERY_KNOWN_ID');
+      await recoveryOnly.resume(s.task.id, 'RETRY_ARCHIVE_ONLY');
+      expect(await s.provider.ids()).toHaveLength(0);
+      expect((await s.store.task(s.task.id))?.state).toBe('QUEUED');
       let observed = false;
       const provider = new MockProvider(s.remoteRoot, s.png, async (point) => {
         if (point === 'remote-created') {
