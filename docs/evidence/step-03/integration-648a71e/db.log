@@ -1,0 +1,37 @@
+
+> @tileset/prototype@0.0.2 test:integration /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker
+> pnpm build:contracts && vitest run --config vitest.integration.config.ts
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  13:54:55
+   Duration  1.16s (transform 55ms, setup 0ms, import 302ms, tests 777ms, environment 0ms)
+

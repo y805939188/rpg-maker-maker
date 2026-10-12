@@ -1,0 +1,81 @@
+[
+  {
+    "head": "648a71ea872a2e3dbabc7330da9efe1e050f1cb7",
+    "reviewCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+    "command": [
+      "pnpm",
+      "db:generate"
+    ],
+    "nonsecretEnvironment": {},
+    "exitCode": 0,
+    "log": "generate.log"
+  },
+  {
+    "head": "648a71ea872a2e3dbabc7330da9efe1e050f1cb7",
+    "reviewCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+    "command": [
+      "pnpm",
+      "check"
+    ],
+    "nonsecretEnvironment": {},
+    "exitCode": 0,
+    "log": "check.log"
+  },
+  {
+    "head": "648a71ea872a2e3dbabc7330da9efe1e050f1cb7",
+    "reviewCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+    "command": [
+      "pnpm",
+      "test:dev-privacy"
+    ],
+    "nonsecretEnvironment": {},
+    "exitCode": 0,
+    "log": "privacy.log"
+  },
+  {
+    "head": "648a71ea872a2e3dbabc7330da9efe1e050f1cb7",
+    "reviewCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+    "command": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "nonsecretEnvironment": {},
+    "exitCode": 0,
+    "log": "migration.log"
+  },
+  {
+    "head": "648a71ea872a2e3dbabc7330da9efe1e050f1cb7",
+    "reviewCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+    "command": [
+      "pnpm",
+      "test:integration"
+    ],
+    "nonsecretEnvironment": {},
+    "exitCode": 0,
+    "log": "db.log"
+  },
+  {
+    "head": "648a71ea872a2e3dbabc7330da9efe1e050f1cb7",
+    "reviewCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+    "command": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "nonsecretEnvironment": {},
+    "exitCode": 0,
+    "log": "browser-production.log"
+  },
+  {
+    "head": "648a71ea872a2e3dbabc7330da9efe1e050f1cb7",
+    "reviewCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+    "command": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "nonsecretEnvironment": {
+      "E2E_MODE": "dev"
+    },
+    "exitCode": 0,
+    "log": "browser-development.log"
+  }
+]
