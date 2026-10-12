@@ -39,9 +39,9 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_INTEGRATION_REGRESSION_AND_REMOTE_CI",
+  "currentPhase": "STEP02_APPROVED_MAIN_INTEGRATION",
   "step02": {
-    "status": "INDEPENDENT_PASS_PENDING_CI_INTEGRATION",
+    "status": "APPROVED_PENDING_MAIN_PUBLICATION",
     "reviews": [
       {
         "round": 1,
@@ -389,7 +389,7 @@
       "runtimeFaults": "CURRENT_COMPILED_BACKEND_PASS"
     },
     "latestIndependentPass": "ROUND4_5356",
-    "delegatedApproval": "NOT_ISSUED",
+    "delegatedApproval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
     "remoteCIGate": "RUN_VALIDATION_BRANCH_CI_BEFORE_MAIN_PUBLICATION; POST_MAIN_CHECK_IF_TRIGGERED",
     "integrationWorktree": "/Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker",
     "integrationBranch": "codex/step-02-integration",
@@ -438,8 +438,22 @@
       "event": "push",
       "head": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
       "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38201263354",
-      "status": "QUEUED_LAST_OBSERVED",
-      "result": "PENDING"
+      "status": "COMPLETED",
+      "result": "SUCCESS_ALL_REQUIRED_JOBS",
+      "evidence": "docs/orchestration/evidence/step02-validation-remote-ci.json"
+    },
+    "delegatedApprovalBasis": {
+      "source": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+      "reviewRound": 4,
+      "metadata": "85fefc1d4638cec79ea00797a0be50e2018444bd",
+      "validationHead": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+      "CI": 38201263354,
+      "counts": {
+        "P0": 0,
+        "P1": 0,
+        "blockingP2": 0
+      },
+      "timeUTC": "2026-10-12T03:54:01.669998+00:00"
     }
   },
   "step03": {
@@ -528,5 +542,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Observe validation run38201263354 and report-presentation supplement; if PASS record delegated acceptance then safe main integration/publication"
+  "nextSafeAction": "Fetch main then fast-forward reviewed source+validated integration+docs; applicable regression; normal push and exact remote verification/postmainCI"
 }

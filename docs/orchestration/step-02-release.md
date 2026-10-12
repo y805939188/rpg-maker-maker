@@ -24,3 +24,7 @@ Evidence: `docs/reviews/step-02-independent-round-4.md`, its original raw report
 One scoped nonblocking dependency issue remains: esbuild 0.27.7 / GHSA-g7r4-m6w7-qqqr, affecting Windows standalone serve with servedir, which is not invoked here. Current execution is Darwin and declared CI is Linux. Engineering Coding owns a compatible fix before enabling that condition. Sharp 0.35.5/libvips 8.18.7 are actually loaded and the previous three high audit findings were repaired. This is not a globally clean audit. Step 03 must independently reassess its actual image/input/metadata/resource-processing paths.
 
 Original Native MZ Host Compatibility remains NOT_EXECUTED, required before V1.0 release by Step 10. Map003 (4,10) remains PENDING_USER_EVIDENCE. Step 03 and Step 04 have not started.
+
+## Delegated acceptance
+
+Candidate validation CI run 38201263354 completed SUCCESS, including both browser jobs. Documentation presentation integrity supplement PASS. All necessary local and independent current gates are satisfied: **APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR**, under the existing user delegation, for frozen source 5356d66. Main integration/push remain pending until the corresponding Git actions are verified.
