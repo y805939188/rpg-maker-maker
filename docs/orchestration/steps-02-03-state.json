@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_FROZEN_EVIDENCE_PREPARATION",
+  "currentPhase": "STEP03_ROUND1_REVIEW_ENVIRONMENT_READY",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "FROZEN_IMPLEMENTATION_EVIDENCE_FINALIZING",
+    "status": "READY_FOR_INDEPENDENT_REVIEW",
     "reviews": [],
     "merge": "NOT_EXECUTED",
     "push": "NOT_EXECUTED",
@@ -580,8 +580,43 @@
     },
     "candidateSourceTrackedFiles": 625,
     "sourceEditsAfterFreeze": "PROHIBITED_AWAIT_REVIEW",
-    "evidenceHead": "NOT_YET_FINAL",
-    "independentReview": "NOT_STARTED_AWAIT_FINAL_AUTHOR_EVIDENCE"
+    "evidenceHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
+    "independentReview": "NOT_YET_RELEASED",
+    "codingReport": "docs/reviews/step-03-coding.md",
+    "codingReportSha256": "171995481729342c33be9c4c19fc46826121d569a7ac2872fc6305b2dc15fa70",
+    "codingEvidence": "docs/evidence/step-03/coding-7ca928f",
+    "codingEvidenceLedgerSha256": "4793caffde28712db880e1673987543020c0bb8c66a394964302c8b0060c5bab",
+    "postFreezeDiff": {
+      "paths": 43,
+      "meaning": "DOCUMENTATION_REPORT_EVIDENCE_ONLY_NO_BEHAVIOR_CHANGE"
+    },
+    "builds": [
+      {
+        "buildId": "step03-7ca928f2c1ac-4f67c752343684ec",
+        "sourceCommit": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+        "filesIncludingManifest": 89,
+        "manifestSha256": "71d4764dd41b3a9b1b80b88ac117d98ff7c6a1167429368b7c288493471fadf0",
+        "preservedPath": "artifacts/step03-7ca928f2c1ac-4f67c752343684ec",
+        "allFilesExactMatch": true
+      },
+      {
+        "buildId": "step03-material-7ca928f2c1ac-ea62343b13d105af",
+        "sourceCommit": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+        "filesIncludingManifest": 14,
+        "manifestSha256": "245c79afd8527f3f53cfd217377b96dd575916a49fdea914c26b4ba8bdc3a3de",
+        "preservedPath": "artifacts/step03-material-7ca928f2c1ac-ea62343b13d105af",
+        "allFilesExactMatch": true
+      },
+      {
+        "buildId": "step01-507f3627a46d19ce6cbf",
+        "sourceCommit": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+        "filesIncludingManifest": 5,
+        "manifestSha256": "5c01da441c0426d30daa786d6097004d6334240a457ee9befa641239fe25e0a2",
+        "preservedPath": "artifacts/step01-507f3627a46d19ce6cbf",
+        "allFilesExactMatch": true
+      }
+    ],
+    "reviewWorktreeHead": "7ca928f2c1ac480691c77e67b3d19da4dda8e643"
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -616,7 +651,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP03_FROZEN7CA_FULL116_DB_BROWSERS_BOUNDARY_PASS_AUTHOR_RECORDS_FINALIZING",
+  "lastSuccessfulCheckpoint": "7CA_SOURCE_8540_DOCS_FROZEN_THREE_IMMUTABLE_BUILDS_PRESERVED",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -651,7 +686,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Verify authorfinalready artifacts/ledger/docSHA then prepareexactdetachedreviewWT and formal independentround1",
+  "nextSafeAction": "ReleaseStep03IndependentRound1 onexact7ca; verifyactualclientUltra/default; no approval/mainmerge beforeallgates",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
