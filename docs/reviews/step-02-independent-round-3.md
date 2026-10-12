@@ -37,28 +37,28 @@ The saved author negative control is preserved, not rerun by mutating this froze
 
 Environment: explicit Node22.21.1/pnpm10.20.0; own PostgreSQL14.20 at `127.0.0.1:55433`, database `tileset_review`, private existing 0600 environment/SCRAM state; API4311/Web5174. No system DB, other game project, global MZ/NW.js/RPGReactor or paid provider was modified. Full command argv, frozen commit, selected nonsecret environment, exit, duration and log SHA are in `commands.jsonl`.
 
-| Gate | Current independent result | Evidence |
-| --- | --- | --- |
-| Frozen install / Prisma client | exit0; Prisma6.19.3 | install.log, db-generate.log |
-| Full engineering gate | exit0; boundaries/exact direct pins, Strict including tests, lint, format, 68/68, clean production build, 3 actual production ESM imports | check.log |
-| Original prototype cases | all 52 preserved; 24 inherited source/test/fixture/plan paths exactly match phase-exit baseline f004d6c | check.log, inherited-source-comparison.json |
-| Standalone actual Vite privacy | 5/5; 522 denials, 8 intended successes, no fake reads | dev-privacy.log, privacy-standalone.json |
-| Migration deploy | exit0; migration202610120001_step02_project already applied, no pending migration | db-migrate.log |
-| Real Nest/HTTP→Prisma write/read | 3/3 including same row/UUID/list, rejected-request no-write, safe errors/health/OpenAPI | integration.log |
-| Production browser | create201, persisted refresh, Pixi ready, no pageerror; screenshot inspected | e2e-production.log, e2e/production.json/png |
-| Development browser | same actual DB/API/browser flow; original Vite config | e2e-dev.log, e2e/dev.json/png |
-| Cold generated-cache development | moved only owned apps/web/node_modules/.vite into ignored backup; original config; create/refresh/Pixi/no-pageerror passed; screenshot inspected | cold-cache-setup.json, e2e-dev-cold.log, e2e/dev-cold.json/png |
-| Direct compiled Node/listener | node apps/api/dist/main.js; actual loopback4311 listener | runtime-faults.json, compiled-backend.log |
-| Compiled failures | occupied port, invalid bind, equal ports, unavailable-DB startup all exit1 with only safe generic error | runtime-faults.json |
-| Own DB availability/recovery | health200→stop only owned55433→503SERVICE_UNAVAILABLE→restart→health200 and project read200 | runtime-faults.json, database-lifecycle.log |
-| Engineering publication | current clean built output independently published; same 68 payload files, exact Manifest and author bytes | engineering-publication.log, artifact-integrity-before-refusal.json |
-| Prototype publication | current compiler produced same four PNGs/Manifest as author | prototype-publication.log, artifact-integrity-before-refusal.json |
-| Immutable refusal | both repeat publications expected exit1; all 69+5 files incl Manifests unchanged | *overwrite-refusal.log, artifact-integrity-after-refusal.json |
-| Approved Step01 PNG binding | all 4 PNGs/Profile/Pixel Contract exactly match step01-56368269c8328e0f84b9 | approved-prototype-regression.json |
-| External native core oracle | 960 selected tiles, 2,211,840 pixels, 241 updates pass against read-only official core hash | native-oracle.log/json |
-| Dependency audit | expected exit1: 3high Sharp, 1low esbuild; not globally clean | dependency-audit.log, focused dependency report |
-| Benign current EXIF ingress | exported decoder and supplied-build preflight accept valid metadata; not a crash test | benign-metadata-reachability.log/json |
-| Tracked source integrity | all297 tracked files exact before/after; frozen HEAD unchanged, staged/unstaged/untracked Git clean | source-before.json, source-after.json |
+| Gate                             | Current independent result                                                                                                                       | Evidence                                                            |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| Frozen install / Prisma client   | exit0; Prisma6.19.3                                                                                                                              | install.log, db-generate.log                                        |
+| Full engineering gate            | exit0; boundaries/exact direct pins, Strict including tests, lint, format, 68/68, clean production build, 3 actual production ESM imports        | check.log                                                           |
+| Original prototype cases         | all 52 preserved; 24 inherited source/test/fixture/plan paths exactly match phase-exit baseline f004d6c                                          | check.log, inherited-source-comparison.json                         |
+| Standalone actual Vite privacy   | 5/5; 522 denials, 8 intended successes, no fake reads                                                                                            | dev-privacy.log, privacy-standalone.json                            |
+| Migration deploy                 | exit0; migration202610120001_step02_project already applied, no pending migration                                                                | db-migrate.log                                                      |
+| Real Nest/HTTP→Prisma write/read | 3/3 including same row/UUID/list, rejected-request no-write, safe errors/health/OpenAPI                                                          | integration.log                                                     |
+| Production browser               | create201, persisted refresh, Pixi ready, no pageerror; screenshot inspected                                                                     | e2e-production.log, e2e/production.json/png                         |
+| Development browser              | same actual DB/API/browser flow; original Vite config                                                                                            | e2e-dev.log, e2e/dev.json/png                                       |
+| Cold generated-cache development | moved only owned apps/web/node_modules/.vite into ignored backup; original config; create/refresh/Pixi/no-pageerror passed; screenshot inspected | cold-cache-setup.json, e2e-dev-cold.log, e2e/dev-cold.json/png      |
+| Direct compiled Node/listener    | node apps/api/dist/main.js; actual loopback4311 listener                                                                                         | runtime-faults.json, compiled-backend.log                           |
+| Compiled failures                | occupied port, invalid bind, equal ports, unavailable-DB startup all exit1 with only safe generic error                                          | runtime-faults.json                                                 |
+| Own DB availability/recovery     | health200→stop only owned55433→503SERVICE_UNAVAILABLE→restart→health200 and project read200                                                      | runtime-faults.json, database-lifecycle.log                         |
+| Engineering publication          | current clean built output independently published; same 68 payload files, exact Manifest and author bytes                                       | engineering-publication.log, artifact-integrity-before-refusal.json |
+| Prototype publication            | current compiler produced same four PNGs/Manifest as author                                                                                      | prototype-publication.log, artifact-integrity-before-refusal.json   |
+| Immutable refusal                | both repeat publications expected exit1; all 69+5 files incl Manifests unchanged                                                                 | *overwrite-refusal.log, artifact-integrity-after-refusal.json       |
+| Approved Step01 PNG binding      | all 4 PNGs/Profile/Pixel Contract exactly match step01-56368269c8328e0f84b9                                                                      | approved-prototype-regression.json                                  |
+| External native core oracle      | 960 selected tiles, 2,211,840 pixels, 241 updates pass against read-only official core hash                                                      | native-oracle.log/json                                              |
+| Dependency audit                 | expected exit1: 3high Sharp, 1low esbuild; not globally clean                                                                                    | dependency-audit.log, focused dependency report                     |
+| Benign current EXIF ingress      | exported decoder and supplied-build preflight accept valid metadata; not a crash test                                                            | benign-metadata-reachability.log/json                               |
+| Tracked source integrity         | all297 tracked files exact before/after; frozen HEAD unchanged, staged/unstaged/untracked Git clean                                              | source-before.json, source-after.json                               |
 
 Engineering build: `step02-c3914ec1929e-c718a9846c1ce18a`, Manifest SHA-256 `c790e873616a7925a20a9ff1bc799220a79352de28e1108ea54029debaab6893`. Prototype build: `step01-c512ed0c899ac99d4694`, Manifest SHA-256 `414df504306bd0f5022ea06af4578116a21b73b944f57d26bba178ba2d5d9711`. Exact file sets, every payload SHA, commit, frozen lock, Profile and contract identity were read back, compared to author outputs, then reread after refusal. Profile `mz-native-ground-water/1.0.0-candidate.1`, Pixel `rgba8-srgb-integer-v1`, HTTP `http-v1`, Task `task-snapshot-v1` remain unchanged. Builds and old failure evidence were not overwritten.
 

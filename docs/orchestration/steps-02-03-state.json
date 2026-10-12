@@ -63,7 +63,7 @@
           }
         ],
         "report": "docs/reviews/step-02-independent-round-1.md",
-        "reportSha256": "bb12df8bcd914264f13fcbe5bb38d9ee7325029afb82d2c3fbd5fbb255816ba9",
+        "reportSha256": "248540928e3806d3a1dea8d2ea3ac65f501827e17ba22018a1aff209671f323a",
         "evidence": "docs/evidence/step-02/review-8a7d4b9-round-1",
         "nonblocking": [
           {
@@ -74,7 +74,9 @@
             "followup": "Re-evaluate before media/upload exposure or affected Windows serve; preserve golden and encoder impact review"
           }
         ],
-        "sourceIntegrity": "233_TRACKED_HASHES_UNCHANGED_GIT_CLEAN"
+        "sourceIntegrity": "233_TRACKED_HASHES_UNCHANGED_GIT_CLEAN",
+        "originalReportSha256": "bb12df8bcd914264f13fcbe5bb38d9ee7325029afb82d2c3fbd5fbb255816ba9",
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
       },
       {
         "round": 2,
@@ -99,7 +101,7 @@
         "priorClosure": "STEP02-R1-001_PARTIAL_NOT_CLOSED",
         "platformInterruption": "Reviewer report completion turn flagged for possible cybersecurity risk; same role asked only to document existing results, no new probes or access escalation",
         "report": "docs/reviews/step-02-independent-round-2.md",
-        "reportSha256": "c197dc9893ee0c0901856361c0bfdfb4ab575c545263654f119564167a120695",
+        "reportSha256": "e1bfc42fb61946d9c5959a2718512b55f5443b7f178a9afa372d4401b14acba6",
         "evidence": "docs/evidence/step-02/review-396cefb-round-2",
         "sourceIntegrity": "265_TRACKED_UNCHANGED_GIT_CLEAN",
         "documentationRecovery": "COMPLETED_EXISTING_OBSERVATIONS_ONLY_NO_NEW_PROBES",
@@ -108,7 +110,9 @@
           "standalone privacy command (same tests passed inside check)",
           "latest fault probes",
           "latest overwrite attempts"
-        ]
+        ],
+        "originalReportSha256": "c197dc9893ee0c0901856361c0bfdfb4ab575c545263654f119564167a120695",
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
       },
       {
         "round": 3,
@@ -172,7 +176,7 @@
           }
         },
         "report": "docs/reviews/step-02-independent-round-3.md",
-        "reportSha256": "881a720ac82aaebb98722b3fcfae069cd25be029ed3e2ca9faecbcc5ba762381",
+        "reportSha256": "ff4e0fad674e660971f46df7eb2df9311afe63980ebe3eaa7829638a5f1c48a3",
         "evidence": "docs/evidence/step-02/review-c3914ec-round-3",
         "sourceIntegrity": "297_TRACKED_UNCHANGED_GIT_CLEAN",
         "historicalResolution": {
@@ -195,7 +199,9 @@
             "advisory": "GHSA-jmwm-wc68-mhwm/CVE-2026-35590",
             "condition": "Accepted PNG EXIF enters affected libvips; supplied manifest integrity is not source trust"
           }
-        ]
+        ],
+        "originalReportSha256": "881a720ac82aaebb98722b3fcfae069cd25be029ed3e2ca9faecbcc5ba762381",
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
       },
       {
         "round": 4,
@@ -223,7 +229,7 @@
           "finalPass": "ISSUED"
         },
         "report": "docs/reviews/step-02-independent-round-4.md",
-        "reportSha256": "c3bffaf06311145d94463ca39144aba604b82c798b9e7128d1dc27ad523335a5",
+        "reportSha256": "eb1b65d885bd563e7d0cb1bdcfd5adcf26212b0133060dce013012d3feaff368",
         "evidence": "docs/evidence/step-02/review-5356d66-round-4",
         "evidenceLedgerSha256": "f84bf1fd90ddef4ca83a49f000e30e61479bebedbb386a9cf17db86a94b75f85",
         "counts": {
@@ -237,7 +243,9 @@
           "STEP02-R2-001",
           "STEP02-R3-001"
         ],
-        "sourceIntegrity": "334_TRACKED_SHA256_UNCHANGED_EXACT_SHA_GIT_CLEAN"
+        "sourceIntegrity": "334_TRACKED_SHA256_UNCHANGED_EXACT_SHA_GIT_CLEAN",
+        "originalReportSha256": "c3bffaf06311145d94463ca39144aba604b82c798b9e7128d1dc27ad523335a5",
+        "reportPresentation": "CANONICAL_PRETTIER_COPY; ORIGINAL_RAW_IN_EVIDENCE_ARCHIVE_UNCHANGED"
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -387,7 +395,8 @@
       "nonDocsDiffAgainstReviewedCandidate": "NONE",
       "validation": "IN_PROGRESS",
       "firstAttempt": "GENERATION_PASS_MIGRATION_ORDER_TOO_EARLY_DIST_MISSING_NO_CODE_CHANGE",
-      "secondAttempt": "DOCUMENTED_CHECK_THEN_MIGRATION_IN_PROGRESS"
+      "secondAttempt": "FAILED_PRETTIER_ON_ROOT_RAW_INDEPENDENT_REPORT_PRESENTATION_NO_FUNCTIONAL_FAILURE",
+      "remedy": "Format only canonical presentation copies; immutable reviewer raw reports preserved; no checks disabled"
     },
     "currentNonblocking": [
       {
