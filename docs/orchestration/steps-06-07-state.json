@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_CODING_FIX_ROUND_2",
+  "phase": "STEP06_INDEPENDENT_REVIEW_ROUND_3",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -62,8 +62,8 @@
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
-    "status": "CHANGES_REQUESTED",
-    "reviewRounds": 2,
+    "status": "IN_PROGRESS",
+    "reviewRounds": 3,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
     "baseMain": "d1439bb81e9843358f591590c6a433c4a62be33d",
@@ -84,8 +84,8 @@
       "log": ".local/step06/test-step06-cache.log",
       "timeoutThresholdChanged": false
     },
-    "candidateSha": "debcce716e5b563eec881eb24eaa41aebcccac30",
-    "candidateState": "FIX_ROUND1_FROZEN_PENDING_AUTHOR_EVIDENCE",
+    "candidateSha": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+    "candidateState": "FIX_ROUND2_FROZEN_PENDING_AUTHOR_EVIDENCE",
     "authorFullCheck": {
       "testFiles": 21,
       "tests": 229,
@@ -187,7 +187,7 @@
       "status": "PASS_AUTHOR_EXECUTED",
       "editorGameGpu": "NOT_EXECUTED"
     },
-    "docsHead": "ac4ca7b222ccae93569c60275cafb3eace236356",
+    "docsHead": "89f15cbb3d560584043128235014e230f982c2c8",
     "codingReport": "docs/reviews/step-06-coding.md",
     "codingReportSha256": "1ae3f27e9c42d5d1915fcd9a77a58df01b92de948e29d10ad6099fdee2064c16",
     "codingEvidenceLedgerFiles": 50,
@@ -295,6 +295,15 @@
         ],
         "sourceProtectionFiles": 1473,
         "sourceChanged": false
+      },
+      {
+        "round": 3,
+        "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+        "docsHead": "89f15cbb3d560584043128235014e230f982c2c8",
+        "status": "IN_PROGRESS",
+        "threadId": "01a13284-5dcc-73a0-b0ec-689c81ae06a9",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round3-client.json"
       }
     ],
     "codingFix": {
@@ -343,6 +352,35 @@
       "pgPort": 55469,
       "apiPort": 4369,
       "webPort": 5269
+    },
+    "codingFixRound2": {
+      "status": "READY_FOR_REVIEW_AUTHOR_STOPPED",
+      "threadId": "01a131b0-75e6-7a83-851d-fa1fc5bdc3e9",
+      "issues": [
+        "STEP06-IR-001",
+        "STEP06-R2-001"
+      ],
+      "nativeOutput": ".local/orchestration-06-07/step06-fix-round2",
+      "serviceTier": "default",
+      "nextFormalRound": 3,
+      "candidateSha": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "authorCheckTests": 231,
+      "authorDatabaseTests": 23,
+      "productionExports": 10,
+      "retainedFailure": "Original backup queue control rejected by initial nested maintenance rule; fixed without changing old test",
+      "authorFrozenCheckTests": 231,
+      "authorFrozenPostgresTests": 23,
+      "docsHead": "89f15cbb3d560584043128235014e230f982c2c8",
+      "ledgerVerifiedFiles": 75,
+      "postCandidateDiff": "79_README_DOCS_PATHS_ONLY"
+    },
+    "reviewRound3Environment": {
+      "status": "READY_NOT_DISPATCHED",
+      "candidateSha": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker",
+      "pgPort": 55471,
+      "apiPort": 4371,
+      "webPort": 5271
     }
   },
   "step07": {
@@ -395,9 +433,21 @@
       "apiPort": 4369,
       "webPort": 5269,
       "serviceStatus": "NOT_STARTED"
+    },
+    {
+      "owner": "step06_reviewer_round3",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker",
+      "pgPort": 55471,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step06-review/assets",
+      "temporaryRoot": ".local/step06-review",
+      "apiPort": 4371,
+      "webPort": 5271,
+      "serviceStatus": "NOT_STARTED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_ROUND2_REVIEW_FROZEN_REQUIRES_REVISION_EVIDENCE_PRESERVED",
+  "lastSuccessfulCheckpoint": "STEP06_STANDARD_INDEPENDENT_ROUND3_DISPATCHED",
   "blockers": [],
-  "nextSafeAction": "Resume same Standard step_coder for parent-lease propagation and real PostgreSQL directory alias rejection; next formal review round3/5."
+  "nextSafeAction": "Await round3 frozen independent result; latest PASS plus all needed CI required before preauthorized acceptance and step06 publication."
 }
