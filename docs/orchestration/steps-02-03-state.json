@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_REPAIRED_CANDIDATE_EVIDENCE_PREPARATION",
+  "currentPhase": "STEP03_ROUND2_ENVIRONMENT_READY",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "REMEDIATION_FROZEN_EVIDENCE_FINALIZING",
+    "status": "READY_FOR_INDEPENDENT_ROUND2",
     "reviews": [
       {
         "round": 1,
@@ -644,7 +644,7 @@
     },
     "candidateSourceTrackedFiles": 669,
     "sourceEditsAfterFreeze": "PROHIBITED_AWAIT_REVIEW",
-    "evidenceHead": "NEW_FIX_DOC_HEAD_NOT_YET_FINAL",
+    "evidenceHead": "0cf7aa049137cae6c9367231a141ffcb04df97a9",
     "independentReview": "CHANGES_REQUESTED",
     "codingReport": "docs/reviews/step-03-coding.md",
     "codingReportSha256": "171995481729342c33be9c4c19fc46826121d569a7ac2872fc6305b2dc15fa70",
@@ -678,15 +678,39 @@
         "manifestSha256": "5c01da441c0426d30daa786d6097004d6334240a457ee9befa641239fe25e0a2",
         "preservedPath": "artifacts/step01-507f3627a46d19ce6cbf",
         "allFilesExactMatch": true
+      },
+      {
+        "buildId": "step03-a0e9f07ae265-4ecf0ddf8cce1edf",
+        "sourceCommit": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+        "filesIncludingManifest": 89,
+        "manifestSha256": "46c0de9ce066e16c1bd00d0b511f771f101f4fc689228e1dc2d852a3f2b6f0aa",
+        "preservedPath": "artifacts/step03-a0e9f07ae265-4ecf0ddf8cce1edf",
+        "allFilesExactMatch": true
+      },
+      {
+        "buildId": "step03-material-a0e9f07ae265-cd0467ddf07df105",
+        "sourceCommit": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+        "filesIncludingManifest": 14,
+        "manifestSha256": "384b360002a5ee24cb4d7b4230367455a36b7b250f480d06b01c8046849e9f99",
+        "preservedPath": "artifacts/step03-material-a0e9f07ae265-cd0467ddf07df105",
+        "allFilesExactMatch": true
+      },
+      {
+        "buildId": "step01-4b1e0cd7d9e2af9f004f",
+        "sourceCommit": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+        "filesIncludingManifest": 5,
+        "manifestSha256": "3bffcde791f57694f3113a3e3a4a594938846a79001245d7116d4c4eb1f89bd0",
+        "preservedPath": "artifacts/step01-4b1e0cd7d9e2af9f004f",
+        "allFilesExactMatch": true
       }
     ],
-    "reviewWorktreeHead": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+    "reviewWorktreeHead": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
     "protectedPaths": "ROOT_VERIFIED_ALL_PREVIOUS_PROTOTYPE_APP_CONTRACT_GATEWAY_PLAN_PROFILE_PIXELCONTRACT_AND_OLDTESTS_UNCHANGED",
     "remediation": {
       "round": 1,
       "sourceReviewed": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
       "author": "/root/step03_coder",
-      "status": "FROZEN_NEW_CODE_FINAL_EVIDENCE_IN_PROGRESS",
+      "status": "CODING_COMPLETE_READY_R2",
       "clientConfiguration": {
         "logId": 2948775,
         "turn": "01a12e89-2a1e-7743-ab3f-a76773d23d47",
@@ -712,7 +736,10 @@
       ],
       "newRegression": "13_PASS_OLD10_FAIL_3_CONTROLS_CODING_REPORTED",
       "fullCheck": "129_PASS_DRAFT_CODING_REPORTED",
-      "independentClosure": "PENDING_R2"
+      "independentClosure": "PENDING_R2",
+      "finalChecks": "129_EXPORT6_DB3_PRIVACY5_PROD_DEV_COLD_GOLDEN_NATIVEORACLE_PASS_CODING_REPORTED",
+      "commandBindings": 22,
+      "ledgerFiles": 50
     },
     "integrationWorktree": "/Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker",
     "integrationBranch": "codex/step-03-integration",
@@ -724,7 +751,20 @@
       "verification": "PASS129_EXPORT6_PRIVACY5_REALDB3_DEV_PROD_BROWSERS",
       "evidence": "docs/evidence/step-03/integration-648a71e",
       "independentGate": "STILL_PENDING_ROUND2"
-    }
+    },
+    "fixReport": "docs/reviews/step-03-fix-round-1-coding.md",
+    "fixReportSha256": "a02de1ae82678d9f2e92e5d7d9d21e404ba25449f65fd45003351dff9691f296",
+    "fixEvidence": "docs/evidence/step-03/fix-r1-a0e9f07",
+    "fixEvidenceLedgerSha256": "f16c114361c0a645168fae38be975aec5f09b1fb0d8fa6508fbbf4da4b8992e9",
+    "fixPostFreezeDiff": {
+      "paths": 53,
+      "meaning": "DOCS_REPORT_EVIDENCE_ONLY"
+    },
+    "currentBuilds": [
+      "step03-a0e9f07ae265-4ecf0ddf8cce1edf",
+      "step03-material-a0e9f07ae265-cd0467ddf07df105",
+      "step01-4b1e0cd7d9e2af9f004f"
+    ]
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -759,7 +799,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "A0E_FROZEN_5PATH_REMEDIATION_129_DRAFT_PASS",
+  "lastSuccessfulCheckpoint": "A0E_SOURCE_0CF_DOCS_THREE_NEW_BUILDS_PRESERVED",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -794,7 +834,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "WaitfinalexactA0Eauthorready/docHEAD/builds; newisolatedsourceR2reviewwith5P2closure; no mainpromotion",
+  "nextSafeAction": "ReleaseindependentR2 exacta0e and closeall5orcontinueboundedfixcycle; no mainapproval yet",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
