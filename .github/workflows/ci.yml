@@ -34,6 +34,7 @@ jobs:
       - run: pnpm test:dev-privacy
       - run: pnpm db:migrate
       - run: pnpm test:integration
+      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06
       - run: pnpm exec playwright install --with-deps chromium
       - run: pnpm test:e2e
       - run: E2E_MODE=dev pnpm test:e2e

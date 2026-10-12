@@ -5,6 +5,7 @@ import { Module } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { PrismaClient } from '@prisma/client';
+import { WriteGate } from '@tileset/persistence';
 import express, { type ErrorRequestHandler } from 'express';
 import helmet from 'helmet';
 import { repositoryRoot, type ServerConfig } from './config.js';
@@ -34,7 +35,10 @@ export async function createApplication(config: ServerConfig) {
   server.use(express.json({ limit: '8kb', strict: true, inflate: false }));
   @Module({
     controllers: [ProjectsController],
-    providers: [{ provide: PrismaClient, useValue: db }],
+    providers: [
+      { provide: PrismaClient, useValue: db },
+      { provide: WriteGate, useValue: new WriteGate(config.DATABASE_URL) },
+    ],
   })
   class AppModule {}
   const app = await NestFactory.create(AppModule, new ExpressAdapter(server), {

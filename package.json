@@ -18,7 +18,7 @@
     "preinstall": "node scripts/toolchain.mjs",
     "typecheck": "pnpm build:contracts && tsc --noEmit && tsc -p tsconfig.tests.json && pnpm -r --filter './apps/*' --filter './packages/*' typecheck",
     "build:prototype": "pnpm build:contracts && tsc",
-    "build:contracts": "pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build",
+    "build:contracts": "pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build",
     "build": "node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && pnpm --filter @tileset/web build",
     "test": "pnpm build:prototype && vitest run",
     "test:e2e": "playwright test",
@@ -48,11 +48,16 @@
     "build:mz-sample": "pnpm build:prototype && node scripts/build-mz-sample.mjs",
     "verify:step04": "node dist/scripts/verify-step04.js",
     "prepare:step04": "node dist/scripts/prepare-step04.js",
-    "test:step05": "pnpm build:contracts && vitest run packages/pack-assembly/tests tests/pack-export.test.ts tests/publication-ownership.test.ts",
+    "test:step05": "pnpm build:prototype && vitest run packages/pack-assembly/tests tests/pack-export.test.ts tests/publication-ownership.test.ts",
     "build:pack-sample": "pnpm build:prototype && node dist/scripts/build-pack-sample.js",
     "verify:step05": "node dist/scripts/verify-step05.js",
     "export:pack": "node dist/scripts/export-pack.js",
-    "prepare:step05": "node dist/scripts/prepare-step05.js"
+    "prepare:step05": "node dist/scripts/prepare-step05.js",
+    "test:step06": "pnpm build:prototype && vitest run --config vitest.step06.config.ts",
+    "build:step06": "pnpm build && node scripts/build-engineering.mjs step06",
+    "backup:local": "node --env-file=.env dist/scripts/step06-maintenance.js backup",
+    "restore:local": "node --env-file=.env dist/scripts/step06-maintenance.js restore",
+    "tasks:mock": "node --env-file=.env dist/scripts/run-mock-executor.js"
   },
   "dependencies": {
     "sharp": "0.35.5"
@@ -70,7 +75,10 @@
     "@tileset/material-processing": "workspace:*",
     "@tileset/image-adapter": "workspace:*",
     "@tileset/mz-compiler": "workspace:*",
-    "@tileset/pack-assembly": "workspace:*"
+    "@tileset/pack-assembly": "workspace:*",
+    "@tileset/persistence": "workspace:*",
+    "@tileset/local-executor": "workspace:*",
+    "@tileset/ai-gateway": "workspace:*"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

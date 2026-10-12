@@ -1,6 +1,14 @@
 import { execFileSync } from 'node:child_process';
 const checks = [
   [
+    'packages/persistence',
+    "import {Persistence,AssetStorage} from '@tileset/persistence'; if(typeof Persistence !== 'function' || typeof AssetStorage !== 'function') throw Error('persistence export');",
+  ],
+  [
+    'packages/local-executor',
+    "import {Executor,MockProvider} from '@tileset/local-executor'; if(typeof Executor !== 'function' || typeof MockProvider !== 'function') throw Error('executor export');",
+  ],
+  [
     'packages/pack-assembly',
     "import {planPack,PACK_CONTRACT} from '@tileset/pack-assembly'; if(typeof planPack !== 'function' || PACK_CONTRACT !== 'mz-pack-v1') throw Error('pack export');",
   ],

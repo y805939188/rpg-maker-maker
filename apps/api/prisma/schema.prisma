@@ -1,15 +1,196 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-// Only the step-02 engineering round-trip. Asset/task persistence belongs to step 06.
 model Project {
-  id        String   @id @default(uuid()) @db.Uuid
-  name      String   @db.VarChar(80)
+  id                String   @id @default(uuid()) @db.Uuid
+  name              String   @db.VarChar(80)
+  createdAt         DateTime @default(now()) @db.Timestamptz(3)
+  revision          Int      @default(0)
+  successfulBuildId String?  @unique
+  successfulBuild   Build?   @relation("ProjectSuccess", fields: [successfulBuildId], references: [id], onDelete: Restrict)
+  snapshots         ProjectSnapshot[]
+  assets            OriginalAsset[]
+  revisions         AssetRevision[]
+  processing        ProcessingRecord[]
+  packs             Pack[]
+  tasks             LogicalTask[]
+  builds            Build[] @relation("ProjectBuilds")
+}
+model ProjectSnapshot {
+  id          String @id
+  projectId   String @db.Uuid
+  revision    Int
+  adoption    Json
+  contentHash String
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Restrict)
+  builds      Build[]
+  tasks       LogicalTask[]
+  @@unique([projectId, revision])
+}
+model FileObject {
+  sha256    String @id
+  bytes     Int
+  key       String @unique
+  revisions AssetRevision[]
+  builds    BuildFile[]
+  artifacts TaskArtifact[]
+}
+model OriginalAsset {
+  id        String @id @default(uuid()) @db.Uuid
+  projectId String @db.Uuid
+  logicalId String
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Restrict)
+  revisions AssetRevision[]
+  artifacts TaskArtifact[]
+  @@unique([projectId, logicalId])
+}
+model AssetRevision {
+  id          String @id
+  projectId   String @db.Uuid
+  kind        String
+  logicalId   String
+  revision    Int
+  contentHash String
+  value       Json
+  assetId     String? @db.Uuid
+  sourceSha   String?
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Restrict)
+  asset       OriginalAsset? @relation(fields: [assetId], references: [id], onDelete: Restrict)
+  source      FileObject? @relation(fields: [sourceSha], references: [sha256], onDelete: Restrict)
+  dependencies RevisionDependency[] @relation("DependsFrom")
+  dependents   RevisionDependency[] @relation("DependsTo")
+  processing   ProcessingRecord[]
+  @@unique([projectId, kind, logicalId, revision])
+}
+model RevisionDependency {
+  fromId String
+  toId   String
+  from   AssetRevision @relation("DependsFrom", fields: [fromId], references: [id], onDelete: Restrict)
+  to     AssetRevision @relation("DependsTo", fields: [toId], references: [id], onDelete: Restrict)
+  @@id([fromId, toId])
+}
+model ProcessingRecord {
+  id          String @id
+  projectId   String @db.Uuid
+  recipeId    String
+  irHash      String
+  descriptor  Json
+  project     Project @relation(fields: [projectId], references: [id], onDelete: Restrict)
+  recipe      AssetRevision @relation(fields: [recipeId], references: [id], onDelete: Restrict)
+  @@unique([projectId, irHash])
+}
+model Pack {
+  id             String @id
+  projectId      String @db.Uuid
+  logicalId      String
+  version        Int @default(0)
+  headHash       String?
+  currentBuildId String? @unique
+  project        Project @relation(fields: [projectId], references: [id], onDelete: Restrict)
+  currentBuild   Build? @relation("PackSuccess", fields: [currentBuildId], references: [id], onDelete: Restrict)
+  history        PackVersion[]
+  builds         Build[] @relation("PackBuilds")
+  @@unique([projectId, logicalId])
+}
+model PackVersion {
+  id       String @id
+  packId   String
+  version  Int
+  hash     String
+  snapshot Json
+  pack     Pack @relation(fields: [packId], references: [id], onDelete: Restrict)
+  slots    SlotVersion[]
+  @@unique([packId, version])
+}
+model SlotVersion {
+  packVersionId String
+  atlas         String
+  kind          Int
+  state         String
+  binding       Json
+  packVersion   PackVersion @relation(fields: [packVersionId], references: [id], onDelete: Restrict)
+  @@id([packVersionId, atlas, kind])
+}
+model Build {
+  id                  String @id
+  projectId           String @db.Uuid
+  packId              String
+  projectSnapshotId   String
+  expectedPackVersion Int
+  snapshotHash        String
+  manifestSha         String
+  directory           String @unique
+  publication         String
+  metadata            Json
+  createdAt           DateTime @default(now()) @db.Timestamptz(3)
+  project             Project @relation("ProjectBuilds", fields: [projectId], references: [id], onDelete: Restrict)
+  pack                Pack @relation("PackBuilds", fields: [packId], references: [id], onDelete: Restrict)
+  projectSnapshot     ProjectSnapshot @relation(fields: [projectSnapshotId], references: [id], onDelete: Restrict)
+  currentForProject   Project? @relation("ProjectSuccess")
+  currentForPack      Pack? @relation("PackSuccess")
+  files               BuildFile[]
+  acceptance          AcceptanceRecord[]
+}
+model BuildFile {
+  buildId String
+  name    String
+  sha256  String
+  build   Build @relation(fields: [buildId], references: [id], onDelete: Restrict)
+  file    FileObject @relation(fields: [sha256], references: [sha256], onDelete: Restrict)
+  @@id([buildId, name])
+}
+model AcceptanceRecord {
+  id        String @id @default(uuid()) @db.Uuid
+  buildId   String
+  category  String
+  status    String
+  evidence  Json
   createdAt DateTime @default(now()) @db.Timestamptz(3)
+  build     Build @relation(fields: [buildId], references: [id], onDelete: Restrict)
+}
+model LogicalTask {
+  id                String @id @db.Uuid
+  projectId         String @db.Uuid
+  projectSnapshotId String
+  snapshot          Json
+  snapshotHash      String
+  version           Int @default(0)
+  state             String
+  predictionId      String? @unique
+  archiveState      String @default("PENDING")
+  localCancelled    Boolean @default(false)
+  remoteCancellation String @default("NOT_REQUESTED")
+  result            Json?
+  errorCode         String?
+  createdAt         DateTime @default(now()) @db.Timestamptz(3)
+  project           Project @relation(fields: [projectId], references: [id], onDelete: Restrict)
+  projectSnapshot   ProjectSnapshot @relation(fields: [projectSnapshotId], references: [id], onDelete: Restrict)
+  attempts          SubmissionAttempt[]
+  artifacts         TaskArtifact[]
+}
+model SubmissionAttempt {
+  id           String @id @db.Uuid
+  taskId       String @db.Uuid
+  sequence     Int
+  state        String
+  predictionId String?
+  intentAt     DateTime @default(now()) @db.Timestamptz(3)
+  task         LogicalTask @relation(fields: [taskId], references: [id], onDelete: Restrict)
+  @@unique([taskId, sequence])
+}
+model TaskArtifact {
+  taskId   String @db.Uuid
+  ordinal  Int
+  assetId  String @db.Uuid
+  revision String
+  sha256   String
+  sourceRef Json
+  task     LogicalTask @relation(fields: [taskId], references: [id], onDelete: Restrict)
+  file     FileObject @relation(fields: [sha256], references: [sha256], onDelete: Restrict)
+  asset    OriginalAsset @relation(fields: [assetId], references: [id], onDelete: Restrict)
+  @@id([taskId, ordinal])
 }
