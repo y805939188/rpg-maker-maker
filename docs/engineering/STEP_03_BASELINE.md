@@ -67,3 +67,15 @@ E2E_MODE=dev pnpm test:e2e
 先提交干净候选，然后 `pnpm build:step03` 出版 `step03-*` 工程构建，`pnpm build:material-sample` 出版 `step03-material-*`，`pnpm prototype` 出版新的步骤 01 回归构建。每份唯一 manifest 绑定 clean commit、锁文件、Profile/契约、实际 codec、逐文件 SHA，重复发布拒绝。小型 material sample 从独立手写 JSON 源构造 PNG，走真实 decoder→source→recipe→IR，保存原始源 PNG、处理 PNG、IR JSON、revision/provenance；不是正式 MZ 交付。测试期望由手工字节、独立 PNG wire encoder 和独立 JSON 选择数组给出，未使用生产函数生成 expected。
 
 正式 candidate、完整命令/hash、最大平面测量、开发/生产/cold 浏览器结果及原型四 PNG/外部 oracle 见 [步骤 03 Coding 报告](../reviews/step-03-coding.md)。Independent Review 未完成不得写 PASS；MZ 原装 Host 与新增 GUI/游戏/视觉验收仍为 NOT_EXECUTED，Map003(4,10) 保持 PENDING_USER_EVIDENCE。当前 scoped esbuild Windows standalone serve+servedir 未引入，修复版本升级仍在该表面开放前由 engineering 承担。
+
+## 第一轮 Review 修订
+
+第一轮独立 Review 对 7ca928f 提出五项 blocking P2；原始报告和失败证据保持不变。整改在候选边界增加以下必要约束，未修改原像素算法、Profile、Pixel Contract、源母版或 expected planes：
+
+- JSON、clip sequence/duration 及相关 palette/provenance/region/source/IR/adoption 数组须逐索引具有自有、非 undefined 值；稀疏/inherited slots 拒绝，不填 null。Animation 的索引/时长逐项验证，frameAt 使用已验证的拥有快照。
+- Tile IR 增加显式 `parameters` RevisionRef，纳入 contentHash 与 mandatory dependency closure；缺失/错配参数阻止 Built。历史 catalog 缺该版本报告 MISSING_DEPENDENCY，明确采用新参数报告当前 needsRebuild，旧历史仍 VALID。
+- 当前 recipe/IR/project adoption 每个 kind+logical ID 仅选择一个 revision。各 water source frame 使用不同 component IDs；同一 water ID 的多个版本不能在同一当前配方中被当作多个组件，报 REVISION_IDENTITY_CONFLICT。Catalog 仍可保存全部历史版本；相同自身依赖快照无 rebuild，显式 adoption 才改变当前比较。
+- 可见 bank overlay 源颜色在合成前须属于 style palette，合成结果也须符合 palette；透明零 RGB 和静态 mask 规则保持。
+- 固定动态岸线在 recipe 与 IR 两处只以 declared sequence 可达帧的实际 pixel hashes 判断变化。不同引用但相同像素、仅未播放帧变化都不能成为 animated Built。通用 clip 仍允许 unused frames、任意有界 N、nonloop；所有存储帧的静态岸线一致性继续校验。
+
+13 个新增回归覆盖失败输入与有效控制。旧 built production exports 的原始独立 repro 在 owned scope 重新显示五项缺陷；新 production-export verification 逐项确认拒绝与有效控制。详细候选与冻结执行见 [第一轮 Coding 整改报告](../reviews/step-03-fix-round-1-coding.md)。独立第二轮 Review 尚未执行，不能据此声称五项已被独立关闭。
