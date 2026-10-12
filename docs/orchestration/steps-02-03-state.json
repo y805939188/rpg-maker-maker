@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_MAIN_POSTMERGE_REGRESSION",
+  "currentPhase": "DEVELOPMENT_STOPPED_FINAL_RECORDS_AND_SAFE_CLEANUP",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "APPROVED_PENDING_MAIN_PUBLICATION",
+    "status": "PUBLISHED",
     "reviews": [
       {
         "round": 1,
@@ -609,7 +609,7 @@
       }
     ],
     "merge": "SUCCESS_LOCAL_MAIN_NORMAL_FAST_FORWARD",
-    "push": "NOT_YET_EXECUTED",
+    "push": "SUCCESS_EXACT_REMOTE_HEAD_VERIFIED",
     "baseMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
     "codingAgent": "/root/step03_coder",
     "reviewAgent": "/root/step03_reviewer",
@@ -869,7 +869,17 @@
       },
       "timeUTC": "2026-10-12T06:25:46.879418+00:00"
     },
-    "mergeCommit": "0793c948da3bf3a8967579253f27ab2e234b8e70"
+    "mergeCommit": "0793c948da3bf3a8967579253f27ab2e234b8e70",
+    "postmergeRegression": "FORMAT_6EXPORTS_13R1REGRESSIONS_REALDB3_PRODUCTION_BROWSER_PASS",
+    "postmergeEvidence": "docs/evidence/step-03/postmerge-0793c94",
+    "postMainCI": {
+      "runId": 38212585754,
+      "head": "0793c948da3bf3a8967579253f27ab2e234b8e70",
+      "status": "COMPLETED",
+      "result": "SUCCESS_ALL_REQUIRED_JOBS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38212585754",
+      "evidence": "docs/orchestration/evidence/step03-main-remote-ci.json"
+    }
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -904,10 +914,10 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP03_MAIN_LOCAL_0793_SOURCE_EXACT_A0E_POSTMERGE_GATES_RUNNING",
+  "lastSuccessfulCheckpoint": "BOTH_STEPS_PUBLISHED_REVIEWED_APPROVED_MAIN0793_AND_ALL_REQUIRED_CI_SUCCESS",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
-  "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
+  "finalRemoteMain": "0793c948da3bf3a8967579253f27ab2e234b8e70",
   "finalReport": null,
   "ownedServices": "OWNED_POSTGRES55432_55433_55434_READY_APPS_MANAGED_BY_INTEGRATION_TESTS",
   "resumeAttempts": [
@@ -939,7 +949,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Completepostmergeregressions; normalpush/readback main; postmainCIthenstopdevelopment",
+  "nextSafeAction": "No moreCoding/Review; verifyownedworktreeancestry/data/archives; safecleanupandownedserviceStop; finalreport/metadata only",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
@@ -975,5 +985,6 @@
     "supportRecord": "docs/orchestration/evidence/resume-main-platform-interruption-2905000.json",
     "status": "RESOLVED_BY_SAME_REQUIRED_REVIEWER_R3_R4_AND_STEP02_PUBLICATION"
   },
-  "historicalFinalReport": "docs/orchestration/steps-02-03-blocked-report.md"
+  "historicalFinalReport": "docs/orchestration/steps-02-03-blocked-report.md",
+  "formalDevelopmentStopped": true
 }

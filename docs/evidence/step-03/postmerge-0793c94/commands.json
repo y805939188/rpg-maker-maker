@@ -1,0 +1,42 @@
+[
+  {
+    "head": "0793c948da3bf3a8967579253f27ab2e234b8e70",
+    "command": [
+      "pnpm",
+      "verify:exports"
+    ],
+    "exitCode": 0,
+    "log": "exports.log"
+  },
+  {
+    "head": "0793c948da3bf3a8967579253f27ab2e234b8e70",
+    "command": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/asset-core/tests/review-round1.test.ts",
+      "packages/material-processing/tests/review-round1.test.ts"
+    ],
+    "exitCode": 0,
+    "log": "r1-regressions.log"
+  },
+  {
+    "head": "0793c948da3bf3a8967579253f27ab2e234b8e70",
+    "command": [
+      "pnpm",
+      "test:integration"
+    ],
+    "exitCode": 0,
+    "log": "database.log"
+  },
+  {
+    "head": "0793c948da3bf3a8967579253f27ab2e234b8e70",
+    "command": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "exitCode": 0,
+    "log": "production-browser.log"
+  }
+]
