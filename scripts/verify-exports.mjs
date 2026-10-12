@@ -1,6 +1,10 @@
 import { execFileSync } from 'node:child_process';
 const checks = [
   [
+    'packages/pack-assembly',
+    "import {planPack,PACK_CONTRACT} from '@tileset/pack-assembly'; if(typeof planPack !== 'function' || PACK_CONTRACT !== 'mz-pack-v1') throw Error('pack export');",
+  ],
+  [
     'packages/mz-compiler',
     "import {compileFragment,FRAGMENT_CONTRACT} from '@tileset/mz-compiler'; if (typeof compileFragment !== 'function' || FRAGMENT_CONTRACT !== 'mz-compiled-fragment-v1') throw Error('compiler export');",
   ],

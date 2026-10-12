@@ -9,6 +9,7 @@ const rules = [
       '@tileset/material-processing',
       '@tileset/image-adapter',
       '@tileset/mz-compiler',
+      '@tileset/pack-assembly',
     ],
     sources: ['src'],
     forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|wavespeed|@tileset\//,
@@ -46,6 +47,12 @@ const rules = [
   {
     path: 'packages/mz-compiler',
     allowed: ['@tileset/asset-core'],
+    sources: ['src'],
+    forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|sharp|wavespeed|node:/,
+  },
+  {
+    path: 'packages/pack-assembly',
+    allowed: ['@tileset/asset-core', '@tileset/mz-compiler'],
     sources: ['src'],
     forbidden: /@nestjs\/|@prisma\/|react|pixi\.js|sharp|wavespeed|node:/,
   },
