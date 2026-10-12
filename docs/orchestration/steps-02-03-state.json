@@ -39,9 +39,9 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP02_FIX_ROUND3_DECODER",
+  "currentPhase": "STEP02_INDEPENDENT_REVIEW_ROUND4",
   "step02": {
-    "status": "CHANGES_REQUESTED",
+    "status": "READY_FOR_REVIEW",
     "reviews": [
       {
         "round": 1,
@@ -196,6 +196,16 @@
             "condition": "Accepted PNG EXIF enters affected libvips; supplied manifest integrity is not source trust"
           }
         ]
+      },
+      {
+        "round": 4,
+        "candidate": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+        "reviewer": "/root/step02_resume_review3",
+        "status": "IN_PROGRESS",
+        "mustVerifyClosure": [
+          "STEP02-R3-001"
+        ],
+        "historicalP1": "FIXED_ON_C391; REGRESS_ON_CURRENT"
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -216,10 +226,10 @@
       "fullApiWebRoundtrip": "API_PASS_BROWSER_PENDING",
       "migration": "202610120001_step02_project_PASS_CODING_REPORTED"
     },
-    "candidate": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
+    "candidate": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
     "independentReview": "NOT_EXECUTED",
     "reviewWorktree": "/Users/dingshinn/.codex/worktrees/step-02-review/rpg-maker-maker",
-    "reviewWorktreeHead": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
+    "reviewWorktreeHead": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
     "reviewDatabasePort": 55433,
     "codingReportedChecks": {
       "unitAndPrototype": "63/63_PASS_ORIGINAL52_PRESERVED",
@@ -299,14 +309,13 @@
     "fixReport": "docs/reviews/step-02-fix-round-2-coding.md",
     "privacyCountsCorrection": "3 foreign GET + 3 foreign OPTIONS, not6preflights",
     "latestCodingChecks": {
-      "fullCheck": "68/68_AND_TYPES_LINT_FORMAT_BUILD_EXPORTS_PASS",
+      "fullCheck": "72/72_PASS_ORIGINAL52_PRESERVED",
       "realDB": "3/3_PASS",
-      "devProductionBrowser": "BOTH_PASS",
-      "coldDevBrowser": "PASS",
-      "pixelNativeOracle": "FOUR_PNG_EXACT_960_SELECTIONS_2211840_PIXELS_241_UPDATES_PASS",
-      "immutableRefusal": "PASS",
-      "latestStandaloneBackendFaultProbes": "NOT_EXECUTED_STOPPED_BEFORE_START",
-      "independentReview": "ROUND3_NOT_EXECUTED_PLATFORM_INTERRUPTED"
+      "devProductionBrowser": "PASS",
+      "patchedNative": "SHARP0.35.5_LIBVIPS8.18.7_ACTUALLY_LOADED",
+      "fourPNG": "EXACT_BYTE_AND_PIXEL_MATCH_EXPERIMENTAL_CODING",
+      "audit": "0HIGH_0CRITICAL_1SCOPED_LOW",
+      "frozenFinalEvidence": "IN_PROGRESS"
     },
     "latestIndependentPass": "NONE",
     "delegatedApproval": "NOT_ISSUED",
@@ -408,5 +417,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Designated coder fixes reachable decoder dependency/metadata gate and freezes new candidate; formal review round4, max5 unchanged"
+  "nextSafeAction": "Independent round4 final patched codec/current-candidate gates; no main publication before review+CI"
 }
