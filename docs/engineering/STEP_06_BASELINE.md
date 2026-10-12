@@ -88,3 +88,17 @@ pnpm restore:local <verified-backup-name>
 CI 明确在真实 PostgreSQL14 service 上运行 test:step06；runner 的已有 PostgreSQL client 路径单独配置。CI 文件存在不表示远端执行通过。新公共 JSON/重放测试在 pnpm check，DB/故障/子进程/备份在 test:step06。工程构建包含新增包和 schema/全部迁移，绑定 clean commit、Profile/契约/锁、逐文件 SHA；敏感 DB/资产环境不打包。
 
 独立 Review、用户/Orchestrator 批准、新 MZ GUI/游戏/视觉与 Original Native Host 均不由 Coding 冒充 PASS。旧延期记录保留；步骤06最多 READY_FOR_REVIEW，步骤07未启动。
+
+## 第1轮独立 Review 后整改候选
+
+原功能 a2878a9 / docs bae84fd 的第1轮正式独立结果为 REQUIRES_REVISION，STEP06-IR-001/002/003 为阻断P2，IR-004为非阻断P3。原报告/反例/失败与旧 ledger 不改写。当前整改功能 `debcce716e5b563eec881eb24eaa41aebcccac30`，仅作者 SELF_TESTED_PENDING_ROUND2，最多 READY_FOR_REVIEW；正式轮次保持第1轮结束、下次第2轮/最多5轮。
+
+WriteGate 将真实 lifetime lease（signal、锁backend、maintenance/scope拥有检查）传给 operation，并以 AsyncLocalStorage 维持同一上下文。Executor 使用该 signal；故障/等待检查点之后和 submit/query/archive之前实际检查。文件创建/写入/完整性验证/link/rename及后续登记逐阶段检查，失去锁后停止后续动作，不以外层 Promise.race留下后台继续。已开始外部请求不能声称撤销；ID未保存时保留 SUBMITTING，下一次新 lease 恢复 UNKNOWN、不重购。
+
+短事务先验证活跃 lease，再取 shared maintenance xact锁以及单独6008 scope xact锁，结束前再核对原 lease；6008与6007 session scope分离，避免同任务自己的两连接死锁。若 session在事务中终止，原事务必须回滚/结束后维护独占才取得。已经完成的外部动作或提交不可追溯撤销，此门禁停止后续副作用并保留保守恢复。backup/restore持有exclusive lease，pg_dump/pg_restore进程接同一 abort signal，取消后等待本次子进程close；复制/hash/完成manifest每阶段检查，失锁不返回成功。备份manifest先pending、验真后才完成，不把半备份当成功。
+
+Task references 的 revision须规范十进制正整数、≤2147483647（实际PG Int），且查询包括 project/asset/kind/revision/hash，不选first/latest来猜版本。合法同字节rev1/rev2可分别冻结，异常/不存在/错hash拒绝；恢复后版本选择保持。
+
+maintenance和Mock正式CLI共享 resolveAssetRoot，读取 TILESET_ASSET_ROOT，安全默认当前项目 .local/assets；配置必须在该项目 .local，不能指向 .local根、PostgreSQL或符号链接祖先/逃逸目录。真实CLI的自定义root backup→新空DB+不存在root restore→按配置read/rebuild及Mock归档已加入正式 test:step06/CI。
+
+新增六项正式真实PG/CLI回归与原10项合并16/16通过；check230/230、API3/3、两模式浏览器1/1、旧JS78及56标准payload/16PNG哈希回归通过。正式CI远端未由Coder执行，MZ手工/真实模型仍未执行。原两份工具.log字节在新纯文档提交force-add，旧bae没有它们的事实和旧ledger保持。完整候选/Build/hash/命令/未执行项见 [整改报告](../reviews/step-06-fix-round-1-coding.md)、[新证据](../evidence/step-06/fix-round1/commands.json)。

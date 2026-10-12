@@ -1,0 +1,90 @@
+[
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "pnpm check",
+    "exitCode": 0,
+    "result": "230/230,12 members,10 production exports",
+    "evidence": "check-frozen.log.txt",
+    "sha256": "f20dfa8b8375119ac255dd4fc3bfc60176fd7e0e8fb117e1e57552df76e1b3a7"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "pnpm test:step06",
+    "exitCode": 0,
+    "result": "16/16,166.48s; original60000ms case budget",
+    "evidence": "full-db-frozen.log.txt",
+    "sha256": "89f3612ff4e7bc60d34b13ef5c730aacbaede81ee5e8624a61de36f7f393c2c4"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "INTEGRATION_API_PORT=4366 pnpm test:integration",
+    "exitCode": 0,
+    "result": "3/3",
+    "evidence": "integration-frozen.log.txt",
+    "sha256": "0008a069472029399a91d2a1c46c5609ff462dfee54851dcc17d39661f1301ce"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "API_PORT=4366 WEB_PORT=5266 pnpm test:e2e",
+    "exitCode": 0,
+    "result": "1/1",
+    "evidence": "browser-production-frozen.log.txt",
+    "sha256": "21454c9631a6db6f4a781703e5fa0a5e7522f77a44808a35c36feff8ab2aac1e"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "E2E_MODE=dev API_PORT=4366 WEB_PORT=5266 pnpm test:e2e",
+    "exitCode": 0,
+    "result": "1/1",
+    "evidence": "browser-dev-frozen.log.txt",
+    "sha256": "4eb017277f0e2c4f6fcf83e14ccc4de70c980b4e6aa5839514b7ad8fb405a2d9"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "FIX_CANDIDATE=debcce716e5b563eec881eb24eaa41aebcccac30 node --env-file=.env .local/step06/fix-round1/probes/gate-loss-adapted.mjs",
+    "exitCode": 0,
+    "result": "No new remote submit under maintenance after owned backend termination",
+    "evidence": "gate-probe-frozen.log.txt",
+    "sha256": "c696fbdc2cd3b590320852317d00e3e0bb4ebc6a93e89eebf0d765dc67e9e489"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "FIX_CANDIDATE=debcce716e5b563eec881eb24eaa41aebcccac30 node --env-file=.env .local/step06/fix-round1/probes/public-probe-adapted.mjs",
+    "exitCode": 0,
+    "result": "Public exactrev2 and rev1 accepted; negative controls reject",
+    "evidence": "public-probe-frozen.log.txt",
+    "sha256": "6b84abed6bff602afeee7aac53376cda822a290bbae9335946d2a59be70f69d8"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "pnpm build:step06",
+    "exitCode": 0,
+    "result": "168 payloads, clean candidate binding",
+    "evidence": "build-engineering.json",
+    "sha256": "f6223fb4222cd11851d9dcd0d4802caa07aa0852dc3212b182a25d49f558d2c9"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "node .local/step06/scalars.mjs",
+    "exitCode": 0,
+    "result": "78/78",
+    "evidence": "legacy-78-frozen.json",
+    "sha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "pnpm build:pack-sample",
+    "exitCode": 0,
+    "result": "8sets/56payload unchanged/16PNG",
+    "evidence": "pack-regression.json",
+    "sha256": "2222b18a2bcbe296e3d23ca584f610d2ff4bba2b520979e30f21ee4b9812e148"
+  },
+  {
+    "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "command": "node --env-file=.env .local/step06/fix-round1/bound-publication.mjs",
+    "exitCode": 0,
+    "result": "Actual DB ADOPTED bound candidate; repeated same ID",
+    "evidence": "bound-publication.json",
+    "sha256": "63bda3f1c2d5f7b463422080403f03da18b3e66a2ae024e419dddbf0220a4b6d"
+  }
+]
