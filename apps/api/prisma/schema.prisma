@@ -78,10 +78,11 @@ model ProcessingRecord {
   projectId   String @db.Uuid
   recipeId    String
   irHash      String
+  stage       String @default("MZ_FRAGMENTS")
   descriptor  Json
   project     Project @relation(fields: [projectId], references: [id], onDelete: Restrict)
   recipe      AssetRevision @relation(fields: [recipeId], references: [id], onDelete: Restrict)
-  @@unique([projectId, irHash])
+  @@unique([projectId, irHash, stage])
 }
 model Pack {
   id             String @id

@@ -58,10 +58,14 @@ export async function verifyDatabase(store: Persistence) {
     builds.set(build.id, await store.readBuild(build.id, session));
   const projects = await store.db.project.findMany();
   for (const p of projects) {
-    if (await store.db.processingRecord.count({ where: { projectId: p.id } }))
+    if (
+      await store.db.processingRecord.count({ where: { projectId: p.id, stage: 'MZ_FRAGMENTS' } })
+    )
       await store.loadArchives(p.id, session);
     if (p.successfulBuildId) assert.equal(builds.get(p.successfulBuildId)?.record.projectId, p.id);
   }
+  for (const processing of await store.db.processingRecord.findMany({ where: { stage: 'IR' } }))
+    await store.readDomainRecipe(processing.projectId, processing.recipeId);
   const recipeSources = new Set(
     (await store.db.revisionDependency.findMany({ include: { to: true } }))
       .filter((dep) => dep.to.kind === 'source')

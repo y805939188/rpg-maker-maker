@@ -29,8 +29,8 @@ export async function setup(fault?: FaultHook, environment?: { url: string; asse
   const root = resolve(runRoot, randomUUID());
   await mkdir(root, { recursive: true });
   const store = new Persistence(
-      databaseUrl!,
-      resolve(process.env['TILESET_ASSET_ROOT'] ?? '.local/assets'),
+      environment?.url ?? databaseUrl!,
+      environment?.assetRoot ?? resolve(process.env['TILESET_ASSET_ROOT'] ?? '.local/assets'),
       PROFILE,
       fault,
     ),

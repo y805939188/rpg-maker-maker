@@ -1,4 +1,5 @@
 import { beforeAll, describe, it, expect } from 'vitest';
+import { archiveDomain, replayDomainArchive } from '@tileset/persistence';
 import {
   replayArchives,
   prepareBundle,
@@ -9,6 +10,8 @@ import { makeCompilerFixture } from '../../../scripts/step04-fixture.js';
 import { archiveFixture } from '../../../scripts/pack-export.js';
 import { PROFILE } from '../../../src/profile.js';
 import { pairOperations, fragmentsFor } from '../../../scripts/step05-fixture.js';
+import { fixture, art } from '../../material-processing/tests/fixture.js';
+import { compileFragment } from '@tileset/mz-compiler';
 import { codecRuntime } from '@tileset/image-adapter';
 let archive: ReturnType<typeof archiveFixture>;
 let operations: ReturnType<typeof pairOperations>;
@@ -18,6 +21,21 @@ beforeAll(async () => {
   operations = pairOperations('replay', 1, fragmentsFor(f));
 });
 describe('public JSON restore boundary', () => {
+  it('restores legal engine-free RGBA IR without requiring MZ compatibility', async () => {
+    const input = fixture(),
+      archive = archiveDomain(input),
+      restored = await replayDomainArchive(archive);
+    expect(restored.built.targetCompilation).toBe('NOT_EXECUTED');
+    expect(restored.built.ir.frames.map((frame) => [...frame.bytes()])).toEqual(
+      art.expected.map((frame) => frame.flat()),
+    );
+    expect(() => compileFragment(restored.built.ir, 'a1-water')).toThrow();
+    const raw = restored.sources[0]!.raw.bytes();
+    raw.fill(0);
+    expect(restored.sources[0]!.image.bytes()).not.toEqual(raw);
+    await expect(replayDomainArchive({ ...archive, state: 'BUILT_ARTIFACT' })).rejects.toThrow();
+  });
+
   it('actually recreates owned source, IR and Compiler; caller bytes cannot mutate recovered history', async () => {
     const replay = await replayArchives([archive]),
       source = replay.records[0]!.sources[0]!,

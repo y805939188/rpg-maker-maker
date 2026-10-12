@@ -9,6 +9,7 @@ import {
   validateAdoptionIdentities,
   hashBytes,
   isValidatedSource,
+  validatedDecodedSource,
 } from '@tileset/asset-core';
 import type { RevisionRef } from '@tileset/asset-core';
 import { freezeTaskSnapshot, TaskStateSchema } from '@tileset/ai-gateway';
@@ -23,11 +24,13 @@ import {
   ReplaySession,
   RefSchema,
   SourceDescriptorSchema,
+  MetadataSchema,
   replayArchives,
   prepareBundle,
   bundleFiles,
   verifyBundleFiles,
 } from './replay.js';
+import { archiveDomain, replayDomainArchive } from './domain.js';
 
 type Json = null | boolean | number | string | Json[] | { [key: string]: Json };
 const json: z.ZodType<Json> = z.lazy(() =>
@@ -74,11 +77,23 @@ export class Persistence {
     assert.equal(row.id, revId(row.projectId, ref));
     const file = await this.db.fileObject.findUniqueOrThrow({ where: { sha256: row.sourceSha } }),
       bytes = await this.storage.read(file);
-    const result = await decodeSource(new RawSource({ ...descriptor, encoding: 'png', bytes }));
-    if (result.status !== 'validated') throw Error(result.diagnostic.code);
-    assert.ok(sameRef(result.source.ref, ref));
-    assert.equal(result.source.validationHash, value['validationHash']);
-    return result.source;
+    const encoding = z.enum(['png', 'rgba8']).parse(value['encoding'] ?? 'png'),
+      raw = new RawSource({ ...descriptor, encoding, bytes });
+    let source: import('@tileset/asset-core').ValidatedSource;
+    if (encoding === 'rgba8')
+      source = validatedDecodedSource(raw, {
+        width: z.number().int().positive().parse(value['width']),
+        height: z.number().int().positive().parse(value['height']),
+        data: bytes,
+      });
+    else {
+      const result = await decodeSource(raw);
+      if (result.status !== 'validated') throw Error(result.diagnostic.code);
+      source = result.source;
+    }
+    assert.ok(sameRef(source.ref, ref));
+    assert.equal(source.validationHash, value['validationHash']);
+    return source;
   }
   async close() {
     await this.db.$disconnect();
@@ -100,6 +115,126 @@ export class Persistence {
       });
       return replay;
     }, `project:${projectId}`);
+  }
+  async saveDomainArchive(projectId: string, input: unknown) {
+    return this.gate.write(async () => {
+      const replay = await replayDomainArchive(input),
+        files = new Map<string, FileRef>();
+      for (const source of replay.sources)
+        files.set(revId(projectId, source.ref), await this.storage.put(source.raw.bytes()));
+      const id = fingerprint({ projectId, irHash: replay.built.ir.contentHash, stage: 'IR' }),
+        recipeId = revId(projectId, replay.recipe.ref);
+      await this.transaction(
+        async (tx) => {
+          for (const source of replay.sources) {
+            const file = files.get(revId(projectId, source.ref))!;
+            await tx.fileObject.upsert({
+              where: { sha256: file.sha256 },
+              create: file,
+              update: {},
+            });
+            const asset = await tx.originalAsset.upsert({
+              where: { projectId_logicalId: { projectId, logicalId: source.ref.id } },
+              create: { projectId, logicalId: source.ref.id },
+              update: {},
+            });
+            await this.revision(
+              tx,
+              projectId,
+              source.ref,
+              {
+                descriptor: {
+                  id: source.ref.id,
+                  revision: source.ref.revision,
+                  role: source.raw.role,
+                  density: source.raw.density,
+                  provenance: source.raw.provenance,
+                },
+                ref: source.ref,
+                validationHash: source.validationHash,
+                ...(source.raw.encoding === 'rgba8'
+                  ? { encoding: 'rgba8', width: source.image.width, height: source.image.height }
+                  : {}),
+              },
+              asset.id,
+              file.sha256,
+            );
+          }
+          for (const revision of [replay.style, replay.parameters, replay.recipe])
+            await this.revision(tx, projectId, revision.ref, revision);
+          for (const ref of replay.built.ir.dependencies.filter(
+            (ref) => !sameRef(ref, replay.recipe.ref),
+          )) {
+            const toId = revId(projectId, ref);
+            await tx.revisionDependency.upsert({
+              where: { fromId_toId: { fromId: recipeId, toId } },
+              create: { fromId: recipeId, toId },
+              update: {},
+            });
+          }
+          const descriptor = dbJson({
+            contract: 'tile-ir-v1',
+            irHash: replay.built.ir.contentHash,
+            artifactHash: replay.built.artifactHash,
+            targetCompilation: replay.built.targetCompilation,
+            dependencies: replay.built.ir.dependencies,
+          });
+          const old = await tx.processingRecord.findUnique({ where: { id } });
+          if (old) assert.deepEqual(old.descriptor, descriptor);
+          else
+            await tx.processingRecord.create({
+              data: {
+                id,
+                projectId,
+                recipeId,
+                irHash: replay.built.ir.contentHash,
+                stage: 'IR',
+                descriptor,
+              },
+            });
+        },
+        { timeout: 5000 },
+      );
+      return { id, recipeId, ...replay };
+    }, `project:${projectId}`);
+  }
+  async readDomainRecipe(projectId: string, recipeId: string) {
+    const recipe = await this.db.assetRevision.findUniqueOrThrow({ where: { id: recipeId } });
+    assert.equal(recipe.projectId, projectId);
+    assert.equal(recipe.kind, 'recipe');
+    const deps = await this.db.revisionDependency.findMany({
+        where: { fromId: recipeId },
+        include: { to: true },
+      }),
+      sources: import('@tileset/asset-core').ValidatedSource[] = [],
+      metadata: Record<string, unknown> = { recipe: recipe.value };
+    for (const dep of deps) {
+      assert.equal(dep.to.projectId, projectId);
+      if (dep.to.kind === 'source') sources.push(await this.readSource(dep.toId));
+      else metadata[dep.to.kind] = dep.to.value;
+    }
+    const parsed = MetadataSchema.parse(metadata),
+      replay = await replayDomainArchive(archiveDomain({ ...parsed, sources }));
+    const record = await this.db.processingRecord.findFirstOrThrow({
+      where: { projectId, recipeId, irHash: replay.built.ir.contentHash },
+    });
+    assert.equal(recipeId, revId(projectId, replay.recipe.ref));
+    assert.equal(recipe.contentHash, replay.recipe.ref.contentHash);
+    const descriptor = dbJson(record.descriptor);
+    assert.equal(descriptor['irHash'], replay.built.ir.contentHash);
+    assert.equal(descriptor['artifactHash'], replay.built.artifactHash);
+    if (record.stage === 'IR')
+      assert.deepEqual(
+        descriptor,
+        dbJson({
+          contract: 'tile-ir-v1',
+          irHash: replay.built.ir.contentHash,
+          artifactHash: replay.built.artifactHash,
+          targetCompilation: replay.built.targetCompilation,
+          dependencies: replay.built.ir.dependencies,
+        }),
+      );
+    return replay;
   }
   private async register(
     tx: Prisma.TransactionClient,
@@ -158,7 +293,14 @@ export class Persistence {
       if (existing) assert.deepEqual(existing.descriptor, descriptor);
       else
         await tx.processingRecord.create({
-          data: { id, projectId, recipeId: fromId, irHash: r.built.ir.contentHash, descriptor },
+          data: {
+            id,
+            projectId,
+            recipeId: fromId,
+            irHash: r.built.ir.contentHash,
+            stage: 'MZ_FRAGMENTS',
+            descriptor,
+          },
         });
     }
   }
@@ -204,7 +346,12 @@ export class Persistence {
       assert.equal(ref.contentHash, row.contentHash);
       assert.equal(row.id, revId(projectId, ref));
     }
-    for (const recipe of rows.filter((r) => r.kind === 'recipe')) {
+    const nativeRecipes = new Set(
+      (
+        await this.db.processingRecord.findMany({ where: { projectId, stage: 'MZ_FRAGMENTS' } })
+      ).map((r) => r.recipeId),
+    );
+    for (const recipe of rows.filter((r) => r.kind === 'recipe' && nativeRecipes.has(r.id))) {
       const stored = dbJson(recipe.value),
         r = RefSchema.parse(stored['ref']);
       assert.equal(revId(projectId, r), recipe.id);
@@ -231,7 +378,13 @@ export class Persistence {
     const replay = await replayArchives(archives, session);
     for (const r of replay.records) {
       const stored = await this.db.processingRecord.findUniqueOrThrow({
-        where: { projectId_irHash: { projectId, irHash: r.built.ir.contentHash } },
+        where: {
+          projectId_irHash_stage: {
+            projectId,
+            irHash: r.built.ir.contentHash,
+            stage: 'MZ_FRAGMENTS',
+          },
+        },
       });
       assert.deepEqual(
         stored.descriptor,

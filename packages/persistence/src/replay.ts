@@ -110,6 +110,13 @@ const recipe = z
     parameters: RefSchema,
   })
   .strict();
+export const MetadataSchema = z
+  .object({
+    style: z.object({ ref: RefSchema, value: style }).strict(),
+    parameters: z.object({ ref: RefSchema, value: parameters }).strict(),
+    recipe: z.object({ ref: RefSchema, value: recipe }).strict(),
+  })
+  .strict();
 const ArchiveSchema = z
   .object({
     style: z.object({ ref: RefSchema, value: style }).strict(),

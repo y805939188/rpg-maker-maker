@@ -14,3 +14,4 @@ export {
 } from './replay.js';
 export type { RecipeArchive } from './replay.js';
 export { backup, restore, verifyBackup, verifyDatabase } from './backup.js';
+export { archiveDomain, replayDomainArchive } from './domain.js';

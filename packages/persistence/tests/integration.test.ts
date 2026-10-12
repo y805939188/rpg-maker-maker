@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest';
 import { readFile, writeFile, lstat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import pg from 'pg';
-import { Persistence, backup, restore, verifyBackup } from '@tileset/persistence';
+import { Persistence, backup, restore, verifyBackup, archiveDomain } from '@tileset/persistence';
 import {
   setup,
   context,
@@ -17,6 +17,12 @@ import {
   runRoot,
   snapshot,
 } from './helpers.js';
+import {
+  fixture as domainFixture,
+  art as domainArt,
+} from '../../material-processing/tests/fixture.js';
+import { shorelineParameters, shorelineRecipe } from '@tileset/material-processing';
+import { compileFragment } from '@tileset/mz-compiler';
 import { runProcess, encodePrepared } from './process-helper.js';
 import { MockProvider, Executor, Archiver } from '@tileset/local-executor';
 import { freezeTaskSnapshot } from '@tileset/ai-gateway';
@@ -39,6 +45,38 @@ describe('real PostgreSQL + immutable files publication', () => {
         });
       } catch (e) {
         if (!(e instanceof Error && 'code' in e && e.code === 'ENOENT')) throw e;
+      }
+      const genericInput = domainFixture(),
+        p = shorelineParameters('generic-two-frame-parameters', 1, {
+          ...genericInput.parameters.value,
+          animation: {
+            frameCount: 2,
+            sequence: [0, 1],
+            durations: [7, 9],
+            timebase: 'milliseconds',
+            loop: false,
+          },
+        }),
+        recipe = shorelineRecipe('generic-two-frame-recipe', 1, {
+          ...genericInput.recipe.value,
+          water: genericInput.recipe.value.water.slice(0, 2),
+          parameters: p.ref,
+        }),
+        sources = genericInput.sources.filter((source) => source.ref.id !== 'water-2');
+      const generic = await s.store.saveDomainArchive(
+        s.project.id,
+        archiveDomain({ ...genericInput, parameters: p, recipe, sources }),
+      );
+      const reconstructed = new Persistence(databaseUrl!, s.store.storage.root, PROFILE);
+      try {
+        const restored = await reconstructed.readDomainRecipe(s.project.id, generic.recipeId);
+        expect(restored.built.ir.contentHash).toBe(generic.built.ir.contentHash);
+        expect(restored.built.ir.animation).toEqual(p.value.animation);
+        expect(restored.built.targetCompilation).toBe('NOT_EXECUTED');
+        expect([...restored.built.ir.frames[0]!.bytes()]).toEqual(domainArt.expected[0]!.flat());
+        expect(() => compileFragment(restored.built.ir, 'a1-water')).toThrow();
+      } finally {
+        await reconstructed.close();
       }
       const r = await s.store.db.assetRevision.findFirstOrThrow({
         where: { projectId: s.project.id },
@@ -294,6 +332,7 @@ describe('real PostgreSQL + immutable files publication', () => {
     });
     let restored: Persistence | undefined;
     try {
+      const generic = await s.store.saveDomainArchive(s.project.id, archiveDomain(domainFixture()));
       const first = await s.store.prepareBuild(
         s.project.id,
         s.pack.id,
@@ -388,6 +427,11 @@ describe('real PostgreSQL + immutable files publication', () => {
       expect(
         (await lstat(resolve(restored.storage.root, 'builds', retired.id, 'A1.png'))).mode & 0o222,
       ).toBe(0);
+      const restoredGeneric = await restored.readDomainRecipe(s.project.id, generic.recipeId);
+      expect(restoredGeneric.built.ir.contentHash).toBe(generic.built.ir.contentHash);
+      expect([...restoredGeneric.built.ir.frames[0]!.bytes()]).toEqual(
+        domainArt.expected[0]!.flat(),
+      );
       const replay = await restored.readBuild(retired.id);
       expect(replay.replay.snapshot.slots.filter((s) => s.state === 'RETIRED')).toHaveLength(2);
       const next = await restored.prepareBuild(s.project.id, s.pack.id, s.adopted.id, [], context);
