@@ -1,0 +1,137 @@
+{
+  "run": {
+    "id": 38212088525,
+    "event": "push",
+    "head_sha": "dbcf0e82c0ee030cbdd3e9682cfd1504ac1a3cd6",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38212088525",
+    "updated_at": "2026-10-12T06:23:34Z"
+  },
+  "jobs": [
+    {
+      "id": 114688308561,
+      "name": "baseline",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 38212088525,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Initialize containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run pnpm install --frozen-lockfile",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Run pnpm db:generate",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Run pnpm check",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run pnpm test:dev-privacy",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Run pnpm db:migrate",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run pnpm test:integration",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Run pnpm exec playwright install --with-deps chromium",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run pnpm test:e2e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Run E2E_MODE=dev pnpm test:e2e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        },
+        {
+          "name": "Stop containers",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 28
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 29
+        }
+      ]
+    }
+  ]
+}
