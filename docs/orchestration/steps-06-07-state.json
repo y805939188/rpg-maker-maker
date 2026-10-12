@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_CODING_FIX_ROUND_1",
+  "phase": "STEP06_INDEPENDENT_REVIEW_ROUND_2",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -62,8 +62,8 @@
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
-    "status": "CHANGES_REQUESTED",
-    "reviewRounds": 1,
+    "status": "IN_PROGRESS",
+    "reviewRounds": 2,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
     "baseMain": "d1439bb81e9843358f591590c6a433c4a62be33d",
@@ -84,8 +84,8 @@
       "log": ".local/step06/test-step06-cache.log",
       "timeoutThresholdChanged": false
     },
-    "candidateSha": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
-    "candidateState": "FROZEN_AUTHOR_GATES_PASS",
+    "candidateSha": "debcce716e5b563eec881eb24eaa41aebcccac30",
+    "candidateState": "FIX_ROUND1_FROZEN_PENDING_AUTHOR_EVIDENCE",
     "authorFullCheck": {
       "testFiles": 21,
       "tests": 229,
@@ -187,7 +187,7 @@
       "status": "PASS_AUTHOR_EXECUTED",
       "editorGameGpu": "NOT_EXECUTED"
     },
-    "docsHead": "bae84fd83ae85b2e1aa3a449726a15a47f5df852",
+    "docsHead": "ac4ca7b222ccae93569c60275cafb3eace236356",
     "codingReport": "docs/reviews/step-06-coding.md",
     "codingReportSha256": "1ae3f27e9c42d5d1915fcd9a77a58df01b92de948e29d10ad6099fdee2064c16",
     "codingEvidenceLedgerFiles": 50,
@@ -253,8 +253,64 @@
         ],
         "sourceProtectionFiles": 1420,
         "sourceChanged": false
+      },
+      {
+        "round": 2,
+        "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+        "docsHead": "ac4ca7b222ccae93569c60275cafb3eace236356",
+        "status": "IN_PROGRESS",
+        "threadId": "01a13244-d99b-7970-a199-b8c79a97d39b",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round2-client.json"
       }
-    ]
+    ],
+    "codingFix": {
+      "round": 1,
+      "status": "READY_FOR_REVIEW_AUTHOR_STOPPED",
+      "threadId": "01a131b0-75e6-7a83-851d-fa1fc5bdc3e9",
+      "nativeOutput": ".local/orchestration-06-07/step06-fix-round1",
+      "issues": [
+        "STEP06-IR-001",
+        "STEP06-IR-002",
+        "STEP06-IR-003",
+        "STEP06-IR-004"
+      ],
+      "serviceTier": "default",
+      "targetedAuthorTests": {
+        "tests": 6,
+        "status": "PASS_UNFROZEN_AUTHOR_ONLY",
+        "log": ".local/step06/fix-round1/targeted-first.log",
+        "cases": [
+          "Lost gate before submit does not create remote request",
+          "Already-started remote request retains UNKNOWN",
+          "Lost Pack gate stops file/database later actions",
+          "Lost backup exclusive does not complete backup",
+          "Same-byte exact reference revisions accepted separately",
+          "CLI configured-root backup/restore/read/rebuild"
+        ]
+      },
+      "phase": "FULL_REGRESSION_AFTER_SIX_TARGETED_CONTROLS",
+      "candidateSha": "debcce716e5b563eec881eb24eaa41aebcccac30",
+      "authorCheckTests": 230,
+      "authorDatabaseTests": 16,
+      "productionExports": 10,
+      "engineeringBuild": {
+        "buildId": "step06-debcce716e5b-e8d5be24e48346c2",
+        "commit": "debcce716e5b563eec881eb24eaa41aebcccac30",
+        "manifestSha256": "e0bc82fe0e8cff938482769afc721563da58331a83d0c3bbd9e7f6bcdd783bed",
+        "actualManifestVerified": true
+      },
+      "docsHead": "ac4ca7b222ccae93569c60275cafb3eace236356",
+      "ledgerVerifiedFiles": 46
+    },
+    "reviewRound2Environment": {
+      "status": "READY_NOT_DISPATCHED",
+      "candidateSha": "debcce716e5b563eec881eb24eaa41aebcccac30",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "pgPort": 55469,
+      "apiPort": 4369,
+      "webPort": 5269
+    }
   },
   "step07": {
     "status": "NOT_STARTED",
@@ -294,9 +350,21 @@
       "apiPort": 4367,
       "webPort": 5267,
       "serviceStatus": "OWNED_POSTGRES_RUNNING_REVIEW_FINISHED"
+    },
+    {
+      "owner": "step06_reviewer_round2",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "pgPort": 55469,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step06-review/assets",
+      "temporaryRoot": ".local/step06-review",
+      "apiPort": 4369,
+      "webPort": 5269,
+      "serviceStatus": "NOT_STARTED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_ROUND1_REVIEW_FROZEN_REQUIRES_REVISION_EVIDENCE_PRESERVED",
+  "lastSuccessfulCheckpoint": "STEP06_STANDARD_INDEPENDENT_ROUND2_DISPATCHED",
   "blockers": [],
-  "nextSafeAction": "Resume same native Standard step_coder to fix three blocking P2 and evidence portability; freeze new candidate for round2 independent review."
+  "nextSafeAction": "Wait for round2 independent result; do not publish step06 or begin step07 before latest PASS and necessary CI."
 }
