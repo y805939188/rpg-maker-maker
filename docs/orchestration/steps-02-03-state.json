@@ -423,7 +423,21 @@
         "blocksExit": false
       }
     ],
-    "integrationEvidence": "docs/evidence/step-02/integration-947be372"
+    "integrationEvidence": "docs/evidence/step-02/integration-947be372",
+    "candidateVerificationBranch": {
+      "branch": "codex/step-02-validation-r4",
+      "head": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+      "push": "SUCCESS",
+      "release": "NOT_MAIN_NOT_PUBLISHED"
+    },
+    "remoteCI": {
+      "runId": 38201263354,
+      "event": "push",
+      "head": "947be3728a975757d22dd6e9c10ddd73dd9235b9",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38201263354",
+      "status": "QUEUED_LAST_OBSERVED",
+      "result": "PENDING"
+    }
   },
   "step03": {
     "status": "NOT_STARTED_BLOCKED_BY_STEP02",
@@ -511,5 +525,5 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Finish integration regression; push verification branch/CI; only then delegated approval/main publication"
+  "nextSafeAction": "Observe validation run38201263354 and report-presentation supplement; if PASS record delegated acceptance then safe main integration/publication"
 }
