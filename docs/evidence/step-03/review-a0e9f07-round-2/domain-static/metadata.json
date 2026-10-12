@@ -1,0 +1,47 @@
+{
+  "thread_id": "01a12e72-784b-79c1-93c3-27b8cdfcbb5a",
+  "turn_id": "01a12eb5-5b7e-7a80-887e-20afa1147859",
+  "role": "step_reviewer",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "ultra",
+  "client_service_tier": "default",
+  "sampling_log_id": 2953816,
+  "sampling_log_ts": 1791785000,
+  "server_final_configuration": "UNVERIFIED_NOT_EXPOSED",
+  "frozen_candidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+  "worktree": "/Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker",
+  "command": "node .local/review/round2-a0e/domain-static/reverify.mjs > .local/review/round2-a0e/domain-static/results.jsonl",
+  "exit_code": 0,
+  "cases": 52,
+  "passed": 52,
+  "failed": 0,
+  "source_and_export_hashes": {
+    "packages/asset-core/src/index.ts": "c88e7d47fa9eec002fed9651881746c7489b9858efa52cb7982bd1dec47d89d1",
+    "packages/material-processing/src/index.ts": "5383417628ffc3faf66320c4f3ae9ed1617740c7bf929b0944a88e8d958129aa",
+    "packages/asset-core/dist/index.js": "bf968cd706cd1c6bc26f35687208b000110525dd59dfafaab16fa0862055daeb",
+    "packages/material-processing/dist/index.js": "a14fa99624b9ba7fd98bbf822e3a54a76c6f843650885d712942cbe5df022daa",
+    "packages/asset-core/tests/review-round1.test.ts": "71cf5e5ed8673b5a34b98cd620983d950351b1338ffbac9f11e3247a8de0ab49",
+    "packages/material-processing/tests/review-round1.test.ts": "a3335533f52506f255589f2c9d4223a984be040242ea2d9cb231ba632faf4060",
+    ".local/review/round2-a0e/domain-static/reverify.mjs": "129611fae43274cafd7952759a4bbdacfe4dbe6d57f885302d1bea9cec492055",
+    ".local/review/round2-a0e/domain-static/results.jsonl": "9258eb288ece7bb1468d662298d374bcca6877c2cb0ee9b5212b6ae8ca42533d"
+  },
+  "current_track_status": "",
+  "scope": "Prior five domain/recipe findings and scoped regression only; no full candidate verdict",
+  "prior_archive_hashes": {
+    "repro.mjs": {
+      "sha256": "6b1326f2a245cb81f868a0117b45c2790f93f56ffbb54f061dd72e1af0002e05",
+      "unchanged": true
+    },
+    "results.jsonl": {
+      "sha256": "10d944767220c45e380f4c6bea791291627daac63d082e9bb456b53362e337f6",
+      "unchanged": true
+    }
+  },
+  "author_negative_archive_hashes": {
+    "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker/docs/evidence/step-03/fix-r1-a0e9f07/negative-control/metadata.json": "4435f62ed4917e0c6387b89c991da409f1a9788dcc5f7856baa34ee3dcc13693",
+    "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker/docs/evidence/step-03/fix-r1-a0e9f07/negative-control/repro.original.mjs": "6b1326f2a245cb81f868a0117b45c2790f93f56ffbb54f061dd72e1af0002e05",
+    "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker/docs/evidence/step-03/fix-r1-a0e9f07/negative-control/old-production-results.jsonl": "10d944767220c45e380f4c6bea791291627daac63d082e9bb456b53362e337f6",
+    "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker/docs/evidence/step-03/fix-r1-a0e9f07/negative-control/new-tests-on-old-source.log": "50c830080a92205cc2bc21546cdaf83cad016404f38d7be1b825f91c4e80850c"
+  },
+  "archive_interpretation": "Archived 13 draft tests: 10 expected failures and 3 controls on old source; final sparse syntax typed construction changed without semantic change. Archived log is not current candidate PASS."
+}

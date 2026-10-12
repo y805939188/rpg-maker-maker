@@ -1,0 +1,264 @@
+{
+  "status": "PASS",
+  "round": 2,
+  "maxRounds": 5,
+  "candidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+  "authorMetadataHead": "0cf7aa049137cae6c9367231a141ffcb04df97a9",
+  "reviewer": "/root/step03_reviewer",
+  "client": {
+    "thread": "01a12e44-4928-7f32-b3ac-681dfc380284",
+    "turn": "01a12eb4-e593-7e53-9b41-f5a6e678cc46",
+    "model": "gpt-6.1-sol",
+    "effort": "ultra",
+    "role": "step_reviewer",
+    "logId": 2953771,
+    "clientMatches": true,
+    "serviceTier": "default",
+    "serverFinal": "UNVERIFIED_NOT_EXPOSED"
+  },
+  "helper": {
+    "thread_id": "01a12e72-784b-79c1-93c3-27b8cdfcbb5a",
+    "turn_id": "01a12eb5-5b7e-7a80-887e-20afa1147859",
+    "role": "step_reviewer",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "ultra",
+    "client_service_tier": "default",
+    "sampling_log_id": 2953816,
+    "sampling_log_ts": 1791785000,
+    "server_final_configuration": "UNVERIFIED_NOT_EXPOSED",
+    "frozen_candidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+    "worktree": "/Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker",
+    "command": "node .local/review/round2-a0e/domain-static/reverify.mjs > .local/review/round2-a0e/domain-static/results.jsonl",
+    "exit_code": 0,
+    "cases": 52,
+    "passed": 52,
+    "failed": 0,
+    "source_and_export_hashes": {
+      "packages/asset-core/src/index.ts": "c88e7d47fa9eec002fed9651881746c7489b9858efa52cb7982bd1dec47d89d1",
+      "packages/material-processing/src/index.ts": "5383417628ffc3faf66320c4f3ae9ed1617740c7bf929b0944a88e8d958129aa",
+      "packages/asset-core/dist/index.js": "bf968cd706cd1c6bc26f35687208b000110525dd59dfafaab16fa0862055daeb",
+      "packages/material-processing/dist/index.js": "a14fa99624b9ba7fd98bbf822e3a54a76c6f843650885d712942cbe5df022daa",
+      "packages/asset-core/tests/review-round1.test.ts": "71cf5e5ed8673b5a34b98cd620983d950351b1338ffbac9f11e3247a8de0ab49",
+      "packages/material-processing/tests/review-round1.test.ts": "a3335533f52506f255589f2c9d4223a984be040242ea2d9cb231ba632faf4060",
+      ".local/review/round2-a0e/domain-static/reverify.mjs": "129611fae43274cafd7952759a4bbdacfe4dbe6d57f885302d1bea9cec492055",
+      ".local/review/round2-a0e/domain-static/results.jsonl": "9258eb288ece7bb1468d662298d374bcca6877c2cb0ee9b5212b6ae8ca42533d"
+    },
+    "current_track_status": "",
+    "scope": "Prior five domain/recipe findings and scoped regression only; no full candidate verdict",
+    "prior_archive_hashes": {
+      "repro.mjs": {
+        "sha256": "6b1326f2a245cb81f868a0117b45c2790f93f56ffbb54f061dd72e1af0002e05",
+        "unchanged": true
+      },
+      "results.jsonl": {
+        "sha256": "10d944767220c45e380f4c6bea791291627daac63d082e9bb456b53362e337f6",
+        "unchanged": true
+      }
+    },
+    "author_negative_archive_hashes": {
+      "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker/docs/evidence/step-03/fix-r1-a0e9f07/negative-control/metadata.json": "4435f62ed4917e0c6387b89c991da409f1a9788dcc5f7856baa34ee3dcc13693",
+      "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker/docs/evidence/step-03/fix-r1-a0e9f07/negative-control/repro.original.mjs": "6b1326f2a245cb81f868a0117b45c2790f93f56ffbb54f061dd72e1af0002e05",
+      "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker/docs/evidence/step-03/fix-r1-a0e9f07/negative-control/old-production-results.jsonl": "10d944767220c45e380f4c6bea791291627daac63d082e9bb456b53362e337f6",
+      "/Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker/docs/evidence/step-03/fix-r1-a0e9f07/negative-control/new-tests-on-old-source.log": "50c830080a92205cc2bc21546cdaf83cad016404f38d7be1b825f91c4e80850c"
+    },
+    "archive_interpretation": "Archived 13 draft tests: 10 expected failures and 3 controls on old source; final sparse syntax typed construction changed without semantic change. Archived log is not current candidate PASS."
+  },
+  "counts": {
+    "P0": 0,
+    "P1": 0,
+    "blockingP2": 0,
+    "nonblockingP2": 1,
+    "P3": 0
+  },
+  "closedFindings": [
+    {
+      "id": "STEP03-R1-001",
+      "severity": "P2",
+      "blocksExit": false,
+      "status": "FIXED",
+      "title": "Sparse sequence bypasses hard validation and yields undefined animation frame",
+      "file": "packages/asset-core/src/index.ts:321",
+      "related": [
+        "packages/asset-core/src/index.ts:82",
+        "packages/asset-core/src/index.ts:351"
+      ],
+      "case": "sparse-animation-and-json",
+      "expected": "Reject missing array elements/undefined metadata; valid clip returns a defined in-range index",
+      "verifiedCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+      "evidence": "domain-static/reverify.mjs + results.jsonl + metadata.json; full current129 gate",
+      "priorActual": "new Array(1) sequence accepted through Built; frameAt(clip,0) is undefined; sparse JSON fingerprint collides with explicit null",
+      "originalCandidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+      "currentPublicExportCases": [
+        "r1-001.sequence-hole.clip",
+        "r1-001.sequence-hole.frameAt",
+        "r1-001.duration-hole.clip",
+        "r1-001.duration-hole.frameAt",
+        "r1-001.sequence-undefined.clip",
+        "r1-001.sequence-undefined.frameAt",
+        "r1-001.duration-undefined.clip",
+        "r1-001.duration-undefined.frameAt",
+        "r1-001.inherited-sequence",
+        "r1-001.json-hole",
+        "r1-001.fingerprint-hole",
+        "r1-001.json-nested-hole",
+        "r1-001.fingerprint-nested-hole",
+        "r1-001.json-undefined",
+        "r1-001.fingerprint-undefined",
+        "r1-001.json-inherited",
+        "r1-001.fingerprint-inherited",
+        "r1-001.control-dense-json-null-and-canonical-copy",
+        "r1-001.sparse-palette-outer",
+        "r1-001.sparse-palette-channels",
+        "r1-001.sparse-provenance",
+        "r1-001.sparse-recipe-sources",
+        "r1-001.sparse-recipe-water",
+        "r1-001.sparse-ir-frames"
+      ]
+    },
+    {
+      "id": "STEP03-R1-002",
+      "severity": "P2",
+      "blocksExit": false,
+      "status": "FIXED",
+      "title": "Tile IR hard validation omits exact parameter dependency binding",
+      "file": "packages/asset-core/src/index.ts:545",
+      "related": [
+        "packages/asset-core/src/index.ts:481",
+        "packages/asset-core/src/index.ts:727"
+      ],
+      "case": "parameters-dependency-omission",
+      "expected": "Reject IR that omits/mismatches the exact parameter revision; adoption and historical checks include it",
+      "verifiedCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+      "evidence": "domain-static/reverify.mjs + results.jsonl + metadata.json; full current129 gate",
+      "priorActual": "Drop parameters reference, recompute contentHash, validate and Built succeed; parameter adoption needsRebuild=false and missing historical parameter remains VALID",
+      "originalCandidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+      "currentPublicExportCases": [
+        "r1-002.control-explicit-parameters-owned-and-hashed",
+        "r1-002.omitted-parameter-dependency-ir",
+        "r1-002.omitted-parameter-dependency-built",
+        "r1-002.omitted-parameter-field-ir",
+        "r1-002.omitted-parameter-field-built",
+        "r1-002.wrong-parameter-revision",
+        "r1-002.wrong-parameter-kind",
+        "r1-002.control-history-current-newer-separation"
+      ]
+    },
+    {
+      "id": "STEP03-R1-003",
+      "severity": "P2",
+      "blocksExit": false,
+      "status": "FIXED",
+      "title": "Accepted multi-revision source identity conflicts with project adoption model",
+      "file": "packages/asset-core/src/index.ts:728",
+      "related": [
+        "packages/material-processing/src/index.ts:269"
+      ],
+      "case": "multiple-revisions-one-source-id",
+      "expected": "Identical current adoption causes no dependency mismatch, or unsupported source identity conflict is rejected before Compilable",
+      "verifiedCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+      "evidence": "domain-static/reverify.mjs + results.jsonl + metadata.json; full current129 gate",
+      "priorActual": "water@1/@2/@3 recipe accepted; assessBuild(build,catalog,build.ir.dependencies) reports water@2/@3 mismatches and needsRebuild=true",
+      "originalCandidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+      "currentPublicExportCases": [
+        "r1-003.same-source-id-multiple-revisions-recipe",
+        "r1-003.same-id-bypass-recipe-builder-process",
+        "r1-003.same-id-multirev-ir",
+        "r1-003.same-id-multirev-adopt",
+        "r1-003.same-id-multirev-assess",
+        "r1-003.duplicate-identical-adoption",
+        "r1-003.control-catalog-all-versions-adopt-one"
+      ]
+    },
+    {
+      "id": "STEP03-R1-004",
+      "severity": "P2",
+      "blocksExit": false,
+      "status": "FIXED",
+      "title": "Bank overlay source palette is not validated",
+      "file": "packages/material-processing/src/index.ts:327",
+      "related": [],
+      "case": "overlay-source-palette-omission",
+      "expected": "Reject visible overlay source RGB outside exact style palette, even when blended output is in palette",
+      "verifiedCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+      "evidence": "domain-static/reverify.mjs + results.jsonl + metadata.json; full current129 gate",
+      "priorActual": "Overlay [255,0,0,1] outside palette accepted with listed blended [44,100,30,255]; COMPILABLE_RECIPE",
+      "originalCandidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+      "currentPublicExportCases": [
+        "r1-004.out-palette-overlay-alpha1",
+        "r1-004.control-allowed-partial-overlay-and-composite"
+      ]
+    },
+    {
+      "id": "STEP03-R1-005",
+      "severity": "P2",
+      "blocksExit": false,
+      "status": "FIXED",
+      "title": "Fixed animated shoreline accepts variation only in frames never played",
+      "file": "packages/material-processing/src/index.ts:332",
+      "related": [
+        "packages/asset-core/src/index.ts:604"
+      ],
+      "case": "variation-only-in-unused-frames",
+      "expected": "Fixed animated recipe and its IR require actual variation among frame planes reached by declared playback sequence",
+      "verifiedCandidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+      "evidence": "domain-static/reverify.mjs + results.jsonl + metadata.json; full current129 gate",
+      "priorActual": "Three stored frames differ but sequence [0] loops on one frame; Compilable and Built accepted",
+      "originalCandidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+      "currentPublicExportCases": [
+        "r1-005.unplayed-variation-recipe-0",
+        "r1-005.unplayed-variation-recipe-0-0",
+        "r1-005.unplayed-variation-recipe-1-1",
+        "r1-005.unplayed-variation-ir",
+        "r1-005.unplayed-variation-built",
+        "r1-005.played-equal-pixels-distinct-ref-recipe",
+        "r1-005.played-equal-pixels-distinct-ref-ir",
+        "r1-005.control-varied-selected-frames-unused-and-nonloop",
+        "r1-005.control-generic-N-five-unused-nonloop-ms"
+      ]
+    }
+  ],
+  "nonblocking": [
+    {
+      "id": "STEP02-R1-NB-001",
+      "severity": "P2",
+      "blocksExit": false,
+      "advisory": "GHSA-g7r4-m6w7-qqqr",
+      "package": "esbuild0.27.7",
+      "affectedCondition": "Windows standalone serve+servedir absent from current paths; Darwin review/Linux CI",
+      "owner": "engineering step_coder before affected exposure",
+      "fixedVersion": ">=0.28.1"
+    }
+  ],
+  "gates": {
+    "fullCheck": "PASS129_AND6_EXPORTS",
+    "prior116Tests": "UNCHANGED_PRESERVED_PASS",
+    "newR1RegressionTests": "PASS13",
+    "independentFixClosure": "PASS52_PUBLIC_PRODUCTION_EXPORT_CASES",
+    "privacy": "PASS5_530_REQUESTS_0_FAKE_MARKER_READS",
+    "database": "PASS3",
+    "browserProduction": "PASS",
+    "browserDevelopment": "PASS",
+    "browserDevelopmentCold": "PASS",
+    "pixelReference": "PASS_PRE_CANDIDATE_DECIMAL_AND_LITERAL_UNCHANGED",
+    "resourceMaximumNormalInputs": "PASS_EXACT_PIXELS_ACTUAL_CHILD_RSS_OBSERVED_NO_OS_HARDLIMIT_CLAIM",
+    "nativeCoreOracle": "PASS960_TILES_2211840_PIXELS_241_UPDATES",
+    "artifactReproduction": "PASS88_13_4_PAYLOADS_PLUS_MANIFESTS",
+    "overwriteRefusal": "PASS3_EXPECTED_EXIT1_AND_ALL108_FILES_UNCHANGED",
+    "legacyFourPNG": "PASS_APPROVED_BYTES_AND_STDLIB_RGBA_EXACT",
+    "old7caArtifacts": "ALL108_FILES_UNCHANGED; SAMPLE11PNG_EXACT_OLD; NEWIR_PARAMETERS_AND_HASH_EXPLICIT",
+    "authorMetadata": "PASS50_HASHES22_BINDINGS_53_DOCS_ONLY",
+    "sourceIntegrity": "PASS669_UNCHANGED_EXACTHEAD_GITCLEAN",
+    "oldR1Review": "ALL50_SAFELEDGER_FILES_UNCHANGED_NOT_RELABELED"
+  },
+  "limits": {
+    "originalNativeHost": "NOT_EXECUTED",
+    "newMZEditorDrawing": "NOT_EXECUTED",
+    "newMZGameRuntime": "NOT_EXECUTED",
+    "visualAcceptance": "NOT_EXECUTED",
+    "Map003_4_10": "PENDING_USER_EVIDENCE",
+    "remoteCI": "NOT_EXECUTED_BY_REVIEWER_ROOT_GATE",
+    "step04": "NOT_STARTED_UNAUTHORIZED"
+  },
+  "environmentCleanup": "API4315_AND_WEB5177_STOPPED; OWNED_DB55433_READY_UNCHANGED; PRIOR_GENERATED_CACHE_RESTORED",
+  "completedAtUTC": "2026-10-12T06:17:58.477460+00:00"
+}

@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_INDEPENDENT_REVIEW_ROUND2",
+  "currentPhase": "STEP03_CANDIDATE_CI_PREPARATION",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "INDEPENDENT_REVIEW_ROUND2_IN_PROGRESS",
+    "status": "INDEPENDENT_PASS_PENDING_CI_PUBLICATION",
     "reviews": [
       {
         "round": 1,
@@ -539,7 +539,7 @@
         "candidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
         "metadataHead": "0cf7aa049137cae6c9367231a141ffcb04df97a9",
         "reviewer": "/root/step03_reviewer",
-        "status": "IN_PROGRESS",
+        "status": "PASS",
         "clientConfiguration": {
           "logId": 2953771,
           "turn": "01a12eb4-e593-7e53-9b41-f5a6e678cc46",
@@ -555,7 +555,57 @@
           "STEP03-R1-004",
           "STEP03-R1-005"
         ],
-        "sourceIntegrity": "BEFORE_AFTER669_HASHES_EXACT_SHA_CLEAN_REQUIRED"
+        "sourceIntegrity": "669_TRACKED_UNCHANGED_EXACT_A0E_GIT_CLEAN",
+        "latestProgress": {
+          "source": "INDEPENDENT_REVIEWER_REPORTED_PENDING_FINAL_REPORT",
+          "publicExportClosureCases": "52_PASS",
+          "historicalFiveFindings": "ALL_FIXED_REPORTED_PENDING_FINAL_BINDING",
+          "fullCheck": "129_PASS",
+          "independentMathAndVersionHistory": "PASS",
+          "privacyAndRealDB": "PASS",
+          "browserArtifactsIntegrity": "IN_PROGRESS",
+          "formalPASS": "ISSUED"
+        },
+        "counts": {
+          "P0": 0,
+          "P1": 0,
+          "blockingP2": 0,
+          "nonblockingP2": 1
+        },
+        "closedFindings": [
+          {
+            "id": "STEP03-R1-001",
+            "status": "FIXED",
+            "source": "a0e9f07ae26567c3a623a2b38e42b0b015441d30"
+          },
+          {
+            "id": "STEP03-R1-002",
+            "status": "FIXED",
+            "source": "a0e9f07ae26567c3a623a2b38e42b0b015441d30"
+          },
+          {
+            "id": "STEP03-R1-003",
+            "status": "FIXED",
+            "source": "a0e9f07ae26567c3a623a2b38e42b0b015441d30"
+          },
+          {
+            "id": "STEP03-R1-004",
+            "status": "FIXED",
+            "source": "a0e9f07ae26567c3a623a2b38e42b0b015441d30"
+          },
+          {
+            "id": "STEP03-R1-005",
+            "status": "FIXED",
+            "source": "a0e9f07ae26567c3a623a2b38e42b0b015441d30"
+          }
+        ],
+        "report": "docs/reviews/step-03-independent-round-2.md",
+        "originalReportSha256": "d6ed5594f8a6ab6879cabdfad3926fc361f894081bcb4e349c1a7481f1eeef2d",
+        "reportSha256": "1063d4a1f25ae9c54de5718f8eb88e49df47b3fbd77949501f146f78fd59d562",
+        "reportPresentation": "PINNED_PRETTIER_PRESENTATION_ORIGINAL_RAW_ARCHIVE_UNCHANGED",
+        "evidence": "docs/evidence/step-03/review-a0e9f07-round-2",
+        "ledgerSha256": "84324da618afe1f8788c3667dc6e4d6590a0ec892caeb81a005df317d7e0e016",
+        "independentResults": "129_TESTS_52_PUBLIC_EXPORT_CASES_DB_PRIVACY_DEV_PROD_COLD_BUDGETS_PIXEL_HISTORY_ARTIFACT_NATIVE_ORACLE_PASS"
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -668,7 +718,7 @@
     "candidateSourceTrackedFiles": 669,
     "sourceEditsAfterFreeze": "PROHIBITED_AWAIT_REVIEW",
     "evidenceHead": "0cf7aa049137cae6c9367231a141ffcb04df97a9",
-    "independentReview": "ROUND2_IN_PROGRESS",
+    "independentReview": "PASS_ROUND2_EXACT_A0E",
     "codingReport": "docs/reviews/step-03-coding.md",
     "codingReportSha256": "171995481729342c33be9c4c19fc46826121d569a7ac2872fc6305b2dc15fa70",
     "codingEvidence": "docs/evidence/step-03/coding-7ca928f",
@@ -733,7 +783,7 @@
       "round": 1,
       "sourceReviewed": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
       "author": "/root/step03_coder",
-      "status": "CODING_COMPLETE_READY_R2",
+      "status": "ALL5_CLOSED_BY_INDEPENDENT_R2",
       "clientConfiguration": {
         "logId": 2948775,
         "turn": "01a12e89-2a1e-7743-ab3f-a76773d23d47",
@@ -787,7 +837,9 @@
       "step03-a0e9f07ae265-4ecf0ddf8cce1edf",
       "step03-material-a0e9f07ae265-cd0467ddf07df105",
       "step01-4b1e0cd7d9e2af9f004f"
-    ]
+    ],
+    "latestIndependentPass": "ROUND2_A0E",
+    "delegatedApproval": "NOT_YET_ISSUED_PENDING_REMOTE_CI"
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -822,7 +874,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "R2_RELEASE_ACTUAL_ULTRA_DEFAULT_A0E_0CF_ARTIFACTS_SAFE",
+  "lastSuccessfulCheckpoint": "STEP03_R2_INDEPENDENT_PASS_5FIXED_AND_SAFE52FILE_ARCHIVE",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -857,7 +909,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "AwaitR2formalPASSorrealfindings; thenboundfixes/CI/mainpublication; doNOTstart04",
+  "nextSafeAction": "Merge only docs intointegration exactsourcea0e; format/checksource; pushownvalidationbranchCI; no mainpromotion beforeCI",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",

@@ -1,0 +1,53 @@
+{"label":"control.literal-all-pixel-planes","result":"PASS","details":{"state":"BUILT_ARTIFACT","dependencies":9,"parameters":{"contentHash":"5712d1618c75c53646eb82bc235a251e8101ee65f531a01122ab8fe164c1f500","id":"shore-parameters","kind":"parameters","revision":4}}}
+{"label":"r1-001.sequence-hole.clip","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation sequence must contain an explicit value at every index."}}
+{"label":"r1-001.sequence-hole.frameAt","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation sequence must contain an explicit value at every index."}}
+{"label":"r1-001.duration-hole.clip","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation durations must contain an explicit value at every index."}}
+{"label":"r1-001.duration-hole.frameAt","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation durations must contain an explicit value at every index."}}
+{"label":"r1-001.sequence-undefined.clip","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation sequence must contain an explicit value at every index."}}
+{"label":"r1-001.sequence-undefined.frameAt","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation sequence must contain an explicit value at every index."}}
+{"label":"r1-001.duration-undefined.clip","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation durations must contain an explicit value at every index."}}
+{"label":"r1-001.duration-undefined.frameAt","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation durations must contain an explicit value at every index."}}
+{"label":"r1-001.inherited-sequence","result":"PASS","details":{"rejected":true,"code":"ANIMATION","message":"animation sequence must contain an explicit value at every index."}}
+{"label":"r1-001.json-hole","result":"PASS","details":{"rejected":true,"code":"INVALID_METADATA","message":"JSON array must contain an explicit value at every index."}}
+{"label":"r1-001.fingerprint-hole","result":"PASS","details":{"rejected":true,"code":"INVALID_METADATA","message":"JSON array must contain an explicit value at every index."}}
+{"label":"r1-001.json-nested-hole","result":"PASS","details":{"rejected":true,"code":"INVALID_METADATA","message":"JSON array must contain an explicit value at every index."}}
+{"label":"r1-001.fingerprint-nested-hole","result":"PASS","details":{"rejected":true,"code":"INVALID_METADATA","message":"JSON array must contain an explicit value at every index."}}
+{"label":"r1-001.json-undefined","result":"PASS","details":{"rejected":true,"code":"INVALID_METADATA","message":"JSON array must contain an explicit value at every index."}}
+{"label":"r1-001.fingerprint-undefined","result":"PASS","details":{"rejected":true,"code":"INVALID_METADATA","message":"JSON array must contain an explicit value at every index."}}
+{"label":"r1-001.json-inherited","result":"PASS","details":{"rejected":true,"code":"INVALID_METADATA","message":"JSON array must contain an explicit value at every index."}}
+{"label":"r1-001.fingerprint-inherited","result":"PASS","details":{"rejected":true,"code":"INVALID_METADATA","message":"JSON array must contain an explicit value at every index."}}
+{"label":"r1-001.control-dense-json-null-and-canonical-copy","result":"PASS","details":{"nullPreserved":true,"metadataOwned":true}}
+{"label":"r1-001.sparse-palette-outer","result":"PASS","details":{"rejected":true,"code":"STYLE","message":"style palette must contain an explicit value at every index."}}
+{"label":"r1-001.sparse-palette-channels","result":"PASS","details":{"rejected":true,"code":"STYLE","message":"style palette color must contain an explicit value at every index."}}
+{"label":"r1-001.sparse-provenance","result":"PASS","details":{"rejected":true,"code":"PROVENANCE","message":"provenance parents must contain an explicit value at every index."}}
+{"label":"r1-001.sparse-recipe-sources","result":"PASS","details":{"rejected":true,"code":"RECIPE_SOURCES","message":"recipe sources must contain an explicit value at every index."}}
+{"label":"r1-001.sparse-recipe-water","result":"PASS","details":{"rejected":true,"code":"RECIPE","message":"water source revisions must contain an explicit value at every index."}}
+{"label":"r1-001.sparse-ir-frames","result":"PASS","details":{"rejected":true,"code":"IR_FRAMES","message":"IR frames must contain an explicit value at every index."}}
+{"label":"r1-002.control-explicit-parameters-owned-and-hashed","result":"PASS","details":{"explicitParametersHashed":true}}
+{"label":"r1-002.omitted-parameter-dependency-ir","result":"PASS","details":{"rejected":true,"code":"IR_DEPENDENCIES","message":"IR semantic reference must be bound by an exact dependency."}}
+{"label":"r1-002.omitted-parameter-dependency-built","result":"PASS","details":{"rejected":true,"code":"IR_DEPENDENCIES","message":"IR semantic reference must be bound by an exact dependency."}}
+{"label":"r1-002.omitted-parameter-field-ir","result":"PASS","details":{"rejected":true,"code":"IR_PARAMETERS","message":"IR must bind an exact parameter revision."}}
+{"label":"r1-002.omitted-parameter-field-built","result":"PASS","details":{"rejected":true,"code":"IR_PARAMETERS","message":"IR must bind an exact parameter revision."}}
+{"label":"r1-002.wrong-parameter-revision","result":"PASS","details":{"rejected":true,"code":"IR_DEPENDENCIES","message":"IR semantic reference must be bound by an exact dependency."}}
+{"label":"r1-002.wrong-parameter-kind","result":"PASS","details":{"rejected":true,"code":"IR_PARAMETERS","message":"IR must bind an exact parameter revision."}}
+{"label":"r1-002.control-history-current-newer-separation","result":"PASS","details":{"missingHistorical":"MISSING_DEPENDENCY","newerOnlyNeedsRebuild":false,"adoptionNeedsRebuild":true,"oldSnapshotUnchanged":true}}
+{"label":"r1-003.same-source-id-multiple-revisions-recipe","result":"PASS","details":{"rejected":true,"code":"REVISION_IDENTITY_CONFLICT","message":"A recipe or current adoption must select only one revision per logical identity."}}
+{"label":"r1-003.same-id-bypass-recipe-builder-process","result":"PASS","details":{"rejected":true,"code":"REVISION_IDENTITY_CONFLICT","message":"A recipe or current adoption must select only one revision per logical identity."}}
+{"label":"r1-003.same-id-multirev-ir","result":"PASS","details":{"rejected":true,"code":"REVISION_IDENTITY_CONFLICT","message":"A recipe or current adoption must select only one revision per logical identity."}}
+{"label":"r1-003.same-id-multirev-adopt","result":"PASS","details":{"rejected":true,"code":"REVISION_IDENTITY_CONFLICT","message":"A recipe or current adoption must select only one revision per logical identity."}}
+{"label":"r1-003.same-id-multirev-assess","result":"PASS","details":{"rejected":true,"code":"REVISION_IDENTITY_CONFLICT","message":"A recipe or current adoption must select only one revision per logical identity."}}
+{"label":"r1-003.duplicate-identical-adoption","result":"PASS","details":{"rejected":true,"code":"REVISION_IDENTITY_CONFLICT","message":"A recipe or current adoption must select only one revision per logical identity."}}
+{"label":"r1-003.control-catalog-all-versions-adopt-one","result":"PASS","details":{"catalogPreservesOldAndNew":true,"exactSelfAdoptionNeedsRebuild":false,"explicitAdoptionNeedsRebuild":true}}
+{"label":"r1-004.out-palette-overlay-alpha1","result":"PASS","details":{"rejected":true,"code":"STYLE_PALETTE","message":"Source or composed pixels are outside the exact style palette."}}
+{"label":"r1-004.control-allowed-partial-overlay-and-composite","result":"PASS","details":{"literalComposite":[44,100,30,255],"state":"COMPILABLE_RECIPE"}}
+{"label":"r1-005.unplayed-variation-recipe-0","result":"PASS","details":{"rejected":true,"code":"ANIMATION_STATIC","message":"Water must have actual interior variation; identical frames are not an animated result."}}
+{"label":"r1-005.unplayed-variation-recipe-0-0","result":"PASS","details":{"rejected":true,"code":"ANIMATION_STATIC","message":"Water must have actual interior variation; identical frames are not an animated result."}}
+{"label":"r1-005.unplayed-variation-recipe-1-1","result":"PASS","details":{"rejected":true,"code":"ANIMATION_STATIC","message":"Water must have actual interior variation; identical frames are not an animated result."}}
+{"label":"r1-005.unplayed-variation-ir","result":"PASS","details":{"rejected":true,"code":"IR_ANIMATION","message":"IR requires a fixed bank and an actually varying interior."}}
+{"label":"r1-005.unplayed-variation-built","result":"PASS","details":{"rejected":true,"code":"IR_ANIMATION","message":"IR requires a fixed bank and an actually varying interior."}}
+{"label":"r1-005.played-equal-pixels-distinct-ref-recipe","result":"PASS","details":{"rejected":true,"code":"ANIMATION_STATIC","message":"Water must have actual interior variation; identical frames are not an animated result."}}
+{"label":"r1-005.played-equal-pixels-distinct-ref-ir","result":"PASS","details":{"rejected":true,"code":"IR_ANIMATION","message":"IR requires a fixed bank and an actually varying interior."}}
+{"label":"r1-005.control-varied-selected-frames-unused-and-nonloop","result":"PASS","details":{"state":"BUILT_ARTIFACT","storedFrames":3,"selectedFrames":[0,2],"timebase":"updates","loop":false}}
+{"label":"r1-005.control-generic-N-five-unused-nonloop-ms","result":"PASS","details":{"genericFrames":5,"recipeFrames":5,"sequence":[4,1],"loop":false,"timebase":"milliseconds"}}
+{"label":"control.immutable-history-source-pixels-and-metadata","result":"PASS","details":{"ownedPixels":true,"metadataFrozen":true,"historyHashUnchanged":true}}
+{"summary":{"cases":52,"passed":52,"failed":0,"scope":"five R1 domain/recipe defects and scoped regressions only; no full candidate verdict"}}

@@ -1,0 +1,70 @@
+# Step03 independent Review — round 2/5 — PASS
+
+**PASS for frozen source a0e9f07ae26567c3a623a2b38e42b0b015441d30** and the three exact immutable builds below. Independent worktree is detached `/Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker`. Author metadata HEAD0cf7aa049137cae6c9367231a141ffcb04df97a9 changes53 documentation/evidence paths only, not a different tested implementation. All669 tracked hashes remain unchanged and Git is clean. Both full formal plans and prior Pixel/Profile/runtime baselines remain fully read; the complete five-path repair and13 added regression cases were read against8540f12.
+
+Current counts: **P0=0, P1=0, blocking P2=0, nonblocking P2=1 inherited scoped esbuild, P3=0**. All five first-round findings are independently **FIXED on this candidate**. No new concrete correctness, architecture or test defect was found in Step03 scope. This is a technical independent PASS; root Orchestrator owns delegated acceptance, remote CI/publication gates and merge/push. Step04 remains unauthorized.
+
+## Closure of the five first-round findings
+
+The separately preflighted designated static helper executed52 controlled cases through actual built production package exports, exit0/pass52/fail0. The parent read the full helper script/results and source/test/spec patch. Evidence is `domain-static/reverify.mjs`, `results.jsonl` and `metadata.json`; the13 new repository regressions also passed inside the full current129 gate.
+
+| Finding | Exact current independent closure |
+| --- | --- |
+| STEP03-R1-001 | **FIXED.** Sparse sequence/duration, explicit undefined, inherited index, nested sparse JSON, palette entries/channels, provenance parents, recipe source/water arrays and IR frames reject with ANIMATION/INVALID_METADATA/STYLE/PROVENANCE/RECIPE_SOURCES/RECIPE/IR_FRAMES. `fingerprint` rejects holes before null coercion; valid explicit null and canonical owned metadata remain valid. `frameAt` consumes the validated owned snapshot; valid generic clips still select defined indices. |
+| STEP03-R1-002 | **FIXED.** IR explicitly retains owned parameters Ref, hashed by tileIRHash and required in exact dependency closure. Deleted field, omitted dependency with recomputed hash, wrong kind/revision reject at both hard IR/Built paths (IR_PARAMETERS/IR_DEPENDENCIES). Missing historical parameters gives MISSING_DEPENDENCY; new version availability alone does not need rebuild, explicit adoption does, and old historical validity/snapshot remain intact. |
+| STEP03-R1-003 | **FIXED.** Targeted single revision per kind+logical ID is documented and enforced before Compilable, including callers bypassing the recipe builder with a generic immutable revision. Conflicting IR/current adoption and duplicate selection reject with REVISION_IDENTITY_CONFLICT. Catalog retains old and new exact versions; identical own dependencies cause no rebuild, and explicit adoption changes only current comparison. Distinct source frame IDs and generic frame counts remain valid. |
+| STEP03-R1-004 | **FIXED.** Visible overlay source palette check runs before source-over; composite palette validation remains. Out-of-palette [255,0,0,1] rejects with STYLE_PALETTE even when composite[44,100,30] is listed. Listing the source red and composite gives exact independent [44,100,30,255]; transparent-zero and existing literal frame planes still pass. |
+| STEP03-R1-005 | **FIXED.** Recipe and IR check actual selected pixel hashes. Sequences[0]/[0,0]/[1,1], rehashed IR/Built with unplayed variation, and distinct played references with identical pixels reject ANIMATION_STATIC/IR_ANIMATION. Truly varied selected [0,2] remains Built with unused frames and nonloop playback; generic N=5/milliseconds/nonloop source→IR control passes. Every stored frame still shares exact fixed bank pixels. |
+
+The first-round report remains CHANGES_REQUESTED for7ca; its50 ledger files and all108 old artifact files were rehashed unchanged. The author's old production reproduction is byte-for-byte identical to the preserved reviewer script/results; the archived draft13 cases show10 expected failures+3 valid controls. The author explicitly distinguishes the later equivalent typed sparse-array syntax needed for Strict/lint. Those historical failures are not reused as current execution or relabeled PASS. No prior assertion, pixel expected, master, threshold or Profile was relaxed/reset.
+
+## Fresh whole-candidate validation
+
+All20 parent commands in `commands.jsonl` bind current exact SHA, argv, selected nonsecret environment, expected/actual exit, timing and log SHA. The helper has its own current command/hash/config metadata. Current validation was independently executed in this worktree; root/author integration results were not substituted.
+
+| Gate | Current result / evidence |
+| --- | --- |
+| Frozen install / Prisma client | Node22.21.1/pnpm10.20.0/Prisma6.19.3 PASS; install.log/db-generate.log |
+| Full engineering gate |8 registered members, exact dependency pins, Strict including tests, lint/format,129/129, clean production build and all6 actual Node ESM export-map imports; check.log |
+| Preserved tests | Original116 unchanged including72 inherited/52 Step01 tests;13 new R1 regressions PASS; protected path comparison verified |
+| Independent fix closure |52 public export negative/valid controls PASS; explicit diagnostic codes, directIR/Built/parameter hash/history/current/generic animation controls |
+| Pre-candidate math/literal regression |7 independently calculated80-digit Decimal source-over results, crop/nearest/transparent values, distinct Buffer view1&2row overlap, fixed mask across frames and grass3/grass4 availability/adoption/history PASS; original expectations unchanged |
+| Actual source/adapter/resource | Current source→IR unit path and reconstructed material sample use actual PNG decoding; own streaming transparent/partial source, EXIF/text explicit repair, hiddenRGB rejection/oversize cancellation PASS; current timeout/read/concurrency/child cleanup regressions included129 |
+| Normal maximum planes | Actual child flat/high-entropy768x576 exact pixel SHA; observed RSS88,244,224/97,730,560 bytes, decode5.96/63.52ms, complete roundtrip214.1/484.3ms; independent-runtime.json |
+| Standalone Vite privacy |5/5;530 records522 denials+8 intended normal/shared/runtime/virtual successes;0 synthetic private-marker reads; no actual credentials requested/read |
+| Assigned owned DB / HTTP | No pending migration;3/3 Nest/Prisma/HTTP tests; own recorded integration IDs cleaned; migrate.log/integration.log |
+| Production/dev/cold browser | All PASS: project201, refresh persistence, Pixi ready, zero pageerror; original Vite config; three screenshots inspected; e2e/ and browser logs |
+| Immutable publication/refusal |88 engineering+13 material+4 legacy payloads,105+3manifest=108 files exact to author/root and manifest hashes;3 repeat publications expected exit1, all108 unchanged, no stage/lock left |
+| Independent PNG pixels | Stdlib CRC/inflate/filter decoder verifies11 material PNGs against unchanged literal expected arrays; all11 exact to7ca sample; approved legacy4PNG bytes+RGBA exact |
+| Original native core VM oracle | Current build PASS960 tiles/2,211,840 pixels/241 updates; actual core SHA4ad828…ff67f; native-oracle.json/log |
+| Current audit | Expected exit1, high0/critical0/moderate0/low1 retained scoped esbuild; audit.log |
+| Author supplement |50 archive hashes+22 exact source/clean/expected-exit/log bindings valid; fix report SHAa02de1…f296, archive ledger SHAf16c11…92e9;53 post-freeze docs-only paths |
+| Final integrity |669 tracked hashes unchanged, exacta0e HEAD/Git clean, oldR1 evidence/outputs and pre-candidate literal/Decimal references unchanged |
+
+Owned `RgbaImage`/RawSource byte copies and returned copies, deeply frozen provenance/revisions, source ownership brand, density/geometry/roles/opaque output/static mask/palette/frame hard checks and truthful Raw→Validated→Compilable→Built semantics remain verified. `Built.targetCompilation=NOT_EXECUTED`. The fixed recipe binds exact grass/water/mask/overlay/style/parameters/recipe references; creating grass4 leaves the grass3 historical build valid until its own reference integrity fails. New-version availability and explicit current adoption remain separate. Typed IR holds owned pixels and exact geometry/animation/reference identities; no durable file/CAS/recovery claim is made by the metadata catalog.
+
+Actual native child runtime is Sharp0.35.5/libvips8.18.7/libexif0.6.26. Image-adapter source/lock/package boundaries and pixel math are unchanged from the reviewed first candidate, but budget and metadata tests/normal maximum measurements were freshly executed. Byte4MiB,4096chunk,64KiB metadata,768x576 pixels, single read/codec slots with no retained queue,5s deadlines, SIGKILL/wait-close cleanup, disabled Sharp cache and concurrency1 remain explicit. Unsupported EXIF/text/other ancillary metadata is rejected or requires repair before native parsing; ICC/HDR/APNG/non-sRGB/CRC failures reject. The128MiB JS heap is **not an OS/native RSS cap**; current RSS observations are ordinary-input, point-in-time measurements, not peak bounds or arbitrary-media safety. External producer allocations are outside package control; future HTTP/remote ingress needs separate budget/Review. The bounded isolation policy and its caveats remain accurately recorded.
+
+## Exact artifacts and preserved schema distinction
+
+| Build | Manifest SHA-256 |
+| --- | --- |
+| step03-a0e9f07ae265-4ecf0ddf8cce1edf |46c0de9ce066e16c1bd00d0b511f771f101f4fc689228e1dc2d852a3f2b6f0aa |
+| step03-material-a0e9f07ae265-cd0467ddf07df105 |384b360002a5ee24cb4d7b4230367455a36b7b250f480d06b01c8046849e9f99 |
+| step01-4b1e0cd7d9e2af9f004f |3bffcde791f57694f3113a3e3a4a594938846a79001245d7116d4c4eb1f89bd0 |
+
+Every manifest/file was read back and compared independently with actual current dist where applicable, source commit/lock/Profile/contracts/actual codec/source fixtures, and author/root copies, then reread after refusal. Current sample `parameters` equals revisions.json's exact parameter ref and appears in dependencies; its new IR JSON/contentHash correctly differ from7ca while all11 PNGs are exact. The failed old IR is **not** claimed as new validated schema/PASS. Old manifests/IR bytes remain immutable. Approved step01-56368269c8328e0f84b9 manifest1be774…1351b and four PNGs are unchanged.
+
+## Configuration, scope and retained limitations
+
+Actual parent client request: **step_reviewer/gpt-6.1-sol/ultra/default**, thread01a12e44-4928-7f32-b3ac-681dfc380284, formal turn01a12eb4-e593-7e53-9b41-f5a6e678cc46, sampling log2953771. Reused disjoint static helper: same role/model/ultra/default, thread01a12e72-784b-79c1-93c3-27b8cdfcbb5a, turn01a12eb5-5b7e-7a80-887e-20afa1147859, sampling log2953816. **Server-final UNVERIFIED_NOT_EXPOSED** for both. No global model/tier/settings/privilege change or workaround occurred; feature flags were not inferred request tiers.
+
+Generic core remains frame/engine independent: asset-core only Node crypto, material-processing only asset-core, Sharp/child process/I/O confined to image-adapter. Eight-member direction/build/export checks and six actual production JS imports pass. No Nest/Prisma/provider/DOM/numeric MZ Tile ID entered core. Prototype algorithms/tests/fixtures/masters, Profile/Pixel Contract/full plans, API/Web/Prisma/contracts/Gateway, image-adapter/lock and prior116 test source are unchanged. No Step04 Compiler/Fragment, Pack/slot allocator, complete runner/Studio/provider/paid call or later terrain was introduced.
+
+Retain **STEP02-R1-NB-001, P2_NONBLOCKING**, esbuild0.27.7 [GHSA-g7r4-m6w7-qqqr](https://github.com/evanw/esbuild/security/advisories/GHSA-g7r4-m6w7-qqqr): Windows standalone serve+servedir exposure absent; reviewDarwin/declaredCILinux and existing Vite transform/build paths unchanged. Compatible exact fixed>=0.28.1 upgrade remains engineering step_coder's responsibility before that exposure. Audit is not globally clean.
+
+Original Native MZ Host, new editor hand drawing/game runtime/visual acceptance remain **NOT_EXECUTED**; Map003(4,10) **PENDING_USER_EVIDENCE** under the recorded phase-exit authorization. The original core VM oracle is a rectangle/pixel/update regression with stub layer, not GPU/editor/Host acceptance. Remote CI is **NOT_EXECUTED_BY_REVIEWER**, still root's publication gate. Step04 is **NOT_STARTED_UNAUTHORIZED**.
+
+API4315/Web5177 are stopped. Assigned owned PostgreSQL55433 remains ready; credentials/cluster were not initialized, rewritten or stopped. Only own integration IDs were cleaned; browser random test rows remain as prescribed by the unchanged suite. Prior own generated Vite cache was restored. Evidence whitelist excludes DB/env/credentials/cluster/server logs, native binary contents, licensed runtime source, caches and broad app/sampling logs. No production/source/reference/threshold/root/author file was modified by Reviewer. No approval, merge, push or Step04 action occurred.
+
+**Final independent result: PASS on exacta0e9f07… and these exact three immutable builds. STEP03-R1-001/002/003/004/005=FIXED. All P0/P1/blocking P2 are zero; one inherited scoped esbuild follow-up remains.**
