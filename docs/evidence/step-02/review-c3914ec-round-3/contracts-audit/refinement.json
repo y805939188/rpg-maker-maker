@@ -1,0 +1,37 @@
+{
+  "type": "CURRENT_INGRESS_SCOPE_REFINEMENT",
+  "supersedesReport": "review.md",
+  "proposedFinding": "STEP02-R3-001",
+  "severity": "P2",
+  "blocksGateRecommendation": true,
+  "parentOwnsFinalDecision": true,
+  "entryPoints": [
+    "@tileset/prototype exported decodePng",
+    "prepare:mz buildArg -> preflightPrototypeBuild -> decodePng"
+  ],
+  "integrityIsNotAuthorship": true,
+  "benignEXIFDecodeByHelper": "NOT_EXECUTED",
+  "hostilePayloadOrCrash": "NOT_EXECUTED",
+  "apiContractsGatewayNewFindings": 0,
+  "sharpUpgradeNodeCompatibility": "Node>=20.9.0 vendor engine; current22.21.1 eligible",
+  "sharpUpgradeRuntimeCompatibility": "NOT_EXECUTED",
+  "externalChangelogErrors": [
+    {
+      "url": "https://sharp.pixelplumbing.com/changelog/v0.35.5",
+      "ref": "turn18view0",
+      "error": "Internal Error ()"
+    },
+    {
+      "url": "https://sharp.pixelplumbing.com/changelog/v0.35.0",
+      "ref": "turn18view1",
+      "error": "Internal Error ()"
+    }
+  ],
+  "classification": "P2_BLOCKING",
+  "parentBenignMetadataEvidence": {
+    "path": ".local/review/round3-resume-20261012/benign-metadata-reachability.json",
+    "sha256": "20f4f10b90654c99f9757781e73b2e42c163ea3d2a2e2791888705d1fea7fe66",
+    "independentlyReadByHelper": true,
+    "executedByHelper": false
+  }
+}

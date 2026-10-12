@@ -1,0 +1,91 @@
+{
+  "type": "STATIC_KNOWN_ADVISORY_RECHECK",
+  "observedDate": "2026-10-12",
+  "freshAudit": "NOT_EXECUTED_BY_HELPER",
+  "snapshotOrigin": ".local/review/round2/audit.log",
+  "snapshotSha256": "7eca90894030dfd967460b17b4dd93c222fd77f845c3bfa9d035e16633357e83",
+  "frozenLockSha256": "e0b84e288e1890e48b45e89249ff53864a5ed3dabcc51762f325a087b3d6d060",
+  "lockedSharp": "0.34.5",
+  "lockedViteEsbuild": "0.27.7",
+  "otherEsbuild": "0.25.12 via tsx; outside this advisory range",
+  "installedBundleVersions": {
+    "aom": "3.13.1",
+    "archive": "3.8.2",
+    "cairo": "1.18.4",
+    "cgif": "0.5.0",
+    "exif": "0.6.25",
+    "expat": "2.7.3",
+    "ffi": "3.5.2",
+    "fontconfig": "2.17.1",
+    "freetype": "2.14.1",
+    "fribidi": "1.0.16",
+    "glib": "2.86.1",
+    "harfbuzz": "12.1.0",
+    "heif": "1.20.2",
+    "highway": "1.3.0",
+    "imagequant": "2.4.1",
+    "lcms": "2.17",
+    "mozjpeg": "0826579",
+    "pango": "1.57.0",
+    "pixman": "0.46.4",
+    "png": "1.6.50",
+    "proxy-libintl": "0.5",
+    "rsvg": "2.61.2",
+    "spng": "0.7.4",
+    "tiff": "4.7.1",
+    "vips": "8.17.3",
+    "webp": "1.6.0",
+    "xml2": "2.15.1",
+    "zlib-ng": "2.2.5"
+  },
+  "records": [
+    {
+      "id": 1120680,
+      "github_advisory_id": "GHSA-g7r4-m6w7-qqqr",
+      "module_name": "esbuild",
+      "severity": "low",
+      "vulnerable_versions": ">=0.27.3 <0.28.1",
+      "patched_versions": ">=0.28.1",
+      "url": "https://github.com/advisories/GHSA-g7r4-m6w7-qqqr"
+    },
+    {
+      "id": 1124066,
+      "github_advisory_id": "GHSA-f88m-g3jw-g9cj",
+      "module_name": "sharp",
+      "severity": "high",
+      "vulnerable_versions": "<0.35.0",
+      "patched_versions": ">=0.35.0",
+      "url": "https://github.com/advisories/GHSA-f88m-g3jw-g9cj"
+    },
+    {
+      "id": 1193725,
+      "github_advisory_id": "GHSA-rgj7-g3m4-5g8c",
+      "module_name": "sharp",
+      "severity": "high",
+      "vulnerable_versions": "<0.35.4",
+      "patched_versions": ">=0.35.4",
+      "url": "https://github.com/advisories/GHSA-rgj7-g3m4-5g8c"
+    },
+    {
+      "id": 1241331,
+      "github_advisory_id": "GHSA-wq5f-xc86-pv6w",
+      "module_name": "sharp",
+      "severity": "high",
+      "vulnerable_versions": "<0.35.5",
+      "patched_versions": ">=0.35.5",
+      "url": "https://github.com/advisories/GHSA-wq5f-xc86-pv6w"
+    }
+  ],
+  "primarySources": [
+    "https://github.com/lovell/sharp/security/advisories/GHSA-f88m-g3jw-g9cj",
+    "https://github.com/lovell/sharp/security/advisories/GHSA-rgj7-g3m4-5g8c",
+    "https://github.com/lovell/sharp/security/advisories/GHSA-wq5f-xc86-pv6w",
+    "https://github.com/evanw/esbuild/security/advisories/GHSA-g7r4-m6w7-qqqr",
+    "https://github.com/advisories/GHSA-g7r4-m6w7-qqqr",
+    "https://github.com/libvips/libvips/security/advisories/GHSA-2fcj-gj27-279x",
+    "https://github.com/libvips/libvips/security/advisories/GHSA-r98w-4fp7-m9c7",
+    "https://github.com/libvips/libvips/security/advisories/GHSA-jmwm-wc68-mhwm",
+    "https://github.com/libvips/libvips/security/advisories/GHSA-523x-vhfw-6r76",
+    "https://github.com/libvips/libvips/security/advisories/GHSA-9rwc-f68v-4482"
+  ]
+}

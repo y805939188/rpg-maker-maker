@@ -1,0 +1,107 @@
+{
+  "commit": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
+  "productionArgv": [
+    "node",
+    "apps/api/dist/main.js"
+  ],
+  "apiPort": 4311,
+  "databasePort": 55433,
+  "checks": {
+    "initial": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      }
+    },
+    "occupiedPort": {
+      "environmentOverrides": {},
+      "exitCode": 1,
+      "output": "Local startup failed. Check configuration, database migrations and production build.",
+      "noPrivateDetails": true
+    },
+    "invalidBind": {
+      "environmentOverrides": {
+        "API_HOST": "0.0.0.0"
+      },
+      "exitCode": 1,
+      "output": "Local startup failed. Check configuration, database migrations and production build.",
+      "noPrivateDetails": true
+    },
+    "invalidPort": {
+      "environmentOverrides": {
+        "API_PORT": "5174"
+      },
+      "exitCode": 1,
+      "output": "Local startup failed. Check configuration, database migrations and production build.",
+      "noPrivateDetails": true
+    },
+    "databaseStopped": {
+      "status": 503,
+      "body": {
+        "error": {
+          "code": "SERVICE_UNAVAILABLE",
+          "message": "Local database is unavailable. Check the local service."
+        }
+      }
+    },
+    "databaseUnavailableStartup": {
+      "environmentOverrides": {
+        "API_PORT": "4312"
+      },
+      "exitCode": 1,
+      "output": "Local startup failed. Check configuration, database migrations and production build.",
+      "noPrivateDetails": true
+    },
+    "databaseRestarted": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      }
+    },
+    "projectReadsAfterRecovery": {
+      "status": 200,
+      "body": {
+        "projects": [
+          {
+            "id": "e4d7dad9-5104-4c9f-b5a4-509458979c32",
+            "name": "\u6d4f\u89c8\u5668\u94fe\u8def-359464d1",
+            "createdAt": "2026-10-12T02:51:04.666Z"
+          },
+          {
+            "id": "b68daa93-9ec8-4ad2-aac3-eee91861bdf0",
+            "name": "\u6d4f\u89c8\u5668\u94fe\u8def-86deef3a",
+            "createdAt": "2026-10-12T02:50:38.988Z"
+          },
+          {
+            "id": "46d87e00-6cee-461d-bc67-3ab615a95868",
+            "name": "\u6d4f\u89c8\u5668\u94fe\u8def-57f5a217",
+            "createdAt": "2026-10-12T02:49:44.267Z"
+          },
+          {
+            "id": "fda2909a-cf3d-490b-935f-7d12bbfb305e",
+            "name": "\u6d4f\u89c8\u5668\u94fe\u8def-a5bb1de5",
+            "createdAt": "2026-10-11T18:38:17.575Z"
+          },
+          {
+            "id": "f1d3aca0-043e-4f39-b318-abfbb8e8dfac",
+            "name": "\u6d4f\u89c8\u5668\u94fe\u8def-81101fac",
+            "createdAt": "2026-10-11T18:05:55.158Z"
+          },
+          {
+            "id": "97ccbddb-fd35-4a1f-ae9d-be31a12d4e6f",
+            "name": "\u6d4f\u89c8\u5668\u94fe\u8def-99e54631",
+            "createdAt": "2026-10-11T18:05:09.288Z"
+          }
+        ]
+      }
+    }
+  },
+  "privateEnvironmentValuesExcluded": true,
+  "compiledBackendPid": 40218,
+  "listener": "COMMAND   PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    40218 dingshinn   19u  IPv4 0xc0ca1835a1f7492b      0t0  TCP 127.0.0.1:4311 (LISTEN)\n",
+  "productionStoppedCleanly": true
+}
