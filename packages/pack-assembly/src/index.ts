@@ -265,6 +265,11 @@ function snapshot(
       'PACK_STATE',
       'Invalid lifecycle state.',
     );
+    check(
+      previous !== null || s.state !== 'RETIRED',
+      'PACK_TRANSITION',
+      'Retirement requires a recorded earlier ACTIVE binding.',
+    );
     if (s.state === 'NEVER_USED')
       check(s.binding === null, 'PACK_STATE', 'Unused slots cannot hide bindings.');
     else {

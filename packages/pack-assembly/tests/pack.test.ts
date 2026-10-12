@@ -162,6 +162,12 @@ describe('Stable production Pack contract', () => {
   });
   it('rejects modified/rehashed layouts and histories; no cloned Fragment can counterfeit compilation', () => {
     const built = run(pairOperations('a', 1, a));
+    const rootRetired = copy(built.snapshot);
+    for (const slot of rootRetired.slots)
+      if (slot.state === 'ACTIVE') Object.assign(slot, { state: 'RETIRED' });
+    expect(() => validatePack(PROFILE, hash(rootRetired), [], registry())).toThrow(
+      /earlier ACTIVE/,
+    );
     for (const change of [
       { x: -96 },
       { x: 768 },
