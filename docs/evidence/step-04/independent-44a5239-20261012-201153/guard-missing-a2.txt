@@ -1,0 +1,15 @@
+node:internal/fs/promises:1030
+  const result = await PromisePrototypeThen(
+                 ^
+
+Error: ENOENT: no such file or directory, lstat '/private/tmp/tileset-step04-independent-44a5239-20261012-201153/outputs/negative/missing-a2/input/art/A2.png'
+    at async lstat (node:internal/fs/promises:1030:18)
+    at async preflightStep04 (file:///private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/dist/scripts/step04-input.js:21:20)
+    at async file:///private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/dist/scripts/prepare-step04.js:12:15 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'lstat',
+  path: '/private/tmp/tileset-step04-independent-44a5239-20261012-201153/outputs/negative/missing-a2/input/art/A2.png'
+}
+
+Node.js v22.21.1

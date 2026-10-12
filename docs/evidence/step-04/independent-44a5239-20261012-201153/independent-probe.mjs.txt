@@ -1,0 +1,137 @@
+import assert from 'node:assert/strict';
+import {readFile, writeFile} from 'node:fs/promises';
+import * as core from '@tileset/asset-core';
+import * as processing from '@tileset/material-processing';
+import {decodeSource} from '@tileset/image-adapter';
+import * as compiler from '@tileset/mz-compiler';
+
+// Reviewer-authored semantic names and coordinates, independent of REGIONS/SHAPES.
+const names = ['representative-nw','representative-ne','inner-nw','inner-ne',
+ 'representative-sw','representative-se','inner-sw','inner-se',
+ 'outer-nw','north-e','north-w','outer-ne','west-s','center-se','center-sw','east-s',
+ 'west-n','center-ne','center-nw','east-n','outer-sw','south-e','south-w','outer-se'];
+const provenance = {origin:'manual',author:'Independent step04 reviewer synthetic',license:'CC0-1.0',toolVersion:'independent-probe-v1',parents:[]};
+const maskBytes = await readFile('tests/fixtures/art-static-bank-mask.png');
+const decoded = await decodeSource(new core.RawSource({id:'independent-native-mask',revision:1,role:'static-mask',density:1,encoding:'png',bytes:maskBytes,provenance}));
+assert.equal(decoded.status,'validated');
+const canonicalMask = decoded.source.image.bytes();
+const canonicalPlanes = [0,1,2,3].map(frame => {
+ const bytes = new Uint8Array(96*144*4);
+ for(let y=0;y<144;y++) for(let x=0;x<96;x++) {
+  const q=Math.floor(y/24)*4+Math.floor(x/24), lx=x%24, ly=y%24;
+  const color=lx===2&&ly===3 ? [250,249,248,255] : lx===21&&ly===20 ? [251,247,241,255] : [q*7+1,frame*40+5,10,255];
+  bytes.set(color,(y*96+x)*4);
+ }
+ return bytes;
+});
+function rearrange(bytes, shuffled) {
+ const out = new Uint8Array(bytes.length);
+ for(let q=0;q<24;q++) for(let y=0;y<24;y++) {
+  const slot=shuffled?(q*7+5)%24:q;
+  const a=(Math.floor(q/4)*24+y)*96*4+q%4*96;
+  const b=(Math.floor(slot/4)*24+y)*96*4+slot%4*96;
+  out.set(bytes.subarray(a,a+96),b);
+ }
+ return out;
+}
+function makeInput(shuffled) {
+ const planes=[...canonicalPlanes,canonicalMask,new Uint8Array(96*144*4)].map(b=>rearrange(b,shuffled));
+ const roles=['grass','water','water','water','static-mask','bank-overlay'];
+ const sources=planes.map((bytes,i)=>{
+  const raw=new core.RawSource({id:`review-${shuffled?'shuffled':'normal'}-${i}`,revision:7,role:roles[i],density:1,encoding:'rgba8',bytes:Buffer.from(bytes).subarray(0),provenance});
+  return core.validatedDecodedSource(raw,{width:96,height:144,data:bytes});
+ });
+ const palette=new Map();
+ for(const b of canonicalPlanes) for(let i=0;i<b.length;i+=4)palette.set([...b.subarray(i,i+3)].join(','),[...b.subarray(i,i+3)]);
+ const style=core.styleProfile(`review-style-${shuffled?'shuffled':'normal'}`,1,{logicalPixelScale:1,palette:[...palette.values()],lighting:'flat',outline:'none'});
+ const regions=names.map((name,q)=>{
+  const s=shuffled?(q*7+5)%24:q;
+  return {name,role:name.startsWith('inner-')?'inner-corner':name.startsWith('outer-')?'outer-corner':/^(center|representative)-/.test(name)?'center':'edge',rect:{x:s%4*24,y:Math.floor(s/4)*24,width:24,height:24}};
+ }).reverse();
+ const parameters=processing.shorelineParameters(`review-parameters-${shuffled?'shuffled':'normal'}`,1,{geometry:{width:96,height:144,tileWidth:48,tileHeight:48,regions},animation:{frameCount:3,sequence:[0,1,2,1],durations:[30,30,30,30],timebase:'updates',loop:true},composition:'linear-srgb-source-over',mask:'white-static-bank'});
+ const recipe=processing.shorelineRecipe(`review-recipe-${shuffled?'shuffled':'normal'}`,1,{version:'fixed-shoreline-v1',grass:sources[0].ref,water:sources.slice(1,4).map(s=>s.ref),staticMask:sources[4].ref,bankOverlay:sources[5].ref,style:style.ref,parameters:parameters.ref});
+ return {sources,style,parameters,recipe,planes};
+}
+const results=[];
+function check(name,fn) {try {fn();results.push({name,pass:true});}catch(e){results.push({name,pass:false,error:e.stack});}}
+function reject(name,ir,boundary,code,category='a1-water',genericValid=false) {
+ check(name,()=>{if(genericValid)core.validateTileIR(ir);assert.throws(()=>compiler.compileFragment(ir,category),e=>e instanceof compiler.CompilationError&&e.boundary===boundary&&e.code===code);});
+}
+const input=makeInput(false), shuffledInput=makeInput(true);
+const built=core.buildProcessedAsset(processing.processShoreline(input),'review-owned-built');
+const shuffled=processing.processShoreline(shuffledInput).ir;
+const ground=compiler.compileFragment(built.ir,'a2-ground'),water=compiler.compileFragment(built.ir,'a1-water');
+check('real public rgba8 source -> processShoreline -> Built -> both Compiler fragments',()=>{
+ assert.equal(built.targetCompilation,'NOT_EXECUTED');assert.equal(ground.source.irHash,built.ir.contentHash);
+ assert.deepEqual(ground.image.bytes(),canonicalPlanes[0]);
+ assert.deepEqual(water.placement.allowedKinds,[4,6]);assert.deepEqual(ground.placement.allowedKinds,[16,17]);
+ assert.equal(Object.hasOwn(water.placement,'tileId'),false);assert.equal(Object.hasOwn(water.placement,'selectedKind'),false);
+});
+check('affine permutation of all 24 quarters plus reversed region array',()=>{
+ assert.deepEqual(compiler.compileFragment(shuffled,'a2-ground').image.bytes(),ground.image.bytes());
+ assert.deepEqual(compiler.compileFragment(shuffled,'a1-water').image.bytes(),water.image.bytes());
+});
+// Literal shape semantics inferred from pinned native table and final Tile quadrants.
+const shapes={0:['center-nw','center-ne','center-sw','center-se'],
+ 1:['inner-nw','center-ne','center-sw','center-se'],
+ 16:['west-n','center-ne','west-s','center-se'],
+ 20:['north-w','north-e','center-sw','center-se'],
+ 24:['center-nw','east-n','center-sw','east-s'],
+ 28:['center-nw','center-ne','south-w','south-e'],
+ 46:['outer-nw','outer-ne','outer-sw','outer-se'],
+ 47:['representative-nw','representative-ne','representative-sw','representative-se']};
+for(const [shape,semantics] of Object.entries(shapes)) for(const update of [0,30,60,90,120,239,240,599,600]) {
+ check(`literal asymmetric full tile shape=${shape} update=${update}`,()=>{
+  const actualGround=compiler.renderShape(ground,+shape,update).bytes();
+  const actualWater=compiler.renderShape(water,+shape,update).bytes();
+  const frame=[0,1,2,1][Math.floor((update%120)/30)];
+  for(let y=0;y<48;y++) for(let x=0;x<48;x++) {
+   const name=semantics[Math.floor(y/24)*2+Math.floor(x/24)],q=names.indexOf(name);
+   const src=((Math.floor(q/4)*24+y%24)*96+(q%4*24+x%24))*4,dst=(y*48+x)*4;
+   assert.deepEqual(actualGround.subarray(dst,dst+4),canonicalPlanes[0].subarray(src,src+4));
+   const plane=canonicalMask[src]===255?canonicalPlanes[0]:canonicalPlanes[frame+1];
+   assert.deepEqual(actualWater.subarray(dst,dst+4),plane.subarray(src,src+4));
+  }
+ });
+}
+check('every update 0..3600 and safe-integer extreme using independent BigInt arithmetic',()=>{
+ for(const t of [...Array(3601).keys(),Number.MAX_SAFE_INTEGER,Number.MAX_SAFE_INTEGER-1,Number.MAX_SAFE_INTEGER-29])
+  assert.equal(compiler.sourceFrameAtUpdate(t),[0,1,2,1][Number((BigInt(t)/30n)%4n)]);
+});
+function changed(patch) {const ir={...built.ir,...patch};return {...ir,contentHash:core.tileIRHash(ir)};}
+for(const [name,patch] of [['nonloop',{loop:false}],['milliseconds',{timebase:'milliseconds'}],['reverse',{sequence:[2,1,0,1]}],['three-states',{sequence:[0,1,2],durations:[30,30,30]}],['duration',{durations:[30,31,30,30]}]])
+ reject(`generic-valid ${name} must reach MZ_ANIMATION`,changed({animation:{...built.ir.animation,...patch}}),'target','MZ_ANIMATION','a1-water',true);
+check('A2 accepts generic nonloop timing without rewriting Built',()=>{
+ const ir=changed({animation:{...built.ir.animation,loop:false,timebase:'milliseconds'}});core.validateTileIR(ir);
+ assert.equal(compiler.compileFragment(ir,'a2-ground').layout.playback,null);assert.equal(built.targetCompilation,'NOT_EXECUTED');
+});
+reject('generic-valid wrong target region roles',changed({geometry:{...built.ir.geometry,regions:built.ir.geometry.regions.map((r,i)=>i===0?{...r,role:'center'}:r)}}),'target','MZ_REGIONS','a1-water',true);
+reject('generic-valid unnamed direction',changed({geometry:{...built.ir.geometry,regions:built.ir.geometry.regions.map((r,i)=>i===0?{...r,name:'another-semantic'}:r)}}),'target','MZ_REGIONS','a1-water',true);
+for(const bad of ['true',1,[],{}]) reject(`rehashed opaque ${JSON.stringify(bad)}`,changed({ground:{...built.ir.ground,opaque:bad}}),'ir','IR_SEMANTICS');
+reject('rehashed region-name array',changed({geometry:{...built.ir.geometry,regions:built.ir.geometry.regions.map((r,i)=>i===0?{...r,name:[r.name]}:r)}}),'ir','GEOMETRY');
+reject('rehashed missing parameter dependency',changed({dependencies:built.ir.dependencies.filter(d=>d.kind!=='parameters')}),'ir','IR_DEPENDENCIES');
+for(const field of ['sequence','durations']) {
+ const a=[...built.ir.animation[field]];delete a[1];
+ reject(`sparse ${field}`,{...built.ir,animation:{...built.ir.animation,[field]:a}},'ir','ANIMATION');
+}
+const sparse=[...built.ir.frames];delete sparse[1];reject('sparse frames',{...built.ir,frames:sparse},'ir','IR_FRAMES');
+for(const bad of ['false',1,[],{}]) reject(`loop scalar ${JSON.stringify(bad)}`,changed({animation:{...built.ir.animation,loop:bad}}),'ir','ANIMATION');
+check('ordinary fragment clone and JSON rejected by ownership',()=>{
+ for(const f of [{...water},JSON.parse(JSON.stringify(water)),{state:'COMPILED',contentHash:water.contentHash}])assert.throws(()=>compiler.validateFragment(f),e=>e.code==='FRAGMENT_OWNERSHIP');
+});
+check('input metadata, Buffer views and return pixel copies cannot mutate compiled identity',()=>{
+ const metadata=JSON.parse(JSON.stringify({geometry:built.ir.geometry,animation:built.ir.animation,dependencies:built.ir.dependencies}));
+ const backing=Buffer.from(built.ir.groundImage.bytes()),image=new core.RgbaImage({width:96,height:144,data:backing.subarray(0)});
+ const ir=changed({...metadata,groundImage:image});const f=compiler.compileFragment(ir,'a2-ground'),expected=f.image.bytes(),hash=f.contentHash;
+ metadata.geometry.regions[0].name='changed';metadata.animation.sequence[0]=2;metadata.dependencies[0].id='changed';
+ backing.fill(0);f.image.bytes().fill(0);f.image.pixels().data.fill(0);input.planes[0].fill(0);
+ assert.equal(f.contentHash,hash);assert.deepEqual(f.image.bytes(),expected);compiler.validateFragment(f);
+ assert.throws(()=>{f.layout.offsets[0].x=50});assert.throws(()=>{f.source.dependencies.push({})});
+});
+check('semantic revisions affect identity even when pixel payload is identical',()=>{
+ assert.equal(water.image.pixelHash,compiler.compileFragment(shuffled,'a1-water').image.pixelHash);
+ assert.notEqual(water.contentHash,compiler.compileFragment(shuffled,'a1-water').contentHash);
+ assert.equal(water.contentHash,compiler.compileFragment(built.ir,'a1-water').contentHash);
+});
+const summary={commit:'44a5239a979cd549e893df705df7704d043216be',probe:'reviewer-authored public JS synthetic, no compiler REGIONS/SHAPES imports',total:results.length,passed:results.filter(x=>x.pass).length,failed:results.filter(x=>!x.pass).length,results};
+await writeFile('../evidence/independent-probe.json',JSON.stringify(summary,null,2)+'\n');console.log(JSON.stringify(summary,null,2));if(summary.failed)process.exitCode=1;

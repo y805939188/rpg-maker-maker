@@ -1,0 +1,14 @@
+node:internal/fs/promises:860
+  return await PromisePrototypeThen(
+         ^
+
+Error: EEXIST: file already exists, mkdir '/private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/.local/mz/step04-mz-44a5239a979c-ed3814944c9713b8'
+    at async mkdir (node:internal/fs/promises:860:10)
+    at async file:///private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/dist/scripts/prepare-step04.js:19:1 {
+  errno: -17,
+  code: 'EEXIST',
+  syscall: 'mkdir',
+  path: '/private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/.local/mz/step04-mz-44a5239a979c-ed3814944c9713b8'
+}
+
+Node.js v22.21.1

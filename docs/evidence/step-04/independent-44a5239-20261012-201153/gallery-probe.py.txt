@@ -1,0 +1,33 @@
+import pathlib, re, zipfile, json, hashlib, runpy
+REVIEW=pathlib.Path('/private/tmp/tileset-step04-independent-44a5239-20261012-201153')
+ns=runpy.run_path(str(REVIEW/'evidence/png-probe.py'));png,place=ns['png'],ns['place'];ROOT=ns['ROOT']
+core=pathlib.Path('/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js').read_bytes()
+assert hashlib.sha256(core).hexdigest()=='4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f'
+table=re.search(r'Tilemap\.FLOOR_AUTOTILE_TABLE = \[(.*?)\n\];',core.decode(),re.S)[1]
+pairs=[tuple(map(int,m)) for m in re.findall(r'\[(\d+),\s*(\d+)\]',table)]
+assert len(pairs)==192
+zipPath=pathlib.Path('/Users/dingshinn/Desktop/rpg-maker-maker/.local/step04-acceptance/step04-mz-44a5239a979c-ed3814944c9713b8-acceptance.zip')
+out=REVIEW/'outputs/cpu-preview';out.mkdir();checks=[]
+with zipfile.ZipFile(zipPath) as z:
+ ref=json.loads(z.read('cpu-preview/gallery-reference.json'))
+ for family in ['art','diagnostic']:
+  ground=png(ROOT/f'tests/fixtures/{family}-ground.png')[2]
+  original=[png(ROOT/f'tests/fixtures/{family}-water-{i}.png')[2] for i in range(3)]
+  for t in [0,30,60,90]:
+   expected=bytearray(384*576*4);frame=[0,1,2,1][t//30]
+   for shape in range(48):
+    for row,water in [(0,True),(6,False)]:
+     tile=bytearray(48*48*4);source=original[frame] if water else ground
+     for i,(qx,qy) in enumerate(pairs[shape*4:shape*4+4]):
+      for y in range(24):
+       for x in range(24):
+        src=((qy*24+y)*96+qx*24+x)*4;dst=((i//2*24+y)*48+i%2*24+x)*4
+        b=ground if water and family=='diagnostic' and ns['mask'][src]==255 else source
+        tile[dst:dst+4]=b[src:src+4]
+     place(expected,384,tile,48,48,shape%8*48,(shape//8+row)*48)
+   name=f'{family}-update-{t}.png';data=z.read('cpu-preview/'+name)
+   assert hashlib.sha256(data).hexdigest()==ref['files'][name]
+   path=out/name;path.write_bytes(data);w,h,pixels,_=png(path);assert (w,h)==(384,576);assert pixels==bytes(expected)
+   checks.append({'file':name,'nativeTableAndOriginalMasterFullPixels':'PASS','sha256':ref['files'][name]})
+res={'result':'PASS','decoder':'Independent Python stdlib PNG decoder','shapeReference':'Direct 192 quarter coordinate pairs from SHA-pinned licensed native FLOOR_AUTOTILE_TABLE; no Compiler import or renderShape','previewImages':8,'tileChecks':768,'checks':checks,'scope':'CPU pixels only; no visual approval, editor or game run'}
+(REVIEW/'evidence/gallery-probe.json').write_text(json.dumps(res,indent=2)+'\n');print(json.dumps({'result':'PASS','previewImages':8,'tileChecks':768}))

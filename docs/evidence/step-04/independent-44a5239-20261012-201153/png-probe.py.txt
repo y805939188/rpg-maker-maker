@@ -1,0 +1,69 @@
+import pathlib, struct, zlib, hashlib, json
+ROOT=pathlib.Path('/private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout')
+BUILD=ROOT/'artifacts/step04-mz-44a5239a979c-ed3814944c9713b8'
+def png(path):
+ b=path.read_bytes();assert b[:8]==b'\x89PNG\r\n\x1a\n';pos=8;compressed=b'';chunks=[]
+ while pos<len(b):
+  n=struct.unpack('>I',b[pos:pos+4])[0];typ=b[pos+4:pos+8];data=b[pos+8:pos+8+n]
+  assert struct.unpack('>I',b[pos+8+n:pos+12+n])[0]==zlib.crc32(typ+data)&0xffffffff
+  chunks.append(typ.decode());pos+=12+n
+  if typ==b'IHDR':
+   w,h,depth,color,compression,filtering,interlace=struct.unpack('>IIBBBBB',data)
+   assert (depth,color,compression,filtering,interlace)==(8,6,0,0,0)
+  if typ==b'IDAT':compressed+=data
+  if typ==b'IEND':break
+ assert pos==len(b)
+ raw=zlib.decompress(compressed);stride=w*4;assert len(raw)==h*(stride+1)
+ out=bytearray();previous=bytearray(stride)
+ for y in range(h):
+  filt=raw[y*(stride+1)];row=bytearray(raw[y*(stride+1)+1:(y+1)*(stride+1)])
+  for i in range(stride):
+   left=row[i-4] if i>=4 else 0;up=previous[i];ul=previous[i-4] if i>=4 else 0
+   if filt==0:predictor=0
+   elif filt==1:predictor=left
+   elif filt==2:predictor=up
+   elif filt==3:predictor=(left+up)//2
+   elif filt==4:
+    p=left+up-ul;diffs=[abs(p-left),abs(p-up),abs(p-ul)]
+    predictor=[left,up,ul][diffs.index(min(diffs))]
+   else:raise AssertionError('unsupported filter')
+   row[i]=(row[i]+predictor)&255
+  out+=row;previous=row
+ return w,h,bytes(out),chunks
+def place(target,tw,image,iw,ih,x,y):
+ for row in range(ih):target[((y+row)*tw+x)*4:((y+row)*tw+x+iw)*4]=image[row*iw*4:(row+1)*iw*4]
+checks=[]
+def equal(name,a,b):assert a==b,name;checks.append(name)
+mask=png(ROOT/'tests/fixtures/art-static-bank-mask.png')[2]
+for family in ['art','diagnostic']:
+ g=png(ROOT/f'tests/fixtures/{family}-ground.png')[2]
+ water=[png(ROOT/f'tests/fixtures/{family}-water-{i}.png')[2] for i in range(3)]
+ expected=[]
+ for i,b in enumerate(water):
+  frame=bytearray(b)
+  if family=='diagnostic':
+   for p in range(0,len(b),4):
+    if mask[p]==255:frame[p:p+4]=g[p:p+4]
+  expected.append(bytes(frame))
+ equal(f'{family}:ground bytes',png(BUILD/f'{family}/ground.fragment.png')[2],g)
+ for i,frame in enumerate(expected):equal(f'{family}:processed water {i}',png(BUILD/f'{family}/processed/water-{i}.png')[2],frame)
+ fragment=bytearray(288*144*4)
+ for i,frame in enumerate(expected):place(fragment,288,frame,96,144,96*i,0)
+ equal(f'{family}:three horizontal source frames',png(BUILD/f'{family}/water.fragment.png')[2],bytes(fragment))
+ a2=bytearray(768*576*4)
+ for x in [0,96]:place(a2,768,g,96,144,x,0)
+ a1=bytearray(768*576*4)
+ for y in [0,144]:place(a1,768,fragment,288,144,384,y)
+ equal(f'{family}:full A1 including unused transparent area',png(BUILD/f'{family}/A1.png')[2],bytes(a1))
+ equal(f'{family}:full A2 including unused transparent area',png(BUILD/f'{family}/A2.png')[2],bytes(a2))
+ descriptors=json.loads((BUILD/f'{family}/fragments.json').read_text())
+ for label in ['ground','water']:
+  w,h,pixels,chunks=png(BUILD/f'{family}/{label}.fragment.png');d=descriptors[label]['image']
+  equal(f'{family}:{label} descriptor dimensions',(w,h),(d['width'],d['height']))
+  equal(f'{family}:{label} raw pixelHash',hashlib.sha256(pixels).hexdigest(),d['pixelHash'])
+decoded=[]
+for f in sorted(BUILD.rglob('*.png')):
+ w,h,data,chunks=png(f);decoded.append({'file':str(f.relative_to(BUILD)),'width':w,'height':h,'rawPixelSha256':hashlib.sha256(data).hexdigest(),'chunks':chunks})
+result={'decoder':'reviewer Python stdlib CRC + zlib + all PNG filter reconstruction; no Sharp/Compiler imports','checks':checks,'checkCount':len(checks),'pngCount':len(decoded),'decoded':decoded,'result':'PASS'}
+(ROOT.parent/'evidence/png-probe.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'result':'PASS','checks':len(checks),'decodedPngs':len(decoded)},indent=2))

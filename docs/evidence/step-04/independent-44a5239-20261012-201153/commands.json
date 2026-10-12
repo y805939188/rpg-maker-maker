@@ -1,0 +1,94 @@
+{
+  "cwd": "<REVIEW>/checkout",
+  "reviewTarget": "44a5239a979cd549e893df705df7704d043216be",
+  "node": "22.21.1",
+  "pnpm": "10.20.0",
+  "PATH": "fixed Node toolchain bin precedes system bins for successful pnpm commands; Node CLIs use absolute fixed executable",
+  "commands": [
+    {
+      "command": "pnpm install --frozen-lockfile --store-dir ../pnpm-store --cache-dir ../pnpm-cache",
+      "exitCode": 0,
+      "evidence": "install-final.log.txt"
+    },
+    {
+      "command": "pnpm db:generate",
+      "exitCode": 0,
+      "evidence": "db-generate.log.txt"
+    },
+    {
+      "command": "pnpm check",
+      "exitCode": 0,
+      "evidence": "check.log.txt"
+    },
+    {
+      "command": "pnpm test:step04",
+      "exitCode": 0,
+      "evidence": "compiler-tests.log.txt"
+    },
+    {
+      "command": "node scripts/build-engineering.mjs step04",
+      "exitCode": 0,
+      "evidence": "engineering.json"
+    },
+    {
+      "command": "node scripts/build-mz-sample.mjs",
+      "exitCode": 0,
+      "evidence": "mz-sample.json"
+    },
+    {
+      "command": "node scripts/build-material-sample.mjs",
+      "exitCode": 0,
+      "evidence": "material-sample.json"
+    },
+    {
+      "command": "node dist/scripts/build-prototype.js",
+      "exitCode": 0,
+      "evidence": "prototype.json"
+    },
+    {
+      "command": "node .local/independent-step04/scalars.mjs",
+      "exitCode": 0,
+      "evidence": "legacy-78.json"
+    },
+    {
+      "command": "node .local/independent-step04/probe.mjs",
+      "exitCode": 0,
+      "evidence": "independent-probe.json"
+    },
+    {
+      "command": "node dist/scripts/verify-step04.js <LICENSED_TEMPLATE>/js/rmmz_core.js artifacts/step04-mz-44a5239a979c-ed3814944c9713b8",
+      "exitCode": 0,
+      "evidence": "native-oracle.json"
+    },
+    {
+      "command": "node dist/scripts/prepare-step04.js <LICENSED_TEMPLATE> artifacts/step04-mz-44a5239a979c-ed3814944c9713b8",
+      "exitCode": 0,
+      "evidence": "prepare.json"
+    },
+    {
+      "command": "node .local/independent-step04/guards.mjs",
+      "exitCode": 0,
+      "evidence": "guards.json"
+    },
+    {
+      "command": "python3 ../evidence/png-probe.py",
+      "exitCode": 0,
+      "evidence": "png-probe.json"
+    },
+    {
+      "command": "python3 ../evidence/gallery-probe.py",
+      "exitCode": 0,
+      "evidence": "gallery-probe.json"
+    }
+  ],
+  "initialEnvironmentFailures": {
+    "plainPnpmInstall": 1,
+    "directPinnedPnpmWithWrongChildPATH": 1,
+    "cause": "22.14.0 child Node; unchanged engines policy refused; rerun with task-local pinned PATH succeeded"
+  },
+  "dbMigration": "NOT_EXECUTED",
+  "dbIntegration": "NOT_EXECUTED",
+  "browserE2E": "NOT_EXECUTED",
+  "MZEditorGame": "NOT_EXECUTED",
+  "remoteWrites": "NOT_EXECUTED"
+}

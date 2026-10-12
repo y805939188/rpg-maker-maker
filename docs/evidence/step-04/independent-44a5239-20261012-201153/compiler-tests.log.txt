@@ -1,0 +1,41 @@
+
+> @tileset/prototype@0.0.2 test:step04 /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout
+> pnpm build:contracts && vitest run packages/mz-compiler/tests
+
+
+> @tileset/prototype@0.0.2 build:contracts /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build
+
+
+> @tileset/contracts@0.0.2 build /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 /private/tmp/tileset-step04-independent-44a5239-20261012-201153/checkout
+
+
+ Test Files  1 passed (1)
+      Tests  44 passed (44)
+   Start at  20:16:37
+   Duration  10.01s (transform 84ms, setup 0ms, import 107ms, tests 9.82s, environment 0ms)
+

@@ -1,0 +1,393 @@
+{
+  "decoder": "reviewer Python stdlib CRC + zlib + all PNG filter reconstruction; no Sharp/Compiler imports",
+  "checks": [
+    "art:ground bytes",
+    "art:processed water 0",
+    "art:processed water 1",
+    "art:processed water 2",
+    "art:three horizontal source frames",
+    "art:full A1 including unused transparent area",
+    "art:full A2 including unused transparent area",
+    "art:ground descriptor dimensions",
+    "art:ground raw pixelHash",
+    "art:water descriptor dimensions",
+    "art:water raw pixelHash",
+    "diagnostic:ground bytes",
+    "diagnostic:processed water 0",
+    "diagnostic:processed water 1",
+    "diagnostic:processed water 2",
+    "diagnostic:three horizontal source frames",
+    "diagnostic:full A1 including unused transparent area",
+    "diagnostic:full A2 including unused transparent area",
+    "diagnostic:ground descriptor dimensions",
+    "diagnostic:ground raw pixelHash",
+    "diagnostic:water descriptor dimensions",
+    "diagnostic:water raw pixelHash"
+  ],
+  "checkCount": 22,
+  "pngCount": 30,
+  "decoded": [
+    {
+      "file": "art/A1.png",
+      "width": 768,
+      "height": 576,
+      "rawPixelSha256": "c0da82fdd2966384a2996c5463ca76d714943aaa81a18ac0b63f311570d9b58b",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/A2.png",
+      "width": 768,
+      "height": 576,
+      "rawPixelSha256": "386906c5d19dfc873b5ee3ddae09d0fc519bad57ef1b682b5225e17e1c47c4b4",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/ground.fragment.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/processed/ground.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/processed/mask.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "2ab33dc7a3e6a56f7cb786192613351376f086faf117839e627ee0b7a2f9b422",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/processed/water-0.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/processed/water-1.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "d49b4ce61bdcb01004f7b5abd5fcffb7d37c40de7740a577eed8ec3210337012",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/processed/water-2.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "8839ec2307a5763f25fd36687483558d55d3eb2bd922a9a2746b96892edb5070",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/sources/bank-overlay.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "6549cf39c83b471448c4a7100e02d9db221e7e384bb79d94d0539000ada58b0d",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/sources/grass.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/sources/mask.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "2ab33dc7a3e6a56f7cb786192613351376f086faf117839e627ee0b7a2f9b422",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/sources/water-0.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "c55124fe27cf6d4a8fe24ea95277844042f67d47630c7279804c0e44d3b18014",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/sources/water-1.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "a13c81b6d6eb91e04b8246ba785bb4141913420ad0e5a0f0b7d24d28e2ee8e31",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/sources/water-2.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "997499b34f0955057ee418e17de3f1ecbced5986aecd042345c8bc1b1c7d3781",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "art/water.fragment.png",
+      "width": 288,
+      "height": 144,
+      "rawPixelSha256": "0a5ae7275ee988dabb688d5d43d23df5b0cf8b74d69262cab1cb79d588c14f10",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/A1.png",
+      "width": 768,
+      "height": 576,
+      "rawPixelSha256": "7463f43149031be368c9c5ef8f9d2a7bf6536b0cc37be75937663a4cf165df66",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/A2.png",
+      "width": 768,
+      "height": 576,
+      "rawPixelSha256": "09b5f2a4c98f3ca2d9a466618b21f36979cc88c9c9d5a867e85b5e5966ea1e30",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/ground.fragment.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "209962acd96dc3e0963e9e926a562d1563e65f6e2fdc73f6e454e8688c1937e1",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/processed/ground.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "209962acd96dc3e0963e9e926a562d1563e65f6e2fdc73f6e454e8688c1937e1",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/processed/mask.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "2ab33dc7a3e6a56f7cb786192613351376f086faf117839e627ee0b7a2f9b422",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/processed/water-0.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "60a4de916657349d9fc8503400815374913864e24ba177980a710487945977ef",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/processed/water-1.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "d69dadccf7ae7f1a6546d02d306d464b68141cc1aa3a2783e611b6ccd1b3e009",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/processed/water-2.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "ce3b47c93091bc69af2ebe4db0c542bdf881885fcdb0a64c02720b3940a7e52a",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/sources/bank-overlay.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "35295da1d5eca0b6db3168c0a64a2d61ed3ae8ca283dd4aa6116aa04703dcb60",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/sources/grass.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "209962acd96dc3e0963e9e926a562d1563e65f6e2fdc73f6e454e8688c1937e1",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/sources/mask.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "2ab33dc7a3e6a56f7cb786192613351376f086faf117839e627ee0b7a2f9b422",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/sources/water-0.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "a9728b87a01f16fff6e0cba28dff1ce24e6efb6adda5b8f36fbbf62e6fc557d9",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/sources/water-1.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "30c820de9d862d1e1bede3b79005db5228e31b92e730c102e6a5bb081864ad27",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/sources/water-2.png",
+      "width": 96,
+      "height": 144,
+      "rawPixelSha256": "c0f1b7c2703e1768ab4e8fb80332accb58afb69b83f9df843dcb295711173daa",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    },
+    {
+      "file": "diagnostic/water.fragment.png",
+      "width": 288,
+      "height": 144,
+      "rawPixelSha256": "c38a11ceac8b1db95e2148cc000763687112812b3d1e321b7ca0bdcafd67af1a",
+      "chunks": [
+        "IHDR",
+        "pHYs",
+        "IDAT",
+        "IEND"
+      ]
+    }
+  ],
+  "result": "PASS"
+}
