@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_INDEPENDENT_REVIEW_ROUND_1",
+  "phase": "STEP06_CODING_FIX_ROUND_1",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -62,7 +62,7 @@
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
-    "status": "IN_PROGRESS",
+    "status": "CHANGES_REQUESTED",
     "reviewRounds": 1,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
@@ -197,10 +197,62 @@
         "round": 1,
         "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
         "docsHead": "bae84fd83ae85b2e1aa3a449726a15a47f5df852",
-        "status": "IN_PROGRESS",
+        "status": "REQUIRES_REVISION",
         "threadId": "01a13203-9fb0-78e1-a67e-9ded70e71360",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-06-independent-review/rpg-maker-maker",
-        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round1-client.json"
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round1-client.json",
+        "preliminaryFindings": [
+          {
+            "topic": "Task reference revision lookup",
+            "state": "INDEPENDENT_REPRODUCED_PENDING_FINAL_REPORT"
+          },
+          {
+            "topic": "Maintenance/Mock CLI restore asset-root configuration",
+            "state": "INDEPENDENT_REPRODUCED_PENDING_FINAL_REPORT"
+          },
+          {
+            "topic": "WriteGate connection loss permits new submission during maintenance",
+            "state": "INDEPENDENT_REPRODUCED_PENDING_FINAL_REPORT"
+          }
+        ],
+        "independentCheck": {
+          "tests": 230,
+          "productionExports": 10,
+          "status": "PASS"
+        },
+        "independentPostgresSuite": {
+          "tests": 10,
+          "status": "PASS"
+        },
+        "report": "docs/evidence/step-06/independent-round1/report.md",
+        "reportSha256": "a983e4a763801ee83a74afccfc9e71fece162a255092fe898ba6f99ebb5b5fa4",
+        "evidenceLedger": "docs/evidence/step-06/independent-round1/evidence/ledger.json",
+        "blockingFindings": [
+          {
+            "id": "STEP06-IR-001",
+            "severity": "P2",
+            "status": "OPEN"
+          },
+          {
+            "id": "STEP06-IR-002",
+            "severity": "P2",
+            "status": "OPEN"
+          },
+          {
+            "id": "STEP06-IR-003",
+            "severity": "P2",
+            "status": "OPEN"
+          }
+        ],
+        "nonBlockingFindings": [
+          {
+            "id": "STEP06-IR-004",
+            "severity": "P3",
+            "status": "OPEN"
+          }
+        ],
+        "sourceProtectionFiles": 1420,
+        "sourceChanged": false
       }
     ]
   },
@@ -241,10 +293,10 @@
       "temporaryRoot": ".local/step06-review",
       "apiPort": 4367,
       "webPort": 5267,
-      "serviceStatus": "NOT_STARTED"
+      "serviceStatus": "OWNED_POSTGRES_RUNNING_REVIEW_FINISHED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_INDEPENDENT_STANDARD_REVIEW_ROUND_1_DISPATCHED",
+  "lastSuccessfulCheckpoint": "STEP06_ROUND1_REVIEW_FROZEN_REQUIRES_REVISION_EVIDENCE_PRESERVED",
   "blockers": [],
-  "nextSafeAction": "Wait for frozen independent review; route blocking fixes to the same step06 Coding context; do not publish or begin step07."
+  "nextSafeAction": "Resume same native Standard step_coder to fix three blocking P2 and evidence portability; freeze new candidate for round2 independent review."
 }

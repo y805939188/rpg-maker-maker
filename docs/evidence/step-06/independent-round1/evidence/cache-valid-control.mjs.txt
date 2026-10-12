@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {writeFile} from 'node:fs/promises';
+import {RawSource,buildProcessedAsset} from '@tileset/asset-core';
+import {decodeSource} from '@tileset/image-adapter';
+import {processShoreline,shorelineRecipe} from '@tileset/material-processing';
+import {replayArchives} from '@tileset/persistence';
+import {ReplaySession} from '../../packages/persistence/dist/replay.js';
+import {makeCompilerFixture} from '../../dist/scripts/step04-fixture.js';
+import {archiveFixture} from '../../dist/scripts/pack-export.js';
+const f=await makeCompilerFixture('art'),sources=[];
+for(const old of f.sources){const result=await decodeSource(new RawSource({id:old.ref.id,revision:2,role:old.raw.role,density:old.raw.density,encoding:'png',bytes:old.raw.bytes(),provenance:old.raw.provenance}));assert.equal(result.status,'validated');sources.push(result.source);}
+const recipe=shorelineRecipe(f.recipe.ref.id,3,{...f.recipe.value,grass:sources[0].ref,water:sources.slice(1,4).map(s=>s.ref),staticMask:sources[4].ref,bankOverlay:sources[5].ref});const built=buildProcessedAsset(processShoreline({sources,recipe,style:f.style,parameters:f.parameters}),'cache-control');
+const archiveA=archiveFixture(f),archiveB=archiveFixture({...f,sources,recipe});const session=new ReplaySession();const a=await replayArchives([archiveA],session),b=await replayArchives([archiveB],session),again=await replayArchives([archiveA],session);assert.equal(b.records[0].sources[0].ref.revision,2);assert.equal(again.records[0].sources[0].ref.revision,1);assert.equal(b.fragments[0].image.pixelHash,a.fragments[0].image.pixelHash);assert.notEqual(b.fragments[0].contentHash,a.fragments[0].contentHash);assert.equal(b.records[0].built.ir.contentHash,built.ir.contentHash);assert.equal(again.fragments[0].contentHash,a.fragments[0].contentHash);
+const result={candidate:'a2878a922db93c14d29e0f128bd14e6b41fc09af',sourcePngBytesSame:true,revisionA:1,revisionB:2,restoredRevisionA:again.records[0].sources[0].ref.revision,fragmentHashA:a.fragments[0].contentHash,fragmentHashB:b.fragments[0].contentHash,pixelHash:a.fragments[0].image.pixelHash,irHashA:a.records[0].built.ir.contentHash,irHashB:b.records[0].built.ir.contentHash};await writeFile('.local/step06-review/evidence/cache-valid-control.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

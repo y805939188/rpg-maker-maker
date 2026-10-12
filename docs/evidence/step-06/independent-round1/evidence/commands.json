@@ -1,0 +1,163 @@
+[
+  {
+    "command": "pnpm install --frozen-lockfile",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "install.log.txt",
+    "logSha256": "8484cda112cbaed57e236008d7390bfc8e0562d31bbf46992a96d0689fb7256a"
+  },
+  {
+    "command": "pnpm db:generate",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "generate.log.txt",
+    "logSha256": "918371855fd24d0a91f56c28d6138a35589da2f888520dc7e5b90f9eab82e280"
+  },
+  {
+    "command": "TILESET_PG_PORT=55467 pnpm db:local init",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "pg-init.log.txt",
+    "logSha256": "eb4fd447a3b6c566eca134c303624b51bb1f4cc7cc6a8dc18c9966f2b0063de1"
+  },
+  {
+    "command": "pnpm db:migrate (before build)",
+    "exitCode": 1,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "migrate.log.txt",
+    "logSha256": "342417c263699596868100f9989055b2019399da86cfc8f4019328d9cbfb2305"
+  },
+  {
+    "command": "pnpm check",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "check.log.txt",
+    "logSha256": "592ec80cb637f993ceccb07ddf7a84dbef5505d74f87d524a763363717a875f9"
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/baseline.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "baseline.log.txt",
+    "logSha256": "0fba428e2d7bb0e57e63f19a10d1c3a0f5480b961a73510f24ca12c6d16cf139"
+  },
+  {
+    "command": "pnpm db:migrate (after build)",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "migrate-after-build.log.txt",
+    "logSha256": "e0cee6e86276bff5252b3ca5f6bcb7a621d50dfc2952897bcc795b208d26ec6a"
+  },
+  {
+    "command": "pnpm test:step06",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "step06.log.txt",
+    "logSha256": "b8e303e4a2d26deebf3d9abc03d68548256d3246e442eb50adecc78246814c80"
+  },
+  {
+    "command": "INTEGRATION_API_PORT=4367 pnpm test:integration",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "api-integration.log.txt",
+    "logSha256": "6ad6b48f167cccdba706f13d74a800aaae0a5ae4e15686bf3d19858ca9337a95"
+  },
+  {
+    "command": "API_PORT=4367 WEB_PORT=5267 pnpm test:e2e",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "browser-production.log.txt",
+    "logSha256": "2d702e1c2dd38aff9ab3d8f2237665e33d11241234aa4d248f5e8ab777bd0365"
+  },
+  {
+    "command": "E2E_MODE=dev API_PORT=4367 WEB_PORT=5267 pnpm test:e2e",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "browser-dev.log.txt",
+    "logSha256": "2fb28dd62acb777ba001e1fe73be0f8dd35351f615e05e7e37606ff1b335f778"
+  },
+  {
+    "command": "node .local/step06-review/legacy-probe.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "legacy78.log.txt",
+    "logSha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc"
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/public-probe.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "public-probe.log.txt",
+    "logSha256": "dc32db096111c760d5a71f757bd14fecd0a6136b6646c2dab82bb04d5e4be21b"
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/gate-loss.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "gate-loss.log.txt",
+    "logSha256": "9b52ea82987c00aff948286e3279481552ea1028c3bd649f198aca8217eaf21b"
+  },
+  {
+    "command": "node --env-file=.env dist/scripts/step06-maintenance.js backup independent-cli-root",
+    "exitCode": 1,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "maintenance-cli.log.txt",
+    "logSha256": "69a11a8500dd008458cbbb9b99b923a78c84c577ddaaacc8db905dca0f2776ec"
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/recovery.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "recovery.log.txt",
+    "logSha256": "e08439a61c75f86df142534ff995a08c2af98bcc8996f064f1243a8a898cc247"
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/cli-restore-probe.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "cli-restore-probe.log.txt",
+    "logSha256": "45c04390cabd992555bee3cb2273112e4dffdfe703020979e1cfbf96296f25a0"
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/concurrency.mjs (first diagnostic)",
+    "exitCode": 1,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "concurrency.log.txt",
+    "logSha256": "457b04bd1d0469ceac14f0dcaa384eb5d362bf26fffeae83b190d894a6801eac"
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/concurrency.mjs (corrected own diagnostic)",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "concurrency-verified.log.txt",
+    "logSha256": "c20ba72bb4b1e2b2e76ce6957dec651aa3b1b5026d988f38502ac73d56cf2f11"
+  },
+  {
+    "command": "node .local/step06-review/pack-regression.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "pack-regression.log.txt",
+    "logSha256": "a77587b26228ac4e10aa5548956cda12200caa49dd28d96ddea0cb7ca8012232"
+  },
+  {
+    "command": "node .local/step06-review/cache-valid-control.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "cache-valid-control.log.txt",
+    "logSha256": "052bf3fd31e0e8a0bbc8ba368c1dc9d7cd813af9a5e528d7fab493ca8378fd2b"
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/final-audit.mjs",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "final-audit.log.txt",
+    "logSha256": "165967f271ede3dcd91279aad810b14b6fe1df8ee402825987bcadff2a05fca1"
+  },
+  {
+    "command": "pnpm exec prettier --ignore-path /dev/null --write .local/step06-review/report.md",
+    "exitCode": 0,
+    "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+    "log": "report-format.log.txt",
+    "logSha256": "a4b92a83826c3bb1405b541f4f162cd4a4d2d0d51c8d4d22f1b35299b1e40d8e"
+  }
+]

@@ -1,0 +1,18 @@
+node:internal/fs/promises:1030
+  const result = await PromisePrototypeThen(
+                 ^
+
+Error: ENOENT: no such file or directory, lstat '<WORKTREE>/.local/assets/objects/3d467c253bd72b3474a6cc9b7f4d04b0633825a6ffadfc598281c2cf1735ba17'
+    at async lstat (node:internal/fs/promises:1030:18)
+    at async AssetStorage.read (file://<WORKTREE>/packages/persistence/dist/storage.js:37:49)
+    at async verifyDatabase (file://<WORKTREE>/packages/persistence/dist/backup.js:49:9)
+    at async file://<WORKTREE>/packages/persistence/dist/backup.js:209:32
+    at async WriteGate.run (file://<WORKTREE>/packages/persistence/dist/gate.js:32:27)
+    at async file://<WORKTREE>/dist/scripts/step06-maintenance.js:15:36 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'lstat',
+  path: '<WORKTREE>/.local/assets/objects/3d467c253bd72b3474a6cc9b7f4d04b0633825a6ffadfc598281c2cf1735ba17'
+}
+
+Node.js v22.21.1

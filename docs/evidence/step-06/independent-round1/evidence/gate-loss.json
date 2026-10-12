@@ -1,0 +1,37 @@
+{
+  "candidate": "a2878a922db93c14d29e0f128bd14e6b41fc09af",
+  "killedOwnedGatePid": 8046,
+  "taskId": "1eb4db90-6c33-4fe3-80c2-8a8933660621",
+  "audit": [
+    {
+      "point": "maintenance-exclusive-acquired",
+      "at": 1791840756586
+    },
+    {
+      "point": "remote-created",
+      "at": 1791840756596
+    },
+    {
+      "point": "remote-observed-under-maintenance-lock",
+      "count": 1,
+      "at": 1791840756597
+    }
+  ],
+  "result": {
+    "ok": false,
+    "error": "Write gate connection lost"
+  },
+  "taskState": "REMOTE_RUNNING",
+  "externalId": "bdfbfe81-2c3c-47de-9216-a0983d03496e",
+  "attempts": [
+    {
+      "id": "9dada037-4c88-41dd-a6df-04df9c2c2ec2",
+      "taskId": "1eb4db90-6c33-4fe3-80c2-8a8933660621",
+      "sequence": 1,
+      "state": "KNOWN",
+      "predictionId": "bdfbfe81-2c3c-47de-9216-a0983d03496e",
+      "intentAt": "2026-10-12T21:32:36.531Z"
+    }
+  ],
+  "violation": "Provider submit executed after gate connection lost while exclusive maintenance lock held"
+}

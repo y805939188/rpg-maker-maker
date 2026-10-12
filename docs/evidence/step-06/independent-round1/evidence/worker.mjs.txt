@@ -1,0 +1,15 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {Persistence,backup} from '@tileset/persistence';
+import {Executor,Archiver,MockProvider} from '@tileset/local-executor';
+import {PROFILE} from '../../dist/src/profile.js';
+const input=JSON.parse(await readFile(process.argv[2],'utf8'));
+const hook=async point=>{process.send?.({point});if(point===input.stopAt)await new Promise(()=>{});};
+const store=new Persistence(process.env.DATABASE_URL,input.root,PROFILE,hook);
+try{
+ if(input.mode==='project'){await store.createProject(input.name);process.send?.({point:'project-created'});}
+ else if(input.mode==='task'){const provider=new MockProvider(input.remoteRoot,Buffer.from(input.png,'base64'),hook);const executor=new Executor(store,{adapterFor:()=>provider},new Archiver(store,provider,hook),hook);await executor.resume(input.taskId,input.directive??'WAIT');process.send?.({point:'task-result',task:await store.task(input.taskId)});}
+ else if(input.mode==='publish'){const p=input.prepared;await store.publish({...p,files:Object.fromEntries(Object.entries(p.files).map(([k,v])=>[k,Buffer.from(v,'base64')]))});}
+ else if(input.mode==='backup'){const manifest=await backup(store,input.destination,'/opt/homebrew/opt/postgresql@14/bin');await writeFile(input.evidence,JSON.stringify(manifest,null,2)+'\n');}
+ else throw Error('Bad mode');
+ process.send?.({point:'finished'});
+}finally{await store.close();}
