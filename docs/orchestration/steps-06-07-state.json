@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_CODING_ENVIRONMENT_READY",
+  "phase": "STEP06_CODING",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -31,7 +31,13 @@
       "status": "SUCCESS",
       "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38300491031"
     },
-    "releaseRecord": "docs/orchestration/step-05-release.md"
+    "releaseRecord": "docs/orchestration/step-05-release.md",
+    "documentationMain": {
+      "sha": "d1439bb81e9843358f591590c6a433c4a62be33d",
+      "ciRunId": 38300975394,
+      "ciStatus": "SUCCESS",
+      "executionImpact": "DOCUMENTATION_ONLY"
+    }
   },
   "agents": {
     "dispatch": "NATIVE_INDEPENDENT_CODEX_EXEC_SESSIONS",
@@ -40,7 +46,9 @@
       "model": "gpt-6.1-sol",
       "effort": "xhigh",
       "serviceTier": "default",
-      "preflight": "PASS"
+      "preflight": "PASS",
+      "threadId": "01a131b0-75e6-7a83-851d-fa1fc5bdc3e9",
+      "nativeClientConfiguration": ".local/orchestration-06-07/step06-coding/client-configuration.json"
     },
     "review": {
       "role": "step_reviewer",
@@ -52,11 +60,13 @@
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
-    "status": "NOT_STARTED",
+    "status": "IN_PROGRESS",
     "reviewRounds": 0,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
-    "baseMain": "fa0b4a6d8d3eebd54d96dd541df33a92de5b6b00"
+    "baseMain": "d1439bb81e9843358f591590c6a433c4a62be33d",
+    "codingCheckpoint": ".local/step06/coding-progress.json",
+    "implementationPhase": "IMMUTABLE_STORAGE_AND_RUNTIME_REPLAY"
   },
   "step07": {
     "status": "NOT_STARTED",
@@ -83,10 +93,10 @@
       "temporaryRoot": ".local/step06",
       "apiPort": 4366,
       "webPort": 5266,
-      "serviceStatus": "NOT_STARTED"
+      "serviceStatus": "POSTGRES_RUNNING_CODING_OWNED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP04_05_PUBLISHED_MAIN_CI_SUCCESS",
+  "lastSuccessfulCheckpoint": "STEP06_NATIVE_STANDARD_CODING_SESSION_DISPATCHED",
   "blockers": [],
-  "nextSafeAction": "Dispatch step06 step_coder in its dedicated worktree using verified native Standard configuration."
+  "nextSafeAction": "Monitor Coding checkpoints, then freeze the completed candidate and dispatch a new independent Standard step_reviewer."
 }
