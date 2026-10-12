@@ -1,0 +1,18 @@
+{
+  "role": "CODING_SELF_TEST",
+  "baselineFunctional": "c09027f921e7d67469b301083db89acc44433d9e",
+  "startHead": "23d8386c6131610ce5351e55d6afb8b97da79b9e",
+  "manualEvidenceArchiveCommit": "165a2a0",
+  "finalFunctionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+  "scope": "four production publication paths; no pixel/Profile/Compiler/Pack logic changes",
+  "redProof": "Corrected gate/canonical-path fixture against archived c090 JS and c090 engineering source: 11 failing ownership cases, 4 passing own-stage cleanup controls.",
+  "greenProof": "15/15 ownership regressions; 225/225 full tests, 37/37 step05 subset, 78/78 legacy JS.",
+  "testIsolation": "PID handshake precedes production module import. Git identity and read-only prepare preconditions are synthetic; stage creation/copy/write/rename/cleanup uses actual production entry code and filesystem. Actual final Compiler/core/PNG/prepare pipeline was separately executed without these mocks.",
+  "developmentFixtureCorrections": [
+    "Canonicalize /var versus /private/var parent paths when injecting post-rename reoccupation.",
+    "Connect old-version fixture node_modules before red rerun; assert error messages to avoid passing from unrelated preflight failures."
+  ],
+  "independentReview": "NOT_EXECUTED_BY_DESIGN",
+  "currentOriginalFinding": "No independent close yet; implementation and self-test complete",
+  "originalReportsAndManifests": "UNCHANGED"
+}

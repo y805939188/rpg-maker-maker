@@ -1,0 +1,45 @@
+
+> @tileset/prototype@0.0.2 test:step05 <repo>
+> pnpm build:contracts && vitest run packages/pack-assembly/tests tests/pack-export.test.ts tests/publication-ownership.test.ts
+
+
+> @tileset/prototype@0.0.2 build:contracts <repo>
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build
+
+
+> @tileset/contracts@0.0.2 build <repo>/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build <repo>/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build <repo>/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build <repo>/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build <repo>/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build <repo>/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build <repo>/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 <repo>
+
+
+ Test Files  3 passed (3)
+      Tests  37 passed (37)
+   Start at  03:11:18
+   Duration  9.77s (transform 259ms, setup 0ms, import 324ms, tests 16.59s, environment 0ms)
+

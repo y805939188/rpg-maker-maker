@@ -1,0 +1,116 @@
+
+ RUN  v4.1.11 <repo>
+
+ ❯ .local/step05-ir001/red-publication.test.ts (15 tests | 11 failed) 1303ms
+     × publisher: preserves an unowned stage, existing target=false 47ms
+     × publisher: preserves an unowned stage, existing target=true 45ms
+     × suite: preserves an unowned stage, existing target=false 128ms
+     × suite: preserves an unowned stage, existing target=true 127ms
+     × prepare: preserves an unowned stage, existing target=false 50ms
+     × prepare: preserves an unowned stage, existing target=true 47ms
+     × engineering: preserves an unowned stage, existing target=false 182ms
+     × engineering: preserves an unowned stage, existing target=true 95ms
+     × publisher: does not clean a path reoccupied after successful rename 47ms
+     × prepare: does not clean a path reoccupied after successful rename 59ms
+     × engineering: does not clean a path reoccupied after successful rename 103ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > publisher: preserves an unowned stage, existing target=false
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/publisher-false/export.stage-54365/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:123:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > publisher: preserves an unowned stage, existing target=true
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/publisher-true/export.stage-54366/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:123:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > suite: preserves an unowned stage, existing target=false
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/suite-false/artifacts/step05-suite-aaaaaaaaaaaa.stage-54368/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:123:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > suite: preserves an unowned stage, existing target=true
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/suite-true/artifacts/step05-suite-aaaaaaaaaaaa.stage-54370/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:123:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > prepare: preserves an unowned stage, existing target=false
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/prepare-false/new-project.stage-54374/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:123:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > prepare: preserves an unowned stage, existing target=true
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/prepare-true/new-project.stage-54375/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:123:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > engineering: preserves an unowned stage, existing target=false
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/engineering-false/artifacts/.stage-step05-aaaaaaaaaaaa-dd105b5ce65d51e2-54392/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:123:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > engineering: preserves an unowned stage, existing target=true
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/engineering-true/artifacts/.stage-step05-aaaaaaaaaaaa-dd105b5ce65d51e2-54394/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:123:145
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > publisher: does not clean a path reoccupied after successful rename
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/publisher-renamed/export.stage-54402/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:140:40
+    138|   it.each(['publisher','prepare','engineering'] as const)('%s: does no…
+    139|     const f=await fixture(kind,kind+'-renamed'),result=await run(f,kin…
+    140|     expect(result.code).toBe(0);expect(await readFile(join(f.stage(res…
+       |                                        ^
+    141|     expect((await readdir(f.target)).length).toBeGreaterThan(0);
+    142|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > prepare: does not clean a path reoccupied after successful rename
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/prepare-renamed/new-project.stage-54403/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:140:40
+    138|   it.each(['publisher','prepare','engineering'] as const)('%s: does no…
+    139|     const f=await fixture(kind,kind+'-renamed'),result=await run(f,kin…
+    140|     expect(result.code).toBe(0);expect(await readFile(join(f.stage(res…
+       |                                        ^
+    141|     expect((await readdir(f.target)).length).toBeGreaterThan(0);
+    142|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/11]⎯
+
+ FAIL  .local/step05-ir001/red-publication.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > engineering: does not clean a path reoccupied after successful rename
+Error: ENOENT: no such file or directory, open '/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-Oom8bl/engineering-renamed/artifacts/.stage-step05-aaaaaaaaaaaa-dd105b5ce65d51e2-54405/unrelated.txt'
+ ❯ .local/step05-ir001/red-publication.test.ts:140:40
+    138|   it.each(['publisher','prepare','engineering'] as const)('%s: does no…
+    139|     const f=await fixture(kind,kind+'-renamed'),result=await run(f,kin…
+    140|     expect(result.code).toBe(0);expect(await readFile(join(f.stage(res…
+       |                                        ^
+    141|     expect((await readdir(f.target)).length).toBeGreaterThan(0);
+    142|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/11]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  11 failed | 4 passed (15)
+   Start at  03:10:10
+   Duration  1.43s (transform 29ms, setup 0ms, import 40ms, tests 1.30s, environment 0ms)
+

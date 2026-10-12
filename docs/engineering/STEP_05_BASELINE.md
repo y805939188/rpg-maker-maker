@@ -2,7 +2,13 @@
 
 2026-10-13 用户授权当前会话 Coding、自测、构建、文档、MZ 验收准备及本地提交。步骤 04 功能 `44a5239a979cd549e893df705df7704d043216be`、文档 `af5b8e1c61175ca5627b15df37405e248bf26b37`、独立技术 PASS 与随后补齐的用户阶段验收为真实开发基线。新启动授权覆盖此前停止文字；不继承 Merge/Push/Reviewer 调度，不启动步骤 06。完整绑定见本轮 Coding 报告及唯一 evidence 目录。
 
-## 独立审查检查点（2026-10-13）
+## 当前整改候选（2026-10-13）
+
+STEP05-IR-001 第一轮Coding整改已实施，功能候选 `ad669a06218b6cf775f32b8333d75d9dd3f9186f`，当前状态 **READY_FOR_REVIEW**，新候选独立Review **NOT_EXECUTED_BY_DESIGN**，尚未记作独立关闭或步骤批准。四入口仅在独占mkdir成功后取得stage归属，rename发布后解除归属；prepare先创建专属空目录再复制。失败仅清理本次仍拥有的stage，lock释放置于独立finally。已补四入口碰撞/已存在目标/部分失败回归及发布后路径被重新占用的检查。
+
+作者复测225/225（含15项新增归属回归）、步骤05子集37/37、旧公开JS78/78、八套正式Pack/16PNG与原生CPU3600次检查通过。新旧PNG、布局/快照/历史、来源及安装说明56文件逐字节相同；已有 [人工记录](../evidence/step-05/user-manual-20261013-025315/receipt.json) 的PASS_USER_REPORTED观察可按 [影响复核](../evidence/step-05/fix-ir001-ad669a06218b/manual-observation-impact.json)引用，不自动要求重做整套人工测试。没有新GUI/游戏执行或Host验证，截图/录像缺失状态保留。详见 [整改报告](../reviews/step-05-fix-round-1-coding.md)。步骤06未启动，仍待新候选独立PASS及用户明确批准。
+
+## 原候选独立审查检查点（2026-10-13）
 
 [独立审查报告](../reviews/step-05-independent-review.md)绑定功能候选 `c09027f921e7d67469b301083db89acc44433d9e`、文档/证据基线 `ed189f7c274a7f397d261630bae396abb456665d`。报告 SHA-256 为 `cb858df3d9a6096c76f492630f5ef3f83c5e739eee81f2b788ffa31595821a4c`，44份脱敏证据及报告哈希已按 [独立ledger](../evidence/step-05/independent-c09027f-20261013-013024/ledger.json)核对。当前技术结论 **REQUIRES_REVISION**，独立验证覆盖 **COMPLETE_FOR_SCOPE**，统一步骤状态 **CHANGES_REQUESTED**；MZ实机 **NOT_EXECUTED**，步骤06未启动。
 
@@ -16,7 +22,7 @@
 | 首次安装和旧手绘地图验收材料                     | 95成员ZIP逐项SHA匹配；旧图五份JSON原字节、原Tile ID/逻辑映射和四张替换PNG匹配，材料可用；用户实际安装/旧图替换、动画/岸线/通行和视觉验收仍待执行 |
 | 历史文件与refs保护                               | 独立审查期间4002个保护文件未变/未缺失，refs与现存检出状态保持；属于该次审查的保护记录                                                            |
 
-**未关闭阻断：STEP05-IR-001，P2。** `publishDirectory`、Pack suite、旧地图prepare及engineering build四入口在尚未取得stage所有权时也会递归清理该目录；已有目标提前拒绝和stage创建失败路径均须整改，补四入口回归后重新冻结/构建并独立复审。成功产物和自有stage失败清理得到支持，不代表所有失败保护已经通过。[发布反例](../evidence/step-05/independent-c09027f-20261013-013024/publish-probe.json)、[工程入口反例](../evidence/step-05/independent-c09027f-20261013-013024/engineering-collision.json)。本次仅登记认可项和当前状态，没有修复代码或关闭该问题。
+**未关闭阻断：STEP05-IR-001，P2。** `publishDirectory`、Pack suite、旧地图prepare及engineering build四入口在尚未取得stage所有权时也会递归清理该目录；已有目标提前拒绝和stage创建失败路径均须整改，补四入口回归后重新冻结/构建并独立复审。成功产物和自有stage失败清理得到支持，不代表所有失败保护已经通过。[发布反例](../evidence/step-05/independent-c09027f-20261013-013024/publish-probe.json)、[工程入口反例](../evidence/step-05/independent-c09027f-20261013-013024/engineering-collision.json)。该次检查点仅登记认可项，尚未修复；后续作者整改见上文，不改写原独立结论。
 
 冻结时Coding报告、作者ledger、独立原文/证据和已发布Manifest保持原字节；当前审查结果另行记录于本节及需求索引。后续实机证据继续单独绑定最终候选/Build/PNG，不将材料可用或CPU结果升级为MZ实机通过。
 
@@ -60,7 +66,7 @@ RETIRED 仍占用图集并按最后有效配套验证。若保留的退役水面
 
 readPackExport 核对精确文件清单、普通文件/体积、所有源实际重放、Pack历史、Plan、真实PNG逐像素、说明和Manifest重建一致，不仅各自JSON合法。后续 Review/MZ/视觉结果另存，Manifest不修改。PNG字节确定性限相同encoder环境，像素身份与新commit包装身份分开。
 
-发布契约要求 publishDirectory 拒绝已有目标，以新stage写wx、完整重读校验、rename发布，只清理本次拥有的stage并保留以前成功目录；仅单机CLI本步机制，不是步骤06的DB事务/CAS。suite同样在stage完成所有子导出和index后发布。相同目标重复执行明确拒绝，可在新的目标目录重建并比较哈希。当前成功路径、已有成功目标保护和自有stage失败清理得到独立支持；未拥有stage的失败保护不满足要求，仍由STEP05-IR-001阻断。
+发布契约要求 publishDirectory 拒绝已有目标，以新stage写wx、完整重读校验、rename发布，只清理本次拥有的stage并保留以前成功目录；仅单机CLI本步机制，不是步骤06的DB事务/CAS。suite同样在stage完成所有子导出和index后发布。相同目标重复执行明确拒绝，可在新的目标目录重建并比较哈希。c09027f的成功路径、已有成功目标保护和自有stage失败清理得到独立支持，但未拥有stage的保护失败。ad669a0已补归属判断并通过作者回归，独立关闭仍待新候选复审。
 
 ```sh
 pnpm build

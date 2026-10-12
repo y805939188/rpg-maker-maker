@@ -1,0 +1,246 @@
+[
+  {
+    "command": [
+      "pnpm",
+      "check"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T19:12:22.406298+00:00",
+    "finishedUTC": "2026-10-12T19:13:06.300319+00:00",
+    "log": "check-frozen.log.txt",
+    "logSha256": "c31d514b8c928f15195e67a841cd3d425e04e309f63e67e5663999c22ee18cf3",
+    "rawLogSha256": "a3e0d256df6db3950e16b1c64d356f707dc1c2a291252b1d529d9c4cdb20efa5"
+  },
+  {
+    "command": [
+      "node",
+      ".local/step04-initial/scalars.mjs"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T19:13:06.301148+00:00",
+    "finishedUTC": "2026-10-12T19:13:06.349761+00:00",
+    "log": "legacy-78.log.txt",
+    "logSha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc",
+    "rawLogSha256": "925f22c4ceba85e0c22749744a33744e06e1c215858bf753e7eaaa2de42ae4fc"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/build-engineering.mjs",
+      "step05"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T19:13:06.350481+00:00",
+    "finishedUTC": "2026-10-12T19:13:06.527732+00:00",
+    "log": "build-engineering.json",
+    "logSha256": "8d78a0aeda95f54daf83bb7a6c48ff5083f607fabc0f5c39823cc53bdd1780dc",
+    "rawLogSha256": "8d78a0aeda95f54daf83bb7a6c48ff5083f607fabc0f5c39823cc53bdd1780dc"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/build-pack-sample.js"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "startedUTC": "2026-10-12T19:13:06.528368+00:00",
+    "finishedUTC": "2026-10-12T19:13:38.517222+00:00",
+    "log": "build-suite.json",
+    "logSha256": "ab3b0adc447946ea67c58834710ddc015b8f42761e0cea02676aead40404b189",
+    "rawLogSha256": "d826c526e9b6820649dd5623b244d6501710eb1099e231f542248e718b3405bb"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-ad669a06218b/incremental-v1"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:31.942351+00:00",
+    "finishedUTC": "2026-10-12T19:14:34.273743+00:00",
+    "log": "oracle-incremental-v1.json",
+    "logSha256": "e87ea9cc9c303cad3102547f6a88f108b17ceffb53f41fca8eeeddcf3af1fca2",
+    "rawLogSha256": "e87ea9cc9c303cad3102547f6a88f108b17ceffb53f41fca8eeeddcf3af1fca2"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-ad669a06218b/incremental-v2"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:34.274428+00:00",
+    "finishedUTC": "2026-10-12T19:14:36.977156+00:00",
+    "log": "oracle-incremental-v2.json",
+    "logSha256": "141b41ab42219870ca82d48c7957ff03cdda1706ba8d8248c3c9a27640882203",
+    "rawLogSha256": "141b41ab42219870ca82d48c7957ff03cdda1706ba8d8248c3c9a27640882203"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-ad669a06218b/incremental-v3"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:36.977809+00:00",
+    "finishedUTC": "2026-10-12T19:14:39.682713+00:00",
+    "log": "oracle-incremental-v3.json",
+    "logSha256": "b1a21a35675c6974984fe9286163c4ebd054e18e385c5653890c4dca412c0c3f",
+    "rawLogSha256": "b1a21a35675c6974984fe9286163c4ebd054e18e385c5653890c4dca412c0c3f"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-ad669a06218b/incremental-v4"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:39.683493+00:00",
+    "finishedUTC": "2026-10-12T19:14:42.404613+00:00",
+    "log": "oracle-incremental-v4.json",
+    "logSha256": "d680e69656ec7c8e8911c9c56aefef319d097a98a1356dabcd69e689f06a924c",
+    "rawLogSha256": "d680e69656ec7c8e8911c9c56aefef319d097a98a1356dabcd69e689f06a924c"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-ad669a06218b/art-old-map-v1"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:42.405451+00:00",
+    "finishedUTC": "2026-10-12T19:14:44.593300+00:00",
+    "log": "oracle-art-old-map-v1.json",
+    "logSha256": "c6faf5f34a97e1fd624c0ba6c61adfe2a1eb9e04c4103875ebc8467431828a3b",
+    "rawLogSha256": "c6faf5f34a97e1fd624c0ba6c61adfe2a1eb9e04c4103875ebc8467431828a3b"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-ad669a06218b/art-old-map-v2"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:44.595681+00:00",
+    "finishedUTC": "2026-10-12T19:14:46.828192+00:00",
+    "log": "oracle-art-old-map-v2.json",
+    "logSha256": "a7ab0ddd96dccc2318ab17150e1fa285cc825315dbfebc3ab4bc649153fbf64b",
+    "rawLogSha256": "a7ab0ddd96dccc2318ab17150e1fa285cc825315dbfebc3ab4bc649153fbf64b"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-ad669a06218b/diagnostic-old-map-v1"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:46.828985+00:00",
+    "finishedUTC": "2026-10-12T19:14:49.019614+00:00",
+    "log": "oracle-diagnostic-old-map-v1.json",
+    "logSha256": "074588658cfd573e495494e0eea38bff3ff76de0ab610b3c34182041030a5944",
+    "rawLogSha256": "074588658cfd573e495494e0eea38bff3ff76de0ab610b3c34182041030a5944"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/verify-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8/js/rmmz_core.js",
+      "<repo>/artifacts/step05-suite-ad669a06218b/diagnostic-old-map-v2"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:49.020609+00:00",
+    "finishedUTC": "2026-10-12T19:14:51.232141+00:00",
+    "log": "oracle-diagnostic-old-map-v2.json",
+    "logSha256": "5525be6163a697f18cfc3352eb3c4bc0ce54c156bbc99d9a275ecd3e86165be2",
+    "rawLogSha256": "5525be6163a697f18cfc3352eb3c4bc0ce54c156bbc99d9a275ecd3e86165be2"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/prepare-step05.js",
+      ".local/mz/step04-mz-44a5239a979c-ed3814944c9713b8",
+      "artifacts/step05-suite-ad669a06218b/art-old-map-v1",
+      "artifacts/step05-suite-ad669a06218b/art-old-map-v2",
+      "artifacts/step05-suite-ad669a06218b/diagnostic-old-map-v1",
+      "artifacts/step05-suite-ad669a06218b/diagnostic-old-map-v2",
+      ".local/mz/step05-ir001-ad669a06218b"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:51.233203+00:00",
+    "finishedUTC": "2026-10-12T19:14:56.715852+00:00",
+    "log": "prepare.json",
+    "logSha256": "1974145599b45c6f3b02240089bd868ade9f62a10c7a95fd3a5f9403c1880814",
+    "rawLogSha256": "6c8497622bad8e79c0400c2ade64e510596b0a773c4c88ecfbdc37833b3a2f45"
+  },
+  {
+    "command": [
+      "pnpm",
+      "test:step05"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "startedUTC": "2026-10-12T19:14:56.716603+00:00",
+    "finishedUTC": "2026-10-12T19:15:12.257427+00:00",
+    "log": "step05-frozen.log.txt",
+    "logSha256": "aa924fdd9775fe7b666ea1afeb9d36feeb8bf8f4054e0ac61d9be346eb1f93ed",
+    "rawLogSha256": "652e8bb699ec5cc1675ef006163aa34adb9711c656ff0dad928aff16b225ca2e"
+  },
+  {
+    "command": [
+      "node",
+      "dist/scripts/build-pack-sample.js"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 1,
+    "expectedExit": 1,
+    "startedUTC": "2026-10-12T19:15:12.258117+00:00",
+    "finishedUTC": "2026-10-12T19:15:12.464693+00:00",
+    "log": "duplicate-suite.log.txt",
+    "logSha256": "9e3ab938d79186d43e01d47c3303f4764ad1836a14d934dcbad0d3c8396f0227",
+    "rawLogSha256": "a63162c1a691a787b41053d4ea6c6da945566497b95192d7a3a7aa57cf7fde3b"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/build-engineering.mjs",
+      "step05"
+    ],
+    "candidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "exitCode": 1,
+    "expectedExit": 1,
+    "startedUTC": "2026-10-12T19:15:12.465554+00:00",
+    "finishedUTC": "2026-10-12T19:15:12.601499+00:00",
+    "log": "duplicate-engineering.log.txt",
+    "logSha256": "61fc36839f453f82b4fdf5bd335e02e4b9d4e3a69d47a8c3a3e3761b0568006d",
+    "rawLogSha256": "9ab89f17715cd6129d409418e98584e21bd5c312396eac6a1e99f9c600205065"
+  }
+]
