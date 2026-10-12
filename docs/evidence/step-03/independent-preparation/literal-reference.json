@@ -1,0 +1,498 @@
+{
+  "status": "SPEC_PREPARATION_ONLY_NOT_CANDIDATE_REVIEW",
+  "derivation": "80-digit Decimal arithmetic from IEC sRGB transfer formula plus frozen linear-light straight-alpha source-over; literal coordinates/masks/version references. No candidate implementation imported.",
+  "sourceOver": [
+    {
+      "name": "half_white_over_opaque_black",
+      "sourceRGBA": [
+        255,
+        255,
+        255,
+        128
+      ],
+      "destinationRGBA": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "unroundedAlphaByte": "255.00000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "linearRGB": [
+        "0.50196078431372549019607843137254901960784313725490196078431372549019607843137255",
+        "0.50196078431372549019607843137254901960784313725490196078431372549019607843137255",
+        "0.50196078431372549019607843137254901960784313725490196078431372549019607843137255"
+      ],
+      "expectedRGBA": [
+        188,
+        188,
+        188,
+        255
+      ]
+    },
+    {
+      "name": "half_black_over_opaque_white",
+      "sourceRGBA": [
+        0,
+        0,
+        0,
+        128
+      ],
+      "destinationRGBA": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "unroundedAlphaByte": "255.00000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "linearRGB": [
+        "0.49803921568627450980392156862745098039215686274509803921568627450980392156862745",
+        "0.49803921568627450980392156862745098039215686274509803921568627450980392156862745",
+        "0.49803921568627450980392156862745098039215686274509803921568627450980392156862745"
+      ],
+      "expectedRGBA": [
+        187,
+        187,
+        187,
+        255
+      ]
+    },
+    {
+      "name": "half_red_over_half_blue",
+      "sourceRGBA": [
+        255,
+        0,
+        0,
+        128
+      ],
+      "destinationRGBA": [
+        0,
+        0,
+        255,
+        128
+      ],
+      "unroundedAlphaByte": "191.74901960784313725490196078431372549019607843137254901960784313725490196078431",
+      "linearRGB": [
+        "0.66753926701570680628272251308900523560209424083769633507853403141361256544502618",
+        "0E-78",
+        "0.33246073298429319371727748691099476439790575916230366492146596858638743455497382"
+      ],
+      "expectedRGBA": [
+        213,
+        0,
+        156,
+        192
+      ]
+    },
+    {
+      "name": "transparent_over_partial",
+      "sourceRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "destinationRGBA": [
+        51,
+        102,
+        153,
+        73
+      ],
+      "unroundedAlphaByte": "73.000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "linearRGB": [
+        "0.033104766570885045971264245396972601458516452960514323285811312183857116201582343",
+        "0.13286832155381791428570549818868139811183724476607519770431430269606387413060725",
+        "0.31854677812509173271253057675058634657242851318838947641827416826839797891215910"
+      ],
+      "expectedRGBA": [
+        51,
+        102,
+        153,
+        73
+      ]
+    },
+    {
+      "name": "partial_over_transparent",
+      "sourceRGBA": [
+        51,
+        102,
+        153,
+        73
+      ],
+      "destinationRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "unroundedAlphaByte": "73.000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "linearRGB": [
+        "0.033104766570885045971264245396972601458516452960514323285811312183857116201582343",
+        "0.13286832155381791428570549818868139811183724476607519770431430269606387413060725",
+        "0.31854677812509173271253057675058634657242851318838947641827416826839797891215910"
+      ],
+      "expectedRGBA": [
+        51,
+        102,
+        153,
+        73
+      ]
+    },
+    {
+      "name": "both_transparent",
+      "sourceRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "destinationRGBA": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "unroundedAlphaByte": "0",
+      "linearRGB": [
+        "0",
+        "0",
+        "0"
+      ],
+      "expectedRGBA": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "opaque_over_partial",
+      "sourceRGBA": [
+        7,
+        83,
+        211,
+        255
+      ],
+      "destinationRGBA": [
+        201,
+        71,
+        2,
+        101
+      ],
+      "unroundedAlphaByte": "255.00000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "linearRGB": [
+        "0.0021246888848418624415710556668487828567959691616584714381108480543920354519516785",
+        "0.086500462036549730834448151910366735900162198008190151825834109852356448413287187",
+        "0.65140563741982396216294581736834821077968171061871749944338012368676839865379943"
+      ],
+      "expectedRGBA": [
+        7,
+        83,
+        211,
+        255
+      ]
+    }
+  ],
+  "crop": {
+    "inputWidth": 3,
+    "inputHeight": 2,
+    "inputPixelLabels": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "rect": {
+      "x": 1,
+      "y": 0,
+      "width": 2,
+      "height": 2
+    },
+    "expectedWidth": 2,
+    "expectedHeight": 2,
+    "expectedPixelLabels": [
+      "B",
+      "C",
+      "E",
+      "F"
+    ],
+    "invalidRects": [
+      "x=-1",
+      "x=0.5",
+      "x=NaN",
+      "width=0",
+      "x=2,width=2",
+      "y=1,height=2"
+    ]
+  },
+  "nearestInteger": {
+    "inputWidth": 2,
+    "inputHeight": 2,
+    "inputPixelLabels": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "factor": 2,
+    "expectedWidth": 4,
+    "expectedHeight": 4,
+    "expectedPixelLabels": [
+      "A",
+      "A",
+      "B",
+      "B",
+      "A",
+      "A",
+      "B",
+      "B",
+      "C",
+      "C",
+      "D",
+      "D",
+      "C",
+      "C",
+      "D",
+      "D"
+    ],
+    "literalRGBA": {
+      "A": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "B": [
+        51,
+        102,
+        153,
+        73
+      ],
+      "C": [
+        211,
+        83,
+        7,
+        255
+      ],
+      "D": [
+        7,
+        83,
+        211,
+        128
+      ]
+    }
+  },
+  "overlap1RowDistinctViews": {
+    "backingRedValues": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "allAlpha": 255,
+    "sourceViewPixelRange": [
+      0,
+      4
+    ],
+    "sourceWidth": 4,
+    "sourceHeight": 1,
+    "targetViewPixelRange": [
+      1,
+      5
+    ],
+    "targetWidth": 4,
+    "targetHeight": 1,
+    "copy": {
+      "sx": 0,
+      "sy": 0,
+      "width": 3,
+      "height": 1,
+      "dx": 1,
+      "dy": 0
+    },
+    "expectedBackingRedValues": [
+      10,
+      20,
+      10,
+      20,
+      30
+    ]
+  },
+  "overlap2RowsDistinctViews": {
+    "backingRedValues": [
+      10,
+      20,
+      30,
+      40,
+      50
+    ],
+    "allAlpha": 255,
+    "sourceViewPixelRange": [
+      0,
+      4
+    ],
+    "sourceWidth": 2,
+    "sourceHeight": 2,
+    "targetViewPixelRange": [
+      1,
+      5
+    ],
+    "targetWidth": 2,
+    "targetHeight": 2,
+    "copy": {
+      "sx": 0,
+      "sy": 0,
+      "width": 2,
+      "height": 2,
+      "dx": 0,
+      "dy": 0
+    },
+    "expectedBackingRedValues": [
+      10,
+      10,
+      20,
+      30,
+      40
+    ]
+  },
+  "staticMaskAcrossFrames": {
+    "staticMaskGrid": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "staticPixelLabels": [
+      "A",
+      "unused",
+      "unused",
+      "D"
+    ],
+    "waterFrameLabels": [
+      [
+        "w0a",
+        "w0b",
+        "w0c",
+        "w0d"
+      ],
+      [
+        "w1a",
+        "w1b",
+        "w1c",
+        "w1d"
+      ],
+      [
+        "w2a",
+        "w2b",
+        "w2c",
+        "w2d"
+      ]
+    ],
+    "expectedComposedFrameLabels": [
+      [
+        "A",
+        "w0b",
+        "w0c",
+        "D"
+      ],
+      [
+        "A",
+        "w1b",
+        "w1c",
+        "D"
+      ],
+      [
+        "A",
+        "w2b",
+        "w2c",
+        "D"
+      ]
+    ],
+    "required": "Same fixed mask/geometry and exact static pixels across all frames; labels encode the mathematical selector only, not a new PNG mask acceptance format."
+  },
+  "history": [
+    {
+      "event": "Build K created",
+      "buildKReferences": [
+        "grass@3",
+        "water@1",
+        "shoreMask@2",
+        "recipe@5"
+      ],
+      "currentReferences": [
+        "grass@3",
+        "water@1",
+        "shoreMask@2",
+        "recipe@5"
+      ],
+      "newVersionAvailable": false,
+      "currentDependencyMismatch": false,
+      "historicalBuildValidity": "VALID_IF_OWN_REFERENCES_AND_HASHES_VERIFY"
+    },
+    {
+      "event": "Publish grass@4 without adoption",
+      "buildKReferences": [
+        "grass@3",
+        "water@1",
+        "shoreMask@2",
+        "recipe@5"
+      ],
+      "currentReferences": [
+        "grass@3",
+        "water@1",
+        "shoreMask@2",
+        "recipe@5"
+      ],
+      "newVersionAvailable": true,
+      "currentDependencyMismatch": false,
+      "historicalBuildValidity": "UNCHANGED"
+    },
+    {
+      "event": "Current project explicitly adopts grass@4",
+      "buildKReferences": [
+        "grass@3",
+        "water@1",
+        "shoreMask@2",
+        "recipe@5"
+      ],
+      "currentReferences": [
+        "grass@4",
+        "water@1",
+        "shoreMask@2",
+        "recipe@5"
+      ],
+      "newVersionAvailable": "Tracked separately from adoption",
+      "currentDependencyMismatch": true,
+      "affectedCurrentDerivedProducts": "NEED_REBUILD",
+      "historicalBuildValidity": "UNCHANGED"
+    },
+    {
+      "event": "Create recipe@6 bound to grass@4 and rebuild current L",
+      "buildKReferences": [
+        "grass@3",
+        "water@1",
+        "shoreMask@2",
+        "recipe@5"
+      ],
+      "currentReferences": [
+        "grass@4",
+        "water@1",
+        "shoreMask@2",
+        "recipe@6"
+      ],
+      "currentDependencyMismatch": false,
+      "historicalBuildValidity": "K_AND_L_VALID_UNDER_THEIR_OWN_SNAPSHOTS"
+    },
+    {
+      "event": "Historical grass@3 bytes fail its recorded hash",
+      "currentDependencyMismatch": "Independent current-project comparison",
+      "historicalBuildValidity": "K_FAILS_REFERENCE_INTEGRITY; NOT_BECAUSE_GRASS4_EXISTS"
+    }
+  ]
+}
