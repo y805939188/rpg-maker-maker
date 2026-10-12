@@ -1,0 +1,75 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {fork} from 'node:child_process';
+import {resolve} from 'node:path';
+const base='<review-root>',root=base+'/checkout';
+const engine=JSON.parse(await fs.readFile(base+'/evidence/engineering.log','utf8'));
+const cases=base+'/extra-cases';await fs.mkdir(cases);
+const wrapper=base+'/extra-child.mjs';
+await fs.writeFile(wrapper,`
+import {once} from 'node:events';import {pathToFileURL} from 'node:url';import fs from 'node:fs/promises';import cp from 'node:child_process';import {syncBuiltinESMExports} from 'node:module';
+const [kind,mode,entry,target,stage,root,...args]=process.argv.slice(2);
+const realExec=cp.execFileSync;cp.execFileSync=(file,argv,opts)=>file==='git'?realExec(file,['-C',root,...argv],opts):realExec(file,argv,opts);
+const rename=fs.rename,write=fs.writeFile,copy=fs.cp,remove=fs.rm;
+if(mode==='reoccupied')fs.rename=async(s,d)=>{await rename(s,d);if(String(d)===target){await fs.mkdir(s);await write(s+'/foreign.txt','belongs to next owner');}};
+if(mode==='partial-suite')fs.writeFile=async(p,...a)=>{if(String(p).endsWith('/incremental-v2.request.json'))throw Error('independent suite partial failure after two real exports');return write(p,...a);};
+if(mode==='partial-copy')fs.cp=async(s,d)=>{await write(d+'/copied-partial.txt','owned copy content');throw Error('independent partial copy failure');};
+if(mode==='cleanup-failure'){
+ fs.writeFile=async(p,...a)=>{if(String(p).endsWith('/manifest.json'))throw Error('independent manifest failure');return write(p,...a);};
+ fs.rm=async(p,...a)=>{if(String(p)===stage)throw Error('independent owned-stage rm failure');return remove(p,...a);};
+}
+syncBuiltinESMExports();process.argv=[process.execPath,entry,...args];process.send({pid:process.pid});await once(process,'message');process.disconnect();
+if(kind==='publisher'){
+ const {publishDirectory}=await import(pathToFileURL(entry));
+ await publishDirectory(target,{'manifest.json':new TextEncoder().encode('synthetic payload for filesystem boundary')},async()=>{if(mode==='cleanup-failure')throw Error('independent verify failure');});
+}else await import(pathToFileURL(entry));
+`);
+async function exists(p){try{await fs.lstat(p);return true;}catch{return false;}}
+const records=[];
+async function run(kind,mode,label){
+ const cwd=cases+'/'+label;await fs.mkdir(cwd);
+ let target=cwd+'/export',entry=root+'/dist/scripts/pack-export.js',args=[],lock=target+'.lock',stage;
+ if(kind==='suite'){
+  target=cwd+'/artifacts/step05-suite-ad669a06218b';entry=root+'/dist/scripts/build-pack-sample.js';lock=target+'.lock';
+  await fs.copyFile(root+'/pnpm-lock.yaml',cwd+'/pnpm-lock.yaml');await fs.mkdir(cwd+'/tests');await fs.symlink(root+'/tests/fixtures',cwd+'/tests/fixtures');
+ }else if(kind==='engineering'){
+  entry=root+'/scripts/build-engineering.mjs';target=cwd+'/artifacts/'+engine.buildId;lock=cwd+'/artifacts/.lock-'+engine.buildId;args=['step05'];
+  for(const p of ['dist','packages/contracts/dist','packages/ai-gateway/dist','packages/asset-core/dist','packages/material-processing/dist','packages/image-adapter/dist','packages/mz-compiler/dist','packages/pack-assembly/dist','apps/api/dist','apps/web/dist']){
+   await fs.mkdir(resolve(cwd,p,'..'),{recursive:true});await fs.symlink(root+'/'+p,cwd+'/'+p);
+  }
+  await fs.copyFile(root+'/pnpm-lock.yaml',cwd+'/pnpm-lock.yaml');
+ }else if(kind==='prepare'){
+  target=cwd+'/project';entry=root+'/dist/scripts/prepare-step05.js';lock=target+'.lock';
+  const suite=root+'/artifacts/step05-suite-ad669a06218b';args=[base+'/source-project',suite+'/art-old-map-v1',suite+'/art-old-map-v2',suite+'/diagnostic-old-map-v1',suite+'/diagnostic-old-map-v2',target];
+ }
+ await fs.mkdir(resolve(target,'..'),{recursive:true});
+ const child=fork(wrapper,[kind,mode,entry,target,'__PID_STAGE__',root,...args],{cwd,execArgv:[],silent:true});let output='';child.stdout.on('data',b=>output+=b);child.stderr.on('data',b=>output+=b);
+ const completed=new Promise((res,rej)=>{child.on('error',rej);child.on('exit',code=>res(code));});
+ const ready=await new Promise((res,rej)=>{child.once('message',m=>res(m.pid));child.once('error',rej);});
+ stage=kind==='engineering'?cwd+'/artifacts/.stage-'+engine.buildId+'-'+ready:target+'.stage-'+ready;
+ // The child needs the actual stage path for cleanup-failure injection. Pass it in its go message.
+ if(mode==='prelocked'){await fs.mkdir(lock);await fs.writeFile(lock+'/foreign-lock.txt','foreign lock owner');await fs.mkdir(stage);await fs.writeFile(stage+'/foreign.txt','foreign stage owner');}
+ child.send({stage});const deadline=setTimeout(()=>child.kill('SIGKILL'),120000);const code=await completed;clearTimeout(deadline);
+ await fs.writeFile(base+'/evidence/extra-'+label+'.log',output);
+ const r={kind,mode,exitCode:code,targetExists:await exists(target),stageExists:await exists(stage),lockExists:await exists(lock)};
+ if(mode==='reoccupied'){
+  assert.equal(code,0,output);assert.equal(await fs.readFile(stage+'/foreign.txt','utf8'),'belongs to next owner');assert.equal(r.lockExists,false);r.foreignReoccupiedStagePreserved=true;
+ }else if(mode==='partial-suite'||mode==='partial-copy'){
+  assert.notEqual(code,0);assert.match(output,mode==='partial-suite'?/after two real exports/:/partial copy failure/);assert.equal(r.targetExists,false);assert.equal(r.stageExists,false);assert.equal(r.lockExists,false);r.ownedFailureFullyCleaned=true;
+ }else if(mode==='prelocked'){
+  assert.notEqual(code,0);assert.match(output,/EEXIST/);assert.equal(await fs.readFile(lock+'/foreign-lock.txt','utf8'),'foreign lock owner');assert.equal(await fs.readFile(stage+'/foreign.txt','utf8'),'foreign stage owner');r.foreignLockAndStagePreserved=true;
+ }else if(mode==='cleanup-failure'){
+  assert.notEqual(code,0);assert.match(output,/owned-stage rm failure/);assert.equal(r.targetExists,false);assert.equal(r.stageExists,true);assert.equal(r.lockExists,false);r.lockReleasedDespiteCleanupError=true;
+ }
+ records.push(r);console.log(JSON.stringify(r));
+}
+// Runtime injection path comes from the handshake, without racing production imports.
+let text=await fs.readFile(wrapper,'utf8');text=text.replace("const [kind,mode,entry,target,stage,root,...args]","const [kind,mode,entry,target,_stage,root,...args]");text=text.replace("const realExec=", "let stage=_stage;const realExec=");text=text.replace("await once(process,'message');process.disconnect();","const [message]=await once(process,'message');stage=message.stage;process.disconnect();");await fs.writeFile(wrapper,text);
+await run('publisher','prelocked','publisher-foreign-lock');
+await run('publisher','cleanup-failure','publisher-cleanup-error');
+await run('engineering','cleanup-failure','engineering-cleanup-error');
+await run('prepare','partial-copy','prepare-partial-copy');
+await run('prepare','reoccupied','prepare-real-post-rename');
+await run('suite','partial-suite','suite-real-partial-write');
+await run('suite','reoccupied','suite-real-post-rename');
+await fs.writeFile(base+'/evidence/extra-ownership.json',JSON.stringify({result:'PASS',checks:records.length,records,scope:'Real compiled entry points and filesystem; Git cwd redirected to precise review checkout, no prepare preflight mocks. Injection only in private reviewer cases.'},null,2)+'\n');

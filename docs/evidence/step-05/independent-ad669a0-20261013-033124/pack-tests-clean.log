@@ -1,0 +1,368 @@
+
+> @tileset/prototype@0.0.2 test:step05 <review-root>/checkout
+> pnpm build:contracts && vitest run packages/pack-assembly/tests tests/pack-export.test.ts tests/publication-ownership.test.ts
+
+
+> @tileset/prototype@0.0.2 build:contracts <review-root>/checkout
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build
+
+
+> @tileset/contracts@0.0.2 build <review-root>/checkout/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build <review-root>/checkout/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build <review-root>/checkout/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build <review-root>/checkout/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build <review-root>/checkout/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build <review-root>/checkout/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build <review-root>/checkout/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 <review-root>/checkout
+
+ ❯ tests/publication-ownership.test.ts (15 tests | 15 failed) 277ms
+     × publisher: preserves an unowned stage, existing target=false 39ms
+     × publisher: preserves an unowned stage, existing target=true 34ms
+     × publisher: cleans its own partially written stage on processing failure 33ms
+     × suite: preserves an unowned stage, existing target=false 33ms
+     × suite: preserves an unowned stage, existing target=true 31ms
+     × suite: cleans its own partially written stage on processing failure 31ms
+     × prepare: preserves an unowned stage, existing target=false 1ms
+     × prepare: preserves an unowned stage, existing target=true 1ms
+     × prepare: cleans its own partially written stage on processing failure 1ms
+     × engineering: preserves an unowned stage, existing target=false 6ms
+     × engineering: preserves an unowned stage, existing target=true 4ms
+     × engineering: cleans its own partially written stage on processing failure 5ms
+     × publisher: does not clean a path reoccupied after successful rename 32ms
+     × prepare: does not clean a path reoccupied after successful rename 1ms
+     × engineering: does not clean a path reoccupied after successful rename 5ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > publisher: preserves an unowned stage, existing target=false
+AssertionError: expected 'node:internal/modules/esm/resolve:274…' to match /EEXIST|staging directory already exis…/
+
+- Expected:
+/EEXIST|staging directory already exists/
+
++ Received:
+"node:internal/modules/esm/resolve:274
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<review-root>/checkout/dist/scripts/pack-export.js' imported from /private/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-G77cFX/child.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:859:10)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:664:36)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    at ModuleLoader.import (node:internal/modules/esm/loader:663:21)
+    at defaultImportModuleDynamicallyForModule (node:internal/modules/esm/utils:222:31) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file://<review-root>/checkout/dist/scripts/pack-export.js'
+}
+
+Node.js v22.21.1
+"
+
+ ❯ tests/publication-ownership.test.ts:123:61
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > publisher: preserves an unowned stage, existing target=true
+AssertionError: expected 'node:internal/modules/esm/resolve:274…' to match /already exists/
+
+- Expected:
+/already exists/
+
++ Received:
+"node:internal/modules/esm/resolve:274
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<review-root>/checkout/dist/scripts/pack-export.js' imported from /private/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-G77cFX/child.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:859:10)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:664:36)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    at ModuleLoader.import (node:internal/modules/esm/loader:663:21)
+    at defaultImportModuleDynamicallyForModule (node:internal/modules/esm/utils:222:31) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file://<review-root>/checkout/dist/scripts/pack-export.js'
+}
+
+Node.js v22.21.1
+"
+
+ ❯ tests/publication-ownership.test.ts:123:61
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > publisher: cleans its own partially written stage on processing failure
+AssertionError: expected 'node:internal/modules/esm/resolve:274…' to match /synthetic verify failure/
+
+- Expected:
+/synthetic verify failure/
+
++ Received:
+"node:internal/modules/esm/resolve:274
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<review-root>/checkout/dist/scripts/pack-export.js' imported from /private/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-G77cFX/child.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:859:10)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:664:36)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    at ModuleLoader.import (node:internal/modules/esm/loader:663:21)
+    at defaultImportModuleDynamicallyForModule (node:internal/modules/esm/utils:222:31) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file://<review-root>/checkout/dist/scripts/pack-export.js'
+}
+
+Node.js v22.21.1
+"
+
+ ❯ tests/publication-ownership.test.ts:133:29
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > suite: preserves an unowned stage, existing target=false
+AssertionError: expected 'node:internal/modules/esm/resolve:274…' to match /EEXIST|staging directory already exis…/
+
+- Expected:
+/EEXIST|staging directory already exists/
+
++ Received:
+"node:internal/modules/esm/resolve:274
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<review-root>/checkout/dist/scripts/build-pack-sample.js' imported from /private/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-G77cFX/child.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:859:10)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:664:36)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    at ModuleLoader.import (node:internal/modules/esm/loader:663:21)
+    at defaultImportModuleDynamicallyForModule (node:internal/modules/esm/utils:222:31) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file://<review-root>/checkout/dist/scripts/build-pack-sample.js'
+}
+
+Node.js v22.21.1
+"
+
+ ❯ tests/publication-ownership.test.ts:123:61
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > suite: preserves an unowned stage, existing target=true
+AssertionError: expected 'node:internal/modules/esm/resolve:274…' to match /already exists/
+
+- Expected:
+/already exists/
+
++ Received:
+"node:internal/modules/esm/resolve:274
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<review-root>/checkout/dist/scripts/build-pack-sample.js' imported from /private/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-G77cFX/child.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:859:10)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:664:36)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    at ModuleLoader.import (node:internal/modules/esm/loader:663:21)
+    at defaultImportModuleDynamicallyForModule (node:internal/modules/esm/utils:222:31) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file://<review-root>/checkout/dist/scripts/build-pack-sample.js'
+}
+
+Node.js v22.21.1
+"
+
+ ❯ tests/publication-ownership.test.ts:123:61
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > suite: cleans its own partially written stage on processing failure
+AssertionError: expected 'node:internal/modules/esm/resolve:274…' to match /ENOENT.*art-ground\.png/
+
+- Expected:
+/ENOENT.*art-ground\.png/
+
++ Received:
+"node:internal/modules/esm/resolve:274
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module '<review-root>/checkout/dist/scripts/build-pack-sample.js' imported from /private/var/folders/yp/2hjqz2qj0ln8vrc1rx44g5cw0000gn/T/step05-ownership-G77cFX/child.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:274:11)
+    at moduleResolve (node:internal/modules/esm/resolve:859:10)
+    at defaultResolve (node:internal/modules/esm/resolve:983:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)
+    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:664:36)
+    at TracingChannel.tracePromise (node:diagnostics_channel:350:14)
+    at ModuleLoader.import (node:internal/modules/esm/loader:663:21)
+    at defaultImportModuleDynamicallyForModule (node:internal/modules/esm/utils:222:31) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file://<review-root>/checkout/dist/scripts/build-pack-sample.js'
+}
+
+Node.js v22.21.1
+"
+
+ ❯ tests/publication-ownership.test.ts:133:29
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > prepare: preserves an unowned stage, existing target=false
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > prepare: preserves an unowned stage, existing target=true
+Error: ENOENT: no such file or directory, open '<review-root>/checkout/dist/scripts/prepare-step05.js'
+ ❯ fixture tests/publication-ownership.test.ts:76:72
+     74|     // of licensed MZ files; the actual prepare script's filesystem/co…
+     75|     await mkdir(join(cwd,'scripts'));await symlink(join(root,'node_mod…
+     76|     entry=join(cwd,'scripts/prepare-step05.mjs');await writeFile(entry…
+       |                                                                        ^
+     77|     await writeFile(join(cwd,'scripts/mz-oracle.js'),'export async fun…
+     78|     await writeFile(join(cwd,'scripts/prototype-input.js'),'export fun…
+ ❯ tests/publication-ownership.test.ts:120:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > prepare: cleans its own partially written stage on processing failure
+Error: ENOENT: no such file or directory, open '<review-root>/checkout/dist/scripts/prepare-step05.js'
+ ❯ fixture tests/publication-ownership.test.ts:76:72
+     74|     // of licensed MZ files; the actual prepare script's filesystem/co…
+     75|     await mkdir(join(cwd,'scripts'));await symlink(join(root,'node_mod…
+     76|     entry=join(cwd,'scripts/prepare-step05.mjs');await writeFile(entry…
+       |                                                                        ^
+     77|     await writeFile(join(cwd,'scripts/mz-oracle.js'),'export async fun…
+     78|     await writeFile(join(cwd,'scripts/prototype-input.js'),'export fun…
+ ❯ tests/publication-ownership.test.ts:129:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > engineering: preserves an unowned stage, existing target=false
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > engineering: preserves an unowned stage, existing target=true
+Error: ENOENT: no such file or directory, open '<review-root>/checkout/dist/src/profile.js'
+ ❯ fixture tests/publication-ownership.test.ts:64:53
+     62|     }
+     63|     await mkdir(join(cwd,'scripts'));await mkdir(join(cwd,'dist/src'));
+     64|     await writeFile(join(cwd,'dist/src/profile.js'),await readFile(joi…
+       |                                                     ^
+     65|     entry=join(cwd,'scripts/build-engineering.mjs');await writeFile(en…
+     66|     await writeFile(join(cwd,'pnpm-lock.yaml'),'synthetic lock');args=…
+ ❯ tests/publication-ownership.test.ts:120:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > engineering: cleans its own partially written stage on processing failure
+Error: ENOENT: no such file or directory, open '<review-root>/checkout/dist/src/profile.js'
+ ❯ fixture tests/publication-ownership.test.ts:64:53
+     62|     }
+     63|     await mkdir(join(cwd,'scripts'));await mkdir(join(cwd,'dist/src'));
+     64|     await writeFile(join(cwd,'dist/src/profile.js'),await readFile(joi…
+       |                                                     ^
+     65|     entry=join(cwd,'scripts/build-engineering.mjs');await writeFile(en…
+     66|     await writeFile(join(cwd,'pnpm-lock.yaml'),'synthetic lock');args=…
+ ❯ tests/publication-ownership.test.ts:129:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > publisher: does not clean a path reoccupied after successful rename
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ tests/publication-ownership.test.ts:140:25
+    138|   it.each(['publisher','prepare','engineering'] as const)('%s: does no…
+    139|     const f=await fixture(kind,kind+'-renamed'),result=await run(f,kin…
+    140|     expect(result.code).toBe(0);expect(await readFile(join(f.stage(res…
+       |                         ^
+    141|     expect((await readdir(f.target)).length).toBeGreaterThan(0);
+    142|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > prepare: does not clean a path reoccupied after successful rename
+Error: ENOENT: no such file or directory, open '<review-root>/checkout/dist/scripts/prepare-step05.js'
+ ❯ fixture tests/publication-ownership.test.ts:76:72
+     74|     // of licensed MZ files; the actual prepare script's filesystem/co…
+     75|     await mkdir(join(cwd,'scripts'));await symlink(join(root,'node_mod…
+     76|     entry=join(cwd,'scripts/prepare-step05.mjs');await writeFile(entry…
+       |                                                                        ^
+     77|     await writeFile(join(cwd,'scripts/mz-oracle.js'),'export async fun…
+     78|     await writeFile(join(cwd,'scripts/prototype-input.js'),'export fun…
+ ❯ tests/publication-ownership.test.ts:139:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  tests/publication-ownership.test.ts > STEP05-IR-001: ownership of staging directories in all four entry points > engineering: does not clean a path reoccupied after successful rename
+Error: ENOENT: no such file or directory, open '<review-root>/checkout/dist/src/profile.js'
+ ❯ fixture tests/publication-ownership.test.ts:64:53
+     62|     }
+     63|     await mkdir(join(cwd,'scripts'));await mkdir(join(cwd,'dist/src'));
+     64|     await writeFile(join(cwd,'dist/src/profile.js'),await readFile(joi…
+       |                                                     ^
+     65|     entry=join(cwd,'scripts/build-engineering.mjs');await writeFile(en…
+     66|     await writeFile(join(cwd,'pnpm-lock.yaml'),'synthetic lock');args=…
+ ❯ tests/publication-ownership.test.ts:139:13
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  15 failed | 22 passed (37)
+   Start at  03:32:49
+   Duration  10.17s (transform 250ms, setup 0ms, import 313ms, tests 16.49s, environment 0ms)
+
+ ELIFECYCLE  Command failed with exit code 1.

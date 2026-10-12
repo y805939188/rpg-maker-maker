@@ -1,0 +1,9 @@
+file://<review-root>/extra-child.mjs:8
+if(mode==='partial-copy')fs.cp=async(s,d)=>{await write(d+'/copied-partial.txt','owned copy content');throw Error('independent partial copy failure');};
+                                                                                                            ^
+
+Error: independent partial copy failure
+    at fs.cp (file://<review-root>/extra-child.mjs:8:109)
+    at async file://<review-root>/checkout/dist/scripts/prepare-step05.js:62:5
+
+Node.js v22.21.1

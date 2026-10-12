@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "authorization": "steps-06-07-authorization.md",
+  "authorizedSteps": [
+    6,
+    7
+  ],
+  "stopAfter": 7,
+  "workflow": "IN_PROGRESS",
+  "currentStep": 6,
+  "phase": "VERIFYING_STEP05_PUBLICATION_BASELINE",
+  "step05": {
+    "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
+    "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
+    "independentReview": "PASS",
+    "reviewReport": "docs/reviews/step-05-fix-round-1-independent-review.md",
+    "reviewReportSha256": "f7319e6727e47bb72908fd4740a7ba68e5d73e013cfe2b3852161be689b1fc74",
+    "buildId": "step05-ad669a06218b-deec5d4376173aaf",
+    "manifestSha256": "a262d9f49d95b3bf97db947e846b6e3d1e11559726c8733a4725748aaeb524b2",
+    "userApproval": "APPROVED_BY_USER_START_AUTHORIZATION_2026_10_13",
+    "publication": "NOT_PUBLISHED",
+    "initialMain": "fc407198eefad9336ba97fb9482bdd832ca78f83"
+  },
+  "agents": {
+    "dispatch": "NATIVE_INDEPENDENT_CODEX_EXEC_SESSIONS",
+    "coding": {
+      "role": "step_coder",
+      "model": "gpt-6.1-sol",
+      "effort": "xhigh",
+      "serviceTier": "default",
+      "preflight": "PASS"
+    },
+    "review": {
+      "role": "step_reviewer",
+      "model": "gpt-6.1-sol",
+      "effort": "ultra",
+      "serviceTier": "default",
+      "preflight": "PASS"
+    },
+    "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
+  },
+  "step06": {
+    "status": "NOT_STARTED",
+    "reviewRounds": 0
+  },
+  "step07": {
+    "status": "NOT_STARTED",
+    "reviewRounds": 0
+  },
+  "step08": {
+    "status": "NOT_STARTED"
+  },
+  "step09": {
+    "status": "NOT_STARTED"
+  },
+  "step10": {
+    "status": "NOT_STARTED"
+  },
+  "resources": [],
+  "lastSuccessfulCheckpoint": "LATEST_STEP05_REVIEW_AND_DOCUMENTATION_BINDING_VERIFIED",
+  "blockers": [],
+  "nextSafeAction": "Verify native Standard reviewer configuration; preserve original review bytes; publish approved step04/05 baseline after candidate and main CI."
+}

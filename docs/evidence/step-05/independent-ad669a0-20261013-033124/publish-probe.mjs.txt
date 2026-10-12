@@ -1,0 +1,39 @@
+import fs from 'node:fs/promises';
+import sync from 'node:fs';
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {pathToFileURL} from 'node:url';
+const base='<review-root>',root=base+'/checkout';
+const {publishDirectory}=await import(pathToFileURL(root+'/dist/scripts/pack-export.js'));
+const temp=base+'/publisher-tests-green-'+process.pid;await fs.mkdir(temp);
+const files={'sentinel.txt':new TextEncoder().encode('new result')};
+const exists=async p=>{try{await fs.lstat(p);return true;}catch{return false;}};
+const records=[];
+for(const existingTarget of [false,true]){
+ const target=temp+'/'+(existingTarget?'existing-target':'stage-collision'),stage=target+'.stage-'+process.pid;
+ await fs.mkdir(stage);await fs.writeFile(stage+'/unrelated-sentinel.txt','pre-existing, not created by this attempt');
+ if(existingTarget){await fs.mkdir(target);await fs.writeFile(target+'/successful.txt','old success');}
+ let error;try{await publishDirectory(target,files,async()=>{});}catch(e){error=e.message;}
+ records.push({entry:'publishDirectory',case:existingTarget?'target already exists':'stage already exists',error,unownedStagePreserved:await exists(stage+'/unrelated-sentinel.txt'),priorSuccessPreserved:existingTarget?await fs.readFile(target+'/successful.txt','utf8')==='old success':null,targetPublished:await exists(target)});
+}
+const failTarget=temp+'/verification-failure';let injected;
+try{await publishDirectory(failTarget,files,async()=>{throw Error('reviewer synthetic failure');});}catch(e){injected=e.message;}
+records.push({entry:'publishDirectory',case:'owned stage verify failure',error:injected,targetAbsent:!await exists(failTarget),stageAbsent:!await exists(failTarget+'.stage-'+process.pid),lockAbsent:!await exists(failTarget+'.lock')});
+const race=temp+'/race';const raceResults=await Promise.allSettled([publishDirectory(race,files,async()=>{}),publishDirectory(race,files,async()=>{})]);
+records.push({entry:'publishDirectory',case:'same-process concurrent target',fulfilled:raceResults.filter(x=>x.status==='fulfilled').length,rejected:raceResults.filter(x=>x.status==='rejected').length,content:await fs.readFile(race+'/sentinel.txt','utf8')});
+async function collisionCLI(name,args,target){
+ const child=spawn(process.execPath,args,{cwd:root,env:process.env,stdio:['ignore','pipe','pipe']});
+ const stage=target+'.stage-'+child.pid;sync.mkdirSync(stage);sync.writeFileSync(stage+'/unrelated-sentinel.txt','CLI unowned existing directory');
+ let output='';child.stdout.on('data',b=>output+=b);child.stderr.on('data',b=>output+=b);
+ const code=await new Promise(resolve=>child.on('exit',resolve));
+ await fs.writeFile(base+'/evidence/'+name+'-collision.log',output);
+ records.push({entry:name,case:'pre-existing unowned stage',childPid:child.pid,exitCode:code,unownedStagePreserved:await exists(stage+'/unrelated-sentinel.txt'),targetExists:await exists(target)});
+}
+const suite=root+'/artifacts/step05-suite-ad669a06218b';
+await collisionCLI('suite',['dist/scripts/build-pack-sample.js'],suite);
+const source=base+'/source-project',dest=base+'/prepare-stage-collision';
+await collisionCLI('prepare',['dist/scripts/prepare-step05.js',source,suite+'/art-old-map-v1',suite+'/art-old-map-v2',suite+'/diagnostic-old-map-v1',suite+'/diagnostic-old-map-v2',dest],dest);
+const result={finding:'STEP05-IR-001',result:'PASS_GREEN',records};
+assert.ok(records.filter(r=>Object.hasOwn(r,'unownedStagePreserved')).every(r=>r.unownedStagePreserved===true));
+await fs.writeFile(base+'/evidence/publish-probe.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result,null,2));
+assert.equal(records[2].targetAbsent,true);assert.equal(records[3].fulfilled,1);assert.equal(records[3].rejected,1);

@@ -1,0 +1,10 @@
+file://<review-root>/extra-child.mjs:7
+if(mode==='partial-suite')fs.writeFile=async(p,...a)=>{if(String(p).endsWith('/incremental-v2.request.json'))throw Error('independent suite partial failure after two real exports');return write(p,...a);};
+                                                                                                                   ^
+
+Error: independent suite partial failure after two real exports
+    at fs.writeFile (file://<review-root>/extra-child.mjs:7:116)
+    at emit (file://<review-root>/checkout/dist/scripts/build-pack-sample.js:36:15)
+    at async file://<review-root>/checkout/dist/scripts/build-pack-sample.js:43:20
+
+Node.js v22.21.1

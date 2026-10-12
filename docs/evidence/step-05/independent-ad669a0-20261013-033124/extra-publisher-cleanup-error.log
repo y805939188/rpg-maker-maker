@@ -1,0 +1,10 @@
+file://<review-root>/extra-child.mjs:11
+ fs.rm=async(p,...a)=>{if(String(p)===stage)throw Error('independent owned-stage rm failure');return remove(p,...a);};
+                                                  ^
+
+Error: independent owned-stage rm failure
+    at fs.rm (file://<review-root>/extra-child.mjs:11:51)
+    at publishDirectory (file://<review-root>/checkout/dist/scripts/pack-export.js:162:23)
+    at async file://<review-root>/extra-child.mjs:16:2
+
+Node.js v22.21.1

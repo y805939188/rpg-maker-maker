@@ -1,0 +1,59 @@
+import pathlib,struct,zlib,hashlib,json,zipfile
+base=pathlib.Path(__file__).parent;repo=base/'checkout';original=pathlib.Path('<repo>')
+def decode(blob):
+ assert blob[:8]==b'\x89PNG\r\n\x1a\n';cursor=8;compressed=[];types=[]
+ while cursor<len(blob):
+  size=int.from_bytes(blob[cursor:cursor+4],'big');tag=blob[cursor+4:cursor+8];data=blob[cursor+8:cursor+8+size]
+  assert len(data)==size;assert int.from_bytes(blob[cursor+8+size:cursor+12+size],'big')==zlib.crc32(tag+data)&0xffffffff
+  cursor+=12+size;types.append(tag.decode())
+  if tag==b'IHDR':
+   w,h,d,c,co,f,inter=struct.unpack('>IIBBBBB',data);assert (d,c,co,f,inter)==(8,6,0,0,0)
+  elif tag==b'IDAT':compressed.append(data)
+  elif tag==b'IEND':assert size==0;break
+ assert cursor==len(blob);stride=w*4;raw=zlib.decompress(b''.join(compressed));assert len(raw)==h*(stride+1)
+ rows=[];prev=bytes(stride)
+ for y in range(h):
+  offset=y*(stride+1);kind=raw[offset];assert 0<=kind<=4;row=bytearray(raw[offset+1:offset+1+stride])
+  for x in range(stride):
+   a=row[x-4] if x>=4 else 0;b=prev[x];c=prev[x-4] if x>=4 else 0
+   if kind==0:p=0
+   elif kind==1:p=a
+   elif kind==2:p=b
+   elif kind==3:p=(a+b)//2
+   else:
+    prediction=a+b-c;da,db,dc=abs(prediction-a),abs(prediction-b),abs(prediction-c)
+    p=a if da<=db and da<=dc else b if db<=dc else c
+   row[x]=(row[x]+p)&255
+  rows.append(bytes(row));prev=row
+ return w,h,b''.join(rows),types
+def png(p):return decode(p.read_bytes())
+def paste(dest,tw,src,sw,sh,x,y):
+ for row in range(sh):dest[4*((y+row)*tw+x):4*((y+row)*tw+x+sw)]=src[4*row*sw:4*(row+1)*sw]
+def rotate(b):
+ out=bytearray(b)
+ for i in range(0,len(b),4):out[i:i+3]=bytes((b[i+2],b[i],b[i+1]))
+ return bytes(out)
+def masters(family):
+ ground=png(repo/f'tests/fixtures/{family}-ground.png')[2];mask=png(repo/'tests/fixtures/art-static-bank-mask.png')[2];wide=bytearray(288*144*4)
+ for i in range(3):
+  frame=bytearray(png(repo/f'tests/fixtures/{family}-water-{i}.png')[2])
+  if family=='diagnostic':
+   for j in range(0,len(frame),4):
+    if mask[j]==255:frame[j:j+4]=ground[j:j+4]
+  paste(wide,288,frame,96,144,96*i,0)
+ return ground,bytes(wide)
+art,diagnostic=masters('art'),masters('diagnostic');newart=tuple(rotate(b) for b in art);newdiag=tuple(rotate(b) for b in diagnostic)
+cases={'incremental-v1':(art,None),'incremental-v2':(art,newart),'incremental-v3':(newart,newart),'incremental-v4':(newart,newart),'art-old-map-v1':(art,art),'art-old-map-v2':(newart,art),'diagnostic-old-map-v1':(diagnostic,diagnostic),'diagnostic-old-map-v2':(newdiag,diagnostic)}
+records=[];suite=repo/'artifacts/step05-suite-ad669a06218b'
+for name,pairs in cases.items():
+ a1=bytearray(768*576*4);a2=bytearray(768*576*4)
+ for slot,pair in enumerate(pairs):
+  if pair:
+   paste(a2,768,pair[0],96,144,slot*96,0);paste(a1,768,pair[1],288,144,384,slot*144)
+ m=json.loads((suite/name/'manifest.json').read_text())
+ for atlas,expected in (('A1.png',a1),('A2.png',a2)):
+  w,h,actual,chunks=png(suite/name/atlas);assert (w,h)==(768,576);assert actual==expected,(name,atlas)
+  assert hashlib.sha256(actual).hexdigest()==m['identity']['atlases'][atlas]['pixelHash']
+  records.append({'sample':name,'atlas':atlas,'pixelSha256':hashlib.sha256(actual).hexdigest(),'chunks':chunks,'fullLiteralMatch':True})
+result={'result':'PASS','finalPNGs':16,'method':'Independent Python stdlib PNG reconstruction; original masters, literal supported coordinates, explicit RGB rotation; no Planner/Layout selection','records':records}
+(base/'evidence/png-probe.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

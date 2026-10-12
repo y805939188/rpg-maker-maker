@@ -1,0 +1,15 @@
+node:internal/fs/promises:860
+  return await PromisePrototypeThen(
+         ^
+
+Error: EEXIST: file already exists, mkdir '<review-root>/extra-cases/publisher-foreign-lock/export.lock'
+    at async mkdir (node:internal/fs/promises:860:10)
+    at async publishDirectory (file://<review-root>/checkout/dist/scripts/pack-export.js:137:5)
+    at async file://<review-root>/extra-child.mjs:16:2 {
+  errno: -17,
+  code: 'EEXIST',
+  syscall: 'mkdir',
+  path: '<review-root>/extra-cases/publisher-foreign-lock/export.lock'
+}
+
+Node.js v22.21.1

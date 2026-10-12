@@ -1,0 +1,17 @@
+
+import {once} from 'node:events';import {pathToFileURL} from 'node:url';import fs from 'node:fs/promises';import cp from 'node:child_process';import {syncBuiltinESMExports} from 'node:module';
+const [kind,mode,entry,target,_stage,root,...args]=process.argv.slice(2);
+let stage=_stage;const realExec=cp.execFileSync;cp.execFileSync=(file,argv,opts)=>file==='git'?realExec(file,['-C',root,...argv],opts):realExec(file,argv,opts);
+const rename=fs.rename,write=fs.writeFile,copy=fs.cp,remove=fs.rm;
+if(mode==='reoccupied')fs.rename=async(s,d)=>{await rename(s,d);if(String(d)===target){await fs.mkdir(s);await write(s+'/foreign.txt','belongs to next owner');}};
+if(mode==='partial-suite')fs.writeFile=async(p,...a)=>{if(String(p).endsWith('/incremental-v2.request.json'))throw Error('independent suite partial failure after two real exports');return write(p,...a);};
+if(mode==='partial-copy')fs.cp=async(s,d)=>{await write(d+'/copied-partial.txt','owned copy content');throw Error('independent partial copy failure');};
+if(mode==='cleanup-failure'){
+ fs.writeFile=async(p,...a)=>{if(String(p).endsWith('/manifest.json'))throw Error('independent manifest failure');return write(p,...a);};
+ fs.rm=async(p,...a)=>{if(String(p)===stage)throw Error('independent owned-stage rm failure');return remove(p,...a);};
+}
+syncBuiltinESMExports();process.argv=[process.execPath,entry,...args];process.send({pid:process.pid});const [message]=await once(process,'message');stage=message.stage;process.disconnect();
+if(kind==='publisher'){
+ const {publishDirectory}=await import(pathToFileURL(entry));
+ await publishDirectory(target,{'manifest.json':new TextEncoder().encode('synthetic payload for filesystem boundary')},async()=>{if(mode==='cleanup-failure')throw Error('independent verify failure');});
+}else await import(pathToFileURL(entry));
