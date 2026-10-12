@@ -1,0 +1,21 @@
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { RgbaImage, hashBytes } from '@tileset/asset-core';
+import { encodePng } from '@tileset/image-adapter';
+import { renderShape } from '@tileset/mz-compiler';
+import { preflightStep04 } from '../../dist/scripts/step04-input.js';
+const input=await preflightStep04('artifacts/step04-mz-44a5239a979c-ed3814944c9713b8');
+const out='.local/step04-acceptance/'+input.manifest.buildId;
+await mkdir(out,{recursive:true});
+const files={};
+for(const f of input.replays)for(const update of [0,30,60,90]){
+ const data=new Uint8Array(384*576*4);
+ for(let s=0;s<48;s++)for(const [row,fragment]of [[0,f.water],[6,f.ground]]){
+  const bytes=renderShape(fragment,s,update).bytes(),dx=s%8*48,dy=(Math.floor(s/8)+row)*48;
+  for(let y=0;y<48;y++)data.set(bytes.subarray(y*48*4,(y+1)*48*4),((dy+y)*384+dx)*4);
+ }
+ const name=f.family+'-update-'+update+'.png',png=await encodePng(new RgbaImage({width:384,height:576,data}));
+ await writeFile(out+'/'+name,png,{flag:'wx'});files[name]=hashBytes(png);
+}
+await writeFile(out+'/gallery-reference.json',JSON.stringify({buildId:input.manifest.buildId,commit:input.manifest.identity.commit,manifestSha256:input.manifestSha256,files,scope:'CPU render of actual Compiler fragments; top six rows water, bottom six rows ground; each row has eight shapes; index47 representative. Supplemental acceptance preview, not independent Golden or GUI evidence.'},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({path:out,files},null,2));
+void readFile;

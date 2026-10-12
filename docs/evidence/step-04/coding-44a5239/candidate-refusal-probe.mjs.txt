@@ -1,0 +1,29 @@
+import assert from 'node:assert/strict';
+import {cp,mkdir,readFile,readdir,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {fingerprint,hashBytes} from '@tileset/asset-core';
+const root=process.cwd(),buildId=JSON.parse(await readFile('.local/step04-initial/candidate-mz-sample.json','utf8')).buildId,build=resolve('artifacts',buildId);
+const template='/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata';
+const results=[];
+async function tree(path){const files={};for(const entry of await readdir(path,{withFileTypes:true})){const p=resolve(path,entry.name);if(entry.isDirectory())Object.assign(files,await tree(p));else if(entry.isFile())files[p]=hashBytes(await readFile(p));}return files;}
+for(const mode of ['bad-hash','missing-atlas','bad-source-role']){
+ const caseRoot=resolve('.local/step04-candidate-negative',mode);await mkdir(caseRoot,{recursive:true});const input=resolve(caseRoot,'input');await cp(build,input,{recursive:true,errorOnExist:true});
+ if(mode==='bad-hash')await writeFile(resolve(input,'art/A1.png'),new Uint8Array([0]));
+ if(mode==='missing-atlas') { // Rename only our own disposable copy; preserve the failing bytes.
+  const {rename}=await import('node:fs/promises');await rename(resolve(input,'art/A2.png'),resolve(input,'art/A2.missing-evidence.png'));
+ }
+ if(mode==='bad-source-role'){
+  const path=resolve(input,'art/revisions.json'),data=JSON.parse(await readFile(path,'utf8'));data.sources[0].descriptor.role='waterfall';const bytes=Buffer.from(JSON.stringify(data,null,2)+'\n');await writeFile(path,bytes);
+  const mpath=resolve(input,'manifest.json'),m=JSON.parse(await readFile(mpath,'utf8'));m.identity.files['art/revisions.json']=hashBytes(bytes);m.buildId=`step04-mz-${m.identity.commit.slice(0,12)}-${fingerprint(m.identity).slice(0,16)}`;await writeFile(mpath,JSON.stringify(m,null,2)+'\n');
+ }
+ const before=await tree(input),result=spawnSync(process.execPath,[resolve(root,'dist/scripts/prepare-step04.js'),template,input],{cwd:caseRoot,encoding:'utf8'});
+ assert.notEqual(result.status,0);assert.deepEqual(await tree(input),before);assert.deepEqual((await readdir(caseRoot)).sort(),['input']);
+ await writeFile(resolve(caseRoot,'failure.txt'),result.stdout+result.stderr);results.push({case:mode,exitCode:result.status,destinationCreated:false,inputPreserved:true});
+}
+const before=await tree(build),project=resolve('.local/mz',buildId),projectBefore=await tree(project);
+for(const [name,args]of [['duplicate-sample',['scripts/build-mz-sample.mjs']],['duplicate-engineering',['scripts/build-engineering.mjs','step04']],['duplicate-prepare',['dist/scripts/prepare-step04.js',template,build]]]){
+ const result=spawnSync(process.execPath,args,{cwd:root,encoding:'utf8'});assert.notEqual(result.status,0);assert.deepEqual(await tree(build),before);assert.deepEqual(await tree(project),projectBefore);
+ await writeFile(resolve('.local/step04-initial','candidate-'+name+'.txt'),result.stdout+result.stderr);results.push({case:name,exitCode:result.status,buildAndProjectPreserved:true});
+}
+console.log(JSON.stringify({commit:'44a5239a979cd549e893df705df7704d043216be',buildId,results},null,2));

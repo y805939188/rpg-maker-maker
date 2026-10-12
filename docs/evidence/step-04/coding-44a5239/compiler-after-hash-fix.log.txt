@@ -1,0 +1,41 @@
+
+> @tileset/prototype@0.0.2 test:step04 /Users/dingshinn/Desktop/rpg-maker-maker
+> pnpm build:contracts && vitest run packages/mz-compiler/tests
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/Desktop/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/Desktop/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/Desktop/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /Users/dingshinn/Desktop/rpg-maker-maker/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /Users/dingshinn/Desktop/rpg-maker-maker/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /Users/dingshinn/Desktop/rpg-maker-maker/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build /Users/dingshinn/Desktop/rpg-maker-maker/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 /Users/dingshinn/Desktop/rpg-maker-maker
+
+
+ Test Files  1 passed (1)
+      Tests  40 passed (40)
+   Start at  19:10:14
+   Duration  9.98s (transform 77ms, setup 0ms, import 97ms, tests 9.81s, environment 0ms)
+

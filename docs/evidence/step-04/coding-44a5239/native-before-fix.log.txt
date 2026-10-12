@@ -1,0 +1,48 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ Uint8Array(5939) [
+- Buffer(5939) [Uint8Array] [
+    137,
+    80,
+    78,
+    71,
+    13,
+
+    at file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/verify-step04.js:49:12
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: Uint8Array(5939) [
+    137,  80,  78,  71,  13,  10,  26,  10,   0,   0,   0, 13,
+     73,  72,  68,  82,   0,   0,   3,   0,   0,   0,   2, 64,
+      8,   6,   0,   0,   0,  58, 174,   1,  86,   0,   0,  0,
+      9, 112,  72,  89, 115,   0,   0,   3, 232,   0,   0,  3,
+    232,   1, 181, 123,  82, 107,   0,   0,  22, 229,  73, 68,
+     65,  84, 120, 218, 237, 221, 177, 142, 212, 200,  22,  6,
+    224, 122,  24, 162,  13, 110, 116,  35,   2,   2,  34, 34,
+     50, 136, 144,  80,  71, 144, 109, 186,   1, 209, 141, 72,
+     47,  25, 225, 138,
+    ... 5839 more items
+  ],
+  expected: Buffer(5939) [Uint8Array] [
+    137,  80,  78,  71,  13,  10,  26,  10,   0,   0,   0, 13,
+     73,  72,  68,  82,   0,   0,   3,   0,   0,   0,   2, 64,
+      8,   6,   0,   0,   0,  58, 174,   1,  86,   0,   0,  0,
+      9, 112,  72,  89, 115,   0,   0,   3, 232,   0,   0,  3,
+    232,   1, 181, 123,  82, 107,   0,   0,  22, 229,  73, 68,
+     65,  84, 120, 218, 237, 221, 177, 142, 212, 200,  22,  6,
+    224, 122,  24, 162,  13, 110, 116,  35,   2,   2,  34, 34,
+     50, 136, 144,  80,  71, 144, 109, 186,   1, 209, 141, 72,
+     47,  25, 225, 138,
+    ... 5839 more items
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.21.1

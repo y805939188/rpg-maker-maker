@@ -1,0 +1,430 @@
+{
+  "animation": {
+    "durations": [
+      30,
+      30,
+      30,
+      30
+    ],
+    "frameCount": 3,
+    "loop": true,
+    "sequence": [
+      0,
+      1,
+      2,
+      1
+    ],
+    "timebase": "updates"
+  },
+  "contentHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+  "contract": "tile-ir-v1",
+  "density": 2,
+  "dependencies": [
+    {
+      "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7",
+      "id": "art-grass",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874",
+      "id": "art-water-0",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03",
+      "id": "art-water-1",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3",
+      "id": "art-water-2",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f",
+      "id": "art-mask",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4",
+      "id": "art-bank-overlay",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089",
+      "id": "art-style",
+      "kind": "style",
+      "revision": 1
+    },
+    {
+      "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+      "id": "art-parameters",
+      "kind": "parameters",
+      "revision": 2
+    },
+    {
+      "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b",
+      "id": "art-recipe",
+      "kind": "recipe",
+      "revision": 2
+    }
+  ],
+  "geometry": {
+    "height": 144,
+    "regions": [
+      {
+        "name": "representative-nw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 0
+        },
+        "role": "center"
+      },
+      {
+        "name": "representative-ne",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 0
+        },
+        "role": "center"
+      },
+      {
+        "name": "inner-nw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 0
+        },
+        "role": "inner-corner"
+      },
+      {
+        "name": "inner-ne",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 0
+        },
+        "role": "inner-corner"
+      },
+      {
+        "name": "representative-sw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 24
+        },
+        "role": "center"
+      },
+      {
+        "name": "representative-se",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 24
+        },
+        "role": "center"
+      },
+      {
+        "name": "inner-sw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 24
+        },
+        "role": "inner-corner"
+      },
+      {
+        "name": "inner-se",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 24
+        },
+        "role": "inner-corner"
+      },
+      {
+        "name": "outer-nw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 48
+        },
+        "role": "outer-corner"
+      },
+      {
+        "name": "north-e",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 48
+        },
+        "role": "edge"
+      },
+      {
+        "name": "north-w",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 48
+        },
+        "role": "edge"
+      },
+      {
+        "name": "outer-ne",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 48
+        },
+        "role": "outer-corner"
+      },
+      {
+        "name": "west-s",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 72
+        },
+        "role": "edge"
+      },
+      {
+        "name": "center-se",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 72
+        },
+        "role": "center"
+      },
+      {
+        "name": "center-sw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 72
+        },
+        "role": "center"
+      },
+      {
+        "name": "east-s",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 72
+        },
+        "role": "edge"
+      },
+      {
+        "name": "west-n",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 96
+        },
+        "role": "edge"
+      },
+      {
+        "name": "center-ne",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 96
+        },
+        "role": "center"
+      },
+      {
+        "name": "center-nw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 96
+        },
+        "role": "center"
+      },
+      {
+        "name": "east-n",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 96
+        },
+        "role": "edge"
+      },
+      {
+        "name": "outer-sw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 120
+        },
+        "role": "outer-corner"
+      },
+      {
+        "name": "south-e",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 120
+        },
+        "role": "edge"
+      },
+      {
+        "name": "south-w",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 120
+        },
+        "role": "edge"
+      },
+      {
+        "name": "outer-se",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 120
+        },
+        "role": "outer-corner"
+      }
+    ],
+    "tileHeight": 48,
+    "tileWidth": 48,
+    "width": 96
+  },
+  "ground": {
+    "components": [
+      {
+        "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7",
+        "id": "art-grass",
+        "kind": "source",
+        "revision": 1
+      }
+    ],
+    "material": {
+      "id": "art-grass",
+      "kind": "grass",
+      "style": {
+        "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089",
+        "id": "art-style",
+        "kind": "style",
+        "revision": 1
+      }
+    },
+    "opaque": true
+  },
+  "parameters": {
+    "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+    "id": "art-parameters",
+    "kind": "parameters",
+    "revision": 2
+  },
+  "recipe": {
+    "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b",
+    "id": "art-recipe",
+    "kind": "recipe",
+    "revision": 2
+  },
+  "transition": {
+    "bankOverlay": {
+      "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4",
+      "id": "art-bank-overlay",
+      "kind": "source",
+      "revision": 1
+    },
+    "boundaryOwner": "water",
+    "staticMask": {
+      "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f",
+      "id": "art-mask",
+      "kind": "source",
+      "revision": 1
+    },
+    "strategy": "opaque-water-owned-baked-grass-bank-v1"
+  },
+  "water": {
+    "components": [
+      {
+        "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874",
+        "id": "art-water-0",
+        "kind": "source",
+        "revision": 1
+      },
+      {
+        "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03",
+        "id": "art-water-1",
+        "kind": "source",
+        "revision": 1
+      },
+      {
+        "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3",
+        "id": "art-water-2",
+        "kind": "source",
+        "revision": 1
+      }
+    ],
+    "material": {
+      "id": "art-water-0",
+      "kind": "water",
+      "style": {
+        "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089",
+        "id": "art-style",
+        "kind": "style",
+        "revision": 1
+      }
+    },
+    "opaque": true
+  },
+  "groundImage": {
+    "pixelHash": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5",
+    "file": "processed/ground.png"
+  },
+  "staticMaskImage": {
+    "pixelHash": "2ab33dc7a3e6a56f7cb786192613351376f086faf117839e627ee0b7a2f9b422",
+    "file": "processed/mask.png"
+  },
+  "frames": [
+    {
+      "pixelHash": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "file": "processed/water-0.png"
+    },
+    {
+      "pixelHash": "d49b4ce61bdcb01004f7b5abd5fcffb7d37c40de7740a577eed8ec3210337012",
+      "file": "processed/water-1.png"
+    },
+    {
+      "pixelHash": "8839ec2307a5763f25fd36687483558d55d3eb2bd922a9a2746b96892edb5070",
+      "file": "processed/water-2.png"
+    }
+  ]
+}

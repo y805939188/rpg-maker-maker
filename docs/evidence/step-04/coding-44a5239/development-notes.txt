@@ -1,0 +1,6 @@
+Development failures retained, with no test or expected-image removal:
+- First TypeScript build rejected widened contract string; explicit Fragment type corrected.
+- First 40-case test run had 12 failures due to including contentHash itself in fragment hash revalidation. Hash now selects identity fields; subsequent 40/40, then 43/43, final 44/44.
+- First bound native oracle reached PNG regression comparison and rejected matching Uint8Array/Buffer prototypes. Byte view normalization fixed in 61eda81; original failure log retained.
+- Logical direction clarification initially had 2 byte-matrix failures while source annotation still used old names. Both independent expected matrices retained; producer annotation and parameter/recipe revision2 corrected, then 44/44 and final 188/188.
+- Delivery inventory initially expected a rules source-map difference; the emitted source map was unchanged. Expected changed paths corrected to the three actual JS files, while all other original hashes remain required equal. First inventory script retained.

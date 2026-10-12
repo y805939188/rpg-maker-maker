@@ -1,0 +1,15 @@
+node:internal/fs/promises:1030
+  const result = await PromisePrototypeThen(
+                 ^
+
+Error: ENOENT: no such file or directory, lstat '/Users/dingshinn/Desktop/rpg-maker-maker/.local/step04-candidate-negative/missing-atlas/input/art/A2.png'
+    at async lstat (node:internal/fs/promises:1030:18)
+    at async preflightStep04 (file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/step04-input.js:21:20)
+    at async file:///Users/dingshinn/Desktop/rpg-maker-maker/dist/scripts/prepare-step04.js:12:15 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'lstat',
+  path: '/Users/dingshinn/Desktop/rpg-maker-maker/.local/step04-candidate-negative/missing-atlas/input/art/A2.png'
+}
+
+Node.js v22.21.1

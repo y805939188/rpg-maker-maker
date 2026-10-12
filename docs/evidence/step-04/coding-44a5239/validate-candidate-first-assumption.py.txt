@@ -1,0 +1,22 @@
+import pathlib,json,hashlib,subprocess
+sha=lambda p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest()
+b=pathlib.Path('.local/step04-initial')
+initial=json.loads((b/'protected.json').read_text())
+protected_prefixes=['src/','tests/fixtures/','docs/plans/','docs/step-01/','docs/reviews/step-01','packages/asset-core/','packages/material-processing/','packages/image-adapter/']
+wrong=[p for p,h in initial['tracked'].items() if any(p.startswith(v) for v in protected_prefixes) and sha(p)!=h]
+wrong+=['map:'+p for p,h in initial['maps'].items() if sha(p)!=h]
+old=json.loads((b/'old-artifacts.json').read_text());wrong+=['artifact:'+p for p,h in old.items() if sha(p)!=h]
+assert not wrong,wrong
+newmat=json.loads((b/'candidate-material.json').read_text())
+oldmat=json.loads(pathlib.Path('artifacts/step03-material-a0e9f07ae265-cd0467ddf07df105/manifest.json').read_text())
+assert newmat['files']==oldmat['files']
+newproto=json.loads((b/'candidate-prototype.json').read_text())
+oldproto=json.loads(pathlib.Path('artifacts/step01-56368269c8328e0f84b9/manifest.json').read_text())
+assert newproto['files']==oldproto['files']
+newmz=json.loads((b/'candidate-mz-sample.json').read_text());oldmz=json.loads((b/'build-mz-sample.json').read_text())
+pngs=[name for name in newmz['files'] if name.endswith('.png')]
+assert all(newmz['files'][name]==oldmz['files'][name] for name in pngs)
+eng=json.loads((b/'candidate-engineering.json').read_text());first=json.loads((b/'build-engineering.json').read_text())
+changes=[p for p,h in first['files'].items() if eng['files'].get(p)!=h]
+assert set(changes)=={'dist/scripts/verify-step04.js','dist/scripts/step04-fixture.js','packages/mz-compiler/dist/rules.js','packages/mz-compiler/dist/rules.js.map'},changes
+print(json.dumps({'protectedTrackedFiles':sum(any(p.startswith(v) for v in protected_prefixes)for p in initial['tracked']),'protectedMaps':len(initial['maps']),'protectedHistoricalArtifactFiles':len(old),'result':'PASS','materialPayloadsEqual':len(newmat['files']),'prototypePngBytesEqual':len(newproto['files']),'firstVsCandidatePngsEqual':len(pngs),'changedSampleMetadata':[name for name in newmz['files'] if newmz['files'][name]!=oldmz['files'][name]],'finalVsFirstEngineeringChanges':changes,'remoteMain':subprocess.check_output(['git','ls-remote','origin','refs/heads/main'],text=True).strip(),'main':subprocess.check_output(['git','rev-parse','main'],text=True).strip()},indent=2))

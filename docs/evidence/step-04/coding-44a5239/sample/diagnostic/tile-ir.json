@@ -1,0 +1,430 @@
+{
+  "animation": {
+    "durations": [
+      30,
+      30,
+      30,
+      30
+    ],
+    "frameCount": 3,
+    "loop": true,
+    "sequence": [
+      0,
+      1,
+      2,
+      1
+    ],
+    "timebase": "updates"
+  },
+  "contentHash": "1299171bf0b6707e0a175348453340c985f38587ec8ecff92c40a32cb30b6deb",
+  "contract": "tile-ir-v1",
+  "density": 1,
+  "dependencies": [
+    {
+      "contentHash": "a0f62c6a2a081e4a4361bf8112f24d4645af51d037115819915f55f37313373f",
+      "id": "diagnostic-grass",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "5e7ad7a5e7d1fcd4ea6667bb8627e9fab0b3e1ff519dedffaa4e280375a295de",
+      "id": "diagnostic-water-0",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "dbb6f3e8f938fdb6562b08487e7a2fb529348fc3e33177f178e4c0644a1cb885",
+      "id": "diagnostic-water-1",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "510e30504412c91cdccb8f471bab5e4f41be130bb5d53abd3254d99847751ca4",
+      "id": "diagnostic-water-2",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "255aa69ebf87d1e36f22fe81ba4f7fad8f3e4296ffd10d084637d22abfcd982b",
+      "id": "diagnostic-mask",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "1ca0c1c701b29b580936546aa17d10ce15c732fcb51b36342a77d4dcb4cf9c02",
+      "id": "diagnostic-bank-overlay",
+      "kind": "source",
+      "revision": 1
+    },
+    {
+      "contentHash": "e660126e69e324f7aaa33c7e3886fa53917d22ca1b10358eb021b321540b3f4c",
+      "id": "diagnostic-style",
+      "kind": "style",
+      "revision": 1
+    },
+    {
+      "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+      "id": "diagnostic-parameters",
+      "kind": "parameters",
+      "revision": 2
+    },
+    {
+      "contentHash": "bed0159674378de69ceb8573b381faad1c113c38be11bf410e2b4bc988988146",
+      "id": "diagnostic-recipe",
+      "kind": "recipe",
+      "revision": 2
+    }
+  ],
+  "geometry": {
+    "height": 144,
+    "regions": [
+      {
+        "name": "representative-nw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 0
+        },
+        "role": "center"
+      },
+      {
+        "name": "representative-ne",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 0
+        },
+        "role": "center"
+      },
+      {
+        "name": "inner-nw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 0
+        },
+        "role": "inner-corner"
+      },
+      {
+        "name": "inner-ne",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 0
+        },
+        "role": "inner-corner"
+      },
+      {
+        "name": "representative-sw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 24
+        },
+        "role": "center"
+      },
+      {
+        "name": "representative-se",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 24
+        },
+        "role": "center"
+      },
+      {
+        "name": "inner-sw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 24
+        },
+        "role": "inner-corner"
+      },
+      {
+        "name": "inner-se",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 24
+        },
+        "role": "inner-corner"
+      },
+      {
+        "name": "outer-nw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 48
+        },
+        "role": "outer-corner"
+      },
+      {
+        "name": "north-e",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 48
+        },
+        "role": "edge"
+      },
+      {
+        "name": "north-w",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 48
+        },
+        "role": "edge"
+      },
+      {
+        "name": "outer-ne",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 48
+        },
+        "role": "outer-corner"
+      },
+      {
+        "name": "west-s",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 72
+        },
+        "role": "edge"
+      },
+      {
+        "name": "center-se",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 72
+        },
+        "role": "center"
+      },
+      {
+        "name": "center-sw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 72
+        },
+        "role": "center"
+      },
+      {
+        "name": "east-s",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 72
+        },
+        "role": "edge"
+      },
+      {
+        "name": "west-n",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 96
+        },
+        "role": "edge"
+      },
+      {
+        "name": "center-ne",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 96
+        },
+        "role": "center"
+      },
+      {
+        "name": "center-nw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 96
+        },
+        "role": "center"
+      },
+      {
+        "name": "east-n",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 96
+        },
+        "role": "edge"
+      },
+      {
+        "name": "outer-sw",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 0,
+          "y": 120
+        },
+        "role": "outer-corner"
+      },
+      {
+        "name": "south-e",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 24,
+          "y": 120
+        },
+        "role": "edge"
+      },
+      {
+        "name": "south-w",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 48,
+          "y": 120
+        },
+        "role": "edge"
+      },
+      {
+        "name": "outer-se",
+        "rect": {
+          "height": 24,
+          "width": 24,
+          "x": 72,
+          "y": 120
+        },
+        "role": "outer-corner"
+      }
+    ],
+    "tileHeight": 48,
+    "tileWidth": 48,
+    "width": 96
+  },
+  "ground": {
+    "components": [
+      {
+        "contentHash": "a0f62c6a2a081e4a4361bf8112f24d4645af51d037115819915f55f37313373f",
+        "id": "diagnostic-grass",
+        "kind": "source",
+        "revision": 1
+      }
+    ],
+    "material": {
+      "id": "diagnostic-grass",
+      "kind": "grass",
+      "style": {
+        "contentHash": "e660126e69e324f7aaa33c7e3886fa53917d22ca1b10358eb021b321540b3f4c",
+        "id": "diagnostic-style",
+        "kind": "style",
+        "revision": 1
+      }
+    },
+    "opaque": true
+  },
+  "parameters": {
+    "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a",
+    "id": "diagnostic-parameters",
+    "kind": "parameters",
+    "revision": 2
+  },
+  "recipe": {
+    "contentHash": "bed0159674378de69ceb8573b381faad1c113c38be11bf410e2b4bc988988146",
+    "id": "diagnostic-recipe",
+    "kind": "recipe",
+    "revision": 2
+  },
+  "transition": {
+    "bankOverlay": {
+      "contentHash": "1ca0c1c701b29b580936546aa17d10ce15c732fcb51b36342a77d4dcb4cf9c02",
+      "id": "diagnostic-bank-overlay",
+      "kind": "source",
+      "revision": 1
+    },
+    "boundaryOwner": "water",
+    "staticMask": {
+      "contentHash": "255aa69ebf87d1e36f22fe81ba4f7fad8f3e4296ffd10d084637d22abfcd982b",
+      "id": "diagnostic-mask",
+      "kind": "source",
+      "revision": 1
+    },
+    "strategy": "opaque-water-owned-baked-grass-bank-v1"
+  },
+  "water": {
+    "components": [
+      {
+        "contentHash": "5e7ad7a5e7d1fcd4ea6667bb8627e9fab0b3e1ff519dedffaa4e280375a295de",
+        "id": "diagnostic-water-0",
+        "kind": "source",
+        "revision": 1
+      },
+      {
+        "contentHash": "dbb6f3e8f938fdb6562b08487e7a2fb529348fc3e33177f178e4c0644a1cb885",
+        "id": "diagnostic-water-1",
+        "kind": "source",
+        "revision": 1
+      },
+      {
+        "contentHash": "510e30504412c91cdccb8f471bab5e4f41be130bb5d53abd3254d99847751ca4",
+        "id": "diagnostic-water-2",
+        "kind": "source",
+        "revision": 1
+      }
+    ],
+    "material": {
+      "id": "diagnostic-water-0",
+      "kind": "water",
+      "style": {
+        "contentHash": "e660126e69e324f7aaa33c7e3886fa53917d22ca1b10358eb021b321540b3f4c",
+        "id": "diagnostic-style",
+        "kind": "style",
+        "revision": 1
+      }
+    },
+    "opaque": true
+  },
+  "groundImage": {
+    "pixelHash": "209962acd96dc3e0963e9e926a562d1563e65f6e2fdc73f6e454e8688c1937e1",
+    "file": "processed/ground.png"
+  },
+  "staticMaskImage": {
+    "pixelHash": "2ab33dc7a3e6a56f7cb786192613351376f086faf117839e627ee0b7a2f9b422",
+    "file": "processed/mask.png"
+  },
+  "frames": [
+    {
+      "pixelHash": "60a4de916657349d9fc8503400815374913864e24ba177980a710487945977ef",
+      "file": "processed/water-0.png"
+    },
+    {
+      "pixelHash": "d69dadccf7ae7f1a6546d02d306d464b68141cc1aa3a2783e611b6ccd1b3e009",
+      "file": "processed/water-1.png"
+    },
+    {
+      "pixelHash": "ce3b47c93091bc69af2ebe4db0c542bdf881885fcdb0a64c02720b3940a7e52a",
+      "file": "processed/water-2.png"
+    }
+  ]
+}

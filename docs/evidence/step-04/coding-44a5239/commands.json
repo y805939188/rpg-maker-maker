@@ -1,0 +1,62 @@
+{
+  "commit": "44a5239a979cd549e893df705df7704d043216be",
+  "cleanGitAtCandidateChecksAndPublication": true,
+  "commands": [
+    {
+      "command": "pnpm check",
+      "result": "PASS",
+      "testFiles": 17,
+      "tests": 188,
+      "log": "check-candidate-frozen.log.txt"
+    },
+    {
+      "command": "node .local/step04-initial/scalars.mjs",
+      "result": "PASS",
+      "assertions": 78,
+      "log": "candidate-legacy-public-78.log.txt"
+    },
+    {
+      "command": "node scripts/build-engineering.mjs step04",
+      "result": "PASS",
+      "log": "candidate-engineering.json"
+    },
+    {
+      "command": "node scripts/build-mz-sample.mjs",
+      "result": "PASS",
+      "log": "candidate-mz-sample.json"
+    },
+    {
+      "command": "node scripts/build-material-sample.mjs",
+      "result": "PASS",
+      "log": "candidate-material.json"
+    },
+    {
+      "command": "node dist/scripts/build-prototype.js",
+      "result": "PASS",
+      "log": "candidate-prototype.json"
+    },
+    {
+      "command": "node dist/scripts/verify-step04.js <licensed core> artifacts/step04-mz-44a5239a979c-ed3814944c9713b8",
+      "result": "PASS",
+      "log": "candidate-native-oracle.json"
+    },
+    {
+      "command": "node dist/scripts/prepare-step04.js <licensed newdata> artifacts/step04-mz-44a5239a979c-ed3814944c9713b8",
+      "result": "PASS",
+      "log": "candidate-prepare-mz.json"
+    },
+    {
+      "command": "node .local/step04-initial/candidate-refusal-probe.mjs",
+      "result": "PASS",
+      "log": "candidate-refusal-results.json"
+    },
+    {
+      "command": "python3 .local/step04-initial/validate-candidate.py",
+      "result": "PASS",
+      "log": "candidate-protection-regression.json"
+    }
+  ],
+  "dbIntegration": "NOT_EXECUTED_THIS_ROUND",
+  "browserE2E": "NOT_EXECUTED_THIS_ROUND",
+  "independentReview": "NOT_EXECUTED_BY_DESIGN"
+}
