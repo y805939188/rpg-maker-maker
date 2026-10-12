@@ -1,0 +1,31 @@
+
+> @tileset/prototype@0.0.2 typecheck /private/tmp/tileset-global-fix-20261012
+> pnpm build:contracts && tsc --noEmit && tsc -p tsconfig.tests.json && pnpm -r --filter './apps/*' --filter './packages/*' typecheck
+
+
+> @tileset/prototype@0.0.2 build:contracts /private/tmp/tileset-global-fix-20261012
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build
+
+
+> @tileset/contracts@0.0.2 build /private/tmp/tileset-global-fix-20261012/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /private/tmp/tileset-global-fix-20261012/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /private/tmp/tileset-global-fix-20261012/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /private/tmp/tileset-global-fix-20261012/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /private/tmp/tileset-global-fix-20261012/packages/image-adapter
+> tsc -p tsconfig.json
+
+packages/material-processing/tests/global-review.test.ts(50,48): error TS2352: Conversion of type 'any[] | string[]' to type 'string' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  Type 'string[]' is not comparable to type 'string'.
+ ELIFECYCLE  Command failed with exit code 2.

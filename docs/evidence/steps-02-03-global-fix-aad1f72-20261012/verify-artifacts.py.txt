@@ -1,0 +1,71 @@
+import hashlib,json,struct,zlib,subprocess
+from pathlib import Path
+sha=lambda b:hashlib.sha256(b).hexdigest()
+def rgba(png):
+ assert png[:8]==bytes([137,80,78,71,13,10,26,10]);offset=8;compressed=bytearray()
+ while offset<len(png):
+  size=struct.unpack('>I',png[offset:offset+4])[0];name=png[offset+4:offset+8];data=png[offset+8:offset+8+size]
+  assert zlib.crc32(name+data)==struct.unpack('>I',png[offset+8+size:offset+12+size])[0]
+  if name==b'IHDR':
+   width,height,depth,color,compression,filtering,interlace=struct.unpack('>IIBBBBB',data);assert (depth,color,compression,filtering,interlace)==(8,6,0,0,0)
+  if name==b'IDAT':compressed.extend(data)
+  offset+=size+12
+ raw=zlib.decompress(compressed);stride=width*4;assert len(raw)==height*(stride+1)
+ result=bytearray();previous=bytearray(stride)
+ for y in range(height):
+  start=y*(stride+1);mode=raw[start];row=bytearray(raw[start+1:start+1+stride]);assert mode<=4
+  for x in range(stride):
+   left=row[x-4] if x>=4 else 0;up=previous[x];ul=previous[x-4] if x>=4 else 0
+   if mode==1: predictor=left
+   elif mode==2:predictor=up
+   elif mode==3:predictor=(left+up)//2
+   elif mode==4:
+    p=left+up-ul;a,b,c=abs(p-left),abs(p-up),abs(p-ul);predictor=left if a<=b and a<=c else up if b<=c else ul
+   else:predictor=0
+   row[x]=(row[x]+predictor)&255
+  result.extend(row);previous=row
+ return width,height,bytes(result)
+
+source='aad1f7223baacd042f43bd6cfbba0619e822b00f'
+old=Path('/private/tmp/tileset-global-review-784a39f-20261012/artifacts')
+builds=[]
+for directory in sorted(Path('artifacts').iterdir()):
+ m=json.loads((directory/'manifest.json').read_text());assert m['commit']==source
+ assert m['lockSha256']==sha(Path('pnpm-lock.yaml').read_bytes())
+ assert m['profile']['version']=='1.0.0-candidate.1'
+ assert m['pixelContract']=='rgba8-srgb-integer-v1'
+ assert {str(p.relative_to(directory)) for p in directory.rglob('*') if p.is_file()}==set(m['files'])|{'manifest.json'}
+ for name,h in m['files'].items():
+  assert sha((directory/name).read_bytes())==h
+  if m['buildId'].startswith(('step02-','step03-')) and not m['buildId'].startswith('step03-material-'): assert sha(Path(name).read_bytes())==h
+ builds.append({'buildId':m['buildId'],'manifestSha256':sha((directory/'manifest.json').read_bytes()),'payloadFiles':len(m['files']),'files':m['files']})
+material=next(Path('artifacts')/b['buildId'] for b in builds if b['buildId'].startswith('step03-material-'))
+engineering=next(Path('artifacts')/b['buildId'] for b in builds if b['buildId'].startswith('step03-') and not b['buildId'].startswith('step03-material-'))
+prototype=next(Path('artifacts')/b['buildId'] for b in builds if b['buildId'].startswith('step01-'))
+old_material=old/'step03-material-784a39fb9739-5c1c1e8a30c43896'
+old_engineering=old/'step03-784a39fb9739-3309a5d39d103d86'
+old_prototype=old/'step01-c013b8835a6c1b1e488b'
+approved=Path('/Users/dingshinn/Desktop/rpg-maker-maker/artifacts/step01-56368269c8328e0f84b9')
+comparisons=[]
+for new,baseline,allowed in [(material,old_material,set()),(prototype,old_prototype,set()),(engineering,old_engineering,{'packages/asset-core/dist/index.js','packages/asset-core/dist/index.js.map'})]:
+ a=json.loads((new/'manifest.json').read_text());b=json.loads((baseline/'manifest.json').read_text())
+ assert a['files'].keys()==b['files'].keys()
+ changed=[name for name,h in a['files'].items() if b['files'][name]!=h]
+ assert set(changed)==allowed,changed
+ for name,h in b['files'].items():assert sha((baseline/name).read_bytes())==h
+ comparisons.append({'new':a['buildId'],'baseline':b['buildId'],'changedPayloads':changed,'equalPayloads':len(a['files'])-len(changed)})
+art=json.loads(Path('packages/material-processing/tests/fixtures/fixed-shoreline.json').read_text())
+expected=[('sources/grass.png',art['grass']),('sources/mask.png',art['mask']),('sources/bank-detail.png',art['overlay'])]+[(f'sources/water-{i}.png',p) for i,p in enumerate(art['water'])]+[('processed/ground.png',art['grass']),('processed/static-mask.png',art['mask'])]+[(f'processed/water-{i}.png',p) for i,p in enumerate(art['expected'])]
+pngs=[]
+for name,pixels in expected:
+ w,h,data=rgba((material/name).read_bytes());assert (w,h)==(art['width'],art['height']);assert data==bytes(v for p in pixels for v in p)
+ pngs.append({'file':name,'byteSha256':sha((material/name).read_bytes()),'rgbaSha256':sha(data),'exactLiteralPixels':True})
+legacy=[]
+for name in json.loads((prototype/'manifest.json').read_text())['files']:
+ a=(approved/name).read_bytes();b=(prototype/name).read_bytes();assert a==b;assert rgba(a)==rgba(b)
+ legacy.append({'file':name,'byteSha256':sha(b),'rgbaSha256':sha(rgba(b)[2]),'exactApprovedBytesAndRgba':True})
+m=json.loads((material/'manifest.json').read_text())
+assert m['targetCompilation']=='NOT_EXECUTED'
+assert m['artifactHash']==json.loads((material/'tile-ir.json').read_text())['contentHash']
+assert m['artifactHash']==json.loads((old_material/'manifest.json').read_text())['artifactHash']
+print(json.dumps({'source':source,'builds':builds,'comparisons':comparisons,'materialPngs':pngs,'legacyPngs':legacy,'sampleIrArtifactHash':m['artifactHash'],'implementation':'stdlib CRC/inflate/filter; unchanged independent literal expected JSON; no production image decoder/compiler imports'},indent=2))

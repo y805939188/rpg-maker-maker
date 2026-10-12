@@ -1,0 +1,14 @@
+import os,sys,subprocess,time,json,hashlib,pathlib,datetime
+root=pathlib.Path('/private/tmp/tileset-global-fix-20261012')
+name,expected,cwd,*argv=sys.argv[1:]
+out=root/'.local/global-fix'
+env=os.environ.copy();env['PATH']='/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+env['PATH'];env['XDG_CACHE_HOME']=str(root/'.local/cache')
+head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=cwd,text=True).strip()
+status=subprocess.check_output(['git','status','--porcelain','--untracked-files=all'],cwd=cwd,text=True)
+start=datetime.datetime.now(datetime.timezone.utc).isoformat();t=time.monotonic()
+log=out/(name+'.log')
+with log.open('w') as f: result=subprocess.run(argv,cwd=cwd,env=env,stdout=f,stderr=subprocess.STDOUT)
+r={'name':name,'cwd':cwd,'head':head,'statusBefore':status,'argv':argv,'environment':{'pinnedNode':'22.21.1','XDG_CACHE_HOME':env['XDG_CACHE_HOME']},'startedUtc':start,'seconds':round(time.monotonic()-t,3),'expectedExit':int(expected),'actualExit':result.returncode,'logSha256':hashlib.sha256(log.read_bytes()).hexdigest()}
+with (out/'commands.jsonl').open('a') as f:f.write(json.dumps(r)+'\n')
+print(json.dumps(r));print(log.read_text()[-3500:])
+if result.returncode!=int(expected):sys.exit(1)

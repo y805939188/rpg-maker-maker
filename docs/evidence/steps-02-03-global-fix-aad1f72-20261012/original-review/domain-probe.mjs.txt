@@ -1,0 +1,79 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import * as core from '@tileset/asset-core';
+import * as pixel from '@tileset/material-processing';
+
+const provenance={origin:'manual',author:'Global independent review',license:'CC0',toolVersion:'literal-v1',parents:[]};
+const makeSource=(id,role,data,revision=1)=>{
+ const bytes=new Uint8Array(data);
+ const raw=new core.RawSource({id,role,revision,density:1,encoding:'rgba8',bytes,provenance});
+ return core.validatedDecodedSource(raw,{width:2,height:2,data:bytes});
+};
+const grass=makeSource('grass','grass',[10,80,20,255,10,80,20,255,10,80,20,255,10,80,20,255],3);
+const waterA=makeSource('water-a','water',[0,40,100,255,0,40,100,255,0,40,100,255,0,40,100,255]);
+const waterB=makeSource('water-b','water',[0,50,110,255,0,50,110,255,0,50,110,255,0,50,110,255]);
+const mask=makeSource('bank','static-mask',[255,255,255,255,0,0,0,255,255,255,255,255,0,0,0,255]);
+const overlay=makeSource('detail','bank-overlay',[200,180,80,255,0,0,0,0,0,0,0,0,0,0,0,0]);
+const style=core.styleProfile('style',1,{logicalPixelScale:1,palette:[[10,80,20],[0,40,100],[0,50,110],[200,180,80]],lighting:'flat',outline:'dark'});
+const parameters=pixel.shorelineParameters('parameters',1,{geometry:{width:2,height:2,tileWidth:1,tileHeight:1,regions:[{name:'bank',role:'edge',rect:{x:0,y:0,width:1,height:2}},{name:'water',role:'center',rect:{x:1,y:0,width:1,height:2}}]},animation:{frameCount:2,sequence:[0,1],durations:[2,3],timebase:'milliseconds',loop:false},composition:'linear-srgb-source-over',mask:'white-static-bank'});
+const recipe=pixel.shorelineRecipe('shore',1,{version:'fixed-shoreline-v1',grass:grass.ref,water:[waterA.ref,waterB.ref],staticMask:mask.ref,bankOverlay:overlay.ref,style:style.ref,parameters:parameters.ref});
+const input={recipe,sources:[grass,waterA,waterB,mask,overlay],style,parameters};
+const compilable=pixel.processShoreline(input);
+const expected=[[200,180,80,255,0,40,100,255,10,80,20,255,0,40,100,255],[200,180,80,255,0,50,110,255,10,80,20,255,0,50,110,255]];
+assert.deepEqual(compilable.ir.frames.map(p=>[...p.bytes()]),expected);
+const results=[];
+function check(name,fn){try{const detail=fn();results.push({name,pass:true,detail});}catch(e){results.push({name,pass:false,error:e.message});}}
+function rejects(name,fn,code){check(name,()=>{assert.throws(fn,e=>e.code===code);return{expectedRejection:code};});}
+const rehash=(ir)=>({...ir,contentHash:core.tileIRHash(ir)});
+check('literal generic 2-frame source -> IR -> Built',()=>{const built=core.buildProcessedAsset(compilable,'control');assert.equal(built.targetCompilation,'NOT_EXECUTED');return{state:built.state,hash:built.artifactHash};});
+rejects('sparse animation',()=>core.animationClip({frameCount:2,sequence:new Array(1),durations:[2],timebase:'updates',loop:true}),'ANIMATION');
+rejects('sparse metadata',()=>core.fingerprint({list:new Array(1)}),'INVALID_METADATA');
+rejects('IR without exact parameter dependency',()=>core.validateTileIR(rehash({...compilable.ir,dependencies:compilable.ir.dependencies.filter(r=>r.kind!=='parameters')})),'IR_DEPENDENCIES');
+rejects('unplayed IR variation',()=>core.buildProcessedAsset({state:'COMPILABLE_RECIPE',ir:rehash({...compilable.ir,animation:{frameCount:2,sequence:[0,0],durations:[2,3],timebase:'updates',loop:true}})},'bad'),'IR_ANIMATION');
+rejects('same-source multiple revisions',()=>pixel.shorelineRecipe('shore',2,{...recipe.value,water:[waterA.ref,{...waterA.ref,revision:2}]}),'REVISION_IDENTITY_CONFLICT');
+check('catalog availability/adoption/history',()=>{const built=core.buildProcessedAsset(compilable,'history');const catalog=new core.RevisionCatalog();built.ir.dependencies.forEach(r=>catalog.publish(r));const newer=makeSource('grass','grass',[10,80,20,255,10,80,20,255,10,80,20,255,10,80,20,255],4);catalog.publish(newer.ref);assert.equal(core.assessBuild(built,catalog,built.ir.dependencies).needsRebuild,false);const changed=core.adoptRevision(built.ir.dependencies,newer.ref,catalog);const assessment=core.assessBuild(built,catalog,changed);assert.equal(assessment.needsRebuild,true);assert.equal(assessment.historicalValidity,'VALID');assert.equal(pixel.processShoreline(input).ir.contentHash,built.artifactHash);return assessment;});
+check('Raw/RGBA returned copies protect history',()=>{grass.image.bytes().fill(9);grass.raw.bytes().fill(9);assert.deepEqual([...grass.image.bytes()],[10,80,20,255,10,80,20,255,10,80,20,255,10,80,20,255]);});
+
+// Invalid JSON-representable scalars: observations are recorded separately from passing gates.
+const observations=[];
+for(const value of ['false',1,[],{}]) {
+ const ir=rehash({...compilable.ir,ground:{...compilable.ir.ground,opaque:value}});
+ try {const built=core.buildProcessedAsset({state:'COMPILABLE_RECIPE',ir},'invalid-opaque');observations.push({case:'opaque must be boolean true',input:value,accepted:true,state:built.state,actualType:typeof built.ir.ground.opaque,stored:built.ir.ground.opaque});}
+ catch(e){observations.push({case:'opaque must be boolean true',input:value,accepted:false,error:e.code});}
+}
+const mutableId=['build-one'];
+try {
+ const built=core.buildProcessedAsset(compilable,mutableId);
+ const before=JSON.stringify(built);
+ mutableId[0]='build-two';
+ observations.push({case:'Built stable string ID and immutability',accepted:true,builtFrozen:Object.isFrozen(built),idFrozen:Object.isFrozen(built.id),storedId:built.id,changedAfterCallerMutation:before!==JSON.stringify(built),artifactHashUnchanged:built.artifactHash===built.ir.contentHash});
+}catch(e){observations.push({case:'Built stable string ID',accepted:false,error:e.code});}
+const names=[['same'],['same']];
+try{
+ const accepted=core.geometry({...parameters.value.geometry,regions:parameters.value.geometry.regions.map((r,i)=>({...r,name:names[i]}))});
+ observations.push({case:'Region names must be unique strings',accepted:true,regionNames:accepted.regions.map(r=>r.name)});
+ const malformedParameters=pixel.shorelineParameters('parameters',2,{...parameters.value,geometry:accepted});
+ const malformedRecipe=pixel.shorelineRecipe('shore',2,{...recipe.value,parameters:malformedParameters.ref});
+ const malformedBuilt=core.buildProcessedAsset(pixel.processShoreline({...input,parameters:malformedParameters,recipe:malformedRecipe}),'invalid-region-names');
+ observations.push({case:'Malformed region names through real recipe -> Compilable -> Built',state:malformedBuilt.state,regionNames:malformedBuilt.ir.geometry.regions.map(r=>r.name),targetCompilation:malformedBuilt.targetCompilation});
+}catch(e){observations.push({case:'Region names must be unique strings',accepted:false,error:e.code});}
+
+const math=JSON.parse(readFileSync(new URL('math-oracle.json',import.meta.url),'utf8'));
+for(const c of math){check('Decimal source-over '+c.name,()=>{const plane=b=>new core.RgbaImage({width:1,height:1,data:new Uint8Array(b)});assert.deepEqual([...pixel.sourceOver(plane(c.bottom),plane(c.top)).bytes()],c.expected);});}
+// Enumerate legal overlapping rectangles against an independent original tuple grid.
+check('shared Buffer 2D overlap across directions/offsets',()=>{
+ let count=0;
+ for(let sy=0;sy<3;sy++)for(let sx=0;sx<3;sx++)for(let dy=0;dy<3;dy++)for(let dx=0;dx<3;dx++){
+  const original=Array.from({length:16},(_,i)=>[i+1,20,30,255]);
+  const storage=Buffer.from(original.flat());
+  const expected=original.map(p=>p.slice());
+  for(let row=0;row<2;row++)for(let col=0;col<2;col++)expected[(dy+row)*4+dx+col]=original[(sy+row)*4+sx+col].slice();
+  const source={width:4,height:4,data:storage.subarray(0)},target={width:4,height:4,data:storage.subarray(0)};
+  pixel.copyRect(source,target,{x:sx,y:sy,width:2,height:2},dx,dy);
+  assert.deepEqual([...storage],expected.flat());count++;
+ }
+ return {count};
+});
+writeFileSync(new URL('domain-results.json',import.meta.url),JSON.stringify({productionPackageExports:true,results,observations},null,2)+'\n');
+console.log(JSON.stringify({passing:results.filter(r=>r.pass).length,failing:results.filter(r=>!r.pass),observations},null,2));
+if(results.some(r=>!r.pass))process.exitCode=1;

@@ -1,0 +1,189 @@
+{
+  "productionPackageExports": true,
+  "results": [
+    {
+      "name": "literal generic 2-frame source -> IR -> Built",
+      "pass": true,
+      "detail": {
+        "state": "BUILT_ARTIFACT",
+        "hash": "77413b5af0082bd0d29af7ffb664ff0c5f0cc678c11dc23bc588fe7010020c88"
+      }
+    },
+    {
+      "name": "sparse animation",
+      "pass": true,
+      "detail": {
+        "expectedRejection": "ANIMATION"
+      }
+    },
+    {
+      "name": "sparse metadata",
+      "pass": true,
+      "detail": {
+        "expectedRejection": "INVALID_METADATA"
+      }
+    },
+    {
+      "name": "IR without exact parameter dependency",
+      "pass": true,
+      "detail": {
+        "expectedRejection": "IR_DEPENDENCIES"
+      }
+    },
+    {
+      "name": "unplayed IR variation",
+      "pass": true,
+      "detail": {
+        "expectedRejection": "IR_ANIMATION"
+      }
+    },
+    {
+      "name": "same-source multiple revisions",
+      "pass": true,
+      "detail": {
+        "expectedRejection": "REVISION_IDENTITY_CONFLICT"
+      }
+    },
+    {
+      "name": "catalog availability/adoption/history",
+      "pass": true,
+      "detail": {
+        "currentMismatches": [
+          {
+            "contentHash": "abaddccd881d1b5526d14663d7d084d5ed968e010bc20050315cec44f930c61e",
+            "id": "grass",
+            "kind": "source",
+            "revision": 3
+          }
+        ],
+        "historicalValidity": "VALID",
+        "needsRebuild": true,
+        "newerAvailable": [
+          {
+            "contentHash": "abaddccd881d1b5526d14663d7d084d5ed968e010bc20050315cec44f930c61e",
+            "id": "grass",
+            "kind": "source",
+            "revision": 4
+          }
+        ]
+      }
+    },
+    {
+      "name": "Raw/RGBA returned copies protect history",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over white-half-black",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over partial-both",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over transparent-both",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over transparent-top",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over alpha-one",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over alpha-tiny",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over low-transfer",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over opaque-top",
+      "pass": true
+    },
+    {
+      "name": "Decimal source-over partial-over-empty",
+      "pass": true
+    },
+    {
+      "name": "shared Buffer 2D overlap across directions/offsets",
+      "pass": true,
+      "detail": {
+        "count": 81
+      }
+    }
+  ],
+  "observations": [
+    {
+      "case": "opaque must be boolean true",
+      "input": "false",
+      "accepted": true,
+      "state": "BUILT_ARTIFACT",
+      "actualType": "string",
+      "stored": "false"
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": 1,
+      "accepted": true,
+      "state": "BUILT_ARTIFACT",
+      "actualType": "number",
+      "stored": 1
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": [],
+      "accepted": true,
+      "state": "BUILT_ARTIFACT",
+      "actualType": "object",
+      "stored": []
+    },
+    {
+      "case": "opaque must be boolean true",
+      "input": {},
+      "accepted": true,
+      "state": "BUILT_ARTIFACT",
+      "actualType": "object",
+      "stored": {}
+    },
+    {
+      "case": "Built stable string ID and immutability",
+      "accepted": true,
+      "builtFrozen": true,
+      "idFrozen": false,
+      "storedId": [
+        "build-two"
+      ],
+      "changedAfterCallerMutation": true,
+      "artifactHashUnchanged": true
+    },
+    {
+      "case": "Region names must be unique strings",
+      "accepted": true,
+      "regionNames": [
+        [
+          "same"
+        ],
+        [
+          "same"
+        ]
+      ]
+    },
+    {
+      "case": "Malformed region names through real recipe -> Compilable -> Built",
+      "state": "BUILT_ARTIFACT",
+      "regionNames": [
+        [
+          "same"
+        ],
+        [
+          "same"
+        ]
+      ],
+      "targetCompilation": "NOT_EXECUTED"
+    }
+  ]
+}

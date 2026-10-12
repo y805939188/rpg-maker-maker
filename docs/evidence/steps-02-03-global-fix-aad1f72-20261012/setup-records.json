@@ -1,0 +1,27 @@
+{
+  "logs": {
+    "install.log": "Initial inherited Node22.14.0 refused (exit1).",
+    "install-pinned.log": "Node22.21.1 frozen install own .local/pnpm-store (exit0).",
+    "db-generate.log": "XDG_CACHE_HOME in own .local/cache; generated Prisma only, no DB connect (exit0)."
+  },
+  "oldSetup": {
+    "commands": [
+      [
+        "pnpm",
+        "install",
+        "--frozen-lockfile",
+        "--offline",
+        "--store-dir",
+        "/private/tmp/tileset-global-fix-20261012/.local/pnpm-store"
+      ],
+      [
+        "pnpm",
+        "build:contracts"
+      ]
+    ],
+    "installLogSha256": "1fedfa0138b81870bbda0885324e9a1354a0b9d90832f9dd04e127faac25653b",
+    "buildLogSha256": "6965b4835e6b63ab859d6e6c02269b3285ed325c9773ea8812c7722a797cd770",
+    "actualExit": 0
+  },
+  "setupTimestamps": "NOT_RECORDED; original raw logs retained; frozen validation has per-command UTC timing"
+}

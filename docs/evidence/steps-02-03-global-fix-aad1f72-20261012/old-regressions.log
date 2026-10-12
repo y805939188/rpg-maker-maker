@@ -1,0 +1,91 @@
+
+ RUN  v4.1.11 /private/tmp/tileset-global-fix-negative-20261012
+
+ ❯ packages/material-processing/tests/global-review.test.ts (15 tests | 9 failed) 24ms
+     × rejects array Built IDs at construction 6ms
+     × rejects boolean Built IDs at construction 1ms
+     × rejects null Built IDs at construction 1ms
+     × rejects missing Built IDs at construction 1ms
+     × also rejects non-string or malformed IDs at the public historical Built validator 2ms
+     × rejects independent array region names, other non-string names and duplicate strings 1ms
+     × rejects invalid names through the shoreline parameter constructor and processing revalidation 1ms
+     × requires literal true for ground.opaque in rehashed IR and Built 1ms
+     × requires literal true for water.opaque in rehashed IR and Built 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > rejects array Built IDs at construction
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > rejects boolean Built IDs at construction
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > rejects null Built IDs at construction
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > rejects missing Built IDs at construction
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects packages/material-processing/tests/global-review.test.ts:23:15
+     21|
+     22| function rejects(run: () => unknown, code: string) {
+     23|   expect(run).toThrow(AssetError);
+       |               ^
+     24|   expect(run).toThrow(expect.objectContaining({ code }));
+     25| }
+ ❯ packages/material-processing/tests/global-review.test.ts:47:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > also rejects non-string or malformed IDs at the public historical Built validator
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects packages/material-processing/tests/global-review.test.ts:23:15
+     21|
+     22| function rejects(run: () => unknown, code: string) {
+     23|   expect(run).toThrow(AssetError);
+       |               ^
+     24|   expect(run).toThrow(expect.objectContaining({ code }));
+     25| }
+ ❯ packages/material-processing/tests/global-review.test.ts:79:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > rejects independent array region names, other non-string names and duplicate strings
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects packages/material-processing/tests/global-review.test.ts:23:15
+     21|
+     22| function rejects(run: () => unknown, code: string) {
+     23|   expect(run).toThrow(AssetError);
+       |               ^
+     24|   expect(run).toThrow(expect.objectContaining({ code }));
+     25| }
+ ❯ packages/material-processing/tests/global-review.test.ts:95:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > rejects invalid names through the shoreline parameter constructor and processing revalidation
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects packages/material-processing/tests/global-review.test.ts:23:15
+     21|
+     22| function rejects(run: () => unknown, code: string) {
+     23|   expect(run).toThrow(AssetError);
+       |               ^
+     24|   expect(run).toThrow(expect.objectContaining({ code }));
+     25| }
+ ❯ packages/material-processing/tests/global-review.test.ts:102:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > requires literal true for ground.opaque in rehashed IR and Built
+ FAIL  packages/material-processing/tests/global-review.test.ts > GR-0203-001: runtime scalar rejection before Built > requires literal true for water.opaque in rehashed IR and Built
+AssertionError: expected function to throw an error, but it didn't
+ ❯ rejects packages/material-processing/tests/global-review.test.ts:23:15
+     21|
+     22| function rejects(run: () => unknown, code: string) {
+     23|   expect(run).toThrow(AssetError);
+       |               ^
+     24|   expect(run).toThrow(expect.objectContaining({ code }));
+     25| }
+ ❯ packages/material-processing/tests/global-review.test.ts:134:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 6 passed (15)
+   Start at  16:21:03
+   Duration  200ms (transform 57ms, setup 0ms, import 72ms, tests 24ms, environment 0ms)
+
