@@ -305,24 +305,40 @@
         "allFilesExactMatch": true,
         "manifestSha256": "414df504306bd0f5022ea06af4578116a21b73b944f57d26bba178ba2d5d9711",
         "independentReview": "NOT_EXECUTED_PLATFORM_INTERRUPTED"
+      },
+      {
+        "buildId": "step02-5356d66e6936-d15cfdc0a1130a7e",
+        "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+        "files": 71,
+        "preservedPath": "artifacts/step02-5356d66e6936-d15cfdc0a1130a7e",
+        "allFilesExactMatch": true,
+        "manifestSha256": "6a9fd114e256047ea4112bca7595a32f5c6ff6268dc38d9d5100133bd2f44d1d"
+      },
+      {
+        "buildId": "step01-0c4bab5226bff144467a",
+        "sourceCommit": "5356d66e693613f9ce52c4b0ceaddfe2821fffb5",
+        "files": 5,
+        "preservedPath": "artifacts/step01-0c4bab5226bff144467a",
+        "allFilesExactMatch": true,
+        "manifestSha256": "6730f1299a71cae5908c7a94407e7f3d98e46c4b6bcfdd7f0ea30d87a92af5fb"
       }
     ],
     "prototypeRegression": "EXACT_FOUR_PNG_MATCH_UNCHANGED_LEGACY_SOURCE_AND_FIXTURES",
-    "evidenceHead": "e7f40efdc53613f1353278ad324436e815407252",
+    "evidenceHead": "85fefc1d4638cec79ea00797a0be50e2018444bd",
     "evidenceLedger": {
-      "sha256": "e3b8286e1f5e8d7ff0d3938fc7878fd00b77063621144a3ef12fd2bb5399e78a",
-      "entries": 33,
-      "verification": "PASS_ORCHESTRATOR_HASH_CHECK",
-      "postFreezeDiff": "DOCS_ONLY"
+      "sha256": "2e1da7ed51775c46ebd0d0cf2305078fe5e797b414289eb5518bf56a7344bde8",
+      "entries": 39,
+      "verification": "CODING_VERIFIED_INDEPENDENT_PENDING",
+      "postFreezeDiff": "42_DOCS_REPORT_EVIDENCE_PATHS_SOURCE_IDENTICAL"
     },
     "codingReport": "docs/reviews/step-02-coding.md",
     "repairMilestone": "NEW_FROZEN_C3914EC_CHECK68_DB3_DEV_PROD_COLD_DEV_PASS_CODING_REPORTED",
     "repairNotes": "Exact396 config+boundary negativecontrol528requests60fakeMarkerReads6HEAD200; preserved snapshots and same current test; registered NUL virtual fixture success; not yet frozen",
     "currentBuilds": [
-      "step02-c3914ec1929e-c718a9846c1ce18a",
-      "step01-c512ed0c899ac99d4694"
+      "step02-5356d66e6936-d15cfdc0a1130a7e",
+      "step01-0c4bab5226bff144467a"
     ],
-    "fixReport": "docs/reviews/step-02-fix-round-2-coding.md",
+    "fixReport": "docs/reviews/step-02-fix-round-3-coding.md",
     "privacyCountsCorrection": "3 foreign GET + 3 foreign OPTIONS, not6preflights",
     "latestCodingChecks": {
       "fullCheck": "72/72_PASS_ORIGINAL52_PRESERVED",
@@ -331,7 +347,8 @@
       "patchedNative": "SHARP0.35.5_LIBVIPS8.18.7_ACTUALLY_LOADED",
       "fourPNG": "EXACT_BYTE_AND_PIXEL_MATCH_EXPERIMENTAL_CODING",
       "audit": "0HIGH_0CRITICAL_1SCOPED_LOW",
-      "frozenFinalEvidence": "IN_PROGRESS"
+      "frozenFinalEvidence": "16_COMMANDS_PASS_COMMITTED",
+      "runtimeFaults": "CURRENT_COMPILED_BACKEND_PASS"
     },
     "latestIndependentPass": "NONE",
     "delegatedApproval": "NOT_ISSUED",
@@ -387,7 +404,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "C391_FROZEN_CODE_E7F40EF_DOCS_HASHED_33FILES_PRESERVED_MAIN_F004_VERIFIED",
+  "lastSuccessfulCheckpoint": "5356_FROZEN_PATCHED_CODEC_ARTIFACTS_PRESERVED_85FEFC1_EVIDENCE_COMMITTED",
   "blockingCondition": {
     "type": "DESIGNATED_INDEPENDENT_REVIEW_UNAVAILABLE",
     "observations": [
@@ -398,12 +415,13 @@
     "noAlternateModelsTiersOrPrivileges": true,
     "requiredToResume": "Restore permitted designated step_reviewer execution, verify live Git/source/build state, complete exact-candidate independent round3 and all gates before any merge/push/step03",
     "latestResumeEvent": "MAIN_TURN_FLAGGED_DURING_READ_ONLY_RECOVERY_BEFORE_NEW_REVIEWER",
-    "supportRecord": "docs/orchestration/evidence/resume-main-platform-interruption-2905000.json"
+    "supportRecord": "docs/orchestration/evidence/resume-main-platform-interruption-2905000.json",
+    "status": "HISTORICAL_RESOLVED_EXECUTION_RESUMED_ROUND4_IN_PROGRESS"
   },
   "cleanup": "UNMERGED_WORKTREES_BRANCHES_RETAINED_NO_FORCE_DELETE",
   "finalRemoteMain": "f004d6c74abe64ea853619390aa9dc2bc34654c1_VERIFIED_FETCH_AND_LS_REMOTE",
   "finalReport": "docs/orchestration/steps-02-03-blocked-report.md",
-  "ownedServices": "REVIEW_POSTGRES55433_STARTED_THIS_RESUME; CODING55432_AND_INTEGRATION55434_STOPPED",
+  "ownedServices": "CODING_POSTGRES55432_RESTORED_REVIEW55433_RUNNING_INTEGRATION55434_STOPPED",
   "resumeAttempts": [
     {
       "event": "MAIN_PLATFORM_INTERRUPTION",
