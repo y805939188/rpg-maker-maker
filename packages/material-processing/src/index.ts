@@ -7,6 +7,8 @@ import {
   immutableTileIR,
   isValidatedSource,
   positiveInteger,
+  playbackVaries,
+  requireDenseArray,
   styleProfile,
   requireRule,
   sameRef,
@@ -16,6 +18,7 @@ import {
   validateRect,
   validateRef,
   validateRevision,
+  validateAdoptionIdentities,
 } from '@tileset/asset-core';
 import type {
   AnimationClip,
@@ -193,6 +196,7 @@ export function shorelineRecipe(
   revision: number,
   input: ShorelineRecipe,
 ): Revision<ShorelineRecipe> {
+  requireDenseArray(input.water, 'water source revisions', 'RECIPE');
   requireRule(
     input.version === PROCESSING_VERSION &&
       Array.isArray(input.water) &&
@@ -209,6 +213,7 @@ export function shorelineRecipe(
       'Recipe components must reference exact source revisions.',
     );
   }
+  validateAdoptionIdentities([input.grass, ...input.water, input.staticMask, input.bankOverlay]);
   validateRef(input.style);
   validateRef(input.parameters);
   requireRule(
@@ -264,6 +269,7 @@ export function processShoreline(input: {
   const scale = input.style.value.logicalPixelScale;
   positiveInteger(scale, 'density');
   const expected = [r.grass, ...r.water, r.staticMask, r.bankOverlay];
+  requireDenseArray(input.sources, 'recipe sources', 'RECIPE_SOURCES');
   requireRule(
     input.sources.length === expected.length &&
       new Set(expected.map((ref) => `${ref.id}@${ref.revision}`)).size === expected.length,
@@ -323,13 +329,14 @@ export function processShoreline(input: {
     'BANK_GEOMETRY',
     'Bank detail may not alter the dynamic interior.',
   );
-  const bank = sourceOver(grass.image, overlay.image);
   palette(grass.image, input.style.value);
   water.forEach((s) => palette(s.image, input.style.value));
+  palette(overlay.image, input.style.value);
+  const bank = sourceOver(grass.image, overlay.image);
   palette(bank, input.style.value);
   const frames = water.map((s) => protectStaticRegion(bank, s.image, mask.image));
   requireRule(
-    frames.some((frame) => frame.pixelHash !== frames[0]!.pixelHash),
+    playbackVaries(frames, params.animation),
     'ANIMATION_STATIC',
     'Water must have actual interior variation; identical frames are not an animated result.',
   );
@@ -359,6 +366,7 @@ export function processShoreline(input: {
     frames: Object.freeze(frames),
     dependencies: freezeJson([...expected, r.style, r.parameters, input.recipe.ref]),
     recipe: input.recipe.ref,
+    parameters: r.parameters,
   };
   const ir = immutableTileIR({ ...base, contentHash: tileIRHash(base) });
   return Object.freeze({ state: 'COMPILABLE_RECIPE', ir });

@@ -72,6 +72,20 @@ export function hashBytes(bytes: Uint8Array): string {
 
 export type JsonValue =
   string | number | boolean | null | readonly JsonValue[] | { readonly [key: string]: JsonValue };
+/** An absent index or explicit undefined is never an owned JSON/semantic array value. */
+export function requireDenseArray(
+  value: unknown,
+  field: string,
+  code = 'ARRAY_DENSE',
+): asserts value is readonly unknown[] {
+  requireRule(Array.isArray(value), code, `${field} must be an array.`);
+  for (let i = 0; i < value.length; i++)
+    requireRule(
+      Object.hasOwn(value, i) && value[i] !== undefined,
+      code,
+      `${field} must contain an explicit value at every index.`,
+    );
+}
 /** Copy all mutable input, reject non-JSON values and use sorted keys for reproducible identity. */
 export function freezeJson<T>(value: T): T {
   if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
@@ -79,8 +93,12 @@ export function freezeJson<T>(value: T): T {
     requireRule(Number.isFinite(value), 'INVALID_METADATA', 'Metadata numbers must be finite.');
     return value;
   }
-  if (Array.isArray(value))
-    return Object.freeze(value.map((item: unknown) => freezeJson(item))) as T;
+  if (Array.isArray(value)) {
+    requireDenseArray(value, 'JSON array', 'INVALID_METADATA');
+    const owned: unknown[] = [];
+    for (let i = 0; i < value.length; i++) owned.push(freezeJson(value[i]));
+    return Object.freeze(owned) as T;
+  }
   requireRule(
     typeof value === 'object' && Object.getPrototypeOf(value) === Object.prototype,
     'INVALID_METADATA',
@@ -106,14 +124,20 @@ export interface RevisionRef {
 }
 export function validateRef(ref: RevisionRef): void {
   requireRule(
+    typeof ref === 'object' && ref !== null,
+    'REVISION_ID',
+    'Expected a revision reference.',
+  );
+  requireRule(
     ['source', 'style', 'parameters', 'recipe'].includes(ref.kind) &&
+      typeof ref.id === 'string' &&
       /^[a-z][a-z0-9-]{0,63}$/.test(ref.id),
     'REVISION_ID',
     'Invalid revision identity.',
   );
   positiveInteger(ref.revision, 'revision');
   requireRule(
-    /^[a-f0-9]{64}$/.test(ref.contentHash),
+    typeof ref.contentHash === 'string' && /^[a-f0-9]{64}$/.test(ref.contentHash),
     'REVISION_HASH',
     'Expected SHA-256 content identity.',
   );
@@ -129,6 +153,21 @@ export function sameRef(a: RevisionRef, b: RevisionRef): boolean {
 export function refKey(ref: RevisionRef): string {
   validateRef(ref);
   return `${ref.kind}:${ref.id}@${ref.revision}`;
+}
+/** A current recipe/project can select one revision of each kind+logical ID. The catalog retains all historical versions. */
+export function validateAdoptionIdentities(refs: readonly RevisionRef[]): void {
+  requireDenseArray(refs, 'Revision selection');
+  const identities = new Set<string>();
+  for (const ref of refs) {
+    validateRef(ref);
+    const identity = `${ref.kind}:${ref.id}`;
+    requireRule(
+      !identities.has(identity),
+      'REVISION_IDENTITY_CONFLICT',
+      'A recipe or current adoption must select only one revision per logical identity.',
+    );
+    identities.add(identity);
+  }
 }
 export interface Revision<T> {
   readonly ref: RevisionRef;
@@ -216,6 +255,7 @@ export class RawSource {
       'PROVENANCE',
       'Invalid provenance dependencies.',
     );
+    requireDenseArray(p.parents, 'provenance parents', 'PROVENANCE');
     p.parents.forEach(validateRef);
     this.#bytes = new Uint8Array(input.bytes);
     this.encodedHash = hashBytes(this.#bytes);
@@ -318,40 +358,58 @@ export function animationClip(input: AnimationClip): AnimationClip {
     'ANIMATION',
     'Animation sequence and durations must correspond.',
   );
-  input.sequence.forEach((index) =>
+  requireDenseArray(input.sequence, 'animation sequence', 'ANIMATION');
+  requireDenseArray(input.durations, 'animation durations', 'ANIMATION');
+  let cycle = 0;
+  for (let i = 0; i < input.sequence.length; i++) {
+    const index = input.sequence[i]!;
     requireRule(
       Number.isSafeInteger(index) && index >= 0 && index < input.frameCount,
       'ANIMATION',
       'Animation frame index is out of range.',
-    ),
-  );
-  input.durations.forEach((duration) => positiveInteger(duration, 'duration'));
+    );
+    const duration = input.durations[i]!;
+    positiveInteger(duration, 'duration');
+    cycle += duration;
+  }
   requireRule(
-    Number.isSafeInteger(input.durations.reduce((sum, v) => sum + v, 0)),
+    Number.isSafeInteger(cycle),
     'ANIMATION',
     'Animation cycle exceeds safe integer range.',
   );
   return freezeJson(input);
 }
 export function frameAt(clip: AnimationClip, time: number): number {
-  animationClip(clip);
+  const owned = animationClip(clip);
   requireRule(
     Number.isSafeInteger(time) && time >= 0,
     'ANIMATION',
     'Animation time must be a nonnegative integer.',
   );
-  const total = clip.durations.reduce((sum, v) => sum + v, 0);
+  const total = owned.durations.reduce((sum, v) => sum + v, 0);
   requireRule(
     Number.isSafeInteger(total),
     'ANIMATION',
     'Animation cycle exceeds safe integer range.',
   );
-  let t = clip.loop ? time % total : Math.min(time, total - 1);
-  for (let i = 0; i < clip.sequence.length; i++) {
-    if (t < clip.durations[i]!) return clip.sequence[i]!;
-    t -= clip.durations[i]!;
+  let t = owned.loop ? time % total : Math.min(time, total - 1);
+  for (let i = 0; i < owned.sequence.length; i++) {
+    if (t < owned.durations[i]!) return owned.sequence[i]!;
+    t -= owned.durations[i]!;
   }
   throw new AssetError('ANIMATION', 'Invalid animation.');
+}
+/** Generic clips may retain unused frames; fixed animated assets require pixel change among selected frames. */
+export function playbackVaries(frames: readonly RgbaImage[], input: AnimationClip): boolean {
+  const clip = animationClip(input);
+  requireDenseArray(frames, 'animation frames', 'IR_FRAMES');
+  requireRule(
+    frames.length === clip.frameCount && frames.every((frame) => frame instanceof RgbaImage),
+    'IR_FRAMES',
+    'Animation frames must match the clip.',
+  );
+  const first = frames[clip.sequence[0]!]!.pixelHash;
+  return clip.sequence.some((index) => frames[index]!.pixelHash !== first);
 }
 export interface StyleProfile {
   readonly logicalPixelScale: number;
@@ -364,6 +422,8 @@ export function styleProfile(
   revision: number,
   value: StyleProfile,
 ): Revision<StyleProfile> {
+  requireDenseArray(value.palette, 'style palette', 'STYLE');
+  value.palette.forEach((color) => requireDenseArray(color, 'style palette color', 'STYLE'));
   positiveInteger(value.logicalPixelScale, 'logicalPixelScale');
   requireRule(
     value.logicalPixelScale <= 48 &&
@@ -448,6 +508,7 @@ export function geometry(input: Geometry): Geometry {
     'GEOMETRY',
     'Geometry requires explicit semantic regions.',
   );
+  requireDenseArray(input.regions, 'geometry regions', 'GEOMETRY');
   const names = new Set<string>();
   const coverage = new Uint8Array(input.width * input.height);
   for (const region of input.regions) {
@@ -490,10 +551,21 @@ export interface TileIR {
   readonly frames: readonly RgbaImage[];
   readonly dependencies: readonly RevisionRef[];
   readonly recipe: RevisionRef;
+  readonly parameters: RevisionRef;
   readonly contentHash: string;
 }
 export function validateTileIR(ir: TileIR): void {
   requireRule(ir.contract === 'tile-ir-v1', 'IR_CONTRACT', 'Unsupported Tile IR.');
+  requireDenseArray(ir.frames, 'IR frames', 'IR_FRAMES');
+  requireDenseArray(ir.ground.components, 'ground components', 'IR_SEMANTICS');
+  requireDenseArray(ir.water.components, 'water components', 'IR_SEMANTICS');
+  validateAdoptionIdentities(ir.dependencies);
+  requireRule(
+    ir.parameters?.kind === 'parameters',
+    'IR_PARAMETERS',
+    'IR must bind an exact parameter revision.',
+  );
+  validateRef(ir.parameters);
   const g = geometry(ir.geometry);
   const clip = animationClip(ir.animation);
   requireRule(
@@ -544,6 +616,7 @@ export function validateTileIR(ir: TileIR): void {
   });
   for (const ref of [
     ir.recipe,
+    ir.parameters,
     ir.ground.material.style,
     ir.transition.staticMask,
     ir.transition.bankOverlay,
@@ -599,9 +672,7 @@ export function validateTileIR(ir: TileIR): void {
     }
   }
   requireRule(
-    staticPixels > 0 &&
-      staticPixels < g.width * g.height &&
-      ir.frames.some((frame) => frame.pixelHash !== ir.frames[0]!.pixelHash),
+    staticPixels > 0 && staticPixels < g.width * g.height && playbackVaries(ir.frames, clip),
     'IR_ANIMATION',
     'IR requires a fixed bank and an actually varying interior.',
   );
@@ -625,6 +696,7 @@ export function tileIRHash(ir: Omit<TileIR, 'contentHash'>): string {
     frames: ir.frames.map((p) => p.pixelHash),
     dependencies: ir.dependencies,
     recipe: ir.recipe,
+    parameters: ir.parameters,
   });
 }
 export interface CompilableAsset {
@@ -698,7 +770,7 @@ export function adoptRevision(
     'DEPENDENCY_MISSING',
     'Cannot adopt an unpublished revision.',
   );
-  current.forEach(validateRef);
+  validateAdoptionIdentities(current);
   return freezeJson([...current.filter((r) => r.kind !== next.kind || r.id !== next.id), next]);
 }
 export function assessBuild(
@@ -719,7 +791,7 @@ export function assessBuild(
     'Processed artifact identity and state must agree.',
   );
   validateTileIR(build.ir);
-  current.forEach(validateRef);
+  validateAdoptionIdentities(current);
   const newerAvailable = build.ir.dependencies.flatMap((ref) => {
     const latest = catalog.latest(ref);
     return latest && latest.revision > ref.revision ? [latest] : [];
