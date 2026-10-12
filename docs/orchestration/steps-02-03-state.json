@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_INDEPENDENT_REVIEW_ROUND1",
+  "currentPhase": "STEP03_ROUND1_REMEDIATION_HANDOFF",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "INDEPENDENT_REVIEW_ROUND1_IN_PROGRESS",
+    "status": "CHANGES_REQUESTED_ROUND1",
     "reviews": [
       {
         "round": 1,
@@ -477,7 +477,7 @@
         "metadataHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
         "reviewer": "/root/step03_reviewer",
         "thread": "01a12e44-4928-7f32-b3ac-681dfc380284",
-        "status": "IN_PROGRESS",
+        "status": "CHANGES_REQUESTED",
         "clientConfiguration": {
           "logId": 2942417,
           "turn": "01a12e71-ea8f-7c90-81b9-4ccf9af012c1",
@@ -486,7 +486,53 @@
           "serviceTier": "default",
           "serverFinal": "UNVERIFIED_NOT_EXPOSED"
         },
-        "productionWrites": "PROHIBITED_BEFORE_AFTER625_HASHES_AND_CLEAN_SHA_REQUIRED"
+        "productionWrites": "PROHIBITED_BEFORE_AFTER625_HASHES_AND_CLEAN_SHA_REQUIRED",
+        "counts": {
+          "P0": 0,
+          "P1": 0,
+          "blockingP2": 5,
+          "nonblockingP2": 1
+        },
+        "report": "docs/reviews/step-03-independent-round-1.md",
+        "originalReportSha256": "2fa9bc7550844e9c747fcc6a3b08c9412b8666626775458b73facde378814f60",
+        "reportSha256": "5e76b31f2f8e6b7040ac650bdf8861f62db728a817f168d9507c6668aeca6d86",
+        "reportPresentation": "PINNED_PRETTIER_PRESENTATION_ORIGINAL_RAW_REPORT_AND_HASH_PRESERVED_IN_EVIDENCE",
+        "evidence": "docs/evidence/step-03/review-7ca928f-round-1",
+        "evidenceLedgerSha256": "088d0e719cd1ae4a63beb80a298ccd50b78718d767c7703ac916a3fb2cc8ebbd",
+        "findings": [
+          {
+            "id": "STEP03-R1-001",
+            "severity": "P2",
+            "blocksExit": true,
+            "status": "OPEN"
+          },
+          {
+            "id": "STEP03-R1-002",
+            "severity": "P2",
+            "blocksExit": true,
+            "status": "OPEN"
+          },
+          {
+            "id": "STEP03-R1-003",
+            "severity": "P2",
+            "blocksExit": true,
+            "status": "OPEN"
+          },
+          {
+            "id": "STEP03-R1-004",
+            "severity": "P2",
+            "blocksExit": true,
+            "status": "OPEN"
+          },
+          {
+            "id": "STEP03-R1-005",
+            "severity": "P2",
+            "blocksExit": true,
+            "status": "OPEN"
+          }
+        ],
+        "sourceIntegrity": "625_TRACKED_UNCHANGED_EXACT7CA_GIT_CLEAN",
+        "checks": "116_6EXPORTS_PRIVACY5_DB3_PROD_DEV_COLD_BUDGET_MATH_ARTIFACT_NATIVEORACLE_PASS"
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -599,7 +645,7 @@
     "candidateSourceTrackedFiles": 625,
     "sourceEditsAfterFreeze": "PROHIBITED_AWAIT_REVIEW",
     "evidenceHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
-    "independentReview": "IN_PROGRESS",
+    "independentReview": "CHANGES_REQUESTED",
     "codingReport": "docs/reviews/step-03-coding.md",
     "codingReportSha256": "171995481729342c33be9c4c19fc46826121d569a7ac2872fc6305b2dc15fa70",
     "codingEvidence": "docs/evidence/step-03/coding-7ca928f",
@@ -670,7 +716,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP03_R1_RELEASE_ACTUAL_ULTRA_DEFAULT_EXACT7CA",
+  "lastSuccessfulCheckpoint": "STEP03_R1_COMPLETE_5_BLOCKING_P2_REPORT_AND_SAFE50FILE_ARCHIVED",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -705,7 +751,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "IndependentRound1 result; necessaryCoderfix/re-review withoutresettingmax5; no03approval/CIpublication yet",
+  "nextSafeAction": "SameStep03Coderfixall5hardcontractdefectswithregressions; newfreeze thenindependentround2; noCIpublication/mainmerge",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",

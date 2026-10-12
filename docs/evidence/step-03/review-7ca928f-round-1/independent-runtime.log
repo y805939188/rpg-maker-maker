@@ -1,0 +1,281 @@
+{
+  "status": "PASS",
+  "sourceCommit": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+  "preCandidateReferenceSha": "b0ae5493d1a6f3c20a7a267ab22f5d36a5a6eb3690f9d8cac7de4669f60307d8",
+  "cases": [
+    {
+      "case": "half_white_over_opaque_black",
+      "actual": [
+        188,
+        188,
+        188,
+        255
+      ]
+    },
+    {
+      "case": "half_black_over_opaque_white",
+      "actual": [
+        187,
+        187,
+        187,
+        255
+      ]
+    },
+    {
+      "case": "half_red_over_half_blue",
+      "actual": [
+        213,
+        0,
+        156,
+        192
+      ]
+    },
+    {
+      "case": "transparent_over_partial",
+      "actual": [
+        51,
+        102,
+        153,
+        73
+      ]
+    },
+    {
+      "case": "partial_over_transparent",
+      "actual": [
+        51,
+        102,
+        153,
+        73
+      ]
+    },
+    {
+      "case": "both_transparent",
+      "actual": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case": "opaque_over_partial",
+      "actual": [
+        7,
+        83,
+        211,
+        255
+      ]
+    },
+    {
+      "case": "overlap1RowDistinctViews",
+      "actual": [
+        10,
+        20,
+        10,
+        20,
+        30
+      ]
+    },
+    {
+      "case": "overlap2RowsDistinctViews",
+      "actual": [
+        10,
+        10,
+        20,
+        30,
+        40
+      ]
+    },
+    {
+      "case": "independent-fixed-mask-and-history",
+      "literalPixels": [
+        [
+          10,
+          60,
+          70,
+          40
+        ],
+        [
+          10,
+          61,
+          71,
+          40
+        ],
+        [
+          10,
+          62,
+          72,
+          40
+        ]
+      ],
+      "before": {
+        "currentMismatches": [],
+        "historicalValidity": "VALID",
+        "needsRebuild": false,
+        "newerAvailable": []
+      },
+      "available": {
+        "currentMismatches": [],
+        "historicalValidity": "VALID",
+        "needsRebuild": false,
+        "newerAvailable": [
+          {
+            "contentHash": "1c65395891c4c11ab9d7a3a08595301038c0c211d925d815c8d7af1024fe74ab",
+            "id": "grass",
+            "kind": "source",
+            "revision": 4
+          }
+        ]
+      },
+      "affected": {
+        "currentMismatches": [
+          {
+            "contentHash": "bc40967426bef576dff9699273baea995cef60c601b8f1838c9a79ef59bf1cad",
+            "id": "grass",
+            "kind": "source",
+            "revision": 3
+          }
+        ],
+        "historicalValidity": "VALID",
+        "needsRebuild": true,
+        "newerAvailable": [
+          {
+            "contentHash": "1c65395891c4c11ab9d7a3a08595301038c0c211d925d815c8d7af1024fe74ab",
+            "id": "grass",
+            "kind": "source",
+            "revision": 4
+          }
+        ]
+      }
+    },
+    {
+      "case": "exif",
+      "status": "repair-required",
+      "code": "METADATA_REPAIR"
+    },
+    {
+      "case": "text",
+      "status": "repair-required",
+      "code": "METADATA_REPAIR"
+    },
+    {
+      "case": "hidden",
+      "status": "rejected",
+      "code": "HIDDEN_RGB"
+    }
+  ],
+  "measurements": [
+    {
+      "kind": "flat",
+      "encodedBytes": 2623,
+      "decodedBytes": 1769472,
+      "pixelHash": "2f57dad7209a8edabe2e609a77eaa40e3005f1910fd932ce9034c3cc2684c2c6",
+      "durationTotalMs": 213.63712499999997,
+      "rssBytes": 85475328,
+      "durationMs": 5.836916000000002,
+      "versions": {
+        "aom": "3.15.1",
+        "archive": "3.8.9",
+        "cairo": "1.18.6",
+        "cgif": "0.5.4",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "fontconfig": "2.18.3",
+        "freetype": "2.14.3",
+        "fribidi": "1.0.17",
+        "glib": "2.90.0",
+        "harfbuzz": "14.5.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "pango": "1.58.2",
+        "pixman": "0.46.4",
+        "png": "1.6.58",
+        "proxy-libintl": "0.5",
+        "rsvg": "2.63.2",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "xml2": "2.15.4",
+        "zlib-ng": "2.3.3",
+        "sharp": "0.35.5"
+      }
+    },
+    {
+      "kind": "high-entropy",
+      "encodedBytes": 1536385,
+      "decodedBytes": 1769472,
+      "pixelHash": "da59c0a46825ae6aaa556ad7611f405c5eba1a661b77e091a2388ac076b705aa",
+      "durationTotalMs": 459.986833,
+      "rssBytes": 97566720,
+      "durationMs": 61.098292,
+      "versions": {
+        "aom": "3.15.1",
+        "archive": "3.8.9",
+        "cairo": "1.18.6",
+        "cgif": "0.5.4",
+        "exif": "0.6.26",
+        "expat": "2.8.5",
+        "ffi": "3.8.0",
+        "fontconfig": "2.18.3",
+        "freetype": "2.14.3",
+        "fribidi": "1.0.17",
+        "glib": "2.90.0",
+        "harfbuzz": "14.5.0",
+        "heif": "1.23.5",
+        "highway": "1.4.0",
+        "imagequant": "2.4.1",
+        "lcms": "2.19.1",
+        "mozjpeg": "0826579",
+        "pango": "1.58.2",
+        "pixman": "0.46.4",
+        "png": "1.6.58",
+        "proxy-libintl": "0.5",
+        "rsvg": "2.63.2",
+        "tiff": "4.7.2",
+        "uhdr": "2.0.2",
+        "vips": "8.18.7",
+        "webp": "1.6.0",
+        "xml2": "2.15.4",
+        "zlib-ng": "2.3.3",
+        "sharp": "0.35.5"
+      }
+    }
+  ],
+  "runtime": {
+    "aom": "3.15.1",
+    "archive": "3.8.9",
+    "cairo": "1.18.6",
+    "cgif": "0.5.4",
+    "exif": "0.6.26",
+    "expat": "2.8.5",
+    "ffi": "3.8.0",
+    "fontconfig": "2.18.3",
+    "freetype": "2.14.3",
+    "fribidi": "1.0.17",
+    "glib": "2.90.0",
+    "harfbuzz": "14.5.0",
+    "heif": "1.23.5",
+    "highway": "1.4.0",
+    "imagequant": "2.4.1",
+    "lcms": "2.19.1",
+    "mozjpeg": "0826579",
+    "pango": "1.58.2",
+    "pixman": "0.46.4",
+    "png": "1.6.58",
+    "proxy-libintl": "0.5",
+    "rsvg": "2.63.2",
+    "tiff": "4.7.2",
+    "uhdr": "2.0.2",
+    "vips": "8.18.7",
+    "webp": "1.6.0",
+    "xml2": "2.15.4",
+    "zlib-ng": "2.3.3",
+    "sharp": "0.35.5"
+  },
+  "nativeRssCaveat": "observed point-in-time RSS, not peak or OS/native hardlimit; producer allocations outside package are not bounded"
+}

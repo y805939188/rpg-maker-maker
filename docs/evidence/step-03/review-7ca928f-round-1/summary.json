@@ -1,0 +1,160 @@
+{
+  "status": "CHANGES_REQUESTED",
+  "round": 1,
+  "maxRounds": 5,
+  "candidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+  "authorMetadataHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
+  "reviewer": "/root/step03_reviewer",
+  "client": {
+    "thread": "01a12e44-4928-7f32-b3ac-681dfc380284",
+    "turn": "01a12e71-ea8f-7c90-81b9-4ccf9af012c1",
+    "logId": 2942134,
+    "role": "step_reviewer",
+    "model": "gpt-6.1-sol",
+    "effort": "ultra",
+    "serviceTier": "default",
+    "serverFinal": "UNVERIFIED_NOT_EXPOSED"
+  },
+  "helper": {
+    "thread_id": "01a12e72-784b-79c1-93c3-27b8cdfcbb5a",
+    "turn_id": "01a12e72-78ff-70d2-a7f0-2720f7b07667",
+    "rollout": "/Users/dingshinn/.codex/sessions/2026/10/12/rollout-2026-10-12T12-50-16-01a12e72-784b-79c1-93c3-27b8cdfcbb5a.jsonl",
+    "model": "gpt-6.1-sol",
+    "effort": "ultra",
+    "collaboration_mode": "default",
+    "agent_role": "step_reviewer",
+    "sampling_log_id": 2942640,
+    "sampling_log_ts": 1791780620,
+    "sampling_log_target": "feedback_tags",
+    "client_service_tier": "default",
+    "server_final_configuration": "UNVERIFIED_NOT_EXPOSED",
+    "frozen_candidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+    "command": "node .local/review/round1-7ca/domain-static/repro.mjs",
+    "exit_code": 0,
+    "files": {
+      "packages/asset-core/src/index.ts": "779c1ac306c846e112bc426a4df977ad3363ab029b183d446e261b40265a0b61",
+      "packages/material-processing/src/index.ts": "2cd724d9833826cfa3f424273b01b05a57d891845483ed41fd8d52bcc5cafc3c",
+      ".local/review/round1-7ca/domain-static/repro.mjs": "6b1326f2a245cb81f868a0117b45c2790f93f56ffbb54f061dd72e1af0002e05",
+      ".local/review/round1-7ca/domain-static/results.jsonl": "10d944767220c45e380f4c6bea791291627daac63d082e9bb456b53362e337f6"
+    }
+  },
+  "counts": {
+    "P0": 0,
+    "P1": 0,
+    "blockingP2": 5,
+    "nonblockingP2": 1,
+    "P3": 0
+  },
+  "findings": [
+    {
+      "id": "STEP03-R1-001",
+      "severity": "P2",
+      "blocksExit": true,
+      "status": "OPEN",
+      "title": "Sparse sequence bypasses hard validation and yields undefined animation frame",
+      "file": "packages/asset-core/src/index.ts:321",
+      "related": [
+        "packages/asset-core/src/index.ts:82",
+        "packages/asset-core/src/index.ts:351"
+      ],
+      "case": "sparse-animation-and-json",
+      "expected": "Reject missing array elements/undefined metadata; valid clip returns a defined in-range index",
+      "actual": "new Array(1) sequence accepted through Built; frameAt(clip,0) is undefined; sparse JSON fingerprint collides with explicit null"
+    },
+    {
+      "id": "STEP03-R1-002",
+      "severity": "P2",
+      "blocksExit": true,
+      "status": "OPEN",
+      "title": "Tile IR hard validation omits exact parameter dependency binding",
+      "file": "packages/asset-core/src/index.ts:545",
+      "related": [
+        "packages/asset-core/src/index.ts:481",
+        "packages/asset-core/src/index.ts:727"
+      ],
+      "case": "parameters-dependency-omission",
+      "expected": "Reject IR that omits/mismatches the exact parameter revision; adoption and historical checks include it",
+      "actual": "Drop parameters reference, recompute contentHash, validate and Built succeed; parameter adoption needsRebuild=false and missing historical parameter remains VALID"
+    },
+    {
+      "id": "STEP03-R1-003",
+      "severity": "P2",
+      "blocksExit": true,
+      "status": "OPEN",
+      "title": "Accepted multi-revision source identity conflicts with project adoption model",
+      "file": "packages/asset-core/src/index.ts:728",
+      "related": [
+        "packages/material-processing/src/index.ts:269"
+      ],
+      "case": "multiple-revisions-one-source-id",
+      "expected": "Identical current adoption causes no dependency mismatch, or unsupported source identity conflict is rejected before Compilable",
+      "actual": "water@1/@2/@3 recipe accepted; assessBuild(build,catalog,build.ir.dependencies) reports water@2/@3 mismatches and needsRebuild=true"
+    },
+    {
+      "id": "STEP03-R1-004",
+      "severity": "P2",
+      "blocksExit": true,
+      "status": "OPEN",
+      "title": "Bank overlay source palette is not validated",
+      "file": "packages/material-processing/src/index.ts:327",
+      "related": [],
+      "case": "overlay-source-palette-omission",
+      "expected": "Reject visible overlay source RGB outside exact style palette, even when blended output is in palette",
+      "actual": "Overlay [255,0,0,1] outside palette accepted with listed blended [44,100,30,255]; COMPILABLE_RECIPE"
+    },
+    {
+      "id": "STEP03-R1-005",
+      "severity": "P2",
+      "blocksExit": true,
+      "status": "OPEN",
+      "title": "Fixed animated shoreline accepts variation only in frames never played",
+      "file": "packages/material-processing/src/index.ts:332",
+      "related": [
+        "packages/asset-core/src/index.ts:604"
+      ],
+      "case": "variation-only-in-unused-frames",
+      "expected": "Fixed animated recipe and its IR require actual variation among frame planes reached by declared playback sequence",
+      "actual": "Three stored frames differ but sequence [0] loops on one frame; Compilable and Built accepted"
+    }
+  ],
+  "nonblocking": [
+    {
+      "id": "STEP02-R1-NB-001",
+      "severity": "P2",
+      "blocksExit": false,
+      "advisory": "GHSA-g7r4-m6w7-qqqr",
+      "package": "esbuild0.27.7",
+      "affectedCondition": "Windows standalone serve+servedir absent from current paths; Darwin review/Linux CI",
+      "owner": "engineering step_coder before affected exposure",
+      "fixedVersion": ">=0.28.1"
+    }
+  ],
+  "gates": {
+    "fullCheck": "PASS116_AND6_EXPORTS",
+    "newStep03Tests": "PASS44_INCLUDED_FULLCHECK",
+    "privacy": "PASS5_530_REQUESTS_0_FAKE_MARKER_READS",
+    "database": "PASS3",
+    "browserProduction": "PASS",
+    "browserDevelopment": "PASS",
+    "browserDevelopmentCold": "PASS",
+    "pixelReference": "PASS_PRE_CANDIDATE_DECIMAL_AND_LITERAL",
+    "resourceMaximumNormalInputs": "PASS_EXACT_PIXELS_ACTUAL_CHILD_RSS_OBSERVED_NO_OS_HARDLIMIT_CLAIM",
+    "nativeCoreOracle": "PASS960_TILES_2211840_PIXELS_241_UPDATES",
+    "artifactReproduction": "PASS88_13_4_PAYLOADS_PLUS_MANIFESTS",
+    "overwriteRefusal": "PASS3_EXPECTED_EXIT1_AND_ALL_BYTES_UNCHANGED",
+    "legacyFourPNG": "PASS_APPROVED_BYTES_AND_STDLIB_RGBA_EXACT",
+    "authorMetadata": "PASS40_HASHES20_BINDINGS_DOCS_ONLY",
+    "sourceIntegrity": "PASS625_UNCHANGED_EXACTHEAD_GITCLEAN"
+  },
+  "limits": {
+    "originalNativeHost": "NOT_EXECUTED",
+    "newMZEditorDrawing": "NOT_EXECUTED",
+    "newMZGameRuntime": "NOT_EXECUTED",
+    "visualAcceptance": "NOT_EXECUTED",
+    "Map003_4_10": "PENDING_USER_EVIDENCE",
+    "remoteCI": "NOT_EXECUTED_BY_REVIEWER_ROOT_GATE",
+    "step04": "NOT_STARTED_UNAUTHORIZED"
+  },
+  "environmentCleanup": "API4315_AND_WEB5177_STOPPED; OWNED_DB55433_READY_UNCHANGED; PRIOR_GENERATED_CACHE_RESTORED",
+  "completedAtUTC": "2026-10-12T05:05:17.847693+00:00"
+}
