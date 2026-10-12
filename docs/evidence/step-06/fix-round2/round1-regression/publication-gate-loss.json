@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "phase": "build-file-partial",
+      "outcome": {
+        "ok": false,
+        "error": "GateLostError: Write gate connection or lock lost"
+      }
+    },
+    {
+      "phase": "build-validated",
+      "outcome": {
+        "ok": false,
+        "error": "GateLostError: Write gate connection or lock lost"
+      }
+    },
+    {
+      "phase": "before-db-commit",
+      "outcome": {
+        "ok": false,
+        "error": "GateLostError: Write gate connection or lock lost"
+      }
+    },
+    {
+      "phase": "db-transaction",
+      "outcome": {
+        "ok": false,
+        "error": "GateLostError: Write gate connection or lock lost"
+      },
+      "transactionFence": true
+    }
+  ],
+  "previous": "8cd3bbf42be84257d0016b492c15725fe30f07f1ce1cb7bb9f3406ccde4062bd",
+  "recovered": "e772b1a84ee229191f20ead5ab28b340f25f490c9f7700d58e90c019e97bfc73"
+}

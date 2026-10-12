@@ -1,0 +1,107 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "beforeFreeze": {
+    "check": "PASS231/231",
+    "completeDb": "PASS23/23,177.51s",
+    "newImpact": "PASS7/7,11.21s"
+  },
+  "commands": [
+    {
+      "command": "pnpm check",
+      "phase": "clean frozen candidate",
+      "exit": 0,
+      "result": "231/231 in22files; strict/boundaries12/lint/format/productionbuild/10ESMexports",
+      "log": "logs/check-frozen.log.txt"
+    },
+    {
+      "command": "pnpm test:step06",
+      "phase": "clean frozen candidate",
+      "exit": 0,
+      "result": "23/23 in4files,179.18s; original16+new7;60000ms case budget unchanged",
+      "log": "logs/test-step06-frozen.log.txt"
+    },
+    {
+      "command": "pnpm build:step06",
+      "phase": "clean frozen candidate",
+      "exit": 0,
+      "result": "168payload hashes and immutableManifest verified",
+      "log": "logs/build-step06-frozen.log.txt"
+    },
+    {
+      "name": "gate-probe-adapted",
+      "command": "CANDIDATE_SHA=c227f8c6ecfe85895937013e4687deb40247a6ee node --env-file=.env .local/step06/fix-round2/probes/gate-probe-adapted.mjs",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/gate-probe-adapted.log.txt"
+    },
+    {
+      "name": "root-case-adapted",
+      "command": "CANDIDATE_SHA=c227f8c6ecfe85895937013e4687deb40247a6ee node --env-file=.env .local/step06/fix-round2/probes/root-case-adapted.mjs",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/root-case-adapted.log.txt"
+    },
+    {
+      "name": "legacy-78-frozen",
+      "command": "node .local/step06/scalars.mjs",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/legacy-78-frozen.log.txt"
+    },
+    {
+      "name": "bound-publication-frozen",
+      "command": "node --env-file=.env .local/step06/fix-round2/bound-publication.mjs",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/bound-publication-frozen.log.txt"
+    },
+    {
+      "name": "api-integration-frozen",
+      "command": "INTEGRATION_API_PORT=4366 pnpm test:integration",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/api-integration-frozen.log.txt"
+    },
+    {
+      "name": "browser-production-frozen",
+      "command": "API_PORT=4366 WEB_PORT=5266 pnpm test:e2e",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/browser-production-frozen.log.txt"
+    },
+    {
+      "name": "browser-dev-frozen",
+      "command": "E2E_MODE=dev API_PORT=4366 WEB_PORT=5266 pnpm test:e2e",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/browser-dev-frozen.log.txt"
+    },
+    {
+      "name": "pack-sample-frozen",
+      "command": "pnpm build:pack-sample",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/pack-sample-frozen.log.txt"
+    },
+    {
+      "name": "pack-compare-frozen",
+      "command": "node .local/step06/fix-round2/pack-compare.mjs",
+      "exit": 0,
+      "phase": "clean frozen production JS",
+      "log": "logs/pack-compare-frozen.log.txt"
+    }
+  ],
+  "authorStatus": "READY_FOR_REVIEW_SELF_TESTED_PENDING_ROUND3",
+  "formalReviewRoundEnded": 2,
+  "nextFormalReviewRound": 3,
+  "maxFormalRounds": 5,
+  "mainReviewerState": "NOT_MODIFIED",
+  "step07": "NOT_STARTED",
+  "configuration": {
+    "model": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "tier": "default",
+    "serverFields": "UNVERIFIED_NOT_EXPOSED",
+    "collaboration": "NOT_USED"
+  }
+}

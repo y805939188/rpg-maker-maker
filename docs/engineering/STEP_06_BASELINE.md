@@ -102,3 +102,15 @@ Task references 的 revision须规范十进制正整数、≤2147483647（实际
 maintenance和Mock正式CLI共享 resolveAssetRoot，读取 TILESET_ASSET_ROOT，安全默认当前项目 .local/assets；配置必须在该项目 .local，不能指向 .local根、PostgreSQL或符号链接祖先/逃逸目录。真实CLI的自定义root backup→新空DB+不存在root restore→按配置read/rebuild及Mock归档已加入正式 test:step06/CI。
 
 新增六项正式真实PG/CLI回归与原10项合并16/16通过；check230/230、API3/3、两模式浏览器1/1、旧JS78及56标准payload/16PNG哈希回归通过。正式CI远端未由Coder执行，MZ手工/真实模型仍未执行。原两份工具.log字节在新纯文档提交force-add，旧bae没有它们的事实和旧ledger保持。完整候选/Build/hash/命令/未执行项见 [整改报告](../reviews/step-06-fix-round-1-coding.md)、[新证据](../evidence/step-06/fix-round1/commands.json)。
+
+## 第2轮独立 Review 后整改候选
+
+第2轮正式独立结论仍为 REQUIRES_REVISION；STEP06-IR-001部分修复后仍开放，新增 STEP06-R2-001 为阻断P2。IR-002/003/004已由第2轮独立报告记录 CLOSED，原报告/127项ledger与旧失败记录保持原字节。本轮功能候选 `c227f8c6ecfe85895937013e4687deb40247a6ee` 仅作者 SELF_TESTED_PENDING_ROUND3 / READY_FOR_REVIEW；下一次正式第3/5轮，未发布或启动07。
+
+WriteGate以数据库身份共享ALS上下文、保留整条活跃租约链。子操作启动前递归核对父租约；真正失锁同步传播到子signal并结束其PG会话，后续checkpoint/文件操作/DB登记停止；短事务取得所有祖先scope的6008 fencing锁及maintenance shared xact锁。失效上下文不能通过新公共写入或重建同数据库的Persistence取得新lease绕过。相同scope（包括祖先scope）重入和嵌套维护明确拒绝；普通不同scope嵌套合法。普通写入内的子租约不会等待被该父租约挡住的maintenance队列，避免自死锁。
+
+正常结束使用独立的GateEnded原因，区别于GateLost。维护窗口内已排队的写请求等待实际PG锁释放后开启自己的写入lifetime；真正失去维护锁会取消其等待PG会话，不能提交。该排队保留原备份测试/行为；在维护回调内不要等待这些写请求完成，须先结束维护窗口。已结束的旧上下文不能再发起新请求；独立调用链的排队/并发保持独立。
+
+resolveAssetRoot保守拒绝首段postgres的大小写变体，并将每个既存祖先的实际dev/ino与本项目PostgreSQL根比较。真实本机Postgres/POSTGRES同inode负例只读执行；Linux可运行的缺省/不存在路径大小写控制、相邻合法目录、symlink/escape/空配置与原CLI恢复控制仍保留。未向PG目录写入资产，无新HTTP路径入口。
+
+新七项真实PG/跨实例/队列/文件/事务测试进入既有test:step06和CI，新增跨平台配置测试进入pnpm check。精确干净候选check231/231、DB23/23（原16+新7，179.18s）、API3/3、两浏览器各1/1、旧JS78、八套Pack56payload/16PNG旧hash对照通过；168项工程payload验真。首次全套曾21/22+1 unhandled error，原因是作者初版拒绝原维护排队；原失败保存，修正后旧测试与60000ms预算未改。工程Build `step06-c227f8c6ecfe-2408d70aa6a8d040`，Manifest SHA `f69ca0afbb95a5bf78d7bdeeada7af798f9e3f6352b339532646bc152a2cde1c`。实际DB发布与重复ID、原R2探针适配及完整恢复/重建证据见 [新证据](../evidence/step-06/fix-round2/commands.json)及 [第2轮整改报告](../reviews/step-06-fix-round-2-coding.md)。作者不自行关闭独立ID或批准。

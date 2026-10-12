@@ -64,3 +64,5 @@ Node 22.21.1 / pnpm 10.20.0。安装：`pnpm install --frozen-lockfile`；独立
 本 Worktree 专属 PG55466/API4366/Web5266；凭据、DB、资产、备份/失败现场仅在 .local/.env。新增测试进入明确 test:step06 与 CI，实际恢复必须新空数据库和不存在的独立资产根，禁止 reset 或覆盖已有环境。
 
 步骤06第1轮正式独立结果为 **REQUIRES_REVISION**（3阻断P2、1非阻断P3），原记录保留。当前整改候选 `debcce716e5b563eec881eb24eaa41aebcccac30` 已完成作者复测，状态最多 **READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND2**；下次为正式第2轮，尚未发布或启动07。详情见 [第1轮整改 Coding 报告](docs/reviews/step-06-fix-round-1-coding.md)与 [整改证据](docs/evidence/step-06/fix-round1/commands.json)。原 a2878a9 作者检查点为历史结果，不是独立PASS。
+
+步骤06第2轮正式独立结果仍为 **REQUIRES_REVISION**：IR-002/003/004独立CLOSED，嵌套gate lifetime与真实PG目录大小写别名两个阻断P2继续整改。作者新冻结候选 `c227f8c6ecfe85895937013e4687deb40247a6ee` 已完成check231/231、完整DB23/23、API3/3、两浏览器各1/1、旧JS78及8套Pack56payload/16PNG哈希回归，最多 **READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND3**。原报告/失败保留，下一次正式第3/5轮；未发布、批准、merge/push或启动07。见 [第2轮整改 Coding 报告](docs/reviews/step-06-fix-round-2-coding.md)和 [新命令/hash证据](docs/evidence/step-06/fix-round2/commands.json)。

@@ -1,0 +1,105 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "checks": [
+    {
+      "name": "intent-durable",
+      "lease": {
+        "pid": 96602,
+        "scope": "task:7f759f68-0fe0-4dc1-954e-bc6bccb0ac98"
+      },
+      "locks": [
+        {
+          "pid": 96602,
+          "classid": 6007,
+          "objid": 121745821,
+          "mode": "ExclusiveLock"
+        },
+        {
+          "pid": 96602,
+          "classid": 6006,
+          "objid": 0,
+          "mode": "ShareLock"
+        }
+      ],
+      "outcome": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "remoteIds": [],
+      "state": "SUBMISSION_UNKNOWN",
+      "taskId": "7f759f68-0fe0-4dc1-954e-bc6bccb0ac98"
+    },
+    {
+      "name": "remote-created",
+      "lease": {
+        "pid": 96608,
+        "scope": "task:2ef95f9f-f2ef-4896-b20b-961c45b347fa"
+      },
+      "locks": [
+        {
+          "pid": 96608,
+          "classid": 6006,
+          "objid": 0,
+          "mode": "ShareLock"
+        },
+        {
+          "pid": 96608,
+          "classid": 6007,
+          "objid": 4059458288,
+          "mode": "ExclusiveLock"
+        }
+      ],
+      "outcome": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "remoteIds": [
+        "ed92af57-7411-4a8f-840f-f2a7cf58c509"
+      ],
+      "state": "SUBMISSION_UNKNOWN",
+      "taskId": "2ef95f9f-f2ef-4896-b20b-961c45b347fa"
+    },
+    {
+      "name": "nested-parent-scope-loss",
+      "parentPid": 96614,
+      "childPid": 96615,
+      "locks": [
+        {
+          "pid": 96614,
+          "classid": 6006,
+          "objid": 0,
+          "mode": "ShareLock"
+        },
+        {
+          "pid": 96614,
+          "classid": 6007,
+          "objid": 2730621511,
+          "mode": "ExclusiveLock"
+        }
+      ],
+      "parentLostBeforeRelease": 1791848084502,
+      "childAbortedBeforeRelease": true,
+      "parentAborted": true,
+      "childAborted": true,
+      "outcome": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "remoteIds": [],
+      "state": "SUBMITTING",
+      "recoveredState": "SUBMISSION_UNKNOWN",
+      "predictionId": null,
+      "taskId": "cde3189f-5401-4ee0-962b-23062bbc641a"
+    },
+    {
+      "name": "new-child-after-parent-loss",
+      "parentPid": 96617,
+      "outcome": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "createdId": null,
+      "exists": false
+    }
+  ]
+}
