@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_ROUND1_REVIEW_ENVIRONMENT_READY",
+  "currentPhase": "STEP03_INDEPENDENT_REVIEW_ROUND1",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,8 +469,26 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "READY_FOR_INDEPENDENT_REVIEW",
-    "reviews": [],
+    "status": "INDEPENDENT_REVIEW_ROUND1_IN_PROGRESS",
+    "reviews": [
+      {
+        "round": 1,
+        "candidate": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+        "metadataHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
+        "reviewer": "/root/step03_reviewer",
+        "thread": "01a12e44-4928-7f32-b3ac-681dfc380284",
+        "status": "IN_PROGRESS",
+        "clientConfiguration": {
+          "logId": 2942417,
+          "turn": "01a12e71-ea8f-7c90-81b9-4ccf9af012c1",
+          "model": "gpt-6.1-sol",
+          "effort": "ultra",
+          "serviceTier": "default",
+          "serverFinal": "UNVERIFIED_NOT_EXPOSED"
+        },
+        "productionWrites": "PROHIBITED_BEFORE_AFTER625_HASHES_AND_CLEAN_SHA_REQUIRED"
+      }
+    ],
     "merge": "NOT_EXECUTED",
     "push": "NOT_EXECUTED",
     "baseMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -581,7 +599,7 @@
     "candidateSourceTrackedFiles": 625,
     "sourceEditsAfterFreeze": "PROHIBITED_AWAIT_REVIEW",
     "evidenceHead": "8540f12c53b3b0fd242b35c120de23f6e7e82631",
-    "independentReview": "NOT_YET_RELEASED",
+    "independentReview": "IN_PROGRESS",
     "codingReport": "docs/reviews/step-03-coding.md",
     "codingReportSha256": "171995481729342c33be9c4c19fc46826121d569a7ac2872fc6305b2dc15fa70",
     "codingEvidence": "docs/evidence/step-03/coding-7ca928f",
@@ -616,7 +634,8 @@
         "allFilesExactMatch": true
       }
     ],
-    "reviewWorktreeHead": "7ca928f2c1ac480691c77e67b3d19da4dda8e643"
+    "reviewWorktreeHead": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+    "protectedPaths": "ROOT_VERIFIED_ALL_PREVIOUS_PROTOTYPE_APP_CONTRACT_GATEWAY_PLAN_PROFILE_PIXELCONTRACT_AND_OLDTESTS_UNCHANGED"
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -651,7 +670,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "7CA_SOURCE_8540_DOCS_FROZEN_THREE_IMMUTABLE_BUILDS_PRESERVED",
+  "lastSuccessfulCheckpoint": "STEP03_R1_RELEASE_ACTUAL_ULTRA_DEFAULT_EXACT7CA",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -686,7 +705,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "ReleaseStep03IndependentRound1 onexact7ca; verifyactualclientUltra/default; no approval/mainmerge beforeallgates",
+  "nextSafeAction": "IndependentRound1 result; necessaryCoderfix/re-review withoutresettingmax5; no03approval/CIpublication yet",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
