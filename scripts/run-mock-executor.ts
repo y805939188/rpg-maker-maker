@@ -1,12 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { Persistence } from '@tileset/persistence';
+import { Persistence, resolveAssetRoot } from '@tileset/persistence';
 import { Executor, Archiver, MockProvider } from '@tileset/local-executor';
 import { freezeTaskSnapshot } from '@tileset/ai-gateway';
 import { PROFILE } from '../src/profile.js';
 const url = process.env['DATABASE_URL'];
 if (!url) throw Error('Dedicated database configuration required');
-const store = new Persistence(url, resolve('.local/assets'), PROFILE);
+const store = new Persistence(url, await resolveAssetRoot(process.env), PROFILE);
 const provider = new MockProvider(
   resolve('.local/step06/mock-remote'),
   await readFile('tests/fixtures/art-ground.png'),

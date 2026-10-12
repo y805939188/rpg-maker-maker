@@ -22,9 +22,11 @@ export class MockProvider implements ProviderAdapter {
     signal.throwIfAborted();
     assert.equal(snapshot.model.adapterVersion, this.adapterVersion);
     await mkdir(this.root, { recursive: true, mode: 0o700 });
+    signal.throwIfAborted();
     const predictionId = randomUUID();
     const fd = await open(this.path(predictionId), 'wx', 0o600);
     try {
+      signal.throwIfAborted();
       await fd.writeFile(
         JSON.stringify({
           id: predictionId,
@@ -33,10 +35,12 @@ export class MockProvider implements ProviderAdapter {
           png: Buffer.from(new Uint8Array(this.outputPng)).toString('base64'),
         }),
       );
+      signal.throwIfAborted();
       await fd.sync();
     } finally {
       await fd.close();
     }
+    signal.throwIfAborted();
     const dir = await open(this.root, 'r');
     try {
       await dir.sync();
@@ -44,11 +48,13 @@ export class MockProvider implements ProviderAdapter {
       await dir.close();
     }
     await this.hook('remote-created');
+    signal.throwIfAborted();
     return { outcome: 'KNOWN', predictionId };
   }
   async query(id: string, signal: AbortSignal): Promise<RemoteResult> {
     signal.throwIfAborted();
     const job: unknown = JSON.parse(await readFile(this.path(id), 'utf8'));
+    signal.throwIfAborted();
     assert.ok(job && typeof job === 'object' && 'status' in job);
     if (job.status === 'RUNNING') return { status: 'RUNNING' };
     assert.equal(job.status, 'SUCCEEDED');
@@ -86,6 +92,7 @@ export class MockProvider implements ProviderAdapter {
         typeof job.png === 'string' &&
         job.png.length <= 5592408,
     );
+    signal.throwIfAborted();
     const bytes = Buffer.from(job.png, 'base64');
     assert.equal(bytes.toString('base64'), job.png);
     return new Uint8Array(bytes);

@@ -4,6 +4,7 @@ export default defineConfig({
     include: [
       'packages/persistence/tests/integration.test.ts',
       'packages/local-executor/tests/integration.test.ts',
+      'packages/persistence/tests/fix-round1/integration.test.ts',
     ],
     fileParallelism: false,
     maxWorkers: 1,

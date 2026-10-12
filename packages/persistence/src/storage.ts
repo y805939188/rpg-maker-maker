@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { lstat, mkdir, open, readFile, readdir, rename, link, rm } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { hashBytes } from '@tileset/asset-core';
+import type { GateLease } from './gate.js';
 export type FileRef = Readonly<{ sha256: string; bytes: number; key: string }>;
 export type FaultHook = (point: string) => Promise<void>;
 export const noFault: FaultHook = async () => {};
@@ -19,18 +20,41 @@ export class AssetStorage {
   constructor(
     root: string,
     readonly fault: FaultHook = noFault,
+    readonly lease: () => GateLease | undefined = () => undefined,
   ) {
     this.root = resolve(root);
+  }
+  async checkpoint(signal?: AbortSignal) {
+    signal?.throwIfAborted();
+    await this.lease()?.checkpoint();
+    signal?.throwIfAborted();
+  }
+  async step<T>(operation: () => Promise<T>, signal?: AbortSignal) {
+    await this.checkpoint(signal);
+    const value = await operation();
+    await this.checkpoint(signal);
+    return value;
+  }
+  async openWrite(path: string) {
+    await this.checkpoint();
+    const fd = await open(path, 'wx', 0o600);
+    try {
+      await this.checkpoint();
+      return fd;
+    } catch (error) {
+      await fd.close();
+      throw error;
+    }
   }
   path(key: string) {
     assert.match(key, /^(objects\/[a-f0-9]{64}|builds\/[a-f0-9]{64}\/[A-Za-z0-9.-]+)$/);
     return resolve(this.root, key);
   }
   async initialize() {
-    await mkdir(this.root, { recursive: true, mode: 0o700 });
+    await this.step(() => mkdir(this.root, { recursive: true, mode: 0o700 }));
     assert.ok((await lstat(this.root)).isDirectory() && !(await lstat(this.root)).isSymbolicLink());
     for (const d of ['objects', 'builds', 'stage']) {
-      await mkdir(resolve(this.root, d), { recursive: true });
+      await this.step(() => mkdir(resolve(this.root, d), { recursive: true }));
       assert.ok(
         (await lstat(resolve(this.root, d))).isDirectory() &&
           !(await lstat(resolve(this.root, d))).isSymbolicLink(),
@@ -46,33 +70,35 @@ export class AssetStorage {
     return bytes;
   }
   async put(input: Uint8Array): Promise<FileRef> {
+    await this.checkpoint();
     const bytes = new Uint8Array(input);
     assert.ok(bytes.length > 0 && bytes.length <= 48 * 1024 * 1024);
     await this.initialize();
     const sha256 = hashBytes(bytes),
       ref = Object.freeze({ sha256, bytes: bytes.length, key: `objects/${sha256}` });
     const stage = resolve(this.root, 'stage', randomUUID());
-    const fd = await open(stage, 'wx', 0o600);
+    const fd = await this.openWrite(stage);
     try {
-      await this.fault('file-write');
-      await fd.writeFile(bytes.subarray(0, Math.ceil(bytes.length / 2)));
-      await this.fault('file-partial');
-      await fd.writeFile(bytes.subarray(Math.ceil(bytes.length / 2)));
-      await fd.chmod(0o444);
-      await fd.sync();
+      await this.step(() => this.fault('file-write'));
+      await this.step(() => fd.writeFile(bytes.subarray(0, Math.ceil(bytes.length / 2))));
+      await this.step(() => this.fault('file-partial'));
+      await this.step(() => fd.writeFile(bytes.subarray(Math.ceil(bytes.length / 2))));
+      await this.step(() => fd.chmod(0o444));
+      await this.step(() => fd.sync());
     } finally {
       await fd.close();
     }
     assert.equal(hashBytes(await readFile(stage)), sha256);
-    await this.fault('file-validated');
+    await this.step(() => this.fault('file-validated'));
     try {
-      await link(stage, this.path(ref.key));
+      await this.step(() => link(stage, this.path(ref.key)));
     } catch (e) {
       if (!(e instanceof Error && 'code' in e && e.code === 'EEXIST')) throw e;
       await this.read(ref);
     }
-    await syncDirectory(resolve(this.root, 'objects'));
-    await rm(stage);
+    await this.step(() => syncDirectory(resolve(this.root, 'objects')));
+    await this.step(() => rm(stage));
+    await this.checkpoint();
     return ref;
   }
   async publish(
@@ -80,6 +106,7 @@ export class AssetStorage {
     files: Readonly<Record<string, Uint8Array>>,
     verify: (files: Record<string, Uint8Array>) => Promise<unknown>,
   ) {
+    await this.checkpoint();
     assert.match(buildId, /^[a-f0-9]{64}$/);
     await this.initialize();
     const target = resolve(this.root, 'builds', buildId);
@@ -93,18 +120,18 @@ export class AssetStorage {
       if (!(e instanceof Error && 'code' in e && e.code === 'ENOENT')) throw e;
     }
     const stage = resolve(this.root, 'stage', randomUUID());
-    await mkdir(stage);
+    await this.step(() => mkdir(stage));
     for (const [name, input] of Object.entries(files)) {
       assert.match(name, /^[A-Za-z0-9][A-Za-z0-9.-]*$/);
       const bytes = new Uint8Array(input),
-        fd = await open(resolve(stage, name), 'wx', 0o600);
+        fd = await this.openWrite(resolve(stage, name));
       try {
-        await this.fault('build-file-write');
-        await fd.writeFile(bytes.subarray(0, Math.ceil(bytes.length / 2)));
-        await this.fault('build-file-partial');
-        await fd.writeFile(bytes.subarray(Math.ceil(bytes.length / 2)));
-        await fd.chmod(0o444);
-        await fd.sync();
+        await this.step(() => this.fault('build-file-write'));
+        await this.step(() => fd.writeFile(bytes.subarray(0, Math.ceil(bytes.length / 2))));
+        await this.step(() => this.fault('build-file-partial'));
+        await this.step(() => fd.writeFile(bytes.subarray(Math.ceil(bytes.length / 2))));
+        await this.step(() => fd.chmod(0o444));
+        await this.step(() => fd.sync());
       } finally {
         await fd.close();
       }
@@ -112,12 +139,12 @@ export class AssetStorage {
     const reread: Record<string, Uint8Array> = {};
     for (const name of await readdir(stage))
       reread[name] = new Uint8Array(await readFile(resolve(stage, name)));
-    await verify(reread);
-    await this.fault('build-validated');
-    await syncDirectory(stage);
-    await rename(stage, target);
-    await syncDirectory(resolve(this.root, 'builds'));
-    await this.fault('files-durable');
+    await this.step(() => verify(reread));
+    await this.step(() => this.fault('build-validated'));
+    await this.step(() => syncDirectory(stage));
+    await this.step(() => rename(stage, target));
+    await this.step(() => syncDirectory(resolve(this.root, 'builds')));
+    await this.step(() => this.fault('files-durable'));
   }
   async buildFiles(buildId: string) {
     assert.match(buildId, /^[a-f0-9]{64}$/);

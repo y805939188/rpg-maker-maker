@@ -30,8 +30,10 @@ export class Archiver implements ResultArchiver {
     assert.ok(result.outputs.length > 0 && result.outputs.length <= 8);
     const sources = [];
     for (const [ordinal, output] of result.outputs.entries()) {
+      signal.throwIfAborted();
       const bytes = await this.reader.bytes(output.url, signal);
       await this.fault('archive-download');
+      signal.throwIfAborted();
       const source = await decodeSource(
         new RawSource({
           id: `mock-${task.id}-${ordinal}`,
@@ -49,11 +51,14 @@ export class Archiver implements ResultArchiver {
           },
         }),
       );
+      signal.throwIfAborted();
       if (source.status !== 'validated') throw Error(source.diagnostic.code);
       const file = await this.store.storage.put(source.source.raw.bytes());
       sources.push({ source: source.source, file });
     }
     await this.fault('archive-files-durable');
+    signal.throwIfAborted();
+    signal.throwIfAborted();
     await this.store.archived(task.id, task.version, sources);
     const completed = await this.store.task(task.id);
     assert.ok(completed?.state === 'COMPLETED');
@@ -76,7 +81,7 @@ export class Executor implements LocalTaskExecutor {
       await this.requestLocalCancellation(id);
       return;
     }
-    await this.store.taskScope(id, async () => {
+    await this.store.taskScope(id, async (lease) => {
       let task = await this.store.task(id);
       assert.ok(task);
       if (['COMPLETED', 'FAILED', 'CANCELLED_LOCAL', 'SUBMISSION_UNKNOWN'].includes(task.state))
@@ -94,16 +99,19 @@ export class Executor implements LocalTaskExecutor {
       const adapter = this.gateway.adapterFor(task.snapshot);
       assert.equal(adapter.provider, 'mock');
       assert.equal(adapter.adapterVersion, task.snapshot.model.adapterVersion);
-      const signal = new AbortController().signal;
+      const signal = lease.signal;
       if (task.state === 'QUEUED' || task.state === 'CREATED') {
         if (directive !== 'WAIT') return;
         const attempt = await this.store.taskIntent(id, task.version);
         await this.fault('intent-durable');
+        signal.throwIfAborted();
         task = await this.store.task(id);
         assert.ok(task?.state === 'SUBMITTING');
         try {
+          await lease.checkpoint();
           const submitted = await adapter.submit(task.snapshot, signal);
           await this.fault('submit-returned');
+          signal.throwIfAborted();
           if (submitted.outcome === 'KNOWN') {
             assert.ok(submitted.predictionId.length > 0 && submitted.predictionId.length <= 256);
             await this.store.submissionOutcome(
@@ -114,9 +122,11 @@ export class Executor implements LocalTaskExecutor {
               submitted.predictionId,
             );
             await this.fault('external-id-durable');
+            signal.throwIfAborted();
           } else
             await this.store.submissionOutcome(id, task.version, attempt.id, submitted.outcome);
         } catch {
+          signal.throwIfAborted();
           const latest = await this.store.task(id);
           if (latest?.state === 'SUBMITTING') await this.store.recoverUnknown(id, latest.version);
           return;
@@ -138,8 +148,10 @@ export class Executor implements LocalTaskExecutor {
           result = parseSuccess(detail.result);
         } else {
           assert.ok(task.predictionId);
+          await lease.checkpoint();
           result = await adapter.query(task.predictionId, signal);
           await this.fault('remote-queried');
+          signal.throwIfAborted();
           if (result.status === 'RUNNING') return;
           if (result.status === 'FAILED') {
             await this.store.taskTransition(id, task.version, 'FAILED', { errorCode: result.code });
@@ -162,9 +174,12 @@ export class Executor implements LocalTaskExecutor {
           assert.ok(task);
         }
         try {
+          await lease.checkpoint();
           await this.archiver.archive(task, success, signal);
           await this.fault('local-completion-durable');
+          signal.throwIfAborted();
         } catch {
+          signal.throwIfAborted();
           const latest = await this.store.task(id);
           if (latest?.state === 'VALIDATING_AND_INGESTING')
             await this.store.taskTransition(id, latest.version, 'FETCHING_RESULT', {
@@ -183,8 +198,9 @@ export class Executor implements LocalTaskExecutor {
       );
   }
   async requestLocalCancellation(id: string) {
-    await this.store.taskScope(id, async () => {
+    await this.store.taskScope(id, async (lease) => {
       const task = await this.store.task(id);
+      await lease.checkpoint();
       assert.ok(task);
       if (task.state === 'COMPLETED' || task.state === 'CANCELLED_LOCAL') return;
       await this.store.taskTransition(id, task.version, 'CANCELLED_LOCAL', {

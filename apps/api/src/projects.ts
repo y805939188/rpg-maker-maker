@@ -57,7 +57,14 @@ export class ProjectsController {
     const parsed = CreateProjectSchema.safeParse(input);
     if (!parsed.success) throw new BadRequestException();
     return toProject(
-      await this.gate.write(() => this.db.project.create({ data: { name: parsed.data.name } })),
+      await this.gate.write((lease) =>
+        this.db.$transaction(async (tx) => {
+          await lease.fence(tx);
+          const project = await tx.project.create({ data: { name: parsed.data.name } });
+          await lease.checkpoint();
+          return project;
+        }),
+      ),
     );
   }
 }

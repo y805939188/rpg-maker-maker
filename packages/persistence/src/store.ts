@@ -20,6 +20,7 @@ import { describeFragment } from '@tileset/pack-assembly';
 import { AssetStorage, noFault } from './storage.js';
 import type { FileRef, FaultHook } from './storage.js';
 import { WriteGate } from './gate.js';
+import type { GateLease } from './gate.js';
 import {
   ReplaySession,
   RefSchema,
@@ -53,15 +54,18 @@ export class Persistence {
   ) {
     this.gate = new WriteGate(databaseUrl);
     this.db = new PrismaClient({ datasources: { db: { url: databaseUrl } }, log: [] });
-    this.storage = new AssetStorage(assetRoot, fault);
+    this.storage = new AssetStorage(assetRoot, fault, () => this.gate.current());
   }
   private transaction<T>(
     operation: (tx: Prisma.TransactionClient) => Promise<T>,
     options?: { timeout: number },
   ) {
+    const lease = this.gate.require();
     return this.db.$transaction(async (tx) => {
-      await tx.$queryRaw`SELECT pg_advisory_xact_lock_shared(6006, 0)::text`;
-      return operation(tx);
+      await lease.fence(tx);
+      const value = await operation(tx);
+      await lease.checkpoint();
+      return value;
     }, options);
   }
   async readSource(id: string) {
@@ -110,6 +114,7 @@ export class Persistence {
         for (const s of r.sources)
           files.set(revId(projectId, s.ref), await this.storage.put(s.raw.bytes()));
       await this.fault('source-files-durable');
+      this.gate.require().check();
       await this.transaction((tx) => this.register(tx, projectId, replay, files), {
         timeout: 5000,
       });
@@ -435,24 +440,28 @@ export class Persistence {
     return this.gate.write(async () => {
       const project = await this.db.project.findUniqueOrThrow({ where: { id: projectId } }),
         id = fingerprint({ projectId, revision: project.revision });
-      return this.db.projectSnapshot.upsert({
-        where: { id },
-        create: {
-          id,
-          projectId,
-          revision: project.revision,
-          contentHash: fingerprint({ projectId, revision: project.revision, adoption: [] }),
-          adoption: [],
-        },
-        update: {},
-      });
+      return this.transaction((tx) =>
+        tx.projectSnapshot.upsert({
+          where: { id },
+          create: {
+            id,
+            projectId,
+            revision: project.revision,
+            contentHash: fingerprint({ projectId, revision: project.revision, adoption: [] }),
+            adoption: [],
+          },
+          update: {},
+        }),
+      );
     }, `project:${projectId}`);
   }
   async createPack(projectId: string, logicalId: string) {
     assert.match(logicalId, /^[a-z][a-z0-9-]{0,63}$/);
     const id = fingerprint({ projectId, logicalId });
     return this.gate.write(() =>
-      this.db.pack.upsert({ where: { id }, create: { id, projectId, logicalId }, update: {} }),
+      this.transaction((tx) =>
+        tx.pack.upsert({ where: { id }, create: { id, projectId, logicalId }, update: {} }),
+      ),
     );
   }
   async prepareBuild(
@@ -581,6 +590,7 @@ export class Persistence {
           await this.storage.put(source.raw.bytes()),
         );
     await this.fault('before-db-commit');
+    this.gate.require().check();
     const result = await this.transaction(
       async (tx) => {
         const existing = await tx.build.findUnique({ where: { id: metadata.id } });
@@ -644,11 +654,13 @@ export class Persistence {
           assert.equal(projectChanged.count, 1, 'Project CAS conflict');
         }
         await this.fault('db-transaction');
+        this.gate.require().check();
         return build;
       },
       { timeout: 5000 },
     );
     await this.fault('after-db-commit');
+    this.gate.require().check();
     return result;
   }
   async readBuild(id: string, session?: ReplaySession) {
@@ -681,9 +693,11 @@ export class Persistence {
   ) {
     await this.readBuild(buildId);
     return this.gate.write(() =>
-      this.db.acceptanceRecord.create({
-        data: { buildId, category, status, evidence: dbJson(evidence) },
-      }),
+      this.transaction((tx) =>
+        tx.acceptanceRecord.create({
+          data: { buildId, category, status, evidence: dbJson(evidence) },
+        }),
+      ),
     );
   }
   async createTask(projectId: string, input: unknown) {
@@ -691,10 +705,21 @@ export class Persistence {
     assert.equal(snapshot.model.provider, 'mock', 'Only Mock is authorized');
     return this.gate.write(async () => {
       for (const reference of snapshot.references) {
+        assert.match(
+          reference.revision,
+          /^[1-9][0-9]{0,9}$/,
+          'Reference revision must be a canonical persisted integer',
+        );
+        const exactRevision = Number(reference.revision);
+        assert.ok(
+          Number.isSafeInteger(exactRevision) && exactRevision <= 2147483647,
+          'Reference revision exceeds PostgreSQL Int',
+        );
         const revision = await this.db.assetRevision.findFirstOrThrow({
           where: {
             projectId,
             assetId: reference.assetId,
+            revision: exactRevision,
             kind: 'source',
             sourceSha: reference.sha256,
           },
@@ -708,16 +733,18 @@ export class Persistence {
       const p = await this.db.project.findUniqueOrThrow({ where: { id: projectId } }),
         id = fingerprint({ projectId, revision: p.revision });
       const projectSnapshot = await this.db.projectSnapshot.findUniqueOrThrow({ where: { id } });
-      return this.db.logicalTask.create({
-        data: {
-          id: randomUUID(),
-          projectId,
-          projectSnapshotId: projectSnapshot.id,
-          snapshot: dbJson(snapshot),
-          snapshotHash: fingerprint(snapshot),
-          state: 'QUEUED',
-        },
-      });
+      return this.transaction((tx) =>
+        tx.logicalTask.create({
+          data: {
+            id: randomUUID(),
+            projectId,
+            projectSnapshotId: projectSnapshot.id,
+            snapshot: dbJson(snapshot),
+            snapshotHash: fingerprint(snapshot),
+            state: 'QUEUED',
+          },
+        }),
+      );
     }, `project:${projectId}`);
   }
   async task(id: string): Promise<TaskRecord | null> {
@@ -771,7 +798,7 @@ export class Persistence {
     }
     return { ...base, state, predictionId: row.predictionId, artifacts };
   }
-  async taskScope<T>(id: string, operation: () => Promise<T>) {
+  async taskScope<T>(id: string, operation: (lease: GateLease) => Promise<T>) {
     return this.gate.write(operation, `task:${id}`);
   }
   async taskIntent(id: string, expectedVersion: number) {
@@ -937,6 +964,7 @@ export class Persistence {
       assert.equal(changed.count, 1);
       // Candidate results are history. Adoption is an explicit, separately versioned project action.
       await this.fault('archive-db-transaction');
+      this.gate.require().check();
     });
   }
   async taskDetail(id: string) {

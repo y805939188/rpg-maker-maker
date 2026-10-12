@@ -1,5 +1,5 @@
 import { resolve } from 'node:path';
-import { Persistence, backup, restore } from '@tileset/persistence';
+import { Persistence, backup, restore, resolveAssetRoot } from '@tileset/persistence';
 import { PROFILE } from '../src/profile.js';
 // Credentials come from the process environment only: use node --env-file=.env for local CLI.
 const url = process.env['DATABASE_URL'];
@@ -8,7 +8,7 @@ const action = process.argv[2],
   name = process.argv[3];
 if (!name || !/^[a-z][a-z0-9-]{0,63}$/.test(name))
   throw Error('A new local backup name is required');
-const root = resolve('.local/assets'),
+const root = await resolveAssetRoot(process.env),
   output = resolve('.local/step06/backups', name),
   pgBin = process.env['TILESET_PG_BIN'] ?? '/opt/homebrew/opt/postgresql@14/bin';
 const store = new Persistence(url, root, PROFILE);
