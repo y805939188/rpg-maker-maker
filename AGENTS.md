@@ -8,6 +8,10 @@
 仅使用工作树中独立的 `.local/postgres` / `.env`，不复用其他数据库、MZ 工程或全局运行环境；上传尚未开放，后续必须按 Pixel Contract 验真格式/体积/像素且不接受本地路径。默认模型/Prompt 版本不可无记录变更，任务使用创建时深冻结快照。
 步骤 02 发布构建绑定 clean commit/Profile/契约/锁文件/逐文件 SHA，证据单独保存；后续步骤只在最新候选独立 Review 与授权门禁后启动。Coding 不自行批准、合并或推送。`docs/orchestration/steps-02-03-state.json` 由主工作区 Orchestrator 管理，Coding 不修改。
 
+## 步骤 03 当前候选归属
+
+步骤 02 已发布；本轮当前 Coding 仅实施步骤 03。`asset-core` 拥有框架无关领域/不可变版本/硬 IR 校验，仅使用 Node crypto；`material-processing` 仅依赖 asset-core，拥有确定性像素/固定岸线配方；`image-adapter` 拥有有界 PNG/native codec 隔离，不接受服务器路径。新增成员须先登记方向/构建/导出检查。源字节与像素必须独立持有，不得以可变 Buffer 破坏历史快照。正式领域 Built 只表示处理 IR，不能冒充步骤 04 Compiler 或步骤 05 Pack。新元数据/方向/资源政策见 `docs/engineering/STEP_03_BASELINE.md`；原型/Profile/Pixel Contract/母版与旧 manifest 不改写。步骤 03 完成后停止，步骤 04 未授权。
+
 ## 2026-10-12 一次性授权覆盖
 
 本轮用户明确授权步骤 01 阶段收尾、步骤 02–03 Coding/独立 Review/整改及通过技术门禁后 Merge/Push。下文的步骤 01 限定与禁止 Merge/Push 在本轮授权范围内由此覆盖；步骤 04–10 仍须新批准。详见 `docs/reviews/step-01-authorization.md` 和 `docs/orchestration/steps-02-03-state.json`。正式代码仅由 `step_coder`（gpt-6.1-sol / xhigh / default）修改，独立审查仅由 `step_reviewer`（gpt-6.1-sol / ultra / default）执行；禁 Fast/Priority/Ultrafast。每步最多 5 轮，P0/P1/阻断 P2 清零且最新候选独立 PASS 后由 Orchestrator 委托验收。步骤 03 发布后停止。

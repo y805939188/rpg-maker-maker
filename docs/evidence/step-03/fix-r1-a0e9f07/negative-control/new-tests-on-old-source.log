@@ -1,0 +1,367 @@
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-03-coding/rpg-maker-maker
+
+ ❯ packages/asset-core/tests/review-round1.test.ts (3 tests | 3 failed) 5ms
+     × rejects sparse sequence and duration arrays before freeze or selection 3ms
+     × rejects holes, explicit undefined and inherited array entries without filling them 0ms
+     × rejects sparse nested palette channels and outer palette arrays 1ms
+ ❯ packages/material-processing/tests/review-round1.test.ts (10 tests | 7 failed) 27ms
+     × rejects omitted parameter dependencies even when the remaining IR hash is recomputed 6ms
+     × binds parameters explicitly and rejects the wrong revision or kind 7ms
+     × rejects multiple source revisions under one ID before a recipe becomes Compilable 1ms
+     × rejects conflicting current adoption and hard IR identities rather than returning false mismatches 2ms
+     × rejects literal out-of-palette red alpha1 even though its independently calculated composite is allowed 1ms
+     × rejects unplayed variation at both recipe and independently rehashed IR boundaries 1ms
+     × rejects played distinct references with equal pixels even when an unused frame varies 1ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 10 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/asset-core/tests/review-round1.test.ts > STEP03-R1-001: absence is not JSON null or an animation value > rejects sparse sequence and duration arrays before freeze or selection
+AssertionError: expected [Function] to throw an error
+ ❯ packages/asset-core/tests/review-round1.test.ts:8:41
+      6|     const valid = {frameCount:3,sequence:[0],durations:[30],timebase:'…
+      7|     for (const clip of [{...valid,sequence:new Array<number>(1)},{...v…
+      8|       expect(() => animationClip(clip)).toThrow();
+       |                                         ^
+      9|       expect(() => frameAt(clip,0)).toThrow();
+     10|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+ FAIL  packages/asset-core/tests/review-round1.test.ts > STEP03-R1-001: absence is not JSON null or an animation value > rejects holes, explicit undefined and inherited array entries without filling them
+AssertionError: expected [Function] to throw an error
+ ❯ packages/asset-core/tests/review-round1.test.ts:16:39
+     14|     const inherited = new Array<number>(1); Object.setPrototypeOf(inhe…
+     15|     for (const value of [{list:new Array<number>(1)},{list:[1,,3]},{li…
+     16|       expect(() => freezeJson(value)).toThrow(); expect(() => fingerpr…
+       |                                       ^
+     17|     }
+     18|     expect(freezeJson({list:[null]})).toEqual({list:[null]});
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/10]⎯
+
+ FAIL  packages/asset-core/tests/review-round1.test.ts > STEP03-R1-001: absence is not JSON null or an animation value > rejects sparse nested palette channels and outer palette arrays
+AssertionError: expected [Function] to throw an error
+ ❯ packages/asset-core/tests/review-round1.test.ts:23:99
+     21|   it('rejects sparse nested palette channels and outer palette arrays'…
+     22|     const valid = {logicalPixelScale:1,palette:[[1,2,3]] as [number,nu…
+     23|     expect(() => styleProfile('style',1,{...valid,palette:new Array<[n…
+       |                                                                                                   ^
+     24|     expect(() => styleProfile('style',1,{...valid,palette:[[1,,3] as […
+     25|     expect(styleProfile('style',1,valid).value).toEqual(valid);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/10]⎯
+
+ FAIL  packages/material-processing/tests/review-round1.test.ts > STEP03-R1-002: parameter identity remains in the hard dependency closure > rejects omitted parameter dependencies even when the remaining IR hash is recomputed
+AssertionError: expected [Function] to throw an error
+ ❯ packages/material-processing/tests/review-round1.test.ts:18:45
+     16|     const ir = processShoreline(fixture()).ir;
+     17|     const truncated = rehash({...ir,dependencies:ir.dependencies.filte…
+     18|     expect(() => validateTileIR(truncated)).toThrow();
+       |                                             ^
+     19|     expect(() => buildProcessedAsset({state:'COMPILABLE_RECIPE',ir:tru…
+     20|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/10]⎯
+
+ FAIL  packages/material-processing/tests/review-round1.test.ts > STEP03-R1-002: parameter identity remains in the hard dependency closure > binds parameters explicitly and rejects the wrong revision or kind
+AssertionError: expected { animation: { …(5) }, …(12) } to match object { parameters: { …(4) } }
+(43 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "parameters": {
++   "animation": {
++     "durations": [
++       30,
++       30,
++       30,
++       30,
++     ],
++     "frameCount": 3,
++     "loop": true,
++     "sequence": [
++       0,
++       1,
++       2,
++       1,
++     ],
++     "timebase": "updates",
++   },
++   "contentHash": "d06a4b59de56f86f19a10c9cf2642c1615c3a1d0858470506fdfe038c27836a7",
++   "contract": "tile-ir-v1",
++   "density": 1,
++   "dependencies": [
++     {
++       "contentHash": "9bfe5685294fe88fa2f22a8393c55803bedf8bfdb1e25f0343f830ed9f383268",
++       "id": "grass",
++       "kind": "source",
++       "revision": 3,
++     },
++     {
++       "contentHash": "9b4dc5c0f3f754f96f3b95b0dee74b4fc9c5488aab2d1abf3a1aa42d32d15ab9",
++       "id": "water-0",
++       "kind": "source",
++       "revision": 1,
++     },
++     {
++       "contentHash": "ca33cca3978103e9ad90fa5e72cad06c666d176f78d942dfc0835588e1aa3307",
++       "id": "water-1",
++       "kind": "source",
++       "revision": 1,
++     },
++     {
++       "contentHash": "3fe0b07ed5cdb3923530e3f6303e1d0ed1f86e22fa409583bc7d18c353829003",
++       "id": "water-2",
++       "kind": "source",
++       "revision": 1,
++     },
++     {
++       "contentHash": "929f1fa97617afb6dee0c13fd69774fbc87f742528371a1255b29f8bf8e192f6",
++       "id": "mask",
++       "kind": "source",
++       "revision": 2,
++     },
++     {
++       "contentHash": "f0615c7b29bd68bbaa3789a3cb9098d0dea25ae3c42678ff146cd3f54048ee27",
++       "id": "bank-detail",
++       "kind": "source",
++       "revision": 1,
++     },
++     {
++       "contentHash": "8657e6aac7b49bd3dc8766799735ef40898ced03c8c230af11e1e8aebd7a492e",
++       "id": "style",
++       "kind": "style",
++       "revision": 2,
++     },
++     {
+        "contentHash": "5712d1618c75c53646eb82bc235a251e8101ee65f531a01122ab8fe164c1f500",
+        "id": "shore-parameters",
+        "kind": "parameters",
+        "revision": 4,
++     },
++     {
++       "contentHash": "bf507e4359aa6e5af2eba9803a68836cd57973ea775c2fe2ad3178d55b0262a6",
++       "id": "shore",
++       "kind": "recipe",
++       "revision": 5,
++     },
++   ],
++   "frames": [
++     RgbaImage {
++       "height": 2,
++       "pixelHash": "7cad95016894eda37025f53cfe8956a031270377ac98fc657d56c2c1bd7f1c04",
++       "width": 4,
++     },
++     RgbaImage {
++       "height": 2,
++       "pixelHash": "aa69b655b855b194d26e08ba656aa1ea376f9af2fa467576f96730e29fcecf43",
++       "width": 4,
++     },
++     RgbaImage {
++       "height": 2,
++       "pixelHash": "a2780dc5a5928732e4393c1011e33406b4512f853dc83d668d9416e045b40a09",
++       "width": 4,
++     },
++   ],
++   "geometry": {
++     "height": 2,
++     "regions": [
++       {
++         "name": "bank-edge",
++         "rect": {
++           "height": 2,
++           "width": 2,
++           "x": 0,
++           "y": 0,
++         },
++         "role": "edge",
++       },
++       {
++         "name": "interior",
++         "rect": {
++           "height": 2,
++           "width": 2,
++           "x": 2,
++           "y": 0,
++         },
++         "role": "center",
++       },
++     ],
++     "tileHeight": 2,
++     "tileWidth": 2,
++     "width": 4,
++   },
++   "ground": {
++     "components": [
++       {
++         "contentHash": "9bfe5685294fe88fa2f22a8393c55803bedf8bfdb1e25f0343f830ed9f383268",
++         "id": "grass",
++         "kind": "source",
++         "revision": 3,
++       },
++     ],
++     "material": {
++       "id": "grass",
++       "kind": "grass",
++       "style": {
++         "contentHash": "8657e6aac7b49bd3dc8766799735ef40898ced03c8c230af11e1e8aebd7a492e",
++         "id": "style",
++         "kind": "style",
++         "revision": 2,
++       },
++     },
++     "opaque": true,
++   },
++   "groundImage": RgbaImage {
++     "height": 2,
++     "pixelHash": "230911e9b6a2326a83aefd86134b520ba702e5ceeaab218ff71a185d25bcd26c",
++     "width": 4,
++   },
++   "recipe": {
++     "contentHash": "bf507e4359aa6e5af2eba9803a68836cd57973ea775c2fe2ad3178d55b0262a6",
++     "id": "shore",
++     "kind": "recipe",
++     "revision": 5,
++   },
++   "staticMaskImage": RgbaImage {
++     "height": 2,
++     "pixelHash": "d2cf3ec026217faf3c582ded72d49cb9c2cebe6e9239bb2d1e62e55c3489c56e",
++     "width": 4,
++   },
++   "transition": {
++     "bankOverlay": {
++       "contentHash": "f0615c7b29bd68bbaa3789a3cb9098d0dea25ae3c42678ff146cd3f54048ee27",
++       "id": "bank-detail",
++       "kind": "source",
++       "revision": 1,
++     },
++     "boundaryOwner": "water",
++     "staticMask": {
++       "contentHash": "929f1fa97617afb6dee0c13fd69774fbc87f742528371a1255b29f8bf8e192f6",
++       "id": "mask",
++       "kind": "source",
++       "revision": 2,
++     },
++     "strategy": "opaque-water-owned-baked-grass-bank-v1",
++   },
++   "water": {
++     "components": [
++       {
++         "contentHash": "9b4dc5c0f3f754f96f3b95b0dee74b4fc9c5488aab2d1abf3a1aa42d32d15ab9",
++         "id": "water-0",
++         "kind": "source",
++         "revision": 1,
++       },
++       {
++         "contentHash": "ca33cca3978103e9ad90fa5e72cad06c666d176f78d942dfc0835588e1aa3307",
++         "id": "water-1",
++         "kind": "source",
++         "revision": 1,
++       },
++       {
++         "contentHash": "3fe0b07ed5cdb3923530e3f6303e1d0ed1f86e22fa409583bc7d18c353829003",
++         "id": "water-2",
++         "kind": "source",
++         "revision": 1,
++       },
++     ],
++     "material": {
++       "id": "water-0",
++       "kind": "water",
++       "style": {
++         "contentHash": "8657e6aac7b49bd3dc8766799735ef40898ced03c8c230af11e1e8aebd7a492e",
++         "id": "style",
++         "kind": "style",
++         "revision": 2,
++       },
++     },
++     "opaque": true,
+    },
+  }
+
+ ❯ packages/material-processing/tests/review-round1.test.ts:23:16
+     21|   it('binds parameters explicitly and rejects the wrong revision or ki…
+     22|     const input = fixture(), ir = processShoreline(input).ir;
+     23|     expect(ir).toMatchObject({parameters:input.parameters.ref});
+       |                ^
+     24|     const wrong = createRevision('parameters','shore-parameters',5,inp…
+     25|     expect(() => validateTileIR(rehash({...ir,parameters:wrong} as Til…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/10]⎯
+
+ FAIL  packages/material-processing/tests/review-round1.test.ts > STEP03-R1-003: one adopted revision per logical identity > rejects multiple source revisions under one ID before a recipe becomes Compilable
+AssertionError: expected [Function] to throw an error
+ ❯ packages/material-processing/tests/review-round1.test.ts:48:8
+     46|       const recipe = shorelineRecipe('shore',6,{...input.recipe.value,…
+     47|       return processShoreline({...input,recipe,sources:[input.sources[…
+     48|     }).toThrow();
+       |        ^
+     49|   });
+     50|   it('rejects conflicting current adoption and hard IR identities rath…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/10]⎯
+
+ FAIL  packages/material-processing/tests/review-round1.test.ts > STEP03-R1-003: one adopted revision per logical identity > rejects conflicting current adoption and hard IR identities rather than returning false mismatches
+AssertionError: expected [Function] to throw an error
+ ❯ packages/material-processing/tests/review-round1.test.ts:55:55
+     53|     const next = source('grass','grass',art.grass,4); catalog.publish(…
+     54|     const conflict = [...built.ir.dependencies,next.ref];
+     55|     expect(() => assessBuild(built,catalog,conflict)).toThrow();
+       |                                                       ^
+     56|     expect(() => adoptRevision(conflict,next.ref,catalog)).toThrow();
+     57|     expect(() => validateTileIR(rehash({...built.ir,dependencies:confl…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/10]⎯
+
+ FAIL  packages/material-processing/tests/review-round1.test.ts > STEP03-R1-004: the visible overlay source must itself satisfy the palette > rejects literal out-of-palette red alpha1 even though its independently calculated composite is allowed
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ packages/material-processing/tests/review-round1.test.ts:70:59
+     68|   }
+     69|   it('rejects literal out-of-palette red alpha1 even though its indepe…
+     70|     expect(() => processShoreline(partialOverlay(false))).toThrow('pal…
+       |                                                           ^
+     71|   });
+     72|   it('accepts an in-palette partial source and composite while transpa…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/10]⎯
+
+ FAIL  packages/material-processing/tests/review-round1.test.ts > STEP03-R1-005: animation variation must be reachable in its declared playback > rejects unplayed variation at both recipe and independently rehashed IR boundaries
+AssertionError: expected [Function] to throw an error
+ ❯ packages/material-processing/tests/review-round1.test.ts:80:56
+     78| describe('STEP03-R1-005: animation variation must be reachable in its …
+     79|   it('rejects unplayed variation at both recipe and independently reha…
+     80|     expect(() => processShoreline(withAnimation([0]))).toThrow();
+       |                                                        ^
+     81|     const ir = processShoreline(fixture()).ir;
+     82|     const animation: AnimationClip = {...ir.animation,sequence:[0],dur…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/10]⎯
+
+ FAIL  packages/material-processing/tests/review-round1.test.ts > STEP03-R1-005: animation variation must be reachable in its declared playback > rejects played distinct references with equal pixels even when an unused frame varies
+AssertionError: expected [Function] to throw an error
+ ❯ packages/material-processing/tests/review-round1.test.ts:88:118
+     86|     const input = withAnimation([0,1]), water = [source('water-0','wat…
+     87|     const recipe = shorelineRecipe('shore',6,{...input.recipe.value,wa…
+     88|     expect(() => processShoreline({...input,recipe,sources:[input.sour…
+       |                                                                                                                      ^
+     89|     const ir = processShoreline(fixture()).ir;
+     90|     expect(() => validateTileIR(rehash({...ir,animation:{...ir.animati…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/10]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  10 failed | 3 passed (13)
+   Start at  13:19:30
+   Duration  225ms (transform 110ms, setup 0ms, import 145ms, tests 32ms, environment 0ms)
+
