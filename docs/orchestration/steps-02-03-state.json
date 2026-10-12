@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_CANDIDATE_CI_PREPARATION",
+  "currentPhase": "STEP03_VERIFICATION_BRANCH_CI",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "INDEPENDENT_PASS_PENDING_CI_PUBLICATION",
+    "status": "INDEPENDENT_PASS_CANDIDATE_CI_IN_PROGRESS",
     "reviews": [
       {
         "round": 1,
@@ -839,7 +839,22 @@
       "step01-4b1e0cd7d9e2af9f004f"
     ],
     "latestIndependentPass": "ROUND2_A0E",
-    "delegatedApproval": "NOT_YET_ISSUED_PENDING_REMOTE_CI"
+    "delegatedApproval": "NOT_YET_ISSUED_PENDING_REMOTE_CI",
+    "verificationBranch": {
+      "branch": "codex/step-03-validation-r2",
+      "head": "dbcf0e82c0ee030cbdd3e9682cfd1504ac1a3cd6",
+      "push": "SUCCESS_READBACK_VERIFIED",
+      "scope": "VERIFICATION_NOT_MAIN_PUBLICATION",
+      "codeEqualsReviewedA0E": true
+    },
+    "remoteCI": {
+      "runId": 38212088525,
+      "event": "push",
+      "head": "dbcf0e82c0ee030cbdd3e9682cfd1504ac1a3cd6",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38212088525",
+      "status": "IN_PROGRESS",
+      "result": "PENDING"
+    }
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -874,7 +889,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP03_R2_INDEPENDENT_PASS_5FIXED_AND_SAFE52FILE_ARCHIVE",
+  "lastSuccessfulCheckpoint": "R2PASS_DBCF_VERIFICATION_BRANCH_PUSHED_REMOTE_CONFIRMED_MAIN_C021",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -909,7 +924,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Merge only docs intointegration exactsourcea0e; format/checksource; pushownvalidationbranchCI; no mainpromotion beforeCI",
+  "nextSafeAction": "WaitCI38212088525success; thenrecorddelegatedapproval and normalmainmerge/regression/push/postmainCI; stopdevelopmentafter03publish",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
