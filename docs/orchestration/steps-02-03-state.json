@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_CANDIDATE_CI_PREPARATION",
+  "currentPhase": "STEP03_MAIN_INTEGRATION",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "INDEPENDENT_PASS_PENDING_CI_PUBLICATION",
+    "status": "APPROVED_PENDING_MAIN_PUBLICATION",
     "reviews": [
       {
         "round": 1,
@@ -839,7 +839,36 @@
       "step01-4b1e0cd7d9e2af9f004f"
     ],
     "latestIndependentPass": "ROUND2_A0E",
-    "delegatedApproval": "NOT_YET_ISSUED_PENDING_REMOTE_CI"
+    "delegatedApproval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+    "verificationBranch": {
+      "branch": "codex/step-03-validation-r2",
+      "head": "dbcf0e82c0ee030cbdd3e9682cfd1504ac1a3cd6",
+      "push": "SUCCESS_READBACK_VERIFIED",
+      "scope": "VERIFICATION_NOT_MAIN_PUBLICATION",
+      "codeEqualsReviewedA0E": true
+    },
+    "remoteCI": {
+      "runId": 38212088525,
+      "event": "push",
+      "head": "dbcf0e82c0ee030cbdd3e9682cfd1504ac1a3cd6",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38212088525",
+      "status": "COMPLETED",
+      "result": "SUCCESS_ALL_REQUIRED_JOBS",
+      "evidence": "docs/orchestration/evidence/step03-validation-remote-ci.json"
+    },
+    "delegatedApprovalBasis": {
+      "source": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+      "metadata": "0cf7aa049137cae6c9367231a141ffcb04df97a9",
+      "reviewRound": 2,
+      "candidateCIHead": "dbcf0e82c0ee030cbdd3e9682cfd1504ac1a3cd6",
+      "runId": 38212088525,
+      "counts": {
+        "P0": 0,
+        "P1": 0,
+        "blockingP2": 0
+      },
+      "timeUTC": "2026-10-12T06:25:46.879418+00:00"
+    }
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -874,7 +903,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "STEP03_R2_INDEPENDENT_PASS_5FIXED_AND_SAFE52FILE_ARCHIVE",
+  "lastSuccessfulCheckpoint": "R2PASS_DBCF_VERIFICATION_BRANCH_PUSHED_REMOTE_CONFIRMED_MAIN_C021",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -909,7 +938,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "Merge only docs intointegration exactsourcea0e; format/checksource; pushownvalidationbranchCI; no mainpromotion beforeCI",
+  "nextSafeAction": "Fetchmain andnormalmerge exactreviewedsource+docs; postmergeregression; normalpush/readback/postmainCI thenstopformaldev",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
