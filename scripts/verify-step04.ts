@@ -32,7 +32,7 @@ for(const s of updates){const rect=nativeRects(native,4,0,s.animationFrame)[0]!;
 // Independently authored preexisting art expected; old prototype compared only for regression.
 const art=await makeCompilerFixture('art');
 const old=compileFixedPrototype(art.originalGround.image.pixels(),art.originalWater.map(s=>s.image.pixels()));
-for(const [name,image]of [['A1',old.a1],['A2',old.a2]] as const)assert.deepEqual(await encodePng(new RgbaImage(image)),input.files[`art/${name}.png`]);
+for(const [name,image]of [['A1',old.a1],['A2',old.a2]] as const)assert.deepEqual(Buffer.from(await encodePng(new RgbaImage(image))),input.files[`art/${name}.png`]);
 const report={buildId:input.manifest.buildId,commit:input.manifest.identity.commit,manifestSha256:input.manifestSha256,coreSha256:PROFILE.coreSha256,result:'PASS',
   scope:'Pinned unmodified native Tilemap in Node VM with PIXI/layer stub reading actual new Compiler atlases; CPU rectangle/pixel validation, not GUI/GPU/game/independent Review',
   connectedShapes:47,representativeIndices:[47],sourceWaterFrames:3,playbackStates:4,families:2,diagnosticSlots:{ground:2,water:2},tilesChecked,pixelsChecked,updatesChecked:updates.length,
