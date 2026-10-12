@@ -23,3 +23,7 @@ Root preserved all three builds and reread all 108 file hashes. Sample PNG/worki
 Actual native codec: Sharp 0.35.5/libvips 8.18.7. Bounded RGBA8 PNG/container/metadata/stream handling, one retained codec/read slot without a queue, five-second deadlines, isolated child, decoded pixel bounds and cleanup have test evidence. The child heap limit is not an OS/native RSS cap; observed RSS is not a peak guarantee. External producer allocations and future HTTP/remote ingress require separate budgets. Remaining dependency audit is one scoped esbuild low advisory, absent affected Windows standalone serve usage; engineering owns compatible remediation before that exposure. No global security-clean claim is made.
 
 Actual role requests are verified Coding gpt-6.1-sol/xhigh/default and independent Reviewer gpt-6.1-sol/ultra/default; unexposed server-final fields remain UNVERIFIED. Original Native MZ Host Compatibility remains NOT_EXECUTED, required before V1.0 release by Step10; Map003 (4,10) remains PENDING_USER_EVIDENCE. Step04 remains NOT_STARTED_UNAUTHORIZED.
+
+## Final independent review
+
+Round 2 returned PASS for exact a0e9f07, with STEP03-R1-001 through 005 FIXED and P0/P1/blocking P2 zero. Current 129 tests, 52 public export closure/control cases, real DB/browser/resource/byte/pixel/source/history and immutable artifact checks passed independently. All 669 tracked source hashes and old evidence stayed unchanged. Remote candidate/main CI and delegated publication remain pending.
