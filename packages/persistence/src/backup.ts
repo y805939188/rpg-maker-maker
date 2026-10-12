@@ -290,6 +290,8 @@ export async function restore(store: Persistence, directory: string, pgBin: stri
         const target = resolve(store.storage.root, key.slice(7));
         await copy(source, target);
         assert.deepEqual(await fileHash(target), checked.manifest.files[key]);
+        await chmod(target, 0o444);
+        await sync(target);
       }
     await sync(store.storage.root);
     // All immutable files are durable before the atomic database restore registers references.

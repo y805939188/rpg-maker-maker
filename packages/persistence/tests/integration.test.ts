@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, writeFile, lstat } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import pg from 'pg';
 import { Persistence, backup, restore, verifyBackup, verifyDatabase } from '@tileset/persistence';
@@ -83,6 +83,30 @@ describe('real PostgreSQL + immutable files publication', () => {
         expect(await s.store.db.build.findUnique({ where: { id: next.id } })).toBeNull();
       }
       fail = '';
+      // Real PostgreSQL deferred trigger fails at COMMIT, after durable files and all registration SQL.
+      const rejectName = 'step06_reject_' + s.project.id.replaceAll('-', '');
+      let functionOwned = false,
+        triggerOwned = false;
+      try {
+        await s.store.db.$executeRawUnsafe(
+          `CREATE FUNCTION "${rejectName}"() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN RAISE EXCEPTION 'STEP06_DEFERRED_COMMIT_REJECTION'; END $$`,
+        );
+        functionOwned = true;
+        await s.store.db.$executeRawUnsafe(
+          `CREATE CONSTRAINT TRIGGER "${rejectName}" AFTER INSERT ON "Build" DEFERRABLE INITIALLY DEFERRED FOR EACH ROW WHEN (NEW.id = '${next.id}') EXECUTE FUNCTION "${rejectName}"()`,
+        );
+        triggerOwned = true;
+        await expect(s.store.publish(next)).rejects.toThrow('STEP06_DEFERRED_COMMIT_REJECTION');
+        expect(
+          (await s.store.db.project.findUniqueOrThrow({ where: { id: s.project.id } }))
+            .successfulBuildId,
+        ).toBe(first.id);
+        expect(await s.store.db.build.findUnique({ where: { id: next.id } })).toBeNull();
+      } finally {
+        if (triggerOwned)
+          await s.store.db.$executeRawUnsafe(`DROP TRIGGER "${rejectName}" ON "Build"`);
+        if (functionOwned) await s.store.db.$executeRawUnsafe(`DROP FUNCTION "${rejectName}"()`);
+      }
       const recovered = await s.store.publish(next);
       expect(recovered.publication).toBe('ADOPTED');
       await s.store.publish(next);
@@ -90,7 +114,13 @@ describe('real PostgreSQL + immutable files publication', () => {
       const inventory = await s.store.storage.inventory();
       expect(inventory.stages.length).toBeGreaterThan(0);
       await evidence('failures-and-recovery', {
-        points: ['build-file-write', 'build-file-partial', 'files-durable', 'db-transaction'],
+        points: [
+          'build-file-write',
+          'build-file-partial',
+          'files-durable',
+          'db-transaction',
+          'POSTGRES_DEFERRED_COMMIT_REJECTION',
+        ],
         inventory,
         first: first.id,
         recovered: next.id,
@@ -324,6 +354,9 @@ describe('real PostgreSQL + immutable files publication', () => {
       expect((await restored.task(knownTask.id))?.state).toBe('REMOTE_RUNNING');
       expect(await provider.ids()).toHaveLength(2);
 
+      expect(
+        (await lstat(resolve(restored.storage.root, 'builds', retired.id, 'A1.png'))).mode & 0o222,
+      ).toBe(0);
       const replay = await restored.readBuild(retired.id);
       expect(replay.replay.snapshot.slots.filter((s) => s.state === 'RETIRED')).toHaveLength(2);
       const next = await restored.prepareBuild(s.project.id, s.pack.id, s.adopted.id, [], context);
