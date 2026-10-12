@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_ROUND2_ENVIRONMENT_READY",
+  "currentPhase": "STEP03_INDEPENDENT_REVIEW_ROUND2",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "READY_FOR_INDEPENDENT_ROUND2",
+    "status": "INDEPENDENT_REVIEW_ROUND2_IN_PROGRESS",
     "reviews": [
       {
         "round": 1,
@@ -533,6 +533,29 @@
         ],
         "sourceIntegrity": "625_TRACKED_UNCHANGED_EXACT7CA_GIT_CLEAN",
         "checks": "116_6EXPORTS_PRIVACY5_DB3_PROD_DEV_COLD_BUDGET_MATH_ARTIFACT_NATIVEORACLE_PASS"
+      },
+      {
+        "round": 2,
+        "candidate": "a0e9f07ae26567c3a623a2b38e42b0b015441d30",
+        "metadataHead": "0cf7aa049137cae6c9367231a141ffcb04df97a9",
+        "reviewer": "/root/step03_reviewer",
+        "status": "IN_PROGRESS",
+        "clientConfiguration": {
+          "logId": 2953771,
+          "turn": "01a12eb4-e593-7e53-9b41-f5a6e678cc46",
+          "model": "gpt-6.1-sol",
+          "effort": "ultra",
+          "serviceTier": "default",
+          "serverFinal": "UNVERIFIED_NOT_EXPOSED"
+        },
+        "mustVerifyClosure": [
+          "STEP03-R1-001",
+          "STEP03-R1-002",
+          "STEP03-R1-003",
+          "STEP03-R1-004",
+          "STEP03-R1-005"
+        ],
+        "sourceIntegrity": "BEFORE_AFTER669_HASHES_EXACT_SHA_CLEAN_REQUIRED"
       }
     ],
     "merge": "NOT_EXECUTED",
@@ -645,7 +668,7 @@
     "candidateSourceTrackedFiles": 669,
     "sourceEditsAfterFreeze": "PROHIBITED_AWAIT_REVIEW",
     "evidenceHead": "0cf7aa049137cae6c9367231a141ffcb04df97a9",
-    "independentReview": "CHANGES_REQUESTED",
+    "independentReview": "ROUND2_IN_PROGRESS",
     "codingReport": "docs/reviews/step-03-coding.md",
     "codingReportSha256": "171995481729342c33be9c4c19fc46826121d569a7ac2872fc6305b2dc15fa70",
     "codingEvidence": "docs/evidence/step-03/coding-7ca928f",
@@ -799,7 +822,7 @@
     "existingGlobalCluster": "UNCHANGED",
     "regression": "NOT_EXECUTED"
   },
-  "lastSuccessfulCheckpoint": "A0E_SOURCE_0CF_DOCS_THREE_NEW_BUILDS_PRESERVED",
+  "lastSuccessfulCheckpoint": "R2_RELEASE_ACTUAL_ULTRA_DEFAULT_A0E_0CF_ARTIFACTS_SAFE",
   "blockingCondition": null,
   "cleanup": "STEP02_OWN_VALIDATION_BRANCH_DELETED_AFTER_REMOTE_MAIN_ANCESTRY_VERIFICATION; DB_OWNING_AND_HISTORICAL_WORKTREES_RETAINED",
   "finalRemoteMain": "c021b20991281317fbbbb1fc398c0ae496ef648d",
@@ -834,7 +857,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "ReleaseindependentR2 exacta0e and closeall5orcontinueboundedfixcycle; no mainapproval yet",
+  "nextSafeAction": "AwaitR2formalPASSorrealfindings; thenboundfixes/CI/mainpublication; doNOTstart04",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
