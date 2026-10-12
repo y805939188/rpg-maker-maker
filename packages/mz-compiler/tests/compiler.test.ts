@@ -168,6 +168,20 @@ describe('production exports and Profile', () => {
     ).toThrowError(expect.objectContaining({ boundary: 'ir' }));
   });
 });
+it('names logical directions by final Tile quadrants, not source-block position', () => {
+  const coordinates = (name: string) => {
+    const r = REGIONS.find((r) => r.name === name)!;
+    return [r.x, r.y];
+  };
+  expect(coordinates('center-nw')).toEqual([48, 96]);
+  expect(coordinates('center-ne')).toEqual([24, 96]);
+  expect(coordinates('center-sw')).toEqual([48, 72]);
+  expect(coordinates('center-se')).toEqual([24, 72]);
+  expect(coordinates('north-w')).toEqual([48, 48]);
+  expect(coordinates('west-n')).toEqual([0, 96]);
+  expect(coordinates('east-n')).toEqual([72, 96]);
+  expect(coordinates('south-w')).toEqual([48, 120]);
+});
 describe('target compatibility with independently valid IR controls', () => {
   it.each([
     { sequence: [0, 1, 2], durations: [30, 30, 30] },

@@ -22,10 +22,10 @@ export const TARGET = freezeJson({
 const names = [
   ['representative-nw', 'representative-ne', 'inner-nw', 'inner-ne'],
   ['representative-sw', 'representative-se', 'inner-sw', 'inner-se'],
-  ['outer-nw', 'north-w', 'north-e', 'outer-ne'],
-  ['west-n', 'center-nw', 'center-ne', 'east-n'],
-  ['west-s', 'center-sw', 'center-se', 'east-s'],
-  ['outer-sw', 'south-w', 'south-e', 'outer-se'],
+  ['outer-nw', 'north-e', 'north-w', 'outer-ne'],
+  ['west-s', 'center-se', 'center-sw', 'east-s'],
+  ['west-n', 'center-ne', 'center-nw', 'east-n'],
+  ['outer-sw', 'south-e', 'south-w', 'outer-se'],
 ];
 export const REGIONS = freezeJson(
   names.flatMap((row, y) =>

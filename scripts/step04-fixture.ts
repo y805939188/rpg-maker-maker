@@ -8,10 +8,10 @@ import { processShoreline, shorelineParameters, shorelineRecipe } from '@tileset
 const rows = [
   ['representative-nw','representative-ne','inner-nw','inner-ne'],
   ['representative-sw','representative-se','inner-sw','inner-se'],
-  ['outer-nw','north-w','north-e','outer-ne'],
-  ['west-n','center-nw','center-ne','east-n'],
-  ['west-s','center-sw','center-se','east-s'],
-  ['outer-sw','south-w','south-e','outer-se'],
+  ['outer-nw','north-e','north-w','outer-ne'],
+  ['west-s','center-se','center-sw','east-s'],
+  ['west-n','center-ne','center-nw','east-n'],
+  ['outer-sw','south-e','south-w','outer-se'],
 ];
 export function sourceGeometry(permuted = false): Geometry {
   return {width:96,height:144,tileWidth:48,tileHeight:48,regions:rows.flatMap((row,y) => row.map((name,x) => {
@@ -71,8 +71,8 @@ export async function makeCompilerFixture(family: 'art' | 'diagnostic', permuted
   }
   const style=styleProfile(`${family}-style`,1,{logicalPixelScale:density,palette:[...palette.values()],lighting:'flat',outline:'dark'});
   const animation:AnimationClip={frameCount:3,sequence:[0,1,2,1],durations:[30,30,30,30],timebase:'updates',loop:true};
-  const parameters=shorelineParameters(`${family}-parameters`,1,{geometry:sourceGeometry(permuted),animation,composition:'linear-srgb-source-over',mask:'white-static-bank'});
-  const recipe=shorelineRecipe(`${family}-recipe`,1,{version:'fixed-shoreline-v1',grass:sources[0]!.ref,water:sources.slice(1,4).map(s=>s.ref),staticMask:sources[4]!.ref,bankOverlay:sources[5]!.ref,style:style.ref,parameters:parameters.ref});
+  const parameters=shorelineParameters(`${family}-parameters`,2,{geometry:sourceGeometry(permuted),animation,composition:'linear-srgb-source-over',mask:'white-static-bank'});
+  const recipe=shorelineRecipe(`${family}-recipe`,2,{version:'fixed-shoreline-v1',grass:sources[0]!.ref,water:sources.slice(1,4).map(s=>s.ref),staticMask:sources[4]!.ref,bankOverlay:sources[5]!.ref,style:style.ref,parameters:parameters.ref});
   const built=buildProcessedAsset(processShoreline({sources,style,parameters,recipe}),`${family}-processed`);
   return {built,files,originalHashes,originalGround,originalWater,originalMask,sources,style,parameters,recipe};
 }

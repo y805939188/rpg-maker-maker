@@ -14,10 +14,12 @@ IR 现有区域名称足以承载方向，无新增通用字段。Native 输入�
 | --------------- | -------------------------------------------------------- | ------------------------------------------ |
 | 0               | representative-nw, representative-ne, inner-nw, inner-ne | center, center, inner-corner, inner-corner |
 | 1               | representative-sw, representative-se, inner-sw, inner-se | center, center, inner-corner, inner-corner |
-| 2               | outer-nw, north-w, north-e, outer-ne                     | outer-corner, edge, edge, outer-corner     |
-| 3               | west-n, center-nw, center-ne, east-n                     | edge, center, center, edge                 |
-| 4               | west-s, center-sw, center-se, east-s                     | edge, center, center, edge                 |
-| 5               | outer-sw, south-w, south-e, outer-se                     | outer-corner, edge, edge, outer-corner     |
+| 2               | outer-nw, north-e, north-w, outer-ne                     | outer-corner, edge, edge, outer-corner     |
+| 3               | west-s, center-se, center-sw, east-s                     | edge, center, center, edge                 |
+| 4               | west-n, center-ne, center-nw, east-n                     | edge, center, center, edge                 |
+| 5               | outer-sw, south-e, south-w, outer-se                     | outer-corner, edge, edge, outer-corner     |
+
+方向名称按最终48×48 Tile的象限/边段定义；MZ源样板的中心、长边quarter位置存在交换，不能用源矩形的左上/右下位置猜最终方向。representative四块的名称对应代表图自身象限。
 
 水面继承 `opaque-water-owned-baked-grass-bank-v1` 的已创作固定 mask。按区域重排后的 mask 像素 SHA-256 必须为 `2ab33dc7a3e6a56f7cb786192613351376f086faf117839e627ee0b7a2f9b422`（原 `art-static-bank-mask.png` 解码像素）。本步不接受新的岸线几何；颜色由具体源与配方确定。该约束在目标层，通用配方继续允许其他合法 mask。
 
