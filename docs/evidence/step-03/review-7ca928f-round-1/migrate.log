@@ -1,0 +1,25 @@
+
+> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker
+> pnpm --filter @tileset/api db:migrate
+
+
+> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker/apps/api
+> node scripts/migrate.mjs
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "tileset_review", schema "public" at "127.0.0.1:55433"
+
+1 migration found in prisma/migrations
+
+
+┌─────────────────────────────────────────────────────────┐
+│  Update available 6.19.3 -> 8.0.0-rc.22                 │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+No pending migrations to apply.

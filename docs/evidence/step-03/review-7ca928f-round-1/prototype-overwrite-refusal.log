@@ -1,0 +1,17 @@
+
+> @tileset/prototype@0.0.2 prototype /Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker
+> pnpm build:prototype && node dist/scripts/build-prototype.js
+
+
+> @tileset/prototype@0.0.2 build:prototype /Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker
+> tsc
+
+file:///Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker/dist/scripts/build-prototype.js:53
+        throw new Error(`Immutable build already exists: ${destination}`);
+              ^
+
+Error: Immutable build already exists: /Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker/artifacts/step01-507f3627a46d19ce6cbf
+    at file:///Users/dingshinn/.codex/worktrees/step-03-review/rpg-maker-maker/dist/scripts/build-prototype.js:53:15
+
+Node.js v22.21.1
+ ELIFECYCLE  Command failed with exit code 1.
