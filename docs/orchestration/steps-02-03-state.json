@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STOPPED_BLOCKED_INDEPENDENT_REVIEW_PLATFORM_LIMITATION",
+  "currentPhase": "STOPPED_BLOCKED_RESUME_MAIN_PLATFORM_CHECK",
   "step02": {
     "status": "BLOCKED",
     "reviews": [
@@ -291,10 +291,26 @@
     ],
     "latestSource": "c3914ec1929e8b5a9571d9ed18fa8feb3c6f17dc",
     "noAlternateModelsTiersOrPrivileges": true,
-    "requiredToResume": "Restore permitted designated step_reviewer execution, verify live Git/source/build state, complete exact-candidate independent round3 and all gates before any merge/push/step03"
+    "requiredToResume": "Restore permitted designated step_reviewer execution, verify live Git/source/build state, complete exact-candidate independent round3 and all gates before any merge/push/step03",
+    "latestResumeEvent": "MAIN_TURN_FLAGGED_DURING_READ_ONLY_RECOVERY_BEFORE_NEW_REVIEWER",
+    "supportRecord": "docs/orchestration/evidence/resume-main-platform-interruption-2905000.json"
   },
   "cleanup": "UNMERGED_WORKTREES_BRANCHES_RETAINED_NO_FORCE_DELETE",
   "finalRemoteMain": "f004d6c74abe64ea853619390aa9dc2bc34654c1_VERIFIED_FETCH_AND_LS_REMOTE",
   "finalReport": "docs/orchestration/steps-02-03-blocked-report.md",
-  "ownedServices": "STOPPED_DATA_AND_CREDENTIALS_PRESERVED"
+  "ownedServices": "STOPPED_DATA_AND_CREDENTIALS_PRESERVED",
+  "resumeAttempts": [
+    {
+      "event": "MAIN_PLATFORM_INTERRUPTION",
+      "time": "2026-10-12T10:28:20+08:00",
+      "threadId": "01a12c06-fa91-7961-9024-465d74ed9227",
+      "turnId": "01a12def-e3b9-7c43-b10d-8d2a78d8b25c",
+      "logId": 2905000,
+      "record": "docs/orchestration/evidence/resume-main-platform-interruption-2905000.json",
+      "phase": "READ_ONLY_RECOVERY_INSPECTION",
+      "reviewRound": 3,
+      "reviewerExecution": "NOT_STARTED_THIS_RESUME",
+      "retryCount": 0
+    }
+  ]
 }
