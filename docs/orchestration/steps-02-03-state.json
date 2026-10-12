@@ -39,7 +39,7 @@
     "integrationCommit": "f004d6c74abe64ea853619390aa9dc2bc34654c1",
     "push": "SUCCESS_VERIFIED_REMOTE_MAIN"
   },
-  "currentPhase": "STEP03_ROUND1_REMEDIATION_HANDOFF",
+  "currentPhase": "STEP03_CODING_FIX_ROUND1",
   "step02": {
     "status": "PUBLISHED",
     "reviews": [
@@ -469,7 +469,7 @@
     "historicalMilestone": "FROZEN_IMPLEMENTATION_DEV_PROD_BROWSER_AND_CHECK_PASS_BUILD_EVIDENCE_FINALIZING"
   },
   "step03": {
-    "status": "CHANGES_REQUESTED_ROUND1",
+    "status": "FIXING_REVIEW_ROUND1",
     "reviews": [
       {
         "round": 1,
@@ -681,7 +681,38 @@
       }
     ],
     "reviewWorktreeHead": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
-    "protectedPaths": "ROOT_VERIFIED_ALL_PREVIOUS_PROTOTYPE_APP_CONTRACT_GATEWAY_PLAN_PROFILE_PIXELCONTRACT_AND_OLDTESTS_UNCHANGED"
+    "protectedPaths": "ROOT_VERIFIED_ALL_PREVIOUS_PROTOTYPE_APP_CONTRACT_GATEWAY_PLAN_PROFILE_PIXELCONTRACT_AND_OLDTESTS_UNCHANGED",
+    "remediation": {
+      "round": 1,
+      "sourceReviewed": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+      "author": "/root/step03_coder",
+      "status": "IN_PROGRESS",
+      "clientConfiguration": {
+        "logId": 2948775,
+        "turn": "01a12e89-2a1e-7743-ab3f-a76773d23d47",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "serviceTier": "default",
+        "serverFinal": "UNVERIFIED_NOT_EXPOSED"
+      },
+      "requiredFindingClosure": [
+        "STEP03-R1-001",
+        "STEP03-R1-002",
+        "STEP03-R1-003",
+        "STEP03-R1-004",
+        "STEP03-R1-005"
+      ],
+      "newCandidate": "NOT_YET_FROZEN"
+    },
+    "integrationWorktree": "/Users/dingshinn/.codex/worktrees/step-02-integration/rpg-maker-maker",
+    "integrationBranch": "codex/step-03-integration",
+    "integrationCandidate": {
+      "head": "fca7a280b3dcc761c78cb81562e8cf7e51e4b46d",
+      "source": "7ca928f2c1ac480691c77e67b3d19da4dda8e643",
+      "nonDocsDiff": "ZERO",
+      "mainMerged": false,
+      "verification": "DEFERRED_UNTIL_REPAIRED_CANDIDATE_REVIEW"
+    }
   },
   "initialGit": {
     "branch": "codex/step-01-mz-prototype",
@@ -751,7 +782,7 @@
       "securityBlockedRequestRetries": 0
     }
   ],
-  "nextSafeAction": "SameStep03Coderfixall5hardcontractdefectswithregressions; newfreeze thenindependentround2; noCIpublication/mainmerge",
+  "nextSafeAction": "WaitsameCoder newfreezeclosingall5; isolatedReviewerR2; retainR1andoldimmutablebuilds; noCandidateCIorMainPublication yet",
   "cleanupRecords": [
     {
       "item": "remote codex/step-02-validation-r4",
