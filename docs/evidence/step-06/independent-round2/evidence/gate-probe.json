@@ -1,0 +1,104 @@
+{
+  "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+  "checks": [
+    {
+      "name": "intent-durable",
+      "lease": {
+        "pid": 32395,
+        "scope": "task:4a65105a-096a-4873-9e2f-db7ff64562d9"
+      },
+      "locks": [
+        {
+          "pid": 32395,
+          "classid": 6007,
+          "objid": 3854117599,
+          "mode": "ExclusiveLock"
+        },
+        {
+          "pid": 32395,
+          "classid": 6006,
+          "objid": 0,
+          "mode": "ShareLock"
+        }
+      ],
+      "outcome": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "remoteIds": [],
+      "state": "SUBMISSION_UNKNOWN",
+      "taskId": "4a65105a-096a-4873-9e2f-db7ff64562d9"
+    },
+    {
+      "name": "remote-created",
+      "lease": {
+        "pid": 32404,
+        "scope": "task:0ecf829b-9561-452a-891e-907940b4ca50"
+      },
+      "locks": [
+        {
+          "pid": 32404,
+          "classid": 6006,
+          "objid": 0,
+          "mode": "ShareLock"
+        },
+        {
+          "pid": 32404,
+          "classid": 6007,
+          "objid": 3574701906,
+          "mode": "ExclusiveLock"
+        }
+      ],
+      "outcome": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "remoteIds": [
+        "d0accdf4-a725-423d-9f82-55cdc4202ff9"
+      ],
+      "state": "SUBMISSION_UNKNOWN",
+      "taskId": "0ecf829b-9561-452a-891e-907940b4ca50"
+    },
+    {
+      "name": "nested-parent-scope-loss",
+      "parentPid": 32410,
+      "childPid": 32412,
+      "locks": [
+        {
+          "pid": 32410,
+          "classid": 6006,
+          "objid": 0,
+          "mode": "ShareLock"
+        },
+        {
+          "pid": 32410,
+          "classid": 6007,
+          "objid": 1378600686,
+          "mode": "ExclusiveLock"
+        }
+      ],
+      "parentAborted": true,
+      "childAborted": true,
+      "outcome": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "remoteIds": [
+        "7d2a9305-69e7-4ce7-b19c-d24be00fecb4"
+      ],
+      "state": "REMOTE_RUNNING",
+      "predictionId": "7d2a9305-69e7-4ce7-b19c-d24be00fecb4",
+      "taskId": "dbddb606-04a6-4980-982c-3040b4957582"
+    },
+    {
+      "name": "new-child-after-parent-loss",
+      "parentPid": 32416,
+      "outcome": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "createdId": "6b66eb97-3858-4c08-aa12-1f27a7462c49",
+      "exists": true
+    }
+  ]
+}

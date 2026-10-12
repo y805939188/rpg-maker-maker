@@ -1,0 +1,16 @@
+import pathlib,json,re,hashlib,datetime
+p=pathlib.Path('.local/step06-review');e=p/'evidence';(e/'probes').mkdir(exist_ok=True)
+secrets=[]
+for q in [pathlib.Path('.env'),p/'formal-workspace/.env']:
+ for line in q.read_text().splitlines():
+  if line.startswith('DATABASE_URL='):secrets.append(line.split('=',1)[1])
+def clean(s):
+ for secret in secrets:s=s.replace(secret,'postgresql://REDACTED@127.0.0.1:55469/tileset_studio')
+ return re.sub(r'postgres(?:ql)?://[^\s\"\'<>]+','postgresql://REDACTED',s)
+for q in (p/'private').glob('*.log'):(e/(q.stem+'.log.txt')).write_text(clean(q.read_text(errors='replace')))
+for q in p.glob('*.mjs'):(e/'probes'/(q.name+'.txt')).write_text(clean(q.read_text()))
+(p/'private/browser-production-first-config.json').exists() and (e/'browser-production-first-config.json').write_text(clean((p/'private/browser-production-first-config.json').read_text()))
+for q in (p/'formal-workspace/.local/e2e').glob('*.png'):(e/('browser-'+q.name)).write_bytes(q.read_bytes())
+for q in (p/'formal-workspace/.local/step06').rglob('*.json'):
+ if q.stem in {'migration-preservation','failures-and-recovery','race','publication-process-kill','backup-restore','executor-reconstruction','unknown-process-kill','known-id-process-restart','archive-only-idempotency'} or any(q.name.startswith(v+'-') for v in ['intent-gate-loss','remote-uncertainty','publication-gate-loss','backup-gate-loss','exact-reference','operational-cli']):
+  (e/('formal-owned-'+q.parent.name+'-'+q.name)).write_text(clean(q.read_text()))

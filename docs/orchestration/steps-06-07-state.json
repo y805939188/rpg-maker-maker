@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_INDEPENDENT_REVIEW_ROUND_2",
+  "phase": "STEP06_CODING_FIX_ROUND_2",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -62,7 +62,7 @@
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
-    "status": "IN_PROGRESS",
+    "status": "CHANGES_REQUESTED",
     "reviewRounds": 2,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
@@ -258,10 +258,43 @@
         "round": 2,
         "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
         "docsHead": "ac4ca7b222ccae93569c60275cafb3eace236356",
-        "status": "IN_PROGRESS",
+        "status": "REQUIRES_REVISION",
         "threadId": "01a13244-d99b-7970-a199-b8c79a97d39b",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
-        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round2-client.json"
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round2-client.json",
+        "preliminaryFindings": [
+          {
+            "topic": "Nested lease hides lost parent scope and permits child submit",
+            "state": "INDEPENDENT_REPRODUCED_PENDING_FINAL_REPORT"
+          }
+        ],
+        "independentCheck": {
+          "tests": 230,
+          "productionExports": 10,
+          "status": "PASS"
+        },
+        "report": "docs/evidence/step-06/independent-round2/report.md",
+        "reportSha256": "4297ee38b16378bfc4f463f9d7f894c6be37d5396e6c0a6d06efbf3ba7a6a07f",
+        "evidenceLedger": "docs/evidence/step-06/independent-round2/evidence/ledger.json",
+        "blockingFindings": [
+          {
+            "id": "STEP06-IR-001",
+            "severity": "P2",
+            "status": "PARTIALLY_FIXED_OPEN_PARENT_LEASE"
+          },
+          {
+            "id": "STEP06-R2-001",
+            "severity": "P2",
+            "status": "OPEN"
+          }
+        ],
+        "closedFindings": [
+          "STEP06-IR-002",
+          "STEP06-IR-003",
+          "STEP06-IR-004"
+        ],
+        "sourceProtectionFiles": 1473,
+        "sourceChanged": false
       }
     ],
     "codingFix": {
@@ -364,7 +397,7 @@
       "serviceStatus": "NOT_STARTED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_STANDARD_INDEPENDENT_ROUND2_DISPATCHED",
+  "lastSuccessfulCheckpoint": "STEP06_ROUND2_REVIEW_FROZEN_REQUIRES_REVISION_EVIDENCE_PRESERVED",
   "blockers": [],
-  "nextSafeAction": "Wait for round2 independent result; do not publish step06 or begin step07 before latest PASS and necessary CI."
+  "nextSafeAction": "Resume same Standard step_coder for parent-lease propagation and real PostgreSQL directory alias rejection; next formal review round3/5."
 }

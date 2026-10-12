@@ -1,0 +1,160 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/node_modules/@playwright/test/cli.js",
+      "test",
+      "--config",
+      "../playwright.config.mjs"
+    ],
+    "configFile": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/playwright.config.mjs",
+    "rootDir": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/private/browser-production",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/private/browser-production",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/e2e",
+        "snapshotDir": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4369",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/evidence/browser-production.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm start",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/",
+      "env": {
+        "PATH": "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Applications/VMware Fusion.app/Contents/Public:/usr/local/corplink/mdm/opt/corplink-mdm/bin:/usr/local/go/bin:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/Users/dingshinn/.codex/tmp/arg0/codex-arg0VVfGqJ:/Users/dingshinn/.gvm/bin:/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:/Users/dingshinn/.codeium/windsurf/bin:/opt/homebrew/opt/binutils/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Applications/VMware:Fusion.app/Contents/Public:/Users/dingshinn/.codex/tmp/arg0/codex-arg0xa4s6O:/Users/dingshinn/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/dingshinn/.local/bin:/Users/dingshinn/miniconda3/bin:/Users/dingshinn/miniconda3/condabin:/Applications/iTerm.app/Contents/Resources/utilities:/usr/local/mysql/bin:/Users/dingshinn/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources:/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS"
+      },
+      "url": "http://127.0.0.1:4369/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "shell.test.ts",
+      "file": "shell.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "browser persists a project, reloads it, and initializes Pixi",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1062,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T22:50:39.030Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0afc6be0f8e72ea599d4-9904677a1a049520d7f9",
+          "file": "shell.test.ts",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-12T22:50:34.006Z",
+    "duration": 6379.59,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+  "filesystem": "case-insensitive alias independently observed with identical dev/ino",
+  "rows": [
+    {
+      "input": ".local/Postgres/review-assets",
+      "sameAncestor": true,
+      "accepted": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/Postgres/review-assets"
+    },
+    {
+      "input": ".local/POSTGRES/review-assets",
+      "sameAncestor": true,
+      "accepted": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/POSTGRES/review-assets"
+    },
+    {
+      "input": ".local/postgres/review-assets",
+      "sameAncestor": true,
+      "error": "Asset root must be owned by this project .local and separate from PostgreSQL"
+    },
+    {
+      "input": ".local/step06-review/root-valid-control",
+      "sameAncestor": false,
+      "accepted": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/root-valid-control"
+    }
+  ],
+  "postgresWrites": "NONE_READONLY_RESOLVER_PROBE",
+  "finding": "Uppercase aliases of the real owned PostgreSQL directory pass the exclusion"
+}

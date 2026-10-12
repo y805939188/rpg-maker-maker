@@ -1,0 +1,5 @@
+import {fork} from 'node:child_process';
+import {writeFile} from 'node:fs/promises';
+import {root,resolve,randomUUID,assert} from './common.mjs';
+export const encode=p=>({...p,files:Object.fromEntries(Object.entries(p.files).map(([k,b])=>[k,Buffer.from(b).toString('base64')]))});
+export async function launch(input,url){const path=resolve(root,'private/process-'+randomUUID()+'.json');await writeFile(path,JSON.stringify(input));const child=fork(resolve(root,'child.mjs'),[path],{env:{...process.env,DATABASE_URL:url},stdio:['ignore','pipe','pipe','ipc']});const events=[];let reach;const reached=new Promise(r=>reach=r);let stdout='',stderr='';child.stdout.on('data',b=>stdout+=b);child.stderr.on('data',b=>stderr+=b);child.on('message',m=>{events.push(m);if(m.point===input.stopAt)reach(m);});const done=new Promise((accept,reject)=>{const timer=setTimeout(()=>child.kill('SIGKILL'),45000);child.on('error',reject);child.on('close',(code,signal)=>{clearTimeout(timer);accept({pid:child.pid,code,signal,events,stdout,stderr});});});return{child,reached,done,release:()=>child.send({resume:true})};}

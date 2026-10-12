@@ -1,0 +1,272 @@
+{
+  "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+  "entries": [
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "frozen lock",
+      "log": "evidence/install.log.txt"
+    },
+    {
+      "command": "TILESET_PG_PORT=55469 pnpm db:local init",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "new owned cluster",
+      "log": "evidence/pg-init.log.txt"
+    },
+    {
+      "command": "pnpm db:generate",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "client generated",
+      "log": "evidence/db-generate.log.txt"
+    },
+    {
+      "command": "pnpm check",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "21 files / 230 tests / 10 exports",
+      "log": "evidence/check.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/baseline.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "actual baseline SQL and Project",
+      "log": "evidence/baseline.log.txt"
+    },
+    {
+      "command": "pnpm --filter @tileset/api exec prisma migrate resolve --applied 202610120001_step02_project",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 1,
+      "detail": "reviewer omitted DATABASE_URL environment; preserved",
+      "log": "evidence/baseline-resolve.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/with-env.mjs pnpm --filter @tileset/api exec prisma migrate resolve --applied 202610120001_step02_project",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "actual applied baseline recorded",
+      "log": "evidence/baseline-resolve-with-env.log.txt"
+    },
+    {
+      "command": "pnpm db:migrate",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "three additive step06 migrations",
+      "log": "evidence/db-migrate.log.txt"
+    },
+    {
+      "command": "pnpm exec vitest run --config \"$PWD/vitest.step06.config.ts\" --root \"$PWD/.local/step06-review/formal-workspace\"",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "16/16; 168.14s; cwd output diagnostic retained",
+      "log": "evidence/test-step06.log.txt"
+    },
+    {
+      "command": "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node ../../../node_modules/vitest/vitest.mjs run --config ../../../vitest.step06.config.ts --root .",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace",
+      "exitCode": 1,
+      "detail": "12 pass / 4 fixture migration environment failure; 104.08s",
+      "log": "evidence/test-step06-owned-cwd.log.txt"
+    },
+    {
+      "command": "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node --env-file=.env ../with-toolchain.mjs /Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node ../../../node_modules/vitest/vitest.mjs run --config ../../../vitest.step06.config.ts --root .",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace",
+      "exitCode": 0,
+      "detail": "16/16 completed",
+      "log": "evidence/test-step06-owned-toolchain.log.txt"
+    },
+    {
+      "command": "INTEGRATION_API_PORT=4369 pnpm test:integration",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "3/3 real database/API",
+      "log": "evidence/api-integration.log.txt"
+    },
+    {
+      "command": "API_PORT=4369 WEB_PORT=5269 /Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node --env-file=../../../.env ../../../node_modules/@playwright/test/cli.js test --config ../playwright.config.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace",
+      "exitCode": 0,
+      "detail": "1/1 browser shell",
+      "log": "evidence/browser-production-node22.log.txt"
+    },
+    {
+      "command": "E2E_MODE=dev API_PORT=4369 WEB_PORT=5269 /Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node --env-file=../../../.env ../../../node_modules/@playwright/test/cli.js test --config ../playwright.config.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace",
+      "exitCode": 0,
+      "detail": "1/1 browser shell",
+      "log": "evidence/browser-dev.log.txt"
+    },
+    {
+      "command": "isolated Playwright startup wrapper before fixed Node/cwd",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace",
+      "exitCode": 1,
+      "detail": "reviewer configuration/environment failure; not product test PASS",
+      "log": "evidence/browser-production.log.txt"
+    },
+    {
+      "command": "isolated Playwright startup wrapper before fixed Node/cwd",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace",
+      "exitCode": 1,
+      "detail": "reviewer configuration/environment failure; not product test PASS",
+      "log": "evidence/browser-production-retry.log.txt"
+    },
+    {
+      "command": "isolated Playwright startup wrapper before fixed Node/cwd",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace",
+      "exitCode": 1,
+      "detail": "reviewer configuration/environment failure; not product test PASS",
+      "log": "evidence/browser-production-diagnostic.log.txt"
+    },
+    {
+      "command": "isolated Playwright startup wrapper before fixed Node/cwd",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace",
+      "exitCode": 1,
+      "detail": "reviewer configuration/environment failure; not product test PASS",
+      "log": "evidence/browser-production-fixed-toolchain.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/environment.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "independent control PASS",
+      "log": "evidence/independent-init.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/public-probe.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "independent control PASS",
+      "log": "evidence/public-probe.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/gate-probe.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "probe completion; gate/root-case findings remain OPEN",
+      "log": "evidence/gate-probe.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/gate-probe.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "probe completion; gate/root-case findings remain OPEN",
+      "log": "evidence/gate-probe-expanded.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/concurrency.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "independent control PASS",
+      "log": "evidence/concurrency.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/recovery.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "independent control PASS",
+      "log": "evidence/recovery.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/maintenance-loss.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "independent control PASS",
+      "log": "evidence/maintenance-loss-final2.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/root-case.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "probe completion; gate/root-case findings remain OPEN",
+      "log": "evidence/root-case.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/maintenance-loss.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 1,
+      "detail": "reviewer PostgreSQL statistics/child-close measurement errors retained; source not changed",
+      "log": "evidence/maintenance-loss.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/maintenance-loss.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 1,
+      "detail": "reviewer PostgreSQL statistics/child-close measurement errors retained; source not changed",
+      "log": "evidence/maintenance-loss-stats-fixed.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/maintenance-loss.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 1,
+      "detail": "reviewer PostgreSQL statistics/child-close measurement errors retained; source not changed",
+      "log": "evidence/maintenance-loss-final.log.txt"
+    },
+    {
+      "command": "node .local/step06-review/engineering.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "actual rebuilt payload comparison",
+      "log": "evidence/engineering.log.txt"
+    },
+    {
+      "command": "node .local/step06-review/engineering.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "actual rebuilt payload comparison",
+      "log": "evidence/engineering-final.log.txt"
+    },
+    {
+      "command": "node .local/step06-review/pack-suite.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "actual rebuilt payload comparison",
+      "log": "evidence/pack-suite.log.txt"
+    },
+    {
+      "command": "node .local/step06-review/pack-compare.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "actual rebuilt payload comparison",
+      "log": "evidence/pack-compare.log.txt"
+    },
+    {
+      "command": "node .local/step06-review/legacy.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "78/78 original public JS",
+      "output": "evidence/legacy-78.json"
+    },
+    {
+      "command": "pnpm exec prettier --ignore-path /dev/null --write .local/step06-review/report.md",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "only reviewer report formatted",
+      "log": "evidence/report-format.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/with-env.mjs pnpm start",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "Owned production API start control; then exact owned API stopped with SIGTERM",
+      "log": "evidence/api-start-probe.log.txt"
+    },
+    {
+      "command": "node --env-file=.env .local/step06-review/final-audit.mjs",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "Independent PG ownership, old Project preservation, no API/Web or client sessions",
+      "log": "evidence/final-audit.log.txt"
+    },
+    {
+      "command": "pnpm exec prettier --ignore-path /dev/null --write .local/step06-review/report.md",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker",
+      "exitCode": 0,
+      "detail": "Final report only",
+      "log": "evidence/report-format-final.log.txt"
+    }
+  ],
+  "latestOwnedFormalRunVerified": true
+}

@@ -1,0 +1,406 @@
+{
+  "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+  "checks": [
+    {
+      "name": "literal-generic-two-frame-ms-nonloop",
+      "irHash": "aa995347404799f515637bc5cdf46b652866b2bc570b72dded7fab37e4d42636",
+      "animation": {
+        "durations": [
+          7,
+          11
+        ],
+        "frameCount": 2,
+        "loop": false,
+        "sequence": [
+          0,
+          1
+        ],
+        "timebase": "milliseconds"
+      }
+    },
+    {
+      "name": "generic-invalid-state",
+      "rejected": true,
+      "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"state\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key(s) in object: 'state'\"\n  }\n]"
+    },
+    {
+      "name": "generic-invalid-bytes",
+      "rejected": true,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(sameRef(source.ref, stored.ref))\n"
+    },
+    {
+      "name": "generic-invalid-validation",
+      "rejected": true,
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ '66a28454c182b8080f2aee1d07b0d4a31fbe58041a6106844e8eb39d10798659'\n- '0000000000000000000000000000000000000000000000000000000000000000'\n"
+    },
+    {
+      "name": "generic-invalid-duration",
+      "rejected": true,
+      "error": "duration must be a positive safe integer."
+    },
+    {
+      "name": "generic-invalid-missing-source",
+      "rejected": true,
+      "error": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 5,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 5 element(s)\",\n    \"path\": [\n      \"sources\"\n    ]\n  }\n]"
+    },
+    {
+      "name": "generic-invalid-density",
+      "rejected": true,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(sameRef(source.ref, stored.ref))\n"
+    },
+    {
+      "name": "generic-target-only-rejection",
+      "rejected": true,
+      "error": "Native Profile requires 96×144 source geometry and 48×48 tiles."
+    },
+    {
+      "name": "reference-revision-\"0\"",
+      "rejected": true,
+      "error": "Reference revision must be a canonical persisted integer"
+    },
+    {
+      "name": "reference-revision-\"-1\"",
+      "rejected": true,
+      "error": "Reference revision must be a canonical persisted integer"
+    },
+    {
+      "name": "reference-revision-\"01\"",
+      "rejected": true,
+      "error": "Reference revision must be a canonical persisted integer"
+    },
+    {
+      "name": "reference-revision-\"1.0\"",
+      "rejected": true,
+      "error": "Reference revision must be a canonical persisted integer"
+    },
+    {
+      "name": "reference-revision-\"1e0\"",
+      "rejected": true,
+      "error": "Reference revision must be a canonical persisted integer"
+    },
+    {
+      "name": "reference-revision-\"3\"",
+      "rejected": true,
+      "error": "\nInvalid `prisma.assetRevision.findFirstOrThrow()` invocation:\n\n\nAn operation failed because it depends on one or more records that were required but not found. No record was found for a query."
+    },
+    {
+      "name": "reference-revision-\"2147483648\"",
+      "rejected": true,
+      "error": "Reference revision exceeds PostgreSQL Int"
+    },
+    {
+      "name": "reference-revision-\"9007199254740992\"",
+      "rejected": true,
+      "error": "Reference revision must be a canonical persisted integer"
+    },
+    {
+      "name": "reference-revision-\" \"",
+      "rejected": true,
+      "error": "Reference revision must be a canonical persisted integer"
+    },
+    {
+      "name": "reference-revision-\"\"",
+      "rejected": true,
+      "error": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 1,\n    \"type\": \"string\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"String must contain at least 1 character(s)\",\n    \"path\": [\n      \"references\",\n      0,\n      \"revision\"\n    ]\n  }\n]"
+    },
+    {
+      "name": "reference-revision-\"NaN\"",
+      "rejected": true,
+      "error": "Reference revision must be a canonical persisted integer"
+    },
+    {
+      "name": "reference-wrong-hash",
+      "rejected": true,
+      "error": "\nInvalid `prisma.assetRevision.findFirstOrThrow()` invocation:\n\n\nAn operation failed because it depends on one or more records that were required but not found. No record was found for a query."
+    },
+    {
+      "name": "exact-same-byte-distinct-metadata",
+      "projectId": "40633ad9-7b3d-464a-a205-2feeaf0b741e",
+      "assetId": "888e547a-3fa3-4146-93fa-b4580fdc463b",
+      "rows": [
+        {
+          "id": "f53b02f2ee81083e0a3a8aef25ed5139ae6136bca1fe12db2cdf0ee30d436074",
+          "revision": 1,
+          "sourceSha": "1f01c44a4fe572dc0ded2f84b8840d03bd01058bbf9933f351ca2090be89df47",
+          "contentHash": "95bb4ec5cc82ea34a2ec09335a243301af1a41395fa245f801c6d80ac28161b5"
+        },
+        {
+          "id": "c0e0f5eddbbb3c8141bd3c69ff93138cdf9e8980e4d3dbc6cc7f0cbf5ee5b5da",
+          "revision": 2,
+          "sourceSha": "1f01c44a4fe572dc0ded2f84b8840d03bd01058bbf9933f351ca2090be89df47",
+          "contentHash": "de759a8b765d7992edb0cc9c915aaecd2b41912296e26d2b2a64dad5eca9f099"
+        },
+        {
+          "id": "aa230dd5864d1b9584b9272b7c580d43a5d1ea0e5c492d83f3cfc2115d57dbf4",
+          "revision": 2147483647,
+          "sourceSha": "1f01c44a4fe572dc0ded2f84b8840d03bd01058bbf9933f351ca2090be89df47",
+          "contentHash": "e5e18d383c1e0dd1f50d2909c7dc61f3f2ab240c461ce69fd8b53789986df832"
+        }
+      ],
+      "tasks": [
+        {
+          "id": "d6595064-3d85-4aaf-b15c-9e4e2a7870d2",
+          "snapshot": {
+            "model": {
+              "modelId": "synthetic-only",
+              "provider": "mock",
+              "parameters": {
+                "nested": {
+                  "quality": 2
+                }
+              },
+              "modelVersion": "1",
+              "adapterVersion": "mock-provider-v1"
+            },
+            "style": {
+              "id": "review-style",
+              "revision": "1",
+              "parameters": {}
+            },
+            "prompts": {
+              "main": {
+                "id": "synthetic",
+                "content": "Independent Mock fixture",
+                "revision": "1"
+              },
+              "task": {
+                "id": "synthetic-task",
+                "content": "Protocol only",
+                "revision": "1"
+              },
+              "supplemental": ""
+            },
+            "taskKind": "IMAGE_EDIT",
+            "references": [
+              {
+                "sha256": "1f01c44a4fe572dc0ded2f84b8840d03bd01058bbf9933f351ca2090be89df47",
+                "assetId": "888e547a-3fa3-4146-93fa-b4580fdc463b",
+                "revision": "2"
+              }
+            ],
+            "targetProfile": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            },
+            "contractVersion": "task-snapshot-v1",
+            "configurationVersion": "review2-synthetic-v1",
+            "structuredParameters": {
+              "density": 1
+            }
+          }
+        },
+        {
+          "id": "f259ab73-e360-415d-b4a7-bd62c6108b57",
+          "snapshot": {
+            "model": {
+              "modelId": "synthetic-only",
+              "provider": "mock",
+              "parameters": {
+                "nested": {
+                  "quality": 2
+                }
+              },
+              "modelVersion": "1",
+              "adapterVersion": "mock-provider-v1"
+            },
+            "style": {
+              "id": "review-style",
+              "revision": "1",
+              "parameters": {}
+            },
+            "prompts": {
+              "main": {
+                "id": "synthetic",
+                "content": "Independent Mock fixture",
+                "revision": "1"
+              },
+              "task": {
+                "id": "synthetic-task",
+                "content": "Protocol only",
+                "revision": "1"
+              },
+              "supplemental": ""
+            },
+            "taskKind": "IMAGE_EDIT",
+            "references": [
+              {
+                "sha256": "1f01c44a4fe572dc0ded2f84b8840d03bd01058bbf9933f351ca2090be89df47",
+                "assetId": "888e547a-3fa3-4146-93fa-b4580fdc463b",
+                "revision": "1"
+              }
+            ],
+            "targetProfile": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            },
+            "contractVersion": "task-snapshot-v1",
+            "configurationVersion": "review2-synthetic-v1",
+            "structuredParameters": {
+              "density": 1
+            }
+          }
+        },
+        {
+          "id": "fa5eb237-d832-4d1d-8687-86ac37a1a15e",
+          "snapshot": {
+            "model": {
+              "modelId": "synthetic-only",
+              "provider": "mock",
+              "parameters": {
+                "nested": {
+                  "quality": 2
+                }
+              },
+              "modelVersion": "1",
+              "adapterVersion": "mock-provider-v1"
+            },
+            "style": {
+              "id": "review-style",
+              "revision": "1",
+              "parameters": {}
+            },
+            "prompts": {
+              "main": {
+                "id": "synthetic",
+                "content": "Independent Mock fixture",
+                "revision": "1"
+              },
+              "task": {
+                "id": "synthetic-task",
+                "content": "Protocol only",
+                "revision": "1"
+              },
+              "supplemental": ""
+            },
+            "taskKind": "IMAGE_EDIT",
+            "references": [
+              {
+                "sha256": "1f01c44a4fe572dc0ded2f84b8840d03bd01058bbf9933f351ca2090be89df47",
+                "assetId": "888e547a-3fa3-4146-93fa-b4580fdc463b",
+                "revision": "2147483647"
+              }
+            ],
+            "targetProfile": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            },
+            "contractVersion": "task-snapshot-v1",
+            "configurationVersion": "review2-synthetic-v1",
+            "structuredParameters": {
+              "density": 1
+            }
+          }
+        }
+      ],
+      "recipeIds": [
+        "62876eb8953a09b5419ec8fd3b1a15c2aaf4923835415331dfc9e6e05513aac3",
+        "3fd46c499a17bc2c3b9083f6c403e2566a2db63dc6389e197acf17a6b6c00f03",
+        "4ff6ec3a4daac018996cdab2eb2869d2d98ffbc49fc14e8c6ecf03290cbc418e"
+      ]
+    },
+    {
+      "name": "cache-invalid-revision",
+      "rejected": true,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(sameRef(result.source.ref, source.ref))\n"
+    },
+    {
+      "name": "cache-invalid-role",
+      "rejected": true,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(sameRef(result.source.ref, source.ref))\n"
+    },
+    {
+      "name": "cache-invalid-validationHash",
+      "rejected": true,
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ '0208300220e6b0ab9352ab8524160719f182f954d4249ca04bb00098068578ec'\n- '0000000000000000000000000000000000000000000000000000000000000000'\n"
+    },
+    {
+      "name": "cache-valid-metadata-role-revision",
+      "hashes": [
+        "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+        "7bb5aa09deb9b90c055c66fb74f5d227f9e1e5f258d0eaf88b4bc45c3e9ad6b6",
+        "9d78bab9217ea2471a4213fe1bdba1d559a387d80bbc7f6e558a72a7f05c336a"
+      ]
+    },
+    {
+      "name": "fake-fragment-owned-json",
+      "rejected": true,
+      "error": "Expected a Compiler-owned fragment; JSON is not an executed compilation."
+    },
+    {
+      "name": "native-bound-publication",
+      "buildId": "dba852c41039c97fd9c0fd07668f5da6f729d2ce1e6c1844c0f4005a864a9314",
+      "manifestSha256": "cae57645f2a82cf7f925f029876541885099f0ec73af07f1818527d813092b84",
+      "files": {
+        "bundle.json": {
+          "bytes": 51407,
+          "sha256": "65961282a4133d9127765abaa1fade37e807bb79cb00d7e4465c2b81a60aaac5"
+        },
+        "A1.png": {
+          "bytes": 3924,
+          "sha256": "c97ad74df1a85796133c950281873431f09876d78a7a4dd89c5f5f1958f22c91"
+        },
+        "A2.png": {
+          "bytes": 2457,
+          "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+        },
+        "manifest.json": {
+          "bytes": 8991,
+          "sha256": "cae57645f2a82cf7f925f029876541885099f0ec73af07f1818527d813092b84"
+        }
+      },
+      "projectId": "47fd2b16-f292-4c61-a864-90c771580504",
+      "packId": "4709fd3f8038aff287512584a39623cb7818a2cc50c612a77025083f24a0f8f3",
+      "adoptedId": "4b23535a88938f24054b5bdafbeec923abf3fa902770ccfb59810fc586fb5c89",
+      "context": {
+        "codec": {
+          "aom": "3.15.1",
+          "archive": "3.8.9",
+          "cairo": "1.18.6",
+          "cgif": "0.5.4",
+          "exif": "0.6.26",
+          "expat": "2.8.5",
+          "ffi": "3.8.0",
+          "fontconfig": "2.18.3",
+          "freetype": "2.14.3",
+          "fribidi": "1.0.17",
+          "glib": "2.90.0",
+          "harfbuzz": "14.5.0",
+          "heif": "1.23.5",
+          "highway": "1.4.0",
+          "imagequant": "2.4.1",
+          "lcms": "2.19.1",
+          "mozjpeg": "0826579",
+          "pango": "1.58.2",
+          "pixman": "0.46.4",
+          "png": "1.6.58",
+          "proxy-libintl": "0.5",
+          "rsvg": "2.63.2",
+          "sharp": "0.35.5",
+          "tiff": "4.7.2",
+          "uhdr": "2.0.2",
+          "vips": "8.18.7",
+          "webp": "1.6.0",
+          "xml2": "2.15.4",
+          "zlib-ng": "2.3.3"
+        },
+        "commit": "debcce716e5b563eec881eb24eaa41aebcccac30",
+        "lockSha256": "7c02fb7f8cc3c8386a1d9bc00c132d318cd4964ba1fea991e3c991cad19175e8",
+        "node": "22.21.1"
+      },
+      "stages": [
+        "IR",
+        "MZ_FRAGMENTS"
+      ]
+    },
+    {
+      "name": "retired-history-and-late-snapshot",
+      "builds": [
+        "dba852c41039c97fd9c0fd07668f5da6f729d2ce1e6c1844c0f4005a864a9314",
+        "c9b6500e6b86817fe77d2251c5ea53fc9aa749fd7726d7ae1baaa4e39ad34399",
+        "de972d45c9ab645f78b4eb695c928d421ed109815653e9c67e86b832221f2d02",
+        "2dd4be0cb686134357e3bc09c39d748a2f90d31bb0de236567543780d31571ea"
+      ],
+      "adopted3Id": "b91a2d03b2e6ecb5fb37af806edac1240cc0b9615f75195a90e3d2e0322179d5"
+    }
+  ]
+}
