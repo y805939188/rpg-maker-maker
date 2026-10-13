@@ -31,6 +31,8 @@ import {
   bundleFiles,
   verifyBundleFiles,
 } from './replay.js';
+import { verifyExportFiles } from '@tileset/pack-export';
+import { PROFILE_HASH } from '@tileset/pack-assembly';
 import { archiveDomain, replayDomainArchive } from './domain.js';
 
 type Json = null | boolean | number | string | Json[] | { [key: string]: Json };
@@ -91,13 +93,60 @@ export class Persistence {
         data: bytes,
       });
     else {
-      const result = await decodeSource(raw);
+      const result = await decodeSource(raw, this.gate.current()?.signal);
       if (result.status !== 'validated') throw Error(result.diagnostic.code);
       source = result.source;
     }
     assert.ok(sameRef(source.ref, ref));
     assert.equal(source.validationHash, value['validationHash']);
     return source;
+  }
+  /** Individual manual uploads cross the owned validation boundary before any durable write. */
+  async saveSource(
+    projectId: string,
+    source: import('@tileset/asset-core').ValidatedSource,
+    signal?: AbortSignal,
+  ) {
+    assert.ok(isValidatedSource(source));
+    assert.equal(
+      source.raw.encoding,
+      'png',
+      'Single manual source storage requires PNG; generic RGBA uses domain archives.',
+    );
+    return this.gate.write(async () => {
+      signal?.throwIfAborted();
+      const file = await this.storage.put(source.raw.bytes(), true);
+      signal?.throwIfAborted();
+      await this.transaction(async (tx) => {
+        signal?.throwIfAborted();
+        await tx.fileObject.upsert({ where: { sha256: file.sha256 }, create: file, update: {} });
+        const asset = await tx.originalAsset.upsert({
+          where: { projectId_logicalId: { projectId, logicalId: source.ref.id } },
+          create: { projectId, logicalId: source.ref.id },
+          update: {},
+        });
+        await this.revision(
+          tx,
+          projectId,
+          source.ref,
+          {
+            descriptor: {
+              id: source.ref.id,
+              revision: source.ref.revision,
+              role: source.raw.role,
+              density: source.raw.density,
+              provenance: source.raw.provenance,
+            },
+            ref: source.ref,
+            validationHash: source.validationHash,
+          },
+          asset.id,
+          file.sha256,
+        );
+        signal?.throwIfAborted();
+      });
+      return revId(projectId, source.ref);
+    });
   }
   async close() {
     await this.db.$disconnect();
@@ -108,7 +157,7 @@ export class Persistence {
   }
   async saveArchives(projectId: string, value: unknown) {
     return this.gate.write(async () => {
-      const replay = await replayArchives(value),
+      const replay = await replayArchives(value, new ReplaySession(this.gate.current()?.signal)),
         files = new Map<string, FileRef>();
       for (const r of replay.records)
         for (const s of r.sources)
@@ -123,7 +172,7 @@ export class Persistence {
   }
   async saveDomainArchive(projectId: string, input: unknown) {
     return this.gate.write(async () => {
-      const replay = await replayDomainArchive(input),
+      const replay = await replayDomainArchive(input, this.gate.current()?.signal),
         files = new Map<string, FileRef>();
       for (const source of replay.sources)
         files.set(revId(projectId, source.ref), await this.storage.put(source.raw.bytes()));
@@ -219,7 +268,10 @@ export class Persistence {
       else metadata[dep.to.kind] = dep.to.value;
     }
     const parsed = MetadataSchema.parse(metadata),
-      replay = await replayDomainArchive(archiveDomain({ ...parsed, sources }));
+      replay = await replayDomainArchive(
+        archiveDomain({ ...parsed, sources }),
+        this.gate.current()?.signal,
+      );
     const record = await this.db.processingRecord.findFirstOrThrow({
       where: { projectId, recipeId, irHash: replay.built.ir.contentHash },
     });
@@ -477,7 +529,7 @@ export class Persistence {
       where: { id: projectSnapshotId },
     });
     assert.equal(snapshot.projectId, projectId);
-    const session = new ReplaySession();
+    const session = new ReplaySession(this.gate.current()?.signal);
     const archives = await this.loadArchives(projectId, session),
       history = await this.db.packVersion.findMany({
         where: { packId },
@@ -508,7 +560,11 @@ export class Persistence {
       files: prepared.files,
     };
   }
-  async publish(input: Awaited<ReturnType<Persistence['prepareBuild']>>) {
+  async publish(
+    input: Awaited<ReturnType<Persistence['prepareBuild']>>,
+    standardFiles?: Readonly<Record<string, Uint8Array>>,
+    studioJobId?: string,
+  ) {
     // Copy before asynchronous work. Re-read all metadata and actual source/IR/PNG content.
     const metadata = freezeJson({
       id: input.id,
@@ -520,15 +576,23 @@ export class Persistence {
     const files = Object.fromEntries(
       Object.entries(input.files).map(([name, bytes]) => [name, new Uint8Array(bytes)]),
     );
+    const exportFiles =
+      standardFiles &&
+      Object.fromEntries(Object.entries(standardFiles).map(([n, b]) => [n, new Uint8Array(b)]));
     return this.gate.write(async () => {
-      const verified = await verifyBundleFiles(files);
-      return this.publishVerified(metadata, files, verified);
+      const verified = await verifyBundleFiles(
+        files,
+        new ReplaySession(this.gate.current()?.signal),
+      );
+      return this.publishVerified(metadata, files, verified, exportFiles, studioJobId);
     }, `pack:${metadata.packId}`);
   }
   private async publishVerified(
     metadata: Omit<Awaited<ReturnType<Persistence['prepareBuild']>>, 'files'>,
     files: Record<string, Uint8Array>,
     verified: Awaited<ReturnType<typeof verifyBundleFiles>>,
+    exportFiles?: Record<string, Uint8Array>,
+    studioJobId?: string,
   ) {
     assert.equal(
       metadata.id,
@@ -591,11 +655,47 @@ export class Persistence {
         );
     await this.fault('before-db-commit');
     this.gate.require().check();
+    let finalExport:
+      { exportId: string; manifestSha: string; files: Record<string, FileRef> } | undefined;
+    if (exportFiles) {
+      const e = await verifyExportFiles(exportFiles, this.gate.current()?.signal);
+      assert.deepEqual(e.input.snapshot, verified.replay.snapshot);
+      assert.deepEqual(e.input.history, verified.replay.history);
+      assert.deepEqual(e.input.plan, verified.replay.plan);
+      assert.deepEqual(e.input.archives, verified.replay.archives);
+      assert.deepEqual(e.manifest.identity.context, verified.replay.bundle.context);
+      for (const n of ['A1.png', 'A2.png']) assert.deepEqual(e.files[n], files[n]);
+      const manifestSha = hashBytes(exportFiles['manifest.json']!),
+        exportId = fingerprint({ buildId: metadata.id, manifestSha });
+      await this.storage.publish(exportId, exportFiles, (f) =>
+        verifyExportFiles(f, this.gate.current()?.signal),
+      );
+      const refs: Record<string, FileRef> = {};
+      for (const [n, b] of Object.entries(exportFiles)) refs[n] = await this.storage.put(b);
+      finalExport = { exportId, manifestSha, files: refs };
+    }
+    const finishJob = async (tx: Prisma.TransactionClient, buildId: string) => {
+      if (!studioJobId) return;
+      assert.ok(finalExport, 'Studio completion requires a verified standard export');
+      const job = await tx.studioJob.findUniqueOrThrow({ where: { id: studioJobId } });
+      assert.equal(job.projectId, metadata.projectId);
+      assert.equal(dbJson(job.input)['snapshotId'], metadata.projectSnapshotId);
+      if (job.state === 'COMPLETED') {
+        assert.equal(job.buildId, buildId);
+        return;
+      }
+      assert.equal(job.state, 'RUNNING');
+      await tx.studioJob.update({
+        where: { id: studioJobId },
+        data: { state: 'COMPLETED', buildId },
+      });
+    };
     const result = await this.transaction(
       async (tx) => {
         const existing = await tx.build.findUnique({ where: { id: metadata.id } });
         if (existing) {
           assert.equal(existing.manifestSha, hashBytes(files['manifest.json']!));
+          await finishJob(tx, existing.id);
           return existing;
         }
         const project = await tx.project.findUniqueOrThrow({ where: { id: metadata.projectId } }),
@@ -616,6 +716,18 @@ export class Persistence {
             files: { create: [...refs].map(([name, ref]) => ({ name, sha256: ref.sha256 })) },
           },
         });
+        if (finalExport) {
+          for (const f of Object.values(finalExport.files))
+            await tx.fileObject.upsert({ where: { sha256: f.sha256 }, create: f, update: {} });
+          await tx.finalExport.create({
+            data: {
+              buildId: metadata.id,
+              ...finalExport,
+              profileHash: PROFILE_HASH,
+              files: dbJson(finalExport.files),
+            },
+          });
+        }
         if (current) {
           const versionId = fingerprint({
             packId: metadata.packId,
@@ -653,6 +765,7 @@ export class Persistence {
           });
           assert.equal(projectChanged.count, 1, 'Project CAS conflict');
         }
+        await finishJob(tx, build.id);
         await this.fault('db-transaction');
         this.gate.require().check();
         return build;
@@ -664,6 +777,7 @@ export class Persistence {
     return result;
   }
   async readBuild(id: string, session?: ReplaySession) {
+    session ??= new ReplaySession(this.gate.current()?.signal);
     const record = await this.db.build.findUniqueOrThrow({ where: { id } });
     const files = await this.storage.buildFiles(id),
       verified = await verifyBundleFiles(files, session);
@@ -684,6 +798,61 @@ export class Persistence {
       await this.storage.read(ref.file);
     }
     return { record, ...verified };
+  }
+  /** Append a standard export for an already durable step06 Build; never alter its manifest or current pointer. */
+  async attachExport(buildId: string, files: Readonly<Record<string, Uint8Array>>) {
+    const owned = Object.fromEntries(Object.entries(files).map(([n, b]) => [n, new Uint8Array(b)]));
+    return this.gate.write(async () => {
+      const b = await this.readBuild(buildId),
+        e = await verifyExportFiles(owned, this.gate.current()?.signal);
+      assert.deepEqual(e.input.snapshot, b.replay.snapshot);
+      assert.deepEqual(e.input.plan, b.replay.plan);
+      assert.deepEqual(e.input.history, b.replay.history);
+      assert.deepEqual(e.input.archives, b.replay.archives);
+      assert.deepEqual(e.manifest.identity.context, b.replay.bundle.context);
+      for (const n of ['A1.png', 'A2.png']) assert.deepEqual(owned[n], b.files[n]);
+      const manifestSha = hashBytes(owned['manifest.json']!),
+        exportId = fingerprint({ buildId, manifestSha });
+      await this.storage.publish(exportId, owned, (f) =>
+        verifyExportFiles(f, this.gate.current()?.signal),
+      );
+      const refs: Record<string, FileRef> = {};
+      for (const [n, bytes] of Object.entries(owned)) refs[n] = await this.storage.put(bytes);
+      return this.transaction(async (tx) => {
+        for (const f of Object.values(refs))
+          await tx.fileObject.upsert({ where: { sha256: f.sha256 }, create: f, update: {} });
+        const old = await tx.finalExport.findUnique({ where: { buildId } });
+        if (old) {
+          assert.equal(old.manifestSha, manifestSha);
+          return old;
+        }
+        return tx.finalExport.create({
+          data: { buildId, exportId, manifestSha, profileHash: PROFILE_HASH, files: dbJson(refs) },
+        });
+      });
+    }, `export:${buildId}`);
+  }
+  async readExport(buildId: string) {
+    const row = await this.db.finalExport.findUniqueOrThrow({ where: { buildId } });
+    const build = await this.readBuild(buildId),
+      files = await this.storage.buildFiles(row.exportId),
+      verified = await verifyExportFiles(files, this.gate.current()?.signal);
+    assert.equal(row.manifestSha, hashBytes(files['manifest.json']!));
+    assert.equal(row.exportId, fingerprint({ buildId, manifestSha: row.manifestSha }));
+    assert.equal(row.profileHash, PROFILE_HASH);
+    assert.deepEqual(verified.input.snapshot, build.replay.snapshot);
+    assert.deepEqual(verified.input.plan, build.replay.plan);
+    assert.deepEqual(verified.input.history, build.replay.history);
+    assert.deepEqual(verified.input.archives, build.replay.archives);
+    assert.deepEqual(verified.manifest.identity.context, build.replay.bundle.context);
+    const refs = z
+      .record(z.object({ sha256: z.string(), bytes: z.number(), key: z.string() }).strict())
+      .parse(row.files);
+    assert.deepEqual(Object.keys(refs).sort(), Object.keys(files).sort());
+    for (const [n, r] of Object.entries(refs)) {
+      assert.deepEqual(await this.storage.read(r), files[n]);
+    }
+    return { row, build, ...verified };
   }
   async acceptance(
     buildId: string,

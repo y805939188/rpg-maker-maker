@@ -304,3 +304,77 @@ export function renderShape(input: unknown, shape: number, updateCount = 0): Rgb
   });
   return new RgbaImage({ width: 48, height: 48, data });
 }
+
+/** HTTP adapters may serialize these canonical source rectangles; clients do not import compiler rules. */
+export function shapeRectangles(shape: number) {
+  if (!Number.isInteger(shape) || shape < 0 || shape >= SHAPES.length)
+    throw new CompilationError('target', 'MZ_SHAPE', 'Unsupported shape.');
+  return freezeJson(
+    SHAPES[shape]!.map((q, i) => ({
+      sx: (q % 4) * TARGET.quarterSize,
+      sy: Math.floor(q / 4) * TARGET.quarterSize,
+      dx: (i % 2) * TARGET.quarterSize,
+      dy: Math.floor(i / 2) * TARGET.quarterSize,
+      width: TARGET.quarterSize,
+      height: TARGET.quarterSize,
+    })),
+  );
+}
+
+/** Area-type floor shape from adjacent occupancy; canonical quarter indices come from REGIONS/SHAPES. */
+export function connectedShape(n: {
+  north: boolean;
+  south: boolean;
+  west: boolean;
+  east: boolean;
+  nw: boolean;
+  ne: boolean;
+  sw: boolean;
+  se: boolean;
+}): number {
+  const names = [
+    n.north
+      ? n.west
+        ? n.nw
+          ? 'center-nw'
+          : 'inner-nw'
+        : 'west-n'
+      : n.west
+        ? 'north-w'
+        : 'outer-nw',
+    n.north
+      ? n.east
+        ? n.ne
+          ? 'center-ne'
+          : 'inner-ne'
+        : 'east-n'
+      : n.east
+        ? 'north-e'
+        : 'outer-ne',
+    n.south
+      ? n.west
+        ? n.sw
+          ? 'center-sw'
+          : 'inner-sw'
+        : 'west-s'
+      : n.west
+        ? 'south-w'
+        : 'outer-sw',
+    n.south
+      ? n.east
+        ? n.se
+          ? 'center-se'
+          : 'inner-se'
+        : 'east-s'
+      : n.east
+        ? 'south-e'
+        : 'outer-se',
+  ];
+  const quarters = names.map((name) => {
+    const r = REGIONS.find((r) => r.name === name)!;
+    return (r.y / TARGET.quarterSize) * 4 + r.x / TARGET.quarterSize;
+  });
+  const shape = SHAPES.findIndex((s) => s.every((q, i) => q === quarters[i]));
+  if (shape < 0) throw new Error('Unsupported adjacency');
+  return shape;
+}

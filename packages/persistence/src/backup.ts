@@ -39,6 +39,8 @@ const tables = [
   'LogicalTask',
   'SubmissionAttempt',
   'TaskArtifact',
+  'FinalExport',
+  'StudioJob',
 ];
 async function digest(store: Persistence) {
   const data: Record<string, unknown> = {};
@@ -57,6 +59,7 @@ export async function verifyDatabase(store: Persistence) {
   const builds = new Map<string, Awaited<ReturnType<Persistence['readBuild']>>>();
   for (const build of await store.db.build.findMany())
     builds.set(build.id, await store.readBuild(build.id, session));
+  for (const e of await store.db.finalExport.findMany()) await store.readExport(e.buildId);
   const projects = await store.db.project.findMany();
   for (const p of projects) {
     if (

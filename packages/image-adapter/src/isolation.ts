@@ -22,7 +22,9 @@ export async function runIsolated(
   request: CodecRequest,
   worker = new URL('../dist/codec-worker.js', import.meta.url),
   deadline: number = PNG_POLICY.decodeDeadlineMs,
+  signal?: AbortSignal,
 ): Promise<CodecResult> {
+  signal?.throwIfAborted();
   requireRule(!active, 'ADAPTER_BUSY', 'Image adapter concurrency budget is exhausted.');
   active = true;
   try {
@@ -37,6 +39,7 @@ export async function runIsolated(
         if (settled) return;
         settled = true;
         clearTimeout(timer);
+        signal?.removeEventListener('abort', abort);
         child.kill('SIGKILL');
         // Release only after exit, so a timed-out native child never overlaps the next job.
         child.once('close', () => {
@@ -44,6 +47,8 @@ export async function runIsolated(
           else if (result) resolve(result);
         });
       };
+      const abort = () => finish(new AssetError('CODEC_CANCELLED', 'Image codec was cancelled.'));
+      signal?.addEventListener('abort', abort, { once: true });
       const timer = setTimeout(
         () =>
           finish(new AssetError('CODEC_TIMEOUT', 'Image codec exceeded its isolated deadline.')),
@@ -56,6 +61,7 @@ export async function runIsolated(
         if (!settled) {
           settled = true;
           clearTimeout(timer);
+          signal?.removeEventListener('abort', abort);
           reject(new AssetError('CODEC_FAILURE', 'Image codec exited without a valid result.'));
         }
       });
@@ -83,6 +89,7 @@ export async function runIsolated(
           finish(new AssetError(code, 'Image codec rejected the source.'));
         } else finish(undefined, message.result as CodecResult);
       });
+      if (signal?.aborted) abort();
       child.send(request, (error) => {
         if (error) finish(new AssetError('CODEC_FAILURE', 'Image codec transport failed.'));
       });

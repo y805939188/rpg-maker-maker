@@ -6,6 +6,11 @@ let running: Awaited<ReturnType<typeof createApplication>> | undefined;
 try {
   const config = parseConfig(process.env);
   running = await createApplication(config);
+  const server = running.app.getHttpServer() as import('node:http').Server;
+  server.headersTimeout = 5000;
+  server.requestTimeout = 10000;
+  server.keepAliveTimeout = 5000;
+  server.maxConnections = 16;
   await running.app.listen(config.API_PORT, config.API_HOST);
   console.log(
     `AI Tileset Studio (${config.NODE_ENV}) ready at http://127.0.0.1:${config.API_PORT}`,

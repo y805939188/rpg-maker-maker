@@ -42,6 +42,9 @@ importers:
       '@tileset/pack-assembly':
         specifier: workspace:*
         version: link:packages/pack-assembly
+      '@tileset/pack-export':
+        specifier: workspace:*
+        version: link:packages/pack-export
       '@tileset/persistence':
         specifier: workspace:*
         version: link:packages/persistence
@@ -78,9 +81,27 @@ importers:
       '@prisma/client':
         specifier: 6.19.3
         version: 6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3)
+      '@tileset/asset-core':
+        specifier: workspace:*
+        version: link:../../packages/asset-core
       '@tileset/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
+      '@tileset/image-adapter':
+        specifier: workspace:*
+        version: link:../../packages/image-adapter
+      '@tileset/material-processing':
+        specifier: workspace:*
+        version: link:../../packages/material-processing
+      '@tileset/mz-compiler':
+        specifier: workspace:*
+        version: link:../../packages/mz-compiler
+      '@tileset/pack-assembly':
+        specifier: workspace:*
+        version: link:../../packages/pack-assembly
+      '@tileset/pack-export':
+        specifier: workspace:*
+        version: link:../../packages/pack-export
       '@tileset/persistence':
         specifier: workspace:*
         version: link:../../packages/persistence
@@ -253,6 +274,28 @@ importers:
         specifier: 5.9.3
         version: 5.9.3
 
+  packages/pack-export:
+    dependencies:
+      '@tileset/asset-core':
+        specifier: workspace:*
+        version: link:../asset-core
+      '@tileset/image-adapter':
+        specifier: workspace:*
+        version: link:../image-adapter
+      '@tileset/material-processing':
+        specifier: workspace:*
+        version: link:../material-processing
+      '@tileset/mz-compiler':
+        specifier: workspace:*
+        version: link:../mz-compiler
+      '@tileset/pack-assembly':
+        specifier: workspace:*
+        version: link:../pack-assembly
+    devDependencies:
+      typescript:
+        specifier: 5.9.3
+        version: 5.9.3
+
   packages/persistence:
     dependencies:
       '@prisma/client':
@@ -276,6 +319,9 @@ importers:
       '@tileset/pack-assembly':
         specifier: workspace:*
         version: link:../pack-assembly
+      '@tileset/pack-export':
+        specifier: workspace:*
+        version: link:../pack-export
       pg:
         specifier: 8.16.3
         version: 8.16.3

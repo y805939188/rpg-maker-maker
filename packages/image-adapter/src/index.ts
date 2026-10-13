@@ -8,6 +8,7 @@ import {
 import type { ValidatedSource } from '@tileset/asset-core';
 import { PNG_POLICY, RepairRequired, inspectPng } from './png-policy.js';
 import { runIsolated } from './isolation.js';
+export { inspectPng } from './png-policy.js';
 export { PNG_POLICY } from './png-policy.js';
 
 export interface Diagnostic {
@@ -88,7 +89,7 @@ async function pullPng(stream: AsyncIterable<Uint8Array>): Promise<Uint8Array> {
     if (iterator.return) void iterator.return().catch(() => {});
   }
 }
-export async function decodeSource(raw: RawSource): Promise<SourceResult> {
+export async function decodeSource(raw: RawSource, signal?: AbortSignal): Promise<SourceResult> {
   try {
     requireRule(
       raw instanceof RawSource && raw.encoding === 'png',
@@ -97,10 +98,15 @@ export async function decodeSource(raw: RawSource): Promise<SourceResult> {
     );
     const bytes = raw.bytes();
     const dimensions = inspectPng(bytes);
-    const result = await runIsolated({
-      operation: 'decode',
-      bytes: Buffer.from(bytes).toString('base64'),
-    });
+    const result = await runIsolated(
+      {
+        operation: 'decode',
+        bytes: Buffer.from(bytes).toString('base64'),
+      },
+      undefined,
+      undefined,
+      signal,
+    );
     requireRule(
       typeof result.bytes === 'string' &&
         result.bytes.length <= Math.ceil((PNG_POLICY.pixels * 4) / 3) * 4 &&
@@ -152,14 +158,19 @@ export async function ingestPng(
     });
   }
 }
-export async function encodePng(image: RgbaImage): Promise<Uint8Array> {
+export async function encodePng(image: RgbaImage, signal?: AbortSignal): Promise<Uint8Array> {
   requireRule(image instanceof RgbaImage, 'SOURCE_STATE', 'Expected owned validated RGBA pixels.');
-  const result = await runIsolated({
-    operation: 'encode',
-    bytes: Buffer.from(image.bytes()).toString('base64'),
-    width: image.width,
-    height: image.height,
-  });
+  const result = await runIsolated(
+    {
+      operation: 'encode',
+      bytes: Buffer.from(image.bytes()).toString('base64'),
+      width: image.width,
+      height: image.height,
+    },
+    undefined,
+    undefined,
+    signal,
+  );
   requireRule(
     typeof result.bytes === 'string' &&
       result.bytes.length <= Math.ceil(PNG_POLICY.encodedBytes / 3) * 4,

@@ -35,14 +35,22 @@ export class AssetStorage {
     await this.checkpoint(signal);
     return value;
   }
-  async openWrite(path: string) {
+  async openWrite(path: string, cleanupOnFailure = false) {
     await this.checkpoint();
     const fd = await open(path, 'wx', 0o600);
+    let identity: Awaited<ReturnType<typeof fd.stat>> | undefined;
     try {
+      identity = await fd.stat();
+      if (cleanupOnFailure) await this.fault('source-file-opened');
       await this.checkpoint();
       return fd;
     } catch (error) {
       await fd.close();
+      if (cleanupOnFailure) {
+        const current = await lstat(path).catch(() => undefined);
+        if (identity && current?.dev === identity.dev && current.ino === identity.ino)
+          await rm(path, { force: true });
+      }
       throw error;
     }
   }
@@ -69,7 +77,7 @@ export class AssetStorage {
     assert.equal(hashBytes(bytes), ref.sha256);
     return bytes;
   }
-  async put(input: Uint8Array): Promise<FileRef> {
+  async put(input: Uint8Array, cleanupOnFailure = false): Promise<FileRef> {
     await this.checkpoint();
     const bytes = new Uint8Array(input);
     assert.ok(bytes.length > 0 && bytes.length <= 48 * 1024 * 1024);
@@ -77,29 +85,44 @@ export class AssetStorage {
     const sha256 = hashBytes(bytes),
       ref = Object.freeze({ sha256, bytes: bytes.length, key: `objects/${sha256}` });
     const stage = resolve(this.root, 'stage', randomUUID());
-    const fd = await this.openWrite(stage);
+    const fd = await this.openWrite(stage, cleanupOnFailure);
+    let stageOwned = true,
+      identity: Awaited<ReturnType<typeof fd.stat>> | undefined;
     try {
-      await this.step(() => this.fault('file-write'));
-      await this.step(() => fd.writeFile(bytes.subarray(0, Math.ceil(bytes.length / 2))));
-      await this.step(() => this.fault('file-partial'));
-      await this.step(() => fd.writeFile(bytes.subarray(Math.ceil(bytes.length / 2))));
-      await this.step(() => fd.chmod(0o444));
-      await this.step(() => fd.sync());
-    } finally {
-      await fd.close();
+      try {
+        identity = await fd.stat();
+        await this.step(() => this.fault('file-write'));
+        await this.step(() => fd.writeFile(bytes.subarray(0, Math.ceil(bytes.length / 2))));
+        await this.step(() => this.fault('file-partial'));
+        await this.step(() => fd.writeFile(bytes.subarray(Math.ceil(bytes.length / 2))));
+        await this.step(() => fd.chmod(0o444));
+        await this.step(() => fd.sync());
+      } finally {
+        await fd.close();
+      }
+      assert.equal(hashBytes(await readFile(stage)), sha256);
+      await this.step(() => this.fault('file-validated'));
+      try {
+        await this.step(() => link(stage, this.path(ref.key)));
+      } catch (e) {
+        if (!(e instanceof Error && 'code' in e && e.code === 'EEXIST')) throw e;
+        await this.read(ref);
+      }
+      await this.step(() => syncDirectory(resolve(this.root, 'objects')));
+      await this.step(async () => {
+        await rm(stage);
+        stageOwned = false;
+      });
+      await this.checkpoint();
+      return ref;
+    } catch (error) {
+      if (cleanupOnFailure && stageOwned && identity) {
+        const current = await lstat(stage).catch(() => undefined);
+        if (current?.dev === identity.dev && current.ino === identity.ino)
+          await rm(stage, { force: true });
+      }
+      throw error;
     }
-    assert.equal(hashBytes(await readFile(stage)), sha256);
-    await this.step(() => this.fault('file-validated'));
-    try {
-      await this.step(() => link(stage, this.path(ref.key)));
-    } catch (e) {
-      if (!(e instanceof Error && 'code' in e && e.code === 'EEXIST')) throw e;
-      await this.read(ref);
-    }
-    await this.step(() => syncDirectory(resolve(this.root, 'objects')));
-    await this.step(() => rm(stage));
-    await this.checkpoint();
-    return ref;
   }
   async publish(
     buildId: string,

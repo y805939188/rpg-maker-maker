@@ -57,7 +57,7 @@ export function archiveDomain(input: Parameters<typeof processShoreline>[0]) {
   });
 }
 /** Restores framework-free source/recipe/IR; Compiler is deliberately not involved. */
-export async function replayDomainArchive(input: unknown) {
+export async function replayDomainArchive(input: unknown, signal?: AbortSignal) {
   const archive = freezeJson(DomainSchema.parse(freezeJson(input))),
     sources: ValidatedSource[] = [];
   let total = 0;
@@ -75,7 +75,7 @@ export async function replayDomainArchive(input: unknown) {
         data: bytes,
       });
     else {
-      const result = await decodeSource(raw);
+      const result = await decodeSource(raw, signal);
       if (result.status !== 'validated') throw Error(result.diagnostic.code);
       source = result.source;
     }

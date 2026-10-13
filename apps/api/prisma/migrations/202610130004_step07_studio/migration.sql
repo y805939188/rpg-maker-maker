@@ -1,0 +1,20 @@
+CREATE TABLE "FinalExport" (
+ "buildId" TEXT PRIMARY KEY REFERENCES "Build"("id") ON DELETE RESTRICT,
+ "exportId" TEXT NOT NULL UNIQUE, "manifestSha" TEXT NOT NULL,
+ "profileHash" TEXT NOT NULL, "files" JSONB NOT NULL
+);
+CREATE TABLE "StudioJob" (
+ "id" UUID PRIMARY KEY, "projectId" UUID NOT NULL REFERENCES "Project"("id") ON DELETE RESTRICT,
+ "input" JSONB NOT NULL, "state" TEXT NOT NULL CHECK ("state" IN ('QUEUED','RUNNING','COMPLETED','FAILED')),
+ "buildId" TEXT REFERENCES "Build"("id") ON DELETE RESTRICT,
+ "diagnostic" JSONB, "createdAt" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TRIGGER "FinalExport_immutable" BEFORE UPDATE OR DELETE ON "FinalExport"
+ FOR EACH ROW EXECUTE FUNCTION tileset_immutable();
+CREATE FUNCTION studio_job_guard() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+ IF OLD."input" IS DISTINCT FROM NEW."input" OR OLD."projectId" IS DISTINCT FROM NEW."projectId" OR OLD."id" IS DISTINCT FROM NEW."id" OR OLD."createdAt" IS DISTINCT FROM NEW."createdAt"
+ OR OLD."state" IN ('COMPLETED','FAILED') THEN RAISE EXCEPTION 'immutable studio job'; END IF;
+ RETURN NEW;
+END $$;
+CREATE TRIGGER "StudioJob_frozen" BEFORE UPDATE ON "StudioJob" FOR EACH ROW EXECUTE FUNCTION studio_job_guard();

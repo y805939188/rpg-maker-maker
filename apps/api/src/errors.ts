@@ -1,9 +1,40 @@
+import { StudioError } from './studio-errors.js';
 import { Catch, HttpException, type ArgumentsHost, type ExceptionFilter } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import type { Response } from 'express';
 import type { ApiError } from '@tileset/contracts';
 
 export function safeError(exception: unknown): { status: number; body: ApiError } {
+  if (exception instanceof StudioError) {
+    const status = exception.getStatus();
+    return {
+      status,
+      body: {
+        error: {
+          code:
+            status === 503
+              ? 'SERVICE_UNAVAILABLE'
+              : status === 429
+                ? 'BUSY'
+                : status === 408
+                  ? 'TIMEOUT'
+                  : status === 409
+                    ? 'CONFLICT'
+                    : status === 413
+                      ? 'PAYLOAD_TOO_LARGE'
+                      : status === 404
+                        ? 'NOT_FOUND'
+                        : status === 415
+                          ? 'UNSUPPORTED_MEDIA_TYPE'
+                          : status === 400
+                            ? 'INVALID_REQUEST'
+                            : 'VALIDATION_FAILED',
+          message: exception.diagnostic.message,
+          diagnostic: exception.diagnostic,
+        },
+      },
+    };
+  }
   let status = exception instanceof HttpException ? exception.getStatus() : 500;
   if (
     exception instanceof Prisma.PrismaClientKnownRequestError ||
