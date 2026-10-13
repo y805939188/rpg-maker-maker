@@ -1,4 +1,12 @@
-# 步骤07 R2整改当前作者候选
+# 步骤07 R3整改当前作者候选
+
+功能source `ef30dc2ab011d204d1d0a4d099a335b68458cdca`，**SELF_TESTED_READY_FOR_ROUND4**。正式已用3/5，R3为REQUIRES_REVISION；连续错误poll共享5次/60s、明确未知/只读重读与project/selection/action异步写回调守卫已自测，待Main第4/5轮独立复审。未批准、合并、推送或启动08。
+
+最新冻结check266、真实HTTP/PG9、06回归23、API3/privacy5、prod/dev完整browser13+13、24scene/12+12clock/实际PNG/ZIP/干净恢复、JS78/旧56payload16PNG/8CPU通过。精确source/Build/hash/原失败及未执行见 [R3整改Coding报告](docs/reviews/step-07-fix-round-3-coding.md)。专属生产入口 `http://127.0.0.1:4376` 保留；AI仍尚未开放。
+
+以下作者检查点均为历史，原内容/证据保留；R1/R2问题已由独立R3在原范围关闭，R3新两P2仍待R4。
+
+# 步骤07 R2整改作者候选（历史）
 
 最新source `5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND3**。正式已用2/5，R2为REQUIRES_REVISION；慢响应串行轮询和处理PNG可取消、有界BUSY恢复已整改自测，下一次正式3/5，由Main独立复审。未批准、合并、推送或启动08。
 

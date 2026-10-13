@@ -98,3 +98,13 @@ ProcessedPreview按project/recipe/sourceFrame绑定fetch/AbortController，离�
 服务端保持总16请求、下载2、读12、处理1加等待1、codec1无队列/5s/close后释放；JSON8KiB与binary4MiB/5s读/4096chunk、metadata/density/pixel及Host/Origin/client/root边界不变。真实HTTP新增取消等待后紧接下载；两模式普通三次项目切换/三源帧、实际压力BUSY恢复/取消、坏PNG/408明确错误后重读均验证最终decoded图片、recipe身份、字节SHA及实际RGBA，正常场景无持续缺图。JS heap128MiB仍非OS/native RSS硬上限，当前最大真实HTTP平面测量为RSS106,938,368 bytes/74.171584ms，见新证据。
 
 冻结后check263、HTTP/PG9、06 PG23、API3、privacy5、browser7+7、11生产exports、206工程payload、JS78、旧56payload/16PNG、8 pinned-core CPU、恢复实例processed实际PNG/像素/history ZIP及生产入口通过；新cases进入原check/test:step07/test:e2e明确CI命令。Profile/Compiler/Pack/slot/动画/通行、源独立所有权/public restore、内部四文件与正式八文件均不变。运行端口/启动顺序沿上文；PG55476和全部历史DB/root/backup/失败保留，不复用Reviewer或Main环境。具体source/docsSHA、Build、原失败、局限与未执行见 [R2整改Coding报告](../reviews/step-07-fix-round-2-coding.md)。
+
+## 正式R3后连续错误预算与写回调身份
+
+当前source `ef30dc2ab011d204d1d0a4d099a335b68458cdca`，SELF_TESTED_READY_FOR_ROUND4；正式已用3/5，下轮4/5，两个新P2仍待Main独立确认。R1/R2在原范围由R3独立关闭，保留回归与全部历史。
+
+串行poll只对连续错误共有5次/60s，monotonic时钟从首个失败尝试开始；成功读重置错误episode，正常长构建可超过5个成功poll。截止停止/取消自动读，UI明确任务状态未知/保留旧成功，提供只GET、不重提任务的只读重读；项目切换保留旧读隔离。两模式503/429/网络失败精确5次后81s+20s无新请求，真实后台完成后只读恢复；原1300ms慢成功/失败/快与旧迟到继续通过。
+
+写动作捕获project/项目世代/选择世代/action id，内部选择、notice/error/创建/验收回调仅写当前scope，busy释放仅由当前project/action；refresh数据不覆盖期间用户选择。转换/descriptor仍按实际Build/preview世代隔离，提示另守选择。已服务端提交的旧source/recipe/job/项目不因切换假称撤销。上传/采用201迟到1300ms、同项目旧版本/历史recipe、422错误、Build202/visual-false200/创建201及普通成功均真browser验证。产物preview/下载同Export，源bytes/pixels、publicrestore、路径/历史/retired/CAS及4/8文件分层不变。
+
+冻结check266、HTTP9、PG06 23、API3/privacy5、prod/dev全13+13、206工程payload、195源文件、2525历史保护、24scene+4source+nearest/换Build/ZIP、12+12clock三周期、干净恢复processed实际PNG、旧56payload16PNG/JS78/8CPU通过。服务端原16/2/12、处理1+等待1/native1/5s/close、PNG4MiB/metadata/density/pixel及JSON8KiB/Host/Origin/client/Vite根未放宽；JS heap≠OS/native RSS说明与新入口测量保留。无新包/锁/schema/Profile/Compiler/槽位/动画/通行改变。自有PG55476/API4376/Web5276与上文启动流程保持，所有历史DB/root/失败不reset。完整最新绑定/来源/原错误/延期见 [R3整改报告](../reviews/step-07-fix-round-3-coding.md)；CPU/作者技术截图非新artifact MZ或用户美术PASS，08–10未开始。
