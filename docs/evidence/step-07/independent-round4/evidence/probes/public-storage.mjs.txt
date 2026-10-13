@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir,cp,rename,symlink,lstat} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+const {PrismaClient}=await import('../../apps/api/node_modules/@prisma/client/default.js');process.loadEnvFile('.env');
+const db=new PrismaClient(),browser=JSON.parse(await readFile('.local/step07-review/evidence/browser/evidence.json','utf8'));
+const base='http://127.0.0.1:4385',root=resolve('.local/step07-review/assets'),out=resolve('.local/step07-review/private/public-path-fixtures-followup-'+Date.now());await mkdir(out,{recursive:true});
+const p=browser.projectId,b=browser.builds[0].build,source=browser.firstState.sources.find(s=>s.component==='grass'),recipe=browser.firstState.recipes.find(r=>r.current).id;
+const final=await db.finalExport.findUniqueOrThrow({where:{buildId:b}});const paths={source:`/api/projects/${p}/sources/${source.id}/png`,A1:`/api/projects/${p}/builds/${b}/files/A1.png`,manifest:`/api/projects/${p}/builds/${b}/files/manifest.json`,ZIP:`/api/projects/${p}/builds/${b}/download`,preview:`/api/projects/${p}/builds/${b}/preview?scene=holes`,processed:`/api/projects/${p}/recipes/${recipe}/processed?frame=0`,profile:`/api/projects/${p}/builds/${b}/profile`};
+const sha=v=>createHash('sha256').update(v).digest('hex');
+const read=async name=>{const r=await fetch(base+paths[name]),bytes=Buffer.from(await r.arrayBuffer());return {status:r.status,sha256:sha(bytes),bytes:bytes.length}};
+const current=async()=>({project:(await db.project.findUniqueOrThrow({where:{id:p}})).successfulBuildId,builds:await db.build.count({where:{projectId:p}}),exports:await db.finalExport.count({where:{build:{projectId:p}}})});
+const before=await current(),normal={};for(const name of Object.keys(paths)){normal[name]=await read(name);assert.equal(normal[name].status,200)}
+const rows=[];
+for(const kind of ['objects','builds','root','source-leaf','A1-leaf','standard-build-directory','root-replacement','root-missing']){
+ const own=out+'/'+kind;await mkdir(own);const path=kind==='objects'?root+'/objects':kind==='builds'?root+'/builds':kind==='source-leaf'?root+'/objects/'+source.sha256:kind==='A1-leaf'?root+'/'+final.files['A1.png'].key:kind==='standard-build-directory'?root+'/builds/'+final.exportId:root;
+ const saved=own+'/original',outside=own+'/same-sha-outside';if(kind!=='root-missing')await cp(path,outside,{recursive:true});await rename(path,saved);if(kind==='root-replacement')await cp(outside,path,{recursive:true});else if(kind!=='root-missing')await symlink(outside,path);
+ const results={};try{
+  for(const name of Object.keys(paths)){results[name]=await read(name);const reject=['root','root-replacement','root-missing','objects'].includes(kind)||(['builds','standard-build-directory'].includes(kind)&&['ZIP','preview'].includes(name))||(kind==='source-leaf'&&['source','processed'].includes(name))||(kind==='A1-leaf'&&['A1','ZIP','preview'].includes(name));assert.equal(results[name].status,reject?422:200,kind+' '+name)}
+  assert.deepEqual(await current(),before);
+ }finally{if(kind!=='root-missing')await rename(path,own+'/injected-kept');await rename(saved,path)}
+ const restored={};for(const name of ['source','A1','manifest','ZIP','profile']){restored[name]=await read(name);assert.deepEqual(restored[name],normal[name],kind+' restored '+name)}
+ rows.push({kind,results,restored,currentUnchanged:true,declaredRoot:root,rootOutside:outside});await writeFile('.local/step07-review/evidence/public-storage-progress.json',JSON.stringify({normal,before,rows},null,2)+'\n');
+}
+const now=await(await fetch(base+`/api/projects/${p}/studio`)).json(),response=await fetch(base+`/api/projects/${p}/builds`,{method:'POST',headers:{Origin:base,'X-Tileset-Client':'local-v1','Content-Type':'application/json'},body:JSON.stringify({recipeId:now.recipes.find(r=>r.current).id,expectedRevision:now.revision,mode:'update'})});assert.equal(response.status,202);const job=await response.json();let result;
+for(let n=0;n<400;n++){await new Promise(r=>setTimeout(r,100));const state=await(await fetch(base+`/api/projects/${p}/studio`)).json();result=state.jobs.find(j=>j.id===job.id);if(['COMPLETED','FAILED'].includes(result.state))break}assert.equal(result.state,'COMPLETED');
+await writeFile('.local/step07-review/evidence/public-storage.json',JSON.stringify({project:p,build:b,normal,before,rows,rebuild:result,scope:'same-SHA cooperative redirect checks, no claim of arbitrary secret disclosure or HTTP link injection'},null,2)+'\n');await db.$disconnect();console.log('PASS real source/A1/Manifest/Profile/ZIP/preview/processed '+rows.length+' cases; historical bytes preserved, normal rebuild completed');

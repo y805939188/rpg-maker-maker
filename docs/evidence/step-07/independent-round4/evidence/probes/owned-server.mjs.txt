@@ -1,0 +1,9 @@
+import {readFile,writeFile} from "node:fs/promises";
+import {resolve} from "node:path";
+process.loadEnvFile(".env");
+const mode=process.argv[2]??"primary";
+const cfg=mode.startsWith("restored")?JSON.parse(await readFile(".local/step07-review/restored-env.json","utf8")):{url:process.env.DATABASE_URL,assets:resolve(".local/step07-review/assets")};
+process.env.DATABASE_URL=cfg.url;process.env.TILESET_ASSET_ROOT=cfg.assets;process.env.API_PORT="4385";process.env.WEB_PORT="5285";process.env.NODE_ENV=mode.endsWith("-dev")?"development":"production";
+await import("../../apps/api/dist/main.js");
+const resources=JSON.parse(await readFile("apps/api/dist/resources/studio.json","utf8"));
+await writeFile(".local/step07-review/evidence/server-"+mode+".json",JSON.stringify({pid:process.pid,port:4385,mode,entry:"apps/api/dist/main.js",database:new URL(cfg.url).pathname.slice(1),assets:cfg.assets,candidate:resources.context.commit,startedAt:new Date().toISOString()},null,2)+"\n");

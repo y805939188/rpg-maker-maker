@@ -1,0 +1,77 @@
+{
+  "round": "3/5",
+  "candidate": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+  "docsHead": "36dc5cca1a7da77314e6889648d464d32ba0751f",
+  "phase": "COMPLETE",
+  "status": "REQUIRES_REVISION",
+  "clientRole": "step_reviewer gpt-6.1-sol/ultra/default",
+  "serverConfiguration": "UNVERIFIED_NOT_EXPOSED",
+  "executed": {
+    "check": "263/263",
+    "step07": "9/9",
+    "step06": "23/23",
+    "api": "3/3",
+    "privacy": "5/5",
+    "legacy": "78/78",
+    "engineering": "206/206",
+    "pack": "8/56payload/16PNG"
+  },
+  "blocking": [
+    {
+      "id": "STEP07-R3-001",
+      "severity": "P2",
+      "summary": "continuous Studio error polling has no shared error count/total deadline"
+    },
+    {
+      "id": "STEP07-R3-002",
+      "severity": "P2",
+      "summary": "late old-project upload response clears destination grass selection"
+    }
+  ],
+  "findings": [
+    {
+      "id": "STEP07-R3-001",
+      "severity": "P2",
+      "blocking": true,
+      "summary": "Studio error polling remains unbounded after error/60s"
+    },
+    {
+      "id": "STEP07-R3-002",
+      "severity": "P2",
+      "blocking": true,
+      "summary": "Late old-project upload response clears new project component choice"
+    }
+  ],
+  "conclusion": "REQUIRES_REVISION",
+  "completedAt": "2026-10-13T11:59:51.808502+00:00",
+  "p0": 0,
+  "p1": 0,
+  "blockingP2": 2,
+  "newP3": 0,
+  "oldR2": {
+    "STEP07-R2-001": "CLOSED in original scope",
+    "STEP07-R2-002": "CLOSED in original scope"
+  },
+  "preservedR1": "CLOSED with real regressions",
+  "checks": {
+    "check": 263,
+    "step07": 9,
+    "step06": 23,
+    "api": 3,
+    "privacy": 5,
+    "productionBrowser": 7,
+    "developmentBrowser": 7,
+    "frozenFiles": 2239,
+    "engineeringPayload": 206,
+    "scalar": 78,
+    "packPayload": 56,
+    "packPNG": 16,
+    "nativeCPU": 8,
+    "sceneStates": 24,
+    "creativeStates": 4,
+    "clockBoundarySourceAndDelivery": 24
+  },
+  "apiWeb": "CLOSED",
+  "pg": "55483 RUNNING private data retained",
+  "steps08to10": "NOT_STARTED"
+}

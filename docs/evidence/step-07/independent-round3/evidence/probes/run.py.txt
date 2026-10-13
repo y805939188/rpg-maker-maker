@@ -1,0 +1,16 @@
+import os,sys,subprocess,json,time,pathlib,hashlib
+root=pathlib.Path(__file__).resolve().parents[2];out=root/'.local/step07-review';env=os.environ.copy();env['PATH']='/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+env['PATH']
+name=sys.argv[1];args=sys.argv[2:];cwd=root
+for line in (root/'.env').read_text().splitlines():
+ if line.strip() and not line.lstrip().startswith('#') and '=' in line:
+  k,v=line.split('=',1);env.setdefault(k.strip(),v.strip().strip(chr(34)).strip(chr(39)))
+if args and args[0]=='--cwd': cwd=pathlib.Path(args[1]).resolve();args=args[2:]
+if args and args[0]=='--private-env':
+ cfg=json.loads(pathlib.Path(args[1]).read_text());env.update({'DATABASE_URL':cfg['url'],'TILESET_ASSET_ROOT':cfg['assets']} if 'url' in cfg else cfg);args=args[2:]
+while args and args[0]=='--env': k,v=args[1].split('=',1);env[k]=v;args=args[2:]
+if name in ['browser-production','browser-dev']:
+ args += ['--output='+str(out/'private'/('formal-'+name+'-test-results'))]
+start=time.time();log=out/(name+'.log');p=subprocess.run(args,cwd=cwd,env=env,stdout=log.open('w'),stderr=subprocess.STDOUT)
+record={'name':name,'argv':args,'cwd':str(cwd),'exitCode':p.returncode,'seconds':round(time.time()-start,3),'log':str(log.relative_to(out)),'sha256':hashlib.sha256(log.read_bytes()).hexdigest()}
+with (out/'commands.jsonl').open('a') as f:f.write(json.dumps(record)+'\n')
+print(json.dumps(record));print(log.read_text(errors='replace')[-4500:]);sys.exit(p.returncode)

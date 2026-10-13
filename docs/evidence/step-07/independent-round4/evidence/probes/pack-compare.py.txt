@@ -1,0 +1,10 @@
+from pathlib import Path
+import json,hashlib
+r=Path.cwd();base=r/'.local/step07-review/pack-workspace/artifacts/step05-suite-ef30dc2ab011';idx=json.loads((base/'index.json').read_text());rows=[]
+for item in idx['builds']:
+ name=item['name'];old=json.loads((r/'docs/evidence/step-05/coding/packs'/name/'manifest.json').read_text())
+ for p,meta in old['identity']['files'].items():
+  b=(base/name/p).read_bytes();h=hashlib.sha256(b).hexdigest();assert h==meta['sha256'] and len(b)==meta['bytes'],(name,p)
+  rows.append({'pack':name,'file':p,'sha256':h,'bytes':len(b),'approvedStep05Match':True})
+assert len(rows)==56
+(r/'.local/step07-review/evidence/pack-regression.json').write_text(json.dumps({'packs':8,'payloads':56,'pngs':16,'rows':rows,'sourceContextAndManifestPackagingChanged':'candidate source context; pixels/layout/slot/installation payload unchanged'},indent=2)+'\n');print('PASS eight exports, 56 unchanged payloads including16PNG')

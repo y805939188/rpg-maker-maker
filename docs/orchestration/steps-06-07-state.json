@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_ROUND2_INDEPENDENT_REVIEW",
+  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND5",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -49,8 +49,8 @@
       "preflight": "PASS",
       "step": 7,
       "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-coding-client.json",
-      "status": "FIX_HANDOFF_COMPLETE_IDLE"
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round2-recovery2-client.json",
+      "status": "HANDOFF_COMPLETE_EXIT0_IDLE"
     },
     "review": {
       "role": "step_reviewer",
@@ -59,9 +59,9 @@
       "serviceTier": "default",
       "preflight": "PASS",
       "step": 7,
-      "round": 2,
-      "threadId": "01a13433-4b34-7af1-b498-e4c984715e27",
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round2-client.json",
+      "round": 3,
+      "threadId": "01a134f2-b8b9-7731-a6fe-fd34db11c2fd",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round3-client.json",
       "status": "ACTIVE_FRESH_INDEPENDENT_NATIVE_SESSION"
     },
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
@@ -434,37 +434,45 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "IN_PROGRESS",
-    "reviewRounds": 2,
+    "status": "INDEPENDENT_REVIEW",
+    "reviewRounds": 5,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
     "codingThread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
     "configurationEvidence": "docs/evidence/orchestration-06-07/step07-coding-client.json",
     "authorCheckpoint": {
-      "candidate": "d343171ca866a8d1d1c4e272823ef475229d8032",
-      "phase": "READY_FOR_REVIEW_ROUND2",
-      "status": "PASS_FROZEN_AUTHOR_ONLY",
-      "checkTests": 253,
-      "httpPostgresTests": 8,
-      "step06PostgresTests": 23,
-      "browserProductionTests": 3,
-      "browserDevelopmentTests": 3,
-      "independentReview": "NOT_YET_REPORTED_FOR_D343"
+      "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "docsHead": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
+      "status": "PASS_AUTHOR_ONLY_FROZEN_PENDING_INDEPENDENT",
+      "checkTests": 266,
+      "httpPostgresTests": 16,
+      "step06Tests": 23,
+      "apiTests": 3,
+      "privacyTests": 5,
+      "browserProduction": 18,
+      "browserDevelopment": 18,
+      "engineeringPayloads": 206,
+      "independentReview": "ROUND5_IN_PROGRESS"
     },
-    "candidateSha": "d343171ca866a8d1d1c4e272823ef475229d8032",
-    "candidateState": "FROZEN_UNDER_INDEPENDENT_ROUND2",
+    "candidateSha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+    "candidateState": "FROZEN_SELF_TESTED_UNDER_INDEPENDENT_ROUND5",
     "reviewEnvironment": {
-      "operationId": "427d85ca-9e3c-42f3-80e1-50a1e010ff99",
-      "status": "FORMAL_ROUND2_STARTED_REVIEWER_SELF_PREPARING",
-      "candidateSha": "d343171ca866a8d1d1c4e272823ef475229d8032",
-      "pgPort": 55479,
-      "apiPort": 4379,
-      "webPort": 5279,
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker",
+      "operationId": "f0930d25-4a8b-41bb-9cbb-ad556d67c4af",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
+      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "sourceState": "FROZEN_FULL_AUTHOR_HANDOFF_VERIFIED",
+      "pgPort": 55487,
+      "apiPort": 4387,
+      "webPort": 5287,
+      "status": "FORMAL_ROUND5_IN_PROGRESS",
       "formalReviewStarted": true,
-      "credentials": "REVIEWER_FRESH_OWNED_IGNORED_ENV_NO_COPY",
-      "databaseMigration": "NOT_YET_REPORTED"
+      "databaseMigration": "REVIEWER_EXECUTED_FIVE_MIGRATIONS",
+      "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
+      "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
+      "preparedBy": "MAIN_ORCHESTRATOR",
+      "threadId": "01a136c1-796d-7450-8445-0b57034cd6a6",
+      "sourceProtectionFiles": 2960
     },
     "supersededCodingCandidates": [
       {
@@ -478,6 +486,18 @@
         "round": 1,
         "result": "REQUIRES_REVISION",
         "reason": "R1 storage ancestor boundary and transient project switch findings; original evidence retained"
+      },
+      {
+        "sha": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+        "reviewed": false,
+        "reason": "Bounddev6/7 failed5s processed readiness; disposed StrictMode setup sent redundant native read. Source5d fixes pre-fetch lifecycle microtask guard, originalfailure/budget preserved."
+      },
+      {
+        "sha": "d343171ca866a8d1d1c4e272823ef475229d8032",
+        "reviewed": true,
+        "round": 2,
+        "result": "REQUIRES_REVISION",
+        "reason": "2UI blockingP2; preserved original386evidence; new5dfixes/StrictMode handling authorbound allPASS"
       }
     ],
     "supersededEngineeringBuilds": [
@@ -491,7 +511,7 @@
         "status": "SUPERSEDED_UNREVIEWED_ARTIFACT_RETAINED"
       }
     ],
-    "engineeringBuildState": "ACTUAL_D343_BUILD_206_PAYLOADS_VERIFIED_MAIN_READ_ONLY",
+    "engineeringBuildState": "SOURCE594_FROZEN_BOUND_HASH_VERIFIED_UNDER_INDEPENDENT_REVIEW",
     "supersededAuthorValidation82": {
       "phase": "FROZEN_CANDIDATE_VALIDATION",
       "firstActualHttpFlow": "PASS_UNFROZEN_AUTHOR_ONLY",
@@ -525,17 +545,6 @@
         "status": "PASS_AUTHOR_ONLY"
       }
     },
-    "engineeringBuild": {
-      "candidate": "d343171ca866a8d1d1c4e272823ef475229d8032",
-      "buildId": "step07-d343171ca866-68f0009e659aa6dc",
-      "manifestSha256": "073bd135d8cbfc9c30355ad68facfa56361e4114564c07252c73bf87b1b69d04",
-      "payloadsVerified": 206,
-      "verifiedAtUtc": "2026-10-13T07:39:52.606920+00:00",
-      "verification": "MAIN_READ_ONLY_ACTUAL_ARTIFACT_REHASH_NOT_INDEPENDENT_REVIEW",
-      "artifactPath": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/step07-d343171ca866-68f0009e659aa6dc",
-      "receipt": "docs/evidence/orchestration-06-07/step07-candidate-d343-engineering-receipt.json",
-      "independentReview": "IN_PROGRESS"
-    },
     "codingRecoveries": [
       {
         "attempt": 1,
@@ -549,16 +558,40 @@
         "originalOutput": ".local/orchestration-06-07/step07-coding",
         "resumedOutput": ".local/orchestration-06-07/step07-coding-recovery1",
         "formalReviewRoundsUnchanged": 0
+      },
+      {
+        "attempt": 2,
+        "status": "COMPLETED_EXIT0_HANDOFF",
+        "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+        "reason": "Originalfix2eventstreamstalled16+minutes,noactivetools; priorstreamdisconnectwarning;ownednormalSIGINT exit1 preserved",
+        "serverCause": "UNVERIFIED",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "serviceTier": "default",
+        "originalOutput": ".local/orchestration-06-07/step07-fix-round2",
+        "resumedOutput": ".local/orchestration-06-07/step07-fix-round2-recovery2",
+        "formalReviewRoundsUnchanged": 2,
+        "sourceUnchanged": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+        "diagnosisEvidence": "docs/evidence/orchestration-06-07/step07-coding-normal-recovery2.json"
+      },
+      {
+        "attempt": 3,
+        "duringFixRound": 4,
+        "mode": "NORMAL_SIGINT_AND_SAME_CID_RESUME",
+        "status": "COMPLETE",
+        "receipt": "docs/evidence/orchestration-06-07/step07-coding-normal-recovery3.json",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round4-recovery3-client.json",
+        "reason": "8ws disconnects;14.5min no newcompletedverification;activeToolItems0;serverCauseUNVERIFIED",
+        "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+        "originalNativeProcess": 87558,
+        "newNativeProcess": 88765,
+        "sourcePreserved": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+        "wholeReviewRoundAdded": 0,
+        "nativeExitCode": 0,
+        "completedAtUtc": "2026-10-13T19:28:39.142001+00:00"
       }
     ],
-    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-fix-round1",
-    "docsHead": "1a3881edd3a076649f86794b05ac47f4c4c7a315",
-    "codingReport": "docs/reviews/step-07-fix-round-1-coding.md",
-    "codingReportSha256": "533bdf886561591df8e4ba8e54e6ee636e504308b7e46e08ca5546078af2a431",
-    "codingEvidenceLedger": "docs/evidence/step-07/fix-round1/ledger.json",
-    "codingEvidenceLedgerSha256": "96f498cd314d2d1e681c82ee82521c04b1cf78d1d662f7f2e06a14815256043d",
-    "ledgerVerifiedCommittedFiles": 148,
-    "postCandidateDiff": "153_README_DOCS_PATHS_ONLY_NO_EXECUTABLE_CHANGE",
+    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-fix-round4-recovery3",
     "reviews": [
       {
         "round": 1,
@@ -624,16 +657,18 @@
           {
             "id": "STEP07-R1-001",
             "severity": "P2",
-            "status": "OPEN",
-            "topic": "AssetStorage ancestor symlink root escape for source PNG and standard A1"
+            "status": "CLOSED_FIXED_INDEPENDENTLY_VERIFIED",
+            "topic": "AssetStorage ancestor symlink root escape for source PNG and standard A1",
+            "closedByRound": 2
           }
         ],
         "nonBlockingFindings": [
           {
             "id": "STEP07-R1-002",
             "severity": "P3",
-            "status": "OPEN",
-            "topic": "Project switch sends temporarily mixed project Build recipe IDs; backend rejects, stable render/download valid"
+            "status": "CLOSED_FIXED_INDEPENDENTLY_VERIFIED",
+            "topic": "Project switch sends temporarily mixed project Build recipe IDs; backend rejects, stable render/download valid",
+            "closedByRound": 2
           }
         ],
         "sourceChanged": false
@@ -642,26 +677,645 @@
         "round": 2,
         "candidate": "d343171ca866a8d1d1c4e272823ef475229d8032",
         "docsHead": "1a3881edd3a076649f86794b05ac47f4c4c7a315",
-        "status": "IN_PROGRESS",
+        "status": "REQUIRES_REVISION",
         "threadId": "01a13433-4b34-7af1-b498-e4c984715e27",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker",
-        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round2-client.json"
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round2-client.json",
+        "independentCheck": {
+          "status": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "tests": 253,
+          "productionExports": 11
+        },
+        "independentHttpPostgres": {
+          "status": "PASS_EXECUTED_PENDING_FINAL_REVIEW",
+          "tests": 8
+        },
+        "independentStep06Regression": {
+          "status": "PASS_EXECUTED_PENDING_FINAL_REVIEW",
+          "tests": 23
+        },
+        "independentApi": {
+          "status": "PASS_EXECUTED",
+          "tests": 3
+        },
+        "independentVitePrivacy": {
+          "status": "PASS_EXECUTED",
+          "tests": 5
+        },
+        "independentBrowser": {
+          "productionTests": 3,
+          "developmentTests": 3,
+          "actualDeliverySceneStates": 24,
+          "creativeSourceStates": 4,
+          "nearestIntegerZoom": "2X_PASS",
+          "actualBuildPixelChanged": true,
+          "verifiedZipBindings": 4,
+          "screenshotsViewed": "REVIEWER_REPORTED_EXECUTED",
+          "status": "EXECUTED_FINAL_WHOLE_REVIEW_PENDING"
+        },
+        "cleanRestore": {
+          "status": "ACTUAL_POSTGRES_FILES_REBUILD_EXECUTED_FINAL_REPORT_PENDING",
+          "mockUnknownNotResubmitted": true,
+          "mockKnownOriginalExternalIdRecovery": true
+        },
+        "preliminaryFindings": [
+          {
+            "severity": "P2_BLOCKING_CONFIRMED_BY_REVIEWER_PENDING_FINAL_REPORT",
+            "topic": "800ms polling aborts every 1.3s snapshot response and remains building after backend completion"
+          },
+          {
+            "severity": "P2_BLOCKING_CONFIRMED_BY_REVIEWER_PENDING_FINAL_REPORT",
+            "topic": "Ordinary project switch valid processed request BUSY429 leaves persistent missing image; reproduced3times"
+          }
+        ],
+        "priorRoundFindingStatus": "R1 issues independently confirmed fixed in original scope; final report binding pending",
+        "controlledClockPixels": {
+          "status": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "deliveryBoundaries": 12,
+          "creativeBoundaries": 12,
+          "cycles": 3
+        },
+        "overallStatus": "REQUIRES_REVISION",
+        "report": "docs/evidence/step-07/independent-round2/report.md",
+        "reportSha256": "1411559d5e0d8376ef34caae414f643392b63b59ad45d59c36363fdf9f200a6d",
+        "evidenceLedger": "docs/evidence/step-07/independent-round2/evidence/ledger.json",
+        "evidenceLedgerSha256": "8e1eb20f132622968bf21f1c4204628bed94fc3a583fa30a88aaf62b7e25bf9a",
+        "evidenceLedgerPayloadsVerified": 386,
+        "sourceProtectionFiles": 2084,
+        "sourceChanged": false,
+        "blockingFindings": [
+          {
+            "id": "STEP07-R2-001",
+            "severity": "P2",
+            "status": "CLOSED_FIXED_INDEPENDENTLY_VERIFIED",
+            "topic": "800ms polling generations discard all legal1.3s completion responses; UI remains building",
+            "closedByRound": 3
+          },
+          {
+            "id": "STEP07-R2-002",
+            "severity": "P2",
+            "status": "CLOSED_FIXED_INDEPENDENTLY_VERIFIED",
+            "topic": "Valid processed preview BUSY429 persists as broken image on ordinary project switch3times",
+            "closedByRound": 3
+          }
+        ],
+        "nonBlockingFindings": [],
+        "nativeExitCode": 0
+      },
+      {
+        "round": 3,
+        "candidate": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+        "docsHead": "36dc5cca1a7da77314e6889648d464d32ba0751f",
+        "status": "REQUIRES_REVISION",
+        "threadId": "01a134f2-b8b9-7731-a6fe-fd34db11c2fd",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round3-client.json",
+        "sourceProtectionFiles": 2239,
+        "overallStatus": "REQUIRES_REVISION",
+        "report": "docs/evidence/step-07/independent-round3/report.md",
+        "reportSha256": "c18e713ac7e3ee14b9b342234af5d6d4fe9225a67a547ceb93b003ccbf4c6fdf",
+        "evidenceLedger": "docs/evidence/step-07/independent-round3/evidence/ledger.json",
+        "evidenceLedgerSha256": "104eb01097323fcccb7f2f6f92efccbabe561f47505eafc014f9782833d67d9c",
+        "evidenceLedgerPayloadsVerified": 437,
+        "sourceChanged": false,
+        "nativeExitCode": 0,
+        "checks": {
+          "check": 263,
+          "step07": 9,
+          "step06": 23,
+          "api": 3,
+          "privacy": 5,
+          "productionBrowser": 7,
+          "developmentBrowser": 7,
+          "engineeringPayload": 206,
+          "oldPackPayload": 56,
+          "oldPackPNG": 16,
+          "nativeCPU": 8
+        },
+        "blockingFindings": [
+          {
+            "id": "STEP07-R3-001",
+            "severity": "P2",
+            "status": "CLOSED_FIXED_INDEPENDENTLY_VERIFIED",
+            "topic": "Continuous error polling remains unbounded after80seconds/118reads",
+            "closedByRound": 4
+          },
+          {
+            "id": "STEP07-R3-002",
+            "severity": "P2",
+            "status": "CLOSED_FIXED_INDEPENDENTLY_VERIFIED",
+            "topic": "Late old-project upload response clears current project component selection",
+            "closedByRound": 4
+          }
+        ],
+        "priorFindings": "R1/R2 CLOSED_IN_ORIGINAL_SCOPE; regressions independently maintained"
+      },
+      {
+        "round": 4,
+        "candidate": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+        "docsHead": "71933b6782b83600b1a94017f5eb5aa763553dfb",
+        "status": "REQUIRES_REVISION",
+        "threadId": "01a13592-d6c5-7a91-badb-a0419a260e2a",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round4/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round4-client.json",
+        "sourceProtectionFiles": 2532,
+        "nativeProcess": 61485,
+        "nativeOutput": ".local/orchestration-06-07/step07-review-round4",
+        "independentCheck": {
+          "status": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "tests": 266,
+          "productionExports": 11
+        },
+        "independentEngineeringPayloadHashCheck": {
+          "status": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "payloads": 206
+        },
+        "historicalPayloadsVerified": [
+          308,
+          386,
+          437
+        ],
+        "authorPayloadsVerified": 425,
+        "independentHttpPostgres": {
+          "status": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "tests": 9
+        },
+        "independentStep06Regression": {
+          "status": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "tests": 23
+        },
+        "independentApi": {
+          "status": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "tests": 3
+        },
+        "independentVitePrivacy": {
+          "status": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "tests": 5
+        },
+        "independentBrowser": {
+          "productionTests": 13,
+          "productionStatus": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "developmentStatus": "PASS_REVIEWER_REPORTED_EXECUTED",
+          "wholeReviewStatus": "PENDING",
+          "developmentTests": 13
+        },
+        "preliminaryFindings": [
+          {
+            "topic": "Existing legal four-file Build duplicate publication completes StudioJob without registering standard FinalExport; true HTTP409 delivery while ordinary control has8files",
+            "state": "CONFIRMED_BY_REVIEWER_PENDING_FINAL_FULL_REPORT",
+            "gate": "BLOCKING_CURRENT_COMPLETION_AND_EXPORT_TRANSACTION_INVARIANT",
+            "severity": "P2_BLOCKING_PROPOSED_REVIEWER_PENDING_FINAL_REPORT",
+            "independentOldWriterAndHTTP": "Published06 actualwriter reproduces COMPLETED + preview/download409; separateprotectedPOST createsExport"
+          },
+          {
+            "topic": "Initial successful project-list response delayed while legitimate PNG upload changes UI generation is discarded;19 persisted projectsidebar items remainempty until refresh",
+            "state": "CONFIRMED_BY_REVIEWER_PENDING_FINAL_FULL_REPORT",
+            "severity": "FINAL_SEVERITY_AND_BLOCKING_PENDING_REPORT"
+          }
+        ],
+        "additionalErrorBudgetControls": "Shared deadline aborts active read; failed manualread remainsstopped; successful manualRUNNING then13successpolls reachCOMPLETED",
+        "overallStatus": "REQUIRES_REVISION",
+        "report": "docs/evidence/step-07/independent-round4/report.md",
+        "reportSha256": "9beb4c15e0be0753384e89e0dc1f48ba32be17f599f876eb961012b2c218a24e",
+        "evidenceLedger": "docs/evidence/step-07/independent-round4/evidence/ledger.json",
+        "evidenceLedgerSha256": "a7a11c82b6584134df78324c454d1a8c7552a332eae651b36939a0005a803fd6",
+        "evidenceLedgerPayloadsVerified": 430,
+        "sourceChanged": false,
+        "nativeExitCode": 0,
+        "checks": {
+          "check": 266,
+          "httpPostgres": 9,
+          "step06": 23,
+          "api": 3,
+          "privacy": 5,
+          "productionBrowser": 13,
+          "developmentBrowser": 13,
+          "engineeringFiles": 206,
+          "oldPackPayload": 56,
+          "oldPackPNG": 16,
+          "scalar": 78,
+          "nativeCPU": 8,
+          "sceneStates": 24,
+          "creativeStates": 4,
+          "clockSamples": 24,
+          "clockCycles": 3,
+          "standardZipsVerified": 18,
+          "screenshotsViewed": 29
+        },
+        "blockingFindings": [
+          {
+            "id": "STEP07-R4-001",
+            "severity": "P2",
+            "status": "OPEN",
+            "topic": "existing Build publication finishes StudioJob without FinalExport/FileObject registration",
+            "location": "packages/persistence/src/store.ts:695",
+            "spec": "product7.1/10.2 and STEP07 completion/export same shortTX"
+          },
+          {
+            "id": "STEP07-R4-002",
+            "severity": "P2",
+            "status": "OPEN",
+            "topic": "unrelated action invalidates only initial project-list response leaving persisted sidebar empty",
+            "location": "apps/web/src/App.tsx:89",
+            "spec": "product4.1 and STEP07 ordinary create/select workflow"
+          },
+          {
+            "id": "STEP07-R4-003",
+            "severity": "P2",
+            "status": "OPEN",
+            "topic": "separate metadata reads mix old Project pointers with new completedJob/Export and stop polling",
+            "location": "apps/api/src/studio-service.ts:260",
+            "spec": "product4.4/7.1/10.2 and STEP07 consistent current/history terminal state"
+          }
+        ],
+        "nonBlockingFindings": [],
+        "priorFindingStatus": "R3-001/002 CLOSED_IN_ORIGINAL_SCOPE;R1/R2 regressions maintained"
+      },
+      {
+        "round": 5,
+        "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+        "docsHead": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
+        "status": "IN_PROGRESS",
+        "threadId": "01a136c1-796d-7450-8445-0b57034cd6a6",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round5-client.json",
+        "nativeProcess": 69948,
+        "nativeOutput": ".local/orchestration-06-07/step07-review-round5",
+        "sourceProtectionFiles": 2960,
+        "mechanicalRoundLimit": null,
+        "executedProgress": {
+          "checkTests": 266,
+          "httpPostgresTests": 16,
+          "step06PostgresTests": 23,
+          "oldPackPayloads": 56,
+          "oldPngs": 16,
+          "legacyJsAssertions": 78,
+          "nativeCpuPacks": 8,
+          "authorCommittedPayloadHashes": 703,
+          "historicalIndependentPayloadHashes": 1561,
+          "engineeringPayloadHashes": 206,
+          "extraProbes": [
+            "existing_four_file_build_failed_commit_rolls_back_export_and_job",
+            "concurrent_source_recipe_adoption_read_snapshot_consistency"
+          ],
+          "browser": "PRODUCTION_AND_DEVELOPMENT_RUNNING",
+          "independentConclusion": "NOT_YET_ISSUED"
+        }
       }
     ],
-    "latestIndependentReview": "REQUIRES_REVISION",
+    "latestIndependentReview": "REQUIRES_REVISION_ROUND4",
     "codingFix": {
-      "round": 1,
-      "status": "SELF_TESTED_FROZEN_READY_ROUND2",
+      "round": 4,
+      "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
       "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
       "issues": [
-        "STEP07-R1-001",
-        "STEP07-R1-002"
+        "STEP07-R4-001",
+        "STEP07-R4-002",
+        "STEP07-R4-003"
       ],
-      "nextFormalReviewRound": 2,
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round1-client.json",
-      "source": "d343171ca866a8d1d1c4e272823ef475229d8032",
-      "docsHead": "1a3881edd3a076649f86794b05ac47f4c4c7a315"
-    }
+      "nextFormalReviewRound": 5,
+      "previousSource": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+      "previousDocs": "71933b6782b83600b1a94017f5eb5aa763553dfb",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round4-client.json",
+      "nativeOutput": ".local/orchestration-06-07/step07-fix-round4-recovery3",
+      "nativeProcess": 88765,
+      "phase": "APPLYING_MINIMAL_FIX_AFTER_OLD_CANDIDATE_COUNTEREXAMPLES",
+      "oldCandidateAssertionControls": {
+        "candidate": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+        "R4-001": "ASSERTION_CORRECTLY_FAILS_FinalExport0",
+        "R4-002": "ASSERTION_CORRECTLY_FAILS_sidebar0_after_valid200",
+        "R4-003": "ASSERTION_CORRECTLY_FAILS_terminal200_old_null_pointer",
+        "status": "REPRODUCED_DEFECTS_NOT_IMPLEMENTATION_PASS",
+        "retained": "Original logs/traces plus first invalid readbarrier timing preserved"
+      },
+      "readOnlyAffectedDataAudit": {
+        "ownPgPort": 55476,
+        "databasesScanned": 72,
+        "affectedStudioCompletedWithoutFinalExport": 0,
+        "historyWrites": "NONE_REQUIRED"
+      },
+      "proposedReadConsistency": "5s read-only RepeatableRead DBmetadata; file/pixel work outsideTX",
+      "preFreezeValidation": {
+        "status": "PARTIAL_AUTHOR_NEW_HTTP_CONTROLS_PASS_NOT_FROZEN_OR_REVIEWED",
+        "legacy06DuplicatePublication": "PASS_AUTHOR_REPORTED_EXECUTED",
+        "crossCommitConsistentRead": "PASS_AUTHOR_REPORTED_EXECUTED",
+        "remaining": "Final persistent duplicate references and deferredCOMMIT control thenSourcefreeze/fullboundregression",
+        "projectListBrowserControls": 5,
+        "projectListStatus": "PASS_AUTHOR_EXECUTED_NEW_CONTROLS",
+        "consistencyBrowserModes": "PRODUCTION_AND_DEVELOPMENT_PASS_AUTHOR_REPORTED",
+        "consistencyBrowserScope": [
+          "firstbuild",
+          "componentreplacement",
+          "history-onlylatecompletion",
+          "actualpreview/download/currentretirestate"
+        ],
+        "finalizationRecoveryControls": 4,
+        "finalizationRecoveryScope": [
+          "existingstandard",
+          "filefailure",
+          "sameTXrollback",
+          "commitreceiptloss"
+        ]
+      },
+      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "authorProtectedHistoricalFiles": 2951,
+      "changedSourceTestPaths": 6,
+      "boundValidation": {
+        "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+        "check": 266,
+        "checkStatus": "PASS_AUTHOR_BOUND_EXECUTED",
+        "httpPostgres": {
+          "plannedSuite": 16,
+          "status": "PASS_AUTHOR_BOUND_EXECUTED",
+          "oldCasesRetained": 9,
+          "newCases": 7,
+          "tests": 16,
+          "seconds": 528.28
+        },
+        "otherRequiredChecks": "PENDING",
+        "wholeCandidate": "NOT_INDEPENDENTLY_REVIEWED",
+        "productionBrowser": 18,
+        "api": 3,
+        "privacy": 5,
+        "productionBrowserStatus": "PASS_AUTHOR_BOUND_EXECUTED",
+        "developmentBrowser": 18,
+        "developmentBrowserStatus": "PASS_AUTHOR_BOUND_EXECUTED",
+        "artifactRestore": "IN_PROGRESS",
+        "engineeringPayloadsMainRehashed": 206,
+        "sceneStates": 24,
+        "creativeStates": 4,
+        "clockSamples": 24,
+        "clockCycles": 3,
+        "oldPackPayload": 56,
+        "oldPackPNG": 16,
+        "scalar": 78,
+        "nativeCPU": 8,
+        "technicalScope": "AUTHOR_REFERENCE_PIXEL_CHECKS_NOT_MZ_GUI_OR_USER_ART_CONFIRMATION",
+        "step06Regression": 23,
+        "step06Status": "PASS_AUTHOR_LATEST_SOURCE_EXECUTED",
+        "cleanRestoreStudio": "PASS_AUTHOR_REPORTED_EXECUTED_SOURCE_RECIPE_CURRENT_HISTORY_PROCESSED_PNG",
+        "affectedRecordRecovery": "BACKUP_CLONE_NEW_DB_NEW_ROOT_PROTECTED_EXPORT_REPAIR_PASS_ORIGINAL_DB_JOB_INTERNAL_MANIFEST_UNCHANGED",
+        "retainedProductionEntry": "AUTHOR_REPORTED_BROWSER_PASS_API4376_PG55476_WEB5276_NO_LISTENER_NEEDS_FINAL_OWNER_BINDING",
+        "authorDocumentation": "IN_PROGRESS_PURE_DOCS_HANDOFF",
+        "status": "ALL_AUTHOR_BOUND_CHECKS_PASS_NOT_INDEPENDENT_REVIEW",
+        "standardZipsVerified": 12,
+        "docsHead": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d"
+      },
+      "recovery": "COMPLETE_SAME_CID_CONFIG_UNCHANGED",
+      "docsHead": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
+      "nativeExitCode": 0
+    },
+    "validationEnvironment": {
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
+      "branch": "codex/step-07-validation",
+      "status": "LOCAL594_AUTHOR5C_EXECUTABLE_EQUIVALENT_R5_IN_PROGRESS_NOT_PUSHED",
+      "executableDiffZero": true,
+      "database": "OWNED_POSTGRES55481_NEW_EMPTY",
+      "preparation": "FROZEN_INSTALL_GENERATE_BUILD_FIVE_MIGRATIONS_SUCCESS_NOT_POSTMERGE_TESTS",
+      "candidateExecutableSource": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "validationHead": "f3730a5df3603b8cc61bbf7d2bf33b385e5652f2",
+      "postSourcePaths": 1029,
+      "remotePushed": false,
+      "authorDocs": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
+      "previousReviewBasis": {
+        "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+        "review": "REQUIRES_REVISION_ROUND3"
+      },
+      "latestReview": "ROUND5_IN_PROGRESS_NO_PASS",
+      "reviewedSource": null
+    },
+    "pendingCandidate": {
+      "sha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "docsHead": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
+      "status": "AUTHOR_FULL_HANDOFF_COMPLETE_UNDER_REVIEW_ROUND5"
+    },
+    "nextReviewEnvironment": {
+      "operationId": "f0930d25-4a8b-41bb-9cbb-ad556d67c4af",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
+      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "sourceState": "FROZEN_FULL_AUTHOR_HANDOFF_VERIFIED",
+      "pgPort": 55487,
+      "apiPort": 4387,
+      "webPort": 5287,
+      "status": "FORMAL_ROUND5_IN_PROGRESS",
+      "formalReviewStarted": true,
+      "databaseMigration": "REVIEWER_EXECUTED_FIVE_MIGRATIONS",
+      "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
+      "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
+      "preparedBy": "MAIN_ORCHESTRATOR",
+      "threadId": "01a136c1-796d-7450-8445-0b57034cd6a6",
+      "sourceProtectionFiles": 2960
+    },
+    "checkpointCi": {
+      "head": "552137fa00a28fccc2375bf89a8e70ca2a0132e8",
+      "runId": 38398107070,
+      "status": "SUCCESS",
+      "purpose": "ORCHESTRATION_DOCS_ON_ALREADY_PUBLISHED_STEP06_MAIN_NOT_STEP07_CANDIDATE",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38398107070"
+    },
+    "checkpointCiPreparation": {
+      "head": "1b19fcf65bd0c4b0f747a651b76f5234a9205c56",
+      "runId": 38399059315,
+      "status": "SUCCESS",
+      "purpose": "MAIN_ORCHESTRATION_DOCS_NOT_STEP07_CANDIDATE"
+    },
+    "previousCompleteAuthorHandoff": {
+      "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "state": "SUPERSEDED_BY_FIX3_AFTER_R3_REQUIRES_REVISION",
+      "docsHead": "36dc5cca1a7da77314e6889648d464d32ba0751f",
+      "codingReport": "docs/reviews/step-07-fix-round-2-coding.md",
+      "codingReportSha256": "1a4b31584691ba4625ab8ee9ac540e5983a5aaf1e997b1fad850e1d3816b08dd",
+      "codingEvidenceLedger": "docs/evidence/step-07/fix-round2/ledger.json",
+      "codingEvidenceLedgerSha256": "15d9d4a737dbc9f03c318f7b4640911f1fabbe6a08b82021914ec6cfd8c0e9ec",
+      "ledgerVerifiedCommittedFiles": 290,
+      "postCandidateDiff": "295_README_DOCS_ONLY_NO_EXECUTION_IMPACT",
+      "engineeringBuild": {
+        "candidate": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+        "buildId": "step07-5d926ad7ad6a-20f941ea79f60296",
+        "manifestSha256": "f9e96a59d295a66f77afc9b508a6f964b821f9f633f2d28080395b0aceadaca8",
+        "payloadsVerified": 206,
+        "verifiedBy": "MAIN_READ_ONLY_REHASH_EVERY_ACTUAL_PAYLOAD_NOT_INDEPENDENT_REVIEW",
+        "actualArtifactPath": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/step07-5d926ad7ad6a-20f941ea79f60296",
+        "atUtc": "2026-10-13T11:11:52.354214+00:00",
+        "receipt": "docs/evidence/orchestration-06-07/step07-candidate5d-engineering-receipt.json",
+        "independentReview": "IN_PROGRESS"
+      }
+    },
+    "frozenCheckpointCi": {
+      "head": "afb6dfa0be0c291c6528b078a9ebac6cd1cfa0ca",
+      "runId": 38404967311,
+      "status": "SUCCESS",
+      "purpose": "MAIN_PUBLISHED_STEP06_CODE_WITH_STEP07_ORCHESTRATION_DOCS_NOT_STEP07_CANDIDATE_CI"
+    },
+    "prelaunchFailures": [
+      {
+        "type": "LOCAL_PRELAUNCH_METADATA_VALIDATION_AND_MISSING_PROMPT",
+        "nativeProcessCreated": false,
+        "formalReviewRoundsConsumed": 0,
+        "receipt": "docs/evidence/orchestration-06-07/step07-review-round4-prelaunch-failure1.json",
+        "reason": "Interim collector ledger8d differed from finalized committeda09; corrected to actual committed SHA after full425 payload verification. NoReviewer launched on failed localattempt."
+      }
+    ],
+    "round4DispatchCheckpointCi": {
+      "head": "c98d735168272bf5c9be6e0275d00643a20c6683",
+      "runId": 38410512250,
+      "status": "SUCCESS",
+      "purpose": "MAIN_PUBLISHED_STEP06_CODE_WITH_STEP07_HANDOFF_DOCS_NOT_STEP07_CANDIDATE_CI"
+    },
+    "codingFixHistory": [
+      {
+        "round": 3,
+        "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
+        "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+        "issues": [
+          "STEP07-R3-001",
+          "STEP07-R3-002"
+        ],
+        "nextFormalReviewRound": 4,
+        "previousSource": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+        "previousDocs": "36dc5cca1a7da77314e6889648d464d32ba0751f",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round3-client.json",
+        "nativeOutput": ".local/orchestration-06-07/step07-fix-round3",
+        "nativeProcess": 63889,
+        "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+        "preFreezeValidation": {
+          "unitTests": 13,
+          "newRealBrowserTests": 6,
+          "status": "PASS_AUTHOR_ONLY_UNFROZEN",
+          "originalFailures": "Retained package resolution, selector, build-overlap image assertion logs and traces"
+        },
+        "boundValidation": {
+          "candidate": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+          "check": 266,
+          "httpPostgres": 9,
+          "status": "AUTHOR_BOUND_ALL_REQUIRED_CHECKS_PASS_NOT_INDEPENDENT_REVIEW",
+          "productionBrowser": 13,
+          "developmentBrowser": 13,
+          "step06Regression": 23,
+          "artifactBinding": "MAIN_ACTUAL206_FILES_REHASHED_NOT_INDEPENDENT_REVIEW_PASS",
+          "api": 3,
+          "privacy": 5,
+          "jsScalar": 78,
+          "nativeCPU": 8,
+          "oldPackPayload": 56,
+          "oldPackPNG": 16,
+          "sceneStates": 24,
+          "sourceStates": 4,
+          "clockBoundaries": 24,
+          "clockCycles": 3,
+          "cleanPostgresFilesRestoreStudio": "PASS_AUTHOR_EXECUTED"
+        },
+        "docsHead": "71933b6782b83600b1a94017f5eb5aa763553dfb",
+        "nativeExitCode": 0
+      }
+    ],
+    "reviewPolicy": {
+      "authorization": "docs/orchestration/step-07-resume-authorization-2026-10-14.md",
+      "mechanicalRoundLimit": null,
+      "keepActualRoundNumbers": true,
+      "continueWhileVerifiedProgress": true,
+      "stopForSameBlockingRootCauseWithoutProgressConsecutiveRounds": 2,
+      "qualityGate": "P0/P1/blockingP2=0,requiredtests,latestindependentwholecandidatePASS"
+    },
+    "resumeCheckpointCi": {
+      "head": "61ea42aed8b4c894b6da68a8e3593b53bdc317df",
+      "runId": 38439692343,
+      "status": "SUCCESS",
+      "purpose": "MAIN_DOCS_AUTHORIZATION_R4_PRESERVATION_NOT_STEP07_FUNCTION_CANDIDATE"
+    },
+    "previousAuthorHandoffs": [
+      {
+        "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+        "state": "R4_REQUIRES_REVISION_SUPERSEDED_BY_FIX4",
+        "docsHead": "71933b6782b83600b1a94017f5eb5aa763553dfb",
+        "codingReport": "docs/reviews/step-07-fix-round-3-coding.md",
+        "codingReportSha256": "772d78741813f1fe5bc1fb67c7081ebd92bfcab8d5895cf79d10519412a0e95a",
+        "codingEvidenceLedger": "docs/evidence/step-07/fix-round3/ledger.json",
+        "codingEvidenceLedgerSha256": "a09e85a5e88d1e165878f2f6753d895cde4c470c5129ed991fdff77863b70cd0",
+        "ledgerVerifiedCommittedFiles": 425,
+        "postCandidateDiff": {
+          "paths": 430,
+          "scope": "README_DOCS_ONLY",
+          "executionImpact": "NONE_REVIEWED_MAIN_README_BASELINE_REQUIREMENTS_REPORT_AND_EVIDENCE_ONLY"
+        },
+        "engineeringBuild": {
+          "sourceSha": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+          "buildId": "step07-ef30dc2ab011-56e8dbed6eb81a20",
+          "manifestSha256": "b1d36d66ea54b8f0f65ab6a705c0c4f8d19613dddecd45f426514940afb200e9",
+          "payloadsVerified": 206,
+          "receipt": "docs/evidence/orchestration-06-07/step07-candidate-ef30-engineering-receipt.json"
+        }
+      }
+    ],
+    "isolationCheckpointCi": {
+      "head": "dce905531dec0673d4cf2d0e1a44462de78742bd",
+      "runId": 38445594852,
+      "status": "SUCCESS",
+      "purpose": "MAIN06_PUBLISHED_CODE_PLUS_CANONICAL_DOCS_NOT_STEP07_CANDIDATE"
+    },
+    "frozen594CheckpointCi": {
+      "head": "f748ce69ecdea63dbffd832af47389508ef3c025",
+      "runId": 38449160041,
+      "status": "SUCCESS",
+      "purpose": "MAIN_PUBLISHED06_CODE_PLUS07_ORCHESTRATION_DOCS_NOT07_CANDIDATE"
+    },
+    "engineeringBuild": {
+      "sourceSha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "buildId": "step07-59423201ba10-191301abe69ac02e",
+      "manifestSha256": "35fdc32783b4a07aff8a12bc3531385cc2dcb399f54d18da5fac1bdddd507814",
+      "payloadsVerified": 206,
+      "receipt": "docs/evidence/orchestration-06-07/step07-candidate594-engineering-receipt.json"
+    },
+    "docsHead": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
+    "codingReport": "docs/reviews/step-07-fix-round-4-coding.md",
+    "codingReportSha256": "32e3e43d2683f6da9df1fabe36a7a10bb4e50e704d2810452d6443982d83fcfd",
+    "codingEvidenceLedger": "docs/evidence/step-07/fix-round4/ledger.json",
+    "codingEvidenceLedgerSha256": "e84a2c31aa23ca609b626da95eed3a674a9fc2fceb023761fcb28908d7f6c79c",
+    "ledgerVerifiedCommittedFiles": 703,
+    "postCandidateDiff": {
+      "paths": 708,
+      "scope": "README_DOCS_ONLY",
+      "executionImpact": "NONE_MAIN_REVIEWED_MD_REPORT_MAPPING_AND_SANITIZED_EVIDENCE_ONLY"
+    },
+    "activeIndependentReviewRound": 5,
+    "historicalReviewEnvironments": [
+      {
+        "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker",
+        "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+        "pgPort": 55483,
+        "apiPort": 4383,
+        "webPort": 5283,
+        "preparedBy": "MAIN_ORCHESTRATOR",
+        "status": "FORMAL_ROUND3_STARTED",
+        "databaseMigration": "NOT_EXECUTED",
+        "formalReviewStarted": true,
+        "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
+        "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
+        "threadId": "01a134f2-b8b9-7731-a6fe-fd34db11c2fd"
+      }
+    ],
+    "historicalAuthorCheckpoints": [
+      {
+        "candidate": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+        "status": "PASS_FROZEN_AUTHOR_ONLY",
+        "checkTests": 263,
+        "httpPostgresTests": 9,
+        "step06Tests": 23,
+        "apiTests": 3,
+        "privacyTests": 5,
+        "browserProduction": 7,
+        "browserDevelopment": 7,
+        "oldPayloads": 56,
+        "oldPngs": 16,
+        "jsAssertions": 78,
+        "nativeCorePacks": 8,
+        "cleanRestoreStudio": "PASS_AUTHOR_ONLY",
+        "processedPngDecodeShaRgba": "PASS_AUTHOR_ONLY",
+        "engineeringPayloads": 206,
+        "independentReview": "NOT_YET_REPORTED_LATEST5D"
+      }
+    ]
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -733,7 +1387,11 @@
       "temporaryRoot": ".local/step07",
       "apiPort": 4376,
       "webPort": 5276,
-      "serviceStatus": "OWNED_POSTGRES_API_STARTED_AUTHOR_VALIDATION"
+      "serviceStatus": "OWNED_PG55476_AND_PRODUCTION_API4376_RETAINED_SOURCE594_NOT_PUBLISHED",
+      "apiPid": 22456,
+      "previousApiPid": 51670,
+      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "apiProcessCwdVerified": true
     },
     {
       "owner": "step07_reviewer_round1",
@@ -745,15 +1403,111 @@
       "temporaryRoot": ".local/step07-review",
       "apiPort": 4377,
       "webPort": 5277,
-      "serviceStatus": "OWNED_POSTGRES_STARTED_BY_MAIN_PREPARATION_NO_REVIEW",
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_DATA_RETAINED",
       "preparedBy": "MAIN_ORCHESTRATOR",
-      "apiWebServices": "NOT_STARTED",
-      "source": "4f6a40f3e8be990b4068dafee488249be737f7ad"
+      "apiWebServices": "REVIEW_EXECUTED_THEN_STOPPED",
+      "source": "4f6a40f3e8be990b4068dafee488249be737f7ad",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round1-owned-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round2",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker",
+      "pgPort": 55479,
+      "apiPort": 4379,
+      "webPort": 5279,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "ownershipRootVerified": true
+    },
+    {
+      "owner": "step07_orchestrator_release_verification",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
+      "branch": "codex/step-07-validation",
+      "pgPort": 55481,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/release-assets",
+      "temporaryRoot": ".local/release-verification",
+      "apiPort": 4381,
+      "webPort": 5281,
+      "serviceStatus": "OWNED_POSTGRES55481_STOPPED_PRIVATE_DATA_RETAINED_API_WEB_NOT_STARTED",
+      "credentials": "FRESH_PRIVATE_ENV600_NO_COPY",
+      "migrationPreparation": "FIVE_MIGRATIONS_SUCCESS_NEW_EMPTY_DB_NO_RESET"
+    },
+    {
+      "owner": "step07_reviewer_round3",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker",
+      "pgPort": 55483,
+      "apiPort": 4383,
+      "webPort": 5283,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "formalReviewStarted": true,
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round3-preservation-and-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round4",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round4/rpg-maker-maker",
+      "pgPort": 55485,
+      "apiPort": 4385,
+      "webPort": 5285,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_ALL_PRIVATE_DATA_RETAINED",
+      "formalReviewStarted": true,
+      "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+      "threadId": "01a13592-d6c5-7a91-badb-a0419a260e2a",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round4-preservation-and-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round5",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
+      "pgPort": 55487,
+      "apiPort": 4387,
+      "webPort": 5287,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWNED_PG55487_RUNNING_FORMAL_REVIEW5_STARTED",
+      "formalReviewStarted": true,
+      "threadId": "01a136c1-796d-7450-8445-0b57034cd6a6",
+      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7"
     }
   ],
-  "lastSuccessfulCheckpoint": "Step07 R1 original report and 308 payloads preserved; d343 fixes and 148 author payloads/206 engineering files verified; R2 native ultra/default dispatched.",
-  "blockers": [],
-  "nextSafeAction": "Wait for R2 complete independent review, preserve original report/evidence; no technical acceptance or Step07 publish before latest PASS and required CI.",
+  "lastSuccessfulCheckpoint": "R5 independently check266/HTTP-PG16/PG06-23/hash-old56PNG16/JS78nativeCPU8 plus existingBuild rollback and adoption snapshot probes passed; both-mode18 browser running; no independent final PASS or release yet.",
+  "blockers": [
+    {
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "id": "STEP07-R4-001",
+      "severity": "P2",
+      "status": "OPEN",
+      "reason": "existing Build publication finishes StudioJob without FinalExport/FileObject registration"
+    },
+    {
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "id": "STEP07-R4-002",
+      "severity": "P2",
+      "status": "OPEN",
+      "reason": "unrelated action invalidates only initial project-list response leaving persisted sidebar empty"
+    },
+    {
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "id": "STEP07-R4-003",
+      "severity": "P2",
+      "status": "OPEN",
+      "reason": "separate metadata reads mix old Project pointers with new completedJob/Export and stop polling"
+    }
+  ],
+  "nextSafeAction": "Wait whole independentR5 report, preserveoriginals; ifPASS closeallblocking andnecessarycandidateCI/normalmerge/postmerge/push/readback/mainCI. Ifrealdefects withverifiedprogress continueactualnumberedFix/Review;two-consecutive-same-root-withoutprogress analyze/report. Do not start08.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -770,7 +1524,30 @@
       "gitWorktreeRegisteredAfterArchive": false,
       "atUtc": "2026-10-13T04:55:55.827706+00:00",
       "preserved": "All Coding/Review private DBs assets backups and raw failures retained"
+    },
+    {
+      "operation": "DELETE_ENDED_STEP06_VALIDATION_BRANCH_LOCAL_AND_REMOTE",
+      "branch": "codex/step-06-validation",
+      "tip": "4a98470e7dfb6532c65c844bb167c5091ba90836",
+      "readbackRemoteMain": "cdbe4f57fdbe2b2ce75c9f679f1c21c041e0b242",
+      "tipIncludedMain": true,
+      "activeWorktreeUsers": 0,
+      "activeCI": false,
+      "ciRunId": 38326156800,
+      "ciStatus": "SUCCESS",
+      "sourceWorktreePreviouslyArchivedSafely": true,
+      "privateData": "ALL_CODING_REVIEW_DATA_RETAINED",
+      "remoteBranchReadback": "ABSENT",
+      "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T07:39:52.608472+00:00"
+  "updatedAtUtc": "2026-10-13T19:48:01.572275+00:00",
+  "authorizationUpdates": [
+    {
+      "date": "2026-10-14",
+      "document": "docs/orchestration/step-07-resume-authorization-2026-10-14.md",
+      "scope": "Continue only07 to publication;06alreadypublished;08–10notauthorized",
+      "step07ReviewRoundLimit": "NO_MECHANICAL_LIMIT_PROGRESS_GATED"
+    }
+  ]
 }

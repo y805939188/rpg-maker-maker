@@ -1,0 +1,9 @@
+import pathlib,json,zipfile,hashlib
+r=pathlib.Path.cwd();o=r/'.local/step07-review/evidence/restored-browser';rows=[];sha=lambda b:hashlib.sha256(b).hexdigest();expected=sorted(['A1.png','A2.png','manifest.json','pack.json','history.json','layout.json','sources.json','INSTALL.md'])
+for p in sorted(o.glob('*.zip')):
+ with zipfile.ZipFile(p) as z:
+  assert len(z.namelist())==8 and sorted(z.namelist())==expected;assert z.testzip() is None;files={n:z.read(n) for n in z.namelist()};m=json.loads(files['manifest.json']);assert m['buildId']=='step05-pack-'+m['identity']['context']['commit'][:12]+'-'+sha(json.dumps(m['identity'],sort_keys=True,ensure_ascii=False,separators=(',',':')).encode())[:16]
+  for n,f in m['identity']['files'].items():assert len(files[n])==f['bytes'] and sha(files[n])==f['sha256']
+  assert sha(json.dumps(m['identity']['profile'],sort_keys=True,separators=(',',':')).encode())==m['identity']['profileHash']
+  rows.append({'zip':p.name,'sha256':sha(p.read_bytes()),'buildIdentity':m['buildId'],'manifestSha256':sha(files['manifest.json']),'all8SafeNamesAndCrcAndHashes':True})
+(r/'.local/step07-review/evidence/restored-zip-verification.json').write_text(json.dumps({'rows':rows},indent=2)+'\n');print('PASS',len(rows),'restored actual ZIPs')

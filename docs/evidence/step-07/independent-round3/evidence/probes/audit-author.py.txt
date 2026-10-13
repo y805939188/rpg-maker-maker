@@ -1,0 +1,10 @@
+import pathlib,subprocess,json,hashlib
+r=pathlib.Path.cwd();o=r/'.local/step07-review';d='36dc5cca1a7da77314e6889648d464d32ba0751f';base='docs/evidence/step-07/fix-round2';j=json.loads(subprocess.check_output(['git','show',d+':'+base+'/ledger.json']));rows=[]
+for p,v in j['files'].items():
+ path=base+'/'+p if not p.startswith('docs/') else p
+ b=subprocess.check_output(['git','show',d+':'+path]);assert len(b)==v['bytes'] and hashlib.sha256(b).hexdigest()==v['sha256'],path
+ rows.append({'path':path,**v})
+b=subprocess.check_output(['git','show',d+':'+j['report']['path']]);assert hashlib.sha256(b).hexdigest()==j['report']['sha256']
+paths=subprocess.check_output(['git','diff','--name-only','HEAD',d]).decode().splitlines();assert all(p=='README.md' or p.startswith('docs/') for p in paths)
+a={'docsHEAD':d,'count':len(rows),'report':j['report'],'ledgerSHA':hashlib.sha256(subprocess.check_output(['git','show',d+':'+base+'/ledger.json'])).hexdigest(),'rows':rows,'sourceToDocsPaths':paths,'nonDocumentation':[],'authorResultsNotIndependentPASS':True}
+(o/'evidence/author-ledger-audit.json').write_text(json.dumps(a,indent=2)+'\n');print('author',len(rows),'payloads and report exact SHA; docs-only',len(paths))

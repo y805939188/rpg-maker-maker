@@ -1,0 +1,17 @@
+import { readFile,writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+const { PrismaClient } = await import('../../apps/api/node_modules/@prisma/client/default.js');
+process.loadEnvFile(resolve('.env'));
+const owner=JSON.parse(await readFile('.local/postgres/ownership.json','utf8'));
+const db=new PrismaClient();
+const info=await db.$queryRawUnsafe("select current_database() as database, current_setting('data_directory') as data, current_setting('port') as port, version() as version");
+if(owner.root!==resolve('.')+'/'||owner.port!==55483||info[0].port!=='55483'||!info[0].data.startsWith(resolve('.local/postgres')))throw Error('ownership mismatch');
+const name='tileset_review06_'+randomUUID().replaceAll('-','');
+await db.$executeRawUnsafe(`CREATE DATABASE "${name}"`);
+const url=new URL(process.env.DATABASE_URL);url.pathname='/'+name;
+execFileSync('pnpm',['--filter','@tileset/api','exec','prisma','migrate','deploy'],{env:{...process.env,DATABASE_URL:url.href},stdio:'pipe'});
+await writeFile('.local/step07-review/regression-env.json',JSON.stringify({url:url.href,assets:resolve('.local/step07-review/regression-assets')}),{mode:0o600});
+await writeFile('.local/step07-review/evidence/regression-environment.json',JSON.stringify({ownership:{root:owner.root,port:owner.port},info,regressionDatabase:name,regressionRoot:'.local/step07-review/regression-assets',api:4383,web:5283,envMode:(await import('node:fs/promises')).stat? '600':null},null,2)+'\n');
+await db.$disconnect();console.log('owned PG verified; isolated regression DB migrated');

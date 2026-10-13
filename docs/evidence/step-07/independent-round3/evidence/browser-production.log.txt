@@ -1,0 +1,24 @@
+
+> @tileset/prototype@0.0.2 test:e2e /Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker
+> playwright test --output=/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/.local/step07-review/private/formal-browser-production-test-results
+
+[WebServer] (node:47839) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:47876) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:47897) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 7 tests using 1 worker
+
+(node:47927) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 e2e/shell.test.ts:3:1 › browser persists a project and restores its selected Studio (493ms)
+  ✓  2 e2e/studio-recovery.test.ts:176:1 › 1300ms legal poll responses deliver success and failure, fast controls and late old projects stay correct (50.9s)
+  ✓  3 e2e/studio-recovery.test.ts:283:1 › three ordinary switches cancel unfinished processed work and display real decoded current PNG (36.5s)
+  ✓  4 e2e/studio-recovery.test.ts:327:1 › real bounded BUSY pressure recovers or reports failure, explicit reread and cancelled-frame download stay valid (12.4s)
+  ✓  5 e2e/studio-recovery.test.ts:401:1 › invalid PNG and timed-out reads report errors, preserve last decoded frame and allow bounded explicit recovery (10.2s)
+  ✓  6 e2e/studio.test.ts:130:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP (1.4m)
+  ✓  7 e2e/studio.test.ts:390:1 › project switches keep real build/recipe identities coherent while data is delayed and legacy export is converted (32.7s)
+
+  7 passed (4.1m)

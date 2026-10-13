@@ -1,0 +1,11 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const bytes=execFileSync('git',['show','71933b6782b83600b1a94017f5eb5aa763553dfb:docs/evidence/step-07/fix-round3/engineering-manifest.json']);
+assert.equal(sha(bytes),'b1d36d66ea54b8f0f65ab6a705c0c4f8d19613dddecd45f426514940afb200e9');
+const m=JSON.parse(bytes),rows=[];
+for(const [path,hash]of Object.entries(m.files)){const b=await readFile(path);assert.equal(sha(b),hash,path);rows.push({path,sha256:sha(b),bytes:b.length});}
+const {buildId,validation,note,...identity}=m;const actual='step07-'+identity.commit.slice(0,12)+'-'+sha(JSON.stringify(identity)).slice(0,16);assert.equal(actual,buildId);assert.equal(identity.commit,'ef30dc2ab011d204d1d0a4d099a335b68458cdca');
+await writeFile('.local/step07-review/evidence/engineering-verification.json',JSON.stringify({buildId,manifestSha256:sha(bytes),count:rows.length,independentIdentity:actual,rows},null,2)+'\n');console.log('PASS fresh engineering '+rows.length+' files '+buildId);

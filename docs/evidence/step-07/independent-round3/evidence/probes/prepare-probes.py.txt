@@ -1,0 +1,25 @@
+import pathlib,json,hashlib,subprocess
+r=pathlib.Path.cwd();o=r/'.local/step07-review';s=pathlib.Path('/Users/dingshinn/Desktop/rpg-maker-maker/docs/evidence/step-07/independent-round2/evidence/probes');(o/'prior-originals').mkdir(exist_ok=True);(o/'private').mkdir(exist_ok=True)
+names=['browser.mjs','reference.py','environment.mjs','engineering.mjs','legacy.mjs','owned-server.mjs','public-http.mjs','http-host.mjs','public-storage.mjs','storage-extra.mjs','recovery.mjs','restored-browser.mjs','restore-boundaries.mjs','stable-clock.mjs','clock-reference.py','poll-latency.mjs','switch-resource-race.mjs','restore-zip.py','interruption.mjs','interruption-after.mjs','pack-compare.py']
+rows=[]
+for n in names:
+ b=(s/(n+'.txt')).read_bytes();(o/'prior-originals'/n).write_bytes(b)
+ t=b.decode().replace('4379','4383').replace('5279','5283').replace('55479','55483').replace('独立R2人工素材','独立R3人工素材').replace('d343171ca866a8d1d1c4e272823ef475229d8032','5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0')
+ if n=='engineering.mjs':
+  t=t.replace('1a3881edd3a076649f86794b05ac47f4c4c7a315:docs/evidence/step-07/fix-round1/engineering-manifest.json','36dc5cca1a7da77314e6889648d464d32ba0751f:docs/evidence/step-07/fix-round2/engineering-manifest.json').replace('073bd135d8cbfc9c30355ad68facfa56361e4114564c07252c73bf87b1b69d04','f9e96a59d295a66f77afc9b508a6f964b821f9f633f2d28080395b0aceadaca8')
+ (o/n).write_text(t);rows.append({'name':n,'originalPath':str(s/(n+'.txt')),'originalSHA':hashlib.sha256(b).hexdigest(),'adaptedSHA':hashlib.sha256(t.encode()).hexdigest(),'changes':'source/docs identity; owned port/output names; semantic checks reviewed separately'})
+(o/'evidence/prior-probe-provenance.json').write_text(json.dumps(rows,indent=2)+'\n')
+# Audit original R2 Main ledger, exact relativeRoot is REVIEW ROOT, relocated under Main directory.
+main=pathlib.Path('/Users/dingshinn/Desktop/rpg-maker-maker/docs/evidence/step-07/independent-round2');j=json.loads((main/'evidence/ledger.json').read_text());bad=[]
+for p,x in j['files'].items():
+ b=(main/p).read_bytes()
+ if hashlib.sha256(b).hexdigest()!=x['sha256'] or len(b)!=x['bytes']:bad.append(p)
+assert not bad; (o/'evidence/round2-ledger-audit.json').write_text(json.dumps({'files':len(j['files']),'failures':bad,'reportSHA':hashlib.sha256((main/'report.md').read_bytes()).hexdigest(),'ledgerSHA':hashlib.sha256((main/'evidence/ledger.json').read_bytes()).hexdigest(),'historicalResult':'REQUIRES_REVISION'},indent=2)+'\n')
+# Client configuration exposed by this native thread's turn_context.
+session=pathlib.Path('/Users/dingshinn/.codex/sessions/2026/10/13/rollout-2026-10-13T19-08-04-01a134f2-b8b9-7731-a6fe-fd34db11c2fd.jsonl');contexts=[];meta={}
+for line in session.read_text().splitlines():
+ try:v=json.loads(line)
+ except:continue
+ if v.get('type')=='session_meta':meta={k:v['payload'].get(k) for k in ['id','cwd','originator','source']}
+ if v.get('type')=='turn_context':contexts.append({k:v['payload'].get(k) for k in ['cwd','model','effort','service_tier','reasoning_effort','approval_policy','collaboration_mode']})
+conf={'thread':meta,'turnContexts':contexts,'role':'step_reviewer','required':'gpt-6.1-sol/ultra/default','serverFinalConfiguration':'UNVERIFIED_NOT_EXPOSED','noCollaborationOrGlobalChanges':True};(o/'evidence/client-configuration.json').write_text(json.dumps(conf,indent=2)+'\n');print('prior probe originals and R2 ledger audited',len(j['files']));print('client config',contexts[:1])

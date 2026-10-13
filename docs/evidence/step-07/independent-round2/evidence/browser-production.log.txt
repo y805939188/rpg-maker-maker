@@ -1,0 +1,55 @@
+[WebServer] (node:86997) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:87016) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:87037) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:87042) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 ../../../e2e/shell.test.ts:3:1 › browser persists a project and restores its selected Studio (411ms)
+  ✘  2 ../../../e2e/studio.test.ts:130:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP (56.2s)
+
+
+  1) ../../../e2e/studio.test.ts:130:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP 
+
+    Test was interrupted.
+
+    Error: expect(locator).toHaveAttribute(expected) failed
+
+    Locator: locator('canvas[aria-label="交付拼接预览"]')
+    Expected: "c07083143e69e25e1d258d5dcc5e8ce1bde40529add30e01c9bd1e18c143afdd"
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveAttribute" locator('canvas[aria-label="交付拼接预览"]') with timeout 30000ms
+      - waiting for locator('canvas[aria-label="交付拼接预览"]')
+      - Test ended.
+
+
+      71 |     scene = await page.getByLabel('检查场景').inputValue();
+      72 |   const canvas = page.locator('canvas[aria-label="交付拼接预览"]');
+    > 73 |   await expect(canvas).toHaveAttribute('data-build-id', selected, { timeout: 30000 });
+         |                        ^
+      74 |   await expect(canvas).toHaveAttribute('data-scene', scene);
+      75 |   await expect(page.getByText('画布已就绪 · 实际导出图集', { exact: false })).toBeVisible({
+      76 |     timeout: 30000,
+        at ready (/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/e2e/studio.test.ts:73:24)
+        at /Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/e2e/studio.test.ts:308:3
+
+    Error Context: ../../private/playwright-production/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../private/playwright-production/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/trace.zip
+    Usage:
+
+        npx playwright show-trace ../../private/playwright-production/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 interrupted
+    ../../../e2e/studio.test.ts:130:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP 
+  1 did not run
+  1 passed (1.0m)

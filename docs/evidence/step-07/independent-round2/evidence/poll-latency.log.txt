@@ -1,0 +1,25 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(received).toBe(expected) // Object.is equality
+
+Expected: 202
+Received: 429
+    at captureRawStack (/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toBe (/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at /Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/poll-latency.mjs:11:213 {
+  matcherResult: {
+    actual: 429,
+    expected: 202,
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: 202\n' +
+      'Received: 429',
+    name: 'toBe',
+    pass: false
+  }
+}
+
+Node.js v22.21.1

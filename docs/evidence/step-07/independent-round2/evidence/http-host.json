@@ -1,0 +1,66 @@
+{
+  "rows": [
+    {
+      "headers": {
+        "Host": "evil.invalid:4379"
+      },
+      "status": 403,
+      "body": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Local request host is not allowed."
+        }
+      }
+    },
+    {
+      "headers": {
+        "Host": "127.0.0.1:4379",
+        "X-Forwarded-Host": "evil.invalid"
+      },
+      "status": 403,
+      "body": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Local request host is not allowed."
+        }
+      }
+    },
+    {
+      "headers": {
+        "Host": "127.0.0.1:4379",
+        "Origin": "https://bad.invalid"
+      },
+      "status": 403,
+      "body": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Request origin is not allowed."
+        }
+      }
+    },
+    {
+      "headers": {
+        "Host": "127.0.0.1:4379",
+        "Sec-Fetch-Site": "cross-site"
+      },
+      "status": 403,
+      "body": {
+        "error": {
+          "code": "FORBIDDEN",
+          "message": "Request origin is not allowed."
+        }
+      }
+    },
+    {
+      "headers": {
+        "Host": "127.0.0.1:4379"
+      },
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      }
+    }
+  ]
+}
