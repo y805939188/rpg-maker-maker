@@ -1,0 +1,21 @@
+{
+  "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+  "fetchDepth": 0,
+  "installCount": 1,
+  "installIndex": 10,
+  "firstBrowserConsumerIndex": 11,
+  "exactCommands": [
+    "pnpm install --frozen-lockfile",
+    "pnpm db:generate",
+    "pnpm check",
+    "pnpm test:dev-privacy",
+    "pnpm db:migrate",
+    "pnpm test:integration",
+    "TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+    "pnpm exec playwright install --with-deps chromium",
+    "TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+    "pnpm test:e2e",
+    "E2E_MODE=dev pnpm test:e2e"
+  ],
+  "onlyHistoryAndOrderChange": true
+}

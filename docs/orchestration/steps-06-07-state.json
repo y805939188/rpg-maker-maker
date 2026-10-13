@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND6",
+  "phase": "STEP07_NEW_CANDIDATE_CI_PREPARATION",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT_REVIEW",
+    "status": "REVIEW_PASS_PENDING_NEW_CANDIDATE_CI",
     "reviewRounds": 6,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -452,7 +452,7 @@
       "parentIndependentR5Source": "59423201ba10ee71c3d1b04cebec69659017b7c7"
     },
     "candidateSha": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
-    "candidateState": "FROZEN_SELF_TESTED_CI_ONLY_UNDER_INDEPENDENT_ROUND6",
+    "candidateState": "LATEST87_INDEPENDENT_ROUND6_PASS_FROZEN",
     "reviewEnvironment": {
       "atUtc": "2026-10-13T20:51:56.030031+00:00",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
@@ -469,7 +469,7 @@
       "tests": "NOT_EXECUTED",
       "formalReviewRound6Started": false,
       "candidateState": "FROZEN_NEW_CI_ONLY_SOURCE_AWAIT_AUTHOR_DOCS",
-      "status": "ACTIVATED_FORMAL_ROUND6",
+      "status": "ROUND6_PASS_OWN_SERVICES_STOPPED_PRIVATE_DATA_RETAINED",
       "formalReviewStarted": true,
       "databaseMigration": "NOT_EXECUTED",
       "preparedBy": "MAIN_ORCHESTRATOR",
@@ -1002,17 +1002,60 @@
         "round": 6,
         "candidate": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
         "docsHead": "1e83c986091739f76899d35eeeb5879e7bf0bf58",
-        "status": "IN_PROGRESS",
+        "status": "PASS_WHOLE_CANDIDATE_FOR_SCOPE",
         "threadId": "01a1372f-9fb6-7922-8141-8f93411032e1",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
         "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round6-client.json",
         "nativeProcess": 45174,
         "nativeOutput": ".local/orchestration-06-07/step07-review-round6",
         "mechanicalRoundLimit": null,
-        "scope": "whole integrated87 candidate; necessaryCI prerequisite changes plus independently applicable R5 evidence for identical app/test bytes; reviewer defines actual impact verification"
+        "scope": "whole integrated87 candidate; necessaryCI prerequisite changes plus independently applicable R5 evidence for identical app/test bytes; reviewer defines actual impact verification",
+        "sourceProtectionFiles": 3729,
+        "clientActualContext": "cwd/model gpt-6.1-sol/effort ultra verified in native turn_context;default requested;server final configuration UNVERIFIED_NOT_EXPOSED",
+        "executedProgress": {
+          "checkTests": 266,
+          "productionExports": 11,
+          "independentShallowGitShowsExpectedExit128": 6,
+          "independentFullHistorySixSourcesShaBytesMatch": true,
+          "freshEmptyBrowserCacheInstall": "WORKFLOW_ORIGINAL_COMMAND_SUCCESS",
+          "actualPinnedHeadlessLaunchDomClose": "PASS",
+          "engineeringPayloadHashes": 206,
+          "compiledPayloadDifferenceFromR5": "studio.json context.commit only; other205 bytes unchanged",
+          "formalHttp16": "RUNNING_NOT_YET_PASS",
+          "finalConclusion": "PENDING"
+        },
+        "report": "docs/evidence/step-07/independent-round6/report.md",
+        "reportSha256": "7f884b71d12e0159d21c9f0ec7b4e8b7b8bec6b859192d7ef6032f874f6d5e92",
+        "ledger": "docs/evidence/step-07/independent-round6/evidence/ledger.json",
+        "ledgerSha256": "ddc740ef0bef35375c2def2e43a882872e43edfd9e0e50c638de27aed8a4a4db",
+        "payloadsVerified": 112,
+        "nativeExitCode": 0,
+        "blockingP0": 0,
+        "blockingP1": 0,
+        "blockingP2": 0,
+        "scopeResults": {
+          "checkTests": 266,
+          "httpInitial": {
+            "passed": 15,
+            "failed": 1,
+            "failure": "auxiliary physical .local checkout Vite403 preserved"
+          },
+          "httpTargetedCorrectDeployment": {
+            "passed": 1,
+            "skipped": 15,
+            "allOriginalAssertionsAndBudget": true
+          },
+          "distinctHttpCoverage": 16,
+          "apiIntegration": 3,
+          "projectListProductionSubset": 5,
+          "projectListDevelopmentSubset": 5,
+          "actualZipArchives": 6,
+          "freshBrowserInstallLaunch": true,
+          "fullR5SuitesNotRerun": "same execution bytes supported by original R5 records explicitly separated"
+        }
       }
     ],
-    "latestIndependentReview": "PASS_ROUND5_SOURCE594_ONLY_NEW_CI_CONFIG_UNREVIEWED",
+    "latestIndependentReview": "PASS_ROUND6_SOURCE87",
     "codingFix": {
       "round": 4,
       "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
@@ -1117,21 +1160,21 @@
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "status": "PUSHED_REMOTE_READBACK_EXACT_REQUIRED_CI_IN_PROGRESS",
+      "status": "LOCAL87_DOCS1E_EXECUTION_EQUIVALENT_R6_IN_PROGRESS_NOT_PUSHED",
       "executableDiffZero": true,
       "database": "OWNED_POSTGRES55481_NEW_EMPTY",
       "preparation": "FROZEN_INSTALL_GENERATE_BUILD_FIVE_MIGRATIONS_SUCCESS_NOT_POSTMERGE_TESTS",
-      "candidateExecutableSource": "59423201ba10ee71c3d1b04cebec69659017b7c7",
-      "validationHead": "70bcdcc3cdd44da983bddb87a0ece1057175f188",
-      "postSourcePaths": 2830,
-      "remotePushed": true,
-      "authorDocs": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
+      "candidateExecutableSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "validationHead": "b722d2773144cb29eefadab747d76521a167fddb",
+      "postSourcePaths": 2181,
+      "remotePushed": false,
+      "authorDocs": "1e83c986091739f76899d35eeeb5879e7bf0bf58",
       "previousReviewBasis": {
         "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "review": "REQUIRES_REVISION_ROUND3"
       },
-      "latestReview": "PASS_ROUND5",
-      "reviewedSource": "59423201ba10ee71c3d1b04cebec69659017b7c7"
+      "latestReview": "ROUND6_IN_PROGRESS_PRIOR_R5_PASS_SOURCE594_ONLY",
+      "reviewedSource": null
     },
     "pendingCandidate": {
       "sha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
@@ -1346,7 +1389,7 @@
       "scope": "README_DOCS_ONLY",
       "executionImpact": "NONE_MAIN_REVIEWED_MD_REPORT_MAPPING_AND_SANITIZED_EVIDENCE_ONLY"
     },
-    "activeIndependentReviewRound": 6,
+    "activeIndependentReviewRound": null,
     "historicalReviewEnvironments": [
       {
         "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
@@ -1409,7 +1452,7 @@
       "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-first-failure.json"
     },
     "ciHistoryDiagnosis": {
-      "status": "INTEGRATED_CI_PREREQUISITES_SOURCE_DOCS_HANDOFF_VERIFIED_UNDER_ROUND6",
+      "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
       "hypothesis": "real old c227 writer test needs git object absent from default shallow CI checkout",
       "sourceUnderCi": "59423201ba10ee71c3d1b04cebec69659017b7c7",
       "candidateCiRun": 38464677883,
@@ -1628,12 +1671,13 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
-      "credentials": "FRESH_OWN_ENV600_NO_COPY"
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "credentials": "FRESH_OWN_ENV600_NO_COPY",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round6-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latest87/docs1e Coder exit0 clean;Main50committedpayload+report56ead/ledger101b/52docpurposes and206actualBuild e186 verified. Fresh independentR6 ultra/default nativeCID01a1372f...PID45174 started ownPG55489/API4389/Web5289. R5wholePASS preserved;requiredCI stillfailed old70, no07mainmerge.",
-  "nextSafeAction": "Wait fresh independentR6 final exact87 report; preserve originals and necessaryclosure. Then normally integrate87/docs1e/review/evidence into validation, newrequiredcandidateCI; oldCI38464677883failure remains. OnlyafterlatestPASS+CI guard normalmainmerge/postmerge/push/readback/mainCI/publicationdocs stop. No08.",
+  "lastSuccessfulCheckpoint": "Latest87/docs1e nativeR6exit0 wholePASS originalreport7f884/ledgerddc740 112payloadverified;3729source+206liveunchanged;ownPG55489 stopped safely5DB/private retained. FirstCI38464677883failure remains historical;newcandidateCI notstarted.",
+  "nextSafeAction": "Integrate originalR6 evidence/currentdocs into validation with production execution projection==87;normalpush newcandidate and required fullCI;onlyafterSUCCESS guard remoteMain/normalmerge/postmerge/push/readback/mainCI/finaldocs stop.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -1667,7 +1711,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T21:34:47.168891+00:00",
+  "updatedAtUtc": "2026-10-13T22:05:47.713150+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",

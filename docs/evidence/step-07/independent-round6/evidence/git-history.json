@@ -1,0 +1,439 @@
+{
+  "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+  "checks": [
+    {
+      "name": "shallow",
+      "head": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "shallow": "true",
+      "count": "1",
+      "alternates": false,
+      "sources": [
+        {
+          "name": "store",
+          "exit": 128,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matchesOriginal": false
+        },
+        {
+          "name": "storage",
+          "exit": 128,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matchesOriginal": false
+        },
+        {
+          "name": "gate",
+          "exit": 128,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matchesOriginal": false
+        },
+        {
+          "name": "domain",
+          "exit": 128,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matchesOriginal": false
+        },
+        {
+          "name": "replay",
+          "exit": 128,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matchesOriginal": false
+        },
+        {
+          "name": "config",
+          "exit": 128,
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "matchesOriginal": false
+        }
+      ]
+    },
+    {
+      "name": "full",
+      "head": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "shallow": "false",
+      "count": "173",
+      "alternates": false,
+      "sources": [
+        {
+          "name": "store",
+          "exit": 0,
+          "bytes": 37045,
+          "sha256": "1442bd0c6c0fda1192edf893321f6bd32e10230b8ee44d851f004db76e428c14",
+          "matchesOriginal": true
+        },
+        {
+          "name": "storage",
+          "exit": 0,
+          "bytes": 6733,
+          "sha256": "1b86535792fba52f4cd537049fb97953e6ad74a0cc14065519dd254d9dfd3e00",
+          "matchesOriginal": true
+        },
+        {
+          "name": "gate",
+          "exit": 0,
+          "bytes": 7237,
+          "sha256": "2f5bc4bbfbd059485cce88fbb794362e960039e9f0a5b4c5b786f2dc552906c4",
+          "matchesOriginal": true
+        },
+        {
+          "name": "domain",
+          "exit": 0,
+          "bytes": 3786,
+          "sha256": "cef440415944e165fbbe11a430d9e009a3c3f1a1f7cbec92a2fcf0fa03a9714d",
+          "matchesOriginal": true
+        },
+        {
+          "name": "replay",
+          "exit": 0,
+          "bytes": 11986,
+          "sha256": "037b0ff6218bc4d4642947a8e2c6465ce6d6600b4038b132b96ff3b8a9f3432d",
+          "matchesOriginal": true
+        },
+        {
+          "name": "config",
+          "exit": 0,
+          "bytes": 1734,
+          "sha256": "addcfbb3df3f071b11c14e52b31e4939b16746dd06ef24674fee7851296d2291",
+          "matchesOriginal": true
+        }
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "--bare",
+        "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/git-origin"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
+      "exit": 0,
+      "stdout": "Initialized empty Git repository in /Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/git-origin/\n",
+      "stderr": "hint: Using 'master' as the name for the initial branch. This default branch name\nhint: is subject to change. To configure the initial branch name to use in all\nhint: of your new repositories, which will suppress this warning, call:\nhint:\nhint: \tgit config --global init.defaultBranch <name>\nhint:\nhint: Names commonly chosen instead of 'master' are 'main', 'trunk' and\nhint: 'development'. The just-created branch can be renamed via this command:\nhint:\nhint: \tgit branch -m <name>\nhint:\nhint: Disable this message with \"git config set advice.defaultBranchName false\"\n"
+    },
+    {
+      "argv": [
+        "git",
+        "--git-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/git-origin",
+        "fetch",
+        "--no-tags",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
+        "87e13a8a99db3058dce8680d3ae985969b8a9bac:refs/heads/candidate"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "From file:///Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker\n * [new ref]         87e13a8a99db3058dce8680d3ae985969b8a9bac -> candidate\n"
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
+      "exit": 0,
+      "stdout": "Initialized empty Git repository in /Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow/.git/\n",
+      "stderr": "hint: Using 'master' as the name for the initial branch. This default branch name\nhint: is subject to change. To configure the initial branch name to use in all\nhint: of your new repositories, which will suppress this warning, call:\nhint:\nhint: \tgit config --global init.defaultBranch <name>\nhint:\nhint: Names commonly chosen instead of 'master' are 'main', 'trunk' and\nhint: 'development'. The just-created branch can be renamed via this command:\nhint:\nhint: \tgit branch -m <name>\nhint:\nhint: Disable this message with \"git config set advice.defaultBranchName false\"\n"
+    },
+    {
+      "argv": [
+        "git",
+        "remote",
+        "add",
+        "origin",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/git-origin"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "protocol.version=2",
+        "fetch",
+        "--no-tags",
+        "--depth=1",
+        "origin",
+        "+refs/heads/*:refs/remotes/origin/*"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "From file:///Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/git-origin\n * [new branch]      candidate  -> origin/candidate\n"
+    },
+    {
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "87e13a8a99db3058dce8680d3ae985969b8a9bac"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "HEAD is now at 87e13a8 ci(step07): install Chromium before HTTP browser regression\n"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 0,
+      "stdout": "87e13a8a99db3058dce8680d3ae985969b8a9bac\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "--is-shallow-repository"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 0,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-list",
+        "--count",
+        "HEAD"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/store.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 128,
+      "stdout": "",
+      "stderr": "fatal: path 'packages/persistence/src/store.ts' exists on disk, but not in 'c227f8c6ecfe85895937013e4687deb40247a6ee'\n"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/storage.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 128,
+      "stdout": "",
+      "stderr": "fatal: path 'packages/persistence/src/storage.ts' exists on disk, but not in 'c227f8c6ecfe85895937013e4687deb40247a6ee'\n"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/gate.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 128,
+      "stdout": "",
+      "stderr": "fatal: path 'packages/persistence/src/gate.ts' exists on disk, but not in 'c227f8c6ecfe85895937013e4687deb40247a6ee'\n"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/domain.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 128,
+      "stdout": "",
+      "stderr": "fatal: path 'packages/persistence/src/domain.ts' exists on disk, but not in 'c227f8c6ecfe85895937013e4687deb40247a6ee'\n"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/replay.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 128,
+      "stdout": "",
+      "stderr": "fatal: path 'packages/persistence/src/replay.ts' exists on disk, but not in 'c227f8c6ecfe85895937013e4687deb40247a6ee'\n"
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/config.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/shallow",
+      "exit": 128,
+      "stdout": "",
+      "stderr": "fatal: path 'packages/persistence/src/config.ts' exists on disk, but not in 'c227f8c6ecfe85895937013e4687deb40247a6ee'\n"
+    },
+    {
+      "argv": [
+        "git",
+        "init",
+        "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
+      "exit": 0,
+      "stdout": "Initialized empty Git repository in /Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full/.git/\n",
+      "stderr": "hint: Using 'master' as the name for the initial branch. This default branch name\nhint: is subject to change. To configure the initial branch name to use in all\nhint: of your new repositories, which will suppress this warning, call:\nhint:\nhint: \tgit config --global init.defaultBranch <name>\nhint:\nhint: Names commonly chosen instead of 'master' are 'main', 'trunk' and\nhint: 'development'. The just-created branch can be renamed via this command:\nhint:\nhint: \tgit branch -m <name>\nhint:\nhint: Disable this message with \"git config set advice.defaultBranchName false\"\n"
+    },
+    {
+      "argv": [
+        "git",
+        "remote",
+        "add",
+        "origin",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/git-origin"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-c",
+        "protocol.version=2",
+        "fetch",
+        "--no-tags",
+        "origin",
+        "+refs/heads/*:refs/remotes/origin/*"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "From file:///Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/git-origin\n * [new branch]      candidate  -> origin/candidate\n"
+    },
+    {
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "87e13a8a99db3058dce8680d3ae985969b8a9bac"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "",
+      "stderr": "HEAD is now at 87e13a8 ci(step07): install Chromium before HTTP browser regression\n"
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "87e13a8a99db3058dce8680d3ae985969b8a9bac\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-parse",
+        "--is-shallow-repository"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "false\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "rev-list",
+        "--count",
+        "HEAD"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "173\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/store.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "import { strict as assert } from 'node:assert';\nimport { randomUUID } from 'node:crypto';\nimport { PrismaClient, Prisma } from '@prisma/client';\nimport { z } from 'zod';\nimport {\n  fingerprint,\n  freezeJson,\n  sameRef,\n  validateAdoptionIdentities,\n  hashBytes,\n  isValidatedSource,\n  validatedDecodedSource,\n} from '@tileset/asset-core';\nimport type { RevisionRef } from '@tileset/asset-core';\nimport { freezeTaskSnapshot, TaskStateSchema } from '@tileset/ai-gateway';\nimport type { TaskRecord, TaskState } from '@tileset/ai-gateway';\nimport { RawSource } from '@tileset/asset-core';\nimport { decodeSource } from '@tileset/image-adapter';\nimport { describeFragment } from '@tileset/pack-assembly';\nimport { AssetStorage, noFault } from './storage.js';\nimport type { FileRef, FaultHook } from './storage.js';\nimport { WriteGate } from './gate.js';\nimport type { GateLease } from './gate.js';\nimport {\n  ReplaySession,\n  RefSchema,\n  SourceDescriptorSchema,\n  MetadataSchema,\n  replayArchives,\n  prepa",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/storage.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "import { strict as assert } from 'node:assert';\nimport { randomUUID } from 'node:crypto';\nimport { lstat, mkdir, open, readFile, readdir, rename, link, rm } from 'node:fs/promises';\nimport { resolve } from 'node:path';\nimport { hashBytes } from '@tileset/asset-core';\nimport type { GateLease } from './gate.js';\nexport type FileRef = Readonly<{ sha256: string; bytes: number; key: string }>;\nexport type FaultHook = (point: string) => Promise<void>;\nexport const noFault: FaultHook = async () => {};\nasync function syncDirectory(path: string) {\n  const fd = await open(path, 'r');\n  try {\n    await fd.sync();\n  } finally {\n    await fd.close();\n  }\n}\nexport class AssetStorage {\n  readonly root: string;\n  constructor(\n    root: string,\n    readonly fault: FaultHook = noFault,\n    readonly lease: () => GateLease | undefined = () => undefined,\n  ) {\n    this.root = resolve(root);\n  }\n  async checkpoint(signal?: AbortSignal) {\n    signal?.throwIfAborted();\n    await this.lease()?.checkpoint();\n  ",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/gate.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "import { AsyncLocalStorage } from 'node:async_hooks';\nimport { strict as assert } from 'node:assert';\nimport pg from 'pg';\nimport type { Prisma } from '@prisma/client';\n\nexport class GateLostError extends Error {\n  constructor() {\n    super('Write gate connection or lock lost');\n    this.name = 'GateLostError';\n  }\n}\nclass GateEndedError extends Error {\n  constructor() {\n    super('Write gate lifetime ended');\n    this.name = 'GateEndedError';\n  }\n}\nexport interface GateLease {\n  readonly signal: AbortSignal;\n  readonly backendPid: number;\n  readonly exclusive: boolean;\n  readonly scope: string | undefined;\n  check(): void;\n  checkpoint(): Promise<void>;\n  fence(tx: Prisma.TransactionClient): Promise<void>;\n}\n// Session locks cover I/O; short transaction locks keep DB commits ahead of maintenance\n// and serialize same-scope transactions if their original session disappears.\nexport class WriteGate {\n  // Reconstructing a store for the same database must not erase an enclosing\n  // lifet",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/domain.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "import { strict as assert } from 'node:assert';\nimport { z } from 'zod';\nimport {\n  RawSource,\n  buildProcessedAsset,\n  freezeJson,\n  isValidatedSource,\n  sameRef,\n  styleProfile,\n  validatedDecodedSource,\n} from '@tileset/asset-core';\nimport type { ValidatedSource } from '@tileset/asset-core';\nimport { decodeSource } from '@tileset/image-adapter';\nimport {\n  processShoreline,\n  shorelineParameters,\n  shorelineRecipe,\n} from '@tileset/material-processing';\nimport { MetadataSchema, RefSchema, SourceDescriptorSchema } from './replay.js';\nconst SourceSchema = z\n  .object({\n    descriptor: SourceDescriptorSchema,\n    encoding: z.enum(['png', 'rgba8']),\n    width: z.number().int().positive(),\n    height: z.number().int().positive(),\n    ref: RefSchema,\n    validationHash: z.string().regex(/^[a-f0-9]{64}$/),\n    bytes: z.string().max(5592408),\n  })\n  .strict();\nconst DomainSchema = MetadataSchema.extend({\n  contract: z.literal('domain-archive-v1'),\n  sources: z.array(SourceSchema).min(5).max",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/replay.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "import { strict as assert } from 'node:assert';\nimport { z } from 'zod';\nimport {\n  RawSource,\n  buildProcessedAsset,\n  freezeJson,\n  sameRef,\n  styleProfile,\n  fingerprint,\n} from '@tileset/asset-core';\nimport type { ValidatedSource } from '@tileset/asset-core';\nimport { decodeSource, encodePng } from '@tileset/image-adapter';\nimport {\n  processShoreline,\n  shorelineParameters,\n  shorelineRecipe,\n} from '@tileset/material-processing';\nimport { compileFragment } from '@tileset/mz-compiler';\nimport {\n  describeFragment,\n  planPack,\n  renderAtlas,\n  validateLayout,\n  validatePack,\n  validateProfile,\n} from '@tileset/pack-assembly';\n\nconst id = z.string().regex(/^[a-z][a-z0-9-]{0,63}$/);\nconst integer = z.number().int().positive().max(Number.MAX_SAFE_INTEGER);\nconst hash = z.string().regex(/^[a-f0-9]{64}$/);\nexport const RefSchema = z\n  .object({\n    kind: z.enum(['source', 'style', 'parameters', 'recipe']),\n    id,\n    revision: integer,\n    contentHash: hash,\n  })\n  .strict();\nconst pro",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/config.ts"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/full",
+      "exit": 0,
+      "stdout": "import { lstat } from 'node:fs/promises';\nimport { isAbsolute, relative, resolve, sep } from 'node:path';\n/** Operator configuration, never an HTTP/upload path. Roots belong to this project's .local. */\nexport async function resolveAssetRoot(\n  env: Readonly<Record<string, string | undefined>>,\n  projectRoot = process.cwd(),\n) {\n  const local = resolve(projectRoot, '.local'),\n    value = env['TILESET_ASSET_ROOT'];\n  if (value !== undefined && !value.trim()) throw Error('Asset root configuration is empty');\n  const root = resolve(projectRoot, value ?? '.local/assets'),\n    key = relative(local, root);\n  if (\n    !key ||\n    isAbsolute(key) ||\n    key === '..' ||\n    key.startsWith('..' + sep) ||\n    key.split(sep)[0]?.toLowerCase() === 'postgres'\n  )\n    throw Error('Asset root must be owned by this project .local and separate from PostgreSQL');\n  // No existing ancestor may redirect the configured root outside its ownership boundary.\n  const postgres = await lstat(resolve(local, 'postg",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/formal-browser/node_modules/@playwright/test/cli.js",
+      "test",
+      "e2e/studio-project-list.test.ts"
+    ],
+    "configFile": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/formal-browser/playwright.config.ts",
+    "rootDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/formal-browser/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/formal-browser/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/formal-browser/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/formal-browser/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/formal-browser/e2e",
+        "snapshotDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker/.local/step07-review/formal-browser/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4389",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": ".local/e2e/production.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm start",
+      "url": "http://127.0.0.1:4389/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "studio-project-list.test.ts",
+      "file": "studio-project-list.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real delayed initial project list survives unrelated upload and preserves persisted selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3908,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T21:53:04.926Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-9cbda09986836d45c42b",
+          "file": "../../../../e2e/studio-project-list.test.ts",
+          "line": 93,
+          "column": 3
+        },
+        {
+          "title": "real delayed initial project list survives unrelated invalid-upload and preserves persisted selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3757,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T21:53:18.576Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-7e994dc03ab1dc2d5bb3",
+          "file": "../../../../e2e/studio-project-list.test.ts",
+          "line": 93,
+          "column": 3
+        },
+        {
+          "title": "real delayed initial project list survives unrelated adopt and preserves persisted selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6386,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T21:53:22.339Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-6cf0f27f3306aa032833",
+          "file": "../../../../e2e/studio-project-list.test.ts",
+          "line": 93,
+          "column": 3
+        },
+        {
+          "title": "created-project replacement list supersedes delayed initial list; selected details and list refresh stay coherent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7010,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T21:53:28.731Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-6fcf7e2413f1f9171f70",
+          "file": "../../../../e2e/studio-project-list.test.ts",
+          "line": 194,
+          "column": 1
+        },
+        {
+          "title": "project list failure has bounded explicit read-only recovery and unmount cancels pending list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3147,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T21:53:35.746Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-7470dc58b10bf4ca1a60",
+          "file": "../../../../e2e/studio-project-list.test.ts",
+          "line": 266,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T21:52:59.770Z",
+    "duration": 39174.933,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,250 @@
+[
+  {
+    "prefix": "production-first",
+    "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+    "project": "f9aff150-4ffd-4d58-8054-f3fc41ffea54",
+    "selected": "2796898e89f9159820dc59f3e83705364ff746550c9a42fa8c428410c81ab1b5",
+    "current": false,
+    "successfulBuildId": "820ba7b4944f5e34b4aa9573d33e1619229663527b24b8931644fb6ee493639d",
+    "exportBuildId": "step05-pack-87e13a8a99db-99ebf846926f3253",
+    "manifestSha256": "0c68d46c4d2167f6ea44484e37b07c0b4af6c03384a027a610b42ac4f01e2b81",
+    "zipSha256": "f02578dffa1e0318138cf9c51a8de239f9efa4720e6ff6f527c698d1e15f61e7",
+    "zipBytes": 70794,
+    "files": {
+      "A1.png": {
+        "bytes": 3924,
+        "sha256": "c97ad74df1a85796133c950281873431f09876d78a7a4dd89c5f5f1958f22c91"
+      },
+      "A2.png": {
+        "bytes": 2457,
+        "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+      },
+      "manifest.json": {
+        "bytes": 15643,
+        "sha256": "0c68d46c4d2167f6ea44484e37b07c0b4af6c03384a027a610b42ac4f01e2b81"
+      }
+    },
+    "profileHash": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+    "qa": {
+      "structural": "STRUCTURAL_PASS",
+      "profileBaseline": "PROFILE_VERIFIED_STAGE_BASELINE",
+      "artifactMz": "NOT_EXECUTED",
+      "visual": "NOT_EXECUTED",
+      "risks": [],
+      "limits": "仅启发式指标：接缝>32、颜色数≤4、帧亮度跳变>24/255、RGB 均值色变>16/255、可见变化<1%。不判美术质量；固定岸线几何会影响接缝指标。Profile 阶段实测不等于本产物 MZ 实测。"
+    },
+    "actualGetOnly": true
+  },
+  {
+    "prefix": "production-replacement",
+    "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+    "project": "f9aff150-4ffd-4d58-8054-f3fc41ffea54",
+    "selected": "a23be8e84f2501de53b153e8e817dc82693969312448eab4459ecdd8a6fd2578",
+    "current": false,
+    "successfulBuildId": "820ba7b4944f5e34b4aa9573d33e1619229663527b24b8931644fb6ee493639d",
+    "exportBuildId": "step05-pack-87e13a8a99db-b58817552cd3beff",
+    "manifestSha256": "47250227ffd06dfc539431495b29db6a550842c1d56f8277ac58b6e1b852082e",
+    "zipSha256": "36b513d3e57d72c32ef07c863e1ac220e5d3e1be484d7cb9368ffcd4ad942c89",
+    "zipBytes": 106511,
+    "files": {
+      "A1.png": {
+        "bytes": 3868,
+        "sha256": "94560ba4d05afa4730a03fb1403610d32b67da521457b42e6fc99cf6931879f2"
+      },
+      "A2.png": {
+        "bytes": 2457,
+        "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+      },
+      "manifest.json": {
+        "bytes": 15709,
+        "sha256": "47250227ffd06dfc539431495b29db6a550842c1d56f8277ac58b6e1b852082e"
+      }
+    },
+    "profileHash": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+    "qa": {
+      "structural": "STRUCTURAL_PASS",
+      "profileBaseline": "PROFILE_VERIFIED_STAGE_BASELINE",
+      "artifactMz": "NOT_EXECUTED",
+      "visual": "NOT_EXECUTED",
+      "risks": [
+        {
+          "code": "LOW_ANIMATION",
+          "location": "水面源帧 0→1",
+          "metric": 0,
+          "threshold": 0.01,
+          "message": "可见变化少于 1%，水波可能几乎不动。"
+        }
+      ],
+      "limits": "仅启发式指标：接缝>32、颜色数≤4、帧亮度跳变>24/255、RGB 均值色变>16/255、可见变化<1%。不判美术质量；固定岸线几何会影响接缝指标。Profile 阶段实测不等于本产物 MZ 实测。"
+    },
+    "actualGetOnly": true
+  },
+  {
+    "prefix": "production-true-history-only",
+    "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+    "project": "f9aff150-4ffd-4d58-8054-f3fc41ffea54",
+    "selected": "911377c24d91a3d9444a5d9625373f8b68a587fe47dabbda56f5017da15c4356",
+    "current": false,
+    "successfulBuildId": "820ba7b4944f5e34b4aa9573d33e1619229663527b24b8931644fb6ee493639d",
+    "exportBuildId": "step05-pack-87e13a8a99db-e6a5d722e5edbe43",
+    "manifestSha256": "f2cc7c74951c4e40fd9a21fb05a5047f3ed980bcab19d23f60b250ce48e4125d",
+    "zipSha256": "aa1585f71e075ebc2dce04c034c8bb5b8c0e627787c40b5b075462aa30cfffb8",
+    "zipBytes": 117510,
+    "files": {
+      "A1.png": {
+        "bytes": 3868,
+        "sha256": "94560ba4d05afa4730a03fb1403610d32b67da521457b42e6fc99cf6931879f2"
+      },
+      "A2.png": {
+        "bytes": 2457,
+        "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+      },
+      "manifest.json": {
+        "bytes": 15709,
+        "sha256": "f2cc7c74951c4e40fd9a21fb05a5047f3ed980bcab19d23f60b250ce48e4125d"
+      }
+    },
+    "profileHash": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+    "qa": {
+      "structural": "STRUCTURAL_PASS",
+      "profileBaseline": "PROFILE_VERIFIED_STAGE_BASELINE",
+      "artifactMz": "NOT_EXECUTED",
+      "visual": "NOT_EXECUTED",
+      "risks": [
+        {
+          "code": "LOW_ANIMATION",
+          "location": "水面源帧 0→1",
+          "metric": 0,
+          "threshold": 0.01,
+          "message": "可见变化少于 1%，水波可能几乎不动。"
+        }
+      ],
+      "limits": "仅启发式指标：接缝>32、颜色数≤4、帧亮度跳变>24/255、RGB 均值色变>16/255、可见变化<1%。不判美术质量；固定岸线几何会影响接缝指标。Profile 阶段实测不等于本产物 MZ 实测。"
+    },
+    "actualGetOnly": true
+  },
+  {
+    "prefix": "development-first",
+    "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+    "project": "940259d4-aa86-4a50-aa9b-13e791a91957",
+    "selected": "725e070d12d5d3630858811942dde5589ad2e2a7b0183a4154f5893db6ad9cbe",
+    "current": false,
+    "successfulBuildId": "4ba3a5cc176feedbb2fd780835e8c9c0a2f06a3febf91b04d51f36503cff8a4f",
+    "exportBuildId": "step05-pack-87e13a8a99db-99ebf846926f3253",
+    "manifestSha256": "0c68d46c4d2167f6ea44484e37b07c0b4af6c03384a027a610b42ac4f01e2b81",
+    "zipSha256": "f02578dffa1e0318138cf9c51a8de239f9efa4720e6ff6f527c698d1e15f61e7",
+    "zipBytes": 70794,
+    "files": {
+      "A1.png": {
+        "bytes": 3924,
+        "sha256": "c97ad74df1a85796133c950281873431f09876d78a7a4dd89c5f5f1958f22c91"
+      },
+      "A2.png": {
+        "bytes": 2457,
+        "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+      },
+      "manifest.json": {
+        "bytes": 15643,
+        "sha256": "0c68d46c4d2167f6ea44484e37b07c0b4af6c03384a027a610b42ac4f01e2b81"
+      }
+    },
+    "profileHash": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+    "qa": {
+      "structural": "STRUCTURAL_PASS",
+      "profileBaseline": "PROFILE_VERIFIED_STAGE_BASELINE",
+      "artifactMz": "NOT_EXECUTED",
+      "visual": "NOT_EXECUTED",
+      "risks": [],
+      "limits": "仅启发式指标：接缝>32、颜色数≤4、帧亮度跳变>24/255、RGB 均值色变>16/255、可见变化<1%。不判美术质量；固定岸线几何会影响接缝指标。Profile 阶段实测不等于本产物 MZ 实测。"
+    },
+    "actualGetOnly": true
+  },
+  {
+    "prefix": "development-replacement",
+    "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+    "project": "940259d4-aa86-4a50-aa9b-13e791a91957",
+    "selected": "ff268172809aa38d982dbc8adf3a0d17578381d6099dcedfb3f6804a5dd9ba36",
+    "current": false,
+    "successfulBuildId": "4ba3a5cc176feedbb2fd780835e8c9c0a2f06a3febf91b04d51f36503cff8a4f",
+    "exportBuildId": "step05-pack-87e13a8a99db-b58817552cd3beff",
+    "manifestSha256": "47250227ffd06dfc539431495b29db6a550842c1d56f8277ac58b6e1b852082e",
+    "zipSha256": "36b513d3e57d72c32ef07c863e1ac220e5d3e1be484d7cb9368ffcd4ad942c89",
+    "zipBytes": 106511,
+    "files": {
+      "A1.png": {
+        "bytes": 3868,
+        "sha256": "94560ba4d05afa4730a03fb1403610d32b67da521457b42e6fc99cf6931879f2"
+      },
+      "A2.png": {
+        "bytes": 2457,
+        "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+      },
+      "manifest.json": {
+        "bytes": 15709,
+        "sha256": "47250227ffd06dfc539431495b29db6a550842c1d56f8277ac58b6e1b852082e"
+      }
+    },
+    "profileHash": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+    "qa": {
+      "structural": "STRUCTURAL_PASS",
+      "profileBaseline": "PROFILE_VERIFIED_STAGE_BASELINE",
+      "artifactMz": "NOT_EXECUTED",
+      "visual": "NOT_EXECUTED",
+      "risks": [
+        {
+          "code": "LOW_ANIMATION",
+          "location": "水面源帧 0→1",
+          "metric": 0,
+          "threshold": 0.01,
+          "message": "可见变化少于 1%，水波可能几乎不动。"
+        }
+      ],
+      "limits": "仅启发式指标：接缝>32、颜色数≤4、帧亮度跳变>24/255、RGB 均值色变>16/255、可见变化<1%。不判美术质量；固定岸线几何会影响接缝指标。Profile 阶段实测不等于本产物 MZ 实测。"
+    },
+    "actualGetOnly": true
+  },
+  {
+    "prefix": "development-true-history-only",
+    "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+    "project": "940259d4-aa86-4a50-aa9b-13e791a91957",
+    "selected": "124128618a2bc6ac8bf9e07ab02f8f684706c1cceaa3679da25b966aeb658c1b",
+    "current": false,
+    "successfulBuildId": "4ba3a5cc176feedbb2fd780835e8c9c0a2f06a3febf91b04d51f36503cff8a4f",
+    "exportBuildId": "step05-pack-87e13a8a99db-e6a5d722e5edbe43",
+    "manifestSha256": "f2cc7c74951c4e40fd9a21fb05a5047f3ed980bcab19d23f60b250ce48e4125d",
+    "zipSha256": "aa1585f71e075ebc2dce04c034c8bb5b8c0e627787c40b5b075462aa30cfffb8",
+    "zipBytes": 117510,
+    "files": {
+      "A1.png": {
+        "bytes": 3868,
+        "sha256": "94560ba4d05afa4730a03fb1403610d32b67da521457b42e6fc99cf6931879f2"
+      },
+      "A2.png": {
+        "bytes": 2457,
+        "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+      },
+      "manifest.json": {
+        "bytes": 15709,
+        "sha256": "f2cc7c74951c4e40fd9a21fb05a5047f3ed980bcab19d23f60b250ce48e4125d"
+      }
+    },
+    "profileHash": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+    "qa": {
+      "structural": "STRUCTURAL_PASS",
+      "profileBaseline": "PROFILE_VERIFIED_STAGE_BASELINE",
+      "artifactMz": "NOT_EXECUTED",
+      "visual": "NOT_EXECUTED",
+      "risks": [
+        {
+          "code": "LOW_ANIMATION",
+          "location": "水面源帧 0→1",
+          "metric": 0,
+          "threshold": 0.01,
+          "message": "可见变化少于 1%，水波可能几乎不动。"
+        }
+      ],
+      "limits": "仅启发式指标：接缝>32、颜色数≤4、帧亮度跳变>24/255、RGB 均值色变>16/255、可见变化<1%。不判美术质量；固定岸线几何会影响接缝指标。Profile 阶段实测不等于本产物 MZ 实测。"
+    },
+    "actualGetOnly": true
+  }
+]
