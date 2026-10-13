@@ -1,0 +1,4 @@
+import {readFile} from 'node:fs/promises';
+const e=JSON.parse(await readFile('.local/step07-review/restored-env.json','utf8'));
+process.env.DATABASE_URL=e.url;process.env.TILESET_ASSET_ROOT=e.assets;process.env.NODE_ENV='production';process.env.API_PORT='4377';process.env.WEB_PORT='5277';
+await import('../../../apps/api/dist/main.js');

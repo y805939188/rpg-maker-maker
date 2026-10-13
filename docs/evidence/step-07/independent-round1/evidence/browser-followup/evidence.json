@@ -1,0 +1,421 @@
+{
+  "network": [
+    {
+      "url": "http://127.0.0.1:4377/api/projects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/studio",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/sources/7ff17cad2d36813aa52fcfebd2dea04a72ad56bf3e905386fd20012c27cd82b3/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/sources/a64de248ccc9446c7b8f45c8a470f11f47c3d995120cac536a2a1b75c24fc1c7/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/sources/5c1d445dc6cb295da49d5331d09ccfb4fae8f4833f5518fcc69f1456d497f117/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/sources/987b9cc5038905975736131d05ddddda43b4f09feaef658bb6a8d56f44de6f51/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/sources/8b9cfc18aa83dda34f8b5e91514b12483ebadd4e386afd2da202e779369d7c7e/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/sources/83511b4058c898385ae74cb1c2aec7799c5d51deecdbcafc9bfc388601a37e44/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/preview?scene=pond",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/files/manifest.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/files/A1.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/files/A2.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/profile",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/recipes/8c9604d1fbb61bfb6cce9fb6f133f783272d8f7e2b903ca084f22da922c4d244/processed?frame=0",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/preview?scene=pond",
+      "method": "GET",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "构建不存在。",
+          "diagnostic": {
+            "code": "NOT_FOUND",
+            "message": "构建不存在。",
+            "location": "构建",
+            "recovery": "选择该项目保存的构建。"
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/recipes/8c9604d1fbb61bfb6cce9fb6f133f783272d8f7e2b903ca084f22da922c4d244/processed?frame=0",
+      "method": "GET",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "VALIDATION_FAILED",
+          "message": "素材未通过配方、编译或交付校验，上一成功构建仍可使用。",
+          "diagnostic": {
+            "code": "BUILD_FAILED",
+            "message": "素材未通过配方、编译或交付校验，上一成功构建仍可使用。",
+            "location": "素材",
+            "recovery": "检查定位组件的格式、96×144 尺寸、逻辑密度、≤256 色调色板、遮罩和三源帧；替换为新 revision 后重建。"
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/studio",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/e40b4e667228a3845b55f96a72231b8169e5448a401e74f499b3ca5c3338ad7c/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/b78f070fc90d391f635a6b52cb4e3a26900aed72d6b495b29f92c89754557f1c/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/91c77cddc519ffe9fe2ec3010576d9b6f8e51180890b76dc232266505a3dacbb/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/81d6b828ba955c2ba3186a292ccc2cf0290adfe2ee6ca0783b19ca99a1dd98e3/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/84d7fa73d2ee207e33c0a410be6b3e89e68a1b463e6419a41308755225e55478/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/72d9dabea1052431a311dcf6fcb9dff9520d3d79e67a7b25441dc0be93a4811b/png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/preview?scene=pond",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/files/manifest.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/files/A1.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/profile",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/files/A2.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/recipes/156553d60f6a08887e7bf534e4b2226d7ffe84a8a63778183197eeafd5e3f998/processed?frame=0",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/preview?scene=pond",
+      "method": "GET",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "构建不存在。",
+          "diagnostic": {
+            "code": "NOT_FOUND",
+            "message": "构建不存在。",
+            "location": "构建",
+            "recovery": "选择该项目保存的构建。"
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/recipes/156553d60f6a08887e7bf534e4b2226d7ffe84a8a63778183197eeafd5e3f998/processed?frame=0",
+      "method": "GET",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "VALIDATION_FAILED",
+          "message": "素材未通过配方、编译或交付校验，上一成功构建仍可使用。",
+          "diagnostic": {
+            "code": "BUILD_FAILED",
+            "message": "素材未通过配方、编译或交付校验，上一成功构建仍可使用。",
+            "location": "素材",
+            "recovery": "检查定位组件的格式、96×144 尺寸、逻辑密度、≤256 色调色板、遮罩和三源帧；替换为新 revision 后重建。"
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/studio",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/recipes/8c9604d1fbb61bfb6cce9fb6f133f783272d8f7e2b903ca084f22da922c4d244/processed?frame=0",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/preview?scene=pond",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/profile",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/7b504ebb-9b7b-48d8-b114-112dc417604d/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/files/manifest.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/1cedcc3ff98f4d751375f4cc55a71f53aba2c0a590252fbbb995dd0b9b050470/preview?scene=pond",
+      "method": "GET",
+      "status": 404,
+      "body": {
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "构建不存在。",
+          "diagnostic": {
+            "code": "NOT_FOUND",
+            "message": "构建不存在。",
+            "location": "构建",
+            "recovery": "选择该项目保存的构建。"
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/recipes/8c9604d1fbb61bfb6cce9fb6f133f783272d8f7e2b903ca084f22da922c4d244/processed?frame=0",
+      "method": "GET",
+      "status": 422,
+      "body": {
+        "error": {
+          "code": "VALIDATION_FAILED",
+          "message": "素材未通过配方、编译或交付校验，上一成功构建仍可使用。",
+          "diagnostic": {
+            "code": "BUILD_FAILED",
+            "message": "素材未通过配方、编译或交付校验，上一成功构建仍可使用。",
+            "location": "素材",
+            "recovery": "检查定位组件的格式、96×144 尺寸、逻辑密度、≤256 色调色板、遮罩和三源帧；替换为新 revision 后重建。"
+          }
+        }
+      }
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/studio",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/recipes/156553d60f6a08887e7bf534e4b2226d7ffe84a8a63778183197eeafd5e3f998/processed?frame=0",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/preview?scene=pond",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/files/manifest.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/591b84788c91c9d66b0d763e10359183b52877789cbf32a38d42f6b969d85643/profile",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/studio",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/e4c961978f29755c34c880ac0246b324010a0097a500db8301f61f903740108f/preview?scene=isolated",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/e4c961978f29755c34c880ac0246b324010a0097a500db8301f61f903740108f/profile",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/e4c961978f29755c34c880ac0246b324010a0097a500db8301f61f903740108f/files/A1.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/e4c961978f29755c34c880ac0246b324010a0097a500db8301f61f903740108f/files/manifest.json",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4377/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/builds/e4c961978f29755c34c880ac0246b324010a0097a500db8301f61f903740108f/files/A2.png",
+      "method": "GET",
+      "status": 200
+    }
+  ],
+  "pageErrors": [],
+  "clock": [
+    {
+      "update": 29,
+      "state": 0,
+      "sourceFrame": 0
+    },
+    {
+      "update": 30,
+      "state": 1,
+      "sourceFrame": 1
+    },
+    {
+      "update": 59,
+      "state": 1,
+      "sourceFrame": 1
+    },
+    {
+      "update": 60,
+      "state": 2,
+      "sourceFrame": 2
+    },
+    {
+      "update": 89,
+      "state": 2,
+      "sourceFrame": 2
+    },
+    {
+      "update": 90,
+      "state": 3,
+      "sourceFrame": 1
+    },
+    {
+      "update": 119,
+      "state": 3,
+      "sourceFrame": 1
+    },
+    {
+      "update": 120,
+      "state": 0,
+      "sourceFrame": 0
+    },
+    {
+      "update": 239,
+      "state": 3,
+      "sourceFrame": 1
+    },
+    {
+      "update": 240,
+      "state": 0,
+      "sourceFrame": 0
+    },
+    {
+      "update": 359,
+      "state": 3,
+      "sourceFrame": 1
+    },
+    {
+      "update": 360,
+      "state": 0,
+      "sourceFrame": 0
+    }
+  ],
+  "stableProcessedNaturalWidth": 96,
+  "sources": [
+    {
+      "id": "b78f070fc90d391f635a6b52cb4e3a26900aed72d6b495b29f92c89754557f1c",
+      "component": "water-0",
+      "revision": 2,
+      "density": 2,
+      "sha256": "aa8dcc40511a67710d893bdc44e3aa79e9818eb4535abb8fe16d484354f92c61",
+      "width": 96,
+      "height": 144,
+      "url": "/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/b78f070fc90d391f635a6b52cb4e3a26900aed72d6b495b29f92c89754557f1c/png",
+      "role": "water"
+    },
+    {
+      "id": "91c77cddc519ffe9fe2ec3010576d9b6f8e51180890b76dc232266505a3dacbb",
+      "component": "water-1",
+      "revision": 1,
+      "density": 2,
+      "sha256": "aa8dcc40511a67710d893bdc44e3aa79e9818eb4535abb8fe16d484354f92c61",
+      "width": 96,
+      "height": 144,
+      "url": "/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/91c77cddc519ffe9fe2ec3010576d9b6f8e51180890b76dc232266505a3dacbb/png",
+      "role": "water"
+    },
+    {
+      "id": "81d6b828ba955c2ba3186a292ccc2cf0290adfe2ee6ca0783b19ca99a1dd98e3",
+      "component": "water-2",
+      "revision": 1,
+      "density": 2,
+      "sha256": "32aeecc9c4773b48548eb83f25eee9445ef5213045127a9a7deda07b4e2345e4",
+      "width": 96,
+      "height": 144,
+      "url": "/api/projects/80303b61-5d8c-43f9-a3aa-a849cf539c05/sources/81d6b828ba955c2ba3186a292ccc2cf0290adfe2ee6ca0783b19ca99a1dd98e3/png",
+      "role": "water"
+    }
+  ],
+  "result": "PASS_RENDERING_AND_STABLE_CONTROLS"
+}

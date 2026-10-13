@@ -1,0 +1,16 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+locator.inputValue: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('实际构建', { exact: true })[22m
+
+    at ready (/Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/.local/step07-review/probes/browser.mjs:18:74)
+    at build (/Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/.local/step07-review/probes/browser.mjs:20:529)
+    at async file:///Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/.local/step07-review/probes/browser.mjs:30:13 {
+  log: [ "  - waiting for getByLabel('实际构建', { exact: true })" ],
+  name: 'TimeoutError'
+}
+
+Node.js v22.21.1

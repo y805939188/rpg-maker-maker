@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND1",
+  "phase": "STEP07_ROUND1_REQUIRES_REVISION_CODING_FIX_DISPATCH",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -562,12 +562,92 @@
         "round": 1,
         "candidate": "4f6a40f3e8be990b4068dafee488249be737f7ad",
         "docsHead": "82a356879cf490283572afc9fb49f8734cf5eb90",
-        "status": "IN_PROGRESS",
+        "status": "REQUIRES_REVISION",
         "threadId": "01a13389-eae7-78e3-853b-21e5ca18df2f",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker",
-        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round1-client.json"
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round1-client.json",
+        "sourceProtectionFiles": 1939,
+        "independentCheck": {
+          "status": "PASS",
+          "tests": 238,
+          "productionExports": 11
+        },
+        "independentEngineeringPayloadHashCheck": {
+          "status": "PASS",
+          "payloads": 203
+        },
+        "overallStatus": "REQUIRES_REVISION",
+        "independentHttpPostgres": {
+          "status": "PASS",
+          "tests": 7,
+          "scope": [
+            "deferred commit rejection",
+            "failure cleanup",
+            "clean restore"
+          ]
+        },
+        "independentBrowser": {
+          "status": "IN_PROGRESS",
+          "manualSixComponentUploadRecipeActualRender": "EXECUTED",
+          "retainedProbeFailure": "Local over-strict locator timeout; probe only corrected; product source untouched",
+          "overallPass": "NOT_YET_REPORTED",
+          "pixelVerification": "PASS",
+          "sceneStates": 24,
+          "creativeSourceStates": 4,
+          "nearestIntegerZoom": "PASS_2X",
+          "changedActualBuildPixels": "PASS",
+          "zipNetworkIdentityMatches": 4,
+          "oldStandardPayloadHashMatches": 56,
+          "oldPngHashMatches": 16,
+          "restoredStudioAndLegacyConversion": "PASS_EXECUTED_CONVERSION_MANIFEST_CURRENT_HISTORY_UNCHANGED_OLD_ZIP_EQUAL_REBUILD_IN_UI",
+          "actualSigkillRestart": "PASS_INCOMPLETE_TASK_FAILED_INTERRUPTED_RECOVERY_HINT_LAST_SUCCESS_CANVAS_ZIP_ACCURATE"
+        },
+        "independentStep06Regression": {
+          "status": "PASS",
+          "tests": 23
+        },
+        "preliminaryFindings": [
+          {
+            "topic": "Asset objects ancestor symlink follows path outside declared asset root",
+            "state": "INDEPENDENT_REPRODUCED_PENDING_FINAL_REPORT",
+            "gate": "BLOCKING_CURRENT_HARD_PATH_BOUNDARY",
+            "severity": "P2_BLOCKING_CONFIRMED_BY_REVIEWER"
+          }
+        ],
+        "report": "docs/evidence/step-07/independent-round1/report.md",
+        "reportSha256": "96fd739b24d4bfac0e937f695eb5469591d570780d4b3fc7bd0ae3e824820686",
+        "evidenceLedger": "docs/evidence/step-07/independent-round1/evidence/ledger.json",
+        "evidenceLedgerPayloadsVerified": 308,
+        "blockingFindings": [
+          {
+            "id": "STEP07-R1-001",
+            "severity": "P2",
+            "status": "OPEN",
+            "topic": "AssetStorage ancestor symlink root escape for source PNG and standard A1"
+          }
+        ],
+        "nonBlockingFindings": [
+          {
+            "id": "STEP07-R1-002",
+            "severity": "P3",
+            "status": "OPEN",
+            "topic": "Project switch sends temporarily mixed project Build recipe IDs; backend rejects, stable render/download valid"
+          }
+        ],
+        "sourceChanged": false
       }
-    ]
+    ],
+    "latestIndependentReview": "REQUIRES_REVISION",
+    "codingFix": {
+      "round": 1,
+      "status": "PREPARING_SAME_CONTEXT_FIX",
+      "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "issues": [
+        "STEP07-R1-001",
+        "STEP07-R1-002"
+      ],
+      "nextFormalReviewRound": 2
+    }
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -657,7 +737,25 @@
       "source": "4f6a40f3e8be990b4068dafee488249be737f7ad"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP07_AUTHOR_HANDOFF_VERIFIED_140_COMMITTED_HASHES_NEW_STANDARD_INDEPENDENT_REVIEW1_DISPATCHED",
+  "lastSuccessfulCheckpoint": "STEP07_ROUND1_ORIGINAL_REPORT_AND_308_EVIDENCE_HASHES_PRESERVED_REQUIRES_REVISION",
   "blockers": [],
-  "nextSafeAction": "Complete independent step07 whole-candidate browser/PNG/ZIP/HTTP/real-PG/restore review; route blockers to same Coding context; do not publish before PASS and CI."
+  "nextSafeAction": "Complete round1 independent report with path boundary finding, then same step07 Coding context correct and rebind candidate; no publication before latest independent PASS.",
+  "cleanup": [
+    {
+      "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
+      "root": "/Users/dingshinn/.codex/worktrees/step-06-release/rpg-maker-maker",
+      "tip": "4a98470e7dfb6532c65c844bb167c5091ba90836",
+      "readbackRemoteMain": "08c07089e2142ee1643ffb752888f6d0d733ab8c",
+      "tipContainedRemoteMain": true,
+      "uncommittedUntrackedIgnoredFiles": 0,
+      "envDatabaseAssetsArtifactsAbsent": true,
+      "activeProcessArgsAndCwdOwners": 0,
+      "submodules": 0,
+      "archiveAttachmentType": "archived_worktree",
+      "directoryExistsAfterArchive": false,
+      "gitWorktreeRegisteredAfterArchive": false,
+      "atUtc": "2026-10-13T04:55:55.827706+00:00",
+      "preserved": "All Coding/Review private DBs assets backups and raw failures retained"
+    }
+  ]
 }

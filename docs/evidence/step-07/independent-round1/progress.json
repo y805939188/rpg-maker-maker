@@ -1,0 +1,56 @@
+{
+  "round": "1/5",
+  "candidate": "4f6a40f3e8be990b4068dafee488249be737f7ad",
+  "docsHEAD": "82a356879cf490283572afc9fb49f8734cf5eb90",
+  "status": "REQUIRES_REVISION",
+  "phase": "REVIEW_COMPLETE_STOPPED",
+  "client": {
+    "role": "step_reviewer",
+    "model": "gpt-6.1-sol",
+    "effort": "ultra",
+    "tier": "default",
+    "server": "UNVERIFIED_NOT_EXPOSED"
+  },
+  "startedAt": "2026-10-13T04:34:55.834501+00:00",
+  "blocking": [
+    "STEP07-R1-001"
+  ],
+  "passed": {
+    "check": 238,
+    "step07": 7,
+    "step06": 23,
+    "privacy": 5,
+    "independentPixelScenes": 24,
+    "oldPayloads": 56
+  },
+  "completedAt": "2026-10-13T05:24:55.796126+00:00",
+  "findings": {
+    "P0": 0,
+    "P1": 0,
+    "blockingP2": 1,
+    "nonBlockingP3": 1
+  },
+  "nonBlocking": [
+    "STEP07-R1-002"
+  ],
+  "verified": {
+    "check": 238,
+    "HTTPPG07": 7,
+    "PG06": 23,
+    "api": 3,
+    "privacy": 5,
+    "browserProduction": 2,
+    "browserDevelopment": 2,
+    "independentSceneStates": 24,
+    "clockCanvasPairs": 12,
+    "legacyJS": 78,
+    "oldPackPayloads": 56,
+    "engineeringPayloads": 203
+  },
+  "sourceFilesUnchanged": 1939,
+  "services": "self-started API/Web closed; prepared owned PG55477 retained",
+  "stopAfter": 7,
+  "steps08To10": "NOT_STARTED",
+  "report": "report.md",
+  "ledger": "evidence/ledger.json"
+}
