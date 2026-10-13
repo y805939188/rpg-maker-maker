@@ -1,0 +1,117 @@
+
+> @tileset/prototype@0.0.2 test:step07 <WORKTREE>
+> pnpm build && vitest run --config vitest.step07.config.ts
+
+
+> @tileset/prototype@0.0.2 build <WORKTREE>
+> node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && node dist/scripts/studio-resources.js && pnpm --filter @tileset/web build
+
+
+> @tileset/prototype@0.0.2 build:prototype <WORKTREE>
+> pnpm build:contracts && tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts <WORKTREE>
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build <WORKTREE>/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build <WORKTREE>/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build <WORKTREE>/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build <WORKTREE>/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build <WORKTREE>/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build <WORKTREE>/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build <WORKTREE>/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build <WORKTREE>/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build <WORKTREE>/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build <WORKTREE>/packages/local-executor
+> tsc -p tsconfig.json
+
+
+> @tileset/api@0.0.2 build <WORKTREE>/apps/api
+> tsc -p tsconfig.json
+
+
+> @tileset/web@0.0.2 build <WORKTREE>/apps/web
+> tsc --noEmit && vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 775 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.41 kB │ gzip:   0.27 kB
+dist/assets/index-CsM4c782.css                      3.12 kB │ gzip:   1.22 kB
+dist/assets/getTextureBatchBindGroup-BK017YMS.js    0.39 kB │ gzip:   0.29 kB
+dist/assets/getTexelRangeRects-CIfJNMEM.js          3.62 kB │ gzip:   1.24 kB
+dist/assets/canvasUtils-DBdK3z70.js                 5.71 kB │ gzip:   1.80 kB
+dist/assets/webworkerAll-C5JW14Gb.js               15.46 kB │ gzip:   4.88 kB
+dist/assets/CanvasPool--YYZ3s08.js                 16.93 kB │ gzip:   5.97 kB
+dist/assets/browserAll-DQeXfija.js                 43.97 kB │ gzip:  11.41 kB
+dist/assets/WebGPURenderer-D_benJiM.js             53.80 kB │ gzip:  15.37 kB
+dist/assets/WebGLRenderer-Dx3btHqc.js              56.77 kB │ gzip:  15.66 kB
+dist/assets/RenderTargetSystem-BdoeTAwz.js         72.33 kB │ gzip:  20.30 kB
+dist/assets/CanvasRenderer-BNvgunpP.js             90.26 kB │ gzip:  28.57 kB
+dist/assets/index-CXMDs4il.js                     449.24 kB │ gzip: 133.52 kB
+✓ built in 2.38s
+
+ RUN  v4.1.11 <WORKTREE>
+
+ ❯ apps/api/tests/studio/integration.test.ts (3 tests | 1 failed) 51985ms
+   × actual Export/history/current, paired updates, retired slots and failed-build protection survive clean backup restore and rebuild 45262ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/api/tests/studio/integration.test.ts > actual Export/history/current, paired updates, retired slots and failed-build protection survive clean backup restore and rebuild
+AssertionError: expected 429 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 429
+
+ ❯ apps/api/tests/studio/integration.test.ts:260:30
+    258|   const zipResponse = await fetch(`${url}/api/projects/${p}/builds/${f…
+    259|     zip = new Uint8Array(await zipResponse.arrayBuffer());
+    260|   expect(zipResponse.status).toBe(200);
+       |                              ^
+    261|   expect(hashBytes(zip)).toBe(zipResponse.headers.get('x-content-sha25…
+    262|   await verifyExportFiles(firstExport.files);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 2 passed (3)
+   Start at  09:16:48
+   Duration  52.58s (transform 186ms, setup 0ms, import 507ms, tests 51.98s, environment 0ms)
+
+ ELIFECYCLE  Command failed with exit code 1.

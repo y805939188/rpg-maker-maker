@@ -1,0 +1,48 @@
+
+> @tileset/prototype@0.0.2 test:e2e <WORKTREE>
+> playwright test
+
+[WebServer] (node:59004) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:59031) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:59132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:59584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 e2e/shell.test.ts:3:1 › browser persists a project and restores its selected Studio (422ms)
+  ✘  2 e2e/studio.test.ts:128:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP (50.6s)
+
+
+  1) e2e/studio.test.ts:128:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP 
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "c97ad74df1a85796133c950281873431f09876d78a7a4dd89c5f5f1958f22c91"
+
+      270 |   await nextDl.saveAs(nextPath);
+      271 |   const secondMembers = unzipStored(await readFile(nextPath));
+    > 272 |   expect(sha(secondMembers['A1.png']!)).not.toBe(sha(members['A1.png']!));
+          |                                             ^
+      273 |   await page.getByLabel('实际构建').selectOption(first!);
+      274 |   await ready(page);
+      275 |   const oldDlEvent = page.waitForEvent('download');
+        at <WORKTREE>/e2e/studio.test.ts:272:45
+
+    Error Context: test-results/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    e2e/studio.test.ts:128:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP 
+  1 passed (55.0s)
+ ELIFECYCLE  Command failed with exit code 1.

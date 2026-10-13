@@ -1,0 +1,23 @@
+import json,hashlib,subprocess,os,time
+from pathlib import Path
+root=Path.cwd();stage=root/'.local/step07/final';env={**os.environ,'PATH':'<EXISTING_NODE_22_21_1_BIN>:'+os.environ['PATH']};candidate=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
+start=time.time();scalar=stage/'scalars.json'
+with scalar.open('w') as out:r=subprocess.run(['node','.local/step07/scalars-original.mjs'],env=env,stdout=out,stderr=subprocess.STDOUT)
+if r.returncode:raise SystemExit(r.returncode)
+result=json.loads(scalar.read_text());assert result['total']==78 and result['failed']==0
+approved=json.loads(Path('docs/evidence/step-05/fix-ir001-ad669a06218b/build-suite.json').read_text());base=Path('artifacts/step05-suite-'+candidate[:12]);rows=[]
+for b in approved['builds']:
+ for name,f in b['files'].items():
+  byte=(base/b['name']/name).read_bytes();digest=hashlib.sha256(byte).hexdigest();assert digest==f['sha256'] and len(byte)==f['bytes'];rows.append({'pack':b['name'],'file':name,'sha256':digest,'bytes':len(byte)})
+assert len(rows)==56
+(stage/'pack-regression.json').write_text(json.dumps({'candidate':candidate,'payloads':56,'png':16,'matchesApprovedStep05':True,'rows':rows},indent=2)+'\n')
+core='<LOCAL_PINNED_NATIVE_CORE>';oracle=[]
+for b in approved['builds']:
+ args=['node','dist/scripts/verify-step05.js',core,str(base/b['name'])];log=stage/('native-'+b['name']+'.json')
+ with log.open('w') as out:r=subprocess.run(args,env=env,stdout=out,stderr=subprocess.STDOUT)
+ if r.returncode:raise SystemExit(r.returncode)
+ oracle.append(json.loads(log.read_text()))
+(stage/'native-regression.json').write_text(json.dumps({'sourceSHA':candidate,'coreSha':hashlib.sha256(Path(core).read_bytes()).hexdigest(),'results':oracle},indent=2)+'\n')
+entry={'label':'legacy-and-native','args':[['node','.local/step07/scalars-original.mjs'],['hash compare','approved step05 56 payloads'],['node','dist/scripts/verify-step05.js','LOCAL_PINNED_CORE','each of 8 standard exports']],'sourceSHA':candidate,'exitCode':0,'durationSeconds':round(time.time()-start,2),'scalarScriptSHA':hashlib.sha256(Path('.local/step07/scalars-original.mjs').read_bytes()).hexdigest()}
+with(stage/'commands.jsonl').open('a')as f:f.write(json.dumps(entry)+'\n')
+print(json.dumps({'scalars':78,'payloads':56,'png':16,'nativeExports':8,'seconds':entry['durationSeconds']}))

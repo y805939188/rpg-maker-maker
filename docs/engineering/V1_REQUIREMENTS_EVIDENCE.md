@@ -52,3 +52,19 @@
 完整命令、失败保留、Build 与哈希见 [步骤06 Coding 报告](../reviews/step-06-coding.md)、[基线](STEP_06_BASELINE.md)、[命令](../evidence/step-06/coding/commands.json)。状态最多 **READY_FOR_REVIEW**；独立 Review/远端 CI 未由 Coding 执行，未批准、合并或推送。新 GUI/游戏/美术及 Original Host NOT_EXECUTED；既有步骤05独立 PASS/用户观察和延期边界保持。Main 唯一管理 orchestration 状态；Coding 未修改该状态文件。
 
 步骤06第1轮独立Review整改检查点：原a2878a9/bae为 REQUIRES_REVISION；IR-001 gate lifetime、IR-002精确reference revision、IR-003正式CLI资产根和IR-004工具日志可搬运性已在 `debcce716e5b563eec881eb24eaa41aebcccac30` 实施并作者复测。原Report SHA `a983e4a763801ee83a74afccfc9e71fece162a255092fe898ba6f99ebb5b5fa4` 和旧ledger不改写。新增真实pg_terminate_backend仅终止本实例明确持有的锁会话，维护独占后不再submit/固化/登记；已有可能请求保留UNKNOWN；scope事务fencing与exclusive备份失锁、同字节精确rev1/rev2/PG最大值及负控制、恢复后的选择、正式CLI自定义root read/rebuild/Mock均进入已有CI命令。作者冻结check230、DB16、API3、browser1+1、JS78、标准56payload/16PNG哈希通过。新证据/命令见 [整改报告](../reviews/step-06-fix-round-1-coding.md)及 [fix-round1](../evidence/step-06/fix-round1/commands.json)。本记录仅 SELF_TESTED_PENDING_ROUND2 / READY_FOR_REVIEW；下次正式第2轮，未IndependentPASS/批准/发布，步骤07未启动，Main canonical状态未写。
+
+## 步骤07最新作者候选（2026-10-13）
+
+source `4f6a40f3e8be990b4068dafee488249be737f7ad`，**READY_FOR_REVIEW**；上文历史检查点不改写。06发布/R3独立PASS及本轮06–07授权覆盖历史停止文字，07作者不能自行IndependentPASS或发布，08–10未启动。
+
+| 要求                                            | 当前作者证据                                                                                                                  | 边界                                                                       |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| 人工完整Studio / 精确版本 / 固定配方 / 标准下载 | 两模式真实浏览器导入→采用→构建→预览→ZIP；源/配方/历史刷新可读                                                                 | 无AI/Key/模型选择/DB或内部JSON操作                                         |
+| 实际交付与创作Pixi / MZ逻辑时钟                 | 原源Pixi像素、8组交付Canvas独立母版scene逐像素、pinned native-core矩形；fixed60/30 updates                                    | 编号/原创母版不重置，CPU/browser不冒充GUI/用户美术                         |
+| 标准八文件 / Profile / 历史与retired            | mz-pack-build-v1实际8file重读；完整Profile嵌入Manifest，PNG/预览/ZIP同Export；56旧payload/16PNG SHA不变                       | 06四文件不冒充正式导出；旧构建POST转换不改current或原Manifest              |
+| 构建/任务/current失败保护                       | 7项HTTP/PG包含真实延期COMMIT拒绝、同内容不同ID、CAS/late/retired；06完整23项回归                                              | 新job完成与Build/Export/CAS同TX，不回退last success                        |
+| 一致备份恢复 / Studio读回与再建                 | 新空DB/root公开restore后真实再建；恢复实例浏览器current/history/旧ZIP一致                                                     | private dump/.env/runtime不入库，未reset已有环境                           |
+| 新HTTP入口 / 资源与路径保护                     | 4MiB PNG、独立JSON8KiB、真实format/metadata/pixel/density/read/codec timeout/cancel/concurrency/cleanup；真实Vite privacy保持 | 旧无上传豁免取消；heap128MiB≠OS/native RSS硬上限，实测保留                 |
+| QA risk / 验收状态分离                          | 硬校验聚合、seam/repetition/color/flicker/low-animation定位与阈值；人工视觉追加记录                                           | 单指标非质量，Profile阶段基线非ARTIFACT_MZ_TESTED；本产物MZ/用户美术未执行 |
+
+完整 [Coding报告](../reviews/step-07-coding.md)、[基线](STEP_07_BASELINE.md)和 [ledger](../evidence/step-07/coding/ledger.json)绑定上述唯一最新candidate。工程238、API3、07真实HTTP7、06 PG23、两browser各2及11生产exports通过；远端CI/Independent Review未由Coder执行，Main管理canonicalstate。

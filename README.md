@@ -1,3 +1,11 @@
+# 步骤07当前作者候选
+
+最新source `4f6a40f3e8be990b4068dafee488249be737f7ad`，状态 **READY_FOR_REVIEW**，Main独立Review/CI/批准与发布待执行。人工PNG Studio现具备项目、精确组件/配方、构建/历史、双Pixi预览、QA和实际标准ZIP下载；AI尚未开放，不宣称V1.0完成。
+
+运行：本工作树已有专属PG55476/.env，固定已有Node22.21.1后 `pnpm start`，生产入口 `http://127.0.0.1:4376`；停止自身生产服务后 `pnpm dev`，开发入口5276。新部署的安装/构建/迁移顺序、资源政策与用户工作流见 [步骤07基线](docs/engineering/STEP_07_BASELINE.md)，精确构建/验证/截图/未执行项见 [Coding报告](docs/reviews/step-07-coding.md)。源码只在本地codex分支冻结，作者不发布或开始08。
+
+以下保留历史检查点；当前06已PUBLISHED，见 [06发布交接](docs/orchestration/step-06-release.md)。历史“尚未开放Studio”文字不作为07已新增HTTP入口的豁免。
+
 # AI Tileset Studio — 当前开发基线
 
 步骤 01–05 的已审成果现已发布至 main `fa0b4a6`，候选及 main CI 均成功。步骤 05 最新功能 `ad669a0` 已取得独立复审 PASS，原发布归属阻断已关闭，用户已批准开始步骤 06。当前本轮仅授权步骤 06、07 串行开发与独立 Review/发布，步骤 07 发布后停止；完整人工 Studio 与真实 AI 尚不能声明完成。
