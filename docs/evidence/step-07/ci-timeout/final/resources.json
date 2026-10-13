@@ -1,0 +1,57 @@
+{
+  "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+  "PG55476PID": 51121,
+  "API4376PID": 22456,
+  "existingServicesEnvAssetsDistUnchanged": true,
+  "ownedAPI4396Web5296": "closed normally after tests",
+  "ownedData": "fresh test databases/roots on own cluster only; retained, no reset; names/full ownership private",
+  "ownWorkspaces": "artifacts/.step07-ci-timeout* and .local/step07-ci-timeout only",
+  "physicalViteLocation": "outside .local, no fs allow/deny modification",
+  "resourceChecks": [
+    {
+      "label": "existingAPI4376",
+      "exitCode": 0,
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:4376",
+        "-sTCP:LISTEN"
+      ],
+      "rawSHA256": "8902fdb0bc84650f098265c6cc8c6c6555f578231d22b65f710695fbd77faeb1"
+    },
+    {
+      "label": "existingPG55476",
+      "exitCode": 0,
+      "args": [
+        "/opt/homebrew/opt/postgresql@14/bin/pg_ctl",
+        "-D",
+        "<CODING_WORKTREE>/.local/postgres/data",
+        "status"
+      ],
+      "rawSHA256": "7983eb37abbc248a399dd56bfdfb4f42113cd92bdb93dc6113c63360fb64ae18"
+    },
+    {
+      "label": "ownedTestAPI4396",
+      "exitCode": 1,
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:4396",
+        "-sTCP:LISTEN"
+      ],
+      "rawSHA256": "f972d35cb7749109fa3fcadefb8e40ca1d4a4120875a38ee80266341ab082d5c"
+    },
+    {
+      "label": "ownedTestWeb5296",
+      "exitCode": 1,
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:5296",
+        "-sTCP:LISTEN"
+      ],
+      "rawSHA256": "f972d35cb7749109fa3fcadefb8e40ca1d4a4120875a38ee80266341ab082d5c"
+    }
+  ],
+  "envMode": "0o600"
+}

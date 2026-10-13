@@ -1,0 +1,21 @@
+{
+  "label": "latest-source-bound-legal1500ms-PNG-response-latency",
+  "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+  "diagnosticModification": "1500ms delay before actual service.processed; same source/hard budgets/responses/one180s six-phase case; restored exact source after run",
+  "args": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "--config",
+    "vitest.step07.config.ts",
+    "-t",
+    "R4 real COMMIT"
+  ],
+  "exitCode": 0,
+  "durationSeconds": 150.916,
+  "log": ".local/step07-ci-timeout/final/legal-latency.log",
+  "logSHA256": "8d41a0e093abfb41364965439623c190ba38de8c6a1345303c5a5afe20ca0f28",
+  "logBytes": 6037,
+  "onePassed15Skipped": true
+}
