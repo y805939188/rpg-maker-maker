@@ -108,3 +108,13 @@ ProcessedPreview按project/recipe/sourceFrame绑定fetch/AbortController，离�
 写动作捕获project/项目世代/选择世代/action id，内部选择、notice/error/创建/验收回调仅写当前scope，busy释放仅由当前project/action；refresh数据不覆盖期间用户选择。转换/descriptor仍按实际Build/preview世代隔离，提示另守选择。已服务端提交的旧source/recipe/job/项目不因切换假称撤销。上传/采用201迟到1300ms、同项目旧版本/历史recipe、422错误、Build202/visual-false200/创建201及普通成功均真browser验证。产物preview/下载同Export，源bytes/pixels、publicrestore、路径/历史/retired/CAS及4/8文件分层不变。
 
 冻结check266、HTTP9、PG06 23、API3/privacy5、prod/dev全13+13、206工程payload、195源文件、2525历史保护、24scene+4source+nearest/换Build/ZIP、12+12clock三周期、干净恢复processed实际PNG、旧56payload16PNG/JS78/8CPU通过。服务端原16/2/12、处理1+等待1/native1/5s/close、PNG4MiB/metadata/density/pixel及JSON8KiB/Host/Origin/client/Vite根未放宽；JS heap≠OS/native RSS说明与新入口测量保留。无新包/锁/schema/Profile/Compiler/槽位/动画/通行改变。自有PG55476/API4376/Web5276与上文启动流程保持，所有历史DB/root/失败不reset。完整最新绑定/来源/原错误/延期见 [R3整改报告](../reviews/step-07-fix-round-3-coding.md)；CPU/作者技术截图非新artifact MZ或用户美术PASS，08–10未开始。
+
+## 2026-10-14 R4整改最新冻结候选
+
+Source `59423201ba10ee71c3d1b04cebec69659017b7c7`，作者状态SELF_TESTED_READY_FOR_REVIEW_ROUND5。正式已用4/下一轮5；用户当日取消机械五轮上限而不清零历史、不降低门禁。R4三个P2待Main独立确认；完整 [整改报告](../reviews/step-07-fix-round-4-coding.md) 和 [ledger](../evidence/step-07/fix-round4/ledger.json)。旧段落轮数/上限是历史，不无痕改写旧批准/失败。
+
+Persistence existing/new发布分支统一在短TX内核对/登记标准Export真实文件引用后完成需交付的StudioJob，合法existing四文件Build仍能finalize，既存八文件可重读resume；通用IR/Mock任务不升级交付定义。Studio聚合在5000ms/1000ms有界只读RepeatableRead短TX捕获全部关联DB元数据，文件/pixel处理在TX外。Web列表请求世代与action独立，加载/空/错误/手动只读恢复区分，创建后旧列表、disposed和全部原项目/选择/动作守卫保留。
+
+最新check266、HTTP/PG16、06真实新空库/root23、API3/privacy5、prod/dev18各自绑定594；两客户端真正跨COMMIT首个/替换/history-only、旧06writer重复/rollback/丢回执/恢复、24scene/12+12clock/12实际ZIP、干净restoreStudio、旧56payload16PNG/JS78/8nativeCPU执行。六个source/tests路径，工程206、非文档196、历史保护2951逐SHA未变。PNG/HTTP/native/路径/close-release、四/八文件、Profile/Compiler/槽位/动画/通行、独立bytes/pixels/公共restore无新承诺。
+
+本树PG55476/PID51121与91个自有tileset_库/资产/备份/旧失败保留；production API PID22456/4376保留、5276无listener。Node22.21.1仅进程PATH、.env0600。原缺陷synthetic库只备份并隔离restore后保护转换，原库不改，不批量修复。JS heap128MiB仍非OS/nativeRSS硬cap。Main/Reviewer环境不写、CI/Review/Release由Main；新artifact MZ/用户艺术/Host/Map003/OS hidden及08–10未执行/未开始。
