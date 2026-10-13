@@ -1,0 +1,129 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/actions/checkout/11d5960a326750d5838078e36cf38b85af677262/action.yml",
+    "bytes": 5144,
+    "sha256": "6188f6991491ed38977347cdaad0b0cd921a6d6232892363c91f433c22954f4f",
+    "relevantLines": [
+      {
+        "line": 74,
+        "text": "  fetch-depth:"
+      },
+      {
+        "line": 78,
+        "text": "    description: 'Whether to fetch tags, even if fetch-depth > 0.'"
+      }
+    ]
+  },
+  {
+    "url": "https://raw.githubusercontent.com/actions/checkout/11d5960a326750d5838078e36cf38b85af677262/src/input-helper.ts",
+    "bytes": 7286,
+    "sha256": "0bcab16b2b550f1b92c6176b5f842500febee3ae8c8051cb62a95264d40db0af",
+    "relevantLines": [
+      {
+        "line": 123,
+        "text": "  result.fetchDepth = Math.floor(Number(core.getInput('fetch-depth') || '1'))"
+      },
+      {
+        "line": 124,
+        "text": "  if (isNaN(result.fetchDepth) || result.fetchDepth < 0) {"
+      },
+      {
+        "line": 125,
+        "text": "    result.fetchDepth = 0"
+      },
+      {
+        "line": 127,
+        "text": "  core.debug(`fetch depth = ${result.fetchDepth}`)"
+      }
+    ]
+  },
+  {
+    "url": "https://raw.githubusercontent.com/actions/checkout/11d5960a326750d5838078e36cf38b85af677262/src/git-source-provider.ts",
+    "bytes": 11050,
+    "sha256": "b1bf57713d94302decc7f440a1cd7daa24f205ddf677c52debeb654a5565d1a7",
+    "relevantLines": [
+      {
+        "line": 161,
+        "text": "      fetchDepth?: number"
+      },
+      {
+        "line": 172,
+        "text": "    if (settings.fetchDepth <= 0) {"
+      },
+      {
+        "line": 174,
+        "text": "      let refSpec = refHelper.getRefSpecForAllHistory("
+      },
+      {
+        "line": 187,
+        "text": "      fetchOptions.fetchDepth = settings.fetchDepth"
+      },
+      {
+        "line": 245,
+        "text": "      await git.submoduleUpdate(settings.fetchDepth, settings.nestedSubmodules)"
+      }
+    ]
+  },
+  {
+    "url": "https://raw.githubusercontent.com/actions/checkout/11d5960a326750d5838078e36cf38b85af677262/src/git-command-manager.ts",
+    "bytes": 20616,
+    "sha256": "fbb9ebec4e1c94f9641ffe123a4e47df4ae5ec2023617f8646ce30e1d3221bcf",
+    "relevantLines": [
+      {
+        "line": 38,
+        "text": "      fetchDepth?: number"
+      },
+      {
+        "line": 58,
+        "text": "  submoduleUpdate(fetchDepth: number, recursive: boolean): Promise<void>"
+      },
+      {
+        "line": 275,
+        "text": "      fetchDepth?: number"
+      },
+      {
+        "line": 294,
+        "text": "    if (options.fetchDepth && options.fetchDepth > 0) {"
+      },
+      {
+        "line": 295,
+        "text": "      args.push(`--depth=${options.fetchDepth}`)"
+      },
+      {
+        "line": 301,
+        "text": "      args.push('--unshallow')"
+      },
+      {
+        "line": 444,
+        "text": "  async submoduleUpdate(fetchDepth: number, recursive: boolean): Promise<void> {"
+      },
+      {
+        "line": 447,
+        "text": "    if (fetchDepth > 0) {"
+      },
+      {
+        "line": 448,
+        "text": "      args.push(`--depth=${fetchDepth}`)"
+      }
+    ]
+  },
+  {
+    "url": "https://raw.githubusercontent.com/actions/checkout/11d5960a326750d5838078e36cf38b85af677262/dist/index.js",
+    "bytes": 1362984,
+    "sha256": "ff743df9891fd49ffdf6e6bb11ad574bce26a13862ede59474201ef4c9ae029e",
+    "relevantLines": [
+      {
+        "line": 752,
+        "text": "                args.push(`--depth=${options.fetchDepth}`);"
+      },
+      {
+        "line": 896,
+        "text": "                args.push(`--depth=${fetchDepth}`);"
+      },
+      {
+        "line": 1430,
+        "text": "            if (settings.fetchDepth <= 0) {"
+      }
+    ]
+  }
+]
