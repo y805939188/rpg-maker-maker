@@ -1,0 +1,31 @@
+{
+  "type": "LOCAL_RELEASE_ENV_PREPARATION_NOT_ACCEPTANCE",
+  "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
+  "candidateExecutableEquivalentTo": "d343171ca866a8d1d1c4e272823ef475229d8032",
+  "port": 55481,
+  "apiPort": 4381,
+  "webPort": 5281,
+  "freshEnvAndCluster": true,
+  "credentials": "REDACTED_PRIVATE_ONLY",
+  "ownershipRootNormalizedVerified": true,
+  "firstRootLiteralAssertion": "FAILED_BECAUSE_SCRIPT_STORES_TRAILING_SLASH_NORMALIZED_ROOT_CONFIRMED_IDENTICAL",
+  "preparation": [
+    {
+      "command": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-13T07:46:57.716142+00:00"
+    },
+    {
+      "command": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "exitCode": 0,
+      "startedAtUtc": "2026-10-13T07:47:22.020610+00:00"
+    }
+  ],
+  "atUtc": "2026-10-13T07:48:24.879236+00:00"
+}
