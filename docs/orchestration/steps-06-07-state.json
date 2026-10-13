@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_NEW_CANDIDATE_CI",
+  "phase": "STEP07_CI_COMMIT_TEST_TIMEOUT_DIAGNOSIS",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "CANDIDATE_CI",
+    "status": "CODING_CI_TIMEOUT_DIAGNOSIS",
     "reviewRounds": 6,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -1446,11 +1446,12 @@
       "head": "b868e351f01edcbcfc63b3b9e15dc26981427361",
       "branch": "codex/step-07-validation",
       "runId": 38475532067,
-      "status": "IN_PROGRESS",
+      "status": "FAILURE",
       "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38475532067",
       "remoteReadbackExact": true,
       "latestReviewRound": 6,
-      "reviewedSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac"
+      "reviewedSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-second-failure.json"
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -1505,7 +1506,22 @@
         "remoteReadbackExact": true,
         "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-first-failure.json"
       }
-    ]
+    ],
+    "ciTimeoutDiagnosis": {
+      "status": "CODING_DIAGNOSIS_RUNNING_ROOTCAUSE_UNKNOWN",
+      "oldSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "oldDocsHead": "1e83c986091739f76899d35eeeb5879e7bf0bf58",
+      "candidateCi": 38475532067,
+      "actualLogSha256": "0ee4995d5c9e1f50bb5d1bd5f44c4e063cfbaa21e1fd92164a7a0fb82d31fe41",
+      "codingThread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "nativeProcess": 24090,
+      "nativeOutput": ".local/orchestration-06-07/step07-ci-timeout-fix",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-ci-timeout-coding-client.json",
+      "originalTimeoutMs": 180000,
+      "timeoutRelaxationAuthorized": false,
+      "nextFormalReviewIfCandidateChanges": 7,
+      "round7Started": false
+    }
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -1688,8 +1704,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round6-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latest87/docs1e R6wholePASS originals112 source3729 unchanged,ownservicesstop;normalvalidationpush b868 exactremoteReadback, newCI38475532067 running. OldCI38464677883FAIL originalretained. No07Mainfunctionalmergeyet.",
-  "nextSafeAction": "Wait fullrequirednewCI38475532067 SUCCESS exactb868;fetch/liveMain guard,APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR,normalmainmerge andnecessarypostmerge regression,normalpush/readback/mainCI,formalpublicationdocs/stoppedafter07.",
+  "lastSuccessfulCheckpoint": "SecondcandidateCI38475532067 FAIL actual125718logSHA0ee499;closed Git/Chromium prerequisites andPG23PASS,HTTP15PASS1original180s sixstage timeout. SameStandard/xhighCoder native24090 resumed for precise root-cause/phase measurements, no relaxedbudget/no newReview yet/noMainmerge.",
+  "nextSafeAction": "Resume sameStandard/xhighCoder to diagnose exactCI timeout with actual logs and originalbudget/assertions; freeze minimal justified fix if needed, independent next actual round7, candidateCI/fullnormalrelease. No guesses/CI skips/budget relaxation.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -1723,7 +1739,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T22:08:35.841184+00:00",
+  "updatedAtUtc": "2026-10-13T22:32:21.512136+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -1764,12 +1780,10 @@
   "blockers": [
     {
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
-      "id": "STEP07-CI-38464677883",
-      "status": "PREREQUISITES_FIXED_INDEPENDENT_ROUND6_NEW_CI_PENDING",
-      "reason": "two actual CI prerequisites missing; history and Chromium-before-step07",
-      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-first-failure.json",
-      "latestRun": 38475532067,
-      "latestCandidate": "b868e351f01edcbcfc63b3b9e15dc26981427361"
+      "id": "STEP07-CI-38475532067",
+      "status": "OPEN",
+      "reason": "actual 180s two-mode six-stage COMMIT test timeout; root cause unverified",
+      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-second-failure.json"
     }
   ]
 }
