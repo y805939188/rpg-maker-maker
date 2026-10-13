@@ -35,6 +35,9 @@ export async function boundedResourceRead<T>(
   );
   try {
     if (parent.aborted) cancel();
+    // StrictMode replays effect setup/cleanup synchronously. Do not send a request
+    // from the disposed setup and occupy the native slot before the live setup.
+    await Promise.resolve();
     for (let attempt = 1; ; attempt++) {
       controller.signal.throwIfAborted();
       try {

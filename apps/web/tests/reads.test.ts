@@ -4,6 +4,17 @@ import { boundedResourceRead } from '../src/resource-read.js';
 import { HttpError } from '../src/api.js';
 
 afterEach(() => vi.useRealTimers());
+it('a synchronously disposed effect sends no request or obsolete native work', async () => {
+  let calls = 0;
+  const controller = new AbortController();
+  const result = boundedResourceRead(async () => {
+    calls++;
+    return 'obsolete';
+  }, controller.signal).catch((e: unknown) => e);
+  controller.abort(Error('disposed setup'));
+  expect(((await result) as Error).message).toBe('disposed setup');
+  expect(calls).toBe(0);
+});
 it('1300ms reads never overlap an 800ms poll and stop scheduling after cancellation', async () => {
   vi.useFakeTimers();
   const controller = new AbortController();
