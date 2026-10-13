@@ -1,0 +1,63 @@
+{
+  "sourceSHA": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+  "images": [
+    {
+      "path": "browser-production/r2-recovery/ordinary-switch-0.png",
+      "sha256": "1cadc7c92a41d54c676b197ec6b12cca92a64e576ea1b3a225128370793c33e9",
+      "bytes": 634807,
+      "tool": "functions.exec/tools.view_image",
+      "sourceSHA": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "technicalObservation": "当前项目processed PNG与交付画布均有效；技术检查"
+    },
+    {
+      "path": "browser-production/r2-recovery/slow-poll-FAILED.png",
+      "sha256": "2493deacc3a875545a95d1ae2354b3da69723ee40b33ada6885345378a8e2caa",
+      "bytes": 631248,
+      "tool": "functions.exec/tools.view_image",
+      "sourceSHA": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "technicalObservation": "真实容量失败终态及last-success保留"
+    },
+    {
+      "path": "browser-production/actual-canvas-edges-2.png",
+      "sha256": "b31698edc7a7c2febe014f370a97281dca33c1d987944bac62af43889e39a898",
+      "bytes": 2102,
+      "tool": "functions.exec/tools.view_image",
+      "sourceSHA": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "technicalObservation": "实际交付像素边角state2；独立reference核验另见browser evidence"
+    },
+    {
+      "path": "browser-production/r2-recovery/failed-resource-recovered.png",
+      "sha256": "8ea8d35c940277c88b608e64e402b8e942e0e14a2b3ffb7e22892c278a5533d1",
+      "bytes": 634851,
+      "tool": "functions.exec/tools.view_image",
+      "sourceSHA": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "technicalObservation": "明确失败重读后真实processed恢复"
+    },
+    {
+      "path": "restored-browser/restored-current.png",
+      "sha256": "620635e4001bd1eb6429209bd355cfe22752a2ab143d0581f323f488e5d9f98e",
+      "bytes": 461678,
+      "tool": "functions.exec/tools.view_image",
+      "sourceSHA": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "technicalObservation": "首次恢复helper current画布有效，processed仍加载；不称作processed完成"
+    },
+    {
+      "path": "restored-browser-complete/restored-current.png",
+      "sha256": "94c464a9a63252b06b914a985aa16e90f9c9c5fb6402993ab1d981f3ccf1f446",
+      "bytes": 467068,
+      "tool": "functions.exec/tools.view_image",
+      "sourceSHA": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "technicalObservation": "补充等待后的真实processed decode/PNG/RGBA及当前真实Export"
+    },
+    {
+      "path": "retained-runtime.png",
+      "sha256": "a13a75296e9c6aa604654e71d4e8460ad72cbb045a1bdcae91ad426c6a11ee8d",
+      "bytes": 687365,
+      "tool": "functions.exec/tools.view_image",
+      "sourceSHA": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "technicalObservation": "自有生产entry current与真实processed均就绪"
+    }
+  ],
+  "userArtConfirmation": "NOT_EXECUTED",
+  "artifactMZ": "NOT_EXECUTED"
+}
