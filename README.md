@@ -1,3 +1,11 @@
+# 步骤07 R4整改当前作者候选
+
+功能source `59423201ba10ee71c3d1b04cebec69659017b7c7`，**SELF_TESTED_READY_FOR_REVIEW_ROUND5**。标准Export幂等完成事务、项目列表独立请求归属、Studio一致元数据快照已整改自测。正式已用4轮、待第5轮；2026-10-14用户取消机械五轮上限，原历史和门禁保留。作者不独立关闭问题、不批准/合并/推送、不开始08–10。
+
+最新check266、真实HTTP/PG16（原9＋新7）、06回归23、API3/privacy5、production/development18＋18、24scene/12＋12clock/实际PNG/12ZIP/干净恢复、JS78/旧56payload16PNG/8CPU通过。精确Source/Build/hash、原失败、资源和未执行项见 [R4整改Coding报告](docs/reviews/step-07-fix-round-4-coding.md) 与 [最终ledger](docs/evidence/step-07/fix-round4/ledger.json)。自有production entry `http://127.0.0.1:4376` 保留，AI尚未开放。
+
+以下全部作者检查点为历史，原文本/报告/失败/Manifest保留；R3原两项已由独立R4关闭，本轮三个P2待第5轮独立确认。
+
 # 步骤07 R3整改当前作者候选
 
 功能source `ef30dc2ab011d204d1d0a4d099a335b68458cdca`，**SELF_TESTED_READY_FOR_ROUND4**。正式已用3/5，R3为REQUIRES_REVISION；连续错误poll共享5次/60s、明确未知/只读重读与project/selection/action异步写回调守卫已自测，待Main第4/5轮独立复审。未批准、合并、推送或启动08。

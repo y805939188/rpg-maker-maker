@@ -104,3 +104,18 @@ R3/5 REQUIRES_REVISION原报告SHA `c18e713ac7e3ee14b9b342234af5d6d4fe9225a67a54
 | 06–07持久/预览/交付及原关闭问题        | check266/HTTP9/PG23/API3/privacy5/browser13+13；206工程/195source/2525保护；24scene/4source/12+12clock/nearest/ZIP/restore；旧56payload16PNG/JS78/8CPU         | Profile/Compiler/slot/时基/通行/所有权/路径/预算不变；R1/R2由原R3 CLOSED，原失败全部保留 |
 
 精确source/docs/Build/Manifest/每项SHA及资源见 [R3整改Coding报告](../reviews/step-07-fix-round-3-coding.md)与 [ledger](../evidence/step-07/fix-round3/ledger.json)。原独立参考probe作为作者重跑，不冒充新IndependentPASS；CI/Release NOT_EXECUTED_BY_CODER，新artifact MZ/用户美术/Host/Map003延期NOT_EXECUTED，08–10未开始。
+
+## 步骤07 R4整改证据增补（2026-10-14）
+
+最新Source `59423201ba10ee71c3d1b04cebec69659017b7c7`，SELF_TESTED_READY_FOR_REVIEW_ROUND5；正式已用4、待5，新授权取消机械五轮上限但历史不重置。此处仅作者验证映射，三项Independent finding待下一Reviewer关闭；旧批准/失败/母版/Manifest不改。[完整报告](../reviews/step-07-fix-round-4-coding.md)、[逐文件ledger](../evidence/step-07/fix-round4/ledger.json)。
+
+| 要求/触发                                                                  | 新证据                                                                                                                                                                                       |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| §7.1/§10.2 Studio完成＋FinalExport同TX、合法旧06四文件幂等/八文件resume    | HTTP16中新7：实际c227 writer竞态、标准重复、文件失败/延期COMMIT rollback/丢回执；[旧writer](../evidence/step-07/fix-round4/http-and-recovery/r4-duplicate-legacy.json)                       |
+| §4.1 持久项目列表/加载/失败恢复及迟到读取归属                              | 新5case＋旧13，prod/dev18各自实际上传/失败/采用/创建反向列表/手动恢复/卸载取消；[列表](../evidence/step-07/fix-round4/browser-production/r4-project-list/initial-upload.json)                |
+| §4.4/§7.1/§10.2 Project/adoption/Build/Export/Job一致终态与current/history | 真实PG COMMIT屏障＋两个实际客户端首个/替换/history-only；[六阶段](../evidence/step-07/fix-round4/http-and-recovery/r4-ui-consistent-publication.json)                                        |
+| 06–07备份/公开restore/source/recipe/retired/实际再建/旧ZIP                 | 最新06回归23和HTTP16整合恢复；恢复browser真15source/2recipe/5Build与processed decode/SHA/RGBA/ZIP；[恢复](../evidence/step-07/fix-round4/restored-browser-complete/evidence.json)            |
+| Profile/Compiler/像素/clock与真正selectedExport                            | 24scene/4creative、12+12 clock三周期、12ZIP、206工程SHA、56旧payload16PNG/JS78/8CPU；[独立参考](../evidence/step-07/fix-round4/independent-reference/browser-pixel-zip-verification.json)    |
+| 资源安全/原失败/审查独立性                                                 | 原预算/路径/close-release/PNG真实入口保留，原430R4验真，2951历史保护、客户端default/serverFinalUNVERIFIED；Review/CI/Release NOT_EXECUTED_BY_CODER，artifactMZ/艺术/Host/Map003仍未执行/延期 |
+
+所有新增case由既有CI命令`pnpm test:step07`及两模式`pnpm test:e2e`自动发现；远端CI本人未执行。当前V0.1人工工作台不宣称AI或V1.0完成，08–10 NOT_STARTED。
