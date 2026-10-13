@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_CANDIDATE_CI",
+  "phase": "STEP07_CI_PREREQUISITES_CODING_FIX",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -1123,21 +1123,25 @@
       "status": "AUTHOR_FULL_HANDOFF_COMPLETE_UNDER_REVIEW_ROUND5"
     },
     "nextReviewEnvironment": {
-      "operationId": "f0930d25-4a8b-41bb-9cbb-ad556d67c4af",
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
-      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7",
-      "sourceState": "FROZEN_FULL_AUTHOR_HANDOFF_VERIFIED",
-      "pgPort": 55487,
-      "apiPort": 4387,
-      "webPort": 5287,
-      "status": "FORMAL_ROUND5_IN_PROGRESS",
-      "formalReviewStarted": true,
-      "databaseMigration": "REVIEWER_EXECUTED_FIVE_MIGRATIONS",
-      "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
+      "atUtc": "2026-10-13T20:51:56.030031+00:00",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
+      "preparedSource": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "operationId": "2c2f27cf-105b-4b2f-945b-5e9e0f074d5a",
+      "pgPort": 55489,
+      "apiPort": 4389,
+      "webPort": 5289,
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
       "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
-      "preparedBy": "MAIN_ORCHESTRATOR",
-      "threadId": "01a136c1-796d-7450-8445-0b57034cd6a6",
-      "sourceProtectionFiles": 2960
+      "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
+      "migrate": "NOT_EXECUTED",
+      "tests": "NOT_EXECUTED",
+      "formalReviewRound6Started": false,
+      "candidateState": "WAIT_NEW_CI_ONLY_FREEZE",
+      "status": "PREPARED_NO_FORMAL_REVIEW_WAIT_FROZEN_CI_FIX",
+      "formalReviewStarted": false,
+      "databaseMigration": "NOT_EXECUTED",
+      "preparedBy": "MAIN_ORCHESTRATOR"
     },
     "checkpointCi": {
       "head": "552137fa00a28fccc2375bf89a8e70ca2a0132e8",
@@ -1353,9 +1357,32 @@
       "head": "70bcdcc3cdd44da983bddb87a0ece1057175f188",
       "branch": "codex/step-07-validation",
       "runId": 38464677883,
-      "status": "IN_PROGRESS",
+      "status": "FAILURE",
       "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38464677883",
-      "remoteReadbackExact": true
+      "remoteReadbackExact": true,
+      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-first-failure.json"
+    },
+    "ciHistoryDiagnosis": {
+      "status": "HISTORY_CONFIRMED_AND_ACTUAL_CI_ADDITIONAL_BROWSER_ORDER_FAILURE",
+      "hypothesis": "real old c227 writer test needs git object absent from default shallow CI checkout",
+      "sourceUnderCi": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "candidateCiRun": 38464677883,
+      "codingThread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "nativeProcess": 7585,
+      "nativeOutput": ".local/orchestration-06-07/step07-ci-history-fix",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-ci-history-coding-client.json",
+      "implementationOwnership": [
+        ".github/workflows/ci.yml",
+        "docs/reviews/step-07-ci-history-coding.md",
+        "docs/evidence/step-07/ci-history"
+      ],
+      "requiredNextReviewIfExecutionConfigChanges": 6,
+      "round6Started": false,
+      "appSourceChangesAuthorized": false,
+      "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
+      "firstCiWorkflowCandidate": "e195da9",
+      "additionalRequiredFix": "install Chromium before first browser-consuming step07 test; retain pinned install and all assertions",
+      "handoffAction": "Wait active history Coding handoff then resume same session for actual second failure; do not concurrent-write same file"
     }
   },
   "step08": {
@@ -1523,10 +1550,23 @@
       "threadId": "01a136c1-796d-7450-8445-0b57034cd6a6",
       "source": "59423201ba10ee71c3d1b04cebec69659017b7c7",
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round5-preservation-and-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round6",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round6/rpg-maker-maker",
+      "pgPort": 55489,
+      "apiPort": 4389,
+      "webPort": 5289,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
+      "credentials": "FRESH_OWN_ENV600_NO_COPY"
     }
   ],
-  "lastSuccessfulCheckpoint": "R5PASS/source594/docs5c/report817/ledger8b5 514 preserved;normalcandidatepush70bcdcc exactremote,necessaryCI38464677883 running. No mainfunctionalmerge/push yet.",
-  "nextSafeAction": "Wait necessarycandidateCI38464677883 SUCCESS exact70bcdcc;fetch/live mainguard,preauthorizedtechnicalacceptance,normal mainmerge,isolatedpostmergechecks,normalpush/readback/mainCI,publicationdocs/stop.08–10notstarted.",
+  "lastSuccessfulCheckpoint": "R5 wholePASS preserved;candidate70 pushed CI38464677883 stillrunning; sameStandard/xhigh coder resumed to verify genuine c227 history precondition under shallow checkout; no guessedfix/mainmerge/publication.",
+  "nextSafeAction": "Receive active Coding CI-history handoff, deliver actual Chromium order failure to same role; freeze integrated CI-only candidate, independent R6, candidateCI all necessary tests then normalrelease.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -1560,7 +1600,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T20:40:53.324751+00:00",
+  "updatedAtUtc": "2026-10-13T20:55:22.852294+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -1598,5 +1638,13 @@
       "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7"
     }
   ],
-  "blockers": []
+  "blockers": [
+    {
+      "gate": "STEP07_REQUIRED_CANDIDATE_CI",
+      "id": "STEP07-CI-38464677883",
+      "status": "OPEN",
+      "reason": "two actual CI prerequisites missing; history and Chromium-before-step07",
+      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-first-failure.json"
+    }
+  ]
 }
