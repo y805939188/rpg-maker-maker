@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND5",
+  "phase": "STEP07_CANDIDATE_CI_PREPARATION",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT_REVIEW",
+    "status": "REVIEW_PASS_PENDING_CI",
     "reviewRounds": 5,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -456,7 +456,7 @@
       "independentReview": "ROUND5_IN_PROGRESS"
     },
     "candidateSha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
-    "candidateState": "FROZEN_SELF_TESTED_UNDER_INDEPENDENT_ROUND5",
+    "candidateState": "INDEPENDENT_PASS_FROZEN",
     "reviewEnvironment": {
       "operationId": "f0930d25-4a8b-41bb-9cbb-ad556d67c4af",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
@@ -465,7 +465,7 @@
       "pgPort": 55487,
       "apiPort": 4387,
       "webPort": 5287,
-      "status": "FORMAL_ROUND5_IN_PROGRESS",
+      "status": "ROUND5_PASS_SERVICES_STOPPED_DATA_RETAINED",
       "formalReviewStarted": true,
       "databaseMigration": "REVIEWER_EXECUTED_FIVE_MIGRATIONS",
       "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
@@ -935,7 +935,7 @@
         "round": 5,
         "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7",
         "docsHead": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
-        "status": "IN_PROGRESS",
+        "status": "PASS",
         "threadId": "01a136c1-796d-7450-8445-0b57034cd6a6",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
         "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round5-client.json",
@@ -958,12 +958,45 @@
             "existing_four_file_build_failed_commit_rolls_back_export_and_job",
             "concurrent_source_recipe_adoption_read_snapshot_consistency"
           ],
-          "browser": "PRODUCTION_AND_DEVELOPMENT_RUNNING",
-          "independentConclusion": "NOT_YET_ISSUED"
-        }
+          "browser": "BOTH_MODES_PASSED_WHOLE_REVIEW_PENDING",
+          "independentConclusion": "NOT_YET_ISSUED",
+          "browserProduction": 18,
+          "browserDevelopment": 18,
+          "independentDeliverySceneStates": 24,
+          "independentCreativeStates": 4,
+          "nearestIntegerScales": [
+            1,
+            2
+          ],
+          "actualZipArchives": 16,
+          "sourceClockSamples": 12,
+          "deliveryClockSamples": 12,
+          "clockCycles": 3,
+          "cleanBackupRestoreStudioRebuild": "PASS_EXECUTED",
+          "mockKnownAndUnknownRecovery": "PASS_EXECUTED",
+          "actualApiSigkillRestart": "PASS_EXECUTED_LAST_SUCCESS_AND_ZIP_UNCHANGED",
+          "trackedSourceHashesBeforeAfter": 2960,
+          "sourceProtection": "ALL_SHA_AND_BYTES_IDENTICAL",
+          "finalReport": "PASS_ORIGINAL_SEALED_VERIFIED"
+        },
+        "report": "docs/evidence/step-07/independent-round5/report.md",
+        "reportSha256": "81743cc098390f726ccba1c8548e253b303998b16e53d02bc62dd8b1be45ff85",
+        "ledger": "docs/evidence/step-07/independent-round5/evidence/ledger.json",
+        "ledgerSha256": "8b5e8f0743b872159e2607cef4dcc6e4568565d7b596e7213734f808a183533e",
+        "payloadsVerified": 514,
+        "sourceTrackedUnchanged": 2960,
+        "nativeExitCode": 0,
+        "closedFindings": [
+          "STEP07-R4-001",
+          "STEP07-R4-002",
+          "STEP07-R4-003"
+        ],
+        "blockingP0": 0,
+        "blockingP1": 0,
+        "blockingP2": 0
       }
     ],
-    "latestIndependentReview": "REQUIRES_REVISION_ROUND4",
+    "latestIndependentReview": "PASS_ROUND5",
     "codingFix": {
       "round": 4,
       "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
@@ -1477,37 +1510,15 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "OWNED_PG55487_RUNNING_FORMAL_REVIEW5_STARTED",
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
       "formalReviewStarted": true,
       "threadId": "01a136c1-796d-7450-8445-0b57034cd6a6",
-      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7"
+      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round5-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "R5 independently check266/HTTP-PG16/PG06-23/hash-old56PNG16/JS78nativeCPU8 plus existingBuild rollback and adoption snapshot probes passed; both-mode18 browser running; no independent final PASS or release yet.",
-  "blockers": [
-    {
-      "gate": "STEP07_TECHNICAL_RELEASE",
-      "id": "STEP07-R4-001",
-      "severity": "P2",
-      "status": "OPEN",
-      "reason": "existing Build publication finishes StudioJob without FinalExport/FileObject registration"
-    },
-    {
-      "gate": "STEP07_TECHNICAL_RELEASE",
-      "id": "STEP07-R4-002",
-      "severity": "P2",
-      "status": "OPEN",
-      "reason": "unrelated action invalidates only initial project-list response leaving persisted sidebar empty"
-    },
-    {
-      "gate": "STEP07_TECHNICAL_RELEASE",
-      "id": "STEP07-R4-003",
-      "severity": "P2",
-      "status": "OPEN",
-      "reason": "separate metadata reads mix old Project pointers with new completedJob/Export and stop polling"
-    }
-  ],
-  "nextSafeAction": "Wait whole independentR5 report, preserveoriginals; ifPASS closeallblocking andnecessarycandidateCI/normalmerge/postmerge/push/readback/mainCI. Ifrealdefects withverifiedprogress continueactualnumberedFix/Review;two-consecutive-same-root-withoutprogress analyze/report. Do not start08.",
+  "lastSuccessfulCheckpoint": "Native independentR5 exited0 PASS; allthreeR4P2CLOSED,514 originalpayloadSHA+privacyverified,2960sourceunchanged;ownPG55487stopverified,API/Weboff,allprivate dataretained; candidateCI notyetstarted.",
+  "nextSafeAction": "Integrate originalR5 report/evidence and pure-docs state into validation branch; execution projection must match594; pushcandidate and requiredCI before normal mainmerge/postmerge/push/readback/mainCI.08–10 notstarted.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -1541,7 +1552,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T19:48:01.572275+00:00",
+  "updatedAtUtc": "2026-10-13T20:39:09.977315+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -1549,5 +1560,35 @@
       "scope": "Continue only07 to publication;06alreadypublished;08–10notauthorized",
       "step07ReviewRoundLimit": "NO_MECHANICAL_LIMIT_PROGRESS_GATED"
     }
-  ]
+  ],
+  "closedBlockers": [
+    {
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "id": "STEP07-R4-001",
+      "severity": "P2",
+      "status": "CLOSED_INDEPENDENT_ROUND5",
+      "reason": "existing Build publication finishes StudioJob without FinalExport/FileObject registration",
+      "closedBy": "docs/evidence/step-07/independent-round5/report.md",
+      "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7"
+    },
+    {
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "id": "STEP07-R4-002",
+      "severity": "P2",
+      "status": "CLOSED_INDEPENDENT_ROUND5",
+      "reason": "unrelated action invalidates only initial project-list response leaving persisted sidebar empty",
+      "closedBy": "docs/evidence/step-07/independent-round5/report.md",
+      "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7"
+    },
+    {
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "id": "STEP07-R4-003",
+      "severity": "P2",
+      "status": "CLOSED_INDEPENDENT_ROUND5",
+      "reason": "separate metadata reads mix old Project pointers with new completedJob/Export and stop polling",
+      "closedBy": "docs/evidence/step-07/independent-round5/report.md",
+      "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7"
+    }
+  ],
+  "blockers": []
 }

@@ -1,0 +1,25 @@
+from pathlib import Path
+import subprocess,os,sys,time,json,signal,uuid,urllib.request
+r=Path.cwd();o=r/'.local/step07-review';command=sys.argv[1];mode=sys.argv[2] if len(sys.argv)>2 else 'primary';p=o/('server-control-'+mode+'.json')
+if command=='start':
+ if p.exists():raise RuntimeError('Control record already exists; do not overwrite')
+ nonce=uuid.uuid4().hex;env=os.environ.copy();env['PATH']='/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+env['PATH'];args=['/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node',str(o/'owned-server.mjs'),mode,nonce];log=o/('runtime-'+mode+'.log');h=log.open('w');proc=subprocess.Popen(args,cwd=r,env=env,stdout=h,stderr=subprocess.STDOUT,start_new_session=True);rec={'pid':proc.pid,'nonce':nonce,'args':args,'mode':mode,'log':str(log.relative_to(o))};p.write_text(json.dumps(rec,indent=2)+'\n')
+ for i in range(150):
+  if proc.poll() is not None:raise RuntimeError('Own server exited '+str(proc.returncode))
+  try:
+   with urllib.request.urlopen('http://127.0.0.1:4387/api/health',timeout=0.5) as res:
+    if res.status==200:break
+  except:time.sleep(.1)
+ else:raise RuntimeError('Health deadline')
+ print(json.dumps({'started':proc.pid,'mode':mode,'port':4387}))
+elif command=='stop':
+ rec=json.loads(p.read_text());pid=rec['pid'];s=subprocess.run(['ps','-p',str(pid),'-o','command='],capture_output=True,text=True).stdout
+ if str(o/'owned-server.mjs') not in s or rec['nonce'] not in s:raise RuntimeError('Process ownership does not match recorded generation')
+ os.kill(pid,signal.SIGTERM)
+ for i in range(200):
+  s=subprocess.run(['ps','-p',str(pid),'-o','command='],capture_output=True,text=True).stdout
+  if not s.strip() or '<defunct>' in s:break
+  time.sleep(.1)
+ else:raise RuntimeError('Own server did not stop')
+ rec['stopped']=True;p.write_text(json.dumps(rec,indent=2)+'\n');print(json.dumps({'stopped':pid,'mode':mode}))
+else:raise RuntimeError('Unsupported')
