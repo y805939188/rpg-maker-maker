@@ -1,0 +1,28 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "filesystem": "case-insensitive alias independently observed with identical dev/ino",
+  "rows": [
+    {
+      "input": ".local/Postgres/review-assets",
+      "sameAncestor": true,
+      "error": "Asset root must be owned by this project .local and separate from PostgreSQL"
+    },
+    {
+      "input": ".local/POSTGRES/review-assets",
+      "sameAncestor": true,
+      "error": "Asset root must be owned by this project .local and separate from PostgreSQL"
+    },
+    {
+      "input": ".local/postgres/review-assets",
+      "sameAncestor": true,
+      "error": "Asset root must be owned by this project .local and separate from PostgreSQL"
+    },
+    {
+      "input": ".local/step06-review/root-valid-control",
+      "sameAncestor": false,
+      "accepted": "<repo>/.local/step06-review/root-valid-control"
+    }
+  ],
+  "postgresWrites": "NONE_READONLY_RESOLVER_PROBE",
+  "finding": "All actual PostgreSQL aliases rejected; adjacent valid control accepted"
+}

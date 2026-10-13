@@ -1,0 +1,34 @@
+{
+  "killed": {
+    "pid": 92805,
+    "code": null,
+    "signal": "SIGKILL",
+    "events": [
+      "intent-durable",
+      "remote-created"
+    ]
+  },
+  "restarted": {
+    "pid": 92808,
+    "code": 0,
+    "signal": null,
+    "events": [
+      "finished"
+    ]
+  },
+  "task": "e5270acc-fa98-48c9-87bb-17887add14be",
+  "attempt": [
+    {
+      "id": "04db146e-c188-427a-b1f2-582160456f95",
+      "taskId": "e5270acc-fa98-48c9-87bb-17887add14be",
+      "sequence": 1,
+      "state": "UNKNOWN",
+      "predictionId": null,
+      "intentAt": "2026-10-12T23:33:42.963Z"
+    }
+  ],
+  "remoteIds": [
+    "d3e8fd81-55a3-4ee1-944f-c3ede36ac9e0"
+  ],
+  "policy": "RECONCILE_UNKNOWN_NO_RESUBMIT; local IDs do not guarantee third-party billing idempotency"
+}

@@ -54,3 +54,15 @@ Node 22.21.1 / pnpm 10.20.0。安装：`pnpm install --frozen-lockfile`；独立
 这是项目保存与 Pixi 画布工程壳；素材工作流和 AI 尚未开放。以下步骤 01 原型及证据全部保留，原装 Native MZ Host 验收仍未执行。
 
 统一开发/生产启动需要按[步骤02工程基线](docs/engineering/STEP_02_BASELINE.md)配置私有.env及独立PostgreSQL。干净Git检出不包含凭据；已有数据库和验收目录保留原位，不自动搬迁或复用。新环境使用现有db:local脚本时应确认空闲专属端口（TILESET_PG_PORT），初始化拒绝已有.env/.local/postgres。原装Native MZ Host、Map003(4,10)及其他延期事项见维护记录。
+
+## 步骤06当前 Coding 候选
+
+本轮仅实施步骤06，功能候选 `a2878a922db93c14d29e0f128bd14e6b41fc09af`，作者状态 **READY_FOR_REVIEW**。真实 PostgreSQL/不可变文件/CAS、通用 RGBA/PNG IR 与 Native Pack 历史恢复、跨进程 Mock 执行器和一致备份恢复已完成作者验证；独立 Review 与远端 CI 由 Main 安排，未写成 PASS。步骤07未启动。
+
+[步骤06基线](docs/engineering/STEP_06_BASELINE.md)、[Coding 报告](docs/reviews/step-06-coding.md)、[脱敏命令及哈希](docs/evidence/step-06/coding/commands.json)。工程 Build `step06-a2878a922db9-5f73046cf5c7dfac`，完整检查230/230、真实 DB 套件10/10、旧 API3/3、开发/生产浏览器各1/1、冷入口步骤05子集37/37通过。八套 Pack 的56 payload 与批准步骤05哈希一致；原生核心3600检查属于 CPU 对照，新 MZ GUI/游戏及 Original Native Host 未执行。旧授权、Review、延期证据和 plans 保留。
+
+本 Worktree 专属 PG55466/API4366/Web5266；凭据、DB、资产、备份/失败现场仅在 .local/.env。新增测试进入明确 test:step06 与 CI，实际恢复必须新空数据库和不存在的独立资产根，禁止 reset 或覆盖已有环境。
+
+步骤06第1轮正式独立结果为 **REQUIRES_REVISION**（3阻断P2、1非阻断P3），原记录保留。当前整改候选 `debcce716e5b563eec881eb24eaa41aebcccac30` 已完成作者复测，状态最多 **READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND2**；下次为正式第2轮，尚未发布或启动07。详情见 [第1轮整改 Coding 报告](docs/reviews/step-06-fix-round-1-coding.md)与 [整改证据](docs/evidence/step-06/fix-round1/commands.json)。原 a2878a9 作者检查点为历史结果，不是独立PASS。
+
+步骤06第2轮正式独立结果仍为 **REQUIRES_REVISION**：IR-002/003/004独立CLOSED，嵌套gate lifetime与真实PG目录大小写别名两个阻断P2继续整改。作者新冻结候选 `c227f8c6ecfe85895937013e4687deb40247a6ee` 已完成check231/231、完整DB23/23、API3/3、两浏览器各1/1、旧JS78及8套Pack56payload/16PNG哈希回归，最多 **READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND3**。原报告/失败保留，下一次正式第3/5轮；未发布、批准、merge/push或启动07。见 [第2轮整改 Coding 报告](docs/reviews/step-06-fix-round-2-coding.md)和 [新命令/hash证据](docs/evidence/step-06/fix-round2/commands.json)。

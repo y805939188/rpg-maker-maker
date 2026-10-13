@@ -1,0 +1,102 @@
+
+> @tileset/prototype@0.0.2 test:step06 <repo>
+> pnpm build:prototype && vitest run --config vitest.step06.config.ts
+
+
+> @tileset/prototype@0.0.2 build:prototype <repo>
+> pnpm build:contracts && tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts <repo>
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build <repo>/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build <repo>/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build <repo>/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build <repo>/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build <repo>/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build <repo>/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build <repo>/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build <repo>/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build <repo>/packages/local-executor
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 <repo>
+
+ ❯ packages/persistence/tests/integration.test.ts (5 tests | 1 failed) 73320ms
+     × retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild 13164ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/persistence/tests/integration.test.ts > real PostgreSQL + immutable files publication > retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ packages/persistence/tests/integration.test.ts:387:25
+    385|           if (!waiting) await new Promise((resolve) => setTimeout(reso…
+    386|         }
+    387|         expect(waiting).toBe(true);
+       |                         ^
+    388|         expect(
+    389|           await s.store.db.project.count({
+ ❯ packages/persistence/src/gate.ts:150:23
+ ❯ WriteGate.run packages/persistence/src/gate.ts:149:14
+ ❯ packages/persistence/tests/integration.test.ts:378:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯ Unhandled Rejection ⎯⎯⎯⎯⎯
+Error: Nested maintenance or writes under maintenance are unsupported
+ ❯ WriteGate.run packages/persistence/src/gate.ts:63:13
+ ❯ processTicksAndRejections node:internal/process/task_queues:105:5
+
+This error originated in "packages/persistence/tests/integration.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+The latest test that might've caused the error is "retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild". It might mean one of the following:
+- The error was thrown, while Vitest was running this test.
+- If the error occurred after the test had been completed, this was the last documented test before it was thrown.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed | 3 passed (4)
+      Tests  1 failed | 21 passed (22)
+     Errors  1 error
+   Start at  07:20:30
+   Duration  169.69s (transform 206ms, setup 0ms, import 774ms, tests 168.58s, environment 0ms)
+
+ ELIFECYCLE  Command failed with exit code 1.

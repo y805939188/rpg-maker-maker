@@ -8,6 +8,7 @@ import {
   Param,
   Post,
 } from '@nestjs/common';
+import { WriteGate } from '@tileset/persistence';
 import { PrismaClient, type Project as StoredProject } from '@prisma/client';
 import {
   CreateProjectSchema,
@@ -28,7 +29,10 @@ export function toProject(project: StoredProject): Project {
 }
 @Controller('api')
 export class ProjectsController {
-  constructor(@Inject(PrismaClient) private readonly db: PrismaClient) {}
+  constructor(
+    @Inject(PrismaClient) private readonly db: PrismaClient,
+    @Inject(WriteGate) private readonly gate: WriteGate,
+  ) {}
   @Get('health') async health() {
     await this.db.$queryRaw`SELECT 1`;
     return HealthSchema.parse({ status: 'ok', database: 'connected', stage: '02' });
@@ -52,6 +56,15 @@ export class ProjectsController {
   @Post('projects') async create(@Body() input: unknown) {
     const parsed = CreateProjectSchema.safeParse(input);
     if (!parsed.success) throw new BadRequestException();
-    return toProject(await this.db.project.create({ data: { name: parsed.data.name } }));
+    return toProject(
+      await this.gate.write((lease) =>
+        this.db.$transaction(async (tx) => {
+          await lease.fence(tx);
+          const project = await tx.project.create({ data: { name: parsed.data.name } });
+          await lease.checkpoint();
+          return project;
+        }),
+      ),
+    );
   }
 }

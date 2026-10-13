@@ -1,0 +1,150 @@
+{
+  "candidate": "debcce716e5b563eec881eb24eaa41aebcccac30",
+  "checks": [
+    {
+      "name": "generic-raw-rgba-2-frame-control",
+      "irHash": "a7f18d0a72033e2c2c383e65692900f79086aa06f60edc8df14961afcfd2bafe",
+      "animation": {
+        "durations": [
+          7,
+          11
+        ],
+        "frameCount": 2,
+        "loop": false,
+        "sequence": [
+          0,
+          1
+        ],
+        "timebase": "milliseconds"
+      },
+      "targetCompilation": "NOT_EXECUTED"
+    },
+    {
+      "name": "generic-native-target-rejection",
+      "rejected": true,
+      "error": "Native Profile requires 96×144 source geometry and 48×48 tiles."
+    },
+    {
+      "name": "generic-fake-built-state",
+      "rejected": true,
+      "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"state\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key(s) in object: 'state'\"\n  }\n]"
+    },
+    {
+      "name": "generic-byte-content-invalid",
+      "rejected": true,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(sameRef(source.ref, stored.ref))\n"
+    },
+    {
+      "name": "generic-missing-dependency",
+      "rejected": true,
+      "error": "[\n  {\n    \"code\": \"too_small\",\n    \"minimum\": 5,\n    \"type\": \"array\",\n    \"inclusive\": true,\n    \"exact\": false,\n    \"message\": \"Array must contain at least 5 element(s)\",\n    \"path\": [\n      \"sources\"\n    ]\n  }\n]"
+    },
+    {
+      "name": "generic-invalid-animation",
+      "rejected": true,
+      "error": "duration must be a positive safe integer."
+    },
+    {
+      "name": "exact-task-reference-revision-2",
+      "accepted": true,
+      "taskId": "1d4b36ae-2410-44cb-bf56-9c2d95811b3a"
+    },
+    {
+      "name": "exact-task-reference-revision-1-control",
+      "accepted": true,
+      "taskId": "ccdb4763-44ac-442d-a7bd-fe6afba325fa"
+    },
+    {
+      "name": "wrong-task-reference-sha",
+      "rejected": true,
+      "error": "\nInvalid `prisma.assetRevision.findFirstOrThrow()` invocation:\n\n\nAn operation failed because it depends on one or more records that were required but not found. No record was found for a query."
+    },
+    {
+      "name": "cache-hard-validation-revision",
+      "rejected": true,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(sameRef(result.source.ref, source.ref))\n"
+    },
+    {
+      "name": "cache-hard-validation-role",
+      "rejected": true,
+      "error": "The expression evaluated to a falsy value:\n\n  assert.ok(sameRef(result.source.ref, source.ref))\n"
+    },
+    {
+      "name": "cache-hard-validation-validationHash",
+      "rejected": true,
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ '0208300220e6b0ab9352ab8524160719f182f954d4249ca04bb00098068578ec'\n- '0000000000000000000000000000000000000000000000000000000000000000'\n"
+    },
+    {
+      "name": "fake-compiler-owned-json",
+      "rejected": true,
+      "error": "Expected a Compiler-owned fragment; JSON is not an executed compilation."
+    },
+    {
+      "name": "native-bound-publication-control",
+      "buildId": "0fdcbd9d51bebbd05764973e38c184f495657ea695d55e636ca2a5bde33aa3af",
+      "manifestSha256": "cae57645f2a82cf7f925f029876541885099f0ec73af07f1818527d813092b84",
+      "publication": "ADOPTED",
+      "files": {
+        "bundle.json": {
+          "bytes": 51407,
+          "sha256": "65961282a4133d9127765abaa1fade37e807bb79cb00d7e4465c2b81a60aaac5"
+        },
+        "A1.png": {
+          "bytes": 3924,
+          "sha256": "c97ad74df1a85796133c950281873431f09876d78a7a4dd89c5f5f1958f22c91"
+        },
+        "A2.png": {
+          "bytes": 2457,
+          "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+        },
+        "manifest.json": {
+          "bytes": 8991,
+          "sha256": "cae57645f2a82cf7f925f029876541885099f0ec73af07f1818527d813092b84"
+        }
+      },
+      "projectId": "a96f402a-1797-4b20-aff2-7b38eb58364c",
+      "packId": "1012169feab1603f0ed0e90be3f95e05873b7b2e6f459535a1ec307ec704035b",
+      "adoptedId": "da8d7996f2c5f3401e2c83e68761e3d2c9b88ca22820dbd61e18938f77c9ee69",
+      "context": {
+        "codec": {
+          "aom": "3.15.1",
+          "archive": "3.8.9",
+          "cairo": "1.18.6",
+          "cgif": "0.5.4",
+          "exif": "0.6.26",
+          "expat": "2.8.5",
+          "ffi": "3.8.0",
+          "fontconfig": "2.18.3",
+          "freetype": "2.14.3",
+          "fribidi": "1.0.17",
+          "glib": "2.90.0",
+          "harfbuzz": "14.5.0",
+          "heif": "1.23.5",
+          "highway": "1.4.0",
+          "imagequant": "2.4.1",
+          "lcms": "2.19.1",
+          "mozjpeg": "0826579",
+          "pango": "1.58.2",
+          "pixman": "0.46.4",
+          "png": "1.6.58",
+          "proxy-libintl": "0.5",
+          "rsvg": "2.63.2",
+          "sharp": "0.35.5",
+          "tiff": "4.7.2",
+          "uhdr": "2.0.2",
+          "vips": "8.18.7",
+          "webp": "1.6.0",
+          "xml2": "2.15.4",
+          "zlib-ng": "2.3.3"
+        },
+        "commit": "debcce716e5b563eec881eb24eaa41aebcccac30",
+        "lockSha256": "7c02fb7f8cc3c8386a1d9bc00c132d318cd4964ba1fea991e3c991cad19175e8",
+        "node": "22.21.1"
+      },
+      "processingStages": [
+        "IR",
+        "MZ_FRAGMENTS"
+      ]
+    }
+  ]
+}

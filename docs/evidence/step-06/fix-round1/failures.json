@@ -1,0 +1,32 @@
+[
+  {
+    "command": "pnpm --filter @tileset/persistence build first",
+    "result": "FAIL missing close parenthesis during transaction wrapping; fixed",
+    "log": "build-first.log.txt"
+  },
+  {
+    "command": "second persistence build",
+    "result": "FAIL backup write helper missing checked step binding; fixed",
+    "log": "build-second.log.txt"
+  },
+  {
+    "command": "pnpm build:prototype first",
+    "result": "FAIL same helper gap before repair",
+    "log": "build-all-first.log.txt"
+  },
+  {
+    "command": "pnpm lint first",
+    "result": "FAIL unused test helper; removed unused helper only",
+    "log": "lint-first.log.txt"
+  },
+  {
+    "command": "node scalar probe overlapping clean production build",
+    "result": "FAIL ERR_MODULE_NOT_FOUND generated dist absent; after complete build sequential rerun78/78",
+    "log": "legacy-parallel-failure.json"
+  },
+  {
+    "command": "evidence assembly first",
+    "result": "FAIL adapted probe filename dot/hyphen mismatch; script fixed; no source/test change",
+    "retained": "original tool output/private checkpoint"
+  }
+]

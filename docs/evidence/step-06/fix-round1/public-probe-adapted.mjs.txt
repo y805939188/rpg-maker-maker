@@ -1,0 +1,57 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {RawSource,validatedDecodedSource,styleProfile,buildProcessedAsset,hashBytes} from '@tileset/asset-core';
+import {processShoreline,shorelineParameters,shorelineRecipe} from '@tileset/material-processing';
+import {compileFragment,validateFragment} from '@tileset/mz-compiler';
+import {Persistence,archiveDomain,replayDomainArchive,replayArchives} from '@tileset/persistence';
+import {ReplaySession} from '../../../../packages/persistence/dist/replay.js';
+import {PROFILE} from '../../../../dist/src/profile.js';
+import {makeCompilerFixture} from '../../../../dist/scripts/step04-fixture.js';
+import {archiveFixture,currentBuildContext} from '../../../../dist/scripts/pack-export.js';
+import {fragmentsFor,pairOperations} from '../../../../dist/scripts/step05-fixture.js';
+const root=resolve('.local/step06/fix-round1/probes'); const results={candidate:process.env.FIX_CANDIDATE,checks:[]};
+const record=(name,data)=>{results.checks.push({name,...data}); console.log(name,JSON.stringify(data));};
+const reject=async(name,fn)=>{try{await fn(); record(name,{rejected:false});}catch(e){record(name,{rejected:true,error:e.message});}};
+export function taskSnapshot(references=[]){return {contractVersion:'task-snapshot-v1',configurationVersion:'independent-mock-config-v1',taskKind:references.length?'IMAGE_EDIT':'IMAGE_GENERATE',model:{provider:'mock',modelId:'synthetic-only',modelVersion:'1',adapterVersion:'mock-provider-v1',parameters:{nested:{quality:2}}},prompts:{main:{id:'synthetic',revision:'1',content:'Synthetic independent fixture.'},task:{id:'synthetic-task',revision:'1',content:'Mock protocol only.'},supplemental:''},targetProfile:{id:PROFILE.id,version:PROFILE.version},style:{id:'independent-style',revision:'1',parameters:{}},structuredParameters:{density:1},references};}
+const store=new Persistence(process.env.DATABASE_URL,resolve('.local/assets'),PROFILE);
+try{
+ const provenance={origin:'manual',author:'Independent literal control',license:'CC0-1.0',toolVersion:'review-v1',parents:[]};
+ const source=(id,role,pixels,revision=1)=>{const bytes=new Uint8Array(pixels);const raw=new RawSource({id,role,revision,density:1,encoding:'rgba8',bytes,provenance});return validatedDecodedSource(raw,{width:2,height:2,data:bytes});};
+ const grass=source('review-grass','grass',[20,40,60,255,20,40,60,255,20,40,60,255,20,40,60,255]);
+ const water=[source('review-water-a','water',Array(4).fill([1,2,3,255]).flat()),source('review-water-b','water',Array(4).fill([4,5,6,255]).flat())];
+ const mask=source('review-mask','static-mask',[255,255,255,255,0,0,0,255,0,0,0,255,0,0,0,255]);
+ const overlay=source('review-overlay','bank-overlay',Array(16).fill(0));
+ const style=styleProfile('review-style',1,{logicalPixelScale:1,palette:[[20,40,60],[1,2,3],[4,5,6]],lighting:'flat',outline:'none'});
+ const parameters=shorelineParameters('review-parameters',1,{geometry:{width:2,height:2,tileWidth:2,tileHeight:2,regions:[{name:'whole',role:'center',rect:{x:0,y:0,width:2,height:2}}]},animation:{frameCount:2,sequence:[0,1],durations:[7,11],timebase:'milliseconds',loop:false},composition:'linear-srgb-source-over',mask:'white-static-bank'});
+ const recipe=shorelineRecipe('review-recipe',1,{version:'fixed-shoreline-v1',grass:grass.ref,water:water.map(s=>s.ref),staticMask:mask.ref,bankOverlay:overlay.ref,style:style.ref,parameters:parameters.ref});
+ const input={sources:[grass,...water,mask,overlay],style,parameters,recipe};
+ const built=buildProcessedAsset(processShoreline(input),'independent'); const domain=archiveDomain(input);
+ const replay=await replayDomainArchive(domain); assert.equal(replay.built.ir.contentHash,built.ir.contentHash);assert.equal(replay.built.targetCompilation,'NOT_EXECUTED');
+ assert.deepEqual([...replay.built.ir.frames[0].bytes()],[20,40,60,255,1,2,3,255,1,2,3,255,1,2,3,255]);
+ record('generic-raw-rgba-2-frame-control',{irHash:built.ir.contentHash,animation:replay.built.ir.animation,targetCompilation:replay.built.targetCompilation});
+ await reject('generic-native-target-rejection',()=>compileFragment(replay.built.ir,'a1-water'));
+ await reject('generic-fake-built-state',()=>replayDomainArchive({...domain,state:'BUILT_ARTIFACT'}));
+ const bad=structuredClone(domain);bad.sources[0].bytes=Buffer.alloc(16).toString('base64');await reject('generic-byte-content-invalid',()=>replayDomainArchive(bad));
+ const incomplete=structuredClone(domain);incomplete.sources.pop();await reject('generic-missing-dependency',()=>replayDomainArchive(incomplete));
+ const mutant=structuredClone(domain);mutant.parameters.value.animation.durations[0]=0;await reject('generic-invalid-animation',()=>replayDomainArchive(mutant));
+ const project=await store.createProject('independent-public-probe');const saved=await store.saveDomainArchive(project.id,domain);const recovered=await store.readDomainRecipe(project.id,saved.recipeId);assert.equal(recovered.built.ir.contentHash,built.ir.contentHash);
+ const bytes=recovered.sources[0].raw.bytes();bytes.fill(0);recovered.built.ir.frames[0].bytes().fill(0);assert.equal((await store.readDomainRecipe(project.id,saved.recipeId)).built.ir.contentHash,built.ir.contentHash);
+ const grass2=source('review-grass','grass',[...grass.raw.bytes()],2);const recipe2=shorelineRecipe('review-recipe',2,{...recipe.value,grass:grass2.ref});
+ await store.saveDomainArchive(project.id,archiveDomain({...input,sources:[grass2,...water,mask,overlay],recipe:recipe2}));await store.projectSnapshot(project.id);
+ const asset=await store.db.originalAsset.findUniqueOrThrow({where:{projectId_logicalId:{projectId:project.id,logicalId:grass.ref.id}}});
+ const refs=await store.db.assetRevision.findMany({where:{assetId:asset.id},orderBy:{revision:'asc'}});assert.equal(refs[0].sourceSha,refs[1].sourceSha);
+ let later;try{later=await store.createTask(project.id,taskSnapshot([{assetId:asset.id,revision:'2',sha256:refs[1].sourceSha}]));record('exact-task-reference-revision-2',{accepted:true,taskId:later.id});}catch(e){record('exact-task-reference-revision-2',{accepted:false,error:e.message,revisionRows:refs.map(r=>({revision:r.revision,sourceSha:r.sourceSha,contentHash:r.contentHash})),assetId:asset.id,projectId:project.id});}
+ assert.ok(later,'Exact revision2 must now be accepted');
+ const first=await store.createTask(project.id,taskSnapshot([{assetId:asset.id,revision:'1',sha256:refs[0].sourceSha}]));record('exact-task-reference-revision-1-control',{accepted:true,taskId:first.id});
+ await reject('wrong-task-reference-sha',()=>store.createTask(project.id,taskSnapshot([{assetId:asset.id,revision:'1',sha256:'0'.repeat(64)}])));
+ const fixture=await makeCompilerFixture('art');const archive=archiveFixture(fixture);const session=new ReplaySession();const cached=await replayArchives([archive],session);validateFragment(cached.fragments[0]);
+ for(const field of ['revision','role','validationHash']){const altered=structuredClone(archive);if(field==='revision')altered.sources[0].descriptor.revision++;if(field==='role')altered.sources[0].descriptor.role='water';if(field==='validationHash')altered.sources[0].validationHash='0'.repeat(64);await reject('cache-hard-validation-'+field,()=>replayArchives([altered],session));}
+ await reject('fake-compiler-owned-json',()=>validateFragment(JSON.parse(JSON.stringify(cached.fragments[0]))));
+ const nativeProject=await store.createProject('independent-bound-native');await store.saveDomainArchive(nativeProject.id,archiveDomain(fixture));await store.saveArchives(nativeProject.id,[archive]);
+ const adopted=await store.adopt(nativeProject.id,0,fixture.built.ir.dependencies);const pack=await store.createPack(nativeProject.id,'review-bound-pack');
+ const context=await currentBuildContext(results.candidate,hashBytes(await readFile('pnpm-lock.yaml')));const prepared=await store.prepareBuild(nativeProject.id,pack.id,adopted.id,pairOperations('review',1,fragmentsFor(fixture)),context);const published=await store.publish(prepared);assert.equal((await store.publish(prepared)).id,published.id);const read=await store.readBuild(prepared.id);await store.acceptance(prepared.id,'STRUCTURAL','PASS',{candidate:results.candidate,scope:'independent-public-probe'});
+ record('native-bound-publication-control',{buildId:published.id,manifestSha256:published.manifestSha,publication:published.publication,files:Object.fromEntries(Object.entries(read.files).map(([name,b])=>[name,{bytes:b.length,sha256:hashBytes(b)}])),projectId:nativeProject.id,packId:pack.id,adoptedId:adopted.id,context,processingStages:(await store.db.processingRecord.findMany({where:{projectId:nativeProject.id}})).map(r=>r.stage)});
+ await writeFile(resolve(root,'private/native-prepared.json'),JSON.stringify({...prepared,files:Object.fromEntries(Object.entries(prepared.files).map(([name,b])=>[name,Buffer.from(b).toString('base64')]))}));
+ await writeFile(resolve(root,'evidence/public-probe.json'),JSON.stringify(results,null,2)+'\n');
+}finally{await store.close();}

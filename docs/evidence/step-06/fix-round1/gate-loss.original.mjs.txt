@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {resolve} from 'node:path';
+import {readFile,writeFile,readdir} from 'node:fs/promises';
+import {Persistence} from '@tileset/persistence';
+import {MockProvider,Executor,Archiver} from '@tileset/local-executor';
+import {PROFILE} from '../../dist/src/profile.js';
+const pg=createRequire(resolve('packages/persistence/package.json'))('pg');
+const root=resolve('.local/step06-review'); const url=process.env.DATABASE_URL;
+const store=new Persistence(url,resolve(root,'assets'),PROFILE);
+const snapshot={contractVersion:'task-snapshot-v1',configurationVersion:'gate-loss-synthetic-v1',taskKind:'IMAGE_GENERATE',model:{provider:'mock',modelId:'synthetic',modelVersion:'1',adapterVersion:'mock-provider-v1',parameters:{}},prompts:{main:{id:'synthetic',revision:'1',content:'Mock only'},task:{id:'synthetic-task',revision:'1',content:'Gate test'},supplemental:''},targetProfile:{id:PROFILE.id,version:PROFILE.version},style:{id:'synthetic',revision:'1',parameters:{}},structuredParameters:{},references:[]};
+const audit=[];const project=await store.createProject('gate-loss-probe');await store.projectSnapshot(project.id);const task=await store.createTask(project.id,snapshot);
+let release;const block=new Promise(r=>release=r);let checkpoint;const reached=new Promise(r=>checkpoint=r);
+const provider=new MockProvider(resolve(root,'gate-loss-remote'),await readFile('tests/fixtures/art-ground.png'),async point=>{if(point==='remote-created')audit.push({point,at:Date.now()});});
+const executor=new Executor(store,{adapterFor:()=>provider},new Archiver(store,provider),async point=>{if(point==='intent-durable'){checkpoint();await block;}});
+const pending=executor.resume(task.id,'WAIT').then(()=>({ok:true}),e=>({ok:false,error:e.message}));
+const observer=new pg.Client({connectionString:url});await observer.connect();
+try{
+ await reached;
+ const rows=(await observer.query("SELECT pid FROM pg_locks WHERE locktype='advisory' AND classid=6007 AND objid=hashtext($1)::bigint & 4294967295 AND granted",['task:'+task.id])).rows;
+ assert.equal(rows.length,1);await observer.query('SELECT pg_terminate_backend($1)',[rows[0].pid]);
+ // Observe the former session gone, so error callback has run before continuing the operation.
+ for(let n=0;n<100;n++){if(!(await observer.query('SELECT 1 FROM pg_stat_activity WHERE pid=$1',[rows[0].pid])).rows.length)break;await new Promise(r=>setTimeout(r,10));}
+ await new Promise(r=>setTimeout(r,50));
+ await observer.query('SELECT pg_advisory_lock(6006,0)');audit.push({point:'maintenance-exclusive-acquired',at:Date.now()});release();
+ for(let n=0;n<100;n++){if((await provider.ids()).length)break;await new Promise(r=>setTimeout(r,10));}
+ const remoteIds=await provider.ids();audit.push({point:'remote-observed-under-maintenance-lock',count:remoteIds.length,at:Date.now()});
+ await observer.query('SELECT pg_advisory_unlock(6006,0)');const result=await pending;
+ const detail=await store.taskDetail(task.id);assert.equal(remoteIds.length,1);
+ const record={candidate:'a2878a922db93c14d29e0f128bd14e6b41fc09af',killedOwnedGatePid:rows[0].pid,taskId:task.id,audit,result,taskState:detail.state,externalId:detail.predictionId,attempts:detail.attempts,violation:'Provider submit executed after gate connection lost while exclusive maintenance lock held'};
+ await writeFile(resolve(root,'evidence/gate-loss.json'),JSON.stringify(record,null,2)+'\n');console.log(JSON.stringify(record));
+}finally{release();await observer.end();await pending;await store.close();}

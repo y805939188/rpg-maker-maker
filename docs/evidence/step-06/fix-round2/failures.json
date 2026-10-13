@@ -1,0 +1,28 @@
+{
+  "preserved": [
+    {
+      "phase": "pre-freeze intermediate implementation",
+      "command": "pnpm test:step06",
+      "exit": 1,
+      "result": "21/22 passed +1 unhandled rejection;169.69s",
+      "cause": "Author initially rejected writes started in a maintenance callback; existing test expected a queued PG session to start after normal maintenance release. Corrected gate to retain this queue and cancel it only on real lock loss; original test/budget unchanged.",
+      "log": "logs/test-step06-pre-freeze.log.txt",
+      "recovery": "corrected impact7/7; pre-freeze complete23/23; exact frozen complete23/23"
+    }
+  ],
+  "priorFailureHistory": "ALL_RETAINED_IN_PRIOR_COMMITS_AND_OWN_LOCAL",
+  "exploratoryReads": [
+    {
+      "result": "file not found",
+      "paths": [
+        "packages/persistence/tests/config.test.ts before its creation",
+        "packages/persistence/tests/backup.test.ts (backup cases belong to integration.test.ts)",
+        ".local/step06/fix-round1/probe-original-gate.mjs",
+        ".local/step06/fix-round1/pack-regression.mjs"
+      ],
+      "note": "Read-only filename lookups; not tests or lost implementation evidence."
+    }
+  ],
+  "thresholds": "UNCHANGED",
+  "environmentRepair": "NO_RESET_NO_UPGRADE_NO_UNKNOWN_PROCESS_KILL"
+}

@@ -1,0 +1,33 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "owner": "step_coder",
+  "worktree": "dedicated original coding Worktree",
+  "node": "22.21.1",
+  "pnpm": "10.20.0",
+  "postgres": [
+    {
+      "version": "14.20 (Homebrew)"
+    }
+  ],
+  "ports": {
+    "postgres": 55466,
+    "api": 4366,
+    "web": 5266
+  },
+  "assetRoot": ".local/assets",
+  "testRestore": "New empty tileset_ databases on owned PG55466, absent roots under own .local; exact names/roots in original-db and round1-regression. No55468used.",
+  "backupPause": "related writes/tasks/cleanup gated; real pg_dump/restore in full suite; actual rebuild after restore",
+  "credentials": "OWN_EXISTING_ENV_ONLY_NOT_EXPORTED",
+  "ownedTerminations": "only test leases verified by pg_locks before pg_terminate_backend; actual test child processes owned by their spawning test",
+  "notExecuted": [
+    "remoteCI",
+    "formalIndependentRound3",
+    "newMZGUI/game/manualvisual",
+    "newFullNativeCPUOracle",
+    "OriginalNativeHost",
+    "singlelivepg_restore_abortExperiment (previous independent report also records deferred)",
+    "realModel/ProviderSDK/Key/PromptRegistry/Composer/Redis/SaaS",
+    "step07",
+    "approval/merge/push"
+  ]
+}

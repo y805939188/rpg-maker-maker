@@ -37,3 +37,18 @@
 历史步骤05独立审查检查点（2026-10-13）：功能候选 `c09027f921e7d67469b301083db89acc44433d9e`、受审文档HEAD `ed189f7c274a7f397d261630bae396abb456665d`；[独立报告](../reviews/step-05-independent-review.md)与[认可项登记](STEP_05_BASELINE.md#原候选独立审查检查点2026-10-13)分开记录已获支持部分和阻断项。整体REQUIRES_REVISION，覆盖COMPLETE_FOR_SCOPE，统一状态CHANGES_REQUESTED；四发布入口目录归属缺陷STEP05-IR-001待下一轮Coding修复与回归。成功产物、ZIP/旧地图材料可用不等于阶段批准；步骤05MZ NOT_EXECUTED、步骤06未启动。此次仅更新文档并保存既有独立报告/脱敏证据原字节，没有修改生产代码/测试或后补旧Manifest PASS。
 
 当前步骤05整改检查点（2026-10-13）：受测功能 `ad669a06218b6cf775f32b8333d75d9dd3f9186f`；四入口归属修复与完整复测完成，状态READY_FOR_REVIEW，STEP05-IR-001仅记IMPLEMENTED_AND_SELF_TESTED_PENDING_INDEPENDENT_REVIEW，不修改原REQUIRES_REVISION报告或旧Manifest。用户人工观察已于2026-10-13记录PASS_USER_REPORTED，截图/录像未提供、原装Host延期；本轮确认PNG/布局/来源等56文件不变并引用既有观察。下一门禁仍是新候选独立PASS与用户批准，步骤06未启动。
+
+当前步骤06 Coding 检查点（2026-10-13，本轮授权覆盖旧停止文字）：
+
+| 要求                                              | 最终候选作者证据                                                                                       | 边界                                                                            |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| 源/不可变 revision、配方/依赖、通用 IR 与真实恢复 | a2878a9；公开230测试含通用 RGBA 重放；DB 独立实例/备份后的实际 IR 恢复                                 | 原 PNG/RGBA 字节、像素独立；IR 与 MZ 编译引用分开；不以标签伪造拥有对象         |
+| Pack/Slot 完整历史与退役                          | 真实 DB10项、恢复后重新 Build；8套 Pack 的56 payload 与批准步骤05相同                                  | 历史与当前/CAS 分开；RETIRED 不复用、不清空；Profile/Compiler 语义未变          |
+| 文件固化→短事务→CAS/失败保护                      | 实际半写 SIGKILL、前后 COMMIT SIGKILL、PostgreSQL 延期触发器在 COMMIT 拒绝、反向完成/同旧槽位争用      | 缺失/半文件不进入成功指针；DB 失败可定位孤立文件；重复身份不重复记录            |
+| Mock 提交未知/重启/归档/取消/冻结                 | 真实新 Executor/Provider 实例、子进程 kill/重启；ID/attempt/归档分别保存                               | Unknown 不盲重提；归档失败只重试归档；本地取消非供应商取消；无 SDK/Key/付费模型 |
+| 一致 DB+文件备份恢复                              | 新专属 fixture DB 真迁移、写入暂停、pg_dump/文件 SHA、空 DB/文件根恢复、源/通用配方/完整 Pack 实际重建 | DB/资产根/端口在 evidence 记录；原数据/失败现场保留；已提交/未知不当新请求重提  |
+| 旧工程与浏览器/生产 JS                            | check230、integration3、两模式 browser1+1、10 exports、165文件绑定工程构建                             | Web 仍 contracts-only 旧壳；步骤07 Studio、上传和交付动画预览未启动             |
+
+完整命令、失败保留、Build 与哈希见 [步骤06 Coding 报告](../reviews/step-06-coding.md)、[基线](STEP_06_BASELINE.md)、[命令](../evidence/step-06/coding/commands.json)。状态最多 **READY_FOR_REVIEW**；独立 Review/远端 CI 未由 Coding 执行，未批准、合并或推送。新 GUI/游戏/美术及 Original Host NOT_EXECUTED；既有步骤05独立 PASS/用户观察和延期边界保持。Main 唯一管理 orchestration 状态；Coding 未修改该状态文件。
+
+步骤06第1轮独立Review整改检查点：原a2878a9/bae为 REQUIRES_REVISION；IR-001 gate lifetime、IR-002精确reference revision、IR-003正式CLI资产根和IR-004工具日志可搬运性已在 `debcce716e5b563eec881eb24eaa41aebcccac30` 实施并作者复测。原Report SHA `a983e4a763801ee83a74afccfc9e71fece162a255092fe898ba6f99ebb5b5fa4` 和旧ledger不改写。新增真实pg_terminate_backend仅终止本实例明确持有的锁会话，维护独占后不再submit/固化/登记；已有可能请求保留UNKNOWN；scope事务fencing与exclusive备份失锁、同字节精确rev1/rev2/PG最大值及负控制、恢复后的选择、正式CLI自定义root read/rebuild/Mock均进入已有CI命令。作者冻结check230、DB16、API3、browser1+1、JS78、标准56payload/16PNG哈希通过。新证据/命令见 [整改报告](../reviews/step-06-fix-round-1-coding.md)及 [fix-round1](../evidence/step-06/fix-round1/commands.json)。本记录仅 SELF_TESTED_PENDING_ROUND2 / READY_FOR_REVIEW；下次正式第2轮，未IndependentPASS/批准/发布，步骤07未启动，Main canonical状态未写。
