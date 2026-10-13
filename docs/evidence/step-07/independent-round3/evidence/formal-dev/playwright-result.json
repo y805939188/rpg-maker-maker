@@ -1,0 +1,375 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/node_modules/@playwright/test/cli.js",
+      "test",
+      "--output=/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/.local/step07-review/private/formal-browser-dev-test-results"
+    ],
+    "configFile": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/playwright.config.ts",
+    "rootDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/.local/step07-review/private/formal-browser-dev-test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/.local/step07-review/private/formal-browser-dev-test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/e2e",
+        "snapshotDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5283",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": ".local/e2e/dev.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm dev",
+      "url": "http://127.0.0.1:4383/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "shell.test.ts",
+      "file": "shell.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "browser persists a project and restores its selected Studio",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 831,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:24:34.129Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0afc6be0f8e72ea599d4-bf5d21ad107ec9abeee9",
+          "file": "shell.test.ts",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "studio-recovery.test.ts",
+      "file": "studio-recovery.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "1300ms legal poll responses deliver success and failure, fast controls and late old projects stay correct",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 51271,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:24:35.184Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8d85ec25f47ffad97441-0bfd22fd1335014b856a",
+          "file": "studio-recovery.test.ts",
+          "line": 176,
+          "column": 1
+        },
+        {
+          "title": "three ordinary switches cancel unfinished processed work and display real decoded current PNG",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 37059,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:25:37.904Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8d85ec25f47ffad97441-3d9d5c67f260e765c065",
+          "file": "studio-recovery.test.ts",
+          "line": 283,
+          "column": 1
+        },
+        {
+          "title": "real bounded BUSY pressure recovers or reports failure, explicit reread and cancelled-frame download stay valid",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13158,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:26:14.970Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8d85ec25f47ffad97441-736bd000ea4c6facffbf",
+          "file": "studio-recovery.test.ts",
+          "line": 327,
+          "column": 1
+        },
+        {
+          "title": "invalid PNG and timed-out reads report errors, preserve last decoded frame and allow bounded explicit recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10320,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:26:28.130Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8d85ec25f47ffad97441-38fda4b40b857450edfc",
+          "file": "studio-recovery.test.ts",
+          "line": 401,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "studio.test.ts",
+      "file": "studio.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 86516,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:26:38.456Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ca266d4ddad09c174b7-c59b54606d0cbf540c25",
+          "file": "studio.test.ts",
+          "line": 130,
+          "column": 1
+        },
+        {
+          "title": "project switches keep real build/recipe identities coherent while data is delayed and legacy export is converted",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 32653,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T11:28:04.968Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ca266d4ddad09c174b7-f3002ef7c6bd9b408d41",
+          "file": "studio.test.ts",
+          "line": 390,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T11:24:13.837Z",
+    "duration": 263899.714,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

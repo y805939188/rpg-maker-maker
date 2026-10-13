@@ -1,0 +1,51 @@
+from PIL import Image
+import pathlib,json,hashlib,zipfile
+r=pathlib.Path.cwd();o=r/'.local/step07-review/evidence/browser';result={'reference':'independent Python/Pillow, handwritten MZ quarter coordinates and occupancy; no production renderer/descriptor expected','pixels':[],'zips':[]}
+sha=lambda b:hashlib.sha256(b).hexdigest()
+ground=Image.open(o/'input-0.png').convert('RGBA');water=[Image.open(o/f'input-{i}.png').convert('RGBA') for i in [1,2,3]];mask=Image.open(o/'input-4.png').convert('RGBA');overlay=Image.open(o/'input-5.png').convert('RGBA')
+assert set(overlay.getchannel('A').getdata())<={0,255}
+for y in range(144):
+ for x in range(96):
+  if mask.getpixel((x,y))[0]==255:
+   bank=overlay.getpixel((x,y)) if overlay.getpixel((x,y))[3] else ground.getpixel((x,y))
+   for w in water:w.putpixel((x,y),bank)
+for n,w in enumerate(water):assert w.tobytes()==Image.open(r/f'tests/fixtures/art-water-{n}.png').convert('RGBA').tobytes()
+scenes={'isolated':['.......','...#...','.......'],'edges':['.......','.#####.','.#####.','.#####.','.......'],'holes':['.......','.#####.','.#.#.#.','.#####.','.#...#.','.#####.','.......'],'channel':['.......','.##....','..#....','..###..','....#..','...##..','.......'],'pond':['...........','..###......','.#####.....','.######....','..######...','...#####...','.....##....','...........'],'large':['###########']*8}
+def render(rows,frame,waters=water):
+ out=Image.new('RGBA',(len(rows[0])*48,len(rows)*48));wet=lambda x,y:0<=y<len(rows) and 0<=x<len(rows[0]) and rows[y][x]=='#'
+ for y,row in enumerate(rows):
+  for x,t in enumerate(row):
+   qs=[18,17,14,13];src=ground
+   if t=='#':
+    src=waters[frame];N=wet(x,y-1);S=wet(x,y+1);W=wet(x-1,y);E=wet(x+1,y)
+    qs=[(18 if wet(x-1,y-1) else 2) if N and W else 16 if N else 10 if W else 8,(17 if wet(x+1,y-1) else 3) if N and E else 19 if N else 9 if E else 11,(14 if wet(x-1,y+1) else 6) if S and W else 12 if S else 22 if W else 20,(13 if wet(x+1,y+1) else 7) if S and E else 15 if S else 21 if E else 23]
+   for i,q in enumerate(qs):
+    sx=q%4*24;sy=q//4*24;out.paste(src.crop((sx,sy,sx+24,sy+24)),(x*48+i%2*24,y*48+i//2*24))
+ return out
+for scene,rows in scenes.items():
+ for n,frame in enumerate([0,1,2,1]):
+  ref=render(rows,frame);actual=Image.open(o/f'{scene}-{n}.png').convert('RGBA');assert actual.size==ref.size;diff=sum(a!=b for a,b in zip(actual.tobytes(),ref.tobytes()));result['pixels'].append({'scene':scene,'state':n,'sourceFrame':frame,'actual':sha(actual.tobytes()),'reference':sha(ref.tobytes()),'differentBytes':diff});ref.save(o/f'reference-{scene}-{n}.png');assert diff==0,(scene,n,diff)
+for n,f in enumerate([0,1,2,1]):
+ ref=Image.open(o/f'input-{f+1}.png').convert('RGBA').resize((192,288),Image.Resampling.NEAREST);actual=Image.open(o/f'creative-{n}.png').convert('RGBA');assert actual.tobytes()==ref.tobytes();result['pixels'].append({'creative':n,'sha256':sha(actual.tobytes()),'nearest':True})
+ref=render(scenes['large'],0).resize((1056,768),Image.Resampling.NEAREST);assert ref.tobytes()==Image.open(o/'integer-2x.png').convert('RGBA').tobytes()
+ref=render(scenes['isolated'],0,[water[1],water[1],water[2]]);actual=Image.open(o/'second-isolated-0.png').convert('RGBA');assert ref.tobytes()==actual.tobytes();assert actual.tobytes()!=Image.open(o/'isolated-0.png').convert('RGBA').tobytes();result['buildSwitchActualPixelChanged']=True
+expected=sorted(['A1.png','A2.png','INSTALL.md','history.json','layout.json','manifest.json','pack.json','sources.json'])
+for name in ['first','second','history','after-failure']:
+ with zipfile.ZipFile(o/(name+'.zip')) as z:
+  assert sorted(z.namelist())==expected;assert len(z.namelist())==8;assert z.testzip()==None
+  files={n:z.read(n) for n in z.namelist()};m=json.loads(files['manifest.json']);identity=json.dumps(m['identity'],sort_keys=True,ensure_ascii=False,separators=(',',':')).encode();bid='step05-pack-'+m['identity']['context']['commit'][:12]+'-'+sha(identity)[:16];assert bid==m['buildId']
+  for n,v in m['identity']['files'].items():assert sha(files[n])==v['sha256'] and len(files[n])==v['bytes']
+  assert sha(json.dumps(m['identity']['profile'],sort_keys=True,separators=(',',':')).encode())==m['identity']['profileHash'];assert m['identity']['context']['commit']=='5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0'
+  download=next(x for x in json.loads((o/'evidence.json').read_text())['downloads'] if x['name']==name);network=o/'network'/download['build']
+  for n in ['A1.png','A2.png','manifest.json']:assert files[n]==(network/n).read_bytes()
+  assert m['identity']['profile']==json.loads((network/'profile.json').read_text())
+  d=o/(name+'-unzipped');d.mkdir(exist_ok=True)
+  for n,b in files.items():(d/n).write_bytes(b)
+  result['zips'].append({'name':name,'dbBuildId':download['build'],'zipSha':sha((o/(name+'.zip')).read_bytes()),'manifestSha':sha(files['manifest.json']),'buildIdentity':bid,'all8FilesHash':True,'networkPngManifestProfileEqual':True})
+assert (o/'first.zip').read_bytes()==(o/'history.zip').read_bytes()
+# Independently reconstruct entire first output atlases, including transparent reserves.
+first=o/'first-unzipped';a1=Image.new('RGBA',(768,576));a2=Image.new('RGBA',(768,576));a2.paste(ground,(0,0))
+for f,w in enumerate(water):a1.paste(w,(384+f*96,0))
+for n,ref in [('A1.png',a1),('A2.png',a2)]:assert ref.tobytes()==Image.open(first/n).convert('RGBA').tobytes()
+result['fullAtlasIndependentReference']=True
+(o.parent/'browser-pixel-zip-verification.json').write_text(json.dumps(result,indent=2)+'\n');print('PASS: 24 scene states, 4 creative states, 2x nearest, changed Build pixels, four ZIPs + network identity and complete atlases')

@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_ROUND3_INDEPENDENT_REVIEW",
+  "phase": "STEP07_REVISION_AFTER_REVIEW_ROUND3",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "IN_PROGRESS",
+    "status": "CODING_REVISION",
     "reviewRounds": 3,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -589,7 +589,7 @@
         "diagnosisEvidence": "docs/evidence/orchestration-06-07/step07-coding-normal-recovery2.json"
       }
     ],
-    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-fix-round2-recovery2",
+    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-fix-round3",
     "docsHead": "36dc5cca1a7da77314e6889648d464d32ba0751f",
     "codingReport": "docs/reviews/step-07-fix-round-2-coding.md",
     "codingReportSha256": "1a4b31584691ba4625ab8ee9ac540e5983a5aaf1e997b1fad850e1d3816b08dd",
@@ -752,14 +752,16 @@
           {
             "id": "STEP07-R2-001",
             "severity": "P2",
-            "status": "OPEN",
-            "topic": "800ms polling generations discard all legal1.3s completion responses; UI remains building"
+            "status": "CLOSED_FIXED_INDEPENDENTLY_VERIFIED",
+            "topic": "800ms polling generations discard all legal1.3s completion responses; UI remains building",
+            "closedByRound": 3
           },
           {
             "id": "STEP07-R2-002",
             "severity": "P2",
-            "status": "OPEN",
-            "topic": "Valid processed preview BUSY429 persists as broken image on ordinary project switch3times"
+            "status": "CLOSED_FIXED_INDEPENDENTLY_VERIFIED",
+            "topic": "Valid processed preview BUSY429 persists as broken image on ordinary project switch3times",
+            "closedByRound": 3
           }
         ],
         "nonBlockingFindings": [],
@@ -769,68 +771,64 @@
         "round": 3,
         "candidate": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "docsHead": "36dc5cca1a7da77314e6889648d464d32ba0751f",
-        "status": "IN_PROGRESS",
+        "status": "REQUIRES_REVISION",
         "threadId": "01a134f2-b8b9-7731-a6fe-fd34db11c2fd",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker",
         "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round3-client.json",
-        "sourceProtectionFiles": 2239
+        "sourceProtectionFiles": 2239,
+        "overallStatus": "REQUIRES_REVISION",
+        "report": "docs/evidence/step-07/independent-round3/report.md",
+        "reportSha256": "c18e713ac7e3ee14b9b342234af5d6d4fe9225a67a547ceb93b003ccbf4c6fdf",
+        "evidenceLedger": "docs/evidence/step-07/independent-round3/evidence/ledger.json",
+        "evidenceLedgerSha256": "104eb01097323fcccb7f2f6f92efccbabe561f47505eafc014f9782833d67d9c",
+        "evidenceLedgerPayloadsVerified": 437,
+        "sourceChanged": false,
+        "nativeExitCode": 0,
+        "checks": {
+          "check": 263,
+          "step07": 9,
+          "step06": 23,
+          "api": 3,
+          "privacy": 5,
+          "productionBrowser": 7,
+          "developmentBrowser": 7,
+          "engineeringPayload": 206,
+          "oldPackPayload": 56,
+          "oldPackPNG": 16,
+          "nativeCPU": 8
+        },
+        "blockingFindings": [
+          {
+            "id": "STEP07-R3-001",
+            "severity": "P2",
+            "status": "OPEN",
+            "topic": "Continuous error polling remains unbounded after80seconds/118reads"
+          },
+          {
+            "id": "STEP07-R3-002",
+            "severity": "P2",
+            "status": "OPEN",
+            "topic": "Late old-project upload response clears current project component selection"
+          }
+        ],
+        "priorFindings": "R1/R2 CLOSED_IN_ORIGINAL_SCOPE; regressions independently maintained"
       }
     ],
-    "latestIndependentReview": "REQUIRES_REVISION_ROUND2",
+    "latestIndependentReview": "REQUIRES_REVISION_ROUND3",
     "codingFix": {
-      "round": 2,
-      "status": "FROZEN_SELF_TESTED_READY_ROUND3",
+      "round": 3,
+      "status": "IN_PROGRESS",
       "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
       "issues": [
-        "STEP07-R2-001",
-        "STEP07-R2-002"
+        "STEP07-R3-001",
+        "STEP07-R3-002"
       ],
-      "nextFormalReviewRound": 3,
-      "previousSource": "d343171ca866a8d1d1c4e272823ef475229d8032",
-      "previousDocs": "1a3881edd3a076649f86794b05ac47f4c4c7a315",
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round2-recovery2-client.json",
-      "nativeOutput": ".local/orchestration-06-07/step07-fix-round2",
-      "preFreezeValidation": {
-        "unitReadPollTests": 9,
-        "actualBrowserRecoveryTests": 4,
-        "status": "PASS_AUTHOR_ONLY_UNFROZEN",
-        "covers": [
-          "1300ms slow success/failure and fast controls",
-          "late old project response",
-          "ordinary fast switching3times currentPNG decoded identity SHA pixels",
-          "real BUSY bounded recovery and cancellation",
-          "invalidPNG timeout explicit reread"
-        ]
-      },
-      "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
-      "protectedHistoricalCoreFiles": 2073,
-      "changedSourceTestFiles": 8,
-      "boundValidationB8": {
-        "checkTests": 262,
-        "httpPostgresTests": 9,
-        "apiTests": 3,
-        "privacyTests": 5,
-        "productionBrowserTests": 7,
-        "developmentBrowser": {
-          "passed": 6,
-          "failed": 1,
-          "case": "existing R1 project identity switch case waiting processed PNG after first adoption",
-          "budgetUnchangedSeconds": 5
-        },
-        "status": "PARTIAL_AUTHOR_RESULTS_NOT_PASS_NO_INDEPENDENT_REVIEW"
-      },
-      "strictModeFix": "Microtask before sending PNG HTTP checks disposed setup; cancelled setup sends no request; original5s switch case now passed",
-      "boundValidation5D": {
-        "candidate": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
-        "checkTests": 263,
-        "httpPostgresTests": 9,
-        "apiTests": 3,
-        "privacyTests": 5,
-        "productionBrowserTests": 7,
-        "developmentBrowserTests": 7,
-        "status": "PASS_AUTHOR_BOUND_EXECUTED_CORE_RESTORE_ARTIFACT_DOCS_HANDOFF_PENDING"
-      },
-      "docsHead": "36dc5cca1a7da77314e6889648d464d32ba0751f"
+      "nextFormalReviewRound": 4,
+      "previousSource": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+      "previousDocs": "36dc5cca1a7da77314e6889648d464d32ba0751f",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round3-client.json",
+      "nativeOutput": ".local/orchestration-06-07/step07-fix-round3",
+      "nativeProcess": 63889
     },
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
@@ -989,28 +987,29 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "PG55483_RUNNING_FORMAL_REVIEW_STARTED",
-      "formalReviewStarted": true
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "formalReviewStarted": true,
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round3-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latest5d/docs36dc authorhandoff complete exit0;290 committedledger and295README/docs-only paths verified;206 actualartifact hashes match. NativeindependentR3 ultra/default dispatched exact5d,2239 protectedsourcefile baseline. Formalcount3/5;2R2 blockers stillopen pendingindependentclosure.",
+  "lastSuccessfulCheckpoint": "R3 complete exit0:437 original payloads verified/preserved;2239 tracked files unchanged; originalR2 findings closed,2newblockingP2. SameCoder xhigh/default resumed Fix3; Round4 pending, no07 candidatepush/mainmerge.",
   "blockers": [
     {
       "gate": "STEP07_TECHNICAL_RELEASE",
-      "id": "STEP07-R2-001",
+      "id": "STEP07-R3-001",
       "severity": "P2",
       "status": "OPEN",
-      "reason": "800ms polling generations discard all legal1.3s completion responses; UI remains building"
+      "reason": "Continuous error polling remains unbounded after80seconds/118reads"
     },
     {
       "gate": "STEP07_TECHNICAL_RELEASE",
-      "id": "STEP07-R2-002",
+      "id": "STEP07-R3-002",
       "severity": "P2",
       "status": "OPEN",
-      "reason": "Valid processed preview BUSY429 persists as broken image on ordinary project switch3times"
+      "reason": "Late old-project upload response clears current project component selection"
     }
   ],
-  "nextSafeAction": "Wait for complete independentR3 report, preserve originals and required evidence; latestPASS mandatory before candidateCI/preauthorizedacceptance/normalmainmerge/push. Stop after07publish;08–10notstarted.",
+  "nextSafeAction": "Complete Coding Fix3 and frozen source/docs/evidence handoff; independent Round4/5 before CI and publication.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -1044,5 +1043,5 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T11:11:52.354671+00:00"
+  "updatedAtUtc": "2026-10-13T12:32:06.181450+00:00"
 }

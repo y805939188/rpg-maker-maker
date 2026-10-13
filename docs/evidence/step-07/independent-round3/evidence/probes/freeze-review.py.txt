@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,hashlib,re,subprocess,datetime
+r=Path.cwd();o=r/'.local/step07-review';e=o/'evidence';(e/'probes').mkdir(exist_ok=True)
+for p in o.glob('*.mjs'):
+ (e/'probes'/(p.name+'.txt')).write_bytes(p.read_bytes())
+for p in o.glob('*.py'):
+ if p.name=='freeze-review.py':continue
+ (e/'probes'/(p.name+'.txt')).write_bytes(p.read_bytes())
+for p in o.glob('*.log'):
+ t=p.read_text(errors='replace');t=re.sub(r'postgres(?:ql)?://[^\s"\']+',lambda m:re.sub(r'//[^@/]+@','//REDACTED@',m[0]),t);(e/(p.name+'.txt')).write_text(t)
+for n in ['source-before.json','commands.jsonl']:(e/n).write_bytes((o/n).read_bytes())
+# Frozen screenshots already deliberately viewed; preserve only each actual existing hashed file.
+shots=json.loads((e/'screenshots-viewed.json').read_text())
+for x in shots:assert hashlib.sha256((o/x['path']).read_bytes()).hexdigest()==x['sha256'],x['path']
+assert all(not p.is_symlink() for p in e.rglob('*'))
+# Keep commands/private failures/controlled errors separate from result, no retry erases old files.
+(e/'execution-notes.json').write_text(json.dumps({'round':'3/5','reviewerErrors':[{'name':'migrate-before-build','exit':1,'retained':'migrate.log','reason':'dist/config.js absent before check/build; correct migrate later exit0'},{'name':'initial late mutation probe','exit':1,'retained':'late-mutation.log and evidence/late-mutation and prior-originals/r3-late-mutation.initial.mjs','reason':'read still processing caused valid429; exact label selector mismatch; settled valid201 control captured real UI defect'}],'controlledResponses':['poll read503: product unbounded error retry counterexample','processed429, invalidPNG, geometry96x143, body4MiB+1, clock60s: bounded/identity control PASS'],'raw':'.local/step07-review private logs/trace/dump/stage/immutable assets retained','serviceStop':'Only own API primary/restored/restarted and extra Vite stopped; real SIGKILL only own restored API18373; PG55483 running','ordinaryModelCalls':0,'serverConfiguration':'UNVERIFIED_NOT_EXPOSED'},indent=2)+'\n')
+p=o/'progress.json';j=json.loads(p.read_text());j.update({'phase':'COMPLETE','status':'REQUIRES_REVISION','conclusion':'REQUIRES_REVISION','completedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'round':'3/5','blocking':[{'id':'STEP07-R3-001','severity':'P2','summary':'continuous Studio error polling has no shared error count/total deadline'},{'id':'STEP07-R3-002','severity':'P2','summary':'late old-project upload response clears destination grass selection'}],'p0':0,'p1':0,'blockingP2':2,'newP3':0,'oldR2':{'STEP07-R2-001':'CLOSED in original scope','STEP07-R2-002':'CLOSED in original scope'},'preservedR1':'CLOSED with real regressions','checks':{'check':263,'step07':9,'step06':23,'api':3,'privacy':5,'productionBrowser':7,'developmentBrowser':7,'frozenFiles':2239,'engineeringPayload':206,'scalar':78,'packPayload':56,'packPNG':16,'nativeCPU':8,'sceneStates':24,'creativeStates':4,'clockBoundarySourceAndDelivery':24},'apiWeb':'CLOSED','pg':'55483 RUNNING private data retained','steps08to10':'NOT_STARTED','serverConfiguration':'UNVERIFIED_NOT_EXPOSED'});j.pop('prospectiveConclusion',None);j.pop('historicalR2',None);p.write_text(json.dumps(j,indent=2)+'\n')
+print('prepared evidence and final progress',len(list(e.rglob('*'))),'viewed screenshots',len(shots))

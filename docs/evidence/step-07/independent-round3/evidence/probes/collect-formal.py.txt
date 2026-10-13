@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,re,hashlib,shutil
+r=Path.cwd();o=r/'.local/step07-review';rows=[]
+for mode in ['production','dev']:
+ src=r/'.local/step07/browser'/mode;target=o/'evidence'/('formal-'+mode)
+ target.mkdir(exist_ok=False)
+ for p in src.rglob('*'):
+  if not p.is_file():continue
+  q=target/p.relative_to(src);q.parent.mkdir(parents=True,exist_ok=True);b=p.read_bytes()
+  if p.suffix in ['.json','.txt','.log']:
+   text=b.decode(errors='replace');text=re.sub(r'postgres(?:ql)?://[^\s"\']+',lambda m:re.sub(r'//[^@/]+@','//REDACTED@',m[0]),text);b=text.encode()
+  q.write_bytes(b);rows.append({'source':str(p.relative_to(r)),'copy':str(q.relative_to(o)),'sha256':hashlib.sha256(b).hexdigest(),'originalSHA':hashlib.sha256(p.read_bytes()).hexdigest()})
+ src=r/'.local/e2e'/(mode+'.json');q=target/'playwright-result.json';q.write_bytes(src.read_bytes())
+formal=o/'formal-workspace/.local/step07/tests'
+for root in formal.iterdir():
+ target=o/'evidence/formal-http';target.mkdir(exist_ok=True)
+ for p in root.glob('*.json'):
+  t=re.sub(r'postgres(?:ql)?://[^\s"\']+',lambda m:re.sub(r'//[^@/]+@','//REDACTED@',m[0]),p.read_text());q=target/p.name;q.write_text(t)
+(o/'evidence/formal-copy-provenance.json').write_text(json.dumps(rows,indent=2)+'\n');print('formal copies',len(rows),'original output retained; only own artifacts')
