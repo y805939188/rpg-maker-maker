@@ -1,0 +1,43 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ Uint8Array(42) [
+- Buffer(42) [Uint8Array] [
+    82,
+    50,
+    32,
+    105,
+    110,
+
+    at file:///Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/storage-extra.mjs:9:209
+    at file:///Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/packages/persistence/dist/storage.js:184:31
+    at AssetStorage.step (file:///Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/packages/persistence/dist/storage.js:27:29)
+    at async AssetStorage.publish (file:///Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/packages/persistence/dist/storage.js:184:9)
+    at async file:///Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/storage-extra.mjs:9:149 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: Uint8Array(42) [
+     82,  50,  32, 105, 110, 100, 101, 112,
+    101, 110, 100, 101, 110, 116,  32, 111,
+    114, 105, 103, 105, 110,  97, 108,  32,
+    105, 109, 109, 117, 116,  97,  98, 108,
+    101,  32, 114, 101, 115, 111, 117, 114,
+     99, 101
+  ],
+  expected: Buffer(42) [Uint8Array] [
+     82,  50,  32, 105, 110, 100, 101, 112,
+    101, 110, 100, 101, 110, 116,  32, 111,
+    114, 105, 103, 105, 110,  97, 108,  32,
+    105, 109, 109, 117, 116,  97,  98, 108,
+    101,  32, 114, 101, 115, 111, 117, 114,
+     99, 101
+  ],
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v22.21.1

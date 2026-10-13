@@ -1,0 +1,44 @@
+
+> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker
+> pnpm --filter @tileset/api db:migrate
+
+
+> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/apps/api
+> node scripts/migrate.mjs
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "tileset_studio", schema "public" at "127.0.0.1:55479"
+
+5 migrations found in prisma/migrations
+
+Applying migration `202610120001_step02_project`
+Applying migration `202610130001_step06_persistence`
+Applying migration `202610130002_step06_task_references`
+Applying migration `202610130003_step06_processing_stages`
+Applying migration `202610130004_step07_studio`
+
+┌─────────────────────────────────────────────────────────┐
+│  Update available 6.19.3 -> 8.0.0-rc.22                 │
+│                                                         │
+│  This is a major update - please follow the guide at    │
+│  https://pris.ly/d/major-version-upgrade                │
+│                                                         │
+│  Run the following to update                            │
+│    npm i --save-dev prisma@latest                       │
+│    npm i @prisma/client@latest                          │
+└─────────────────────────────────────────────────────────┘
+The following migration(s) have been applied:
+
+migrations/
+  └─ 202610120001_step02_project/
+    └─ migration.sql
+  └─ 202610130001_step06_persistence/
+    └─ migration.sql
+  └─ 202610130002_step06_task_references/
+    └─ migration.sql
+  └─ 202610130003_step06_processing_stages/
+    └─ migration.sql
+  └─ 202610130004_step07_studio/
+    └─ migration.sql
+      
+All migrations have been successfully applied.

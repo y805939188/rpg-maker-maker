@@ -1,0 +1,11 @@
+from pathlib import Path
+import json,re,hashlib
+r=Path('.local/step07-review');out=r/'evidence/formal-http';out.mkdir(exist_ok=True);rows=[]
+for f in (r/'formal-workspace/.local/step07/tests').glob('*/*.json'):
+ if f.name.endswith('env.json'):continue
+ text=f.read_text();san=re.sub(r'postgres(?:ql)?://[^\s"\']+','[DATABASE_URL_REDACTED]',text)
+ try:json.loads(san)
+ except:continue
+ p=out/f.name;p.write_text(san);rows.append({'original':str(f.relative_to(r)),'sha256':hashlib.sha256(f.read_bytes()).hexdigest(),'evidence':str(p.relative_to(r)),'sanitized':san!=text})
+(r/'evidence/formal-http-collection.json').write_text(json.dumps({'rows':rows},indent=2)+'\n')
+print('formal HTTP evidence',len(rows))

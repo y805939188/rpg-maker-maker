@@ -1,0 +1,22 @@
+import os,sys,subprocess,json,time,pathlib,re
+root=pathlib.Path(__file__).resolve().parents[2]
+review=root/".local/step07-review"
+env=os.environ.copy();env["PATH"]="/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:"+env["PATH"]
+if (root/".env").exists():
+ for line in (root/".env").read_text().splitlines():
+  if line and not line.startswith("#") and "=" in line:
+   k,v=line.split("=",1);env[k]=v
+if env.get("REVIEW_DB_JSON"):
+ dbconfig=json.loads(pathlib.Path(env["REVIEW_DB_JSON"]).read_text());env["DATABASE_URL"]=dbconfig["url"];env["TILESET_ASSET_ROOT"]=dbconfig["assets"]
+label=sys.argv[1];argv=sys.argv[2:];cwd=env.get("REVIEW_CWD",str(root));start=time.time()
+raw=review/"private"/(label+".log")
+with raw.open("wb") as log:
+ result=subprocess.run(argv,cwd=cwd,env=env,stdout=log,stderr=subprocess.STDOUT)
+contents=raw.read_text(errors="replace")
+for k in ["DATABASE_URL","PGPASSWORD"]:
+ if env.get(k): contents=contents.replace(env[k],"[REDACTED]")
+contents=re.sub(r"postgres(?:ql)?://[^\s\"\']+","[DATABASE_URL_REDACTED]",contents)
+(review/"evidence"/(label+".log.txt")).write_text(contents)
+row={"label":label,"argv":argv,"cwd":cwd,"exitCode":result.returncode,"durationSeconds":round(time.time()-start,3),"environment":{k:env.get(k) for k in ["API_PORT","WEB_PORT","TILESET_ASSET_ROOT","STEP07_TEST_API_PORT","INTEGRATION_API_PORT","E2E_MODE"]}}
+with (review/"evidence/commands.jsonl").open("a") as f: f.write(json.dumps(row)+"\n")
+print(json.dumps(row));print(contents[-3500:]);sys.exit(result.returncode)

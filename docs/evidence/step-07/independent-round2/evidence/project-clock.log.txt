@@ -1,0 +1,29 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(received).toBe(expected) // Object.is equality
+
+Expected: 96
+Received: 0
+
+Call Log:
+- Timeout 5000ms exceeded while waiting on the predicate
+    at captureRawStack (/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toBe (/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at /Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/project-clock.mjs:20:148 {
+  matcherResult: {
+    pass: false,
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: 96\n' +
+      'Received: 0\n' +
+      '\n' +
+      'Call Log:\n' +
+      '- Timeout 5000ms exceeded while waiting on the predicate',
+    name: 'toBe'
+  }
+}
+
+Node.js v22.21.1

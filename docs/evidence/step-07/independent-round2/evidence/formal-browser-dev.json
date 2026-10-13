@@ -1,0 +1,251 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/node_modules/@playwright/test/cli.js",
+      "test",
+      "--config",
+      ".local/step07-review/playwright.config.mjs"
+    ],
+    "configFile": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/playwright.config.mjs",
+    "rootDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/private/playwright-final-dev",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/private/playwright-final-dev",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/e2e",
+        "snapshotDir": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5279",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "on"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/evidence/formal-browser-dev.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm dev",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/",
+      "url": "http://127.0.0.1:4379/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "shell.test.ts",
+      "file": "shell.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "browser persists a project and restores its selected Studio",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 820,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T07:56:36.704Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/private/playwright-final-dev/shell-browser-persists-a-p-3b4e3-estores-its-selected-Studio/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0afc6be0f8e72ea599d4-bf5d21ad107ec9abeee9",
+          "file": "shell.test.ts",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "studio.test.ts",
+      "file": "studio.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 83917,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T07:56:37.766Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/private/playwright-final-dev/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ca266d4ddad09c174b7-c59b54606d0cbf540c25",
+          "file": "studio.test.ts",
+          "line": 130,
+          "column": 1
+        },
+        {
+          "title": "project switches keep real build/recipe identities coherent while data is delayed and legacy export is converted",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 34102,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-13T07:58:01.910Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker/.local/step07-review/private/playwright-final-dev/studio-project-switches-ke-9f7f3--legacy-export-is-converted/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ca266d4ddad09c174b7-f3002ef7c6bd9b408d41",
+          "file": "studio.test.ts",
+          "line": 390,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-13T07:56:15.309Z",
+    "duration": 140845.842,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,6 @@
+import { defineConfig } from "@playwright/test";
+import { fileURLToPath } from "node:url";
+const root=fileURLToPath(new URL("../../",import.meta.url));
+const review=fileURLToPath(new URL(".",import.meta.url));
+const dev=process.env.E2E_MODE==="dev";
+export default defineConfig({testDir:root+"e2e",outputDir:review+"private/playwright-final-"+(dev?"dev":"production"),workers:1,retries:0,use:{baseURL:"http://127.0.0.1:"+(dev?5279:4379),browserName:"chromium",viewport:{width:1200,height:900},trace:"on"},webServer:{command:dev?"pnpm dev":"pnpm start",cwd:root,url:"http://127.0.0.1:4379/api/health",reuseExistingServer:false,timeout:30000},reporter:[["list"],["json",{outputFile:review+"evidence/formal-browser-"+(dev?"dev":"production")+".json"}]]});
