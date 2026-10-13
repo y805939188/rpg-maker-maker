@@ -73,6 +73,14 @@ const identity = {
         schemaSha256: sha(await readFile('apps/api/prisma/schema.prisma')),
       }
     : {}),
+  ...(step === 'step07'
+    ? {
+        studio: 'manual-studio-v1',
+        standardExport: 'mz-pack-build-v1',
+        pngHttpIngress: 'studio-png-http-v1',
+        previewClock: 'fixed-logical-updates-v1',
+      }
+    : {}),
   node: process.versions.node,
   pnpm: '10.20.0',
   lockSha256: sha(await readFile('pnpm-lock.yaml')),
@@ -110,7 +118,7 @@ try {
       userApproval: 'NOT_EXECUTED',
       nativeMZHost: 'NOT_EXECUTED',
     },
-    note: `${step} engineering baseline. MZ compatibility remains the step01 candidate and separate evidence. Requires pinned dependencies and generated Prisma client; ${['step06', 'step07'].includes(step) ? 'PostgreSQL/files publication, conservative Mock recovery and consistent backup; no real provider or Studio.' : step === 'step05' ? 'Compiler and stable Pack/Atlas; no database publication or provider runner.' : step === 'step04' ? 'single-material Compiler only; no production Pack or provider runner.' : 'no provider runner or formal target compiler/pack.'}`,
+    note: `${step} engineering baseline. MZ compatibility remains the step01 candidate and separate evidence. Requires pinned dependencies and generated Prisma client; ${step === 'step07' ? 'Manual PNG Studio, paired builds, actual standard exports, Pixi previews and QA; conservative Mock recovery; no real provider or AI workflow.' : step === 'step06' ? 'PostgreSQL/files publication, conservative Mock recovery and consistent backup; no real provider or Studio.' : step === 'step05' ? 'Compiler and stable Pack/Atlas; no database publication or provider runner.' : step === 'step04' ? 'single-material Compiler only; no production Pack or provider runner.' : 'no provider runner or formal target compiler/pack.'}`,
   };
   await writeFile(resolve(stage, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n', {
     flag: 'wx',
