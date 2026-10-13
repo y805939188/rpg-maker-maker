@@ -732,7 +732,7 @@
     "latestIndependentReview": "REQUIRES_REVISION_ROUND2",
     "codingFix": {
       "round": 2,
-      "status": "ACTIVE_SAME_CONTEXT_NATIVE_FIX",
+      "status": "IMPLEMENTED_PREFREEZE_VALIDATION_PASSED_PENDING_SOURCE_FREEZE",
       "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
       "issues": [
         "STEP07-R2-001",
@@ -742,7 +742,19 @@
       "previousSource": "d343171ca866a8d1d1c4e272823ef475229d8032",
       "previousDocs": "1a3881edd3a076649f86794b05ac47f4c4c7a315",
       "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round2-client.json",
-      "nativeOutput": ".local/orchestration-06-07/step07-fix-round2"
+      "nativeOutput": ".local/orchestration-06-07/step07-fix-round2",
+      "preFreezeValidation": {
+        "unitReadPollTests": 9,
+        "actualBrowserRecoveryTests": 4,
+        "status": "PASS_AUTHOR_ONLY_UNFROZEN",
+        "covers": [
+          "1300ms slow success/failure and fast controls",
+          "late old project response",
+          "ordinary fast switching3times currentPNG decoded identity SHA pixels",
+          "real BUSY bounded recovery and cancellation",
+          "invalidPNG timeout explicit reread"
+        ]
+      }
     },
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
@@ -871,7 +883,7 @@
       "migrationPreparation": "FIVE_MIGRATIONS_SUCCESS_NEW_EMPTY_DB_NO_RESET"
     }
   ],
-  "lastSuccessfulCheckpoint": "R2 final REQUIRES_REVISION preserved original report141155... and386 ledger files; source2084 unchanged; R1 closed;2 newUI blockers assigned nextCoding round2 fix. Reviewcount2/5 next3/5. OwnedR2PG55479 stopped, all private data retained.",
+  "lastSuccessfulCheckpoint": "SameCoder round2 fixes passed9 new read/poll tests and4 truebrowser recovery cases before freeze; new source/candidate full validation and independentR3 still pending. R2 report386 originalfiles retained, Step6endedvalidation branch safely deleted.",
   "blockers": [
     {
       "gate": "STEP07_TECHNICAL_RELEASE",
@@ -905,7 +917,22 @@
       "gitWorktreeRegisteredAfterArchive": false,
       "atUtc": "2026-10-13T04:55:55.827706+00:00",
       "preserved": "All Coding/Review private DBs assets backups and raw failures retained"
+    },
+    {
+      "operation": "DELETE_ENDED_STEP06_VALIDATION_BRANCH_LOCAL_AND_REMOTE",
+      "branch": "codex/step-06-validation",
+      "tip": "4a98470e7dfb6532c65c844bb167c5091ba90836",
+      "readbackRemoteMain": "cdbe4f57fdbe2b2ce75c9f679f1c21c041e0b242",
+      "tipIncludedMain": true,
+      "activeWorktreeUsers": 0,
+      "activeCI": false,
+      "ciRunId": 38326156800,
+      "ciStatus": "SUCCESS",
+      "sourceWorktreePreviouslyArchivedSafely": true,
+      "privateData": "ALL_CODING_REVIEW_DATA_RETAINED",
+      "remoteBranchReadback": "ABSENT",
+      "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T09:07:46.937574+00:00"
+  "updatedAtUtc": "2026-10-13T09:37:51.573589+00:00"
 }
