@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_APPROVED_PENDING_MAIN_MERGE",
+  "phase": "STEP06_PUBLISHED_STEP07_HANDOFF",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -62,7 +62,7 @@
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
-    "status": "APPROVED_PENDING_PUBLICATION",
+    "status": "PUBLISHED",
     "reviewRounds": 3,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
@@ -413,7 +413,13 @@
       "independentReview": "PASS",
       "candidateCI": 38326156800,
       "interpretation": "User predelegated technical acceptance; no claim of fresh per-round personal user review"
-    }
+    },
+    "publishedMain": "10de5624b82d8ada843d4c377d3e155c55610bcb",
+    "mainCI": {
+      "runId": 38328263937,
+      "status": "SUCCESS"
+    },
+    "publicationReceipt": "docs/evidence/orchestration-06-07/step06-publication.json"
   },
   "step07": {
     "status": "NOT_STARTED",
@@ -479,7 +485,7 @@
       "serviceStatus": "NOT_STARTED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_PREAUTHORIZED_TECHNICAL_ACCEPTANCE_AFTER_INDEPENDENT_PASS_AND_CANDIDATE_CI",
+  "lastSuccessfulCheckpoint": "STEP06_PUBLISHED_MAIN_REMOTE_READBACK_AND_MAIN_CI_SUCCESS",
   "blockers": [],
-  "nextSafeAction": "Integrate frozen reviewed source and documentation with orchestrator-only main records into validation branch; wait necessary candidate CI."
+  "nextSafeAction": "Create new step07 Coding/Review contexts from published main; implement human-material Studio and real exported-file preview, upload/QA and browser tests; stop after07 publication."
 }
