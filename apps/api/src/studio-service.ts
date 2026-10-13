@@ -1,4 +1,5 @@
 import { strict as assert } from 'node:assert';
+import { Prisma } from '@prisma/client';
 import { readFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { resolve } from 'node:path';
@@ -149,8 +150,8 @@ export class StudioService {
       this.release();
     }
   }
-  async project(id: string) {
-    const p = await this.store.db.project.findUnique({ where: { id } });
+  async project(id: string, db: Pick<Prisma.TransactionClient, 'project'> = this.store.db) {
+    const p = await db.project.findUnique({ where: { id } });
     if (!p)
       throw new StudioError(
         {
@@ -258,11 +259,71 @@ export class StudioService {
       );
   }
   async state(projectId: string): Promise<Studio> {
-    const project = await this.project(projectId);
+    // Capture related database metadata in one short MVCC snapshot. No files,
+    // PNG inspection, pixel processing or network calls run inside this read TX.
+    const metadata = await this.store.db.$transaction(
+      async (tx) => {
+        await tx.$executeRaw`SET TRANSACTION READ ONLY`;
+        const project = await this.project(projectId, tx);
+        const recipeRows = await tx.assetRevision.findMany({
+          where: { projectId, kind: 'recipe' },
+        });
+        const sourceRows = await tx.assetRevision.findMany({
+          where: { projectId, kind: 'source' },
+          orderBy: [{ logicalId: 'asc' }, { revision: 'desc' }],
+        });
+        const files = await tx.fileObject.findMany({
+          where: { sha256: { in: sourceRows.flatMap((r) => (r.sourceSha ? [r.sourceSha] : [])) } },
+        });
+        const snapshot = await tx.projectSnapshot.findUnique({
+          where: { projectId_revision: { projectId, revision: project.revision } },
+        });
+        const processing = await tx.processingRecord.findMany({
+          where: { projectId, stage: 'MZ_FRAGMENTS' },
+          include: { recipe: true },
+          orderBy: { recipe: { revision: 'desc' } },
+        });
+        const dependencies = await tx.revisionDependency.findMany({
+          where: { fromId: { in: processing.map((r) => r.recipeId) } },
+          include: { to: true },
+        });
+        const builds = await tx.build.findMany({
+          where: { projectId },
+          include: { projectSnapshot: true, finalExport: true },
+          orderBy: { createdAt: 'desc' },
+        });
+        const jobs = await tx.studioJob.findMany({
+          where: { projectId },
+          orderBy: { createdAt: 'desc' },
+          take: 30,
+        });
+        const tasks = await tx.logicalTask.findMany({
+          where: { projectId },
+          orderBy: { createdAt: 'desc' },
+          take: 30,
+        });
+        return {
+          project,
+          recipeRows,
+          sourceRows,
+          files,
+          snapshot,
+          processing,
+          dependencies,
+          builds,
+          jobs,
+          tasks,
+        };
+      },
+      {
+        isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead,
+        timeout: 5000,
+        maxWait: 1000,
+      },
+    );
+    const { project } = metadata;
     const sourceComponents = new Map<string, (typeof components)[number]>();
-    for (const recipe of await this.store.db.assetRevision.findMany({
-      where: { projectId, kind: 'recipe' },
-    })) {
+    for (const recipe of metadata.recipeRows) {
       const v = dbJson(recipe.value)['value'] as {
         grass: { id: string; revision: number; contentHash: string };
         water: { id: string; revision: number; contentHash: string }[];
@@ -278,18 +339,14 @@ export class StudioService {
       sourceComponents.set(`${v.bankOverlay.id}@${v.bankOverlay.revision}`, 'overlay');
     }
     const sources: Studio['sources'] = [];
-    for (const r of await this.store.db.assetRevision.findMany({
-      where: { projectId, kind: 'source' },
-      orderBy: [{ logicalId: 'asc' }, { revision: 'desc' }],
-    })) {
+    for (const r of metadata.sourceRows) {
       const value = dbJson(r.value);
       if (value['encoding'] === 'rgba8') continue;
       const d = value['descriptor'] as { density: number; role: string };
       assert.ok(r.sourceSha);
-      const f = await this.store.db.fileObject.findUniqueOrThrow({
-          where: { sha256: r.sourceSha },
-        }),
-        b = await this.store.storage.read(f),
+      const f = metadata.files.find((f) => f.sha256 === r.sourceSha);
+      assert.ok(f, 'Source file missing from metadata snapshot');
+      const b = await this.store.storage.read(f),
         dimensions = inspectPng(b);
       sources.push({
         id: r.id,
@@ -312,16 +369,10 @@ export class StudioService {
         role: d.role,
       });
     }
-    const snapshot = await this.store.db.projectSnapshot.findUnique({
-      where: { projectId_revision: { projectId, revision: project.revision } },
-    });
+    const snapshot = metadata.snapshot;
     const adoption = (snapshot?.adoption ?? []) as { kind: string; contentHash: string }[];
     const recipes: Studio['recipes'] = [];
-    for (const row of await this.store.db.processingRecord.findMany({
-      where: { projectId, stage: 'MZ_FRAGMENTS' },
-      include: { recipe: true },
-      orderBy: { recipe: { revision: 'desc' } },
-    })) {
+    for (const row of metadata.processing) {
       const recipe = dbJson(row.recipe.value),
         v = recipe['value'] as {
           grass: { id: string; revision: number };
@@ -330,10 +381,7 @@ export class StudioService {
           bankOverlay: { id: string; revision: number };
           style: { contentHash: string };
         };
-      const deps = await this.store.db.revisionDependency.findMany({
-        where: { fromId: row.recipeId },
-        include: { to: true },
-      });
+      const deps = metadata.dependencies.filter((d) => d.fromId === row.recipeId);
       const selected: Record<string, string> = {};
       for (const dep of deps)
         if (dep.to.kind === 'source') {
@@ -352,11 +400,7 @@ export class StudioService {
       });
     }
     const builds: Studio['builds'] = [];
-    for (const b of await this.store.db.build.findMany({
-      where: { projectId },
-      include: { projectSnapshot: true, finalExport: true },
-      orderBy: { createdAt: 'desc' },
-    })) {
+    for (const b of metadata.builds) {
       builds.push({
         id: b.id,
         version: b.expectedPackVersion + 1,
@@ -367,13 +411,7 @@ export class StudioService {
         createdAt: b.createdAt.toISOString(),
       });
     }
-    const jobs = (
-      await this.store.db.studioJob.findMany({
-        where: { projectId },
-        orderBy: { createdAt: 'desc' },
-        take: 30,
-      })
-    ).map((j) =>
+    const jobs = metadata.jobs.map((j) =>
       JobSchema.parse({
         id: j.id,
         state: j.state,
@@ -382,13 +420,7 @@ export class StudioService {
         createdAt: j.createdAt.toISOString(),
       }),
     );
-    const mockTasks = (
-      await this.store.db.logicalTask.findMany({
-        where: { projectId },
-        take: 30,
-        orderBy: { createdAt: 'desc' },
-      })
-    ).map((t) => ({
+    const mockTasks = metadata.tasks.map((t) => ({
       id: t.id,
       state: t.state,
       archiveState: t.archiveState,

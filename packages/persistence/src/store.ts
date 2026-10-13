@@ -673,10 +673,55 @@ export class Persistence {
       const refs: Record<string, FileRef> = {};
       for (const [n, b] of Object.entries(exportFiles)) refs[n] = await this.storage.put(b);
       finalExport = { exportId, manifestSha, files: refs };
+    } else if (studioJobId) {
+      // Resume can use a previously registered standard export, after real file
+      // replay outside the transaction. A generic four-file Build stays distinct.
+      const existing = await this.readExport(metadata.id);
+      const refs: Record<string, FileRef> = {};
+      for (const [name, bytes] of Object.entries(existing.files))
+        refs[name] = await this.storage.put(bytes);
+      finalExport = {
+        exportId: existing.row.exportId,
+        manifestSha: existing.row.manifestSha,
+        files: refs,
+      };
     }
+    const registerExport = async (tx: Prisma.TransactionClient, buildId: string) => {
+      if (!finalExport) return;
+      for (const f of Object.values(finalExport.files)) {
+        const row = await tx.fileObject.upsert({
+          where: { sha256: f.sha256 },
+          create: f,
+          update: {},
+        });
+        assert.equal(row.bytes, f.bytes);
+        assert.equal(row.key, f.key);
+      }
+      const existing = await tx.finalExport.findUnique({ where: { buildId } });
+      if (existing) {
+        assert.equal(existing.exportId, finalExport.exportId);
+        assert.equal(existing.manifestSha, finalExport.manifestSha);
+        assert.equal(existing.profileHash, PROFILE_HASH);
+        assert.deepEqual(existing.files, dbJson(finalExport.files));
+        return;
+      }
+      await tx.finalExport.create({
+        data: {
+          buildId,
+          ...finalExport,
+          profileHash: PROFILE_HASH,
+          files: dbJson(finalExport.files),
+        },
+      });
+    };
     const finishJob = async (tx: Prisma.TransactionClient, buildId: string) => {
       if (!studioJobId) return;
       assert.ok(finalExport, 'Studio completion requires a verified standard export');
+      const registered = await tx.finalExport.findUniqueOrThrow({ where: { buildId } });
+      assert.equal(registered.exportId, finalExport.exportId);
+      assert.equal(registered.manifestSha, finalExport.manifestSha);
+      assert.equal(registered.profileHash, PROFILE_HASH);
+      assert.deepEqual(registered.files, dbJson(finalExport.files));
       const job = await tx.studioJob.findUniqueOrThrow({ where: { id: studioJobId } });
       assert.equal(job.projectId, metadata.projectId);
       assert.equal(dbJson(job.input)['snapshotId'], metadata.projectSnapshotId);
@@ -695,7 +740,28 @@ export class Persistence {
         const existing = await tx.build.findUnique({ where: { id: metadata.id } });
         if (existing) {
           assert.equal(existing.manifestSha, hashBytes(files['manifest.json']!));
+          assert.equal(existing.projectId, metadata.projectId);
+          assert.equal(existing.packId, metadata.packId);
+          assert.equal(existing.projectSnapshotId, metadata.projectSnapshotId);
+          assert.equal(existing.expectedPackVersion, metadata.expectedPackVersion);
+          assert.equal(existing.directory, `builds/${metadata.id}`);
+          assert.equal(existing.snapshotHash, verified.replay.snapshot.contentHash);
+          assert.deepEqual(existing.metadata, dbJson(verified.manifest));
+          const registeredFiles = await tx.buildFile.findMany({
+            where: { buildId: existing.id },
+            include: { file: true },
+          });
+          assert.deepEqual(registeredFiles.map((f) => f.name).sort(), [...refs.keys()].sort());
+          for (const f of registeredFiles) {
+            const expected = refs.get(f.name)!;
+            assert.equal(f.sha256, expected.sha256);
+            assert.equal(f.file.bytes, expected.bytes);
+            assert.equal(f.file.key, expected.key);
+          }
+          await registerExport(tx, existing.id);
           await finishJob(tx, existing.id);
+          await this.fault('db-transaction');
+          this.gate.require().check();
           return existing;
         }
         const project = await tx.project.findUniqueOrThrow({ where: { id: metadata.projectId } }),
@@ -716,18 +782,7 @@ export class Persistence {
             files: { create: [...refs].map(([name, ref]) => ({ name, sha256: ref.sha256 })) },
           },
         });
-        if (finalExport) {
-          for (const f of Object.values(finalExport.files))
-            await tx.fileObject.upsert({ where: { sha256: f.sha256 }, create: f, update: {} });
-          await tx.finalExport.create({
-            data: {
-              buildId: metadata.id,
-              ...finalExport,
-              profileHash: PROFILE_HASH,
-              files: dbJson(finalExport.files),
-            },
-          });
-        }
+        await registerExport(tx, build.id);
         if (current) {
           const versionId = fingerprint({
             packId: metadata.packId,
