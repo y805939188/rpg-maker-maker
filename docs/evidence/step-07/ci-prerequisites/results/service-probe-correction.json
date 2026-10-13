@@ -1,0 +1,102 @@
+{
+  "timestampUtc": "2026-10-13T21:10:09.654737+00:00",
+  "actualAPI4376PID": 22456,
+  "actualPG55476PID": 51121,
+  "web5276": "no listener",
+  "combinedExit1DoesNotMeanAllNoListeners": true,
+  "oldRawLog": ".local/step07-ci-history/services-after.log",
+  "oldRawSHA256": "661c64dd5bb4f7214001d6f9185b79214df020d0264d3ca080f685cfffe5b5b7",
+  "oldRawBytes": 280,
+  "oldReportInterpretation": "Incorrect; stdout already contained both retained service PIDs; UNVERIFIED_EXTERNAL_STATE_CHANGE was an unsupported inference",
+  "correction": "Same API and PG still run; no actual stop/restart observed or caused by coder; separate port and pg_ctl status evidence controls",
+  "oldReportLedgerProbePreserved": true,
+  "serviceLifecycleActions": false,
+  "commands": [
+    {
+      "label": "combined-original",
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:4376",
+        "-iTCP:55476",
+        "-iTCP:5276",
+        "-sTCP:LISTEN"
+      ],
+      "exitCode": 1,
+      "stdout": "COMMAND    PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode     22456 dingshinn   20u  IPv4 0x1b61d7139293f085      0t0  TCP 127.0.0.1:4376 (LISTEN)\npostgres 51121 dingshinn    5u  IPv4 0xd3843fad4ba7017b      0t0  TCP 127.0.0.1:55476 (LISTEN)\n",
+      "log": ".local/step07-ci-prerequisites/combined-original.log",
+      "logSHA256": "31ce47899aad8f63682ece290f50ac76402eca6bf44059a8f46aa4931698dd69",
+      "logBytes": 366
+    },
+    {
+      "label": "api-single",
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:4376",
+        "-sTCP:LISTEN"
+      ],
+      "exitCode": 0,
+      "stdout": "COMMAND   PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    22456 dingshinn   20u  IPv4 0x1b61d7139293f085      0t0  TCP 127.0.0.1:4376 (LISTEN)\n",
+      "log": ".local/step07-ci-prerequisites/api-single.log",
+      "logSHA256": "588eee876dd5e8d62e21a0d3271a13d920a7ad3d07445d83af06fe7586ca9bb4",
+      "logBytes": 240
+    },
+    {
+      "label": "pg-single",
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:55476",
+        "-sTCP:LISTEN"
+      ],
+      "exitCode": 0,
+      "stdout": "COMMAND    PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\npostgres 51121 dingshinn    5u  IPv4 0xd3843fad4ba7017b      0t0  TCP 127.0.0.1:55476 (LISTEN)\n",
+      "log": ".local/step07-ci-prerequisites/pg-single.log",
+      "logSHA256": "3ac8bfb5e0dde781bc54de74493b4c99fad56a9a0a0674f89c775d41ea7da13b",
+      "logBytes": 244
+    },
+    {
+      "label": "web-single",
+      "args": [
+        "lsof",
+        "-nP",
+        "-iTCP:5276",
+        "-sTCP:LISTEN"
+      ],
+      "exitCode": 1,
+      "stdout": "",
+      "log": ".local/step07-ci-prerequisites/web-single.log",
+      "logSHA256": "99c5059583e3c97b2e70d36edabcf93a454bf289a2f6ca0790a7bf2b3c91bb12",
+      "logBytes": 73
+    },
+    {
+      "label": "pg-status",
+      "args": [
+        "/opt/homebrew/opt/postgresql@14/bin/pg_ctl",
+        "-D",
+        "<CODING_WORKTREE>/.local/postgres/data",
+        "status"
+      ],
+      "exitCode": 0,
+      "stdout": "pg_ctl: server is running (PID: 51121)\n/opt/homebrew/Cellar/postgresql@14/14.20/bin/postgres \"-D\" \"<CODING_WORKTREE>/.local/postgres/data\"\n",
+      "log": ".local/step07-ci-prerequisites/pg-status.log",
+      "logSHA256": "a207718744d1bf7889080230644bd9f9ed06ef20f7c82ea94dd1172d141c4453",
+      "logBytes": 365
+    }
+  ],
+  "twoPresentPortsControl": {
+    "args": [
+      "lsof",
+      "-nP",
+      "-iTCP:4376",
+      "-iTCP:55476",
+      "-sTCP:LISTEN"
+    ],
+    "exitCode": 0,
+    "addingUnmatched5276ToSameQueryReturns1ButStillPrintsBothListeners": true,
+    "log": ".local/step07-ci-prerequisites/combined-two-present-ports.log",
+    "logSHA256": "da3d6c88980fc599e9405523d04bd7d36b31ea8903848a0d66efe9d81eeb1fdd",
+    "logBytes": 279
+  }
+}

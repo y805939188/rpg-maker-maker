@@ -1,0 +1,132 @@
+{
+  "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+  "commands": [
+    {
+      "label": "isolated-full-clone",
+      "args": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file://<CODING_WORKTREE>",
+        "<CODING_WORKTREE>/.local/step07-ci-prerequisites/full-history-workspace"
+      ],
+      "cwd": ".",
+      "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "exitCode": 0,
+      "durationSeconds": 11.567,
+      "log": ".local/step07-ci-prerequisites/isolated-full-clone.log",
+      "logSHA256": "dd9e8891cb506f38a9c0e91936ba09798ed85a9de23bef2c5b26991383f4fd17",
+      "logBytes": 1429
+    },
+    {
+      "label": "isolated-frozen-offline-install",
+      "args": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "<CODING_WORKTREE>/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": ".local/step07-ci-prerequisites/full-history-workspace",
+      "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "exitCode": 0,
+      "durationSeconds": 2.624,
+      "log": ".local/step07-ci-prerequisites/isolated-frozen-offline-install.log",
+      "logSHA256": "56efac8009dadeee82b769efc3f979d54f3db4af906a658a49165e42c482d6ba",
+      "logBytes": 1471
+    },
+    {
+      "label": "isolated-prisma-generate",
+      "args": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": ".local/step07-ci-prerequisites/full-history-workspace",
+      "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "exitCode": 0,
+      "durationSeconds": 1.789,
+      "log": ".local/step07-ci-prerequisites/isolated-prisma-generate.log",
+      "logSHA256": "647908392ebc12c0d686fcf9373da8b2633613d53709a3b27725e0471b93cceb",
+      "logBytes": 945
+    },
+    {
+      "label": "isolated-CI-format",
+      "args": [
+        "pnpm",
+        "exec",
+        "prettier",
+        "--check",
+        ".github/workflows/ci.yml"
+      ],
+      "cwd": ".local/step07-ci-prerequisites/full-history-workspace",
+      "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "exitCode": 0,
+      "durationSeconds": 0.722,
+      "log": ".local/step07-ci-prerequisites/isolated-CI-format.log",
+      "logSHA256": "8bc71214178bfadf2b909d2d72f4d40ebb5dc6457ff1c8220240320cf30a90d6",
+      "logBytes": 262
+    },
+    {
+      "label": "isolated-boundaries",
+      "args": [
+        "pnpm",
+        "check:boundaries"
+      ],
+      "cwd": ".local/step07-ci-prerequisites/full-history-workspace",
+      "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "exitCode": 0,
+      "durationSeconds": 0.232,
+      "log": ".local/step07-ci-prerequisites/isolated-boundaries.log",
+      "logSHA256": "f377321853e8df7f758613cf9579e7eeb948fafc17a83a758c3a9e119eb4b827",
+      "logBytes": 434
+    },
+    {
+      "label": "isolated-build-step07",
+      "args": [
+        "pnpm",
+        "build:step07"
+      ],
+      "cwd": ".local/step07-ci-prerequisites/full-history-workspace",
+      "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "exitCode": 0,
+      "durationSeconds": 26.84,
+      "log": ".local/step07-ci-prerequisites/isolated-build-step07.log",
+      "logSHA256": "2e9245ddeef611e5db953dd62a70fddf354de40df98c8a0be558b2d18a248f24",
+      "logBytes": 28059
+    },
+    {
+      "label": "isolated-production-exports",
+      "args": [
+        "pnpm",
+        "verify:exports"
+      ],
+      "cwd": ".local/step07-ci-prerequisites/full-history-workspace",
+      "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "exitCode": 0,
+      "durationSeconds": 0.86,
+      "log": ".local/step07-ci-prerequisites/isolated-production-exports.log",
+      "logSHA256": "dd604331ee98b31a34319c4aa11578d64de001390372e6e55685fd462dd757bb",
+      "logBytes": 423
+    },
+    {
+      "label": "bound-existing-pinned-browser-launch",
+      "args": [
+        "node",
+        "<CODING_WORKTREE>/.local/step07-ci-prerequisites/full-history-workspace/.local/browser-launch-probe.mjs",
+        "control",
+        "<CODING_WORKTREE>/.local/step07-ci-prerequisites/existing-cache-control.json"
+      ],
+      "cwd": ".local/step07-ci-prerequisites/full-history-workspace",
+      "sourceSHA": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+      "exitCode": 0,
+      "durationSeconds": 0.653,
+      "log": ".local/step07-ci-prerequisites/bound-existing-pinned-browser-launch.log",
+      "logSHA256": "864fcc54a4bbad8d896cc6b2c2998d816b8a5c109c293f8e716f6b64b3eda8c3",
+      "logBytes": 3262
+    }
+  ]
+}
