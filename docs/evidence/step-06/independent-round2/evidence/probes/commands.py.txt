@@ -1,0 +1,26 @@
+import pathlib,json,re
+p=pathlib.Path('.local/step06-review'); cwd=str(pathlib.Path('.').resolve());formal=str((p/'formal-workspace').resolve());node='/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node';entries=[]
+def add(command,log,exit,detail,cw=cwd):entries.append({'command':command,'cwd':cw,'exitCode':exit,'detail':detail,'log':'evidence/'+log+'.log.txt'})
+add('pnpm install --frozen-lockfile','install',0,'frozen lock')
+add('TILESET_PG_PORT=55469 pnpm db:local init','pg-init',0,'new owned cluster')
+add('pnpm db:generate','db-generate',0,'client generated')
+add('pnpm check','check',0,'21 files / 230 tests / 10 exports')
+add('node --env-file=.env .local/step06-review/baseline.mjs','baseline',0,'actual baseline SQL and Project')
+add('pnpm --filter @tileset/api exec prisma migrate resolve --applied 202610120001_step02_project','baseline-resolve',1,'reviewer omitted DATABASE_URL environment; preserved')
+add('node --env-file=.env .local/step06-review/with-env.mjs pnpm --filter @tileset/api exec prisma migrate resolve --applied 202610120001_step02_project','baseline-resolve-with-env',0,'actual applied baseline recorded')
+add('pnpm db:migrate','db-migrate',0,'three additive step06 migrations')
+add('pnpm exec vitest run --config "$PWD/vitest.step06.config.ts" --root "$PWD/.local/step06-review/formal-workspace"','test-step06',0,'16/16; 168.14s; cwd output diagnostic retained')
+add(node+' ../../../node_modules/vitest/vitest.mjs run --config ../../../vitest.step06.config.ts --root .','test-step06-owned-cwd',1,'12 pass / 4 fixture migration environment failure; 104.08s',formal)
+latest=(p/'private/test-step06-owned-toolchain.log').read_text();m=re.search(r'Tests\s+(\d+) passed',latest); latestPass=m is not None and int(m.group(1))==16 and 'failed' not in latest
+add(node+' --env-file=.env ../with-toolchain.mjs '+node+' ../../../node_modules/vitest/vitest.mjs run --config ../../../vitest.step06.config.ts --root .','test-step06-owned-toolchain',0 if latestPass else None,'16/16 completed' if latestPass else 'RUNNING_FINAL_CAPTURE_REQUIRED',formal)
+add('INTEGRATION_API_PORT=4369 pnpm test:integration','api-integration',0,'3/3 real database/API')
+for env,log in [('', 'browser-production-node22'),('E2E_MODE=dev ','browser-dev')]:add(env+'API_PORT=4369 WEB_PORT=5269 '+node+' --env-file=../../../.env ../../../node_modules/@playwright/test/cli.js test --config ../playwright.config.mjs',log,0,'1/1 browser shell',formal)
+for log in ['browser-production','browser-production-retry','browser-production-diagnostic','browser-production-fixed-toolchain']:add('isolated Playwright startup wrapper before fixed Node/cwd','%s'%log,1,'reviewer configuration/environment failure; not product test PASS',formal)
+for name in ['environment','public-probe','gate-probe','gate-probe-expanded','concurrency','recovery','maintenance-loss','root-case']:
+ log={'gate-probe-expanded':'gate-probe-expanded','maintenance-loss':'maintenance-loss-final2'}.get(name,name if name!='environment' else 'independent-init');code=0
+ add('node --env-file=.env .local/step06-review/'+('gate-probe' if name=='gate-probe-expanded' else name)+'.mjs',log,code,'probe completion; gate/root-case findings remain OPEN' if name in ['gate-probe','gate-probe-expanded','root-case'] else 'independent control PASS')
+for log in ['maintenance-loss','maintenance-loss-stats-fixed','maintenance-loss-final']:add('node --env-file=.env .local/step06-review/maintenance-loss.mjs',log,1,'reviewer PostgreSQL statistics/child-close measurement errors retained; source not changed')
+for name,log in [('engineering','engineering'),('engineering','engineering-final'),('pack-suite','pack-suite'),('pack-compare','pack-compare')]:add('node .local/step06-review/'+name+'.mjs',log,0,'actual rebuilt payload comparison')
+entries.append({'command':'node .local/step06-review/legacy.mjs','cwd':cwd,'exitCode':0,'detail':'78/78 original public JS','output':'evidence/legacy-78.json'})
+add('pnpm exec prettier --ignore-path /dev/null --write .local/step06-review/report.md','report-format',0,'only reviewer report formatted')
+(p/'evidence/commands.json').write_text(json.dumps({'candidate':'debcce716e5b563eec881eb24eaa41aebcccac30','entries':entries,'latestOwnedFormalRunVerified':latestPass},indent=2)+'\n')

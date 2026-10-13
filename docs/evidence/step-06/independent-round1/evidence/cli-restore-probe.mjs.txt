@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {resolve} from 'node:path';
+import {randomUUID} from 'node:crypto';
+import {readFile,writeFile,mkdir,cp,lstat} from 'node:fs/promises';
+import {spawnSync} from 'node:child_process';
+import {Persistence} from '@tileset/persistence';
+import {PROFILE} from '../../dist/src/profile.js';
+const record=JSON.parse(await readFile('.local/step06-review/evidence/independent-recovery.json','utf8'));
+const root=resolve('.local/step06-review/cli-restore-'+randomUUID());const cwd=resolve(root,'workspace');await mkdir(resolve(cwd,'.local/step06/backups'),{recursive:true});await cp(resolve(record.root,'backup'),resolve(cwd,'.local/step06/backups/review-control'),{recursive:true,errorOnExist:true,force:false});
+const requested=resolve(root,'requested-assets'),actual=resolve(cwd,'.local/assets');const url=new URL(process.env.DATABASE_URL);const dbName='tileset_cli_restore_'+randomUUID().replaceAll('-','');const pg=createRequire(resolve('packages/persistence/package.json'))('pg');const owner=new pg.Client({connectionString:url.href});await owner.connect();await owner.query(`CREATE DATABASE "${dbName}"`);await owner.end();url.pathname='/'+dbName;
+const result=spawnSync(process.execPath,[resolve('dist/scripts/step06-maintenance.js'),'restore','review-control'],{cwd,env:{...process.env,DATABASE_URL:url.href,TILESET_ASSET_ROOT:requested},encoding:'utf8'});await writeFile(resolve(root,'cli-restore.log'),result.stdout+result.stderr);assert.equal(result.status,0);
+let requestedExists;try{await lstat(requested);requestedExists=true;}catch(e){if(e.code!=='ENOENT')throw e;requestedExists=false;}
+const store=new Persistence(url.href,requested,PROFILE);let correctlyConfiguredRead;try{await store.readBuild(record.retired);correctlyConfiguredRead={ok:true};}catch(e){correctlyConfiguredRead={ok:false,error:e.message};}finally{await store.close();}
+const observed={candidate:record.candidate,command:'node dist/scripts/step06-maintenance.js restore review-control',configuredAssetRoot:requested,actualAssetRoot:actual,dbName,pgPort:55467,cwd,exitCode:result.status,requestedExists,actualExists:(await lstat(actual)).isDirectory(),correctlyConfiguredRead,backupName:'review-control',violation:'Restore exits success to a different root than TILESET_ASSET_ROOT'};
+await writeFile('.local/step06-review/evidence/cli-asset-root.json',JSON.stringify(observed,null,2)+'\n');console.log(JSON.stringify(observed));

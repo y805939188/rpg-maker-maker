@@ -1,0 +1,51 @@
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/formal-workspace
+
+ ❯ packages/persistence/tests/integration.test.ts (5 tests | 1 failed) 60547ms
+     × retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild 272ms
+ ❯ packages/persistence/tests/fix-round1/integration.test.ts (6 tests | 3 failed) 17388ms
+     × losing the exclusive backup session stops copying/completion and cannot produce a successful backup 293ms
+     × references use exact persisted integer revisions even for identical bytes, including restore controls 282ms
+     × real maintenance and Mock CLIs share configured owned root; restore is readable/rebuildable and refuses existing targets 280ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/persistence/tests/integration.test.ts > real PostgreSQL + immutable files publication > retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild
+AssertionError: expected 1 to be +0 // Object.is equality
+
+- Expected
++ Received
+
+- 0
++ 1
+
+ ❯ ../../../packages/persistence/tests/integration.test.ts:328:29
+    326|       { env: { ...process.env, DATABASE_URL: fixtureUrl.href }, encodi…
+    327|     );
+    328|     expect(migrated.status).toBe(0);
+       |                             ^
+    329|     const s = await setup(undefined, {
+    330|       url: fixtureUrl.href,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  packages/persistence/tests/fix-round1/integration.test.ts > STEP06 round1 lifetime/references/operational CLI regressions > losing the exclusive backup session stops copying/completion and cannot produce a successful backup
+ FAIL  packages/persistence/tests/fix-round1/integration.test.ts > STEP06 round1 lifetime/references/operational CLI regressions > references use exact persisted integer revisions even for identical bytes, including restore controls
+ FAIL  packages/persistence/tests/fix-round1/integration.test.ts > STEP06 round1 lifetime/references/operational CLI regressions > real maintenance and Mock CLIs share configured owned root; restore is readable/rebuildable and refuses existing targets
+Error: Owned fixture migration failed
+ ❯ ChildProcess.<anonymous> ../../../packages/persistence/tests/fix-round1/integration.test.ts:108:38
+    106|     child.on('error', reject);
+    107|     child.on('close', (code) =>
+    108|       code === 0 ? accept() : reject(Error('Owned fixture migration fa…
+       |                                      ^
+    109|     );
+    110|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+
+ Test Files  2 failed | 1 passed (3)
+      Tests  4 failed | 12 passed (16)
+   Start at  06:55:44
+   Duration  104.08s (transform 208ms, setup 0ms, import 658ms, tests 103.16s, environment 0ms)
+

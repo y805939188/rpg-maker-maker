@@ -1,0 +1,2445 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "rows": [
+    {
+      "name": "two-real-processes-normal",
+      "ids": [
+        "44dd142bf1d5b0405e19f10e741913920a07f2fcb44045bd98bc42ec9b773898",
+        "3318ab88920f01aed20eed567e5d52424bbf55481f60e16eed335c3d8ecbe999"
+      ],
+      "wait": [
+        {
+          "pid": 65953,
+          "classid": 6007,
+          "objid": 1649852655,
+          "mode": "ExclusiveLock",
+          "state": "active",
+          "xact_start": "2026-10-12T23:55:08.209Z",
+          "query": "SELECT pg_advisory_lock(6007,hashtext($1))"
+        }
+      ],
+      "firstIdleSession": [
+        {
+          "pid": 65202,
+          "state": "idle",
+          "xact_start": null
+        }
+      ],
+      "results": [
+        {
+          "pid": 65148,
+          "code": 0,
+          "signal": null,
+          "events": [
+            {
+              "point": "before-db-commit",
+              "pid": 65148,
+              "leasePid": 65202,
+              "scope": "pack:8e64d4ca7fae8f11c65776768dd56f91d69722c03f7e2055ff9afd6a6b38a218"
+            },
+            {
+              "point": "finished",
+              "result": {
+                "id": "44dd142bf1d5b0405e19f10e741913920a07f2fcb44045bd98bc42ec9b773898",
+                "projectId": "095602a9-9569-47ac-8a1e-63aa97eb97b1",
+                "packId": "8e64d4ca7fae8f11c65776768dd56f91d69722c03f7e2055ff9afd6a6b38a218",
+                "projectSnapshotId": "1e2f7dc45a234fc50de3f2948a5d05329d2f38eb3e7c14e826005ffadae9df52",
+                "expectedPackVersion": 3,
+                "snapshotHash": "e0bbbbdf7c86948e09aaea3ab9f3b50a93c39b6c77f201b5f0f6d5c041e141a4",
+                "manifestSha": "bd575f881c31c64b62578115d7f915bca05dcde0b0051152cc1104578159e775",
+                "directory": "builds/44dd142bf1d5b0405e19f10e741913920a07f2fcb44045bd98bc42ec9b773898",
+                "publication": "ADOPTED",
+                "metadata": {
+                  "files": {
+                    "A1.png": {
+                      "bytes": 5980,
+                      "sha256": "c6643ddac287d996f7667ee132e5f6748c201f81858386d413589a5786ad24ba"
+                    },
+                    "A2.png": {
+                      "bytes": 2871,
+                      "sha256": "39000c74834fe5ea69e919297c7cd66378fda87a33acc528bb0ae2875fa766ec"
+                    },
+                    "bundle.json": {
+                      "bytes": 138924,
+                      "sha256": "d72f01271882c9994a69932ea759b492c59887186449317956a68bc708e5af42"
+                    }
+                  },
+                  "contract": "durable-build-v1",
+                  "fragments": [
+                    {
+                      "image": {
+                        "width": 96,
+                        "height": 144,
+                        "pixelHash": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          }
+                        ],
+                        "playback": null,
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+                        "recipe": {
+                          "id": "art-recipe",
+                          "kind": "recipe",
+                          "revision": 2,
+                          "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          }
+                        ],
+                        "materialId": "art-grass",
+                        "parameters": {
+                          "id": "art-parameters",
+                          "kind": "parameters",
+                          "revision": 2,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          },
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          },
+                          {
+                            "id": "art-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                          },
+                          {
+                            "id": "art-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                          },
+                          {
+                            "id": "art-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                          },
+                          {
+                            "id": "art-parameters",
+                            "kind": "parameters",
+                            "revision": 2,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "art-recipe",
+                            "kind": "recipe",
+                            "revision": 2,
+                            "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a2-ground",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 96,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a2-ordinary-ground",
+                        "allowedKinds": [
+                          16,
+                          17
+                        ]
+                      },
+                      "contentHash": "56ee26d22cf5aebeb82ddacf2a0129d309a810088b5e59e32e887c5d3e7c2ad8"
+                    },
+                    {
+                      "image": {
+                        "width": 288,
+                        "height": 144,
+                        "pixelHash": "0a5ae7275ee988dabb688d5d43d23df5b0cf8b74d69262cab1cb79d588c14f10"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 96,
+                            "y": 0
+                          },
+                          {
+                            "x": 192,
+                            "y": 0
+                          }
+                        ],
+                        "playback": {
+                          "loop": true,
+                          "sequence": [
+                            0,
+                            1,
+                            2,
+                            1
+                          ],
+                          "timebase": "updates",
+                          "updatesPerState": 30
+                        },
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+                        "recipe": {
+                          "id": "art-recipe",
+                          "kind": "recipe",
+                          "revision": 2,
+                          "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          }
+                        ],
+                        "materialId": "art-water-0",
+                        "parameters": {
+                          "id": "art-parameters",
+                          "kind": "parameters",
+                          "revision": 2,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          },
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          },
+                          {
+                            "id": "art-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                          },
+                          {
+                            "id": "art-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                          },
+                          {
+                            "id": "art-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                          },
+                          {
+                            "id": "art-parameters",
+                            "kind": "parameters",
+                            "revision": 2,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "art-recipe",
+                            "kind": "recipe",
+                            "revision": 2,
+                            "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a1-water",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 288,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a1-block-d-water",
+                        "allowedKinds": [
+                          4,
+                          6
+                        ]
+                      },
+                      "contentHash": "5e9a64b39c4b4d583af0dfd0ab9e1ffa7cd16a7f14d95f7a308acd8b9274f9f7"
+                    },
+                    {
+                      "image": {
+                        "width": 96,
+                        "height": 144,
+                        "pixelHash": "5a1fdd1bf8eb5033d4ead3f335e27f5916243b34a5aa51d01e9666b750d0c215"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          }
+                        ],
+                        "playback": null,
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "b1fadf97ad87d33eb1d8a18880befec92ae23be98c616561ffa2d32ccc7072ca",
+                        "recipe": {
+                          "id": "review-new-recipe",
+                          "kind": "recipe",
+                          "revision": 3,
+                          "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          }
+                        ],
+                        "materialId": "review-new-grass",
+                        "parameters": {
+                          "id": "review-new-parameters",
+                          "kind": "parameters",
+                          "revision": 3,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          },
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          },
+                          {
+                            "id": "review-new-static-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0dc3ccf4acf9c5fe9ea3d49d3d260eb397a9894cce059e26f4d2970d6a00ae4a"
+                          },
+                          {
+                            "id": "review-new-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c32042429287cea62cc5c0db53d2ae5b39837a589310659a6877f10c1d8a2970"
+                          },
+                          {
+                            "id": "review-new-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "ef289b9547243c289418fd13fa6bc53b2f36d5a5e2604c4498397ac63cc692aa"
+                          },
+                          {
+                            "id": "review-new-parameters",
+                            "kind": "parameters",
+                            "revision": 3,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "review-new-recipe",
+                            "kind": "recipe",
+                            "revision": 3,
+                            "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a2-ground",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 96,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a2-ordinary-ground",
+                        "allowedKinds": [
+                          16,
+                          17
+                        ]
+                      },
+                      "contentHash": "69dd4108f58a8b89b3c9f67a678477aabe572baac5272c98f87d66502dd6b4b6"
+                    },
+                    {
+                      "image": {
+                        "width": 288,
+                        "height": 144,
+                        "pixelHash": "0cf5bbcbd9dec09e2eff837bb44101c36375b7f4d59704141f4dea488fd779f7"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 96,
+                            "y": 0
+                          },
+                          {
+                            "x": 192,
+                            "y": 0
+                          }
+                        ],
+                        "playback": {
+                          "loop": true,
+                          "sequence": [
+                            0,
+                            1,
+                            2,
+                            1
+                          ],
+                          "timebase": "updates",
+                          "updatesPerState": 30
+                        },
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "b1fadf97ad87d33eb1d8a18880befec92ae23be98c616561ffa2d32ccc7072ca",
+                        "recipe": {
+                          "id": "review-new-recipe",
+                          "kind": "recipe",
+                          "revision": 3,
+                          "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          }
+                        ],
+                        "materialId": "review-new-water-0",
+                        "parameters": {
+                          "id": "review-new-parameters",
+                          "kind": "parameters",
+                          "revision": 3,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          },
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          },
+                          {
+                            "id": "review-new-static-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0dc3ccf4acf9c5fe9ea3d49d3d260eb397a9894cce059e26f4d2970d6a00ae4a"
+                          },
+                          {
+                            "id": "review-new-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c32042429287cea62cc5c0db53d2ae5b39837a589310659a6877f10c1d8a2970"
+                          },
+                          {
+                            "id": "review-new-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "ef289b9547243c289418fd13fa6bc53b2f36d5a5e2604c4498397ac63cc692aa"
+                          },
+                          {
+                            "id": "review-new-parameters",
+                            "kind": "parameters",
+                            "revision": 3,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "review-new-recipe",
+                            "kind": "recipe",
+                            "revision": 3,
+                            "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a1-water",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 288,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a1-block-d-water",
+                        "allowedKinds": [
+                          4,
+                          6
+                        ]
+                      },
+                      "contentHash": "a0514720ee12c0ee074abb05c142ddd1652d32c6f9852d2a85c47a901fc80d68"
+                    }
+                  ],
+                  "bundleHash": "f9d352982a2e715d907a932cb59d58f653d788dc0948209700d144cfff22e1dc",
+                  "layoutHash": "9e04cf5893d49a511767e50fa35387426c92c6dd2d174cb72f295ba20e3ce612",
+                  "validation": {
+                    "visual": "NOT_EXECUTED",
+                    "nativeMZ": "NOT_EXECUTED",
+                    "structural": "PASS",
+                    "independentReview": "NOT_EXECUTED"
+                  },
+                  "snapshotHash": "e0bbbbdf7c86948e09aaea3ab9f3b50a93c39b6c77f201b5f0f6d5c041e141a4"
+                },
+                "createdAt": "2026-10-12T23:55:08.290Z"
+              }
+            }
+          ],
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "pid": 65952,
+          "code": 0,
+          "signal": null,
+          "events": [
+            {
+              "point": "finished",
+              "result": {
+                "id": "3318ab88920f01aed20eed567e5d52424bbf55481f60e16eed335c3d8ecbe999",
+                "projectId": "095602a9-9569-47ac-8a1e-63aa97eb97b1",
+                "packId": "8e64d4ca7fae8f11c65776768dd56f91d69722c03f7e2055ff9afd6a6b38a218",
+                "projectSnapshotId": "1e2f7dc45a234fc50de3f2948a5d05329d2f38eb3e7c14e826005ffadae9df52",
+                "expectedPackVersion": 3,
+                "snapshotHash": "0611e06b2fcb59c7d6addc4695fe449dc7f9d039431f9d92cfa12eec64d44ef2",
+                "manifestSha": "294d8c52f2cfde135ce47e0b1b650fe582e25a0c89a10e635021b68b1e69c0e2",
+                "directory": "builds/3318ab88920f01aed20eed567e5d52424bbf55481f60e16eed335c3d8ecbe999",
+                "publication": "HISTORICAL",
+                "metadata": {
+                  "files": {
+                    "A1.png": {
+                      "bytes": 5980,
+                      "sha256": "c6643ddac287d996f7667ee132e5f6748c201f81858386d413589a5786ad24ba"
+                    },
+                    "A2.png": {
+                      "bytes": 2871,
+                      "sha256": "39000c74834fe5ea69e919297c7cd66378fda87a33acc528bb0ae2875fa766ec"
+                    },
+                    "bundle.json": {
+                      "bytes": 138928,
+                      "sha256": "f2b2010b807e2a9d46ac0257aa5a1d159dfd8a709a038cd9b49b7a4c34644506"
+                    }
+                  },
+                  "contract": "durable-build-v1",
+                  "fragments": [
+                    {
+                      "image": {
+                        "width": 96,
+                        "height": 144,
+                        "pixelHash": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          }
+                        ],
+                        "playback": null,
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+                        "recipe": {
+                          "id": "art-recipe",
+                          "kind": "recipe",
+                          "revision": 2,
+                          "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          }
+                        ],
+                        "materialId": "art-grass",
+                        "parameters": {
+                          "id": "art-parameters",
+                          "kind": "parameters",
+                          "revision": 2,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          },
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          },
+                          {
+                            "id": "art-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                          },
+                          {
+                            "id": "art-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                          },
+                          {
+                            "id": "art-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                          },
+                          {
+                            "id": "art-parameters",
+                            "kind": "parameters",
+                            "revision": 2,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "art-recipe",
+                            "kind": "recipe",
+                            "revision": 2,
+                            "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a2-ground",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 96,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a2-ordinary-ground",
+                        "allowedKinds": [
+                          16,
+                          17
+                        ]
+                      },
+                      "contentHash": "56ee26d22cf5aebeb82ddacf2a0129d309a810088b5e59e32e887c5d3e7c2ad8"
+                    },
+                    {
+                      "image": {
+                        "width": 288,
+                        "height": 144,
+                        "pixelHash": "0a5ae7275ee988dabb688d5d43d23df5b0cf8b74d69262cab1cb79d588c14f10"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 96,
+                            "y": 0
+                          },
+                          {
+                            "x": 192,
+                            "y": 0
+                          }
+                        ],
+                        "playback": {
+                          "loop": true,
+                          "sequence": [
+                            0,
+                            1,
+                            2,
+                            1
+                          ],
+                          "timebase": "updates",
+                          "updatesPerState": 30
+                        },
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+                        "recipe": {
+                          "id": "art-recipe",
+                          "kind": "recipe",
+                          "revision": 2,
+                          "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          }
+                        ],
+                        "materialId": "art-water-0",
+                        "parameters": {
+                          "id": "art-parameters",
+                          "kind": "parameters",
+                          "revision": 2,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          },
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          },
+                          {
+                            "id": "art-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                          },
+                          {
+                            "id": "art-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                          },
+                          {
+                            "id": "art-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                          },
+                          {
+                            "id": "art-parameters",
+                            "kind": "parameters",
+                            "revision": 2,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "art-recipe",
+                            "kind": "recipe",
+                            "revision": 2,
+                            "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a1-water",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 288,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a1-block-d-water",
+                        "allowedKinds": [
+                          4,
+                          6
+                        ]
+                      },
+                      "contentHash": "5e9a64b39c4b4d583af0dfd0ab9e1ffa7cd16a7f14d95f7a308acd8b9274f9f7"
+                    },
+                    {
+                      "image": {
+                        "width": 96,
+                        "height": 144,
+                        "pixelHash": "5a1fdd1bf8eb5033d4ead3f335e27f5916243b34a5aa51d01e9666b750d0c215"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          }
+                        ],
+                        "playback": null,
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "b1fadf97ad87d33eb1d8a18880befec92ae23be98c616561ffa2d32ccc7072ca",
+                        "recipe": {
+                          "id": "review-new-recipe",
+                          "kind": "recipe",
+                          "revision": 3,
+                          "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          }
+                        ],
+                        "materialId": "review-new-grass",
+                        "parameters": {
+                          "id": "review-new-parameters",
+                          "kind": "parameters",
+                          "revision": 3,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          },
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          },
+                          {
+                            "id": "review-new-static-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0dc3ccf4acf9c5fe9ea3d49d3d260eb397a9894cce059e26f4d2970d6a00ae4a"
+                          },
+                          {
+                            "id": "review-new-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c32042429287cea62cc5c0db53d2ae5b39837a589310659a6877f10c1d8a2970"
+                          },
+                          {
+                            "id": "review-new-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "ef289b9547243c289418fd13fa6bc53b2f36d5a5e2604c4498397ac63cc692aa"
+                          },
+                          {
+                            "id": "review-new-parameters",
+                            "kind": "parameters",
+                            "revision": 3,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "review-new-recipe",
+                            "kind": "recipe",
+                            "revision": 3,
+                            "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a2-ground",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 96,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a2-ordinary-ground",
+                        "allowedKinds": [
+                          16,
+                          17
+                        ]
+                      },
+                      "contentHash": "69dd4108f58a8b89b3c9f67a678477aabe572baac5272c98f87d66502dd6b4b6"
+                    },
+                    {
+                      "image": {
+                        "width": 288,
+                        "height": 144,
+                        "pixelHash": "0cf5bbcbd9dec09e2eff837bb44101c36375b7f4d59704141f4dea488fd779f7"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 96,
+                            "y": 0
+                          },
+                          {
+                            "x": 192,
+                            "y": 0
+                          }
+                        ],
+                        "playback": {
+                          "loop": true,
+                          "sequence": [
+                            0,
+                            1,
+                            2,
+                            1
+                          ],
+                          "timebase": "updates",
+                          "updatesPerState": 30
+                        },
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "b1fadf97ad87d33eb1d8a18880befec92ae23be98c616561ffa2d32ccc7072ca",
+                        "recipe": {
+                          "id": "review-new-recipe",
+                          "kind": "recipe",
+                          "revision": 3,
+                          "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          }
+                        ],
+                        "materialId": "review-new-water-0",
+                        "parameters": {
+                          "id": "review-new-parameters",
+                          "kind": "parameters",
+                          "revision": 3,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          },
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          },
+                          {
+                            "id": "review-new-static-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0dc3ccf4acf9c5fe9ea3d49d3d260eb397a9894cce059e26f4d2970d6a00ae4a"
+                          },
+                          {
+                            "id": "review-new-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c32042429287cea62cc5c0db53d2ae5b39837a589310659a6877f10c1d8a2970"
+                          },
+                          {
+                            "id": "review-new-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "ef289b9547243c289418fd13fa6bc53b2f36d5a5e2604c4498397ac63cc692aa"
+                          },
+                          {
+                            "id": "review-new-parameters",
+                            "kind": "parameters",
+                            "revision": 3,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "review-new-recipe",
+                            "kind": "recipe",
+                            "revision": 3,
+                            "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a1-water",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 288,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a1-block-d-water",
+                        "allowedKinds": [
+                          4,
+                          6
+                        ]
+                      },
+                      "contentHash": "a0514720ee12c0ee074abb05c142ddd1652d32c6f9852d2a85c47a901fc80d68"
+                    }
+                  ],
+                  "bundleHash": "b538efe0cebd75571b0d47262c017bad82d21500c0e998e679e5a47c2bc3d3da",
+                  "layoutHash": "60d9bde3371cd2021be7c89c39047262bb16a1e3af0959ccf0d97bf10f12063b",
+                  "validation": {
+                    "visual": "NOT_EXECUTED",
+                    "nativeMZ": "NOT_EXECUTED",
+                    "structural": "PASS",
+                    "independentReview": "NOT_EXECUTED"
+                  },
+                  "snapshotHash": "0611e06b2fcb59c7d6addc4695fe449dc7f9d039431f9d92cfa12eec64d44ef2"
+                },
+                "createdAt": "2026-10-12T23:55:10.126Z"
+              }
+            }
+          ],
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "name": "lost-session-short-xact-fence",
+      "ids": [
+        "004e9373ca9ac1b87f8f5bc166795a3b01f8d1d0def3183f9a01c4ffe49d5ef2",
+        "b0fe051076cf068dfe046bc3f1e3624cce3342a3b882382ba7ff9fd5d3e668fa"
+      ],
+      "fenceWait": [
+        {
+          "pid": 66116,
+          "classid": 6008,
+          "objid": 1649852655,
+          "mode": "ExclusiveLock",
+          "state": "active",
+          "xact_start": "2026-10-12T23:55:17.170Z",
+          "query": "SELECT pg_advisory_xact_lock(6008,hashtext($1))::text"
+        }
+      ],
+      "results": [
+        {
+          "pid": 66026,
+          "code": 1,
+          "signal": null,
+          "events": [
+            {
+              "point": "db-transaction",
+              "pid": 66026,
+              "leasePid": 66027,
+              "scope": "pack:8e64d4ca7fae8f11c65776768dd56f91d69722c03f7e2055ff9afd6a6b38a218"
+            },
+            {
+              "point": "error",
+              "error": "Write gate connection or lock lost"
+            }
+          ],
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "pid": 66090,
+          "code": 0,
+          "signal": null,
+          "events": [
+            {
+              "point": "finished",
+              "result": {
+                "id": "b0fe051076cf068dfe046bc3f1e3624cce3342a3b882382ba7ff9fd5d3e668fa",
+                "projectId": "095602a9-9569-47ac-8a1e-63aa97eb97b1",
+                "packId": "8e64d4ca7fae8f11c65776768dd56f91d69722c03f7e2055ff9afd6a6b38a218",
+                "projectSnapshotId": "1e2f7dc45a234fc50de3f2948a5d05329d2f38eb3e7c14e826005ffadae9df52",
+                "expectedPackVersion": 4,
+                "snapshotHash": "f04831b02e7a527be386fe34b198ead36d76172cb9bb1128ba7dd37161a6400d",
+                "manifestSha": "505b375f914e00577f138864c1dd2dbf300e671e25fe886cdb4beadfd0dbaa49",
+                "directory": "builds/b0fe051076cf068dfe046bc3f1e3624cce3342a3b882382ba7ff9fd5d3e668fa",
+                "publication": "ADOPTED",
+                "metadata": {
+                  "files": {
+                    "A1.png": {
+                      "bytes": 5980,
+                      "sha256": "c6643ddac287d996f7667ee132e5f6748c201f81858386d413589a5786ad24ba"
+                    },
+                    "A2.png": {
+                      "bytes": 2871,
+                      "sha256": "39000c74834fe5ea69e919297c7cd66378fda87a33acc528bb0ae2875fa766ec"
+                    },
+                    "bundle.json": {
+                      "bytes": 161225,
+                      "sha256": "f35f3ca5d542ad3949722b32649a2a15ee6d8d6430e307480cd0ed91e9b986e2"
+                    }
+                  },
+                  "contract": "durable-build-v1",
+                  "fragments": [
+                    {
+                      "image": {
+                        "width": 96,
+                        "height": 144,
+                        "pixelHash": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          }
+                        ],
+                        "playback": null,
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+                        "recipe": {
+                          "id": "art-recipe",
+                          "kind": "recipe",
+                          "revision": 2,
+                          "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          }
+                        ],
+                        "materialId": "art-grass",
+                        "parameters": {
+                          "id": "art-parameters",
+                          "kind": "parameters",
+                          "revision": 2,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          },
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          },
+                          {
+                            "id": "art-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                          },
+                          {
+                            "id": "art-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                          },
+                          {
+                            "id": "art-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                          },
+                          {
+                            "id": "art-parameters",
+                            "kind": "parameters",
+                            "revision": 2,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "art-recipe",
+                            "kind": "recipe",
+                            "revision": 2,
+                            "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a2-ground",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 96,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a2-ordinary-ground",
+                        "allowedKinds": [
+                          16,
+                          17
+                        ]
+                      },
+                      "contentHash": "56ee26d22cf5aebeb82ddacf2a0129d309a810088b5e59e32e887c5d3e7c2ad8"
+                    },
+                    {
+                      "image": {
+                        "width": 288,
+                        "height": 144,
+                        "pixelHash": "0a5ae7275ee988dabb688d5d43d23df5b0cf8b74d69262cab1cb79d588c14f10"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 96,
+                            "y": 0
+                          },
+                          {
+                            "x": 192,
+                            "y": 0
+                          }
+                        ],
+                        "playback": {
+                          "loop": true,
+                          "sequence": [
+                            0,
+                            1,
+                            2,
+                            1
+                          ],
+                          "timebase": "updates",
+                          "updatesPerState": 30
+                        },
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+                        "recipe": {
+                          "id": "art-recipe",
+                          "kind": "recipe",
+                          "revision": 2,
+                          "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          }
+                        ],
+                        "materialId": "art-water-0",
+                        "parameters": {
+                          "id": "art-parameters",
+                          "kind": "parameters",
+                          "revision": 2,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          },
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          },
+                          {
+                            "id": "art-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                          },
+                          {
+                            "id": "art-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                          },
+                          {
+                            "id": "art-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                          },
+                          {
+                            "id": "art-parameters",
+                            "kind": "parameters",
+                            "revision": 2,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "art-recipe",
+                            "kind": "recipe",
+                            "revision": 2,
+                            "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a1-water",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 288,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a1-block-d-water",
+                        "allowedKinds": [
+                          4,
+                          6
+                        ]
+                      },
+                      "contentHash": "5e9a64b39c4b4d583af0dfd0ab9e1ffa7cd16a7f14d95f7a308acd8b9274f9f7"
+                    },
+                    {
+                      "image": {
+                        "width": 96,
+                        "height": 144,
+                        "pixelHash": "5a1fdd1bf8eb5033d4ead3f335e27f5916243b34a5aa51d01e9666b750d0c215"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          }
+                        ],
+                        "playback": null,
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "b1fadf97ad87d33eb1d8a18880befec92ae23be98c616561ffa2d32ccc7072ca",
+                        "recipe": {
+                          "id": "review-new-recipe",
+                          "kind": "recipe",
+                          "revision": 3,
+                          "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          }
+                        ],
+                        "materialId": "review-new-grass",
+                        "parameters": {
+                          "id": "review-new-parameters",
+                          "kind": "parameters",
+                          "revision": 3,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          },
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          },
+                          {
+                            "id": "review-new-static-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0dc3ccf4acf9c5fe9ea3d49d3d260eb397a9894cce059e26f4d2970d6a00ae4a"
+                          },
+                          {
+                            "id": "review-new-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c32042429287cea62cc5c0db53d2ae5b39837a589310659a6877f10c1d8a2970"
+                          },
+                          {
+                            "id": "review-new-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "ef289b9547243c289418fd13fa6bc53b2f36d5a5e2604c4498397ac63cc692aa"
+                          },
+                          {
+                            "id": "review-new-parameters",
+                            "kind": "parameters",
+                            "revision": 3,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "review-new-recipe",
+                            "kind": "recipe",
+                            "revision": 3,
+                            "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a2-ground",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 96,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a2-ordinary-ground",
+                        "allowedKinds": [
+                          16,
+                          17
+                        ]
+                      },
+                      "contentHash": "69dd4108f58a8b89b3c9f67a678477aabe572baac5272c98f87d66502dd6b4b6"
+                    },
+                    {
+                      "image": {
+                        "width": 288,
+                        "height": 144,
+                        "pixelHash": "0cf5bbcbd9dec09e2eff837bb44101c36375b7f4d59704141f4dea488fd779f7"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 96,
+                            "y": 0
+                          },
+                          {
+                            "x": 192,
+                            "y": 0
+                          }
+                        ],
+                        "playback": {
+                          "loop": true,
+                          "sequence": [
+                            0,
+                            1,
+                            2,
+                            1
+                          ],
+                          "timebase": "updates",
+                          "updatesPerState": 30
+                        },
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "b1fadf97ad87d33eb1d8a18880befec92ae23be98c616561ffa2d32ccc7072ca",
+                        "recipe": {
+                          "id": "review-new-recipe",
+                          "kind": "recipe",
+                          "revision": 3,
+                          "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          }
+                        ],
+                        "materialId": "review-new-water-0",
+                        "parameters": {
+                          "id": "review-new-parameters",
+                          "kind": "parameters",
+                          "revision": 3,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          },
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          },
+                          {
+                            "id": "review-new-static-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0dc3ccf4acf9c5fe9ea3d49d3d260eb397a9894cce059e26f4d2970d6a00ae4a"
+                          },
+                          {
+                            "id": "review-new-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c32042429287cea62cc5c0db53d2ae5b39837a589310659a6877f10c1d8a2970"
+                          },
+                          {
+                            "id": "review-new-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "ef289b9547243c289418fd13fa6bc53b2f36d5a5e2604c4498397ac63cc692aa"
+                          },
+                          {
+                            "id": "review-new-parameters",
+                            "kind": "parameters",
+                            "revision": 3,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "review-new-recipe",
+                            "kind": "recipe",
+                            "revision": 3,
+                            "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a1-water",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 288,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a1-block-d-water",
+                        "allowedKinds": [
+                          4,
+                          6
+                        ]
+                      },
+                      "contentHash": "a0514720ee12c0ee074abb05c142ddd1652d32c6f9852d2a85c47a901fc80d68"
+                    }
+                  ],
+                  "bundleHash": "0b525f5a7df3dd22a526f4cfaab30b02ce8040cefe7258ed9c098f2b6beafd67",
+                  "layoutHash": "06ddcf3583eab18f5d1354b59adccaa1c1c8447a2f94ab7e64860f270005ac42",
+                  "validation": {
+                    "visual": "NOT_EXECUTED",
+                    "nativeMZ": "NOT_EXECUTED",
+                    "structural": "PASS",
+                    "independentReview": "NOT_EXECUTED"
+                  },
+                  "snapshotHash": "f04831b02e7a527be386fe34b198ead36d76172cb9bb1128ba7dd37161a6400d"
+                },
+                "createdAt": "2026-10-12T23:55:17.259Z"
+              }
+            }
+          ],
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "pid": 66120,
+          "code": 0,
+          "signal": null,
+          "events": [
+            {
+              "point": "finished",
+              "result": {
+                "id": "004e9373ca9ac1b87f8f5bc166795a3b01f8d1d0def3183f9a01c4ffe49d5ef2",
+                "projectId": "095602a9-9569-47ac-8a1e-63aa97eb97b1",
+                "packId": "8e64d4ca7fae8f11c65776768dd56f91d69722c03f7e2055ff9afd6a6b38a218",
+                "projectSnapshotId": "1e2f7dc45a234fc50de3f2948a5d05329d2f38eb3e7c14e826005ffadae9df52",
+                "expectedPackVersion": 4,
+                "snapshotHash": "8b3363b62fb8fde7954a09ceccba18bb2c1e7b284853dccafbf3a31ac10621ff",
+                "manifestSha": "0b35b7de08dde10d96301104ea731471a9a3781098d2f5d3866e1007e691f556",
+                "directory": "builds/004e9373ca9ac1b87f8f5bc166795a3b01f8d1d0def3183f9a01c4ffe49d5ef2",
+                "publication": "HISTORICAL",
+                "metadata": {
+                  "files": {
+                    "A1.png": {
+                      "bytes": 5980,
+                      "sha256": "c6643ddac287d996f7667ee132e5f6748c201f81858386d413589a5786ad24ba"
+                    },
+                    "A2.png": {
+                      "bytes": 2871,
+                      "sha256": "39000c74834fe5ea69e919297c7cd66378fda87a33acc528bb0ae2875fa766ec"
+                    },
+                    "bundle.json": {
+                      "bytes": 161221,
+                      "sha256": "655229fbbf89992616b9746209abe91b4f37c07778fc227855a92f3531d86b77"
+                    }
+                  },
+                  "contract": "durable-build-v1",
+                  "fragments": [
+                    {
+                      "image": {
+                        "width": 96,
+                        "height": 144,
+                        "pixelHash": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          }
+                        ],
+                        "playback": null,
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+                        "recipe": {
+                          "id": "art-recipe",
+                          "kind": "recipe",
+                          "revision": 2,
+                          "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          }
+                        ],
+                        "materialId": "art-grass",
+                        "parameters": {
+                          "id": "art-parameters",
+                          "kind": "parameters",
+                          "revision": 2,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          },
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          },
+                          {
+                            "id": "art-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                          },
+                          {
+                            "id": "art-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                          },
+                          {
+                            "id": "art-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                          },
+                          {
+                            "id": "art-parameters",
+                            "kind": "parameters",
+                            "revision": 2,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "art-recipe",
+                            "kind": "recipe",
+                            "revision": 2,
+                            "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a2-ground",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 96,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a2-ordinary-ground",
+                        "allowedKinds": [
+                          16,
+                          17
+                        ]
+                      },
+                      "contentHash": "56ee26d22cf5aebeb82ddacf2a0129d309a810088b5e59e32e887c5d3e7c2ad8"
+                    },
+                    {
+                      "image": {
+                        "width": 288,
+                        "height": 144,
+                        "pixelHash": "0a5ae7275ee988dabb688d5d43d23df5b0cf8b74d69262cab1cb79d588c14f10"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 96,
+                            "y": 0
+                          },
+                          {
+                            "x": 192,
+                            "y": 0
+                          }
+                        ],
+                        "playback": {
+                          "loop": true,
+                          "sequence": [
+                            0,
+                            1,
+                            2,
+                            1
+                          ],
+                          "timebase": "updates",
+                          "updatesPerState": 30
+                        },
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+                        "recipe": {
+                          "id": "art-recipe",
+                          "kind": "recipe",
+                          "revision": 2,
+                          "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          }
+                        ],
+                        "materialId": "art-water-0",
+                        "parameters": {
+                          "id": "art-parameters",
+                          "kind": "parameters",
+                          "revision": 2,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "art-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                          },
+                          {
+                            "id": "art-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                          },
+                          {
+                            "id": "art-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                          },
+                          {
+                            "id": "art-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                          },
+                          {
+                            "id": "art-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                          },
+                          {
+                            "id": "art-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                          },
+                          {
+                            "id": "art-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                          },
+                          {
+                            "id": "art-parameters",
+                            "kind": "parameters",
+                            "revision": 2,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "art-recipe",
+                            "kind": "recipe",
+                            "revision": 2,
+                            "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a1-water",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 288,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a1-block-d-water",
+                        "allowedKinds": [
+                          4,
+                          6
+                        ]
+                      },
+                      "contentHash": "5e9a64b39c4b4d583af0dfd0ab9e1ffa7cd16a7f14d95f7a308acd8b9274f9f7"
+                    },
+                    {
+                      "image": {
+                        "width": 96,
+                        "height": 144,
+                        "pixelHash": "5a1fdd1bf8eb5033d4ead3f335e27f5916243b34a5aa51d01e9666b750d0c215"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          }
+                        ],
+                        "playback": null,
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "b1fadf97ad87d33eb1d8a18880befec92ae23be98c616561ffa2d32ccc7072ca",
+                        "recipe": {
+                          "id": "review-new-recipe",
+                          "kind": "recipe",
+                          "revision": 3,
+                          "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          }
+                        ],
+                        "materialId": "review-new-grass",
+                        "parameters": {
+                          "id": "review-new-parameters",
+                          "kind": "parameters",
+                          "revision": 3,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          },
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          },
+                          {
+                            "id": "review-new-static-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0dc3ccf4acf9c5fe9ea3d49d3d260eb397a9894cce059e26f4d2970d6a00ae4a"
+                          },
+                          {
+                            "id": "review-new-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c32042429287cea62cc5c0db53d2ae5b39837a589310659a6877f10c1d8a2970"
+                          },
+                          {
+                            "id": "review-new-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "ef289b9547243c289418fd13fa6bc53b2f36d5a5e2604c4498397ac63cc692aa"
+                          },
+                          {
+                            "id": "review-new-parameters",
+                            "kind": "parameters",
+                            "revision": 3,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "review-new-recipe",
+                            "kind": "recipe",
+                            "revision": 3,
+                            "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a2-ground",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 96,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a2-ordinary-ground",
+                        "allowedKinds": [
+                          16,
+                          17
+                        ]
+                      },
+                      "contentHash": "69dd4108f58a8b89b3c9f67a678477aabe572baac5272c98f87d66502dd6b4b6"
+                    },
+                    {
+                      "image": {
+                        "width": 288,
+                        "height": 144,
+                        "pixelHash": "0cf5bbcbd9dec09e2eff837bb44101c36375b7f4d59704141f4dea488fd779f7"
+                      },
+                      "layout": {
+                        "offsets": [
+                          {
+                            "x": 0,
+                            "y": 0
+                          },
+                          {
+                            "x": 96,
+                            "y": 0
+                          },
+                          {
+                            "x": 192,
+                            "y": 0
+                          }
+                        ],
+                        "playback": {
+                          "loop": true,
+                          "sequence": [
+                            0,
+                            1,
+                            2,
+                            1
+                          ],
+                          "timebase": "updates",
+                          "updatesPerState": 30
+                        },
+                        "frameWidth": 96,
+                        "frameHeight": 144
+                      },
+                      "source": {
+                        "irHash": "b1fadf97ad87d33eb1d8a18880befec92ae23be98c616561ffa2d32ccc7072ca",
+                        "recipe": {
+                          "id": "review-new-recipe",
+                          "kind": "recipe",
+                          "revision": 3,
+                          "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                        },
+                        "density": 2,
+                        "components": [
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          }
+                        ],
+                        "materialId": "review-new-water-0",
+                        "parameters": {
+                          "id": "review-new-parameters",
+                          "kind": "parameters",
+                          "revision": 3,
+                          "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                        },
+                        "dependencies": [
+                          {
+                            "id": "review-new-grass",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c70ad3b93b456ce55dd2f3cb7386384fa294fe309464c4def375ffeb4cc09875"
+                          },
+                          {
+                            "id": "review-new-water-0",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "d0a87b0c8b3e92b662bd9afa873e78cd196787a4ab8542ed6ec7b6844688c5b6"
+                          },
+                          {
+                            "id": "review-new-water-1",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "8d223edf9e1db8429c401f02ba96f5db1c3364ff2474e6dd0713015506a2f565"
+                          },
+                          {
+                            "id": "review-new-water-2",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0eef18502c48d6f0c64134b9f6f898598b2f965ece4ef88e4a024e460a440b5e"
+                          },
+                          {
+                            "id": "review-new-static-mask",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "0dc3ccf4acf9c5fe9ea3d49d3d260eb397a9894cce059e26f4d2970d6a00ae4a"
+                          },
+                          {
+                            "id": "review-new-bank-overlay",
+                            "kind": "source",
+                            "revision": 1,
+                            "contentHash": "c32042429287cea62cc5c0db53d2ae5b39837a589310659a6877f10c1d8a2970"
+                          },
+                          {
+                            "id": "review-new-style",
+                            "kind": "style",
+                            "revision": 1,
+                            "contentHash": "ef289b9547243c289418fd13fa6bc53b2f36d5a5e2604c4498397ac63cc692aa"
+                          },
+                          {
+                            "id": "review-new-parameters",
+                            "kind": "parameters",
+                            "revision": 3,
+                            "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                          },
+                          {
+                            "id": "review-new-recipe",
+                            "kind": "recipe",
+                            "revision": 3,
+                            "contentHash": "121f84439148b85f8b923c5c875c86fd3d94692a93432d3bed8b72478f7bec98"
+                          }
+                        ]
+                      },
+                      "target": {
+                        "id": "mz-native-ground-water",
+                        "version": "1.0.0-candidate.1"
+                      },
+                      "category": "a1-water",
+                      "compiler": "mz-single-material-v1",
+                      "contract": "mz-compiled-fragment-v1",
+                      "placement": {
+                        "width": 288,
+                        "height": 144,
+                        "alignment": {
+                          "x": 96,
+                          "y": 144
+                        },
+                        "slotClass": "a1-block-d-water",
+                        "allowedKinds": [
+                          4,
+                          6
+                        ]
+                      },
+                      "contentHash": "a0514720ee12c0ee074abb05c142ddd1652d32c6f9852d2a85c47a901fc80d68"
+                    }
+                  ],
+                  "bundleHash": "4c46d1dd18e8a25db7ac63d0b4d42d1398ba5a27fcbc9b49a20ef3079a11987d",
+                  "layoutHash": "bbc739d1c6003273ec956db18850079b6be7a0b3ccb120d9688e88740955c56e",
+                  "validation": {
+                    "visual": "NOT_EXECUTED",
+                    "nativeMZ": "NOT_EXECUTED",
+                    "structural": "PASS",
+                    "independentReview": "NOT_EXECUTED"
+                  },
+                  "snapshotHash": "8b3363b62fb8fde7954a09ceccba18bb2c1e7b284853dccafbf3a31ac10621ff"
+                },
+                "createdAt": "2026-10-12T23:55:19.042Z"
+              }
+            }
+          ],
+          "stdout": "",
+          "stderr": ""
+        }
+      ]
+    }
+  ]
+}

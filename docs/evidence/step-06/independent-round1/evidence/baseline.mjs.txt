@@ -1,0 +1,15 @@
+import {createRequire} from 'node:module';
+import {resolve} from 'node:path';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {randomUUID} from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+const pg=createRequire(resolve('packages/persistence/package.json'))('pg');
+const client=new pg.Client({connectionString:process.env.DATABASE_URL}); await client.connect();
+const tables=await client.query("SELECT table_name FROM information_schema.tables WHERE table_schema='public'");
+if(tables.rows.length) throw Error('Own baseline requires clean DB');
+await client.query(await readFile('apps/api/prisma/migrations/202610120001_step02_project/migration.sql','utf8'));
+const id=randomUUID(); const row=(await client.query('INSERT INTO "Project"(id,name) VALUES($1,$2) RETURNING *',[id,'independent-pre-step06'])).rows[0];
+await client.end();
+await mkdir('.local/step06',{recursive:true}); await writeFile('.local/step06/pre-migration-project.json',JSON.stringify(row,null,2)+'\n');
+const result=spawnSync('pnpm',['--filter','@tileset/api','exec','prisma','migrate','resolve','--applied','202610120001_step02_project','--schema','prisma/schema.prisma'],{env:process.env,encoding:'utf8'}); console.log(result.stdout,result.stderr); if(result.status!==0)throw Error('Resolve failed');
+console.log(JSON.stringify({preMigrationProject:row,resolveExit:result.status}));

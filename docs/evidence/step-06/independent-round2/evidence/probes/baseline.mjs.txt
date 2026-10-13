@@ -1,0 +1,7 @@
+import pg from '../../packages/persistence/node_modules/pg/lib/index.js';
+import {readFile,writeFile} from 'node:fs/promises';
+import {randomUUID} from 'node:crypto';
+const client=new pg.Client({connectionString:process.env.DATABASE_URL});await client.connect();
+await client.query(await readFile('apps/api/prisma/migrations/202610120001_step02_project/migration.sql','utf8'));
+const id=randomUUID(); const r=await client.query('INSERT INTO "Project" (id,name) VALUES ($1,$2) RETURNING *',[id,'independent-pre-step06']);
+await writeFile('.local/step06-review/evidence/baseline-project.json',JSON.stringify(r.rows[0],null,2)+'\n');await client.end();

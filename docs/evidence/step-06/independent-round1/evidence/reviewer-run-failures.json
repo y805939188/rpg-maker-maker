@@ -1,0 +1,19 @@
+[
+  {
+    "command": "pnpm db:migrate (before build)",
+    "exitCode": 1,
+    "reason": "Missing generated apps/api/dist/config.js; migration not entered; prerequisite satisfied by pnpm check then retry passed",
+    "candidateChanged": false
+  },
+  {
+    "command": "node --env-file=.env .local/step06-review/concurrency.mjs (first diagnostic)",
+    "exitCode": 1,
+    "reason": "Reviewer assertion required xact_start=null for even an active autocommit advisory-lock wait. Corrected own diagnostic to check no idle in transaction and no transaction on idle connections. No production/tests changed.",
+    "ownedWaitingChildTerminated": {
+      "pid": 20398,
+      "commandSuffix": ".local/step06-review/worker.mjs .local/step06-review/private/concurrent-left-stopped.json",
+      "signal": "SIGKILL"
+    },
+    "laterRunExitCode": 0
+  }
+]

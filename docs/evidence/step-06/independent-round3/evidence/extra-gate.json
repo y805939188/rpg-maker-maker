@@ -1,0 +1,42 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "checks": [
+    {
+      "name": "three-level-cross-instance-normal-and-all-ancestor-reentry",
+      "pass": true
+    },
+    {
+      "name": "independent-async-call-chain",
+      "pass": true
+    },
+    {
+      "name": "lost-parent-same-db-protocol-reconstruction-vs-cross-db",
+      "sameDatabaseRejected": true,
+      "differentDatabaseCommitted": true,
+      "crossDb": "tileset_review3_identity_de29334d7b59406bbaf8d2dc155a861e"
+    },
+    {
+      "name": "normal-end-expired-context-running-and-scope-queued-unawaited-child",
+      "noBackgroundActions": true
+    },
+    {
+      "name": "normal-maintenance-queue-inside-and-independent-outside",
+      "pass": true
+    },
+    {
+      "name": "different-scope-reject-behind-waiting-maintenance-without-deadlock",
+      "pass": true
+    },
+    {
+      "name": "three-scoped-and-one-unscoped-ancestor-fences-real-rollback",
+      "scopes": [
+        "fence-outer-992e4a42-da7b-45c9-9fff-91e7ca1ffea5",
+        "fence-middle-085b2e7e-b12e-4b96-8010-9bf77f6834cb",
+        "fence-leaf-257cec25-8cd6-4721-8f95-228d96d9871e"
+      ],
+      "parentPid": 64340,
+      "leafPid": 64346,
+      "pass": true
+    }
+  ]
+}

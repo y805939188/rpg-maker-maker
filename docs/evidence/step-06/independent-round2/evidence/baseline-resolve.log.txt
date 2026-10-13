@@ -1,0 +1,17 @@
+Prisma schema loaded from prisma/schema.prisma
+Error: Prisma schema validation - (get-config wasm)
+Error code: P1012
+error: Environment variable not found: DATABASE_URL.
+  -->  prisma/schema.prisma:6
+   | 
+ 5 |   provider = "postgresql"
+ 6 |   url      = env("DATABASE_URL")
+   | 
+
+Validation Error Count: 1
+[Context: getConfig]
+
+Prisma CLI Version : 6.19.3
+undefined
+/Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/apps/api:
+ ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL  Command failed with exit code 1: prisma migrate resolve --applied 202610120001_step02_project

@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {resolve} from 'node:path';
+import {readFile,writeFile} from 'node:fs/promises';
+import {hashBytes} from '@tileset/asset-core';
+import {planPack} from '@tileset/pack-assembly';
+import {PROFILE} from '../../dist/src/profile.js';
+import {makeCompilerFixture} from '../../dist/scripts/step04-fixture.js';
+import {archiveFixture,assembleExport,currentBuildContext,publishDirectory,readPackExport} from '../../dist/scripts/pack-export.js';
+import {fragmentsFor,pairOperations,variantFixture} from '../../dist/scripts/step05-fixture.js';
+const root=resolve('.local/step06-review/pack-regression');const commit='a2878a922db93c14d29e0f128bd14e6b41fc09af';const context=await currentBuildContext(commit,hashBytes(await readFile('pnpm-lock.yaml')));const author=JSON.parse(await readFile('.local/step06-review/author-docs/docs/evidence/step-06/coding/pack-regression.json','utf8'));const rows=[];
+const art=await makeCompilerFixture('art'),a=fragmentsFor(art),variant=await variantFixture(art,'new-set',1,true),b=fragmentsFor(variant),updated=await variantFixture(art,'art',2,true),c=fragmentsFor(updated);const archives=[archiveFixture(art),archiveFixture(variant),archiveFixture(updated)],fragments=[...a,...b,...c];let history=[];
+for(const [name,operations] of [['incremental-v1',pairOperations('a',1,a)],['incremental-v2',pairOperations('b',1,b)],['incremental-v3',pairOperations('a',2,c)],['incremental-v4',[{operation:'retire',logicalId:'b-ground'},{operation:'retire',logicalId:'b-water'}]]]){
+ const plan=planPack(PROFILE,{packId:'incremental',version:history.length+1,operations},history,fragments);const assembled=await assembleExport({...plan,archives},context);const target=resolve(root,name);await publishDirectory(target,assembled.files,readPackExport);const read=await readPackExport(target);
+ for(const [file,bytes] of Object.entries(read.files)){const sha=hashBytes(bytes),expected=author.rows.find(r=>r.pack===name&&r.file===file);if(expected)assert.equal(sha,expected.sha256);rows.push({pack:name,file,sha256:sha,bytes:bytes.length,matchesAuthorPayload:expected?true:null});}
+ history.push(plan.snapshot);
+}
+assert.deepEqual(await readFile(resolve(root,'incremental-v3/A1.png')),await readFile(resolve(root,'incremental-v4/A1.png')));assert.deepEqual(await readFile(resolve(root,'incremental-v3/A2.png')),await readFile(resolve(root,'incremental-v4/A2.png')));
+const result={candidate:commit,standardExportFilesPerPack:8,packs:4,payloadsComparedToApprovedStep05:rows.filter(r=>r.matchesAuthorPayload).length,retirementPixelsUnchanged:true,rows};await writeFile('.local/step06-review/evidence/pack-regression.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({...result,rows:undefined}));

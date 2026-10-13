@@ -1,0 +1,9 @@
+file:///Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/common.mjs:21
+export async function terminate(client,lease){const r=await client.query("SELECT pid,classid,objid,mode FROM pg_locks WHERE pid=$1 AND locktype='advisory' AND granted",[lease.backendPid]);assert.ok(r.rows.some(r=>r.classid===6006));await client.query('SELECT pg_terminate_backend($1)',[lease.backendPid]);for(let n=0;n<100;n++){if(!(await client.query('SELECT 1 FROM pg_stat_activity WHERE pid=$1',[lease.backendPid])).rowCount){await delay(30);return r.rows;}await delay(10);}throw Error('owned backend still alive');}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^
+
+Error: owned backend still alive
+    at terminate (file:///Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/common.mjs:21:484)
+    at async file:///Users/dingshinn/.codex/worktrees/step-06-review-round2/rpg-maker-maker/.local/step06-review/maintenance-loss.mjs:7:376
+
+Node.js v22.21.1

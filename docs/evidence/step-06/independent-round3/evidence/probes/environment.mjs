@@ -1,0 +1,2 @@
+import {newDatabase,root,resolve,writeFile,record,candidate} from './common.mjs';
+const db=await newDatabase('public');const config={...db,assetRoot:resolve(root,'independent-assets')};await writeFile(resolve(root,'private/independent-env.json'),JSON.stringify(config));await record('independent-environment',{candidate,database:db.name,pgPort:55471,assetRoot:config.assetRoot,ownership:'step06-review-round3-only'});console.log(db.name);
