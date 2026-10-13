@@ -50,8 +50,8 @@ export async function request(
   if (!response.ok) throw responseError(response, body);
   return body;
 }
-export async function listProjects() {
-  return ProjectListSchema.parse(await request('/api/projects')).projects;
+export async function listProjects(signal?: AbortSignal) {
+  return ProjectListSchema.parse(await request('/api/projects', undefined, signal)).projects;
 }
 export async function createProject(input: CreateProject) {
   return ProjectSchema.parse(await request('/api/projects', CreateProjectSchema.parse(input)));

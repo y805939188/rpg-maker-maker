@@ -1,4 +1,5 @@
 import { pathToFileURL } from 'node:url';
+import ts from 'typescript';
 import { decodeSource } from '@tileset/image-adapter';
 import { runIsolated } from '../../../../packages/image-adapter/src/isolation.js';
 import { beforeAll, afterAll, it, expect } from 'vitest';
@@ -16,11 +17,13 @@ import {
   realpath,
 } from 'node:fs/promises';
 import { resolve } from 'node:path';
-import { spawnSync } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
+import { chromium, expect as browserExpect } from '@playwright/test';
+import sharp from 'sharp';
 import { PrismaClient } from '@prisma/client';
 import { backup, restore, Persistence, RefSchema } from '@tileset/persistence';
 import { hashBytes } from '@tileset/asset-core';
-import { decodeAtlas, verifyExportFiles } from '@tileset/pack-export';
+import { assembleExport, decodeAtlas, verifyExportFiles } from '@tileset/pack-export';
 import { createApplication } from '../../src/app.js';
 import { loadEnvironment, parseConfig } from '../../src/config.js';
 import { StudioService } from '../../src/studio-service.js';
@@ -36,6 +39,8 @@ let running: Awaited<ReturnType<typeof createApplication>>,
   resources: Resources;
 let admin: PrismaClient;
 const dbNames: string[] = [];
+let r4CommitFence: (() => Promise<void>) | null = null;
+let r4PublicationFault: string | null = null;
 let failOpen = false;
 let failWrite = false,
   stallCodec = false;
@@ -178,13 +183,18 @@ beforeAll(async () => {
     ...process.env,
     DATABASE_URL: database,
     API_PORT: process.env['STEP07_TEST_API_PORT'] ?? '4377',
-    NODE_ENV: 'test',
+    NODE_ENV: 'production',
   });
   service = new StudioService(
     config,
     resources,
     resolve(root, 'assets'),
     async (point) => {
+      if (point === 'db-transaction' && r4CommitFence) await r4CommitFence();
+      if (point === r4PublicationFault) {
+        r4PublicationFault = null;
+        throw Error('R4_EXPECTED_PUBLICATION_FAILURE_' + point);
+      }
       if (failOpen && point === 'source-file-opened') {
         failOpen = false;
         throw Error('TEST_OWNED_SOURCE_OPEN_FAILURE');
@@ -800,5 +810,755 @@ it('processed BUSY is bounded and cancelling its queued read allows the next rea
     release();
     await held;
     p = previousProject;
+  }
+});
+
+async function r4Fixture(name: string) {
+  const project = (await r('/api/projects', { name: 'R4-' + name + '-' + randomUUID() }))
+    .id as string;
+  await r(`/api/projects/${project}/preset`, { family: 'art' });
+  let s = await r(`/api/projects/${project}/studio`);
+  const selected = Object.fromEntries(
+    componentsForR4.map((c) => [
+      c,
+      s.sources.find((x: { component: string }) => x.component === c).id,
+    ]),
+  );
+  await r(`/api/projects/${project}/recipe`, {
+    expectedRevision: s.revision,
+    sources: selected,
+    style: 'component-palette',
+  });
+  s = await r(`/api/projects/${project}/studio`);
+  return {
+    project,
+    recipeId: s.recipes.find((x: { current: boolean }) => x.current).id as string,
+    revision: s.revision as number,
+  };
+}
+const componentsForR4 = ['grass', 'water-0', 'water-1', 'water-2', 'mask', 'overlay'];
+async function r4Terminal(project: string, id: string) {
+  let actual: Awaited<ReturnType<typeof service.store.db.studioJob.findUniqueOrThrow>> | undefined;
+  await expect
+    .poll(
+      async () => {
+        actual = await service.store.db.studioJob.findUniqueOrThrow({
+          where: { id, projectId: project },
+        });
+        return actual.state;
+      },
+      { timeout: 30000, interval: 100 },
+    )
+    .toMatch(/COMPLETED|FAILED/);
+  return actual!;
+}
+async function r4Legacy() {
+  const directory = resolve(root, 'r4-legacy-' + randomUUID());
+  await mkdir(directory);
+  await writeFile(resolve(directory, 'package.json'), '{"type":"module"}');
+  await symlink(resolve('packages/persistence/node_modules'), resolve(directory, 'node_modules'));
+  for (const name of ['store', 'storage', 'gate', 'domain', 'replay', 'config']) {
+    const old = spawnSync(
+      'git',
+      ['show', 'c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/' + name + '.ts'],
+      { encoding: 'utf8' },
+    );
+    expect(old.status).toBe(0);
+    await writeFile(
+      resolve(directory, name + '.js'),
+      ts.transpileModule(old.stdout, {
+        compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 },
+      }).outputText,
+    );
+  }
+  const module: {
+    Persistence: new (
+      url: string,
+      root: string,
+      profile: unknown,
+    ) => {
+      publish(input: Awaited<ReturnType<Persistence['prepareBuild']>>): Promise<{ id: string }>;
+      close(): Promise<void>;
+    };
+  } = await import(pathToFileURL(resolve(directory, 'store.js')).href);
+  return new module.Persistence(
+    service.store.databaseUrl,
+    service.store.storage.root,
+    resources.profile,
+  );
+}
+it('R4 duplicate real old06 four-file publication completes only with transactional standard export and actual HTTP delivery', async () => {
+  const f = await r4Fixture('duplicate'),
+    first = await r(`/api/projects/${f.project}/builds`, {
+      recipeId: f.recipeId,
+      expectedRevision: f.revision,
+      mode: 'update',
+    }),
+    normal = await r4Terminal(f.project, first.id);
+  expect(normal.state).toBe('COMPLETED');
+  expect(await service.store.db.finalExport.count({ where: { buildId: normal.buildId! } })).toBe(1);
+  const prepare = service.store.prepareBuild.bind(service.store);
+  let ready!: (p: Awaited<ReturnType<Persistence['prepareBuild']>>) => void, release!: () => void;
+  const preparedReady = new Promise<Awaited<ReturnType<Persistence['prepareBuild']>>>((resolve) => {
+      ready = resolve;
+    }),
+    barrier = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+  service.store.prepareBuild = async (...args) => {
+    const prepared = await prepare(...args);
+    if (args[0] === f.project) {
+      ready(prepared);
+      await barrier;
+    }
+    return prepared;
+  };
+  const legacy = await r4Legacy();
+  try {
+    const accepted = await r(`/api/projects/${f.project}/builds`, {
+        recipeId: f.recipeId,
+        expectedRevision: f.revision,
+        mode: 'update',
+      }),
+      prepared = await preparedReady;
+    expect((await legacy.publish(prepared)).id).toBe(prepared.id);
+    expect(await service.store.db.finalExport.count({ where: { buildId: prepared.id } })).toBe(0);
+    const internal = await service.store.storage.buildFiles(prepared.id),
+      internalSha = hashBytes(internal['manifest.json']!);
+    release();
+    const job = await r4Terminal(f.project, accepted.id),
+      count = await service.store.db.finalExport.count({ where: { buildId: prepared.id } });
+    const preview = await fetch(
+        `${url}/api/projects/${f.project}/builds/${prepared.id}/preview?scene=holes`,
+      ),
+      download = await fetch(`${url}/api/projects/${f.project}/builds/${prepared.id}/download`);
+    await record('r4-duplicate-legacy', {
+      sourceContext: resources.context,
+      legacyWriter: 'c227f8c6ecfe85895937013e4687deb40247a6ee',
+      job,
+      buildId: prepared.id,
+      finalExportCount: count,
+      previewStatus: preview.status,
+      downloadStatus: download.status,
+      internalSha,
+    });
+    expect(job.state).toBe('COMPLETED');
+    expect(count, 'COMPLETED StudioJob must have one real registered FinalExport').toBe(1);
+    expect(preview.status).toBe(200);
+    expect(download.status).toBe(200);
+    const exported = await service.store.readExport(prepared.id);
+    expect(Object.keys(exported.files).sort()).toEqual([
+      'A1.png',
+      'A2.png',
+      'INSTALL.md',
+      'history.json',
+      'layout.json',
+      'manifest.json',
+      'pack.json',
+      'sources.json',
+    ]);
+    expect(download.headers.get('x-content-sha256')).toBe(
+      hashBytes(new Uint8Array(await download.arrayBuffer())),
+    );
+    const counts = {
+        builds: await service.store.db.build.count({ where: { projectId: f.project } }),
+        exports: await service.store.db.finalExport.count(),
+        files: await service.store.db.fileObject.count(),
+      },
+      pointer = await service.store.db.project.findUniqueOrThrow({ where: { id: f.project } });
+    await service.store.publish(prepared, exported.files, accepted.id);
+    await service.store.publish(prepared, exported.files, accepted.id);
+    expect(await service.store.db.build.count({ where: { projectId: f.project } })).toBe(
+      counts.builds,
+    );
+    expect(await service.store.db.finalExport.count()).toBe(counts.exports);
+    expect(await service.store.db.fileObject.count()).toBe(counts.files);
+    expect(await service.store.db.project.findUniqueOrThrow({ where: { id: f.project } })).toEqual(
+      pointer,
+    );
+    expect(hashBytes((await service.store.storage.buildFiles(prepared.id))['manifest.json']!)).toBe(
+      internalSha,
+    );
+  } finally {
+    release?.();
+    service.store.prepareBuild = prepare;
+    await legacy.close();
+  }
+});
+
+it('R4 first-build HTTP state across real COMMIT is a complete old or new metadata snapshot, never mixed completion', async () => {
+  const f = await r4Fixture('snapshot'),
+    projectRead = service.project.bind(service);
+  let armed = false,
+    captured!: () => void,
+    releaseRead!: () => void,
+    releaseCommit!: () => void,
+    entered!: () => void;
+  const readCaptured = new Promise<void>((resolve) => {
+      captured = resolve;
+    }),
+    readGate = new Promise<void>((resolve) => {
+      releaseRead = resolve;
+    }),
+    commitGate = new Promise<void>((resolve) => {
+      releaseCommit = resolve;
+    }),
+    commitEntered = new Promise<void>((resolve) => {
+      entered = resolve;
+    });
+  service.project = async (...args) => {
+    const p = await projectRead(...args);
+    if (armed && args[0] === f.project) {
+      armed = false;
+      captured();
+      await readGate;
+    }
+    return p;
+  };
+  r4CommitFence = async () => {
+    entered();
+    await commitGate;
+  };
+  try {
+    const accepted = await r(`/api/projects/${f.project}/builds`, {
+      recipeId: f.recipeId,
+      expectedRevision: f.revision,
+      mode: 'update',
+    });
+    await commitEntered;
+    armed = true;
+    const pending = r(`/api/projects/${f.project}/studio`);
+    await readCaptured;
+    releaseCommit();
+    const done = await r4Terminal(f.project, accepted.id);
+    expect(done.state).toBe('COMPLETED');
+    releaseRead();
+    const body = await pending;
+    const j = body.jobs.find((x: { id: string }) => x.id === accepted.id);
+    await record('r4-consistent-first', {
+      sourceContext: resources.context,
+      body,
+      actualJob: done,
+      actualProject: await service.store.db.project.findUniqueOrThrow({ where: { id: f.project } }),
+    });
+    if (j.state === 'COMPLETED') {
+      expect(
+        body.successfulBuildId,
+        'healthy completion cannot combine obsolete null pointer with new terminal Job',
+      ).toBe(done.buildId);
+      expect(body.builds.find((b: { id: string }) => b.id === done.buildId).current).toBe(true);
+      expect(body.needsRebuild).toBe(false);
+    } else {
+      expect(body.successfulBuildId).toBe(null);
+      expect(body.builds.some((b: { id: string }) => b.id === done.buildId)).toBe(false);
+    }
+    const fresh = await r(`/api/projects/${f.project}/studio`);
+    expect(fresh.successfulBuildId).toBe(done.buildId);
+    expect(fresh.builds.find((b: { id: string }) => b.id === done.buildId).exportBuildId).not.toBe(
+      null,
+    );
+  } finally {
+    releaseCommit?.();
+    releaseRead?.();
+    service.project = projectRead;
+    r4CommitFence = null;
+  }
+});
+
+it.each(['existing-standard', 'file-failure', 'db-rollback', 'lost-receipt'] as const)(
+  'R4 real HTTP duplicate finalization %s preserves history and permits verified recovery',
+  async (scenario) => {
+    let allowCommit: (() => void) | undefined;
+    const f = await r4Fixture(scenario),
+      first = await r(`/api/projects/${f.project}/builds`, {
+        recipeId: f.recipeId,
+        expectedRevision: f.revision,
+        mode: 'update',
+      }),
+      normal = await r4Terminal(f.project, first.id);
+    expect(normal.state).toBe('COMPLETED');
+    const firstZip = await fetch(
+        `${url}/api/projects/${f.project}/builds/${normal.buildId}/download`,
+      ),
+      firstSHA = hashBytes(new Uint8Array(await firstZip.arrayBuffer()));
+    const prepare = service.store.prepareBuild.bind(service.store);
+    let ready!: (p: Awaited<ReturnType<Persistence['prepareBuild']>>) => void, release!: () => void;
+    const made = new Promise<Awaited<ReturnType<Persistence['prepareBuild']>>>((r) => {
+        ready = r;
+      }),
+      gate = new Promise<void>((r) => {
+        release = r;
+      });
+    service.store.prepareBuild = async (...args) => {
+      const p = await prepare(...args);
+      if (args[0] === f.project) {
+        ready(p);
+        await gate;
+      }
+      return p;
+    };
+    const external = new Persistence(
+      service.store.databaseUrl,
+      service.store.storage.root,
+      resources.profile,
+    );
+    try {
+      const accepted = await r(`/api/projects/${f.project}/builds`, {
+          recipeId: f.recipeId,
+          expectedRevision: f.revision,
+          mode: 'update',
+        }),
+        prepared = await made;
+      const bundle = JSON.parse(
+          new TextDecoder().decode(prepared.files['bundle.json']!),
+        ) as Parameters<typeof assembleExport>[1],
+        standard = await assembleExport(resources.profile, bundle, resources.context);
+      const failing = scenario === 'file-failure' || scenario === 'db-rollback';
+      if (failing) {
+        const snap = await external.projectSnapshot(f.project);
+        await external.adopt(f.project, f.revision, RefSchema.array().parse(snap.adoption));
+      }
+      await external.publish(
+        prepared,
+        scenario === 'existing-standard' ? standard.files : undefined,
+      );
+      const before = await service.store.db.project.findUniqueOrThrow({ where: { id: f.project } }),
+        oldInternal = hashBytes(
+          (await service.store.storage.buildFiles(prepared.id))['manifest.json']!,
+        );
+      if (scenario === 'file-failure') r4PublicationFault = 'file-partial';
+      let commitEntered: Promise<void> | undefined;
+      if (scenario === 'db-rollback') {
+        r4PublicationFault = 'db-transaction';
+        let entered!: () => void;
+        commitEntered = new Promise<void>((resolve) => {
+          entered = resolve;
+        });
+        const barrier = new Promise<void>((resolve) => {
+          allowCommit = resolve;
+        });
+        r4CommitFence = async () => {
+          entered();
+          await barrier;
+        };
+      }
+      if (scenario === 'lost-receipt') r4PublicationFault = 'after-db-commit';
+      release();
+      if (commitEntered) {
+        await commitEntered;
+        // Actual PG transaction has inserted refs/completion internally, but no
+        // public reader may observe them before COMMIT; then force rollback.
+        expect(await service.store.db.finalExport.count({ where: { buildId: prepared.id } })).toBe(
+          0,
+        );
+        expect(
+          (await service.store.db.studioJob.findUniqueOrThrow({ where: { id: accepted.id } }))
+            .state,
+        ).toBe('RUNNING');
+        expect(
+          await service.store.db.project.findUniqueOrThrow({ where: { id: f.project } }),
+        ).toEqual(before);
+        allowCommit!();
+      }
+      const job = await r4Terminal(f.project, accepted.id),
+        count = await service.store.db.finalExport.count({ where: { buildId: prepared.id } });
+      await record('r4-finalization-' + scenario, {
+        sourceContext: resources.context,
+        scenario,
+        job,
+        count,
+        before,
+        after: await service.store.db.project.findUniqueOrThrow({ where: { id: f.project } }),
+        internalManifest: oldInternal,
+      });
+      expect(job.state).toBe(failing ? 'FAILED' : 'COMPLETED');
+      expect(count).toBe(failing ? 0 : 1);
+      expect(
+        await service.store.db.project.findUniqueOrThrow({ where: { id: f.project } }),
+      ).toEqual(before);
+      expect(
+        hashBytes((await service.store.storage.buildFiles(prepared.id))['manifest.json']!),
+      ).toBe(oldInternal);
+      if (failing) {
+        expect(before.successfulBuildId).toBe(normal.buildId);
+        expect(
+          hashBytes(
+            new Uint8Array(
+              await (
+                await fetch(`${url}/api/projects/${f.project}/builds/${normal.buildId}/download`)
+              ).arrayBuffer(),
+            ),
+          ),
+        ).toBe(firstSHA);
+        // Existing immutable files are retained; explicit local append/retry never changes failed Job to a fake success.
+        await service.store.publish(prepared, standard.files);
+        expect(
+          (await service.store.db.studioJob.findUniqueOrThrow({ where: { id: accepted.id } }))
+            .state,
+        ).toBe('FAILED');
+        expect(await service.store.db.finalExport.count({ where: { buildId: prepared.id } })).toBe(
+          1,
+        );
+        expect(
+          (await fetch(`${url}/api/projects/${f.project}/builds/${prepared.id}/download`)).status,
+        ).toBe(200);
+        service.store.prepareBuild = prepare;
+        const fresh = await r(`/api/projects/${f.project}/studio`),
+          retry = await r(`/api/projects/${f.project}/builds`, {
+            recipeId: f.recipeId,
+            expectedRevision: fresh.revision,
+            mode: 'update',
+          });
+        expect((await r4Terminal(f.project, retry.id)).state).toBe('COMPLETED');
+      } else {
+        const files = await service.store.readExport(prepared.id);
+        await service.store.publish(prepared, undefined, accepted.id);
+        await service.store.publish(prepared, files.files, accepted.id);
+        expect(await service.store.db.finalExport.count({ where: { buildId: prepared.id } })).toBe(
+          1,
+        );
+        expect(
+          (await fetch(`${url}/api/projects/${f.project}/builds/${prepared.id}/download`)).status,
+        ).toBe(200);
+      }
+    } finally {
+      allowCommit?.();
+      r4CommitFence = null;
+      release?.();
+      r4PublicationFault = null;
+      service.store.prepareBuild = prepare;
+      await external.close();
+    }
+  },
+);
+
+it('R4 real COMMIT first/update/history snapshots keep production and dev browser current, preview, ZIP and retirement coherent', async () => {
+  const vite = spawn(
+    'pnpm',
+    [
+      '--filter',
+      '@tileset/web',
+      'exec',
+      'vite',
+      '--host',
+      '127.0.0.1',
+      '--port',
+      process.env['WEB_PORT'] ?? '5276',
+      '--strictPort',
+    ],
+    {
+      env: {
+        ...process.env,
+        API_PORT: new URL(url).port,
+        WEB_PORT: process.env['WEB_PORT'] ?? '5276',
+      },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    },
+  );
+  const viteLog: string[] = [];
+  vite.stdout?.on('data', (b) => viteLog.push(String(b)));
+  vite.stderr?.on('data', (b) => viteLog.push(String(b)));
+  const dev = `http://127.0.0.1:${process.env['WEB_PORT'] ?? 5276}`;
+  await expect
+    .poll(
+      async () => {
+        try {
+          return (await fetch(dev)).status;
+        } catch {
+          return 0;
+        }
+      },
+      { timeout: 15000, interval: 100 },
+    )
+    .toBe(200);
+  const browser = await chromium.launch();
+  const contexts = [];
+  const results: unknown[] = [];
+  try {
+    for (const mode of ['production', 'development'] as const) {
+      if (mode === 'development') {
+        const database = service.store.databaseUrl,
+          assets = service.store.storage.root;
+        await running.close();
+        const config = parseConfig({
+          ...process.env,
+          DATABASE_URL: database,
+          API_PORT: new URL(url).port,
+          WEB_PORT: process.env['WEB_PORT'] ?? '5276',
+          NODE_ENV: 'development',
+        });
+        service = new StudioService(config, resources, assets, async (point) => {
+          if (point === 'db-transaction' && r4CommitFence) await r4CommitFence();
+        });
+        await service.recover();
+        running = await createApplication(config, service);
+        await running.app.listen(config.API_PORT, '127.0.0.1');
+      }
+
+      const f = await r4Fixture('ui-' + mode),
+        context = await browser.newContext({ viewport: { width: 1200, height: 900 } });
+      contexts.push(context);
+      const page = await context.newPage(),
+        network: { url: string; method: string; status: number }[] = [],
+        errors: string[] = [];
+      page.on('response', (r) => {
+        if (r.url().includes('/api/'))
+          network.push({ url: r.url(), method: r.request().method(), status: r.status() });
+      });
+      page.on('pageerror', (e) => errors.push(e.message));
+      await page.goto(mode === 'production' ? url : dev);
+      await page
+        .getByRole('button', { name: (await service.project(f.project)).name, exact: true })
+        .click();
+      async function image() {
+        const element = page.getByAltText('当前配方处理水面');
+        await browserExpect(element).toHaveAttribute('data-project-id', f.project, {
+          timeout: 15000,
+        });
+        await browserExpect
+          .poll(() =>
+            element.evaluate((i) => [
+              (i as HTMLImageElement).naturalWidth,
+              (i as HTMLImageElement).naturalHeight,
+            ]),
+          )
+          .toEqual([96, 144]);
+        const recipeId = await element.getAttribute('data-recipe-id'),
+          frame = await element.getAttribute('data-source-frame'),
+          response = await fetch(
+            `${url}/api/projects/${f.project}/recipes/${recipeId}/processed?frame=${frame}`,
+          );
+        expect(response.status).toBe(200);
+        const bytes = new Uint8Array(await response.arrayBuffer());
+        expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes));
+        const expected = await sharp(bytes).ensureAlpha().raw().toBuffer(),
+          actual = await element.evaluate((i) => {
+            const c = document.createElement('canvas');
+            c.width = 96;
+            c.height = 144;
+            const ctx = c.getContext('2d')!;
+            ctx.drawImage(i as HTMLImageElement, 0, 0);
+            return [...ctx.getImageData(0, 0, 96, 144).data];
+          });
+        expect(Buffer.from(actual)).toEqual(expected);
+        return { project: f.project, recipeId, frame, sha: hashBytes(bytes), decoded: [96, 144] };
+      }
+      await image();
+      await browserExpect(
+        page.getByRole('button', { name: '构建当前配套', exact: true }),
+      ).toBeEnabled();
+      for (const phase of ['first', 'replacement'] as const) {
+        if (phase === 'replacement') {
+          const upload = page.waitForResponse(
+            (r) => r.request().method() === 'POST' && r.url().includes('/sources/water-0/upload'),
+          );
+          await page.getByLabel('上传水面源帧 0', { exact: true }).setInputFiles({
+            name: 'changed.png',
+            mimeType: 'image/png',
+            buffer: Buffer.from(resources.presets.art.sources[2]!.png, 'base64'),
+          });
+          expect((await upload).status()).toBe(201);
+          await browserExpect(page.locator('.notice')).toContainText('新 revision');
+          await page.getByRole('button', { name: '验证并采用固定岸线配方', exact: true }).click();
+          await browserExpect(page.locator('.notice')).toContainText('固定岸线配方');
+          await image();
+        }
+        let entered!: () => void,
+          allowCommit!: () => void,
+          captured!: () => void,
+          allowRead!: () => void,
+          armed = false;
+        const atCommit = new Promise<void>((r) => {
+            entered = r;
+          }),
+          commit = new Promise<void>((r) => {
+            allowCommit = r;
+          }),
+          atRead = new Promise<void>((r) => {
+            captured = r;
+          }),
+          read = new Promise<void>((r) => {
+            allowRead = r;
+          });
+        const original = service.project.bind(service);
+        r4CommitFence = async () => {
+          armed = true;
+          entered();
+          await commit;
+        };
+        service.project = async (...args) => {
+          const p = await original(...args);
+          if (armed && args[0] === f.project) {
+            armed = false;
+            captured();
+            await read;
+          }
+          return p;
+        };
+        try {
+          const reply = page.waitForResponse(
+            (r) => r.request().method() === 'POST' && r.url().endsWith('/builds'),
+          );
+          await page.getByRole('button', { name: '构建当前配套', exact: true }).click();
+          const response = await reply;
+          expect(response.status()).toBe(202);
+          const accepted = (await response.json()) as { id: string };
+          await atCommit;
+          await atRead;
+          allowCommit();
+          const actual = await r4Terminal(f.project, accepted.id);
+          expect(actual.state).toBe('COMPLETED');
+          allowRead();
+          const row = page
+            .getByRole('list', { name: '构建任务' })
+            .getByRole('listitem')
+            .filter({ hasText: accepted.id.slice(0, 8) });
+          await browserExpect(row).toContainText('完成');
+          const state = await r(`/api/projects/${f.project}/studio`);
+          expect(state.successfulBuildId).toBe(actual.buildId);
+          expect(state.needsRebuild).toBe(false);
+          await browserExpect(
+            page.getByRole('button', { name: '退役旧组并建立第二组', exact: true }),
+          ).toBeEnabled({ timeout: 15000 });
+          await row.getByRole('button', { name: '查看这次实际构建', exact: true }).click();
+          await browserExpect(page.locator('canvas[aria-label="交付拼接预览"]')).toHaveAttribute(
+            'data-build-id',
+            actual.buildId!,
+            { timeout: 15000 },
+          );
+          await browserExpect(
+            page.getByText('画布已就绪 · 实际导出图集', { exact: false }),
+          ).toBeVisible();
+          const img = await image(),
+            exported = await service.store.readExport(actual.buildId!),
+            zip = await fetch(`${url}/api/projects/${f.project}/builds/${actual.buildId}/download`);
+          expect(zip.status).toBe(200);
+          const zipSHA = hashBytes(new Uint8Array(await zip.arrayBuffer()));
+          expect(zip.headers.get('x-content-sha256')).toBe(zipSHA);
+          await page.screenshot({ path: resolve(root, `r4-${mode}-${phase}.png`), fullPage: true });
+          results.push({
+            mode,
+            phase,
+            job: actual,
+            successfulBuildId: state.successfulBuildId,
+            exportManifest: exported.row.manifestSha,
+            zipSHA,
+            retireEnabled: true,
+            image: img,
+          });
+        } finally {
+          allowCommit?.();
+          allowRead?.();
+          service.project = original;
+          r4CommitFence = null;
+        }
+      }
+      // A genuine delayed old snapshot finishes HISTORICAL after a newer owned publication.
+      const external = new Persistence(
+          service.store.databaseUrl,
+          service.store.storage.root,
+          resources.profile,
+        ),
+        prepare = service.store.prepareBuild.bind(service.store);
+      let ready!: (p: Awaited<ReturnType<Persistence['prepareBuild']>>) => void,
+        release!: () => void;
+      const prepared = new Promise<Awaited<ReturnType<Persistence['prepareBuild']>>>((r) => {
+          ready = r;
+        }),
+        gate = new Promise<void>((r) => {
+          release = r;
+        });
+      service.store.prepareBuild = async (...args) => {
+        const p = await prepare(...args);
+        if (args[0] === f.project) {
+          ready(p);
+          await gate;
+        }
+        return p;
+      };
+      try {
+        const reply = page.waitForResponse(
+          (r) => r.request().method() === 'POST' && r.url().endsWith('/builds'),
+        );
+        await page.getByRole('button', { name: '构建当前配套', exact: true }).click();
+        const response = await reply;
+        expect(response.status()).toBe(202);
+        const accepted = (await response.json()) as { id: string },
+          old = await prepared,
+          snapshot = await external.projectSnapshot(f.project),
+          adopted = await external.adopt(
+            f.project,
+            snapshot.revision,
+            RefSchema.array().parse(snapshot.adoption),
+          ),
+          ops = JSON.parse(new TextDecoder().decode(old.files['bundle.json']!)) as Parameters<
+            typeof assembleExport
+          >[1];
+        const current = await external.prepareBuild(
+            f.project,
+            old.packId,
+            adopted.id,
+            ops.snapshot.slots
+              .filter((s) => s.state === 'ACTIVE' && s.binding)
+              .map((s) => ({
+                operation: 'put',
+                logicalId: s.binding!.logicalId,
+                revision: s.binding!.revision,
+                fragmentHash: s.binding!.fragment.contentHash,
+                groundId: s.binding!.groundId,
+              })),
+            resources.context,
+          ),
+          bundle = JSON.parse(
+            new TextDecoder().decode(current.files['bundle.json']!),
+          ) as Parameters<typeof assembleExport>[1],
+          exported = await assembleExport(resources.profile, bundle, resources.context);
+        await external.publish(current, exported.files);
+        release();
+        const job = await r4Terminal(f.project, accepted.id);
+        expect(job.state).toBe('COMPLETED');
+        const state = await r(`/api/projects/${f.project}/studio`);
+        expect(state.successfulBuildId).toBe(current.id);
+        expect(state.builds.find((b: { id: string }) => b.id === old.id).current).toBe(false);
+        expect(state.builds.find((b: { id: string }) => b.id === old.id).publication).toBe(
+          'HISTORICAL',
+        );
+        const row = page
+          .getByRole('list', { name: '构建任务' })
+          .getByRole('listitem')
+          .filter({ hasText: accepted.id.slice(0, 8) });
+        await browserExpect(row).toContainText('完成');
+        await page.getByLabel('实际构建').selectOption(current.id);
+        await browserExpect(page.locator('canvas[aria-label="交付拼接预览"]')).toHaveAttribute(
+          'data-build-id',
+          current.id,
+          { timeout: 15000 },
+        );
+        await browserExpect(
+          page.getByRole('button', { name: '退役旧组并建立第二组', exact: true }),
+        ).toBeEnabled({ timeout: 15000 });
+        results.push({
+          mode,
+          phase: 'true-history-only',
+          historicalJob: job,
+          currentBuild: current.id,
+          oldBuild: old.id,
+          image: await image(),
+        });
+      } finally {
+        release?.();
+        service.store.prepareBuild = prepare;
+        await external.close();
+      }
+      expect(errors).toEqual([]);
+      await record('r4-ui-network-' + mode, { sourceContext: resources.context, network, errors });
+    }
+    await record('r4-ui-consistent-publication', { sourceContext: resources.context, results });
+  } finally {
+    for (const context of contexts) await context.close();
+    await browser.close();
+    vite.kill('SIGTERM');
+    await new Promise<void>((r) => vite.once('exit', () => r()));
+    await writeFile(resolve(root, 'r4-vite.log'), viteLog.join(''));
   }
 });

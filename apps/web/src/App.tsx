@@ -25,6 +25,8 @@ const scenes = {
 };
 export function App() {
   const [projects, setProjects] = useState<Project[]>([]),
+    [listStatus, setListStatus] = useState<'loading' | 'ready' | 'error'>('loading'),
+    [listError, setListError] = useState(''),
     [name, setName] = useState(''),
     [id, setId] = useState(localStorage.getItem('studio-project') ?? ''),
     [loadedData, setData] = useState<Studio | null>(null),
@@ -53,7 +55,9 @@ export function App() {
   projectRef.current = id;
   const projectGeneration = useRef(0),
     selectionGeneration = useRef(0),
-    actionGeneration = useRef(0);
+    actionGeneration = useRef(0),
+    listGeneration = useRef(0),
+    listRead = useRef<AbortController | null>(null);
   function changeSelection(change: () => void) {
     selectionGeneration.current++;
     change();
@@ -85,18 +89,38 @@ export function App() {
     running = data?.jobs.some((j) => ['QUEUED', 'RUNNING'].includes(j.state)) ?? false,
     previewKey = `${id}/${build}/${scene}/${group}`,
     previewBusy = Boolean(currentBuild && previewSettled !== previewKey);
+  async function refreshProjects() {
+    listRead.current?.abort();
+    const n = ++listGeneration.current,
+      controller = new AbortController();
+    listRead.current = controller;
+    setListStatus('loading');
+    setListError('');
+    const timer = setTimeout(() => controller.abort(Error('列表读取超过60秒预算。')), 60000);
+    try {
+      // Disposed StrictMode setup must not start a replaced list request.
+      await Promise.resolve();
+      controller.signal.throwIfAborted();
+      const rows = await listProjects(controller.signal);
+      if (n === listGeneration.current && !controller.signal.aborted) {
+        setProjects(rows);
+        setListStatus('ready');
+      }
+    } catch (error) {
+      if (n === listGeneration.current) {
+        setListError(error instanceof Error ? error.message : String(error));
+        setListStatus('error');
+      }
+    } finally {
+      clearTimeout(timer);
+      if (n === listGeneration.current) listRead.current = null;
+    }
+  }
   useEffect(() => {
-    const action = actionGeneration.current;
-    let disposed = false;
-    void listProjects()
-      .then((projects) => {
-        if (!disposed && actionGeneration.current === action) setProjects(projects);
-      })
-      .catch((e) => {
-        if (!disposed && actionGeneration.current === action) setError(String(e));
-      });
+    void refreshProjects();
     return () => {
-      disposed = true;
+      listGeneration.current++;
+      listRead.current?.abort();
     };
   }, []);
   async function refresh(projectId = id, reset = false, parent?: AbortSignal, select = true) {
@@ -288,9 +312,8 @@ export function App() {
     await act(async (scope) => {
       const p = await createProject({ name });
       if (!scope.current()) return;
-      const projects = await listProjects();
+      await refreshProjects();
       if (!scope.current()) return;
-      setProjects(projects);
       selectProject(p.id);
       setName('');
       setNotice('项目已保存。');
@@ -326,6 +349,14 @@ export function App() {
             </label>
             <button disabled={busy || !name.trim()}>创建项目</button>
           </form>
+          {listStatus === 'loading' && <p role="status">正在读取已保存项目…</p>}
+          {listStatus === 'ready' && !projects.length && <p role="status">尚无项目，请创建。</p>}
+          {listStatus === 'error' && (
+            <p role="alert">项目列表读取失败：{listError} 已保留此前加载的项目；可只读重读。</p>
+          )}
+          <button disabled={listStatus === 'loading'} onClick={() => void refreshProjects()}>
+            重读项目列表
+          </button>
           <ul aria-label="已保存项目">
             {projects.map((p) => (
               <li key={p.id}>
