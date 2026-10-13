@@ -1,4 +1,12 @@
-# 步骤07 R1整改当前作者候选
+# 步骤07 R2整改当前作者候选
+
+最新source `5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND3**。正式已用2/5，R2为REQUIRES_REVISION；慢响应串行轮询和处理PNG可取消、有界BUSY恢复已整改自测，下一次正式3/5，由Main独立复审。未批准、合并、推送或启动08。
+
+冻结候选check263、真实HTTP/PG9、06回归23、API3、privacy5、生产/开发browser各7、实际PNG/独立像素/ZIP/恢复及旧Pack比较通过。精确source/Build/hash、原失败、资源和未执行项见 [R2整改Coding报告](docs/reviews/step-07-fix-round-2-coding.md)。专属生产入口 `http://127.0.0.1:4376` 保留；AI仍尚未开放。
+
+以下R1及更早作者候选为历史检查点，原内容和证据保留；R1问题在R2中由独立Reviewer关闭，R2两个新问题仍待R3确认。
+
+# 步骤07 R1整改作者候选（历史）
 
 最新source `d343171ca866a8d1d1c4e272823ef475229d8032`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND2**。R1/5为REQUIRES_REVISION；共享存储祖先/root边界与非阻断P3项目切换已整改自测，下一次正式2/5，由Main复审。未批准、合并、推送或启动08。
 

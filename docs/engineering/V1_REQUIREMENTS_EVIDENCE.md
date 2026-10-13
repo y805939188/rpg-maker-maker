@@ -80,3 +80,15 @@ source `4f6a40f3e8be990b4068dafee488249be737f7ad`，**READY_FOR_REVIEW**；上�
 | 06–07完整持久/恢复/素材与资源政策                     | 新候选check253、HTTP8、06 PG23、API3、privacy5、两browser各3、11exports、旧56payload/16PNG、JS78、8原生CPU对照及真实恢复browser                                   | 不借旧4f PASS；原预算/失败/Profile/母版/Compiler/Pack语义不改，native CPU非新artifact MZ实机   |
 
 精确source/docs/工程Build/Export/关键hash、原反例和新验证见 [R1整改Coding报告](../reviews/step-07-fix-round-1-coding.md)与 [新ledger](../evidence/step-07/fix-round1/ledger.json)。IndependentReview/CI/Release NOT_EXECUTED_BY_CODER，实际产物MZ/用户美术及既有延期仍NOT_EXECUTED，08–10未启动。
+
+## 步骤07正式R2整改检查点
+
+正式R2/5为REQUIRES_REVISION，原报告SHA `1411559d5e0d8376ef34caae414f643392b63b59ad45d59c36363fdf9f200a6d`、386证据保留。最新source `5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND3**；正式已用2/5，下轮3/5，不重置。作者不独立关闭发现、批准、发布或写Main canonical。
+
+| 要求 / R2问题                                      | 最新作者证据                                                                                                                                                             | 责任与局限                                                                                   |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| §4.4/§7真实任务状态 / STEP07-R2-001 P2 BLOCKING    | poll本次settle后800ms再排，同项目单inflight；两模式1300ms合法慢成功/失败、快控制、旧请求迟到，UI终态/按钮与实际backend一致                                               | 保留project/revision/generation与取消保护；不靠用户刷新或增大原case时限                      |
+| §4.4/§11.3创作处理预览 / STEP07-R2-002 P2 BLOCKING | project/recipe/frame可取消PNG，descriptor协调、5attempt/60s BUSY-only恢复、明确错误/重读；两模式三次无注入普通切换、三源帧、真实槽压力/取消与PNG decode/SHA/RGBA一致     | 保持native1/等待1/codec5s/close后释放、HTTP预算和R1路径；无无限队列/重试或永久隐藏必需预览   |
+| 06–07持久恢复/真实双预览/标准包                    | source冻结check263、HTTP9、PG06 23、API3、privacy5、browser7+7；206工程文件、旧56payload/16PNG、JS78、8 CPU；干净恢复后source/recipe/current/history/rebuild/PNG/ZIP连接 | 同选定Export、完整Profile hash48844001…、四/八文件分层；CPU/作者截图非用户美术或新MZ实机PASS |
+
+精确source/docs/Build/Manifest/逐项SHA、原失败与实际资源见 [R2整改Coding报告](../reviews/step-07-fix-round-2-coding.md)与 [ledger](../evidence/step-07/fix-round2/ledger.json)。R1问题由正式R2在原范围CLOSED，作者本次不代替R3独立结论。CI/IndependentReview/Release NOT_EXECUTED_BY_CODER；新artifact MZ/用户美术/既有延期NOT_EXECUTED，08–10未开始。

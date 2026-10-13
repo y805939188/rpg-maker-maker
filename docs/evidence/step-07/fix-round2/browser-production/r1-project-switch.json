@@ -1,0 +1,774 @@
+{
+  "mode": "production",
+  "sourceContext": {
+    "codec": {
+      "aom": "3.15.1",
+      "archive": "3.8.9",
+      "cairo": "1.18.6",
+      "cgif": "0.5.4",
+      "exif": "0.6.26",
+      "expat": "2.8.5",
+      "ffi": "3.8.0",
+      "fontconfig": "2.18.3",
+      "freetype": "2.14.3",
+      "fribidi": "1.0.17",
+      "glib": "2.90.0",
+      "harfbuzz": "14.5.0",
+      "heif": "1.23.5",
+      "highway": "1.4.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.19.1",
+      "mozjpeg": "0826579",
+      "pango": "1.58.2",
+      "pixman": "0.46.4",
+      "png": "1.6.58",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.63.2",
+      "sharp": "0.35.5",
+      "tiff": "4.7.2",
+      "uhdr": "2.0.2",
+      "vips": "8.18.7",
+      "webp": "1.6.0",
+      "xml2": "2.15.4",
+      "zlib-ng": "2.3.3"
+    },
+    "commit": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
+    "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d",
+    "node": "22.21.1"
+  },
+  "legacy": {
+    "id": "74ee262c-435a-43a4-977d-43c77f47cc47",
+    "build": "71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1",
+    "internalManifestSha": "4dd145d52767373455ab878aeabd9ca37f4e099b1d47acb93254dafb5c251f82",
+    "data": {
+      "projectId": "74ee262c-435a-43a4-977d-43c77f47cc47",
+      "animation": {
+        "sequence": [
+          0,
+          1,
+          2,
+          1
+        ],
+        "updatesPerState": 30
+      },
+      "revision": 1,
+      "successfulBuildId": "71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1",
+      "needsRebuild": false,
+      "sources": [
+        {
+          "id": "d8bcf763f030dd41c7211d70c6895dd38e6569deb14e694644ff29e78af6f4da",
+          "component": "overlay",
+          "revision": 1,
+          "density": 2,
+          "sha256": "2c187819c1a4abfc7c6c93482ba4a4a80ae122212e8ff3cd87252492c1121f10",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d8bcf763f030dd41c7211d70c6895dd38e6569deb14e694644ff29e78af6f4da/png",
+          "role": "bank-overlay"
+        },
+        {
+          "id": "4cbd365e0103f7ec38cd24fc659fabd304c80e59e43aa3072f1f241fa2f4f399",
+          "component": "grass",
+          "revision": 1,
+          "density": 2,
+          "sha256": "3d467c253bd72b3474a6cc9b7f4d04b0633825a6ffadfc598281c2cf1735ba17",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/4cbd365e0103f7ec38cd24fc659fabd304c80e59e43aa3072f1f241fa2f4f399/png",
+          "role": "grass"
+        },
+        {
+          "id": "d3dd8ddc9e877ef5c0dc727227af8d1be9c18bbc0d6acce97705fa13c40c18e9",
+          "component": "mask",
+          "revision": 1,
+          "density": 2,
+          "sha256": "baa3079c9e25fdcc2f33c274d7e6253c94c4f6d6243c014e99371ae1652ca47a",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d3dd8ddc9e877ef5c0dc727227af8d1be9c18bbc0d6acce97705fa13c40c18e9/png",
+          "role": "static-mask"
+        },
+        {
+          "id": "7ce5ad6857f4490f4258bb9f366a7046ed7652ae608dd6631012b3c22f9ddedd",
+          "component": "water-0",
+          "revision": 1,
+          "density": 2,
+          "sha256": "31f6032a8c334fa55e93f2d28f803f6eaa428075f4b4ae4d90d0b2125afb1bb5",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/7ce5ad6857f4490f4258bb9f366a7046ed7652ae608dd6631012b3c22f9ddedd/png",
+          "role": "water"
+        },
+        {
+          "id": "586ce9d6cf3bd2a31bed07e7f60474fd924def07f8b2647108894e644152b44e",
+          "component": "water-1",
+          "revision": 1,
+          "density": 2,
+          "sha256": "aa8dcc40511a67710d893bdc44e3aa79e9818eb4535abb8fe16d484354f92c61",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/586ce9d6cf3bd2a31bed07e7f60474fd924def07f8b2647108894e644152b44e/png",
+          "role": "water"
+        },
+        {
+          "id": "814637b0a9b7d3c94b7a5e3f84ab6cebbb7d15de99a8e72129d4129345840fff",
+          "component": "water-2",
+          "revision": 1,
+          "density": 2,
+          "sha256": "32aeecc9c4773b48548eb83f25eee9445ef5213045127a9a7deda07b4e2345e4",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/814637b0a9b7d3c94b7a5e3f84ab6cebbb7d15de99a8e72129d4129345840fff/png",
+          "role": "water"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "1779a96694530b08acb3d774ccad4c340865a56d06d7024fb1567f6795cbec81",
+          "revision": 2,
+          "current": true,
+          "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+          "components": {
+            "grass": "4cbd365e0103f7ec38cd24fc659fabd304c80e59e43aa3072f1f241fa2f4f399",
+            "water-0": "7ce5ad6857f4490f4258bb9f366a7046ed7652ae608dd6631012b3c22f9ddedd",
+            "water-1": "586ce9d6cf3bd2a31bed07e7f60474fd924def07f8b2647108894e644152b44e",
+            "water-2": "814637b0a9b7d3c94b7a5e3f84ab6cebbb7d15de99a8e72129d4129345840fff",
+            "mask": "d3dd8ddc9e877ef5c0dc727227af8d1be9c18bbc0d6acce97705fa13c40c18e9",
+            "overlay": "d8bcf763f030dd41c7211d70c6895dd38e6569deb14e694644ff29e78af6f4da"
+          },
+          "style": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+        }
+      ],
+      "builds": [
+        {
+          "id": "71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1",
+          "version": 1,
+          "projectRevision": 1,
+          "publication": "ADOPTED",
+          "current": true,
+          "exportBuildId": null,
+          "createdAt": "2026-10-13T10:14:56.307Z"
+        }
+      ],
+      "jobs": [],
+      "mockTasks": []
+    }
+  },
+  "modern": {
+    "id": "b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2",
+    "build": "ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7"
+  },
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:4376/api/projects"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/preset"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/7329e77b8900f555449b443c53fab5356b75275138a5724a0f50867234b8660a/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/40d90bd14f9626d63dabfcc13c97ed81426c90a3fa8a5f034e4a511936d9a009/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/8791d904be02cd2bba3febdf8e68f6dc449e91e9448d778ff69a49259358712f/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/872e9b2985daab54f18ef2f4332062afed78280a97cd992f09a061aaf2d391e8/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/12bb67a6a0f34b6ae23da6c2e4505f9764080e27d41ea2b496b08030cbd77e8f/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/dac1b92336eb1b3ccce15600b0c2e925b7b85a52ff9dba7b4502529c634cbf45/png"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipe"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipes/0aa8cc3ddfb0fd5caf19a8ee57bb5f9cd26d306e6ca6bf6260e297031623adc2/processed?frame=0"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/preview?scene=pond"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/manifest.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/profile"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipes/0aa8cc3ddfb0fd5caf19a8ee57bb5f9cd26d306e6ca6bf6260e297031623adc2/processed?frame=0"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/A1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/A2.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/4cbd365e0103f7ec38cd24fc659fabd304c80e59e43aa3072f1f241fa2f4f399/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/7ce5ad6857f4490f4258bb9f366a7046ed7652ae608dd6631012b3c22f9ddedd/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/586ce9d6cf3bd2a31bed07e7f60474fd924def07f8b2647108894e644152b44e/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/814637b0a9b7d3c94b7a5e3f84ab6cebbb7d15de99a8e72129d4129345840fff/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d3dd8ddc9e877ef5c0dc727227af8d1be9c18bbc0d6acce97705fa13c40c18e9/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d8bcf763f030dd41c7211d70c6895dd38e6569deb14e694644ff29e78af6f4da/png"
+    },
+    {
+      "method": "POST",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/export"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/preview?scene=pond"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/manifest.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/profile"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/recipes/1779a96694530b08acb3d774ccad4c340865a56d06d7024fb1567f6795cbec81/processed?frame=0"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/A1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/A2.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/7329e77b8900f555449b443c53fab5356b75275138a5724a0f50867234b8660a/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/40d90bd14f9626d63dabfcc13c97ed81426c90a3fa8a5f034e4a511936d9a009/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/8791d904be02cd2bba3febdf8e68f6dc449e91e9448d778ff69a49259358712f/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/872e9b2985daab54f18ef2f4332062afed78280a97cd992f09a061aaf2d391e8/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/12bb67a6a0f34b6ae23da6c2e4505f9764080e27d41ea2b496b08030cbd77e8f/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/dac1b92336eb1b3ccce15600b0c2e925b7b85a52ff9dba7b4502529c634cbf45/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/preview?scene=pond"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/manifest.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/profile"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipes/0aa8cc3ddfb0fd5caf19a8ee57bb5f9cd26d306e6ca6bf6260e297031623adc2/processed?frame=0"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/A1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/A2.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/4cbd365e0103f7ec38cd24fc659fabd304c80e59e43aa3072f1f241fa2f4f399/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/7ce5ad6857f4490f4258bb9f366a7046ed7652ae608dd6631012b3c22f9ddedd/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/586ce9d6cf3bd2a31bed07e7f60474fd924def07f8b2647108894e644152b44e/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/814637b0a9b7d3c94b7a5e3f84ab6cebbb7d15de99a8e72129d4129345840fff/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d3dd8ddc9e877ef5c0dc727227af8d1be9c18bbc0d6acce97705fa13c40c18e9/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d8bcf763f030dd41c7211d70c6895dd38e6569deb14e694644ff29e78af6f4da/png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/preview?scene=pond"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/manifest.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/profile"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/recipes/1779a96694530b08acb3d774ccad4c340865a56d06d7024fb1567f6795cbec81/processed?frame=0"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/A1.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/A2.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/preview?scene=pond"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/manifest.json"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/profile"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipes/0aa8cc3ddfb0fd5caf19a8ee57bb5f9cd26d306e6ca6bf6260e297031623adc2/processed?frame=0"
+    }
+  ],
+  "responses": [
+    {
+      "url": "http://127.0.0.1:4376/api/projects",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/preset",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/7329e77b8900f555449b443c53fab5356b75275138a5724a0f50867234b8660a/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/872e9b2985daab54f18ef2f4332062afed78280a97cd992f09a061aaf2d391e8/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/40d90bd14f9626d63dabfcc13c97ed81426c90a3fa8a5f034e4a511936d9a009/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/8791d904be02cd2bba3febdf8e68f6dc449e91e9448d778ff69a49259358712f/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/dac1b92336eb1b3ccce15600b0c2e925b7b85a52ff9dba7b4502529c634cbf45/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/12bb67a6a0f34b6ae23da6c2e4505f9764080e27d41ea2b496b08030cbd77e8f/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipe",
+      "status": 201
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipes/0aa8cc3ddfb0fd5caf19a8ee57bb5f9cd26d306e6ca6bf6260e297031623adc2/processed?frame=0",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds",
+      "status": 202
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/preview?scene=pond",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/A1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/A2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/profile",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/4cbd365e0103f7ec38cd24fc659fabd304c80e59e43aa3072f1f241fa2f4f399/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/814637b0a9b7d3c94b7a5e3f84ab6cebbb7d15de99a8e72129d4129345840fff/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/586ce9d6cf3bd2a31bed07e7f60474fd924def07f8b2647108894e644152b44e/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/7ce5ad6857f4490f4258bb9f366a7046ed7652ae608dd6631012b3c22f9ddedd/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d3dd8ddc9e877ef5c0dc727227af8d1be9c18bbc0d6acce97705fa13c40c18e9/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d8bcf763f030dd41c7211d70c6895dd38e6569deb14e694644ff29e78af6f4da/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/export",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/preview?scene=pond",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/A1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/profile",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/A2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/8791d904be02cd2bba3febdf8e68f6dc449e91e9448d778ff69a49259358712f/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/dac1b92336eb1b3ccce15600b0c2e925b7b85a52ff9dba7b4502529c634cbf45/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/7329e77b8900f555449b443c53fab5356b75275138a5724a0f50867234b8660a/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/872e9b2985daab54f18ef2f4332062afed78280a97cd992f09a061aaf2d391e8/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/40d90bd14f9626d63dabfcc13c97ed81426c90a3fa8a5f034e4a511936d9a009/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/sources/12bb67a6a0f34b6ae23da6c2e4505f9764080e27d41ea2b496b08030cbd77e8f/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/preview?scene=pond",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/profile",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/A1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/A2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipes/0aa8cc3ddfb0fd5caf19a8ee57bb5f9cd26d306e6ca6bf6260e297031623adc2/processed?frame=0",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/814637b0a9b7d3c94b7a5e3f84ab6cebbb7d15de99a8e72129d4129345840fff/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/4cbd365e0103f7ec38cd24fc659fabd304c80e59e43aa3072f1f241fa2f4f399/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/586ce9d6cf3bd2a31bed07e7f60474fd924def07f8b2647108894e644152b44e/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d3dd8ddc9e877ef5c0dc727227af8d1be9c18bbc0d6acce97705fa13c40c18e9/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/d8bcf763f030dd41c7211d70c6895dd38e6569deb14e694644ff29e78af6f4da/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/sources/7ce5ad6857f4490f4258bb9f366a7046ed7652ae608dd6631012b3c22f9ddedd/png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/preview?scene=pond",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/A1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/files/A2.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/builds/71c94f8eefbf5e2ed639cf8d2609f83450d95352f6fba2b1947d24e704c52ab1/profile",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/74ee262c-435a-43a4-977d-43c77f47cc47/recipes/1779a96694530b08acb3d774ccad4c340865a56d06d7024fb1567f6795cbec81/processed?frame=0",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/studio",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/preview?scene=pond",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/profile",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/builds/ff2261a0b2701b55cd074629d5ce0fed29c29bcb26429b566bfae699c4de41f7/files/manifest.json",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:4376/api/projects/b08a8c6c-d4ff-4ff5-aad1-dbbd4ae542c2/recipes/0aa8cc3ddfb0fd5caf19a8ee57bb5f9cd26d306e6ca6bf6260e297031623adc2/processed?frame=0",
+      "status": 200
+    }
+  ],
+  "errors": []
+}

@@ -86,3 +86,15 @@ AssetStorage与backup/restore共享内部PathBoundary：每次I/O检查声明roo
 Web先要求data.projectId与当前id一致，选定Build/recipe也须在该data内；新项目数据未到时只显示加载，不请求/渲染旧素材。真实两模式browser延迟响应、旧06转换和三次反向切换验证资源成员身份，无错配请求。
 
 原PNG/HTTP预算、父gate、独立字节/像素所有权、四/八文件区别、Profile/Compiler/Pack/时钟与视觉验收分层保持。新case进入既有check、test:step07和test:e2e/CI。冻结check253、HTTP8、PG06 23、API3、privacy5、browser3+3、生产exports11、旧56payload/16PNG、独立像素/ZIP及恢复browser通过；具体最新绑定/局限见 [R1整改报告](../reviews/step-07-fix-round-1-coding.md)。
+
+## 正式R2后串行轮询与处理预览恢复
+
+正式已用2/5；R2原报告REQUIRES_REVISION，STEP07-R2-001/002均为P2 BLOCKING，原报告、386证据、d343反例及b8失败完整保留。当前作者source `5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0`，最多READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND3，下轮3/5由Main独立复审。R1路径/P3身份在R2中由Reviewer独立关闭，保持回归。
+
+Web同项目refresh共享一个inflight请求，下一次poll在本次settle后800ms安排；project AbortController/generation及revision守卫保留，项目切换取消旧读，合法1300ms响应不会被下一次poll作废。单次项目读取60s deadline；慢成功、慢失败、快控制、迟到旧项目均通过真实browser，最大poll并发1。
+
+ProcessedPreview按project/recipe/sourceFrame绑定fetch/AbortController，离开或切帧取消旧读、撤销Blob URL；仅成功decode的96×144 PNG发布为当前图，错误显示原因并保留同owner上次成功源帧，提供显式重读。当前交付descriptor先settle再读processed，旧06受保护转换沿原幂等入口。只对429/BUSY恢复：最多5次，总60s，250/500/1000/2000ms退避；其他格式/HTTP错误不自动重试。PNG流仍≤4MiB，检查MIME/签名、decode尺寸和字节SHA。开发StrictMode通过发送前一个microtask检查disposed setup，避免无效请求先占native槽；不改变原5秒case或服务端预算。
+
+服务端保持总16请求、下载2、读12、处理1加等待1、codec1无队列/5s/close后释放；JSON8KiB与binary4MiB/5s读/4096chunk、metadata/density/pixel及Host/Origin/client/root边界不变。真实HTTP新增取消等待后紧接下载；两模式普通三次项目切换/三源帧、实际压力BUSY恢复/取消、坏PNG/408明确错误后重读均验证最终decoded图片、recipe身份、字节SHA及实际RGBA，正常场景无持续缺图。JS heap128MiB仍非OS/native RSS硬上限，当前最大真实HTTP平面测量为RSS106,938,368 bytes/74.171584ms，见新证据。
+
+冻结后check263、HTTP/PG9、06 PG23、API3、privacy5、browser7+7、11生产exports、206工程payload、JS78、旧56payload/16PNG、8 pinned-core CPU、恢复实例processed实际PNG/像素/history ZIP及生产入口通过；新cases进入原check/test:step07/test:e2e明确CI命令。Profile/Compiler/Pack/slot/动画/通行、源独立所有权/public restore、内部四文件与正式八文件均不变。运行端口/启动顺序沿上文；PG55476和全部历史DB/root/backup/失败保留，不复用Reviewer或Main环境。具体source/docsSHA、Build、原失败、局限与未执行见 [R2整改Coding报告](../reviews/step-07-fix-round-2-coding.md)。
