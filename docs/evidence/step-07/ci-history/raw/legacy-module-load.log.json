@@ -1,0 +1,7 @@
+{
+  "privateOriginal": ".local/step07-ci-history/legacy-module-load.log",
+  "originalSHA256": "d77bb8650e45936565cfb40e66028f1492ff5c35c8462a6971ca7c0b29289c9a",
+  "originalBytes": 842,
+  "text": "node:internal/modules/cjs/loader:1386\n  throw err;\n  ^\n\nError: Cannot find module '<CODING_WORKTREE>/.local/step07-ci-history/full-history-workspace/.local/legacy-import.mjs'\n    at Function._resolveFilename (node:internal/modules/cjs/loader:1383:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)\n    at Function._load (node:internal/modules/cjs/loader:1192:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:328:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)\n    at node:internal/main/run_main_module:36:49 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v22.21.1\n",
+  "sanitized": true
+}
