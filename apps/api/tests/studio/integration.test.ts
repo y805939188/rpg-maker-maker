@@ -742,3 +742,63 @@ it('public source/A1 and standard JSON/ZIP reads reject replaced ancestors and p
     p = priorProject;
   }
 });
+
+it('processed BUSY is bounded and cancelling its queued read allows the next real selected-build download', async () => {
+  const previousProject = p;
+  p = (await r('/api/projects', { name: 'R2资源槽-' + randomUUID() })).id;
+  await r(`/api/projects/${p}/preset`, { family: 'art' });
+  await recipe();
+  expect((await build()).job.state).toBe('COMPLETED');
+  const s = await state(),
+    recipeId = s.recipes.find((r: { current: boolean }) => r.current).id,
+    buildId = s.successfulBuildId;
+  const path = `${url}/api/projects/${p}/recipes/${recipeId}/processed?frame=0`;
+  let release = () => {};
+  const held = service.exclusive(
+    () =>
+      new Promise<void>((resolve) => {
+        release = resolve;
+      }),
+  );
+  const controller = new AbortController(),
+    queued = fetch(path, { signal: controller.signal }).catch(() => undefined);
+  let busy: { status: number; body: unknown };
+  try {
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const rejected = await fetch(path);
+    busy = { status: rejected.status, body: await rejected.json() };
+    expect(busy.status).toBe(429);
+    expect(busy.body).toMatchObject({ error: { code: 'BUSY' } });
+    controller.abort();
+    await queued;
+    const download = fetch(`${url}/api/projects/${p}/builds/${buildId}/download`);
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    release();
+    await held;
+    const response = await download,
+      zip = new Uint8Array(await response.arrayBuffer());
+    expect(response.status).toBe(200);
+    expect(hashBytes(zip)).toBe(response.headers.get('x-content-sha256'));
+    const png = await fetch(path);
+    expect(png.status).toBe(200);
+    expect(png.headers.get('content-type')).toContain('image/png');
+    const bytes = new Uint8Array(await png.arrayBuffer());
+    expect(bytes.slice(0, 8)).toEqual(new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]));
+    await record('r2-processed-busy-cancel-download', {
+      project: p,
+      recipe: recipeId,
+      buildId,
+      busy,
+      zipSha: hashBytes(zip),
+      pngSha: hashBytes(bytes),
+      budget: 'one processing slot plus one waiting; no queue expansion',
+      testHeldWork:
+        'cooperative server exclusive barrier; no production hook or native budget change',
+    });
+  } finally {
+    controller.abort();
+    release();
+    await held;
+    p = previousProject;
+  }
+});

@@ -9,6 +9,25 @@ import {
   BuildDetailSchema,
   type CreateProject,
 } from '@tileset/contracts';
+export class HttpError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+    readonly code?: string,
+  ) {
+    super(message);
+  }
+}
+export function responseError(response: Response, body: unknown) {
+  const parsed = ErrorSchema.safeParse(body);
+  return new HttpError(
+    parsed.success
+      ? `${parsed.data.error.message}${parsed.data.error.diagnostic ? ` ${parsed.data.error.diagnostic.location}：${parsed.data.error.diagnostic.recovery}` : ''}`
+      : '本地服务暂时无法完成请求。',
+    response.status,
+    parsed.success ? parsed.data.error.code : undefined,
+  );
+}
 export async function request(
   path: string,
   input?: unknown,
@@ -28,14 +47,7 @@ export async function request(
         : undefined,
   );
   const body: unknown = await response.json();
-  if (!response.ok) {
-    const parsed = ErrorSchema.safeParse(body);
-    throw new Error(
-      parsed.success
-        ? `${parsed.data.error.message}${parsed.data.error.diagnostic ? ` ${parsed.data.error.diagnostic.location}：${parsed.data.error.diagnostic.recovery}` : ''}`
-        : '本地服务暂时无法完成请求。',
-    );
-  }
+  if (!response.ok) throw responseError(response, body);
   return body;
 }
 export async function listProjects() {
@@ -44,8 +56,8 @@ export async function listProjects() {
 export async function createProject(input: CreateProject) {
   return ProjectSchema.parse(await request('/api/projects', CreateProjectSchema.parse(input)));
 }
-export async function studio(id: string) {
-  return StudioSchema.parse(await request(`/api/projects/${id}/studio`));
+export async function studio(id: string, signal?: AbortSignal) {
+  return StudioSchema.parse(await request(`/api/projects/${id}/studio`, undefined, signal));
 }
 export async function preview(
   id: string,

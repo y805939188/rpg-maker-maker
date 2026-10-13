@@ -4,6 +4,9 @@ import { createProject, listProjects, studio, request, upload, preview } from '.
 import { useMemo } from 'react';
 import { SourceAnimation } from './SourceAnimation.js';
 import { DeliveryPreview } from './DeliveryPreview.js';
+import { ProcessedPreview } from './ProcessedPreview.js';
+import { pollAfterCompletion } from './poll.js';
+import { boundedResourceRead } from './resource-read.js';
 const names = {
   grass: '草地',
   'water-0': '水面源帧 0',
@@ -33,6 +36,8 @@ export function App() {
     [recipe, setRecipe] = useState(''),
     [build, setBuild] = useState(''),
     [detail, setDetail] = useState<BuildDetail | null>(null),
+    [previewSettled, setPreviewSettled] = useState(''),
+    [processedBusy, setProcessedBusy] = useState(false),
     [scene, setScene] = useState('pond'),
     [group, setGroup] = useState(''),
     [density, setDensity] = useState(2),
@@ -40,71 +45,132 @@ export function App() {
   const projectRef = useRef(id);
   projectRef.current = id;
   const generation = useRef(0),
+    refreshInFlight = useRef<{
+      projectId: string;
+      n: number;
+      controller: AbortController;
+      promise: Promise<void>;
+    } | null>(null),
     previewGeneration = useRef(0),
     latest = useRef<Studio | null>(null),
     project = projects.find((p) => p.id === id),
     data = loadedData?.projectId === id ? loadedData : null,
     chosenRecipe = data?.recipes.find((r) => r.id === recipe),
-    currentBuild = data?.builds.find((b) => b.id === build);
+    currentBuild = data?.builds.find((b) => b.id === build),
+    running = data?.jobs.some((j) => ['QUEUED', 'RUNNING'].includes(j.state)) ?? false,
+    previewKey = `${id}/${build}/${scene}/${group}`,
+    previewBusy = Boolean(currentBuild && previewSettled !== previewKey);
   useEffect(() => {
     void listProjects()
       .then(setProjects)
       .catch((e) => setError(String(e)));
   }, []);
-  async function refresh(projectId = id, reset = false) {
+  async function refresh(projectId = id, reset = false, parent?: AbortSignal) {
+    const existing = refreshInFlight.current;
+    if (existing?.projectId === projectId && !existing.controller.signal.aborted)
+      return existing.promise;
     const n = ++generation.current;
-    const d = await studio(projectId);
-    if (n !== generation.current || projectRef.current !== projectId) return;
-    if (latest.current?.projectId === d.projectId && latest.current.revision > d.revision) return;
-    latest.current = d;
-    setData(d);
-    setSelected((old) => {
-      const next = reset ? {} : { ...old };
-      for (const c of ComponentSchema.options)
-        if (!next[c]) next[c] = d.sources.find((s) => s.component === c)?.id ?? '';
-      return next;
+    const controller = new AbortController(),
+      cancel = () => controller.abort(parent?.reason);
+    parent?.addEventListener('abort', cancel, { once: true });
+    if (parent?.aborted) cancel();
+    const timer = setTimeout(
+      () => controller.abort(new Error('项目读取超过60秒预算，请检查本地服务；上一成功数据保留。')),
+      60000,
+    );
+    const promise = (async () => {
+      const d = await studio(projectId, controller.signal);
+      if (n !== generation.current || projectRef.current !== projectId) return;
+      if (latest.current?.projectId === d.projectId && latest.current.revision > d.revision) return;
+      latest.current = d;
+      setData(d);
+      setSelected((old) => {
+        const next = reset ? {} : { ...old };
+        for (const c of ComponentSchema.options)
+          if (!next[c]) next[c] = d.sources.find((s) => s.component === c)?.id ?? '';
+        return next;
+      });
+      const adopted = d.recipes.find((r) => r.current);
+      setRecipe((old) => (reset || !old ? (adopted?.id ?? '') : old));
+      setBuild((old) => (reset || !old ? (d.successfulBuildId ?? '') : old));
+    })().finally(() => {
+      clearTimeout(timer);
+      parent?.removeEventListener('abort', cancel);
+      if (refreshInFlight.current?.n === n) refreshInFlight.current = null;
     });
-    const adopted = d.recipes.find((r) => r.current);
-    setRecipe((old) => (reset || !old ? (adopted?.id ?? '') : old));
-    setBuild((old) => (reset || !old ? (d.successfulBuildId ?? '') : old));
+    refreshInFlight.current = { projectId, n, controller, promise };
+    return promise;
   }
   useEffect(() => {
+    refreshInFlight.current?.controller.abort();
     generation.current++;
     previewGeneration.current++;
     latest.current = null;
     setData(null);
     setDetail(null);
+    setPreviewSettled('');
     setSelected({});
     setRecipe('');
     setBuild('');
     setGroup('');
     if (id) {
+      const controller = new AbortController();
       localStorage.setItem('studio-project', id);
-      void refresh(id, true).catch((e) => setError(String(e)));
+      void refresh(id, true, controller.signal).catch((e) => {
+        if (!controller.signal.aborted && projectRef.current === id) setError(String(e));
+      });
+      return () => controller.abort();
     }
   }, [id]);
   useEffect(() => {
-    if (!id || !data?.jobs.some((j) => ['QUEUED', 'RUNNING'].includes(j.state))) return;
-    const timer = setInterval(() => {
-      void refresh(id).catch((e) => setError(String(e)));
-    }, 800);
-    return () => clearInterval(timer);
-  }, [id, data?.jobs]);
+    if (!id || !running || data?.projectId !== id) return;
+    const controller = new AbortController();
+    const stop = pollAfterCompletion(
+      () =>
+        refresh(id, false, controller.signal).catch((e) => {
+          if (!controller.signal.aborted && projectRef.current === id) setError(String(e));
+        }),
+      controller.signal,
+    );
+    return () => {
+      controller.abort();
+      stop();
+    };
+  }, [id, data?.projectId, running]);
   useEffect(() => {
     const n = ++previewGeneration.current;
     setDetail(null);
+    setPreviewSettled('');
     if (!id || !data || !currentBuild) return;
     const controller = new AbortController();
-    void (async () => {
-      if (currentBuild.exportBuildId === null)
-        await request(`/api/projects/${id}/builds/${build}/export`, {}, controller.signal);
-      return preview(id, build, scene, group, controller.signal);
-    })()
+    let conversionNeeded = currentBuild.exportBuildId === null;
+    void boundedResourceRead(
+      async (signal) => {
+        if (conversionNeeded) {
+          await request(`/api/projects/${id}/builds/${build}/export`, {}, signal);
+          conversionNeeded = false;
+        }
+        return preview(id, build, scene, group, signal);
+      },
+      controller.signal,
+      (attempt) => {
+        if (n === previewGeneration.current)
+          setNotice(`交付读取槽忙，正在有界恢复（${attempt + 1}/5）。`);
+      },
+    )
       .then((d) => {
-        if (n === previewGeneration.current) setDetail(d);
+        if (n === previewGeneration.current && !controller.signal.aborted) {
+          setDetail(d);
+          setPreviewSettled(previewKey);
+          setNotice((old) => (old.startsWith('交付读取槽忙') ? '' : old));
+        }
       })
       .catch((e) => {
-        if (n === previewGeneration.current && !controller.signal.aborted) setError(String(e));
+        if (n === previewGeneration.current && !controller.signal.aborted) {
+          setError(String(e));
+          setPreviewSettled(previewKey);
+          setNotice((old) => (old.startsWith('交付读取槽忙') ? '' : old));
+        }
       });
     return () => controller.abort();
   }, [id, build, scene, group, data?.projectId, currentBuild?.id]);
@@ -131,7 +197,6 @@ export function App() {
       setName('');
     }, '项目已保存。');
   }
-  const running = data?.jobs.some((j) => ['QUEUED', 'RUNNING'].includes(j.state)) ?? false;
   const sourceUrlKey = [0, 1, 2]
     .map((n) => data?.sources.find((s) => s.id === selected[`water-${n}`])?.url ?? '')
     .join('|');
@@ -346,7 +411,9 @@ export function App() {
                       </select>
                     </label>
                     <button
-                      disabled={busy || running || !chosenRecipe?.current}
+                      disabled={
+                        busy || running || previewBusy || processedBusy || !chosenRecipe?.current
+                      }
                       onClick={() =>
                         void act(async () => {
                           await request(`/api/projects/${id}/builds`, {
@@ -361,7 +428,12 @@ export function App() {
                     </button>
                     <button
                       disabled={
-                        busy || running || !chosenRecipe?.current || !data.successfulBuildId
+                        busy ||
+                        running ||
+                        previewBusy ||
+                        processedBusy ||
+                        !chosenRecipe?.current ||
+                        !data.successfulBuildId
                       }
                       onClick={() =>
                         void act(async () => {
@@ -391,9 +463,12 @@ export function App() {
                           ))}
                         </select>
                       </label>
-                      <img
-                        src={`/api/projects/${id}/recipes/${recipe}/processed?frame=${sourceFrame}`}
-                        alt="当前配方处理水面"
+                      <ProcessedPreview
+                        projectId={id}
+                        recipeId={recipe}
+                        frame={sourceFrame}
+                        enabled={!previewBusy}
+                        onBusy={setProcessedBusy}
                       />
                       <p>
                         创作预览：实际保存的源组件与当前处理素材。此处用于检查组件；下面的交付预览读取完成构建的正式图集。
