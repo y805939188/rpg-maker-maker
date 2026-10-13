@@ -1,0 +1,232 @@
+{
+  "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+  "records": [
+    {
+      "label": "check",
+      "args": [
+        "pnpm",
+        "check"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 64.88,
+      "log": ".local/step07/fix-round1/final/check.log",
+      "logSha256": "e84a503a2546f1a64bb3e6dfc44b0f8d1b0122fb25f721b0eff8a52f4398f9e0"
+    },
+    {
+      "label": "db-migrate",
+      "args": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 1.26,
+      "log": ".local/step07/fix-round1/final/db-migrate.log",
+      "logSha256": "4aa6e55eb3be8138834289de1c0774b5ff22b9a0f9019f4e050560f9347139b6"
+    },
+    {
+      "label": "step07",
+      "args": [
+        "pnpm",
+        "test:step07"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 211.06,
+      "log": ".local/step07/fix-round1/final/step07.log",
+      "logSha256": "46ed62cda28cde8c8e1d94c16340da21abe0bcc8998536514ca79e4005f78f99"
+    },
+    {
+      "label": "api-integration",
+      "args": [
+        "pnpm",
+        "test:integration"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 9.75,
+      "log": ".local/step07/fix-round1/final/api-integration.log",
+      "logSha256": "f594e0098e9a3c37eeab8c9551bb28573d42f109aa8ce9ea194874dd9a188a48"
+    },
+    {
+      "label": "dev-privacy",
+      "args": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 9.96,
+      "log": ".local/step07/fix-round1/final/dev-privacy.log",
+      "logSha256": "59dc94f82c0a402677a68151e99ec2cacf414db8ff39b59d6355e9b092d831f6"
+    },
+    {
+      "label": "browser-production",
+      "args": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 123.96,
+      "log": ".local/step07/fix-round1/final/browser-production.log",
+      "logSha256": "6f0d6090e01dc2c005289a6b746c05777771e5e82e270a9349675c138f3c105a"
+    },
+    {
+      "label": "browser-development",
+      "args": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "E2E_MODE": "dev",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 143.19,
+      "log": ".local/step07/fix-round1/final/browser-development.log",
+      "logSha256": "b6368330a327b782905939a1ac0187ace6a0c88680782006374ecb0f95bb945b"
+    },
+    {
+      "label": "engineering",
+      "args": [
+        "pnpm",
+        "build:step07"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 19.08,
+      "log": ".local/step07/fix-round1/final/engineering.log",
+      "logSha256": "263e82d2f5180fe58fd0856c862d40d796e301881e60335e13fb77b15f889984"
+    },
+    {
+      "label": "pack-sample",
+      "args": [
+        "pnpm",
+        "build:pack-sample"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 42.6,
+      "log": ".local/step07/fix-round1/final/pack-sample.log",
+      "logSha256": "f840597cf82be85247240e7a79e2182d7f8269ea834115a3b456b1876f008636"
+    },
+    {
+      "label": "step06",
+      "args": [
+        "pnpm",
+        "test:step06"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "env": {
+        "DATABASE_URL": "PRIVATE_OWNED_REGRESSION_DB",
+        "TILESET_ASSET_ROOT": ".local/step07/fix-round1/regression06/84d3679e580040b2a38a94b24b4633ed/assets",
+        "TILESET_PG_BIN": "existing PostgreSQL14 tools"
+      },
+      "exitCode": 0,
+      "durationSeconds": 193.86,
+      "log": ".local/step07/fix-round1/final/step06.log",
+      "logSha256": "4e2f9c154d5c035b97f02bca4c48d69d20181a28f506e0fda50ee89447eddb43"
+    },
+    {
+      "label": "legacy-and-native",
+      "args": [
+        [
+          "node",
+          ".local/step07/scalars-original.mjs"
+        ],
+        [
+          "hash compare",
+          "approved step05 56 payloads"
+        ],
+        [
+          "node",
+          "dist/scripts/verify-step05.js",
+          "LOCAL_PINNED_CORE",
+          "each of 8 standard exports"
+        ]
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "exitCode": 0,
+      "durationSeconds": 19.56,
+      "scalarScriptSHA": "506ec056e7eecde0410e7f05093531ed3d62a5f83b7a2d61482ef662c6c801b9"
+    },
+    {
+      "label": "restored-browser",
+      "args": [
+        "node",
+        ".local/step07/fix-round1/restore-browser.mjs",
+        "owned integrated-restoration.json"
+      ],
+      "sourceSHA": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "exitCode": 0,
+      "durationSeconds": 8.81,
+      "database": "/tileset_step07_43a89dbc0b3c40efae841c975126813c",
+      "root": ".local/step07/tests/7245f2ca-8ab9-4717-8902-125209abfd88/restore-assets",
+      "serverPid": 75160,
+      "closedOwnedServer": true
+    }
+  ]
+}

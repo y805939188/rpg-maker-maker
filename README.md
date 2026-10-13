@@ -1,4 +1,12 @@
-# 步骤07当前作者候选
+# 步骤07 R1整改当前作者候选
+
+最新source `d343171ca866a8d1d1c4e272823ef475229d8032`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND2**。R1/5为REQUIRES_REVISION；共享存储祖先/root边界与非阻断P3项目切换已整改自测，下一次正式2/5，由Main复审。未批准、合并、推送或启动08。
+
+冻结候选check253、真实HTTP/PG8、06回归23、API3、privacy5、生产/开发browser各3、独立实际像素/ZIP/恢复及旧Pack比较通过。精确Build/hash/运行资源/原失败与未执行项见 [R1整改Coding报告](docs/reviews/step-07-fix-round-1-coding.md)。专属生产入口4376保留；AI仍尚未开放。
+
+以下初始07作者候选为历史检查点，已被正式R1要求整改；原内容及证据保留。
+
+# 步骤07初始作者候选（历史）
 
 最新source `4f6a40f3e8be990b4068dafee488249be737f7ad`，状态 **READY_FOR_REVIEW**，Main独立Review/CI/批准与发布待执行。人工PNG Studio现具备项目、精确组件/配方、构建/历史、双Pixi预览、QA和实际标准ZIP下载；AI尚未开放，不宣称V1.0完成。
 

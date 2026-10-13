@@ -68,3 +68,15 @@ source `4f6a40f3e8be990b4068dafee488249be737f7ad`，**READY_FOR_REVIEW**；上�
 | QA risk / 验收状态分离                          | 硬校验聚合、seam/repetition/color/flicker/low-animation定位与阈值；人工视觉追加记录                                           | 单指标非质量，Profile阶段基线非ARTIFACT_MZ_TESTED；本产物MZ/用户美术未执行 |
 
 完整 [Coding报告](../reviews/step-07-coding.md)、[基线](STEP_07_BASELINE.md)和 [ledger](../evidence/step-07/coding/ledger.json)绑定上述唯一最新candidate。工程238、API3、07真实HTTP7、06 PG23、两browser各2及11生产exports通过；远端CI/Independent Review未由Coder执行，Main管理canonicalstate。
+
+## 步骤07正式R1整改检查点
+
+上述初始07记录保留为历史。正式R1/5为REQUIRES_REVISION，原报告SHA `96fd739b24d4bfac0e937f695eb5469591d570780d4b3fc7bd0ae3e824820686`不改写。最新source `d343171ca866a8d1d1c4e272823ef475229d8032`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND2**，下一次正式2/5；作者不自行IndependentPASS、批准、发布或写Main canonical。
+
+| 要求 / R1问题                                         | 最新作者证据                                                                                                                                                      | 责任与局限                                                                                     |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| §13.2资产root边界 / STEP07-R1-001 P2 BLOCKING         | 共享逐层路径、root dev/ino、O_NOFOLLOW/fd身份及前后复核；15新增文件case；真实source/A1/JSON/ZIP等同SHA祖先链接422，普通/恢复200；真实坏restore父目录无文件/DB写入 | 保持SHA/bytes与合法历史；合作式不可变目录协议，不声称任意秘密泄露、HTTP种链接或防恶意管理员ABA |
+| §4.1/4.4项目/产物身份 / STEP07-R1-002 P3 NON_BLOCKING | data.projectId及Build/recipe成员检查；加载时旧资源不渲染；两模式真实延迟/legacy转换/反向切换，共74/94响应无400+                                                   | 最小状态协调；非阻断原分级保持，无新交互架构/美术打磨                                          |
+| 06–07完整持久/恢复/素材与资源政策                     | 新候选check253、HTTP8、06 PG23、API3、privacy5、两browser各3、11exports、旧56payload/16PNG、JS78、8原生CPU对照及真实恢复browser                                   | 不借旧4f PASS；原预算/失败/Profile/母版/Compiler/Pack语义不改，native CPU非新artifact MZ实机   |
+
+精确source/docs/工程Build/Export/关键hash、原反例和新验证见 [R1整改Coding报告](../reviews/step-07-fix-round-1-coding.md)与 [新ledger](../evidence/step-07/fix-round1/ledger.json)。IndependentReview/CI/Release NOT_EXECUTED_BY_CODER，实际产物MZ/用户美术及既有延期仍NOT_EXECUTED，08–10未启动。

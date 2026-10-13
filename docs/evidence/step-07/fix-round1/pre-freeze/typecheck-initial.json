@@ -1,0 +1,7 @@
+{
+  "privateOriginal": ".local/step07/fix-round1/typecheck-initial.log",
+  "originalSHA256": "9e39a5be55393ea07e1d49282d702c004d5352e80e88a467d7c8503736260bc6",
+  "originalBytes": 1031,
+  "redaction": "Only absolute worktree/native-core/Node paths replaced. Original bytes retained privately.",
+  "text": "\n> @tileset/persistence@0.0.6 typecheck <WORKTREE>/packages/persistence\n> tsc -p tsconfig.json --noEmit\n\nsrc/storage.ts(45,74): error TS2345: Argument of type 'Stats | BigIntStats' is not assignable to parameter of type '{ dev: number; ino: number; }'.\n  Type 'BigIntStats' is not assignable to type '{ dev: number; ino: number; }'.\n    Types of property 'dev' are incompatible.\n      Type 'bigint' is not assignable to type 'number'.\nsrc/storage.ts(163,89): error TS2345: Argument of type 'Stats | BigIntStats' is not assignable to parameter of type '{ dev: number; ino: number; }'.\n  Type 'BigIntStats' is not assignable to type '{ dev: number; ino: number; }'.\n    Types of property 'dev' are incompatible.\n      Type 'bigint' is not assignable to type 'number'.\n<WORKTREE>/packages/persistence:\n ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @tileset/persistence@0.0.6 typecheck: `tsc -p tsconfig.json --noEmit`\nExit status 2\n"
+}

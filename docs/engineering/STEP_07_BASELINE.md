@@ -74,3 +74,15 @@ pnpm start
 部署后用户只需浏览器：创建/选择项目→上传六源或原创/诊断样例→选择精确版本与风格→验证并采用配方→构建→选择实际结果→播放/检查→ZIP。修复通过替换组件的新revision、采用并重建，无DB/JSON/最终排列/server paths操作；无需key/model/Prompt。
 
 正式验证命令：pnpm check、pnpm test:step07、pnpm test:step06（独立空regression DB/root）、pnpm test:integration、pnpm test:dev-privacy、生产/开发pnpm test:e2e、pnpm build:step07、pnpm build:pack-sample及pinned-core旧产物对照。CI加入明确test:step07和原两模式browser；文件存在不等于远端CI通过。精确source/docs/Build/hash/失败与未执行项见 [Coding报告](../reviews/step-07-coding.md)。
+
+## 正式R1后共享路径与项目身份整改
+
+R1/5为REQUIRES_REVISION：STEP07-R1-001阻断P2为初始化后objects祖先链接可返回同SHA根外资源；STEP07-R1-002非阻断P3为新project与旧Build/recipe瞬时混合。原报告及失败保留。最新作者source `d343171ca866a8d1d1c4e272823ef475229d8032`，最多READY_FOR_REVIEW，下一次正式2/5，未自行关闭独立问题或发布。
+
+AssetStorage与backup/restore共享内部PathBoundary：每次I/O检查声明root、全部既存祖先与叶，拒绝链接/真实路径逃逸；实例固定已观察root及其上级目录dev/ino，拒绝同内容root移换及已绑定root消失。FileHandle的O_NOFOLLOW、fd与叶身份、前后路径身份复核配合原长度/SHA检查；Source、内部Build、标准PNG/JSON/ZIP/replay、inventory和写入共用边界。备份读/hash/copy用受检查描述符，restore输入/输出及PG工具前后检查；失败清理只处理路径仍安全且dev/ino一致的本次自有stage，否则保留定位。
+
+合作式文件协议要求应用不在操作中重定向目录。Node没有openat目录链，前后检查及描述符针对可观察的移换，不扩大为防恶意本机管理员ABA或全部系统调用竞态承诺；SHA相同仍不能使根外读取合格。本次真实同SHA source/A1等祖先反例422、普通文件200；新增15文件边界case、坏restore父目录不写入/不登记与正常恢复再建均实际执行。
+
+Web先要求data.projectId与当前id一致，选定Build/recipe也须在该data内；新项目数据未到时只显示加载，不请求/渲染旧素材。真实两模式browser延迟响应、旧06转换和三次反向切换验证资源成员身份，无错配请求。
+
+原PNG/HTTP预算、父gate、独立字节/像素所有权、四/八文件区别、Profile/Compiler/Pack/时钟与视觉验收分层保持。新case进入既有check、test:step07和test:e2e/CI。冻结check253、HTTP8、PG06 23、API3、privacy5、browser3+3、生产exports11、旧56payload/16PNG、独立像素/ZIP及恢复browser通过；具体最新绑定/局限见 [R1整改报告](../reviews/step-07-fix-round-1-coding.md)。
