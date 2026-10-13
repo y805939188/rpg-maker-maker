@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_FIX4_FROZEN_AUTHOR_REGRESSION",
+  "phase": "STEP07_FIX4_REMAINING_EVIDENCE_AFTER_NORMAL_CLIENT_RECOVERY",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -514,7 +514,7 @@
         "status": "SUPERSEDED_UNREVIEWED_ARTIFACT_RETAINED"
       }
     ],
-    "engineeringBuildState": "AWAIT_NEW594_BOUND_BUILD_AND_COMPLETE_AUTHOR_HANDOFF",
+    "engineeringBuildState": "ACTUAL594_HASH_VERIFIED_AWAIT_AUTHOR_FULL_HANDOFF_AND_INDEPENDENT_REVIEW",
     "supersededAuthorValidation82": {
       "phase": "FROZEN_CANDIDATE_VALIDATION",
       "firstActualHttpFlow": "PASS_UNFROZEN_AUTHOR_ONLY",
@@ -576,9 +576,23 @@
         "formalReviewRoundsUnchanged": 2,
         "sourceUnchanged": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "diagnosisEvidence": "docs/evidence/orchestration-06-07/step07-coding-normal-recovery2.json"
+      },
+      {
+        "attempt": 3,
+        "duringFixRound": 4,
+        "mode": "NORMAL_SIGINT_AND_SAME_CID_RESUME",
+        "status": "IN_PROGRESS",
+        "receipt": "docs/evidence/orchestration-06-07/step07-coding-normal-recovery3.json",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round4-recovery3-client.json",
+        "reason": "8ws disconnects;14.5min no newcompletedverification;activeToolItems0;serverCauseUNVERIFIED",
+        "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+        "originalNativeProcess": 87558,
+        "newNativeProcess": 88765,
+        "sourcePreserved": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+        "wholeReviewRoundAdded": 0
       }
     ],
-    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-fix-round4",
+    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-fix-round4-recovery3",
     "reviews": [
       {
         "round": 1,
@@ -933,8 +947,8 @@
       "previousSource": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
       "previousDocs": "71933b6782b83600b1a94017f5eb5aa763553dfb",
       "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round4-client.json",
-      "nativeOutput": ".local/orchestration-06-07/step07-fix-round4",
-      "nativeProcess": 87558,
+      "nativeOutput": ".local/orchestration-06-07/step07-fix-round4-recovery3",
+      "nativeProcess": 88765,
       "phase": "APPLYING_MINIMAL_FIX_AFTER_OLD_CANDIDATE_COUNTEREXAMPLES",
       "oldCandidateAssertionControls": {
         "candidate": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
@@ -994,8 +1008,21 @@
         "api": 3,
         "privacy": 5,
         "productionBrowserStatus": "PASS_AUTHOR_BOUND_EXECUTED",
-        "developmentBrowser": "IN_PROGRESS18"
-      }
+        "developmentBrowser": 18,
+        "developmentBrowserStatus": "PASS_AUTHOR_BOUND_EXECUTED",
+        "artifactRestore": "IN_PROGRESS",
+        "engineeringPayloadsMainRehashed": 206,
+        "sceneStates": 24,
+        "creativeStates": 4,
+        "clockSamples": 24,
+        "clockCycles": 3,
+        "oldPackPayload": 56,
+        "oldPackPNG": 16,
+        "scalar": 78,
+        "nativeCPU": 8,
+        "technicalScope": "AUTHOR_REFERENCE_PIXEL_CHECKS_NOT_MZ_GUI_OR_USER_ART_CONFIRMATION"
+      },
+      "recovery": "SAME_CID_UNCHANGED_CONFIG_IN_PROGRESS"
     },
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
@@ -1178,6 +1205,19 @@
       "runId": 38445594852,
       "status": "SUCCESS",
       "purpose": "MAIN06_PUBLISHED_CODE_PLUS_CANONICAL_DOCS_NOT_STEP07_CANDIDATE"
+    },
+    "frozen594CheckpointCi": {
+      "head": "f748ce69ecdea63dbffd832af47389508ef3c025",
+      "runId": 38449160041,
+      "status": "SUCCESS",
+      "purpose": "MAIN_PUBLISHED06_CODE_PLUS07_ORCHESTRATION_DOCS_NOT07_CANDIDATE"
+    },
+    "engineeringBuild": {
+      "sourceSha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+      "buildId": "step07-59423201ba10-191301abe69ac02e",
+      "manifestSha256": "35fdc32783b4a07aff8a12bc3531385cc2dcb399f54d18da5fac1bdddd507814",
+      "payloadsVerified": 206,
+      "receipt": "docs/evidence/orchestration-06-07/step07-candidate594-engineering-receipt.json"
     }
   },
   "step08": {
@@ -1344,7 +1384,7 @@
       "formalReviewStarted": false
     }
   ],
-  "lastSuccessfulCheckpoint": "NewSource594 clean frozen,Authorcheck266/HTTP16/API3/privacy5/productionbrowser18 PASS;development18 and06/artifactrestore/fullhandoff pending. R5ownPG55487 exact594 prepared,noformalreview;val93bc executablezero notpushed. Realnumber4completed,next5,no mechanicalcap.07maincode notmerged.",
+  "lastSuccessfulCheckpoint": "Source594 Gitclean/check266/HTTP16/API3/privacy5/prod18/dev18 passed; engineering+pack-sample commands exit0. Originalnative14.5min no newverification/activeTool0 and8ws warnings, ownCLI87558 normalSIGINTexit1 logskept. SameCID native88765 xhigh/default resumed remaining06/artifact/reference/restore/docshandoff only; DB/assets notreset,noReviewcountchange.",
   "blockers": [
     {
       "gate": "STEP07_TECHNICAL_RELEASE",
@@ -1402,7 +1442,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T18:44:04.316942+00:00",
+  "updatedAtUtc": "2026-10-13T19:16:31.387830+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
