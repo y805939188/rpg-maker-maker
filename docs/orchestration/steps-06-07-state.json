@@ -661,6 +661,14 @@
       "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round1-client.json",
       "source": "d343171ca866a8d1d1c4e272823ef475229d8032",
       "docsHead": "1a3881edd3a076649f86794b05ac47f4c4c7a315"
+    },
+    "validationEnvironment": {
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
+      "branch": "codex/step-07-validation",
+      "status": "PREPARED_LOCAL_DOCUMENTATION_INTEGRATION_ONLY_NO_PUSH_CI_OR_APPROVAL",
+      "reviewedSource": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "executableDiffZero": true,
+      "database": "NONE_NO_ENV_OR_PRIVATE_DATA"
     }
   },
   "step08": {
@@ -733,7 +741,7 @@
       "temporaryRoot": ".local/step07",
       "apiPort": 4376,
       "webPort": 5276,
-      "serviceStatus": "OWNED_POSTGRES_API_STARTED_AUTHOR_VALIDATION"
+      "serviceStatus": "PG55476_PRODUCTION_API4376_RUNNING_AUTHOR_FROZEN_D343"
     },
     {
       "owner": "step07_reviewer_round1",
@@ -745,14 +753,34 @@
       "temporaryRoot": ".local/step07-review",
       "apiPort": 4377,
       "webPort": 5277,
-      "serviceStatus": "OWNED_POSTGRES_STARTED_BY_MAIN_PREPARATION_NO_REVIEW",
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_DATA_RETAINED",
       "preparedBy": "MAIN_ORCHESTRATOR",
-      "apiWebServices": "NOT_STARTED",
-      "source": "4f6a40f3e8be990b4068dafee488249be737f7ad"
+      "apiWebServices": "REVIEW_EXECUTED_THEN_STOPPED",
+      "source": "4f6a40f3e8be990b4068dafee488249be737f7ad",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round1-owned-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round2",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker",
+      "pgPort": 55479,
+      "apiPort": 4379,
+      "webPort": 5279,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "REVIEWER_OWNED_ENV_PREPARATION_IN_PROGRESS"
     }
   ],
   "lastSuccessfulCheckpoint": "Step07 R1 original report and 308 payloads preserved; d343 fixes and 148 author payloads/206 engineering files verified; R2 native ultra/default dispatched.",
-  "blockers": [],
+  "blockers": [
+    {
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "status": "PENDING_INDEPENDENT_R2",
+      "issue": "STEP07-R1-001",
+      "reason": "R1 blocking P2 remains open until new frozen candidate independently confirmed; author fix alone is not closure."
+    }
+  ],
   "nextSafeAction": "Wait for R2 complete independent review, preserve original report/evidence; no technical acceptance or Step07 publish before latest PASS and required CI.",
   "cleanup": [
     {
