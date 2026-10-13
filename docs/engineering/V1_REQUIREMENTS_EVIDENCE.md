@@ -92,3 +92,15 @@ source `4f6a40f3e8be990b4068dafee488249be737f7ad`，**READY_FOR_REVIEW**；上�
 | 06–07持久恢复/真实双预览/标准包                    | source冻结check263、HTTP9、PG06 23、API3、privacy5、browser7+7；206工程文件、旧56payload/16PNG、JS78、8 CPU；干净恢复后source/recipe/current/history/rebuild/PNG/ZIP连接 | 同选定Export、完整Profile hash48844001…、四/八文件分层；CPU/作者截图非用户美术或新MZ实机PASS |
 
 精确source/docs/Build/Manifest/逐项SHA、原失败与实际资源见 [R2整改Coding报告](../reviews/step-07-fix-round-2-coding.md)与 [ledger](../evidence/step-07/fix-round2/ledger.json)。R1问题由正式R2在原范围CLOSED，作者本次不代替R3独立结论。CI/IndependentReview/Release NOT_EXECUTED_BY_CODER；新artifact MZ/用户美术/既有延期NOT_EXECUTED，08–10未开始。
+
+## 步骤07正式R3整改检查点
+
+R3/5 REQUIRES_REVISION原报告SHA `c18e713ac7e3ee14b9b342234af5d6d4fe9225a67a547ceb93b003ccbf4c6fdf`、437证据保留。source `ef30dc2ab011d204d1d0a4d099a335b68458cdca`，SELF_TESTED_READY_FOR_ROUND4；已用3/5，下轮4/5。作者不关闭独立问题/批准/发布/写Main canonical。
+
+| 要求/发现                              | 最新作者证据                                                                                                                                                   | 局限/门禁                                                                                |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| §4.4/§7真实状态与有界恢复 / R3-001 P2  | 连续错误5次/60s共享截止，成功重置/正常poll不截断；两模式503/429/network后81s+20s停止、未知/last-success及真实只读恢复；POST1                                   | 保留single inflight/generation/取消；受控故障非真实DB掉线，待独立R4                      |
+| §4.1/4.3/4.4/7.2迟到写保护 / R3-002 P2 | project/selection/action世代保护所有相关UI写回调；真实201上传/采用、同项目选择、422/error/202Build/visual-false/create迟到；实际source/recipe/PNG/目标快照一致 | 旧真实提交保留，abort不等于撤销；不新架构/美术打磨，待独立R4                             |
+| 06–07持久/预览/交付及原关闭问题        | check266/HTTP9/PG23/API3/privacy5/browser13+13；206工程/195source/2525保护；24scene/4source/12+12clock/nearest/ZIP/restore；旧56payload16PNG/JS78/8CPU         | Profile/Compiler/slot/时基/通行/所有权/路径/预算不变；R1/R2由原R3 CLOSED，原失败全部保留 |
+
+精确source/docs/Build/Manifest/每项SHA及资源见 [R3整改Coding报告](../reviews/step-07-fix-round-3-coding.md)与 [ledger](../evidence/step-07/fix-round3/ledger.json)。原独立参考probe作为作者重跑，不冒充新IndependentPASS；CI/Release NOT_EXECUTED_BY_CODER，新artifact MZ/用户美术/Host/Map003延期NOT_EXECUTED，08–10未开始。
