@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_CANDIDATE_CI_PREPARATION",
+  "phase": "STEP06_APPROVED_PENDING_MAIN_MERGE",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -62,7 +62,7 @@
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
-    "status": "INDEPENDENT_PASS_PENDING_CI",
+    "status": "APPROVED_PENDING_PUBLICATION",
     "reviewRounds": 3,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
@@ -395,7 +395,25 @@
       "apiPort": 4371,
       "webPort": 5271
     },
-    "latestIndependentReview": "PASS"
+    "latestIndependentReview": "PASS",
+    "validationBranch": "codex/step-06-validation",
+    "validationSha": "4a98470e7dfb6532c65c844bb167c5091ba90836",
+    "candidateCI": {
+      "runId": 38326156800,
+      "status": "SUCCESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38326156800",
+      "executableSourceIdenticalToReviewedCandidate": true
+    },
+    "approval": {
+      "status": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+      "authorization": "docs/orchestration/steps-06-07-authorization.md",
+      "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "docsHead": "89f15cbb3d560584043128235014e230f982c2c8",
+      "independentReviewRound": 3,
+      "independentReview": "PASS",
+      "candidateCI": 38326156800,
+      "interpretation": "User predelegated technical acceptance; no claim of fresh per-round personal user review"
+    }
   },
   "step07": {
     "status": "NOT_STARTED",
@@ -461,7 +479,7 @@
       "serviceStatus": "NOT_STARTED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_ROUND3_PASS_AND_ALL_REVIEW_EVIDENCE_VERIFIED",
+  "lastSuccessfulCheckpoint": "STEP06_PREAUTHORIZED_TECHNICAL_ACCEPTANCE_AFTER_INDEPENDENT_PASS_AND_CANDIDATE_CI",
   "blockers": [],
   "nextSafeAction": "Integrate frozen reviewed source and documentation with orchestrator-only main records into validation branch; wait necessary candidate CI."
 }
