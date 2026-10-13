@@ -934,7 +934,29 @@
       "previousDocs": "71933b6782b83600b1a94017f5eb5aa763553dfb",
       "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round4-client.json",
       "nativeOutput": ".local/orchestration-06-07/step07-fix-round4",
-      "nativeProcess": 87558
+      "nativeProcess": 87558,
+      "phase": "APPLYING_MINIMAL_FIX_AFTER_OLD_CANDIDATE_COUNTEREXAMPLES",
+      "oldCandidateAssertionControls": {
+        "candidate": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+        "R4-001": "ASSERTION_CORRECTLY_FAILS_FinalExport0",
+        "R4-002": "ASSERTION_CORRECTLY_FAILS_sidebar0_after_valid200",
+        "R4-003": "ASSERTION_CORRECTLY_FAILS_terminal200_old_null_pointer",
+        "status": "REPRODUCED_DEFECTS_NOT_IMPLEMENTATION_PASS",
+        "retained": "Original logs/traces plus first invalid readbarrier timing preserved"
+      },
+      "readOnlyAffectedDataAudit": {
+        "ownPgPort": 55476,
+        "databasesScanned": 72,
+        "affectedStudioCompletedWithoutFinalExport": 0,
+        "historyWrites": "NONE_REQUIRED"
+      },
+      "proposedReadConsistency": "5s read-only RepeatableRead DBmetadata; file/pixel work outsideTX",
+      "preFreezeValidation": {
+        "status": "PARTIAL_AUTHOR_NEW_HTTP_CONTROLS_PASS_NOT_FROZEN_OR_REVIEWED",
+        "legacy06DuplicatePublication": "PASS_AUTHOR_REPORTED_EXECUTED",
+        "crossCommitConsistentRead": "PASS_AUTHOR_REPORTED_EXECUTED",
+        "remaining": "existingstandard/filefailure/TXrollback/commitreceiptloss/listUI+fullregression pending"
+      }
     },
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
@@ -957,19 +979,19 @@
       "status": "R4_REQUIRES_REVISION_AWAIT_FIX4_FREEZE"
     },
     "nextReviewEnvironment": {
-      "operationId": "145c081f-af64-431e-94c0-5d1663613188",
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round4/rpg-maker-maker",
+      "operationId": "f0930d25-4a8b-41bb-9cbb-ad556d67c4af",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
       "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
-      "sourceStatus": "NEW_FROZEN_FIX3_AWAIT_AUTHOR_HANDOFF",
-      "pgPort": 55485,
-      "apiPort": 4385,
-      "webPort": 5285,
-      "preparedBy": "MAIN_ORCHESTRATOR",
-      "status": "R4_COMPLETED_REQUIRES_REVISION_SERVICES_STOPPED",
+      "sourceState": "OLD_FAILED_CANDIDATE_PREPARATION_ONLY_AWAIT_FIX4_FROZEN_SOURCE",
+      "pgPort": 55487,
+      "apiPort": 4387,
+      "webPort": 5287,
+      "status": "EXCLUSIVE_EMPTY_ENV_PREPARED_NOT_FORMAL_REVIEW",
+      "formalReviewStarted": false,
       "databaseMigration": "NOT_EXECUTED",
-      "formalReviewStarted": true,
+      "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
       "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
-      "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS"
+      "preparedBy": "MAIN_ORCHESTRATOR"
     },
     "checkpointCi": {
       "head": "552137fa00a28fccc2375bf89a8e70ca2a0132e8",
@@ -1099,6 +1121,12 @@
       "continueWhileVerifiedProgress": true,
       "stopForSameBlockingRootCauseWithoutProgressConsecutiveRounds": 2,
       "qualityGate": "P0/P1/blockingP2=0,requiredtests,latestindependentwholecandidatePASS"
+    },
+    "resumeCheckpointCi": {
+      "head": "61ea42aed8b4c894b6da68a8e3593b53bdc317df",
+      "runId": 38439692343,
+      "status": "SUCCESS",
+      "purpose": "MAIN_DOCS_AUTHORIZATION_R4_PRESERVATION_NOT_STEP07_FUNCTION_CANDIDATE"
     }
   },
   "step08": {
@@ -1171,7 +1199,7 @@
       "temporaryRoot": ".local/step07",
       "apiPort": 4376,
       "webPort": 5276,
-      "serviceStatus": "OWNED_PG55476_AND_PRODUCTION_API4376_RUNNING_FROZEN_EF30_NOT_PUBLISHED",
+      "serviceStatus": "OWNED_PG55476_RUNNING_PRODUCTION_API7819_STOPPED_BY_CODER_FOR_FIX4",
       "apiPid": 7819,
       "previousApiPid": 51670,
       "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
@@ -1250,9 +1278,22 @@
       "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
       "threadId": "01a13592-d6c5-7a91-badb-a0419a260e2a",
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round4-preservation-and-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round5",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round5/rpg-maker-maker",
+      "pgPort": 55487,
+      "apiPort": 4387,
+      "webPort": 5287,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWNED_NEW_EMPTY_PG55487_RUNNING_FORMAL_REVIEW_NOT_STARTED",
+      "formalReviewStarted": false
     }
   ],
-  "lastSuccessfulCheckpoint": "Recovery actualmain/origin/liveRemote4ac match; Code719 clean andR4ef30 frozen, nativeR4exit0 report9beb/ledger a7a verified430 originals and2532sourceunchanged. R3closed;3newblockingP2. User cancels07 mechanical5limit withverifiedprogress required. SameCoderFix4 xhigh/default resumed pid87558. OwnedPG55485 stopped safely,dataretained;06PUBLISHED unaffected.",
+  "lastSuccessfulCheckpoint": "R4 final3P2/430originals preserved; new07progress-gatedauthorization. SameCoderFix4 proves all3correctnewassertions fail onold ef30; affectedownDBread-onlyaudit72DBs=0, nohistorywrites. Applying minimalfix; no newSourcefrozen/reviewPASS/07push yet. R5exclusivePG55487 preparednoformalReview.",
   "blockers": [
     {
       "gate": "STEP07_TECHNICAL_RELEASE",
@@ -1310,7 +1351,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T17:32:44.193991+00:00",
+  "updatedAtUtc": "2026-10-13T18:07:22.289452+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
