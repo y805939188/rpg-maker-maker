@@ -1,0 +1,30 @@
+{
+  "atUtc": "2026-10-13T22:32:05.714086+00:00",
+  "runId": 38475532067,
+  "candidate": "b868e351f01edcbcfc63b3b9e15dc26981427361",
+  "source": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+  "conclusion": "FAILURE",
+  "actualJobLogSha256": "0ee4995d5c9e1f50bb5d1bd5f44c4e063cfbaa21e1fd92164a7a0fb82d31fe41",
+  "actualJobLogBytes": 125718,
+  "rawLog": "private .local/orchestration-06-07/step07-candidate-ci-38475532067-job.log.txt",
+  "verifiedClosedPreviousCiPrerequisites": [
+    "old c227 writer actual regression passed",
+    "Chromium1248 original install succeeded before teststep07"
+  ],
+  "step06Tests": {
+    "passed": 23,
+    "total": 23
+  },
+  "step07Tests": {
+    "passed": 15,
+    "failed": 1,
+    "total": 16
+  },
+  "remainingFailure": {
+    "test": "R4 real COMMIT first/update/history snapshots keep production and dev browser current, preview, ZIP and retirement coherent",
+    "location": "apps/api/tests/studio/integration.test.ts:1235",
+    "actual": "Test timed out in 180000ms; elapsed180003ms",
+    "rootCause": "NOT_YET_DETERMINED",
+    "response": "specific coding diagnosis, retain budget/all assertions and failure log; no main merge/publish"
+  }
+}
