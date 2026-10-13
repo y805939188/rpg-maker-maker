@@ -24,7 +24,7 @@ export function App() {
   const [projects, setProjects] = useState<Project[]>([]),
     [name, setName] = useState(''),
     [id, setId] = useState(localStorage.getItem('studio-project') ?? ''),
-    [data, setData] = useState<Studio | null>(null),
+    [loadedData, setData] = useState<Studio | null>(null),
     [error, setError] = useState(''),
     [notice, setNotice] = useState(''),
     [busy, setBusy] = useState(false),
@@ -42,7 +42,10 @@ export function App() {
   const generation = useRef(0),
     previewGeneration = useRef(0),
     latest = useRef<Studio | null>(null),
-    project = projects.find((p) => p.id === id);
+    project = projects.find((p) => p.id === id),
+    data = loadedData?.projectId === id ? loadedData : null,
+    chosenRecipe = data?.recipes.find((r) => r.id === recipe),
+    currentBuild = data?.builds.find((b) => b.id === build);
   useEffect(() => {
     void listProjects()
       .then(setProjects)
@@ -90,10 +93,10 @@ export function App() {
   useEffect(() => {
     const n = ++previewGeneration.current;
     setDetail(null);
-    if (!id || !build) return;
+    if (!id || !data || !currentBuild) return;
     const controller = new AbortController();
     void (async () => {
-      if (data?.builds.find((b) => b.id === build)?.exportBuildId === null)
+      if (currentBuild.exportBuildId === null)
         await request(`/api/projects/${id}/builds/${build}/export`, {}, controller.signal);
       return preview(id, build, scene, group, controller.signal);
     })()
@@ -104,7 +107,7 @@ export function App() {
         if (n === previewGeneration.current && !controller.signal.aborted) setError(String(e));
       });
     return () => controller.abort();
-  }, [id, build, scene, group]);
+  }, [id, build, scene, group, data?.projectId, currentBuild?.id]);
   async function act(fn: () => Promise<void>, message: string) {
     setBusy(true);
     setError('');
@@ -129,8 +132,6 @@ export function App() {
     }, '项目已保存。');
   }
   const running = data?.jobs.some((j) => ['QUEUED', 'RUNNING'].includes(j.state)) ?? false;
-  const chosenRecipe = data?.recipes.find((r) => r.id === recipe),
-    currentBuild = data?.builds.find((b) => b.id === build);
   const sourceUrlKey = [0, 1, 2]
     .map((n) => data?.sources.find((s) => s.id === selected[`water-${n}`])?.url ?? '')
     .join('|');
@@ -185,6 +186,7 @@ export function App() {
               {notice}
             </p>
           )}
+          {id && !data && <p role="status">正在读取所选项目…</p>}
           {!id ? (
             <section>
               <h2>从一个项目开始</h2>
@@ -374,7 +376,7 @@ export function App() {
                       退役旧组并建立第二组
                     </button>
                   </div>
-                  {recipe && (
+                  {chosenRecipe && (
                     <div className="processed">
                       <label>
                         创作源水面状态

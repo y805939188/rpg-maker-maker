@@ -5,7 +5,16 @@ import { beforeAll, afterAll, it, expect } from 'vitest';
 import { deflateSync } from 'node:zlib';
 import { randomUUID } from 'node:crypto';
 import { request as rawRequest } from 'node:http';
-import { readFile, mkdir, writeFile, readdir } from 'node:fs/promises';
+import {
+  readFile,
+  mkdir,
+  writeFile,
+  readdir,
+  cp,
+  rename,
+  symlink,
+  realpath,
+} from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { PrismaClient } from '@prisma/client';
@@ -425,6 +434,34 @@ it('actual Export/history/current, paired updates, retired slots and failed-buil
   expect((await state()).successfulBuildId).toBe(retired.job.buildId);
   const backupDir = resolve(root, 'backup');
   const b = await backup(service.store, backupDir, pgBin);
+  const unsafeUrl = await newDatabase(),
+    unsafeParent = resolve(root, 'restore-linked-parent'),
+    outsideRestore = resolve(root, 'restore-outside');
+  await mkdir(outsideRestore);
+  await symlink(outsideRestore, unsafeParent);
+  const unsafeRestore = new Persistence(
+    unsafeUrl,
+    resolve(unsafeParent, 'assets'),
+    resources.profile,
+  );
+  try {
+    await expect(restore(unsafeRestore, backupDir, pgBin)).rejects.toThrow('symbolic link');
+    expect(await readdir(outsideRestore)).toEqual([]);
+    expect(
+      await unsafeRestore.db
+        .$queryRaw`SELECT table_name FROM information_schema.tables WHERE table_schema='public'`,
+    ).toEqual([]);
+    await record('r1-rejected-restore-parent', {
+      database: new URL(unsafeUrl).pathname,
+      declaredRoot: unsafeRestore.storage.root,
+      outsideRestore,
+      targetEmpty: true,
+      schemaEmpty: true,
+      outcome: 'REJECTED_BEFORE_FILE_OR_DB_RESTORE',
+    });
+  } finally {
+    await unsafeRestore.close();
+  }
   const restoreUrl = await newDatabase(),
     restoreRoot = resolve(root, 'restore-assets');
   const restored = new Persistence(restoreUrl, restoreRoot, resources.profile);
@@ -596,4 +633,112 @@ it('a real deferred PostgreSQL job-completion rejection rolls back Build, Export
     manifestSha: verified.row.manifestSha,
     orphanPolicy: 'complete immutable files retained; no failed DB references or pointer switch',
   });
+});
+
+it('public source/A1 and standard JSON/ZIP reads reject replaced ancestors and preserve legal history and rebuilds', async () => {
+  const priorProject = p;
+  p = (await r('/api/projects', { name: 'R1存储边界-' + randomUUID() })).id;
+  const observations: unknown[] = [];
+  const assets = service.store.storage.root;
+  async function readControl(path: string) {
+    const response = await fetch(url + path),
+      bytes = new Uint8Array(await response.arrayBuffer());
+    return { status: response.status, sha256: hashBytes(bytes), bytes: bytes.length };
+  }
+  async function inject(path: string, label: string, run: () => Promise<void>) {
+    const outside = resolve(root, 'r1-' + label + '-outside'),
+      saved = path + '-r1-preserved';
+    await cp(path, outside, { recursive: true });
+    await rename(path, saved);
+    await symlink(outside, path);
+    try {
+      await run();
+    } finally {
+      await rename(path, resolve(root, 'r1-' + label + '-retained-link'));
+      await rename(saved, path);
+    }
+  }
+  try {
+    await r(`/api/projects/${p}/preset`, { family: 'art' });
+    await recipe();
+    const first = await build();
+    expect(first.job.state).toBe('COMPLETED');
+    const saved = await state(),
+      source = saved.sources[0],
+      buildId = first.job.buildId;
+    const endpoints = {
+      source: `/api/projects/${p}/sources/${source.id}/png`,
+      a1: `/api/projects/${p}/builds/${buildId}/files/A1.png`,
+      manifest: `/api/projects/${p}/builds/${buildId}/files/manifest.json`,
+      zip: `/api/projects/${p}/builds/${buildId}/download`,
+      preview: `/api/projects/${p}/builds/${buildId}/preview?scene=edges`,
+      processed: `/api/projects/${p}/recipes/${saved.recipes.find((r: { current: boolean }) => r.current).id}/processed?frame=0`,
+    };
+    const normal: Record<string, Awaited<ReturnType<typeof readControl>>> = {};
+    for (const [name, path] of Object.entries(endpoints)) normal[name] = await readControl(path);
+    for (const control of Object.values(normal)) expect(control.status).toBe(200);
+    observations.push({ phase: 'ordinary', endpoints, normal });
+    for (const part of ['objects', 'root', 'builds']) {
+      const path = part === 'root' ? assets : resolve(assets, part);
+      await inject(path, part, async () => {
+        const names = part === 'builds' ? ['zip', 'preview'] : Object.keys(endpoints);
+        const statuses: number[] = [];
+        for (const name of names) {
+          const result = await readControl(endpoints[name as keyof typeof endpoints]);
+          observations.push({ phase: part + '-symlink', endpoint: name, result });
+          statuses.push(result.status);
+        }
+        expect(statuses).toEqual(names.map(() => 422));
+        await expect(service.store.readBuild(buildId)).rejects.toThrow();
+        await expect(service.store.readExport(buildId)).rejects.toThrow();
+        await expect(
+          backup(service.store, resolve(root, 'r1-rejected-backup-' + part), pgBin),
+        ).rejects.toThrow();
+        expect(
+          (await service.store.db.project.findUniqueOrThrow({ where: { id: p } }))
+            .successfulBuildId,
+        ).toBe(buildId);
+      });
+      expect(await readControl(endpoints.source)).toEqual(normal['source']);
+      expect(await readControl(endpoints.a1)).toEqual(normal['a1']);
+      expect(await readControl(endpoints.zip)).toEqual(normal['zip']);
+    }
+    const row = await service.store.db.assetRevision.findUniqueOrThrow({
+        where: { id: source.id },
+      }),
+      sourceFile = await service.store.db.fileObject.findUniqueOrThrow({
+        where: { sha256: row.sourceSha! },
+      }),
+      exported = await service.store.db.finalExport.findUniqueOrThrow({ where: { buildId } }),
+      refs = exported.files as Record<string, { key: string }>;
+    for (const [label, key, endpoint] of [
+      ['source-leaf', sourceFile.key, endpoints.source],
+      ['a1-leaf', refs['A1.png']!.key, endpoints.a1],
+    ]) {
+      await inject(resolve(assets, key!), label!, async () => {
+        observations.push({ phase: label, realPath: await realpath(resolve(assets, key!)) });
+        expect((await readControl(endpoint!)).status).toBe(422);
+      });
+      expect((await readControl(endpoint!)).status).toBe(200);
+    }
+    const rebuilt = await build();
+    expect(rebuilt.job.state).toBe('COMPLETED');
+    expect((await state()).successfulBuildId).toBe(rebuilt.job.buildId);
+    expect(await readControl(endpoints.zip)).toEqual(normal['zip']);
+    observations.push({
+      phase: 'restored-and-rebuilt',
+      oldBuild: buildId,
+      current: rebuilt.job.buildId,
+      oldZip: normal['zip'],
+    });
+  } finally {
+    await record('r1-public-storage-boundaries', {
+      sourceContext: resources.context,
+      project: p,
+      observations,
+      policy:
+        'Observable cooperative-path changes rejected; no arbitrary-secret disclosure or HTTP symlink creation claimed.',
+    });
+    p = priorProject;
+  }
 });

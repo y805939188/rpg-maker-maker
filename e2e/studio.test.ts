@@ -4,6 +4,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import sharp from 'sharp';
 import { loadNativeOracle, nativeRects } from '../scripts/mz-oracle.js';
+import { Persistence, resolveAssetRoot } from '@tileset/persistence';
+import type { Resources } from '../apps/api/src/studio-service.js';
 const mode = process.env['E2E_MODE'] === 'dev' ? 'dev' : 'production';
 const sha = (b: Uint8Array) => createHash('sha256').update(b).digest('hex');
 const screenshotRoot = resolve('.local/step07/browser', mode);
@@ -383,4 +385,206 @@ test('deployed manual Studio uses real sources, revisions, exports, canvas pixel
   );
   expect(errors).toEqual([]);
   expect(consoleMessages.filter((m) => m.type === 'error' && !m.text.includes('422'))).toEqual([]);
+});
+
+test('project switches keep real build/recipe identities coherent while data is delayed and legacy export is converted', async ({
+  page,
+}) => {
+  test.setTimeout(180000);
+  await mkdir(screenshotRoot, { recursive: true });
+  process.loadEnvFile('.env');
+  const resources = JSON.parse(
+      await readFile('apps/api/dist/resources/studio.json', 'utf8'),
+    ) as Resources,
+    store = new Persistence(
+      process.env['DATABASE_URL']!,
+      await resolveAssetRoot(process.env),
+      resources.profile,
+    ),
+    legacy = await store.createProject('R1旧06切换-' + randomUUID()),
+    saved = await store.saveArchives(legacy.id, [resources.presets.art]),
+    row = saved.records[0]!,
+    snapshot = await store.adopt(legacy.id, 0, row.built.ir.dependencies),
+    pack = await store.createPack(legacy.id, 'legacy-switch-pack'),
+    prepared = await store.prepareBuild(
+      legacy.id,
+      pack.id,
+      snapshot.id,
+      [
+        {
+          operation: 'put',
+          logicalId: 'legacy-grass',
+          revision: 1,
+          fragmentHash: row.ground.contentHash,
+          groundId: null,
+        },
+        {
+          operation: 'put',
+          logicalId: 'legacy-water',
+          revision: 1,
+          fragmentHash: row.water.contentHash,
+          groundId: 'legacy-grass',
+        },
+      ],
+      resources.context,
+    ),
+    old = await store.publish(prepared);
+  const legacyManifest = sha((await store.readBuild(old.id)).files['manifest.json']!);
+  expect(await store.db.finalExport.findUnique({ where: { buildId: old.id } })).toBeNull();
+  await store.close();
+  const requests: { method: string; url: string }[] = [],
+    responses: { url: string; status: number }[] = [],
+    errors: string[] = [];
+  page.on('request', (r) => {
+    if (r.url().includes('/api/')) requests.push({ method: r.method(), url: r.url() });
+  });
+  page.on('response', (r) => {
+    if (r.url().includes('/api/')) responses.push({ url: r.url(), status: r.status() });
+  });
+  page.on('pageerror', (e) => errors.push(e.message));
+  const modernName = 'R1人工切换-' + randomUUID();
+  let modernId = '',
+    modernBuild = '',
+    legacyData:
+      { projectId: string; recipes: { id: string }[]; builds: { id: string }[] } | undefined;
+  const identities = new Map<string, { recipes: Set<string>; builds: Set<string> }>();
+  try {
+    await page.goto('/');
+    await page.getByLabel('项目名称').fill(modernName);
+    await page.getByRole('button', { name: '创建项目', exact: true }).click();
+    await expect(page.getByRole('heading', { name: modernName + ' · 创作素材' })).toBeVisible();
+    await page.getByRole('button', { name: '导入原创美术样例', exact: true }).click();
+    await expect(page.getByText('原创美术组件已保存', { exact: false })).toBeVisible();
+    await adopt(page);
+    modernBuild = (await build(page))!;
+    modernId = (await page.evaluate(() => localStorage.getItem('studio-project')))!;
+    for (const id of [legacy.id, modernId]) {
+      const d = await (await page.request.get(`/api/projects/${id}/studio`)).json();
+      identities.set(id, {
+        recipes: new Set(d.recipes.map((r: { id: string }) => r.id)),
+        builds: new Set(d.builds.map((b: { id: string }) => b.id)),
+      });
+      if (id === legacy.id) legacyData = d;
+    }
+    await page.getByRole('button', { name: legacy.name, exact: true }).click();
+    await expect(page.getByRole('heading', { name: legacy.name + ' · 创作素材' })).toBeVisible();
+    await expect(page.locator('canvas[aria-label="交付拼接预览"]')).toHaveAttribute(
+      'data-build-id',
+      old.id,
+      { timeout: 30000 },
+    );
+    await ready(page);
+    await expect(page.locator('canvas[aria-label="交付拼接预览"]')).toHaveAttribute(
+      'data-build-id',
+      old.id,
+    );
+    expect(
+      requests.some(
+        (r) =>
+          r.method === 'POST' && r.url.includes(`/projects/${legacy.id}/builds/${old.id}/export`),
+      ),
+    ).toBe(true);
+    // The former UI data still has exportBuildId=null here. It must never be paired with the next project.
+    let delayedId = '',
+      release = () => {},
+      arrived = () => {};
+    let hold: Promise<void> = Promise.resolve();
+    await page.route('**/api/projects/*/studio', async (route) => {
+      if (!delayedId || !route.request().url().includes(`/projects/${delayedId}/studio`))
+        return route.continue();
+      const response = await route.fetch();
+      arrived();
+      await hold;
+      await route.fulfill({ response });
+    });
+    for (const [index, target] of [
+      { id: modernId, name: modernName, build: modernBuild },
+      { id: legacy.id, name: legacy.name, build: old.id },
+      { id: modernId, name: modernName, build: modernBuild },
+    ].entries()) {
+      delayedId = target.id;
+      hold = new Promise((resolve) => {
+        release = resolve;
+      });
+      const received = new Promise<void>((resolve) => {
+        arrived = resolve;
+      });
+      await page.getByRole('button', { name: target.name, exact: true }).click();
+      await received;
+      await expect(page.getByText('正在读取所选项目…', { exact: true })).toBeVisible();
+      await expect(page.getByAltText('当前配方处理水面')).toHaveCount(0);
+      await expect(page.locator('canvas[aria-label="交付拼接预览"]')).toHaveCount(0);
+      await page.screenshot({
+        path: resolve(screenshotRoot, `r1-project-switch-${index}-loading.png`),
+      });
+      delayedId = '';
+      release();
+      await expect(page.getByRole('heading', { name: target.name + ' · 创作素材' })).toBeVisible();
+      await ready(page);
+      await expect(page.locator('canvas[aria-label="交付拼接预览"]')).toHaveAttribute(
+        'data-build-id',
+        target.build,
+      );
+      await expect
+        .poll(() =>
+          page
+            .getByAltText('当前配方处理水面')
+            .evaluate((i) => (i as HTMLImageElement).naturalWidth),
+        )
+        .toBe(96);
+    }
+    await page.screenshot({
+      path: resolve(screenshotRoot, 'r1-project-switch-stable.png'),
+      fullPage: true,
+    });
+    for (const request of requests) {
+      const match = new URL(request.url).pathname.match(
+        /^\/api\/projects\/([^/]+)\/(builds|recipes)\/([^/]+)\//,
+      );
+      if (match && identities.has(match[1]!))
+        expect(identities.get(match[1]!)![match[2] as 'builds' | 'recipes'].has(match[3]!)).toBe(
+          true,
+        );
+    }
+    expect(responses.filter((r) => r.status >= 400)).toEqual([]);
+    expect(errors).toEqual([]);
+    const check = new Persistence(
+      process.env['DATABASE_URL']!,
+      await resolveAssetRoot(process.env),
+      resources.profile,
+    );
+    try {
+      expect(sha((await check.readBuild(old.id)).files['manifest.json']!)).toBe(legacyManifest);
+      expect(
+        (await check.db.project.findUniqueOrThrow({ where: { id: legacy.id } })).successfulBuildId,
+      ).toBe(old.id);
+      expect(
+        (await check.db.project.findUniqueOrThrow({ where: { id: modernId } })).successfulBuildId,
+      ).toBe(modernBuild);
+    } finally {
+      await check.close();
+    }
+  } finally {
+    await writeFile(
+      resolve(screenshotRoot, 'r1-project-switch.json'),
+      JSON.stringify(
+        {
+          mode,
+          sourceContext: resources.context,
+          legacy: {
+            id: legacy.id,
+            build: old.id,
+            internalManifestSha: legacyManifest,
+            data: legacyData,
+          },
+          modern: { id: modernId, build: modernBuild },
+          requests,
+          responses,
+          errors,
+        },
+        null,
+        2,
+      ) + '\n',
+    );
+  }
 });
