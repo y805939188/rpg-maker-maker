@@ -1,0 +1,21 @@
+{
+  "label": "prefreeze-new-harness-normal",
+  "args": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "--config",
+    "vitest.step07.config.ts",
+    "-t",
+    "R4 real COMMIT"
+  ],
+  "baselineSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+  "privateInstrumentationOnly": true,
+  "global180000Unchanged": true,
+  "exitCode": 1,
+  "durationSeconds": 20.99,
+  "log": ".local/step07-ci-timeout/prefreeze-harness-normal.log",
+  "logSHA256": "ee6e2269ac936f572e09170e47f9ff8d9a2acd893143a0ef2a0b772e382f66ce",
+  "logBytes": 5670
+}
