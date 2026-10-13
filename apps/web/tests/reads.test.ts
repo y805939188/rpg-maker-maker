@@ -42,14 +42,15 @@ it('a reported failed read can settle before the next poll; it cannot launch an 
   const controller = new AbortController();
   const errors: string[] = [];
   let calls = 0;
-  const stop = pollAfterCompletion(async () => {
-    calls++;
-    try {
+  const stop = pollAfterCompletion(
+    async () => {
+      calls++;
       throw Error('offline');
-    } catch (e) {
-      errors.push(String(e));
-    }
-  }, controller.signal);
+    },
+    controller.signal,
+    800,
+    { onError: ({ error }) => errors.push(String(error)) },
+  );
   await vi.advanceTimersByTimeAsync(2400);
   controller.abort();
   stop();
@@ -57,6 +58,72 @@ it('a reported failed read can settle before the next poll; it cannot launch an 
   expect(errors).toHaveLength(3);
   await vi.advanceTimersByTimeAsync(10000);
   expect(calls).toBe(3);
+});
+it('five consecutive failed polls stop automatically and start no later request', async () => {
+  vi.useFakeTimers();
+  let calls = 0;
+  const stopped = vi.fn();
+  pollAfterCompletion(
+    async () => {
+      calls++;
+      throw new HttpError('unavailable', 503, 'SERVICE_UNAVAILABLE');
+    },
+    new AbortController().signal,
+    800,
+    { onStopped: stopped },
+  );
+  await vi.advanceTimersByTimeAsync(80000);
+  expect(calls).toBe(5);
+  expect(stopped).toHaveBeenCalledExactlyOnceWith(
+    expect.objectContaining({ failures: 5, elapsedMs: 3200 }),
+  );
+});
+it('successful polls reset the error episode and legal long work can exceed five reads', async () => {
+  vi.useFakeTimers();
+  let calls = 0;
+  const stopped = vi.fn(),
+    recovered = vi.fn(),
+    controller = new AbortController();
+  const stop = pollAfterCompletion(
+    async () => {
+      calls++;
+      if (calls < 5 || (calls > 5 && calls < 10)) throw Error('temporary network failure');
+    },
+    controller.signal,
+    800,
+    { onStopped: stopped, onRecovered: recovered },
+  );
+  await vi.advanceTimersByTimeAsync(16000);
+  expect(calls).toBe(20);
+  expect(recovered).toHaveBeenCalledTimes(2);
+  expect(stopped).not.toHaveBeenCalled();
+  controller.abort();
+  stop();
+});
+it('one consecutive-error deadline aborts the active retry, without resetting its 60s window', async () => {
+  vi.useFakeTimers();
+  let calls = 0;
+  const stopped = vi.fn();
+  pollAfterCompletion(
+    async (signal) => {
+      calls++;
+      if (calls === 1) {
+        await new Promise((resolve) => setTimeout(resolve, 45000));
+        throw Error('slow failed read');
+      }
+      await new Promise((_, reject) =>
+        signal.addEventListener('abort', () => reject(signal.reason), { once: true }),
+      );
+    },
+    new AbortController().signal,
+    800,
+    { onStopped: stopped },
+  );
+  await vi.advanceTimersByTimeAsync(80000);
+  expect(calls).toBe(2);
+  expect(stopped).toHaveBeenCalledExactlyOnceWith(
+    expect.objectContaining({ failures: 1, elapsedMs: 60000 }),
+  );
 });
 it('recovers a BUSY read after bounded waits without overlapping or retrying a success', async () => {
   vi.useFakeTimers();
