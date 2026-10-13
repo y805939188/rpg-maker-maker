@@ -1,0 +1,47 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {randomUUID} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import ts from 'typescript';
+import {mkdir,symlink} from 'node:fs/promises';
+import {Persistence} from '@tileset/persistence';
+import {StudioService} from '../../apps/api/dist/studio-service.js';
+import {parseConfig} from '../../apps/api/dist/config.js';
+const {PrismaClient}=await import('../../apps/api/node_modules/@prisma/client/default.js');
+process.loadEnvFile('.env');
+const resources=JSON.parse(await readFile('apps/api/dist/resources/studio.json','utf8'));
+const admin=new PrismaClient(), database='tileset_review_duplicate_'+randomUUID().replaceAll('-','');
+await admin.$executeRawUnsafe(`CREATE DATABASE "${database}"`);
+const url=new URL(process.env.DATABASE_URL);url.pathname='/'+database;
+execFileSync('pnpm',['--filter','@tileset/api','exec','prisma','migrate','deploy'],{env:{...process.env,DATABASE_URL:url.href},stdio:'pipe'});
+const runtime=resolve('.local/step07-review/duplicate-legacy-runtime');await mkdir(runtime);await writeFile(runtime+'/package.json','{"type":"module"}');await symlink(resolve('packages/persistence/node_modules'),runtime+'/node_modules');const old='c227f8c6ecfe85895937013e4687deb40247a6ee';
+for(const n of ['store','storage','gate','domain','replay','config']){const b=execFileSync('git',['show',old+':packages/persistence/src/'+n+'.ts'],{encoding:'utf8'});await writeFile(runtime+'/'+n+'.js',ts.transpileModule(b,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText);}
+const {Persistence:LegacyPersistence}=await import(runtime+'/store.js');
+const root=resolve('.local/step07-review/duplicate-legacy-assets'), service=new StudioService(parseConfig({...process.env,DATABASE_URL:url.href,NODE_ENV:'production'}),resources,root), external=new LegacyPersistence(url.href,root,resources.profile);
+const store=service.store, log={database,assetRoot:'.local/step07-review/duplicate-legacy-assets',legacyWriter:'c227f8c6ecfe85895937013e4687deb40247a6ee',source:resources.context.commit,scope:'actual public StudioService.enqueue; runtime barrier around prepareBuild returns genuinely prepared owned data; independent legacy four-file Persistence.publish wins before Studio publication; no DB/state fabrication'};
+const waitJob=async(id)=>{const start=Date.now();for(;;){const j=await store.db.studioJob.findUniqueOrThrow({where:{id}});if(['COMPLETED','FAILED'].includes(j.state))return j;if(Date.now()-start>30000)throw Error('actual job terminal budget30s');await new Promise(r=>setTimeout(r,100));}};
+let release;
+try{
+ const project=await store.createProject('R4 duplicate publication integration');
+ const saved=await store.saveArchives(project.id,[resources.presets.art]);
+ const adopted=await store.adopt(project.id,0,saved.records[0].built.ir.dependencies);
+ const recipe=(await store.db.assetRevision.findFirstOrThrow({where:{projectId:project.id,kind:'recipe'}})).id;
+ const first=await service.enqueue(project.id,{recipeId:recipe,expectedRevision:1,mode:'update'}),firstJob=await waitJob(first.id);
+ assert.equal(firstJob.state,'COMPLETED');assert.equal(await store.db.finalExport.count({where:{buildId:firstJob.buildId}}),1);
+ const firstExport=await service.export(project.id,firstJob.buildId);assert.equal(Object.keys(firstExport.files).length,8);
+ let preparedResolve;const preparedReady=new Promise(r=>preparedResolve=r),barrier=new Promise(r=>release=r),original=store.prepareBuild.bind(store);
+ store.prepareBuild=async(...args)=>{const p=await original(...args);preparedResolve(p);await barrier;return p;};
+ const second=await service.enqueue(project.id,{recipeId:recipe,expectedRevision:1,mode:'update'}),prepared=await preparedReady;
+ assert.notEqual(prepared.id,firstJob.buildId);
+ const legacy=await external.publish(prepared);assert.equal(legacy.id,prepared.id);
+ assert.equal(await store.db.finalExport.count({where:{buildId:prepared.id}}),0);
+ log.beforeResume={firstJob,acceptedJob:second,preparedBuild:prepared.id,existingFourFileBuild:legacy,finalExports:0};
+ release();const completed=await waitJob(second.id);log.afterResume={job:completed,finalExportCount:await store.db.finalExport.count({where:{buildId:prepared.id}}),project:await store.db.project.findUniqueOrThrow({where:{id:project.id}}),studio:await service.state(project.id)};
+ try{await service.export(project.id,prepared.id);log.standardReadable=true;}catch(e){log.standardReadable=false;log.readError={message:e.message,status:e.status,diagnostic:e.diagnostic};}
+ await writeFile('.local/step07-review/duplicate-env.json',JSON.stringify({url:url.href,assets:root,project:project.id,build:prepared.id,job:second.id}),{mode:0o600});
+ log.normalControl={build:firstJob.buildId,exportFiles:Object.keys(firstExport.files),manifestSha:firstExport.row.manifestSha};
+ log.counterexample=completed.state==='COMPLETED'&&log.afterResume.finalExportCount===0&&log.standardReadable===false;
+ log.result=log.counterexample?'COUNTEREXAMPLE_CAPTURED':'NO_COUNTEREXAMPLE';assert.equal(log.counterexample,true);
+ console.log('COUNTEREXAMPLE: real StudioJob COMPLETED, same Build has no FinalExport, standard read409');
+}finally{release?.();await writeFile('.local/step07-review/evidence/duplicate-publication-legacy.json',JSON.stringify(log,null,2)+'\n');await service.close();await external.close();await admin.$disconnect();}

@@ -1,0 +1,18 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {chromium,expect} from '@playwright/test';
+import {createApplication} from '../../apps/api/dist/app.js';
+import {parseConfig} from '../../apps/api/dist/config.js';
+import {StudioService} from '../../apps/api/dist/studio-service.js';
+process.loadEnvFile('.env');
+const own=JSON.parse(await readFile('.local/step07-review/duplicate-env.json','utf8')),resources=JSON.parse(await readFile('apps/api/dist/resources/studio.json','utf8')),config=parseConfig({...process.env,DATABASE_URL:own.url,NODE_ENV:'production'}),service=new StudioService(config,resources,own.assets),app=await createApplication(config,service),base='http://127.0.0.1:4385',out='.local/step07-review/evidence/duplicate-ui';await mkdir(out,{recursive:true});
+await app.app.listen(4385,'127.0.0.1');
+const log={source:resources.context.commit,ownedPid:process.pid,network:[],pageErrors:[]},browser=await chromium.launch({headless:true}),page=await browser.newPage({viewport:{width:1280,height:960},acceptDownloads:true});
+page.on('response',r=>{if(r.url().includes('/api/'))log.network.push({method:r.request().method(),url:r.url(),status:r.status()})});page.on('pageerror',e=>log.pageErrors.push(e.message));
+try{
+ const before=await service.state(own.project), job=before.jobs.find(j=>j.id===own.job), original=await service.store.db.build.findUniqueOrThrow({where:{id:own.build}});expect(job.state).toBe('COMPLETED');expect(before.builds.find(b=>b.id===own.build).exportBuildId).toBe(null);const counts={build:await service.store.db.build.count(),exports:await service.store.db.finalExport.count()};
+ const rejected=[];for(const path of ['preview?scene=pond','download']){const r=await fetch(base+`/api/projects/${own.project}/builds/${own.build}/`+path);expect(r.status).toBe(409);rejected.push({path,status:r.status,body:await r.json()});}
+ expect(await service.store.db.finalExport.count()).toBe(counts.exports);log.before={job,selectedBuild:own.build,successfulBuildId:before.successfulBuildId,counts,readOnly409:rejected,internalManifestSha:original.manifestSha};
+ await page.goto(base);await page.getByRole('button',{name:'R4 duplicate publication integration',exact:true}).click();await expect(page.getByText('画布已就绪 · 实际导出图集',{exact:false})).toBeVisible({timeout:30000});await expect(page.locator('canvas[aria-label="交付拼接预览"]')).toHaveAttribute('data-build-id',own.build);await page.screenshot({path:out+'/completed-job-lazy-conversion.png',fullPage:true});
+ expect(log.network.filter(r=>r.method==='POST'&&r.url.endsWith('/export')&&r.status===200)).toHaveLength(1);const after=await service.state(own.project);expect(after.jobs.find(j=>j.id===own.job)).toEqual(job);expect((await service.store.db.build.findUniqueOrThrow({where:{id:own.build}})).manifestSha).toBe(original.manifestSha);expect(after.successfulBuildId).toBe(before.successfulBuildId);expect(await service.store.db.finalExport.count()).toBe(counts.exports+1);
+ const waiting=page.waitForEvent('download');await page.getByRole('link',{name:'下载此构建的标准 MZ 素材包 ZIP'}).click();await(await waiting).saveAs(out+'/converted.zip');log.after={job:after.jobs.find(j=>j.id===own.job),standardFiles:Object.keys((await service.export(own.project,own.build)).files),successfulBuildId:after.successfulBuildId,protectedLazyConversionRequired:true,originalManifestUnchanged:true};expect(log.pageErrors).toEqual([]);log.result='COUNTEREXAMPLE_HTTP409_CONFIRMED_WITH_PROTECTED_CONVERSION_CONTROL';console.log('CONFIRMED real HTTP409 before independent later protected conversion; job already COMPLETED');
+}finally{await writeFile(out+'/evidence.json',JSON.stringify(log,null,2)+'\n');await browser.close();await app.close();}

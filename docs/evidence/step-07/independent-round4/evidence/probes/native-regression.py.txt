@@ -1,0 +1,6 @@
+from pathlib import Path
+import subprocess,hashlib,json,os,time
+r=Path.cwd();o=r/'.local/step07-review';core=Path('/Users/dingshinn/Library/Application Support/Steam/steamapps/common/RPG Maker MZ/RPGMZ.app/Contents/Resources/newdata/js/rmmz_core.js');h=hashlib.sha256(core.read_bytes()).hexdigest();assert h=='4ad828ae6cdd8b526e25591eaffd1ccf5ac4eb753f865f7ff48a0b3c821ff67f';env=os.environ.copy();env['PATH']='/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+env['PATH'];base=o/'pack-workspace/artifacts/step05-suite-ef30dc2ab011';idx=json.loads((base/'index.json').read_text());rows=[]
+for x in idx['builds']:
+ name=x['name'];p=subprocess.run(['node','dist/scripts/verify-step05.js',str(core),str(base/name)],env=env,capture_output=True);(o/(f'native-{name}.log')).write_bytes(p.stdout+p.stderr);assert p.returncode==0,p.stderr.decode();j=json.loads(p.stdout);rows.append(j);print(name,j['result'],j['tilesChecked'])
+(o/'evidence/native-regression.json').write_text(json.dumps({'corePath':str(core),'coreSha256':h,'result':'PASS','outputs':rows,'scope':'CPU only, original installed licensed core read-only; no modified Host or GUI/game/artist claim'},indent=2)+'\n')

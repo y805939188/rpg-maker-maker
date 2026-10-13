@@ -1,0 +1,601 @@
+{
+  "database": "tileset_review_duplicate_9cb5ed59ae7e4a64a58896ad052c5908",
+  "assetRoot": ".local/step07-review/duplicate-assets",
+  "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+  "scope": "actual public StudioService.enqueue; runtime barrier around prepareBuild returns genuinely prepared owned data; independent legacy four-file Persistence.publish wins before Studio publication; no DB/state fabrication",
+  "beforeResume": {
+    "firstJob": {
+      "id": "c8d32679-ee4c-456e-b1d3-d48ea8bdfee5",
+      "projectId": "e9a7b3a2-b219-4515-80b1-f891b06de633",
+      "input": {
+        "mode": "update",
+        "context": {
+          "node": "22.21.1",
+          "codec": {
+            "aom": "3.15.1",
+            "ffi": "3.8.0",
+            "png": "1.6.58",
+            "cgif": "0.5.4",
+            "exif": "0.6.26",
+            "glib": "2.90.0",
+            "heif": "1.23.5",
+            "lcms": "2.19.1",
+            "rsvg": "2.63.2",
+            "tiff": "4.7.2",
+            "uhdr": "2.0.2",
+            "vips": "8.18.7",
+            "webp": "1.6.0",
+            "xml2": "2.15.4",
+            "cairo": "1.18.6",
+            "expat": "2.8.5",
+            "pango": "1.58.2",
+            "sharp": "0.35.5",
+            "pixman": "0.46.4",
+            "archive": "3.8.9",
+            "fribidi": "1.0.17",
+            "highway": "1.4.0",
+            "mozjpeg": "0826579",
+            "zlib-ng": "2.3.3",
+            "freetype": "2.14.3",
+            "harfbuzz": "14.5.0",
+            "fontconfig": "2.18.3",
+            "imagequant": "2.4.1",
+            "proxy-libintl": "0.5"
+          },
+          "commit": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+          "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d"
+        },
+        "recipeId": "cfcc40b649d3cff740537af512d72fd69bc61c5d915c9f63f46e6be1abbe6b2c",
+        "snapshotId": "f9b9089fda6233552d074db13af11e9578bf0ec54c19636c74d1cc484c8fd100",
+        "expectedRevision": 1
+      },
+      "state": "COMPLETED",
+      "buildId": "2111a897605e812a939d4f0be0621487cc955791252977ee4a650a6ed54312d9",
+      "diagnostic": null,
+      "createdAt": "2026-10-13T14:23:44.560Z"
+    },
+    "acceptedJob": {
+      "id": "f385af73-08f0-4a8d-bf65-715eac9c8035",
+      "state": "QUEUED",
+      "buildId": null,
+      "diagnostic": null,
+      "createdAt": "2026-10-13T14:23:52.534Z"
+    },
+    "preparedBuild": "2a2d6b3adc05c421161539db43f00c1649fa9f7504082585fa49594f324acc0c",
+    "existingFourFileBuild": {
+      "id": "2a2d6b3adc05c421161539db43f00c1649fa9f7504082585fa49594f324acc0c",
+      "projectId": "e9a7b3a2-b219-4515-80b1-f891b06de633",
+      "packId": "044c884a82bfdc34074e3116e32eef39ccb9f8298cc186c84c88705c165d76f5",
+      "projectSnapshotId": "f9b9089fda6233552d074db13af11e9578bf0ec54c19636c74d1cc484c8fd100",
+      "expectedPackVersion": 1,
+      "snapshotHash": "d5dcbd6c394a629c2474f40d0ac6e1a72aa778c3f6a03d98d85f118dbaf20943",
+      "manifestSha": "6827339a1fe8418dcfdde9ea79f502ca01a3de9123abaf9996a4e359467a002c",
+      "directory": "builds/2a2d6b3adc05c421161539db43f00c1649fa9f7504082585fa49594f324acc0c",
+      "publication": "ADOPTED",
+      "metadata": {
+        "files": {
+          "A1.png": {
+            "bytes": 3924,
+            "sha256": "c97ad74df1a85796133c950281873431f09876d78a7a4dd89c5f5f1958f22c91"
+          },
+          "A2.png": {
+            "bytes": 2457,
+            "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+          },
+          "bundle.json": {
+            "bytes": 62952,
+            "sha256": "13ef3fcba48dbeed4e2172396fd7560d4aed0f46d86a8806448f4a230228bef6"
+          }
+        },
+        "contract": "durable-build-v1",
+        "fragments": [
+          {
+            "image": {
+              "width": 96,
+              "height": 144,
+              "pixelHash": "db94e7226776301db55eb4610240c575b6d47510d3e21871bff299561848a6e5"
+            },
+            "layout": {
+              "offsets": [
+                {
+                  "x": 0,
+                  "y": 0
+                }
+              ],
+              "playback": null,
+              "frameWidth": 96,
+              "frameHeight": 144
+            },
+            "source": {
+              "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+              "recipe": {
+                "id": "art-recipe",
+                "kind": "recipe",
+                "revision": 2,
+                "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+              },
+              "density": 2,
+              "components": [
+                {
+                  "id": "art-grass",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                }
+              ],
+              "materialId": "art-grass",
+              "parameters": {
+                "id": "art-parameters",
+                "kind": "parameters",
+                "revision": 2,
+                "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+              },
+              "dependencies": [
+                {
+                  "id": "art-grass",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                },
+                {
+                  "id": "art-water-0",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                },
+                {
+                  "id": "art-water-1",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                },
+                {
+                  "id": "art-water-2",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                },
+                {
+                  "id": "art-mask",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                },
+                {
+                  "id": "art-bank-overlay",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                },
+                {
+                  "id": "art-style",
+                  "kind": "style",
+                  "revision": 1,
+                  "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                },
+                {
+                  "id": "art-parameters",
+                  "kind": "parameters",
+                  "revision": 2,
+                  "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                },
+                {
+                  "id": "art-recipe",
+                  "kind": "recipe",
+                  "revision": 2,
+                  "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                }
+              ]
+            },
+            "target": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            },
+            "category": "a2-ground",
+            "compiler": "mz-single-material-v1",
+            "contract": "mz-compiled-fragment-v1",
+            "placement": {
+              "width": 96,
+              "height": 144,
+              "alignment": {
+                "x": 96,
+                "y": 144
+              },
+              "slotClass": "a2-ordinary-ground",
+              "allowedKinds": [
+                16,
+                17
+              ]
+            },
+            "contentHash": "56ee26d22cf5aebeb82ddacf2a0129d309a810088b5e59e32e887c5d3e7c2ad8"
+          },
+          {
+            "image": {
+              "width": 288,
+              "height": 144,
+              "pixelHash": "0a5ae7275ee988dabb688d5d43d23df5b0cf8b74d69262cab1cb79d588c14f10"
+            },
+            "layout": {
+              "offsets": [
+                {
+                  "x": 0,
+                  "y": 0
+                },
+                {
+                  "x": 96,
+                  "y": 0
+                },
+                {
+                  "x": 192,
+                  "y": 0
+                }
+              ],
+              "playback": {
+                "loop": true,
+                "sequence": [
+                  0,
+                  1,
+                  2,
+                  1
+                ],
+                "timebase": "updates",
+                "updatesPerState": 30
+              },
+              "frameWidth": 96,
+              "frameHeight": 144
+            },
+            "source": {
+              "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+              "recipe": {
+                "id": "art-recipe",
+                "kind": "recipe",
+                "revision": 2,
+                "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+              },
+              "density": 2,
+              "components": [
+                {
+                  "id": "art-water-0",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                },
+                {
+                  "id": "art-water-1",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                },
+                {
+                  "id": "art-water-2",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                }
+              ],
+              "materialId": "art-water-0",
+              "parameters": {
+                "id": "art-parameters",
+                "kind": "parameters",
+                "revision": 2,
+                "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+              },
+              "dependencies": [
+                {
+                  "id": "art-grass",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "409fdb592957d5176c10ece85439a75a12c6b87c9b94f2088be80f5675c82dc7"
+                },
+                {
+                  "id": "art-water-0",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "cdecc59748f5773152c0fbe468ef098481a4e523f3a64a4331c5d44a70e62874"
+                },
+                {
+                  "id": "art-water-1",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "7e22ad26456a88811d6367430b7633c76c0e09828ba5c431639358cfcf794e03"
+                },
+                {
+                  "id": "art-water-2",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "4cb925fb2f01eedba696174d149b2e8aed03e39cebef9749ea817b208613cae3"
+                },
+                {
+                  "id": "art-mask",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "94312a22fb7ea20ad81c37cf14a0862257790cdbdc1f71195e315edd2736e29f"
+                },
+                {
+                  "id": "art-bank-overlay",
+                  "kind": "source",
+                  "revision": 1,
+                  "contentHash": "81c73ab278f00a0560947d7856db74e091e661ede1b9e2897f4101740dc837c4"
+                },
+                {
+                  "id": "art-style",
+                  "kind": "style",
+                  "revision": 1,
+                  "contentHash": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+                },
+                {
+                  "id": "art-parameters",
+                  "kind": "parameters",
+                  "revision": 2,
+                  "contentHash": "20ab5b6a065deb00c1bfb46f3683d9c7583e551faf5242a1849a9e57dbc5620a"
+                },
+                {
+                  "id": "art-recipe",
+                  "kind": "recipe",
+                  "revision": 2,
+                  "contentHash": "580456adf43eecf7265a99b08ad6e72a719c6b7d363b9ace31329db502e8a86b"
+                }
+              ]
+            },
+            "target": {
+              "id": "mz-native-ground-water",
+              "version": "1.0.0-candidate.1"
+            },
+            "category": "a1-water",
+            "compiler": "mz-single-material-v1",
+            "contract": "mz-compiled-fragment-v1",
+            "placement": {
+              "width": 288,
+              "height": 144,
+              "alignment": {
+                "x": 96,
+                "y": 144
+              },
+              "slotClass": "a1-block-d-water",
+              "allowedKinds": [
+                4,
+                6
+              ]
+            },
+            "contentHash": "5e9a64b39c4b4d583af0dfd0ab9e1ffa7cd16a7f14d95f7a308acd8b9274f9f7"
+          }
+        ],
+        "bundleHash": "bb2a660d33bfad46d645988bbb82a98f82bf8a952f6739a327895d100beab3c6",
+        "layoutHash": "adb7ab0b8ab0ffabd44663fdc94e9120c21a7e869810162e0b7b759d84628943",
+        "validation": {
+          "visual": "NOT_EXECUTED",
+          "nativeMZ": "NOT_EXECUTED",
+          "structural": "PASS",
+          "independentReview": "NOT_EXECUTED"
+        },
+        "snapshotHash": "d5dcbd6c394a629c2474f40d0ac6e1a72aa778c3f6a03d98d85f118dbaf20943"
+      },
+      "createdAt": "2026-10-13T14:23:56.676Z"
+    },
+    "finalExports": 0
+  },
+  "afterResume": {
+    "job": {
+      "id": "f385af73-08f0-4a8d-bf65-715eac9c8035",
+      "projectId": "e9a7b3a2-b219-4515-80b1-f891b06de633",
+      "input": {
+        "mode": "update",
+        "context": {
+          "node": "22.21.1",
+          "codec": {
+            "aom": "3.15.1",
+            "ffi": "3.8.0",
+            "png": "1.6.58",
+            "cgif": "0.5.4",
+            "exif": "0.6.26",
+            "glib": "2.90.0",
+            "heif": "1.23.5",
+            "lcms": "2.19.1",
+            "rsvg": "2.63.2",
+            "tiff": "4.7.2",
+            "uhdr": "2.0.2",
+            "vips": "8.18.7",
+            "webp": "1.6.0",
+            "xml2": "2.15.4",
+            "cairo": "1.18.6",
+            "expat": "2.8.5",
+            "pango": "1.58.2",
+            "sharp": "0.35.5",
+            "pixman": "0.46.4",
+            "archive": "3.8.9",
+            "fribidi": "1.0.17",
+            "highway": "1.4.0",
+            "mozjpeg": "0826579",
+            "zlib-ng": "2.3.3",
+            "freetype": "2.14.3",
+            "harfbuzz": "14.5.0",
+            "fontconfig": "2.18.3",
+            "imagequant": "2.4.1",
+            "proxy-libintl": "0.5"
+          },
+          "commit": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+          "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d"
+        },
+        "recipeId": "cfcc40b649d3cff740537af512d72fd69bc61c5d915c9f63f46e6be1abbe6b2c",
+        "snapshotId": "f9b9089fda6233552d074db13af11e9578bf0ec54c19636c74d1cc484c8fd100",
+        "expectedRevision": 1
+      },
+      "state": "COMPLETED",
+      "buildId": "2a2d6b3adc05c421161539db43f00c1649fa9f7504082585fa49594f324acc0c",
+      "diagnostic": null,
+      "createdAt": "2026-10-13T14:23:52.534Z"
+    },
+    "finalExportCount": 0,
+    "project": {
+      "id": "e9a7b3a2-b219-4515-80b1-f891b06de633",
+      "name": "R4 duplicate publication integration",
+      "createdAt": "2026-10-13T14:23:43.771Z",
+      "revision": 1,
+      "successfulBuildId": "2a2d6b3adc05c421161539db43f00c1649fa9f7504082585fa49594f324acc0c"
+    },
+    "studio": {
+      "projectId": "e9a7b3a2-b219-4515-80b1-f891b06de633",
+      "animation": {
+        "sequence": [
+          0,
+          1,
+          2,
+          1
+        ],
+        "updatesPerState": 30
+      },
+      "revision": 1,
+      "successfulBuildId": "2a2d6b3adc05c421161539db43f00c1649fa9f7504082585fa49594f324acc0c",
+      "needsRebuild": false,
+      "sources": [
+        {
+          "id": "ebdad09e2b9244966cf54852fc54b9dc01f8beeb4accc37a6f25e3fdf6eef80f",
+          "component": "overlay",
+          "revision": 1,
+          "density": 2,
+          "sha256": "2c187819c1a4abfc7c6c93482ba4a4a80ae122212e8ff3cd87252492c1121f10",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/e9a7b3a2-b219-4515-80b1-f891b06de633/sources/ebdad09e2b9244966cf54852fc54b9dc01f8beeb4accc37a6f25e3fdf6eef80f/png",
+          "role": "bank-overlay"
+        },
+        {
+          "id": "c4d886f43edf0beca1cb6a50d31eccc87e245fbc98aaa8e8e4450c1597660cfc",
+          "component": "grass",
+          "revision": 1,
+          "density": 2,
+          "sha256": "3d467c253bd72b3474a6cc9b7f4d04b0633825a6ffadfc598281c2cf1735ba17",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/e9a7b3a2-b219-4515-80b1-f891b06de633/sources/c4d886f43edf0beca1cb6a50d31eccc87e245fbc98aaa8e8e4450c1597660cfc/png",
+          "role": "grass"
+        },
+        {
+          "id": "2c87fba13c905bad2ff3c051cdbdb8dfdb9a4441fe0faecd6a64ecf44d06492f",
+          "component": "mask",
+          "revision": 1,
+          "density": 2,
+          "sha256": "baa3079c9e25fdcc2f33c274d7e6253c94c4f6d6243c014e99371ae1652ca47a",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/e9a7b3a2-b219-4515-80b1-f891b06de633/sources/2c87fba13c905bad2ff3c051cdbdb8dfdb9a4441fe0faecd6a64ecf44d06492f/png",
+          "role": "static-mask"
+        },
+        {
+          "id": "ec098ff3ebe6bf8f0f74ffb2682303b7be1e9177d6ec4ba021195f6b04ffa2fc",
+          "component": "water-0",
+          "revision": 1,
+          "density": 2,
+          "sha256": "31f6032a8c334fa55e93f2d28f803f6eaa428075f4b4ae4d90d0b2125afb1bb5",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/e9a7b3a2-b219-4515-80b1-f891b06de633/sources/ec098ff3ebe6bf8f0f74ffb2682303b7be1e9177d6ec4ba021195f6b04ffa2fc/png",
+          "role": "water"
+        },
+        {
+          "id": "6b5c0b612adcc1ad0f2b63ec452c8d070c907fd7ad928941c87bedbdf79221d4",
+          "component": "water-1",
+          "revision": 1,
+          "density": 2,
+          "sha256": "aa8dcc40511a67710d893bdc44e3aa79e9818eb4535abb8fe16d484354f92c61",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/e9a7b3a2-b219-4515-80b1-f891b06de633/sources/6b5c0b612adcc1ad0f2b63ec452c8d070c907fd7ad928941c87bedbdf79221d4/png",
+          "role": "water"
+        },
+        {
+          "id": "362cff93aba7f865821ff5c740506e3b3cf59f3b3ee328519ca6581f8d098ab5",
+          "component": "water-2",
+          "revision": 1,
+          "density": 2,
+          "sha256": "32aeecc9c4773b48548eb83f25eee9445ef5213045127a9a7deda07b4e2345e4",
+          "width": 96,
+          "height": 144,
+          "url": "/api/projects/e9a7b3a2-b219-4515-80b1-f891b06de633/sources/362cff93aba7f865821ff5c740506e3b3cf59f3b3ee328519ca6581f8d098ab5/png",
+          "role": "water"
+        }
+      ],
+      "recipes": [
+        {
+          "id": "cfcc40b649d3cff740537af512d72fd69bc61c5d915c9f63f46e6be1abbe6b2c",
+          "revision": 2,
+          "current": true,
+          "irHash": "1b86a2251aa92a631f853c29f026ab500ad2eab84d5479bc4ca5701c4040ae37",
+          "components": {
+            "grass": "c4d886f43edf0beca1cb6a50d31eccc87e245fbc98aaa8e8e4450c1597660cfc",
+            "water-0": "ec098ff3ebe6bf8f0f74ffb2682303b7be1e9177d6ec4ba021195f6b04ffa2fc",
+            "water-1": "6b5c0b612adcc1ad0f2b63ec452c8d070c907fd7ad928941c87bedbdf79221d4",
+            "water-2": "362cff93aba7f865821ff5c740506e3b3cf59f3b3ee328519ca6581f8d098ab5",
+            "mask": "2c87fba13c905bad2ff3c051cdbdb8dfdb9a4441fe0faecd6a64ecf44d06492f",
+            "overlay": "ebdad09e2b9244966cf54852fc54b9dc01f8beeb4accc37a6f25e3fdf6eef80f"
+          },
+          "style": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+        }
+      ],
+      "builds": [
+        {
+          "id": "2a2d6b3adc05c421161539db43f00c1649fa9f7504082585fa49594f324acc0c",
+          "version": 2,
+          "projectRevision": 1,
+          "publication": "ADOPTED",
+          "current": true,
+          "exportBuildId": null,
+          "createdAt": "2026-10-13T14:23:56.676Z"
+        },
+        {
+          "id": "2111a897605e812a939d4f0be0621487cc955791252977ee4a650a6ed54312d9",
+          "version": 1,
+          "projectRevision": 1,
+          "publication": "ADOPTED",
+          "current": false,
+          "exportBuildId": "40ca1cef5890137b62de5293bdaff1dbb047c63014c042c2ad3e9314189d9c05",
+          "createdAt": "2026-10-13T14:23:50.973Z"
+        }
+      ],
+      "jobs": [
+        {
+          "id": "f385af73-08f0-4a8d-bf65-715eac9c8035",
+          "state": "COMPLETED",
+          "buildId": "2a2d6b3adc05c421161539db43f00c1649fa9f7504082585fa49594f324acc0c",
+          "diagnostic": null,
+          "createdAt": "2026-10-13T14:23:52.534Z"
+        },
+        {
+          "id": "c8d32679-ee4c-456e-b1d3-d48ea8bdfee5",
+          "state": "COMPLETED",
+          "buildId": "2111a897605e812a939d4f0be0621487cc955791252977ee4a650a6ed54312d9",
+          "diagnostic": null,
+          "createdAt": "2026-10-13T14:23:44.560Z"
+        }
+      ],
+      "mockTasks": []
+    }
+  },
+  "standardReadable": false,
+  "readError": {
+    "message": "该旧构建尚未创建标准导出。",
+    "status": 409,
+    "diagnostic": {
+      "code": "EXPORT_REQUIRED",
+      "message": "该旧构建尚未创建标准导出。",
+      "location": "导出",
+      "recovery": "在 Studio 选择该构建，受保护的转换请求会创建标准包。"
+    }
+  },
+  "normalControl": {
+    "build": "2111a897605e812a939d4f0be0621487cc955791252977ee4a650a6ed54312d9",
+    "exportFiles": [
+      "A1.png",
+      "A2.png",
+      "INSTALL.md",
+      "history.json",
+      "layout.json",
+      "manifest.json",
+      "pack.json",
+      "sources.json"
+    ],
+    "manifestSha": "0b25a917c03f898761d02e12a67cee874771d517e8dfd408fd1c2889c855ae62"
+  },
+  "counterexample": true,
+  "result": "COUNTEREXAMPLE_CAPTURED"
+}
