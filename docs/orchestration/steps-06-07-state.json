@@ -846,18 +846,25 @@
       "docsHead": "36dc5cca1a7da77314e6889648d464d32ba0751f"
     },
     "nextReviewEnvironment": {
-      "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker",
+      "operationId": "145c081f-af64-431e-94c0-5d1663613188",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round4/rpg-maker-maker",
       "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
-      "pgPort": 55483,
-      "apiPort": 4383,
-      "webPort": 5283,
+      "sourceStatus": "PREVIOUS_CANDIDATE_PREPARATION_ONLY_AWAIT_FIX3_FINAL_FREEZE",
+      "pgPort": 55485,
+      "apiPort": 4385,
+      "webPort": 5285,
       "preparedBy": "MAIN_ORCHESTRATOR",
-      "status": "ACTIVATED_AS_FORMAL_ROUND3",
+      "status": "EXCLUSIVE_ENV_PREPARED_NOT_FORMAL_REVIEW",
       "databaseMigration": "NOT_EXECUTED",
       "formalReviewStarted": false,
       "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
       "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS"
+    },
+    "checkpointCi": {
+      "head": "552137fa00a28fccc2375bf89a8e70ca2a0132e8",
+      "runId": 38398107070,
+      "status": "IN_PROGRESS_LAST_READ",
+      "purpose": "ORCHESTRATION_DOCS_ON_ALREADY_PUBLISHED_STEP06_MAIN_NOT_STEP07_CANDIDATE"
     }
   },
   "step08": {
@@ -930,7 +937,7 @@
       "temporaryRoot": ".local/step07",
       "apiPort": 4376,
       "webPort": 5276,
-      "serviceStatus": "PG55476_PRODUCTION_API4376_RUNNING_SOURCE5D",
+      "serviceStatus": "OWNED_PG55476_RUNNING_API4376_STOPPED_BY_CODER_FOR_FIX3",
       "apiPid": 51670
     },
     {
@@ -990,6 +997,19 @@
       "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
       "formalReviewStarted": true,
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round3-preservation-and-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round4",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round4/rpg-maker-maker",
+      "pgPort": 55485,
+      "apiPort": 4385,
+      "webPort": 5285,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWNED_NEW_EMPTY_PG_RUNNING_REVIEW_NOT_STARTED",
+      "formalReviewStarted": false
     }
   ],
   "lastSuccessfulCheckpoint": "R3 complete exit0:437 original payloads verified/preserved;2239 tracked files unchanged; originalR2 findings closed,2newblockingP2. SameCoder xhigh/default resumed Fix3; Round4 pending, no07 candidatepush/mainmerge.",
@@ -1043,5 +1063,5 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T12:32:06.181450+00:00"
+  "updatedAtUtc": "2026-10-13T12:38:59.193357+00:00"
 }
