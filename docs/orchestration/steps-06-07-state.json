@@ -7,8 +7,8 @@
   ],
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
-  "currentStep": 6,
-  "phase": "STEP06_PUBLISHED_STEP07_HANDOFF",
+  "currentStep": 7,
+  "phase": "STEP07_ROUND2_INDEPENDENT_REVIEW",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -47,8 +47,10 @@
       "effort": "xhigh",
       "serviceTier": "default",
       "preflight": "PASS",
-      "threadId": "01a131b0-75e6-7a83-851d-fa1fc5bdc3e9",
-      "nativeClientConfiguration": ".local/orchestration-06-07/step06-coding/client-configuration.json"
+      "step": 7,
+      "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-coding-client.json",
+      "status": "FIX_HANDOFF_COMPLETE_IDLE"
     },
     "review": {
       "role": "step_reviewer",
@@ -56,8 +58,11 @@
       "effort": "ultra",
       "serviceTier": "default",
       "preflight": "PASS",
-      "threadId": "01a13203-9fb0-78e1-a67e-9ded70e71360",
-      "nativeClientConfiguration": ".local/orchestration-06-07/step06-review-round1/client-configuration.json"
+      "step": 7,
+      "round": 2,
+      "threadId": "01a13433-4b34-7af1-b498-e4c984715e27",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round2-client.json",
+      "status": "ACTIVE_FRESH_INDEPENDENT_NATIVE_SESSION"
     },
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
@@ -68,7 +73,7 @@
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
     "baseMain": "d1439bb81e9843358f591590c6a433c4a62be33d",
     "codingCheckpoint": ".local/step06/coding-progress.json",
-    "implementationPhase": "INDEPENDENT_REVIEW_DISPATCH_READY",
+    "implementationPhase": "PUBLISHED",
     "authorFirstFaultRun": {
       "status": "FAILED_RETAINED_FIX_SELF_TESTED_PENDING_INDEPENDENT_REVIEW",
       "passed": 9,
@@ -85,7 +90,7 @@
       "timeoutThresholdChanged": false
     },
     "candidateSha": "c227f8c6ecfe85895937013e4687deb40247a6ee",
-    "candidateState": "FIX_ROUND2_FROZEN_PENDING_AUTHOR_EVIDENCE",
+    "candidateState": "PUBLISHED_LATEST_ROUND3_PASS",
     "authorFullCheck": {
       "testFiles": 21,
       "tests": 229,
@@ -419,11 +424,244 @@
       "runId": 38328263937,
       "status": "SUCCESS"
     },
-    "publicationReceipt": "docs/evidence/orchestration-06-07/step06-publication.json"
+    "publicationReceipt": "docs/evidence/orchestration-06-07/step06-publication.json",
+    "engineeringBuildLatest": {
+      "buildId": "step06-c227f8c6ecfe-2408d70aa6a8d040",
+      "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "manifestSha256": "f69ca0afbb95a5bf78d7bdeeada7af798f9e3f6352b339532646bc152a2cde1c",
+      "independentReview": "PASS_ROUND3"
+    },
+    "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "NOT_STARTED",
-    "reviewRounds": 0
+    "status": "IN_PROGRESS",
+    "reviewRounds": 2,
+    "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
+    "branch": "codex/step-07-studio",
+    "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+    "codingThread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+    "configurationEvidence": "docs/evidence/orchestration-06-07/step07-coding-client.json",
+    "authorCheckpoint": {
+      "candidate": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "phase": "READY_FOR_REVIEW_ROUND2",
+      "status": "PASS_FROZEN_AUTHOR_ONLY",
+      "checkTests": 253,
+      "httpPostgresTests": 8,
+      "step06PostgresTests": 23,
+      "browserProductionTests": 3,
+      "browserDevelopmentTests": 3,
+      "independentReview": "NOT_YET_REPORTED_FOR_D343"
+    },
+    "candidateSha": "d343171ca866a8d1d1c4e272823ef475229d8032",
+    "candidateState": "FROZEN_UNDER_INDEPENDENT_ROUND2",
+    "reviewEnvironment": {
+      "operationId": "427d85ca-9e3c-42f3-80e1-50a1e010ff99",
+      "status": "FORMAL_ROUND2_STARTED_REVIEWER_SELF_PREPARING",
+      "candidateSha": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "pgPort": 55479,
+      "apiPort": 4379,
+      "webPort": 5279,
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker",
+      "formalReviewStarted": true,
+      "credentials": "REVIEWER_FRESH_OWNED_IGNORED_ENV_NO_COPY",
+      "databaseMigration": "NOT_YET_REPORTED"
+    },
+    "supersededCodingCandidates": [
+      {
+        "sha": "82ba643387f9a119bbfc9867bd196c36b481da3f",
+        "reviewed": false,
+        "reason": "Author independently found old no Studio engineering note; correcting step07 engineering contract metadata and rebinding new source; old immutable build/evidence retained"
+      },
+      {
+        "sha": "4f6a40f3e8be990b4068dafee488249be737f7ad",
+        "reviewed": true,
+        "round": 1,
+        "result": "REQUIRES_REVISION",
+        "reason": "R1 storage ancestor boundary and transient project switch findings; original evidence retained"
+      }
+    ],
+    "supersededEngineeringBuilds": [
+      {
+        "buildId": "step07-82ba643387f9-4538c89c6f69696c",
+        "candidate": "82ba643387f9a119bbfc9867bd196c36b481da3f",
+        "manifestSha256": "725fa490f166c594934d4a9433e184f602a62ac8f300f52a83a05ddd933b43ad",
+        "payloadsVerified": 203,
+        "independentReview": "NOT_EXECUTED",
+        "receipt": "docs/evidence/orchestration-06-07/step07-candidate82-engineering-receipt.json",
+        "status": "SUPERSEDED_UNREVIEWED_ARTIFACT_RETAINED"
+      }
+    ],
+    "engineeringBuildState": "ACTUAL_D343_BUILD_206_PAYLOADS_VERIFIED_MAIN_READ_ONLY",
+    "supersededAuthorValidation82": {
+      "phase": "FROZEN_CANDIDATE_VALIDATION",
+      "firstActualHttpFlow": "PASS_UNFROZEN_AUTHOR_ONLY",
+      "integratedPostgresTests": 3,
+      "backupRestoreReadAndRebuild": "PASS_UNFROZEN_AUTHOR_ONLY",
+      "historyRetiredSlotsAndLateSnapshotProtection": "PASS_UNFROZEN_AUTHOR_ONLY",
+      "independentReview": "NOT_EXECUTED",
+      "actualBrowserFlow": "PASS_UNFROZEN_AUTHOR_ONLY",
+      "canvasIndependentMasterFourStates": "PASS_UNFROZEN_AUTHOR_ONLY",
+      "newBuildAtlasZipChangedOldHistoryByteStable": "PASS_UNFROZEN_AUTHOR_ONLY",
+      "expandedIngressAndRestoreTests": 7,
+      "retainedFailures": [
+        "BUSY_AFTER_RESPONSE_BEFORE_LEASE_RELEASE",
+        "OLD_CANVAS_DURING_BUILD_SWITCH",
+        "SAME_PNG_DISTINCT_LOGICAL_SOURCE_CLASSIFICATION",
+        "FULL_CHECK_235_PASS_1_FAIL_PENDING_COMPLETE_RERUN"
+      ],
+      "engineeringCheck": "PASS_AUTHOR_FROZEN_SOURCE",
+      "migration": "PASS_AUTHOR_FROZEN_SOURCE",
+      "frozenCheckTests": 238,
+      "frozenProductionBrowser": "PASS_AUTHOR_ONLY",
+      "frozenDevelopmentBrowser": "PASS_AUTHOR_ONLY",
+      "bothModesManifestZipByteEquality": "PASS_AUTHOR_ONLY",
+      "step06FullRegression": "PASS_AUTHOR_23_REAL_POSTGRES",
+      "candidate": "82ba643387f9a119bbfc9867bd196c36b481da3f",
+      "legacyRegression": {
+        "publicJsAssertions": 78,
+        "standardPackPayloads": 56,
+        "standardPngs": 16,
+        "nativeCorePacks": 8,
+        "status": "PASS_AUTHOR_ONLY"
+      }
+    },
+    "engineeringBuild": {
+      "candidate": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "buildId": "step07-d343171ca866-68f0009e659aa6dc",
+      "manifestSha256": "073bd135d8cbfc9c30355ad68facfa56361e4114564c07252c73bf87b1b69d04",
+      "payloadsVerified": 206,
+      "verifiedAtUtc": "2026-10-13T07:39:52.606920+00:00",
+      "verification": "MAIN_READ_ONLY_ACTUAL_ARTIFACT_REHASH_NOT_INDEPENDENT_REVIEW",
+      "artifactPath": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/step07-d343171ca866-68f0009e659aa6dc",
+      "receipt": "docs/evidence/orchestration-06-07/step07-candidate-d343-engineering-receipt.json",
+      "independentReview": "IN_PROGRESS"
+    },
+    "codingRecoveries": [
+      {
+        "attempt": 1,
+        "status": "COMPLETED_EXIT0_HANDOFF",
+        "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+        "reason": "Original event stream stalled over 30 minutes; stderr disconnect/retry; no active tools; owned normal SIGINT exit1",
+        "serverCause": "UNVERIFIED",
+        "model": "gpt-6.1-sol",
+        "effort": "xhigh",
+        "serviceTier": "default",
+        "originalOutput": ".local/orchestration-06-07/step07-coding",
+        "resumedOutput": ".local/orchestration-06-07/step07-coding-recovery1",
+        "formalReviewRoundsUnchanged": 0
+      }
+    ],
+    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-fix-round1",
+    "docsHead": "1a3881edd3a076649f86794b05ac47f4c4c7a315",
+    "codingReport": "docs/reviews/step-07-fix-round-1-coding.md",
+    "codingReportSha256": "533bdf886561591df8e4ba8e54e6ee636e504308b7e46e08ca5546078af2a431",
+    "codingEvidenceLedger": "docs/evidence/step-07/fix-round1/ledger.json",
+    "codingEvidenceLedgerSha256": "96f498cd314d2d1e681c82ee82521c04b1cf78d1d662f7f2e06a14815256043d",
+    "ledgerVerifiedCommittedFiles": 148,
+    "postCandidateDiff": "153_README_DOCS_PATHS_ONLY_NO_EXECUTABLE_CHANGE",
+    "reviews": [
+      {
+        "round": 1,
+        "candidate": "4f6a40f3e8be990b4068dafee488249be737f7ad",
+        "docsHead": "82a356879cf490283572afc9fb49f8734cf5eb90",
+        "status": "REQUIRES_REVISION",
+        "threadId": "01a13389-eae7-78e3-853b-21e5ca18df2f",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round1-client.json",
+        "sourceProtectionFiles": 1939,
+        "independentCheck": {
+          "status": "PASS",
+          "tests": 238,
+          "productionExports": 11
+        },
+        "independentEngineeringPayloadHashCheck": {
+          "status": "PASS",
+          "payloads": 203
+        },
+        "overallStatus": "REQUIRES_REVISION",
+        "independentHttpPostgres": {
+          "status": "PASS",
+          "tests": 7,
+          "scope": [
+            "deferred commit rejection",
+            "failure cleanup",
+            "clean restore"
+          ]
+        },
+        "independentBrowser": {
+          "status": "PASS_EXECUTED_WITH_NONBLOCKING_P3",
+          "manualSixComponentUploadRecipeActualRender": "EXECUTED",
+          "retainedProbeFailure": "Local over-strict locator timeout; probe only corrected; product source untouched",
+          "overallPass": "BROWSER_TESTS_PASS_BUT_WHOLE_REVIEW_REQUIRES_REVISION",
+          "pixelVerification": "PASS",
+          "sceneStates": 24,
+          "creativeSourceStates": 4,
+          "nearestIntegerZoom": "PASS_2X",
+          "changedActualBuildPixels": "PASS",
+          "zipNetworkIdentityMatches": 4,
+          "oldStandardPayloadHashMatches": 56,
+          "oldPngHashMatches": 16,
+          "restoredStudioAndLegacyConversion": "PASS_EXECUTED_CONVERSION_MANIFEST_CURRENT_HISTORY_UNCHANGED_OLD_ZIP_EQUAL_REBUILD_IN_UI",
+          "actualSigkillRestart": "PASS_INCOMPLETE_TASK_FAILED_INTERRUPTED_RECOVERY_HINT_LAST_SUCCESS_CANVAS_ZIP_ACCURATE"
+        },
+        "independentStep06Regression": {
+          "status": "PASS",
+          "tests": 23
+        },
+        "preliminaryFindings": [
+          {
+            "topic": "Asset objects ancestor symlink follows path outside declared asset root",
+            "state": "CONFIRMED_FINAL_REPORT",
+            "gate": "BLOCKING_CURRENT_HARD_PATH_BOUNDARY",
+            "severity": "P2_BLOCKING_CONFIRMED_BY_REVIEWER"
+          }
+        ],
+        "report": "docs/evidence/step-07/independent-round1/report.md",
+        "reportSha256": "96fd739b24d4bfac0e937f695eb5469591d570780d4b3fc7bd0ae3e824820686",
+        "evidenceLedger": "docs/evidence/step-07/independent-round1/evidence/ledger.json",
+        "evidenceLedgerPayloadsVerified": 308,
+        "blockingFindings": [
+          {
+            "id": "STEP07-R1-001",
+            "severity": "P2",
+            "status": "OPEN",
+            "topic": "AssetStorage ancestor symlink root escape for source PNG and standard A1"
+          }
+        ],
+        "nonBlockingFindings": [
+          {
+            "id": "STEP07-R1-002",
+            "severity": "P3",
+            "status": "OPEN",
+            "topic": "Project switch sends temporarily mixed project Build recipe IDs; backend rejects, stable render/download valid"
+          }
+        ],
+        "sourceChanged": false
+      },
+      {
+        "round": 2,
+        "candidate": "d343171ca866a8d1d1c4e272823ef475229d8032",
+        "docsHead": "1a3881edd3a076649f86794b05ac47f4c4c7a315",
+        "status": "IN_PROGRESS",
+        "threadId": "01a13433-4b34-7af1-b498-e4c984715e27",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round2/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round2-client.json"
+      }
+    ],
+    "latestIndependentReview": "REQUIRES_REVISION",
+    "codingFix": {
+      "round": 1,
+      "status": "SELF_TESTED_FROZEN_READY_ROUND2",
+      "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "issues": [
+        "STEP07-R1-001",
+        "STEP07-R1-002"
+      ],
+      "nextFormalReviewRound": 2,
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-fix-round1-client.json",
+      "source": "d343171ca866a8d1d1c4e272823ef475229d8032",
+      "docsHead": "1a3881edd3a076649f86794b05ac47f4c4c7a315"
+    }
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -446,7 +684,7 @@
       "temporaryRoot": ".local/step06",
       "apiPort": 4366,
       "webPort": 5266,
-      "serviceStatus": "POSTGRES_RUNNING_CODING_OWNED"
+      "serviceStatus": "OWNED_POSTGRES_STOPPED_DATA_RETAINED"
     },
     {
       "owner": "step06_reviewer",
@@ -458,7 +696,7 @@
       "temporaryRoot": ".local/step06-review",
       "apiPort": 4367,
       "webPort": 5267,
-      "serviceStatus": "OWNED_POSTGRES_RUNNING_REVIEW_FINISHED"
+      "serviceStatus": "OWNED_POSTGRES_STOPPED_DATA_RETAINED"
     },
     {
       "owner": "step06_reviewer_round2",
@@ -470,7 +708,7 @@
       "temporaryRoot": ".local/step06-review",
       "apiPort": 4369,
       "webPort": 5269,
-      "serviceStatus": "NOT_STARTED"
+      "serviceStatus": "OWNED_POSTGRES_STOPPED_DATA_RETAINED"
     },
     {
       "owner": "step06_reviewer_round3",
@@ -482,10 +720,57 @@
       "temporaryRoot": ".local/step06-review",
       "apiPort": 4371,
       "webPort": 5271,
-      "serviceStatus": "NOT_STARTED"
+      "serviceStatus": "OWNED_POSTGRES_STOPPED_DATA_RETAINED"
+    },
+    {
+      "owner": "step07_coder",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+      "branch": "codex/step-07-studio",
+      "pgPort": 55476,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/assets",
+      "temporaryRoot": ".local/step07",
+      "apiPort": 4376,
+      "webPort": 5276,
+      "serviceStatus": "OWNED_POSTGRES_API_STARTED_AUTHOR_VALIDATION"
+    },
+    {
+      "owner": "step07_reviewer_round1",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker",
+      "pgPort": 55477,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "apiPort": 4377,
+      "webPort": 5277,
+      "serviceStatus": "OWNED_POSTGRES_STARTED_BY_MAIN_PREPARATION_NO_REVIEW",
+      "preparedBy": "MAIN_ORCHESTRATOR",
+      "apiWebServices": "NOT_STARTED",
+      "source": "4f6a40f3e8be990b4068dafee488249be737f7ad"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_PUBLISHED_MAIN_REMOTE_READBACK_AND_MAIN_CI_SUCCESS",
+  "lastSuccessfulCheckpoint": "Step07 R1 original report and 308 payloads preserved; d343 fixes and 148 author payloads/206 engineering files verified; R2 native ultra/default dispatched.",
   "blockers": [],
-  "nextSafeAction": "Create new step07 Coding/Review contexts from published main; implement human-material Studio and real exported-file preview, upload/QA and browser tests; stop after07 publication."
+  "nextSafeAction": "Wait for R2 complete independent review, preserve original report/evidence; no technical acceptance or Step07 publish before latest PASS and required CI.",
+  "cleanup": [
+    {
+      "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
+      "root": "/Users/dingshinn/.codex/worktrees/step-06-release/rpg-maker-maker",
+      "tip": "4a98470e7dfb6532c65c844bb167c5091ba90836",
+      "readbackRemoteMain": "08c07089e2142ee1643ffb752888f6d0d733ab8c",
+      "tipContainedRemoteMain": true,
+      "uncommittedUntrackedIgnoredFiles": 0,
+      "envDatabaseAssetsArtifactsAbsent": true,
+      "activeProcessArgsAndCwdOwners": 0,
+      "submodules": 0,
+      "archiveAttachmentType": "archived_worktree",
+      "directoryExistsAfterArchive": false,
+      "gitWorktreeRegisteredAfterArchive": false,
+      "atUtc": "2026-10-13T04:55:55.827706+00:00",
+      "preserved": "All Coding/Review private DBs assets backups and raw failures retained"
+    }
+  ],
+  "updatedAtUtc": "2026-10-13T07:39:52.608472+00:00"
 }

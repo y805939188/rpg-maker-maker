@@ -1,0 +1,46 @@
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toContainText(expected) failed
+
+Locator: getByRole('alert')
+Expected substring: "上次本地构建中断"
+Error: strict mode violation: getByRole('alert') resolved to 2 elements:
+    1) <p role="alert">上次本地构建中断。 已保留成功历史；重新选择当前配方并构建。</p> aka getByText('上次本地构建中断。 已保留成功历史；重新选择当前配方并构建。')
+    2) <p role="alert">两组固定槽位已使用；退役槽位不能再分配。 保留历史，更新当前第二组组件后重建。</p> aka getByText('两组固定槽位已使用；退役槽位不能再分配。 保留历史，更新当前第二组组件后重建。')
+
+Call log:
+  - Expect "toContainText" getByRole('alert') with timeout 5000ms
+  - waiting for getByRole('alert')
+
+    at captureRawStack (/Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toContainText (/Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at /Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/.local/step07-review/probes/interruption-after.mjs:5:437 {
+  matcherResult: {
+    name: 'toContainText',
+    expected: '上次本地构建中断',
+    message: 'expect(locator).toContainText(expected) failed\n' +
+      '\n' +
+      "Locator: getByRole('alert')\n" +
+      'Expected substring: "上次本地构建中断"\n' +
+      "Error: strict mode violation: getByRole('alert') resolved to 2 elements:\n" +
+      `    1) <p role="alert">上次本地构建中断。 已保留成功历史；重新选择当前配方并构建。</p> aka getByText('上次本地构建中断。 已保留成功历史；重新选择当前配方并构建。')\n` +
+      `    2) <p role="alert">两组固定槽位已使用；退役槽位不能再分配。 保留历史，更新当前第二组组件后重建。</p> aka getByText('两组固定槽位已使用；退役槽位不能再分配。 保留历史，更新当前第二组组件后重建。')\n` +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toContainText" getByRole('alert') with timeout 5000ms\n` +
+      "  - waiting for getByRole('alert')\n",
+    pass: false,
+    actual: undefined,
+    log: [
+      `  - Expect "toContainText" getByRole('alert') with timeout 5000ms`,
+      "  - waiting for getByRole('alert')"
+    ],
+    timeout: undefined,
+    ariaSnapshot: undefined
+  }
+}
+
+Node.js v22.21.1

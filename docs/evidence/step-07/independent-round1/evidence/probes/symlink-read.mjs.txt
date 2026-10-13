@@ -1,0 +1,13 @@
+import {readFile,writeFile,rename,symlink,copyFile,mkdir,realpath,lstat} from 'node:fs/promises';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+const {PrismaClient}=await import('../../../apps/api/node_modules/@prisma/client/default.js');
+const env=JSON.parse(await readFile('.local/step07-review/restored-env.json','utf8')),record=JSON.parse(await readFile('.local/step07-review/evidence/integrated-recovery.json','utf8'));const db=new PrismaClient({datasources:{db:{url:env.url}}});
+const source=await db.assetRevision.findFirstOrThrow({where:{projectId:record.legacy.project,kind:'source'}}),object=await db.fileObject.findUniqueOrThrow({where:{sha256:source.sourceSha}}),base='http://127.0.0.1:4377',url=`${base}/api/projects/${record.legacy.project}/sources/${source.id}/png`;
+const expected=await readFile(resolve(env.assets,object.key)),outside=resolve('.local/step07-review/symlink-outside');await mkdir(outside);await copyFile(resolve(env.assets,object.key),resolve(outside,object.sha256));
+const result={file:object.key,sourceId:source.id,project:record.legacy.project,assetRoot:env.assets,escapedTarget:resolve(outside,object.sha256),controls:{},expected:'reject any symlink ancestor crossing declared root',actual:{}};
+const original=resolve(env.assets,object.key),leafSaved=original+'.review-preserved';await rename(original,leafSaved);await symlink(resolve(outside,object.sha256),original);
+try{const r=await fetch(url);result.controls.directLeafSymlinkStatus=r.status;await r.arrayBuffer()}finally{await rename(original,resolve(outside,'retained-leaf-link'));await rename(leafSaved,original)}
+const objects=resolve(env.assets,'objects'),saved=resolve(env.assets,'objects-review-preserved');await rename(objects,saved);await symlink(outside,objects);
+try{const r=await fetch(url),bytes=Buffer.from(await r.arrayBuffer());result.actual={status:r.status,sha256:createHash('sha256').update(bytes).digest('hex'),bytesEqualOriginal:bytes.equals(expected),resolvedPath:await realpath(resolve(env.assets,object.key)),parentIsSymlink:(await lstat(objects)).isSymbolicLink()}}finally{await rename(objects,resolve(outside,'retained-parent-link'));await rename(saved,objects);await db.$disconnect()}
+await writeFile('.local/step07-review/evidence/symlink-read.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({directLeaf:result.controls.directLeafSymlinkStatus,ancestor:result.actual.status,escaped:result.actual.resolvedPath,bytesEqual:result.actual.bytesEqualOriginal}));

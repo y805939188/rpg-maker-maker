@@ -1,0 +1,10 @@
+file:///Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/.local/step07-review/probes/public-http.mjs:8
+const req=async(path,body,extra={})=>{const r=await fetch(base+path,body===undefined?extra:{method:'POST',headers,body:JSON.stringify(body),...extra});const text=await r.text();record.requests.push({path,status:r.status()});return{status:r.status(),body:JSON.parse(text)}};
+                                                                                                                                                                                                                     ^
+
+TypeError: r.status is not a function
+    at req (file:///Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/.local/step07-review/probes/public-http.mjs:8:214)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/dingshinn/.codex/worktrees/step-07-independent-review/rpg-maker-maker/.local/step07-review/probes/public-http.mjs:9:10
+
+Node.js v22.21.1
