@@ -1,0 +1,28 @@
+
+> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker
+> pnpm --filter @tileset/api db:migrate
+
+
+> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker/apps/api
+> node scripts/migrate.mjs
+
+Prisma schema loaded from prisma/schema.prisma
+Datasource "db": PostgreSQL database "tileset_studio", schema "public" at "127.0.0.1:55471"
+
+4 migrations found in prisma/migrations
+
+Applying migration `202610130001_step06_persistence`
+Applying migration `202610130002_step06_task_references`
+Applying migration `202610130003_step06_processing_stages`
+
+The following migration(s) have been applied:
+
+migrations/
+  └─ 202610130001_step06_persistence/
+    └─ migration.sql
+  └─ 202610130002_step06_task_references/
+    └─ migration.sql
+  └─ 202610130003_step06_processing_stages/
+    └─ migration.sql
+      
+All migrations have been successfully applied.

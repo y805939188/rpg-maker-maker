@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 6,
-  "phase": "STEP06_INDEPENDENT_REVIEW_ROUND_3",
+  "phase": "STEP06_CANDIDATE_CI_PREPARATION",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -62,7 +62,7 @@
     "serverFinalTier": "UNVERIFIED_NOT_EXPOSED"
   },
   "step06": {
-    "status": "IN_PROGRESS",
+    "status": "INDEPENDENT_PASS_PENDING_CI",
     "reviewRounds": 3,
     "branch": "codex/step-06-persistence",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-06-persistence/rpg-maker-maker",
@@ -300,10 +300,23 @@
         "round": 3,
         "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
         "docsHead": "89f15cbb3d560584043128235014e230f982c2c8",
-        "status": "IN_PROGRESS",
+        "status": "PASS",
         "threadId": "01a13284-5dcc-73a0-b0ec-689c81ae06a9",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker",
-        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round3-client.json"
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step06-review-round3-client.json",
+        "report": "docs/evidence/step-06/independent-round3/report.md",
+        "reportSha256": "f93adf35a39d54fe4341b72b48c6057a44d46d0a477e2bf096234dc49b479ccf",
+        "evidenceLedger": "docs/evidence/step-06/independent-round3/evidence/ledger.json",
+        "blockingFindings": [],
+        "closedFindings": [
+          "STEP06-IR-001",
+          "STEP06-IR-002",
+          "STEP06-IR-003",
+          "STEP06-IR-004",
+          "STEP06-R2-001"
+        ],
+        "sourceProtectionFiles": 1525,
+        "sourceChanged": false
       }
     ],
     "codingFix": {
@@ -381,7 +394,8 @@
       "pgPort": 55471,
       "apiPort": 4371,
       "webPort": 5271
-    }
+    },
+    "latestIndependentReview": "PASS"
   },
   "step07": {
     "status": "NOT_STARTED",
@@ -447,7 +461,7 @@
       "serviceStatus": "NOT_STARTED"
     }
   ],
-  "lastSuccessfulCheckpoint": "STEP06_STANDARD_INDEPENDENT_ROUND3_DISPATCHED",
+  "lastSuccessfulCheckpoint": "STEP06_ROUND3_PASS_AND_ALL_REVIEW_EVIDENCE_VERIFIED",
   "blockers": [],
-  "nextSafeAction": "Await round3 frozen independent result; latest PASS plus all needed CI required before preauthorized acceptance and step06 publication."
+  "nextSafeAction": "Integrate frozen reviewed source and documentation with orchestrator-only main records into validation branch; wait necessary candidate CI."
 }

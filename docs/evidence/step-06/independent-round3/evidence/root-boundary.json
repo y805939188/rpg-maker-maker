@@ -1,0 +1,61 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "postgres": {
+    "dev": 16777232,
+    "ino": 163591382
+  },
+  "rows": [
+    {
+      "name": "postgres",
+      "dev": 16777232,
+      "ino": 163591382,
+      "sameIdentity": true,
+      "rejected": true,
+      "error": "Asset root must be owned by this project .local and separate from PostgreSQL"
+    },
+    {
+      "name": "Postgres",
+      "dev": 16777232,
+      "ino": 163591382,
+      "sameIdentity": true,
+      "rejected": true,
+      "error": "Asset root must be owned by this project .local and separate from PostgreSQL"
+    },
+    {
+      "name": "POSTGRES",
+      "dev": 16777232,
+      "ino": 163591382,
+      "sameIdentity": true,
+      "rejected": true,
+      "error": "Asset root must be owned by this project .local and separate from PostgreSQL"
+    },
+    {
+      "name": "pOsTgReS",
+      "dev": 16777232,
+      "ino": 163591382,
+      "sameIdentity": true,
+      "rejected": true,
+      "error": "Asset root must be owned by this project .local and separate from PostgreSQL"
+    }
+  ],
+  "valid": [
+    ".local/assets",
+    ".local/absent/new",
+    ".local/postgres-assets/absent",
+    "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker/.local/step06-review/config-fixture-bf7af7e0-5ee0-4935-97af-2eeeb6658d53/.local/absolute-new"
+  ],
+  "invalid": [
+    "",
+    " ",
+    ".local",
+    "../escape",
+    ".local/../escape",
+    ".local/postgres/x",
+    ".local/Postgres/x",
+    ".local/POSTGRES/x",
+    ".local/redirect/new",
+    ".local/non-directory/new"
+  ],
+  "portableCaseControlsWithoutPostgresDirectory": true,
+  "postgresWrites": "NONE_READ_ONLY"
+}

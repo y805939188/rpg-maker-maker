@@ -1,0 +1,48 @@
+{
+  "owner": "step06-review-round3",
+  "pgPort": 55471,
+  "version": "PostgreSQL14.20",
+  "commands": [
+    {
+      "argv": [
+        "/opt/homebrew/opt/postgresql@14/bin/initdb",
+        "-D",
+        "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker/.local/postgres/data",
+        "--username=tileset",
+        "--pwfile=/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker/.local/step06-review/private/init-password",
+        "--auth-local=scram-sha-256",
+        "--auth-host=scram-sha-256",
+        "--encoding=UTF8",
+        "--locale=C"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/postgresql@14/bin/pg_ctl",
+        "-D",
+        "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker/.local/postgres/data",
+        "-l",
+        "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker/.local/postgres/server.log",
+        "-w",
+        "start"
+      ],
+      "exitCode": 0
+    },
+    {
+      "argv": [
+        "/opt/homebrew/opt/postgresql@14/bin/createdb",
+        "-h",
+        "127.0.0.1",
+        "-p",
+        "55471",
+        "-U",
+        "tileset",
+        "tileset_studio"
+      ],
+      "exitCode": 0,
+      "privateEnvironment": "PGPASSWORD newly generated; not copied or published"
+    }
+  ],
+  "postgresSetupOnly": "Dedicated own cluster; no global/other cluster operations"
+}

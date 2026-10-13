@@ -1,0 +1,49 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "checks": [
+    {
+      "name": "actual-pg-dump-child-abort-and-close",
+      "leasePid": 68906,
+      "dumpBackend": {
+        "pid": 69999,
+        "state": "active",
+        "wait_event_type": "Lock",
+        "wait_event": "relation",
+        "application_name": "pg_dump"
+      },
+      "locks": [
+        {
+          "pid": 68906,
+          "classid": 6006,
+          "objid": 0,
+          "mode": "ExclusiveLock"
+        }
+      ],
+      "result": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "dumpProcessPid": 69998,
+      "dumpProcessClosedBeforeReturn": true,
+      "serverBackendBeforeTableUnlock": 1,
+      "serverBackendGoneAfterUnlock": true
+    },
+    {
+      "name": "restore-lost-before-db-keeps-empty-target",
+      "targetDb": "tileset_review3_lost_restore_099b8106f3784cfe9e1e6c2d8d067417",
+      "assetRoot": "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker/.local/step06-review/lost-restore-assets",
+      "leasePid": 70028,
+      "result": {
+        "ok": false,
+        "error": "Write gate connection or lock lost"
+      },
+      "publicTables": 0,
+      "filesMayRemain": "VALIDATED_DURABLE_UNREFERENCED"
+    },
+    {
+      "name": "backup-hash-corruption-rejected",
+      "path": "assets/objects/044e88ed16f6f1d813a69877805066a18b7c0df609a7808c2aa2d43dc3ec7f70",
+      "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   bytes: 29,\n+   sha256: 'f25e3f004b897a9cc62b24f67d90e43742304ea7f912578c2e250ea75afca0fc'\n-   bytes: 51407,\n-   sha256: '044e88ed16f6f1d813a69877805066a18b7c0df609a7808c2aa2d43dc3ec7f70'\n  }\n"
+    }
+  ]
+}

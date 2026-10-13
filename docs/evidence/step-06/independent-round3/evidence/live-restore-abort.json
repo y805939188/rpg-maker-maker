@@ -1,0 +1,25 @@
+{
+  "candidate": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "database": "tileset_review3_live_restore_abort_345b76e313e84570ae474ac70d016315",
+  "pgPort": 55471,
+  "assetRoot": "/Users/dingshinn/.codex/worktrees/step-06-review-round3/rpg-maker-maker/.local/step06-review/live-restore-abort-assets",
+  "gatePid": 73000,
+  "restoreBackend": {
+    "pid": 73009,
+    "application_name": "pg_restore",
+    "xact_start": "2026-10-12T23:57:22.484Z",
+    "state": "active",
+    "classid": 6020,
+    "objid": 1
+  },
+  "restoreProcessPid": 73008,
+  "childClosedBeforeReturn": true,
+  "backendGoneAfterUnblock": true,
+  "result": {
+    "ok": false,
+    "error": "Write gate connection or lock lost"
+  },
+  "publicTablesAfterRollback": [],
+  "files": "VALIDATED_DURABLE_UNREFERENCED_PRESERVED",
+  "injection": "test-owned non-public event trigger blocks real CREATE TABLE within pg_restore --single-transaction"
+}
