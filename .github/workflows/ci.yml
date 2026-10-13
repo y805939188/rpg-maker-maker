@@ -21,6 +21,9 @@ jobs:
       DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        # The step07 regression reads the published step06 writer with git show.
+        with:
+          fetch-depth: 0
       - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
         with:
           version: 10.20.0
