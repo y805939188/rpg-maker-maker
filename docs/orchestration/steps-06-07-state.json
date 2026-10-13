@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_FIX3_FROZEN_AUTHOR_REGRESSION",
+  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND4",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,8 +434,8 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "CODING_FROZEN_VALIDATION",
-    "reviewRounds": 3,
+    "status": "INDEPENDENT_REVIEW",
+    "reviewRounds": 4,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
@@ -461,7 +461,7 @@
       "independentReview": "NOT_YET_REPORTED_LATEST5D"
     },
     "candidateSha": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
-    "candidateState": "FROZEN_AUTHOR_VALIDATION_IN_PROGRESS_NOT_REVIEWED",
+    "candidateState": "FROZEN_SELF_TESTED_UNDER_INDEPENDENT_ROUND4",
     "reviewEnvironment": {
       "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round3/rpg-maker-maker",
@@ -514,7 +514,7 @@
         "status": "SUPERSEDED_UNREVIEWED_ARTIFACT_RETAINED"
       }
     ],
-    "engineeringBuildState": "AWAIT_EF30_BOUND_GENERATION_AND_FULL_AUTHOR_HANDOFF",
+    "engineeringBuildState": "FROZEN_BOUND_HASH_VERIFIED_UNDER_INDEPENDENT_REVIEW",
     "supersededAuthorValidation82": {
       "phase": "FROZEN_CANDIDATE_VALIDATION",
       "firstActualHttpFlow": "PASS_UNFROZEN_AUTHOR_ONLY",
@@ -794,12 +794,24 @@
           }
         ],
         "priorFindings": "R1/R2 CLOSED_IN_ORIGINAL_SCOPE; regressions independently maintained"
+      },
+      {
+        "round": 4,
+        "candidate": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+        "docsHead": "71933b6782b83600b1a94017f5eb5aa763553dfb",
+        "status": "IN_PROGRESS",
+        "threadId": "01a13592-d6c5-7a91-badb-a0419a260e2a",
+        "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round4/rpg-maker-maker",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round4-client.json",
+        "sourceProtectionFiles": 2532,
+        "nativeProcess": 61485,
+        "nativeOutput": ".local/orchestration-06-07/step07-review-round4"
       }
     ],
     "latestIndependentReview": "REQUIRES_REVISION_ROUND3",
     "codingFix": {
       "round": 3,
-      "status": "FROZEN_AUTHOR_VALIDATION_IN_PROGRESS",
+      "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
       "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
       "issues": [
         "STEP07-R3-001",
@@ -822,12 +834,25 @@
         "candidate": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
         "check": 266,
         "httpPostgres": 9,
-        "status": "PARTIAL_AUTHOR_PASS_OTHER_REQUIRED_CHECKS_IN_PROGRESS",
+        "status": "AUTHOR_BOUND_ALL_REQUIRED_CHECKS_PASS_NOT_INDEPENDENT_REVIEW",
         "productionBrowser": 13,
-        "developmentBrowser": "IN_PROGRESS",
-        "step06Regression": "PENDING",
-        "artifactBinding": "PENDING"
-      }
+        "developmentBrowser": 13,
+        "step06Regression": 23,
+        "artifactBinding": "MAIN_ACTUAL206_FILES_REHASHED_NOT_INDEPENDENT_REVIEW_PASS",
+        "api": 3,
+        "privacy": 5,
+        "jsScalar": 78,
+        "nativeCPU": 8,
+        "oldPackPayload": 56,
+        "oldPackPNG": 16,
+        "sceneStates": 24,
+        "sourceStates": 4,
+        "clockBoundaries": 24,
+        "clockCycles": 3,
+        "cleanPostgresFilesRestoreStudio": "PASS_AUTHOR_EXECUTED"
+      },
+      "docsHead": "71933b6782b83600b1a94017f5eb5aa763553dfb",
+      "nativeExitCode": 0
     },
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
@@ -845,8 +870,8 @@
     },
     "pendingCandidate": {
       "sha": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
-      "status": "AUTHOR_FROZEN_FULL_VALIDATION_IN_PROGRESS",
-      "parentDocs": "36dc5cca1a7da77314e6889648d464d32ba0751f"
+      "docsHead": "71933b6782b83600b1a94017f5eb5aa763553dfb",
+      "status": "AUTHOR_HANDOFF_COMPLETE_UNDER_REVIEW_ROUND4"
     },
     "nextReviewEnvironment": {
       "operationId": "145c081f-af64-431e-94c0-5d1663613188",
@@ -857,9 +882,9 @@
       "apiPort": 4385,
       "webPort": 5285,
       "preparedBy": "MAIN_ORCHESTRATOR",
-      "status": "EXCLUSIVE_ENV_FROZEN_PREPARED_NOT_FORMAL_REVIEW",
+      "status": "ACTIVATED_FORMAL_ROUND4",
       "databaseMigration": "NOT_EXECUTED",
-      "formalReviewStarted": false,
+      "formalReviewStarted": true,
       "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
       "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS"
     },
@@ -897,7 +922,41 @@
         "receipt": "docs/evidence/orchestration-06-07/step07-candidate5d-engineering-receipt.json",
         "independentReview": "IN_PROGRESS"
       }
-    }
+    },
+    "engineeringBuild": {
+      "sourceSha": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+      "buildId": "step07-ef30dc2ab011-56e8dbed6eb81a20",
+      "manifestSha256": "b1d36d66ea54b8f0f65ab6a705c0c4f8d19613dddecd45f426514940afb200e9",
+      "payloadsVerified": 206,
+      "receipt": "docs/evidence/orchestration-06-07/step07-candidate-ef30-engineering-receipt.json"
+    },
+    "frozenCheckpointCi": {
+      "head": "afb6dfa0be0c291c6528b078a9ebac6cd1cfa0ca",
+      "runId": 38404967311,
+      "status": "SUCCESS",
+      "purpose": "MAIN_PUBLISHED_STEP06_CODE_WITH_STEP07_ORCHESTRATION_DOCS_NOT_STEP07_CANDIDATE_CI"
+    },
+    "docsHead": "71933b6782b83600b1a94017f5eb5aa763553dfb",
+    "codingReport": "docs/reviews/step-07-fix-round-3-coding.md",
+    "codingReportSha256": "772d78741813f1fe5bc1fb67c7081ebd92bfcab8d5895cf79d10519412a0e95a",
+    "codingEvidenceLedger": "docs/evidence/step-07/fix-round3/ledger.json",
+    "codingEvidenceLedgerSha256": "a09e85a5e88d1e165878f2f6753d895cde4c470c5129ed991fdff77863b70cd0",
+    "ledgerVerifiedCommittedFiles": 425,
+    "postCandidateDiff": {
+      "paths": 430,
+      "scope": "README_DOCS_ONLY",
+      "executionImpact": "NONE_REVIEWED_MAIN_README_BASELINE_REQUIREMENTS_REPORT_AND_EVIDENCE_ONLY"
+    },
+    "activeIndependentReviewRound": 4,
+    "prelaunchFailures": [
+      {
+        "type": "LOCAL_PRELAUNCH_METADATA_VALIDATION_AND_MISSING_PROMPT",
+        "nativeProcessCreated": false,
+        "formalReviewRoundsConsumed": 0,
+        "receipt": "docs/evidence/orchestration-06-07/step07-review-round4-prelaunch-failure1.json",
+        "reason": "Interim collector ledger8d differed from finalized committeda09; corrected to actual committed SHA after full425 payload verification. NoReviewer launched on failed localattempt."
+      }
+    ]
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -969,8 +1028,11 @@
       "temporaryRoot": ".local/step07",
       "apiPort": 4376,
       "webPort": 5276,
-      "serviceStatus": "OWNED_PG55476_RUNNING_API4376_STOPPED_BY_CODER_FOR_FIX3",
-      "apiPid": 51670
+      "serviceStatus": "OWNED_PG55476_AND_PRODUCTION_API4376_RUNNING_FROZEN_EF30_NOT_PUBLISHED",
+      "apiPid": 7819,
+      "previousApiPid": 51670,
+      "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+      "apiProcessCwdVerified": true
     },
     {
       "owner": "step07_reviewer_round1",
@@ -1040,11 +1102,13 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "OWNED_NEW_EMPTY_PG_RUNNING_REVIEW_NOT_STARTED",
-      "formalReviewStarted": false
+      "serviceStatus": "OWNED_PG55485_RUNNING_FORMAL_REVIEW_STARTED",
+      "formalReviewStarted": true,
+      "source": "ef30dc2ab011d204d1d0a4d099a335b68458cdca",
+      "threadId": "01a13592-d6c5-7a91-badb-a0419a260e2a"
     }
   ],
-  "lastSuccessfulCheckpoint": "Fix3 ef30 frozen: authorcheck266/HTTPPG9/productionbrowser13 PASS; developmentbrowser/full06/artifacthandoff pending. Localvalidation3f8 executiondiff0 and notpushed; R4 exactef30 preparation only, formalroundcount remains3/5.",
+  "lastSuccessfulCheckpoint": "Coding Fix3 nativeexit0 Sourceef30/docs719 Gitclean,425 committedpayload/report772/ledgera09 verified,430 docs-only/noexecutionchange,206 actualBuildSHA verified. NativeindependentR4 ultra/default started CID01a13592... pid61485; count4/5. R3 blockers remainopen until latestwholecandidatePASS.",
   "blockers": [
     {
       "gate": "STEP07_TECHNICAL_RELEASE",
@@ -1061,7 +1125,7 @@
       "reason": "Late old-project upload response clears current project component selection"
     }
   ],
-  "nextSafeAction": "Wait latest ef30 author full validation/Build/docs/ledger handoff, verify committed evidence and execution-equivalent docs; then independentR4/5.",
+  "nextSafeAction": "Wait full independentR4 report; preserve original evidence and close findings only if independently verified. Before publication latestwholecandidatePASS,necessary candidateCI,normalmerge/postmerge/push/readback/mainCI mandatory. Stop after07,08–10notstarted.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -1095,5 +1159,5 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T13:26:25.222759+00:00"
+  "updatedAtUtc": "2026-10-13T14:04:52.342227+00:00"
 }
