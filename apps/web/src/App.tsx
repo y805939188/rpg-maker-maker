@@ -31,6 +31,13 @@ export function App() {
     [error, setError] = useState(''),
     [notice, setNotice] = useState(''),
     [busy, setBusy] = useState(false),
+    [stateRead, setStateRead] = useState<{
+      projectId: string;
+      failures: number;
+      error: string;
+      stopped: boolean;
+    } | null>(null),
+    [manualReading, setManualReading] = useState(false),
     [selected, setSelected] = useState<Record<string, string>>({}),
     [style, setStyle] = useState('component-palette'),
     [recipe, setRecipe] = useState(''),
@@ -44,6 +51,24 @@ export function App() {
     [sourceFrame, setSourceFrame] = useState(0);
   const projectRef = useRef(id);
   projectRef.current = id;
+  const projectGeneration = useRef(0),
+    selectionGeneration = useRef(0),
+    actionGeneration = useRef(0);
+  function changeSelection(change: () => void) {
+    selectionGeneration.current++;
+    change();
+  }
+  function selectProject(next: string) {
+    if (projectRef.current === next) return;
+    projectGeneration.current++;
+    selectionGeneration.current++;
+    actionGeneration.current++;
+    projectRef.current = next;
+    setBusy(false);
+    setError('');
+    setNotice('');
+    setId(next);
+  }
   const generation = useRef(0),
     refreshInFlight = useRef<{
       projectId: string;
@@ -61,15 +86,25 @@ export function App() {
     previewKey = `${id}/${build}/${scene}/${group}`,
     previewBusy = Boolean(currentBuild && previewSettled !== previewKey);
   useEffect(() => {
+    const action = actionGeneration.current;
+    let disposed = false;
     void listProjects()
-      .then(setProjects)
-      .catch((e) => setError(String(e)));
+      .then((projects) => {
+        if (!disposed && actionGeneration.current === action) setProjects(projects);
+      })
+      .catch((e) => {
+        if (!disposed && actionGeneration.current === action) setError(String(e));
+      });
+    return () => {
+      disposed = true;
+    };
   }, []);
-  async function refresh(projectId = id, reset = false, parent?: AbortSignal) {
+  async function refresh(projectId = id, reset = false, parent?: AbortSignal, select = true) {
     const existing = refreshInFlight.current;
     if (existing?.projectId === projectId && !existing.controller.signal.aborted)
       return existing.promise;
     const n = ++generation.current;
+    const selection = selectionGeneration.current;
     const controller = new AbortController(),
       cancel = () => controller.abort(parent?.reason);
     parent?.addEventListener('abort', cancel, { once: true });
@@ -84,15 +119,23 @@ export function App() {
       if (latest.current?.projectId === d.projectId && latest.current.revision > d.revision) return;
       latest.current = d;
       setData(d);
+      if (!select || selection !== selectionGeneration.current) return;
       setSelected((old) => {
+        if (selection !== selectionGeneration.current) return old;
         const next = reset ? {} : { ...old };
         for (const c of ComponentSchema.options)
           if (!next[c]) next[c] = d.sources.find((s) => s.component === c)?.id ?? '';
         return next;
       });
       const adopted = d.recipes.find((r) => r.current);
-      setRecipe((old) => (reset || !old ? (adopted?.id ?? '') : old));
-      setBuild((old) => (reset || !old ? (d.successfulBuildId ?? '') : old));
+      setRecipe((old) =>
+        selection === selectionGeneration.current && (reset || !old) ? (adopted?.id ?? '') : old,
+      );
+      setBuild((old) =>
+        selection === selectionGeneration.current && (reset || !old)
+          ? (d.successfulBuildId ?? '')
+          : old,
+      );
     })().finally(() => {
       clearTimeout(timer);
       parent?.removeEventListener('abort', cancel);
@@ -113,6 +156,8 @@ export function App() {
     setRecipe('');
     setBuild('');
     setGroup('');
+    setStateRead(null);
+    setManualReading(false);
     if (id) {
       const controller = new AbortController();
       localStorage.setItem('studio-project', id);
@@ -123,22 +168,34 @@ export function App() {
     }
   }, [id]);
   useEffect(() => {
-    if (!id || !running || data?.projectId !== id) return;
+    if (!id || !running || data?.projectId !== id || stateRead?.stopped) return;
     const controller = new AbortController();
     const stop = pollAfterCompletion(
-      () =>
-        refresh(id, false, controller.signal).catch((e) => {
-          if (!controller.signal.aborted && projectRef.current === id) setError(String(e));
-        }),
+      (signal) => refresh(id, false, signal),
       controller.signal,
+      800,
+      {
+        onError: ({ error, failures }) => {
+          if (!controller.signal.aborted && projectRef.current === id)
+            setStateRead({ projectId: id, failures, error: String(error), stopped: false });
+        },
+        onRecovered: () => {
+          if (!controller.signal.aborted && projectRef.current === id) setStateRead(null);
+        },
+        onStopped: ({ error, failures }) => {
+          if (!controller.signal.aborted && projectRef.current === id)
+            setStateRead({ projectId: id, failures, error: String(error), stopped: true });
+        },
+      },
     );
     return () => {
       controller.abort();
       stop();
     };
-  }, [id, data?.projectId, running]);
+  }, [id, data?.projectId, running, Boolean(stateRead?.stopped)]);
   useEffect(() => {
     const n = ++previewGeneration.current;
+    const selection = selectionGeneration.current;
     setDetail(null);
     setPreviewSettled('');
     if (!id || !data || !currentBuild) return;
@@ -154,47 +211,89 @@ export function App() {
       },
       controller.signal,
       (attempt) => {
-        if (n === previewGeneration.current)
+        if (
+          n === previewGeneration.current &&
+          projectRef.current === id &&
+          selection === selectionGeneration.current
+        )
           setNotice(`交付读取槽忙，正在有界恢复（${attempt + 1}/5）。`);
       },
     )
       .then((d) => {
-        if (n === previewGeneration.current && !controller.signal.aborted) {
+        if (
+          n === previewGeneration.current &&
+          projectRef.current === id &&
+          !controller.signal.aborted
+        ) {
           setDetail(d);
           setPreviewSettled(previewKey);
           setNotice((old) => (old.startsWith('交付读取槽忙') ? '' : old));
         }
       })
       .catch((e) => {
-        if (n === previewGeneration.current && !controller.signal.aborted) {
-          setError(String(e));
+        if (
+          n === previewGeneration.current &&
+          projectRef.current === id &&
+          !controller.signal.aborted
+        ) {
+          if (selection === selectionGeneration.current) setError(String(e));
           setPreviewSettled(previewKey);
           setNotice((old) => (old.startsWith('交付读取槽忙') ? '' : old));
         }
       });
     return () => controller.abort();
   }, [id, build, scene, group, data?.projectId, currentBuild?.id]);
-  async function act(fn: () => Promise<void>, message: string) {
+  async function act(fn: (scope: { current: () => boolean }) => Promise<void>, message: string) {
+    const projectId = id,
+      projectEpoch = projectGeneration.current,
+      selectionEpoch = selectionGeneration.current,
+      action = ++actionGeneration.current;
+    const owned = () =>
+      projectRef.current === projectId &&
+      projectGeneration.current === projectEpoch &&
+      actionGeneration.current === action;
+    const current = () => owned() && selectionGeneration.current === selectionEpoch;
     setBusy(true);
     setError('');
     setNotice('');
     try {
-      await fn();
-      setNotice(message);
-      if (id && projectRef.current === id) await refresh();
+      await fn({ current });
+      if (current()) setNotice(message);
+      if (projectId && owned()) await refresh(projectId, false, undefined, current());
     } catch (e) {
-      setError(e instanceof Error ? e.message : String(e));
+      if (current()) setError(e instanceof Error ? e.message : String(e));
     } finally {
-      setBusy(false);
+      if (owned()) setBusy(false);
+    }
+  }
+  async function rereadState() {
+    const projectId = id,
+      epoch = projectGeneration.current;
+    const current = () => projectRef.current === projectId && projectGeneration.current === epoch;
+    setManualReading(true);
+    try {
+      await refresh(projectId);
+      if (current()) {
+        setStateRead(null);
+        setError('');
+      }
+    } catch (error) {
+      if (current()) setStateRead({ projectId, failures: 1, error: String(error), stopped: true });
+    } finally {
+      if (current()) setManualReading(false);
     }
   }
   async function create(e: FormEvent) {
     e.preventDefault();
-    await act(async () => {
+    await act(async (scope) => {
       const p = await createProject({ name });
-      setProjects(await listProjects());
-      setId(p.id);
+      if (!scope.current()) return;
+      const projects = await listProjects();
+      if (!scope.current()) return;
+      setProjects(projects);
+      selectProject(p.id);
       setName('');
+      setNotice('项目已保存。');
     }, '项目已保存。');
   }
   const sourceUrlKey = [0, 1, 2]
@@ -220,7 +319,7 @@ export function App() {
               <input
                 value={name}
                 maxLength={80}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => changeSelection(() => setName(e.target.value))}
                 required
                 placeholder="春日湖畔"
               />
@@ -230,7 +329,10 @@ export function App() {
           <ul aria-label="已保存项目">
             {projects.map((p) => (
               <li key={p.id}>
-                <button className={id === p.id ? 'selected' : ''} onClick={() => setId(p.id)}>
+                <button
+                  className={id === p.id ? 'selected' : ''}
+                  onClick={() => selectProject(p.id)}
+                >
                   {p.name}
                 </button>
               </li>
@@ -250,6 +352,22 @@ export function App() {
             <p className="notice" role="status">
               {notice}
             </p>
+          )}
+          {stateRead?.projectId === id && (
+            <div className="alert" role="alert">
+              <p>
+                项目状态读取失败／未知 · 连续失败{stateRead.failures}次。
+                {stateRead.stopped
+                  ? '自动读取已停止（最多5次连续失败／60秒共享预算）；保留上次成功，未重新提交任务。'
+                  : '正在有界读取恢复；保留上次成功。'}
+                {stateRead.error}
+              </p>
+              {stateRead.stopped && (
+                <button disabled={manualReading} onClick={() => void rereadState()}>
+                  {manualReading ? '正在只读重读…' : '只读重读项目状态'}
+                </button>
+              )}
+            </div>
           )}
           {id && !data && <p role="status">正在读取所选项目…</p>}
           {!id ? (
@@ -279,9 +397,9 @@ export function App() {
                     <button
                       disabled={busy || running}
                       onClick={() =>
-                        void act(async () => {
+                        void act(async (scope) => {
                           await request(`/api/projects/${id}/preset`, { family: 'art' });
-                          setSelected({});
+                          if (scope.current()) setSelected({});
                         }, '原创美术组件已保存；请选择版本并采用配方。')
                       }
                     >
@@ -290,10 +408,12 @@ export function App() {
                     <button
                       disabled={busy || running}
                       onClick={() =>
-                        void act(async () => {
+                        void act(async (scope) => {
                           await request(`/api/projects/${id}/preset`, { family: 'diagnostic' });
-                          setSelected({});
-                          setDensity(1);
+                          if (scope.current()) {
+                            setSelected({});
+                            setDensity(1);
+                          }
                         }, '编号诊断组件已保存。')
                       }
                     >
@@ -301,7 +421,10 @@ export function App() {
                     </button>
                     <label>
                       上传逻辑密度
-                      <select value={density} onChange={(e) => setDensity(Number(e.target.value))}>
+                      <select
+                        value={density}
+                        onChange={(e) => changeSelection(() => setDensity(Number(e.target.value)))}
+                      >
                         <option value={2}>2px 像素美术</option>
                         <option value={1}>1px 方向诊断</option>
                       </select>
@@ -317,9 +440,12 @@ export function App() {
                             {names[c]}精确版本
                             <select
                               value={selected[c] ?? ''}
-                              onChange={(e) =>
-                                setSelected((old) => ({ ...old, [c]: e.target.value }))
-                              }
+                              onChange={(e) => {
+                                const value = e.target.value;
+                                changeSelection(() =>
+                                  setSelected((old) => ({ ...old, [c]: value })),
+                                );
+                              }}
                             >
                               <option value="">选择源版本</option>
                               {data.sources
@@ -346,9 +472,12 @@ export function App() {
                               onChange={(e) => {
                                 const f = e.target.files?.[0];
                                 if (f)
-                                  void act(async () => {
+                                  void act(async (scope) => {
                                     await upload(id, c, density, f);
-                                    setSelected((old) => ({ ...old, [c]: '' }));
+                                    if (scope.current())
+                                      setSelected((old) =>
+                                        scope.current() ? { ...old, [c]: '' } : old,
+                                      );
                                   }, `${names[c]}新 revision 已保存，历史不会改变。`);
                                 e.target.value = '';
                               }}
@@ -361,7 +490,10 @@ export function App() {
                   <div className="toolbar">
                     <label>
                       风格约束
-                      <select value={style} onChange={(e) => setStyle(e.target.value)}>
+                      <select
+                        value={style}
+                        onChange={(e) => changeSelection(() => setStyle(e.target.value))}
+                      >
                         <option value="component-palette">采用所选组件的实际调色板</option>
                         <option value="baseline-palette">原创基线调色板（超出即拒绝）</option>
                       </select>
@@ -371,13 +503,13 @@ export function App() {
                         busy || running || ComponentSchema.options.some((c) => !selected[c])
                       }
                       onClick={() =>
-                        void act(async () => {
+                        void act(async (scope) => {
                           await request(`/api/projects/${id}/recipe`, {
                             expectedRevision: data.revision,
                             sources: selected,
                             style,
                           });
-                          setRecipe('');
+                          if (scope.current()) setRecipe('');
                         }, '固定岸线配方已验证并采用；请构建当前配套。')
                       }
                     >
@@ -397,9 +529,11 @@ export function App() {
                         value={recipe}
                         onChange={(e) => {
                           const v = e.target.value;
-                          setRecipe(v);
-                          const r = data.recipes.find((r) => r.id === v);
-                          if (r) setSelected(r.components);
+                          changeSelection(() => {
+                            setRecipe(v);
+                            const r = data.recipes.find((r) => r.id === v);
+                            if (r) setSelected(r.components);
+                          });
                         }}
                       >
                         <option value="">请选择配方</option>
@@ -454,7 +588,9 @@ export function App() {
                         创作源水面状态
                         <select
                           value={sourceFrame}
-                          onChange={(e) => setSourceFrame(Number(e.target.value))}
+                          onChange={(e) =>
+                            changeSelection(() => setSourceFrame(Number(e.target.value)))
+                          }
                         >
                           {[0, 1, 2].map((n) => (
                             <option key={n} value={n}>
@@ -483,9 +619,11 @@ export function App() {
                             ? '完成'
                             : j.state === 'FAILED'
                               ? '失败'
-                              : j.state === 'RUNNING'
-                                ? '正在构建'
-                                : '等待构建'}
+                              : stateRead?.projectId === id
+                                ? '状态未知（上次读取未完成）'
+                                : j.state === 'RUNNING'
+                                  ? '正在构建'
+                                  : '等待构建'}
                         </strong>{' '}
                         · {j.id.slice(0, 8)}{' '}
                         {j.diagnostic && (
@@ -496,8 +634,10 @@ export function App() {
                         {j.buildId && (
                           <button
                             onClick={() => {
-                              setBuild(j.buildId!);
-                              setGroup('');
+                              changeSelection(() => {
+                                setBuild(j.buildId!);
+                                setGroup('');
+                              });
                             }}
                           >
                             查看这次实际构建
@@ -523,8 +663,11 @@ export function App() {
                       <select
                         value={build}
                         onChange={(e) => {
-                          setBuild(e.target.value);
-                          setGroup('');
+                          const value = e.target.value;
+                          changeSelection(() => {
+                            setBuild(value);
+                            setGroup('');
+                          });
                         }}
                       >
                         <option value="">选择实际构建</option>
@@ -538,7 +681,10 @@ export function App() {
                     </label>
                     <label>
                       检查场景
-                      <select value={scene} onChange={(e) => setScene(e.target.value)}>
+                      <select
+                        value={scene}
+                        onChange={(e) => changeSelection(() => setScene(e.target.value))}
+                      >
                         {Object.entries(scenes).map(([k, v]) => (
                           <option key={k} value={k}>
                             {v}
@@ -555,7 +701,7 @@ export function App() {
                             detail.descriptor.groups.find((g) => g.state === 'ACTIVE')?.logicalId ||
                             detail.descriptor.groups[0]?.logicalId
                           }
-                          onChange={(e) => setGroup(e.target.value)}
+                          onChange={(e) => changeSelection(() => setGroup(e.target.value))}
                         >
                           {detail.descriptor.groups.map((g) => (
                             <option key={g.logicalId} value={g.logicalId}>
@@ -609,11 +755,13 @@ export function App() {
                       <div className="toolbar">
                         <button
                           onClick={() =>
-                            void act(async () => {
+                            void act(async (scope) => {
                               await request(`/api/projects/${id}/builds/${build}/visual`, {
                                 confirmed: true,
                               });
-                              setDetail(await preview(id, build, scene, group));
+                              if (!scope.current()) return;
+                              const result = await preview(id, build, scene, group);
+                              if (scope.current()) setDetail(result);
                             }, '已记录你的人工视觉确认；本产物 MZ 实测仍未执行。')
                           }
                         >
@@ -621,11 +769,13 @@ export function App() {
                         </button>
                         <button
                           onClick={() =>
-                            void act(async () => {
+                            void act(async (scope) => {
                               await request(`/api/projects/${id}/builds/${build}/visual`, {
                                 confirmed: false,
                               });
-                              setDetail(await preview(id, build, scene, group));
+                              if (!scope.current()) return;
+                              const result = await preview(id, build, scene, group);
+                              if (scope.current()) setDetail(result);
                             }, '已记录需修复；替换组件为新版本，再采用配方并重建。')
                           }
                         >
