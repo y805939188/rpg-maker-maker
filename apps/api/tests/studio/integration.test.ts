@@ -22,7 +22,8 @@ import { chromium, expect as browserExpect } from '@playwright/test';
 import sharp from 'sharp';
 import { PrismaClient } from '@prisma/client';
 import { backup, restore, Persistence, RefSchema } from '@tileset/persistence';
-import { hashBytes } from '@tileset/asset-core';
+import { hashBytes, fingerprint } from '@tileset/asset-core';
+import { BuildDetailSchema } from '@tileset/contracts';
 import { assembleExport, decodeAtlas, verifyExportFiles } from '@tileset/pack-export';
 import { createApplication } from '../../src/app.js';
 import { loadEnvironment, parseConfig } from '../../src/config.js';
@@ -1232,6 +1233,39 @@ it.each(['existing-standard', 'file-failure', 'db-rollback', 'lost-receipt'] as 
   },
 );
 
+function r4DownloadedFiles(zip: Buffer) {
+  const files: Record<string, Buffer> = {};
+  let at = 0;
+  while (zip.readUInt32LE(at) === 0x04034b50) {
+    expect(zip.readUInt16LE(at + 8)).toBe(0);
+    const length = zip.readUInt32LE(at + 18),
+      nameLength = zip.readUInt16LE(at + 26),
+      extra = zip.readUInt16LE(at + 28),
+      start = at + 30 + nameLength + extra;
+    expect(zip.readUInt32LE(at + 22)).toBe(length);
+    const name = zip.subarray(at + 30, at + 30 + nameLength).toString();
+    expect(files[name]).toBeUndefined();
+    const bytes = zip.subarray(start, start + length);
+    expect(bytes.length).toBe(length);
+    expect(crc(bytes)).toBe(zip.readUInt32LE(at + 14));
+    files[name] = bytes;
+    at = start + length;
+  }
+  expect(Object.keys(files).sort()).toEqual(
+    [
+      'A1.png',
+      'A2.png',
+      'INSTALL.md',
+      'history.json',
+      'layout.json',
+      'manifest.json',
+      'pack.json',
+      'sources.json',
+    ].sort(),
+  );
+  return files;
+}
+
 it('R4 real COMMIT first/update/history snapshots keep production and dev browser current, preview, ZIP and retirement coherent', async () => {
   const vite = spawn(
     'pnpm',
@@ -1273,6 +1307,53 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
     .toBe(200);
   const browser = await chromium.launch();
   const contexts = [];
+  const timing: { stage: string; ms: number; status: string }[] = [],
+    started = performance.now();
+  let pending = 'setup';
+  async function step<T>(stage: string, fn: () => Promise<T>): Promise<T> {
+    pending = stage;
+    const start = performance.now();
+    process.stderr.write(
+      'R4_STAGE ' +
+        JSON.stringify({ stage, event: 'start', elapsedMs: Math.round(start - started) }) +
+        '\n',
+    );
+    await record('r4-ui-progress', { stage, elapsedMs: Math.round(start - started), timing });
+    try {
+      const value = await fn();
+      timing.push({ stage, ms: Math.round(performance.now() - start), status: 'completed' });
+      return value;
+    } catch (error) {
+      timing.push({ stage, ms: Math.round(performance.now() - start), status: 'failed' });
+      throw error;
+    } finally {
+      process.stderr.write(
+        'R4_STAGE ' +
+          JSON.stringify({ stage, event: 'end', ms: Math.round(performance.now() - start) }) +
+          '\n',
+      );
+      await record('r4-ui-progress', {
+        stage,
+        elapsedMs: Math.round(performance.now() - started),
+        timing,
+      });
+    }
+  }
+  async function barrier(stage: string, promise: Promise<void>) {
+    await step(stage, async () => {
+      let timer: ReturnType<typeof setTimeout> | undefined;
+      try {
+        await Promise.race([
+          promise,
+          new Promise<never>((_, reject) => {
+            timer = setTimeout(() => reject(Error('Timed out waiting for ' + stage)), 60000);
+          }),
+        ]);
+      } finally {
+        clearTimeout(timer);
+      }
+    });
+  }
   const results: unknown[] = [];
   try {
     for (const mode of ['production', 'development'] as const) {
@@ -1295,18 +1376,25 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
         await running.app.listen(config.API_PORT, '127.0.0.1');
       }
 
-      const f = await r4Fixture('ui-' + mode),
+      const f = await step(mode + ':fixture', () => r4Fixture('ui-' + mode)),
         context = await browser.newContext({ viewport: { width: 1200, height: 900 } });
       contexts.push(context);
+      context.setDefaultTimeout(15000);
       const page = await context.newPage(),
         network: { url: string; method: string; status: number }[] = [],
-        errors: string[] = [];
+        errors: string[] = [],
+        bodies = new Map<string, Promise<Buffer>>();
       page.on('response', (r) => {
         if (r.url().includes('/api/'))
           network.push({ url: r.url(), method: r.request().method(), status: r.status() });
+        if (r.status() === 200 && /\/(recipes|builds)\//.test(new URL(r.url()).pathname)) {
+          const body = r.body();
+          void body.catch(() => undefined);
+          bodies.set(r.url(), body);
+        }
       });
       page.on('pageerror', (e) => errors.push(e.message));
-      await page.goto(mode === 'production' ? url : dev);
+      await step(mode + ':page', () => page.goto(mode === 'production' ? url : dev));
       await page
         .getByRole('button', { name: (await service.project(f.project)).name, exact: true })
         .click();
@@ -1325,11 +1413,17 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           .toEqual([96, 144]);
         const recipeId = await element.getAttribute('data-recipe-id'),
           frame = await element.getAttribute('data-source-frame'),
-          response = await fetch(
-            `${url}/api/projects/${f.project}/recipes/${recipeId}/processed?frame=${frame}`,
+          received = bodies.get(
+            new URL(
+              `/api/projects/${f.project}/recipes/${recipeId}/processed?frame=${frame}`,
+              page.url(),
+            ).href,
           );
-        expect(response.status).toBe(200);
-        const bytes = new Uint8Array(await response.arrayBuffer());
+        expect(
+          received,
+          'actual rendered recipe/frame PNG response must be captured',
+        ).toBeDefined();
+        const bytes = new Uint8Array(await received!);
         expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes));
         const expected = await sharp(bytes).ensureAlpha().raw().toBuffer(),
           actual = await element.evaluate((i) => {
@@ -1343,7 +1437,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
         expect(Buffer.from(actual)).toEqual(expected);
         return { project: f.project, recipeId, frame, sha: hashBytes(bytes), decoded: [96, 144] };
       }
-      await image();
+      await step(mode + ':processed-image', image);
       await browserExpect(
         page.getByRole('button', { name: '构建当前配套', exact: true }),
       ).toBeEnabled();
@@ -1361,7 +1455,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           await browserExpect(page.locator('.notice')).toContainText('新 revision');
           await page.getByRole('button', { name: '验证并采用固定岸线配方', exact: true }).click();
           await browserExpect(page.locator('.notice')).toContainText('固定岸线配方');
-          await image();
+          await step(mode + ':processed-image', image);
         }
         let entered!: () => void,
           allowCommit!: () => void,
@@ -1403,10 +1497,12 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           const response = await reply;
           expect(response.status()).toBe(202);
           const accepted = (await response.json()) as { id: string };
-          await atCommit;
-          await atRead;
+          await barrier(mode + ':' + phase + ':commit-ready', atCommit);
+          await barrier(mode + ':' + phase + ':read-held', atRead);
           allowCommit();
-          const actual = await r4Terminal(f.project, accepted.id);
+          const actual = await step(mode + ':' + phase + ':terminal', () =>
+            r4Terminal(f.project, accepted.id),
+          );
           expect(actual.state).toBe('COMPLETED');
           allowRead();
           const row = page
@@ -1429,19 +1525,63 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           await browserExpect(
             page.getByText('画布已就绪 · 实际导出图集', { exact: false }),
           ).toBeVisible();
-          const img = await image(),
-            exported = await service.store.readExport(actual.buildId!),
-            zip = await fetch(`${url}/api/projects/${f.project}/builds/${actual.buildId}/download`);
+          const img = await step(mode + ':' + phase + ':processed-image', image),
+            zip = await step(mode + ':' + phase + ':download', () =>
+              fetch(`${url}/api/projects/${f.project}/builds/${actual.buildId}/download`),
+            );
           expect(zip.status).toBe(200);
-          const zipSHA = hashBytes(new Uint8Array(await zip.arrayBuffer()));
+          const zipBytes = Buffer.from(await zip.arrayBuffer()),
+            zipSHA = hashBytes(zipBytes),
+            files = r4DownloadedFiles(zipBytes),
+            exported = await service.store.db.finalExport.findUniqueOrThrow({
+              where: { buildId: actual.buildId! },
+            }),
+            manifest = JSON.parse(files['manifest.json']!.toString()) as Awaited<
+              ReturnType<typeof verifyExportFiles>
+            >['manifest'];
           expect(zip.headers.get('x-content-sha256')).toBe(zipSHA);
+          expect(hashBytes(files['manifest.json']!)).toBe(exported.manifestSha);
+          expect(zip.headers.get('x-export-manifest-sha256')).toBe(exported.manifestSha);
+          expect(manifest.identity.context.commit).toBe(resources.context.commit);
+          expect(fingerprint(manifest.identity.profile)).toBe(
+            '48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793',
+          );
+          for (const [name, meta] of Object.entries(manifest.identity.files)) {
+            expect(hashBytes(files[name]!)).toBe(meta.sha256);
+            expect(files[name]!.length).toBe(meta.bytes);
+          }
+          for (const name of ['A1.png', 'A2.png', 'manifest.json']) {
+            const actualResponse = bodies.get(
+              new URL(
+                `/api/projects/${f.project}/builds/${actual.buildId}/files/${name}`,
+                page.url(),
+              ).href,
+            );
+            expect(
+              actualResponse,
+              'selected delivery resource must have been received by browser',
+            ).toBeDefined();
+            expect(await actualResponse!).toEqual(files[name]);
+          }
+          const descriptorEntry = [...bodies.entries()].find(
+            ([key]) =>
+              new URL(key).pathname ===
+              `/api/projects/${f.project}/builds/${actual.buildId}/preview`,
+          );
+          expect(descriptorEntry).toBeDefined();
+          const descriptor = BuildDetailSchema.parse(
+            JSON.parse((await descriptorEntry![1]).toString()),
+          ).descriptor;
+          expect(descriptor.buildId).toBe(actual.buildId);
+          expect(descriptor.exportBuildId).toBe(manifest.buildId);
+          expect(descriptor.manifestSha).toBe(exported.manifestSha);
           await page.screenshot({ path: resolve(root, `r4-${mode}-${phase}.png`), fullPage: true });
           results.push({
             mode,
             phase,
             job: actual,
             successfulBuildId: state.successfulBuildId,
-            exportManifest: exported.row.manifestSha,
+            exportManifest: exported.manifestSha,
             zipSHA,
             retireEnabled: true,
             image: img,
@@ -1484,7 +1624,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
         const response = await reply;
         expect(response.status()).toBe(202);
         const accepted = (await response.json()) as { id: string },
-          old = await prepared,
+          old = await step(mode + ':history:prepared', () => prepared),
           snapshot = await external.projectSnapshot(f.project),
           adopted = await external.adopt(
             f.project,
@@ -1513,9 +1653,11 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             new TextDecoder().decode(current.files['bundle.json']!),
           ) as Parameters<typeof assembleExport>[1],
           exported = await assembleExport(resources.profile, bundle, resources.context);
-        await external.publish(current, exported.files);
+        await step(mode + ':history:publish', () => external.publish(current, exported.files));
         release();
-        const job = await r4Terminal(f.project, accepted.id);
+        const job = await step(mode + ':history:terminal', () =>
+          r4Terminal(f.project, accepted.id),
+        );
         expect(job.state).toBe('COMPLETED');
         const state = await r(`/api/projects/${f.project}/studio`);
         expect(state.successfulBuildId).toBe(current.id);
@@ -1543,7 +1685,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           historicalJob: job,
           currentBuild: current.id,
           oldBuild: old.id,
-          image: await image(),
+          image: await step(mode + ':history:processed-image', image),
         });
       } finally {
         release?.();
@@ -1552,9 +1694,16 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
       }
       expect(errors).toEqual([]);
       await record('r4-ui-network-' + mode, { sourceContext: resources.context, network, errors });
+      await context.close();
     }
     await record('r4-ui-consistent-publication', { sourceContext: resources.context, results });
   } finally {
+    await record('r4-ui-timing', {
+      sourceContext: resources.context,
+      pending,
+      elapsedMs: Math.round(performance.now() - started),
+      timing,
+    });
     for (const context of contexts) await context.close();
     await browser.close();
     vite.kill('SIGTERM');
