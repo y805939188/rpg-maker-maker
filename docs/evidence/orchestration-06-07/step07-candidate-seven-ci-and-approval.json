@@ -1,0 +1,60 @@
+{
+  "head": "1d5ad26d05eba12b56994310b191754fa73a654e",
+  "branch": "codex/step-07-validation",
+  "runId": 38576897358,
+  "status": "SUCCESS",
+  "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38576897358",
+  "remoteReadbackExact": true,
+  "latestReviewRound": 14,
+  "reviewedSource": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+  "authorDocs": "65b4330e7d83d065e88ed10d62e6b058d5ae8078",
+  "postSourcePaths": 3915,
+  "postSourceDiff": "README_DOCS_ONLY_NO_EXECUTION_IMPACT",
+  "actualCurrentJobId": 115896263479,
+  "observedPassedSteps": [
+    "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+    "Run pnpm install --frozen-lockfile",
+    "Run pnpm db:generate",
+    "Run pnpm exec playwright install --with-deps chromium",
+    "Run pnpm check",
+    "Run pnpm test:dev-privacy",
+    "Run pnpm db:migrate",
+    "Run pnpm test:integration",
+    "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+    "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+    "Run pnpm test:e2e"
+  ],
+  "lastObservedActiveSteps": [
+    "Run E2E_MODE=dev pnpm test:e2e"
+  ],
+  "requiredStepsVerified": [
+    "Run pnpm check",
+    "Run pnpm test:dev-privacy",
+    "Run pnpm db:migrate",
+    "Run pnpm test:integration",
+    "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+    "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+    "Run pnpm test:e2e",
+    "Run E2E_MODE=dev pnpm test:e2e"
+  ],
+  "completedAt": "2026-10-14T14:41:08Z",
+  "actualCounts": {
+    "check": 354,
+    "privacy": 5,
+    "API": 3,
+    "PG06": 23,
+    "HTTP16": 16,
+    "productionE2E": 18,
+    "developmentE2E": 18
+  },
+  "actualLogSha256": "97c5962677a9f07077d5e074717df978f27d600ac3f9b3735e50444a040653fd",
+  "actualLogBytes": 149822,
+  "remoteMainBeforeMerge": "208f304115ce629ec6117d0a84055debaaa623a3",
+  "approval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+  "approvalMeaning": "Humanpreauthorizeddelegatedtechnicalrelease; notuserperroundpersonalreview",
+  "approvedAtUtc": "2026-10-14T14:42:58.661962+00:00",
+  "reviewReport": "docs/evidence/step-07/independent-round14/report.md",
+  "reviewReportSha256": "123faf3fbe5e6dcc77d5a5d66be936de4dd015b1a8b7cc33257419391c092be3",
+  "mainMerge": "NOT_EXECUTED_YET",
+  "rawLog": "PRIVATE_NOT_UPLOADED"
+}

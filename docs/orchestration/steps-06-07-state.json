@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_REQUIRED_CANDIDATE7_CI_RUNNING",
+  "phase": "STEP07_TECHNICAL_GATE_APPROVED_NORMAL_MAIN_MERGE_NEXT",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -2197,7 +2197,7 @@
       "head": "1d5ad26d05eba12b56994310b191754fa73a654e",
       "branch": "codex/step-07-validation",
       "runId": 38576897358,
-      "status": "IN_PROGRESS",
+      "status": "SUCCESS",
       "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38576897358",
       "remoteReadbackExact": true,
       "latestReviewRound": 14,
@@ -2221,7 +2221,29 @@
       ],
       "lastObservedActiveSteps": [
         "Run E2E_MODE=dev pnpm test:e2e"
-      ]
+      ],
+      "requiredStepsVerified": [
+        "Run pnpm check",
+        "Run pnpm test:dev-privacy",
+        "Run pnpm db:migrate",
+        "Run pnpm test:integration",
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+        "Run pnpm test:e2e",
+        "Run E2E_MODE=dev pnpm test:e2e"
+      ],
+      "completedAt": "2026-10-14T14:41:08Z",
+      "actualCounts": {
+        "check": 354,
+        "privacy": 5,
+        "API": 3,
+        "PG06": 23,
+        "HTTP16": 16,
+        "productionE2E": 18,
+        "developmentE2E": 18
+      },
+      "actualLogSha256": "97c5962677a9f07077d5e074717df978f27d600ac3f9b3735e50444a040653fd",
+      "actualLogBytes": 149822
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -2792,7 +2814,14 @@
         "latestCandidateCI": "PENDING"
       }
     },
-    "technicalApproval": "PENDING_REQUIRED_CANDIDATE_CI_NOT_APPROVED_YET",
+    "technicalApproval": {
+      "status": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "candidate": "1d5ad26d05eba12b56994310b191754fa73a654e",
+      "round": 14,
+      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-seven-ci-and-approval.json",
+      "atUtc": "2026-10-14T14:42:58.661962+00:00"
+    },
     "ci6DurationDiagnosis": {
       "status": "ACTIVE_SAME_STANDARD_CODER",
       "originalCI": "38553433792_FAILURE",
@@ -3163,8 +3192,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Candidate7CI38576897358 actualcheck/PG06/HTTP07/productionbrowserSUCCESS; developmentbrowseractive. Latestind14wholePASS preserved, candidateWorkflowALLSUCCESSnotyet soMainapproval/mergepending.",
-  "nextSafeAction": "Waitcandidate7 necessaryfullALLSUCCESS actualrun/jobs/logs. OnFAIL sameStdCoder actualcause/fixnewReview ifcodechanges no blindrerun. OnSUCCESS preauthorizedapproval andnormalmainreleasefullpipeline.",
+  "lastSuccessfulCheckpoint": "Latestind14wholePASS andcandidate7 fullCI ALLSUCCESS verified354/23/16/both18. DelegatedAPPROVED recorded underpreauth; fetched/liveMain208 unchanged, localunpublishedMainDocsOnly. Mainmerge/postmerge/pushstillpending.",
+  "nextSafeAction": "NormalnoffMainmerge reviewedcandidate; actualmergedHEAD inownRelease env fullnecessarypostmerge, thennormalpush/readback/mainCI beforePUBLISHED.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3198,7 +3227,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T14:31:37.728612+00:00",
+  "updatedAtUtc": "2026-10-14T14:42:58.661962+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -3264,15 +3293,15 @@
       "report": "docs/evidence/step-07/independent-round11/report.md",
       "closedBy": "docs/evidence/step-07/independent-round12/report.md",
       "candidate": "a8f23ef5ad218278447cca2d22c7014adb16ca02"
-    }
-  ],
-  "blockers": [
+    },
     {
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
       "id": "STEP07-CI-38553433792",
-      "status": "OPEN",
+      "status": "CLOSED_BY_LATEST_CANDIDATE7_CI_SUCCESS",
       "reason": "single sixphase case original180000ms timeout; lastdevreplacement processed completed at152526+442ms; earlierallactualbody assertions completed, no missingreceipt diagnostic",
-      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-sixth-failure.json"
+      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-sixth-failure.json",
+      "closedBy": "docs/evidence/orchestration-06-07/step07-candidate-seven-ci-and-approval.json"
     }
-  ]
+  ],
+  "blockers": []
 }
