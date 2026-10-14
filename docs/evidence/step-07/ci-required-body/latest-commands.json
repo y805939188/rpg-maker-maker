@@ -1,0 +1,364 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1"
+      ],
+      "cwd": ".",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.985,
+      "rawPath": ".local/step07-ci-required-body/final/clone.log",
+      "rawBytes": 1217,
+      "rawSHA256": "03a1ae28842d77b6e915da8cb8afb7284a1c2d8e5e1dd0addd6cff74ffea4b68",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "1be820a5adfbb3c41c532fbc778958774ed1c470"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.664,
+      "rawPath": ".local/step07-ci-required-body/final/checkout.log",
+      "rawBytes": 96,
+      "rawSHA256": "89a5f714dc3c34fbf83614e93879c3be95ae3314442348b55a45aebf8f461b10",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.49,
+      "rawPath": ".local/step07-ci-required-body/final/install.log",
+      "rawBytes": 1170,
+      "rawSHA256": "3d0169b924d47e286804b0df642bd4d51c30c45a4bd2191b12ad7a042ddfbdc6",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.615,
+      "rawPath": ".local/step07-ci-required-body/final/generate.log",
+      "rawBytes": 875,
+      "rawSHA256": "cfca3882b3a482936cefa9e1f1eeb04a84c1b4feef5e4a5ac05bb5f043cdf5f3",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "check",
+      "argv": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 74.965,
+      "rawPath": ".local/step07-ci-required-body/final/check.log",
+      "rawBytes": 14222,
+      "rawSHA256": "8f982266efd6667c6419855ac4ab737c70f351b5e17c9dbeb213309a4b50730a",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/regression/assets"
+      }
+    },
+    {
+      "label": "latest-response-browser-controls",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "apps/api/tests/studio/received-resources.test.ts"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 3.604,
+      "rawPath": ".local/step07-ci-required-body/final/latest-response-browser-controls.log",
+      "rawBytes": 319,
+      "rawSHA256": "36d83f94f2dde0bf121c883d0dc937474aa018ce235db9b0f90072f2a7c39ad1",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/regression/assets"
+      }
+    },
+    {
+      "label": "regression-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.841,
+      "rawPath": ".local/step07-ci-required-body/final/regression-migrate.log",
+      "rawBytes": 2233,
+      "rawSHA256": "48554c0b27e03e7812aea3e0838e20169a6f2ab4c61619093272a590f8c89c4e",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/regression/assets"
+      }
+    },
+    {
+      "label": "api3",
+      "argv": [
+        "pnpm",
+        "test:integration"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.714,
+      "rawPath": ".local/step07-ci-required-body/final/api3.log",
+      "rawBytes": 3400,
+      "rawSHA256": "7db6352200c479fc721228a76756b8a1d55d2e8e714f352e73314c49ec5e2deb",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/regression/assets"
+      }
+    },
+    {
+      "label": "privacy5",
+      "argv": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.353,
+      "rawPath": ".local/step07-ci-required-body/final/privacy5.log",
+      "rawBytes": 3395,
+      "rawSHA256": "d2128ea41c41cb6dbc3ac68f031e92730dcfb2551346e11beb3dbd9048160f12",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/regression/assets"
+      }
+    },
+    {
+      "label": "http16",
+      "argv": [
+        "pnpm",
+        "test:step07"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 520.59,
+      "rawPath": ".local/step07-ci-required-body/final/http16.log",
+      "rawBytes": 11236,
+      "rawSHA256": "ab84c0176e2317cc0d2f2c10d98b87755ee069f22d32084226d56ed80902ca63",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/regression/assets"
+      }
+    },
+    {
+      "label": "production-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.211,
+      "rawPath": ".local/step07-ci-required-body/final/production-migrate.log",
+      "rawBytes": 1365,
+      "rawSHA256": "17369d9ab4f324e1b0db6b83f61f558b3390e7d5129c0905aa869d98be99509a",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/production/assets"
+      }
+    },
+    {
+      "label": "production18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 457.788,
+      "rawPath": ".local/step07-ci-required-body/final/production18-noenv.log",
+      "rawBytes": 3771,
+      "rawSHA256": "3b40fd7fb4720ed99fcefca9813a4bf3adaf24cd6eb63aad63b847cfb64e7b15",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/production/assets"
+      }
+    },
+    {
+      "label": "development-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.3,
+      "rawPath": ".local/step07-ci-required-body/final/development-migrate.log",
+      "rawBytes": 1366,
+      "rawSHA256": "7449e6448b8904cb581a83d804b0fe06d3ad50cca790df1fa9e381fcbe719d8b",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/development/assets"
+      }
+    },
+    {
+      "label": "development18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 476.436,
+      "rawPath": ".local/step07-ci-required-body/final/development18-noenv.log",
+      "rawBytes": 7155,
+      "rawSHA256": "7104a3787e29700a5a73f9a2b51c17b6fb4a3a04a8764d22bb73ba9fa2cfe3da",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": "dev",
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/development/assets"
+      }
+    },
+    {
+      "label": "engineering",
+      "argv": [
+        "pnpm",
+        "build:step07"
+      ],
+      "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 20.267,
+      "rawPath": ".local/step07-ci-required-body/final/engineering.log",
+      "rawBytes": 28178,
+      "rawSHA256": "ce853d2bace46ec9cc3f938a66e29f4a12de0834ff78dfa80991f57380481621",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-required-body/development/assets"
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import type { Frame, Page, Request, Response } from '@playwright/test';
+import type { CDPSession, Page, Request, Response } from '@playwright/test';
 
 type Received = {
   id: number;
@@ -24,6 +24,7 @@ export class ReceivedResources {
   private requests = new WeakMap<Request, { id: number; document: number }>();
   private responses = new WeakMap<Request, Received>();
   private entries: Received[] = [];
+  private documentSession?: CDPSession;
 
   constructor(
     private page: Page,
@@ -34,8 +35,20 @@ export class ReceivedResources {
     page.on('response', this.response);
     page.on('requestfinished', this.finished);
     page.on('requestfailed', this.failed);
-    page.on('framenavigated', this.navigated);
   }
+
+  /** Chromium's document commit event excludes pushState/hash changes and failed navigations. */
+  async observeDocuments() {
+    assert.ok(!this.documentSession, 'document observer may only be installed once');
+    const session = await this.page.context().newCDPSession(this.page);
+    this.documentSession = session;
+    session.on('Page.frameNavigated', this.documentCommitted);
+    await session.send('Page.enable');
+  }
+
+  private documentCommitted = (event: { frame: { parentId?: string } }) => {
+    if (!event.frame.parentId) this.document++;
+  };
 
   private owned(url: string) {
     const u = new URL(url);
@@ -91,9 +104,6 @@ export class ReceivedResources {
         request.failure()?.errorText ?? 'Request failed without failure text';
     }
   };
-  private navigated = (frame: Frame) => {
-    if (frame === this.page.mainFrame()) this.document++;
-  };
 
   find(url: string, sha: string) {
     assert.ok(this.owned(url), 'required browser resource has the wrong origin/project owner');
@@ -128,11 +138,35 @@ export class ReceivedResources {
     }));
   }
 
+  diagnostic(url: string, sha: string) {
+    assert.ok(this.owned(url), 'required browser resource has the wrong origin/project owner');
+    const matching = this.entries.filter((entry) => entry.url === url);
+    return {
+      document: this.document,
+      matchingCount: matching.length,
+      records: matching.slice(-8).map((entry) => ({
+        id: entry.id,
+        document: entry.document,
+        currentDocument: entry.document === this.document,
+        status: entry.status,
+        method: entry.method,
+        contentType: entry.contentType.slice(0, 80),
+        transport: entry.transport,
+        state: entry.state,
+        bytes: entry.bytes?.length,
+        sha: entry.sha,
+        requiredSHA: entry.sha === sha,
+        failure: entry.failure?.replace(/https?:\/\/\S+/g, '[url]').slice(0, 240),
+        transportFailure: entry.transportFailure?.slice(0, 120),
+      })),
+    };
+  }
+
   dispose() {
     this.page.off('request', this.request);
     this.page.off('response', this.response);
     this.page.off('requestfinished', this.finished);
     this.page.off('requestfailed', this.failed);
-    this.page.off('framenavigated', this.navigated);
+    this.documentSession?.off('Page.frameNavigated', this.documentCommitted);
   }
 }

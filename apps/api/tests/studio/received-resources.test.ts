@@ -72,6 +72,7 @@ async function fixture(
     capture = new ReceivedResources(page, origin, 'owned');
   const start = reads;
   try {
+    await capture.observeDocuments();
     await page.goto(origin);
     await run(page, capture);
   } finally {
@@ -186,6 +187,56 @@ it('a late older sameURL response cannot overwrite the newer displayed actual PN
     await browserExpect.poll(() => capture.find(origin + path, sha(a))?.sha).toBe(sha(a));
     expect((await rendered(page, capture)).sha).toBe(sha(b));
     expect(capture.snapshot().filter((r) => r.state === 'received')).toHaveLength(2);
+  });
+});
+
+it('same-document URL changes retain the current actual PNG without another network read', async () => {
+  await fixture('same-document', async (page, capture) => {
+    await complete(page, capture, a);
+    const first = await rendered(page, capture),
+      before = reads;
+    await page.evaluate(() => history.pushState({}, '', '#scene'));
+    expect((await rendered(page, capture)).id).toBe(first.id);
+    await page.evaluate(() => history.replaceState({}, '', '#other-scene'));
+    expect((await rendered(page, capture)).id).toBe(first.id);
+    expect(reads).toBe(before);
+  });
+});
+
+it('a failed navigation preserves the actual document but a committed sameURL reload retires it', async () => {
+  await fixture('failed-and-reload', async (page, capture) => {
+    await complete(page, capture, a);
+    const first = await rendered(page, capture);
+    await page.route('**/blocked-navigation', (route) => route.abort('aborted'));
+    await expect(page.goto(origin + '/blocked-navigation')).rejects.toThrow();
+    expect((await rendered(page, capture)).id).toBe(first.id);
+    await page.unroute('**/blocked-navigation');
+    await page.reload();
+    expect(capture.find(origin + path, sha(a))).toBeUndefined();
+    await complete(page, capture, a);
+    expect((await rendered(page, capture)).id).not.toBe(first.id);
+  });
+});
+
+it('bounded diagnostics expose missing current evidence without leaking bodies or accepting an image alone', async () => {
+  await fixture('bounded-diagnostics', async (page, capture) => {
+    for (let n = 0; n < 10; n++) await complete(page, capture, a);
+    const current = await rendered(page, capture),
+      diagnostic = capture.diagnostic(origin + path, current.sha!);
+    expect(diagnostic.matchingCount).toBe(10);
+    expect(diagnostic.records).toHaveLength(8);
+    expect(diagnostic.records.every((r) => r.currentDocument && r.requiredSHA)).toBe(true);
+    expect(JSON.stringify(diagnostic)).not.toContain('"bytes":{');
+    expect(diagnostic.records.every((r) => typeof r.bytes === 'number')).toBe(true);
+    const late = new ReceivedResources(page, origin, 'owned');
+    try {
+      await late.observeDocuments();
+      expect(late.diagnostic(origin + path, current.sha!).matchingCount).toBe(0);
+      await expect(rendered(page, late)).rejects.toThrow('current required actual body is missing');
+      expect(late.find(origin + path, current.sha!)).toBeUndefined();
+    } finally {
+      late.dispose();
+    }
   });
 });
 
