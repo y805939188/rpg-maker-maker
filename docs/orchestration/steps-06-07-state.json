@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_A8F_REQUIRED_CANDIDATE_CI",
+  "phase": "STEP07_CI_RENDERED_PNG_REQUIRED_BODY_REFINEMENT",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "CANDIDATE_CI",
+    "status": "CODING_CI_REQUIRED_BODY_AVAILABILITY_DIAGNOSIS",
     "reviewRounds": 12,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -2036,11 +2036,32 @@
       "head": "a3885c60d5c3629148a4d273cfb8542d507a7a9a",
       "branch": "codex/step-07-validation",
       "runId": 38539713893,
-      "status": "IN_PROGRESS",
+      "status": "FAILURE",
       "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38539713893",
       "remoteReadbackExact": true,
       "latestReviewRound": 12,
-      "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02"
+      "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
+      "actualCurrentJobId": 115771177624,
+      "observedPassedSteps": [
+        "Set up job",
+        "Initialize containers",
+        "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+        "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+        "Run pnpm install --frozen-lockfile",
+        "Run pnpm db:generate",
+        "Run pnpm exec playwright install --with-deps chromium",
+        "Run pnpm check",
+        "Run pnpm test:dev-privacy",
+        "Run pnpm db:migrate",
+        "Run pnpm test:integration",
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06"
+      ],
+      "lastObservedActiveSteps": [
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07"
+      ],
+      "actualLinuxFirstConsumerGate": "ORIGINAL_BROWSER_INSTALL_SUCCESS_BEFORE_FULL_CHECK_SUCCESS",
+      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-fifth-failure.json"
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -2487,6 +2508,25 @@
       "latestDirectLifecycle5": "PENDING",
       "latestEngineering206": "PENDING",
       "codingNativeExitCode": 0
+    },
+    "ciRequiredBodyDiagnosis": {
+      "status": "CODING_CURRENT_DOM_PNG_BODY_AVAILABILITY_DIAGNOSIS_RUNNING",
+      "run": 38539713893,
+      "candidate": "a3885c60d5c3629148a4d273cfb8542d507a7a9a",
+      "oldSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
+      "oldDocs": "428d981925bc265527b32409f51f9cc5cc149c8c",
+      "actualLogBytes": 135570,
+      "actualLogSha256": "dcf8d8eaa758ff9f515ae0e4d2406883b4e8b816c44ec5b75153b78aaf1b6d10",
+      "codingThread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "nativeProcess": 24013,
+      "nativeOutput": ".local/orchestration-06-07/step07-ci-required-body-fix",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-ci-required-body-coding-client.json",
+      "originalBudgetsIdentityProofsUnchangedRequired": true,
+      "actualObservedStage": "developmentprocessedimage afterfirstBuild/ZIP96.870s,5000msrequiredmatchSHAundefined",
+      "mechanismDetail": "PENDING_DETERMINISTIC_CAPTURE_RECORD_REPRO_NO_GUESSES",
+      "nextFormalReviewIfChanges": 13,
+      "round13Started": false,
+      "noNamedProductStepsStarted": true
     }
   },
   "step08": {
@@ -2754,8 +2794,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round12-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Review12whole latesta8f/docs428PASS originals51/source4454unchanged coldinstall→3490skip&5proof,onePG55503safeStopemptyDB/cacheprivate retained.NormalVALpusha388readbackexact newfullCI38539713893running;4oldfailurespreserved.NoMain07merge/prauthyet.",
-  "nextSafeAction": "Wait newfullcandidateCI38539713893 SUCCESS exacta388;fetch/liveMain guard+APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR,normalMainmerge+actualpostmerge necessaryregression,normalpush/readback/mainCI thenformalpublicationdocsSTOPafter07.No08–10.",
+  "lastSuccessfulCheckpoint": "CI5actual38539713893FAIL135570logSHAdcf8d8... previousinstallbeforecheckpassed.R12wholePASSa8f original51preserved. HTTP15pass1devcurrentDOMPNG matchingcompletedbody missing5000ms,96.870s nottotalbudget, newdetailedlogs/fullbodyrecordroot pending, noMainmerge.",
+  "nextSafeAction": "SameStdCoder inspectlatestCI5+current actualcapture records fullrequest/document/SHA/renderlifecycle, deterministicallyrefine properreceipt association noidentity/budget weakening orserverrefetch;latestfreeze/wholeindR13/fullCI before normalrelease.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2789,7 +2829,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T09:05:46.933346+00:00",
+  "updatedAtUtc": "2026-10-14T09:27:09.347849+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -2860,16 +2900,10 @@
   "blockers": [
     {
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
-      "id": "LATEST_A8F_CANDIDATE_CI_PENDING",
+      "id": "STEP07-CI-38539713893",
       "status": "OPEN",
-      "latestRun": 38539713893,
-      "latestCandidate": "a3885c60d5c3629148a4d273cfb8542d507a7a9a",
-      "oldFailedRuns": [
-        38464677883,
-        38475532067,
-        38500746316,
-        38517441385
-      ]
+      "reason": "requiredcurrentrenderedPNGmatchingcompletedbody unavailable devphase5000ms assertion;HTTP15pass1fail",
+      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-fifth-failure.json"
     }
   ]
 }
