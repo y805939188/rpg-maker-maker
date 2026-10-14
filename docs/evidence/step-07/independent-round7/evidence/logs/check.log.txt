@@ -1,0 +1,237 @@
+
+> @tileset/prototype@0.0.2 check /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> pnpm check:boundaries && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm verify:exports
+
+
+> @tileset/prototype@0.0.2 check:boundaries /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> node scripts/check-boundaries.mjs
+
+13 workspace members: dependency directions and exact direct pins verified.
+
+> @tileset/prototype@0.0.2 typecheck /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> pnpm build:contracts && tsc --noEmit && tsc -p tsconfig.tests.json && pnpm -r --filter './apps/*' --filter './packages/*' typecheck
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/local-executor
+> tsc -p tsconfig.json
+
+Scope: 12 of 13 workspace projects
+packages/ai-gateway typecheck$ tsc -p tsconfig.json --noEmit
+packages/asset-core typecheck$ tsc -p tsconfig.json --noEmit
+packages/contracts typecheck$ tsc -p tsconfig.json --noEmit
+packages/asset-core typecheck: Done
+packages/ai-gateway typecheck: Done
+packages/contracts typecheck: Done
+packages/mz-compiler typecheck$ tsc -p tsconfig.json --noEmit
+packages/material-processing typecheck$ tsc -p tsconfig.json --noEmit
+apps/web typecheck$ tsc --noEmit
+packages/image-adapter typecheck$ tsc -p tsconfig.json --noEmit
+packages/material-processing typecheck: Done
+packages/mz-compiler typecheck: Done
+packages/image-adapter typecheck: Done
+apps/web typecheck: Done
+packages/pack-assembly typecheck$ tsc -p tsconfig.json --noEmit
+packages/pack-assembly typecheck: Done
+packages/pack-export typecheck$ tsc -p tsconfig.json --noEmit
+packages/pack-export typecheck: Done
+packages/persistence typecheck$ tsc -p tsconfig.json --noEmit
+packages/persistence typecheck: Done
+packages/local-executor typecheck$ tsc -p tsconfig.json --noEmit
+apps/api typecheck$ tsc -p tsconfig.json --noEmit
+packages/local-executor typecheck: Done
+apps/api typecheck: Done
+
+> @tileset/prototype@0.0.2 lint /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> eslint src scripts tests apps packages *.ts *.mjs
+
+
+> @tileset/prototype@0.0.2 format:check /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> prettier --check .
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> @tileset/prototype@0.0.2 test /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> pnpm build:prototype && vitest run
+
+
+> @tileset/prototype@0.0.2 build:prototype /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> pnpm build:contracts && tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/local-executor
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+
+
+ Test Files  26 passed (26)
+      Tests  266 passed (266)
+   Start at  07:31:41
+   Duration  12.57s (transform 1.36s, setup 0ms, import 4.08s, tests 63.53s, environment 1ms)
+
+
+> @tileset/prototype@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && node dist/scripts/studio-resources.js && pnpm --filter @tileset/web build
+
+
+> @tileset/prototype@0.0.2 build:prototype /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> pnpm build:contracts && tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/packages/local-executor
+> tsc -p tsconfig.json
+
+
+> @tileset/api@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/apps/api
+> tsc -p tsconfig.json
+
+
+> @tileset/web@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker/apps/web
+> tsc --noEmit && vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 779 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.41 kB │ gzip:   0.28 kB
+dist/assets/index-CsM4c782.css                      3.12 kB │ gzip:   1.22 kB
+dist/assets/getTextureBatchBindGroup-D-53rPlt.js    0.39 kB │ gzip:   0.29 kB
+dist/assets/getTexelRangeRects-DfZBalEY.js          3.62 kB │ gzip:   1.24 kB
+dist/assets/canvasUtils-DY-Cvxjp.js                 5.71 kB │ gzip:   1.81 kB
+dist/assets/webworkerAll-B8KgPBJa.js               15.46 kB │ gzip:   4.87 kB
+dist/assets/CanvasPool-CWsteclb.js                 16.93 kB │ gzip:   5.97 kB
+dist/assets/browserAll-DVdHwz8S.js                 43.97 kB │ gzip:  11.41 kB
+dist/assets/WebGPURenderer-CEOq4plQ.js             53.80 kB │ gzip:  15.37 kB
+dist/assets/WebGLRenderer-C-4G6VH1.js              56.77 kB │ gzip:  15.66 kB
+dist/assets/RenderTargetSystem-CaSqe-W4.js         72.33 kB │ gzip:  20.30 kB
+dist/assets/CanvasRenderer-CuHZ-s_P.js             90.26 kB │ gzip:  28.57 kB
+dist/assets/index-CylqNgkq.js                     461.13 kB │ gzip: 137.26 kB
+✓ built in 2.65s
+
+> @tileset/prototype@0.0.2 verify:exports /Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker
+> node scripts/verify-exports.mjs
+
+Production Node ESM imports through all 11 package export maps passed.

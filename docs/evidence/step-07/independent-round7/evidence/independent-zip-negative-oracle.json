@@ -1,0 +1,38 @@
+[
+  {
+    "file": "central-unsafe-member.zip",
+    "result": "REJECTED AssertionError: Bad CRC for ../bad",
+    "sha256": "17ad16839ec57047ae123cae3ab3f868a5ff76fdeb1d9f13e71346e52c19b631",
+    "bytes": 70794
+  },
+  {
+    "file": "local-crc.zip",
+    "result": "PASS",
+    "sha256": "86c605d964697df4eb2852460fb2349610f28ab1f6ec6bacb6dc1b11e42e3e4f",
+    "bytes": 70794
+  },
+  {
+    "file": "normal.zip",
+    "result": "PASS",
+    "sha256": "f02578dffa1e0318138cf9c51a8de239f9efa4720e6ff6f527c698d1e15f61e7",
+    "bytes": 70794
+  },
+  {
+    "file": "central-extra-count.zip",
+    "result": "PASS",
+    "sha256": "d42c3ee9d4ef05a142805ab92759079a399dd51fb5a255b4a6a5359cbc24c18f",
+    "bytes": 70794
+  },
+  {
+    "file": "local-file-pixel.zip",
+    "result": "REJECTED AssertionError: Bad CRC for A1.png",
+    "sha256": "8b6c3dd5ca47e33d51af9554227730c60b7ac70ce068d173f7ad2f147ca4c346",
+    "bytes": 70794
+  },
+  {
+    "file": "central-crc.zip",
+    "result": "REJECTED AssertionError: Bad CRC for A1.png",
+    "sha256": "16f2bceab35e5834d4e4f19266fb15fbbffa4de807e4be6cb06a1fead52e9099",
+    "bytes": 70794
+  }
+]

@@ -1,0 +1,99 @@
+{
+  "oldCount": 30,
+  "newCount": 44,
+  "unchangedCount": 29,
+  "oldChanged": [
+    {
+      "line": 1331,
+      "text": "expect(response.status).toBe(200)"
+    }
+  ],
+  "newChanged": [
+    {
+      "line": 1422,
+      "text": "expect( received, 'actual rendered recipe/frame PNG response must be captured', ).toBeDefined()"
+    },
+    {
+      "line": 1539,
+      "text": "files['manifest.json']!.toString()"
+    },
+    {
+      "line": 1543,
+      "text": "expect(hashBytes(files['manifest.json']!)).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1544,
+      "text": "expect(zip.headers.get('x-export-manifest-sha256')).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1545,
+      "text": "expect(manifest.identity.context.commit).toBe(resources.context.commit)"
+    },
+    {
+      "line": 1546,
+      "text": "expect(fingerprint(manifest.identity.profile)).toBe( '48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793', )"
+    },
+    {
+      "line": 1550,
+      "text": "expect(hashBytes(files[name]!)).toBe(meta.sha256)"
+    },
+    {
+      "line": 1551,
+      "text": "expect(files[name]!.length).toBe(meta.bytes)"
+    },
+    {
+      "line": 1560,
+      "text": "expect( actualResponse, 'selected delivery resource must have been received by browser', ).toBeDefined()"
+    },
+    {
+      "line": 1564,
+      "text": "expect(await actualResponse!).toEqual(files[name])"
+    },
+    {
+      "line": 1571,
+      "text": "expect(descriptorEntry).toBeDefined()"
+    },
+    {
+      "line": 1573,
+      "text": "(await descriptorEntry![1]).toString()"
+    },
+    {
+      "line": 1575,
+      "text": "expect(descriptor.buildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1576,
+      "text": "expect(descriptor.exportBuildId).toBe(manifest.buildId)"
+    },
+    {
+      "line": 1577,
+      "text": "expect(descriptor.manifestSha).toBe(exported.manifestSha)"
+    }
+  ],
+  "testCaseCounts": {
+    "old": 12,
+    "new": 12
+  },
+  "sameStep07ConfigSHA256": "68279dbb45a7e11274abe9074af71b04681c8ba6e76ab4c0182c8a268a1dcdb4",
+  "diagnosticNote": "Initial AST selector also counted toBuffer/toString calls; semantic map below ignores non-assertion calls. Initial output retained.",
+  "unchangedBudget": "original step07 testTimeout180000/hook60000/expect5s/explicitPNG15s unchanged; new page operations15s and barriers60s only tighten",
+  "semanticMapping": {
+    "retained": "every original browserExpect/expect assertion except removed duplicate fetch.status200; recipe/frame/project/natural96x144/SHA/decodedcanvasRGBA/current/needsRebuild/retire/job202/completed/history-only/publication assertions unchanged",
+    "status200Replacement": "response capture only records r.status()==200 and complete exact project/recipe/frame URL; missing bytes toBeDefined fails",
+    "removedReadExport": "actual download retains service.export -> Persistence.readExport -> verifyExportFiles -> source/IR/Compiler/Pack/Layout/PNG/context/storage refs checks; new independent wire assertions add same selected resources/manifest/profile/file hashes",
+    "pageClose": "after actual terminal true-history-only, current selected Canvas, enabled retire and processed decode/SHA/RGBA; no supplier task cancel claim",
+    "identifiedGap": "local ZIP helper never inspects central directory or EOCD; genuine bad central CRC/name/count accepted"
+  },
+  "ASTRawCallCountsNotCoverage": {
+    "old": 30,
+    "new": 44,
+    "containsNonAssertionToBufferToString": true
+  },
+  "actualExpectAssertionCounts": {
+    "old": 29,
+    "new": 41,
+    "textIdentical": 28,
+    "removedDuplicateFetchStatus": 1,
+    "newAssertSites": 13
+  }
+}

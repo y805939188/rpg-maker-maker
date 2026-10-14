@@ -1,0 +1,127 @@
+{
+  "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+  "commands": [
+    {
+      "label": "clone",
+      "args": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file://<CODING_WORKTREE>",
+        "<CODING_WORKTREE>/artifacts/.step07-ci-timeout-final-8cb359a196dd47429e49678502c42aba"
+      ],
+      "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "cwd": ".",
+      "exitCode": 0,
+      "durationSeconds": 11.212,
+      "log": ".local/step07-ci-timeout/final/clone.log",
+      "logSHA256": "31aa0ec18a957edfb28bbf77a9bc045296c8feeeb26bb09d05aa058cdfd744b8",
+      "logBytes": 1049
+    },
+    {
+      "label": "install",
+      "args": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "<CODING_WORKTREE>/.local/step07-ci-history/pnpm-store"
+      ],
+      "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "cwd": "artifacts/.step07-ci-timeout-final-8cb359a196dd47429e49678502c42aba",
+      "exitCode": 0,
+      "durationSeconds": 2.351,
+      "log": ".local/step07-ci-timeout/final/install.log",
+      "logSHA256": "82c46691ec3da0b2ffc31fc1629d28a2976394c27b30f17b97d57c89f40f709e",
+      "logBytes": 1170
+    },
+    {
+      "label": "generate",
+      "args": [
+        "pnpm",
+        "db:generate"
+      ],
+      "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "cwd": "artifacts/.step07-ci-timeout-final-8cb359a196dd47429e49678502c42aba",
+      "exitCode": 0,
+      "durationSeconds": 1.79,
+      "log": ".local/step07-ci-timeout/final/generate.log",
+      "logSHA256": "44af19d232d508ff00f4efd7883e67c3db90b77004d908bd183b20da52d3a8fc",
+      "logBytes": 821
+    },
+    {
+      "label": "check",
+      "args": [
+        "pnpm",
+        "check"
+      ],
+      "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "cwd": "artifacts/.step07-ci-timeout-final-8cb359a196dd47429e49678502c42aba",
+      "exitCode": 0,
+      "durationSeconds": 75.335,
+      "log": ".local/step07-ci-timeout/final/check.log",
+      "logSHA256": "22c77f0af760c6bee1f7ac4a878713a0c286d4089278821e7a14fda7d9871545",
+      "logBytes": 14084
+    },
+    {
+      "label": "http16",
+      "args": [
+        "pnpm",
+        "test:step07"
+      ],
+      "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "cwd": "artifacts/.step07-ci-timeout-final-8cb359a196dd47429e49678502c42aba",
+      "exitCode": 0,
+      "durationSeconds": 536.862,
+      "log": ".local/step07-ci-timeout/final/http16.log",
+      "logSHA256": "ef06352a4a9c10748eb7995057541a547f56bd776cda7ba73b43a97cfcb4beda",
+      "logBytes": 11188
+    },
+    {
+      "label": "api3",
+      "args": [
+        "pnpm",
+        "test:integration"
+      ],
+      "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "cwd": "artifacts/.step07-ci-timeout-final-8cb359a196dd47429e49678502c42aba",
+      "exitCode": 0,
+      "durationSeconds": 10.411,
+      "log": ".local/step07-ci-timeout/final/api3.log",
+      "logSHA256": "b03fab0d45eb179b8c7396c7b2096d4d16c705336a9f33688b65e50804bf5061",
+      "logBytes": 3361
+    },
+    {
+      "label": "privacy5",
+      "args": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "cwd": "artifacts/.step07-ci-timeout-final-8cb359a196dd47429e49678502c42aba",
+      "exitCode": 0,
+      "durationSeconds": 10.787,
+      "log": ".local/step07-ci-timeout/final/privacy5.log",
+      "logSHA256": "e928f9095f84512dfb3e33c7acd27dc5633485e93edef729a5c1e5dc63ad1474",
+      "logBytes": 3356
+    },
+    {
+      "label": "engineering",
+      "args": [
+        "pnpm",
+        "build:step07"
+      ],
+      "sourceSHA": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "cwd": "artifacts/.step07-ci-timeout-final-8cb359a196dd47429e49678502c42aba",
+      "exitCode": 0,
+      "durationSeconds": 21.16,
+      "log": ".local/step07-ci-timeout/final/engineering.log",
+      "logSHA256": "6fb6e837f2219ce949a5262d6a6b6debe37489e52b14b3f06780a12939f55171",
+      "logBytes": 28130
+    }
+  ]
+}

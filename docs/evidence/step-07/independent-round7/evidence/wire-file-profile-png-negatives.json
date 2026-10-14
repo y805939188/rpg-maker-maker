@@ -1,0 +1,23 @@
+[
+  {
+    "file": "payload-with-valid-crc",
+    "result": "REJECTED Manifest file hash",
+    "sha256": "d238873186953893203a47e5002e8013fde13e70997bfe2ff91b095309e4a429",
+    "bytes": 70808,
+    "purpose": "independent oracle negative; normal eight-member ZIP local+central CRC correct"
+  },
+  {
+    "file": "profile-with-valid-crc",
+    "result": "REJECTED Wrong Profile",
+    "sha256": "f70ebf2603646df3b7de765e1ccd94d571b14a28a16cbf5c5f07f47c6e8b2b5d",
+    "bytes": 64785,
+    "purpose": "independent oracle negative; normal eight-member ZIP local+central CRC correct"
+  },
+  {
+    "file": "wrong-PNG-with-valid-crc",
+    "result": "REJECTED Manifest file hash",
+    "sha256": "72ca82e1345065ef41e8e16a52c2291f406dd1d05f6651079e939e01abc9bfe8",
+    "bytes": 69327,
+    "purpose": "independent oracle negative; normal eight-member ZIP local+central CRC correct"
+  }
+]

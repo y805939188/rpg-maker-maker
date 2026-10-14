@@ -1,0 +1,74 @@
+{
+  "round": 7,
+  "result": "REQUIRES_REVISION",
+  "phase": "REVIEW_COMPLETE_STOPPED",
+  "source": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+  "authorDocsHEAD": "2eb75dd4b91f8212a572ef92c7930ff4d17336b5",
+  "blocking": {
+    "P0": 0,
+    "P1": 0,
+    "hardContractP2": 1
+  },
+  "newFinding": {
+    "id": "STEP07-R7-001",
+    "severity": "P2",
+    "blocking": true,
+    "location": "apps/api/tests/studio/integration.test.ts:1236",
+    "state": "OPEN_CONFIRMED_FULL_CASE_FALSE_PASS",
+    "requiredFix": "Validate central/local/EOCD and corruption negative controls without restoring duplicate requests or widening budgets"
+  },
+  "oldFindings": {
+    "STEP07-R4-001": "FIXED_CLOSED",
+    "STEP07-R4-002": "FIXED_CLOSED",
+    "STEP07-R4-003": "FIXED_CLOSED",
+    "R1-R3": "CLOSED_ORIGINAL_SCOPE_MAINTAINED"
+  },
+  "tests": {
+    "check": 266,
+    "checkIncludesPrivacy": 5,
+    "HTTP": 16,
+    "API": 3,
+    "projectListProduction": 5,
+    "projectListDevelopment": 5,
+    "sixStageNormalTimingMs": 132591,
+    "oldLegalDelay": {
+      "caseResult": "FAIL",
+      "caseTimeoutMs": 180003,
+      "commandSeconds": 184.036,
+      "oldTestSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac"
+    },
+    "newLegalDelay": {
+      "passed": 1,
+      "skipped": 15,
+      "commandSeconds": 150.964,
+      "caseTimingMs": 147405
+    },
+    "damagedZIPNegative": {
+      "commandExit0": "COUNTEREXAMPLE_CAPTURED_NOT_CANDIDATE_PASS",
+      "allSixStagesCompleted": true,
+      "damagedZIPsAcceptedByCandidate": 4,
+      "damagedZIPsRejectedIndependently": 4
+    },
+    "actualOriginalZIPsIndependentlyVerified": 4,
+    "independentPNGRGBAPlanes": 8,
+    "screenshotsViewed": 2
+  },
+  "buildId": "step07-f5740c1fd0e9-4ddf87d606c1becc",
+  "manifestSHA256": "71c1bc4dbc14b854eb45ff36c1c024ef4443162817989aed762c8187dbe266d7",
+  "engineeringPayloads": 206,
+  "trackedBeforeAfter": 3781,
+  "sourceUnchanged": true,
+  "resources": {
+    "PG55491": "RETAINED_RUNNING_FOR_MAIN_SAFE_STOP",
+    "API4391": "CLOSED",
+    "Web5291": "CLOSED",
+    "databases": 7,
+    "otherDBClients": 0,
+    "privateData": "RETAINED_NO_RESET"
+  },
+  "serverFinalFields": "UNVERIFIED_NOT_EXPOSED",
+  "approvalCommitMergePushPublication": "NOT_EXECUTED_BY_REVIEWER",
+  "step06": "PUBLISHED_NOT_REPEATED",
+  "steps08_09_10": "NOT_STARTED",
+  "mechanicalRoundCap": null
+}
