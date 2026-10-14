@@ -2678,10 +2678,14 @@
       "failure": "SINGLE180000MS_SIXPHASE_TIMEOUT",
       "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
       "logSHA256": "a0f687988f5a4529a65d6f82e18264c6f6ec91e3501e43d080d49fa96097efda",
-      "rootCause": "NOT_YET_CONFIRMED; necessary replay vs redundant work being measured",
+      "rootCause": "REDUNDANT_REPLAY_WORK_VERIFIED; originalCI6timing attributed via namedstage+privateoperationbenchmark scope only, no transient claim",
       "realProgressCriterion": "Verifiedrequestidentityfix holds inCI; newstage durations permit diagnosis. No mechanical5cap/no budget or identity relaxation.",
-      "checkpoint": "SOURCE1BE_UNMODIFIED_PRIVATE_TIMING_INSTRUMENTATION_IN_PROGRESS",
-      "observedCI6": "Packversiongrowth: replacementcommitready~17.2s, historyprepare/publish~7.7/7.4s; mostPNGreceiptchecks<0.5s"
+      "checkpoint": "CONFIRMED_PUBLIC_RECIPE_DUPLICATE_DECODE_AND_SAME_JOB_REPEAT_REPLAY",
+      "observedCI6": "Packversiongrowth: replacementcommitready~17.2s, historyprepare/publish~7.7/7.4s; mostPNGreceiptchecks<0.5s",
+      "confirmedEvidence": "oldSource public readDomainRecipe:6PNG reads12nativeworker launches; ownGate acquiredmax20ms; shortTX notmaincost",
+      "privateEvidence": ".local/step07-ci-sixphase-duration/profile-summary.json and old-domain-benchmark.json in Coding tree",
+      "proposedMinimalFix": "sameJob existingboundedReplaySession plus eliminate serialize+seconddecode after validatedfirstdecode; preserve publicconstructors/byteownership/fileSHA/Export/CAS",
+      "sourceChange": "NOT_FROZEN_YET"
     }
   },
   "step08": {
@@ -2981,7 +2985,7 @@
       "formalReviewStarted": false
     }
   ],
-  "lastSuccessfulCheckpoint": "CI6 original135643/SHAa0f preserved; currentmodelxhigh/CWD visible anddefault explicitverified. Coder verifiedstage growth and measuringSource1be isolated app/store/gate/shortTX, noproductionchange/validation skip. R14 prepOnlyPG55507 ready, formalcount13.",
+  "lastSuccessfulCheckpoint": "Source1be realprofile+publicrecipebenchmark verified12nativeworkers for6PNG andsameJobrepeat replay; gatewaitmax20ms. Coder implementing boundedperJobreuse withoutskipfilehash/runtimeownership/CAS; newcandidate/ind14/fullCI7 pending. Mainnotpublished.",
   "nextSafeAction": "SameStandardCoder resume actualCI6 ordered duration diagnosis; deterministic expensive wait identify; minimal realfix with no budget/identity/quality weakening, bound candidate+independent nextR14. No mechanicalroundcap.",
   "cleanup": [
     {
@@ -3016,7 +3020,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T11:30:57.137073+00:00",
+  "updatedAtUtc": "2026-10-14T11:44:42.401402+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
