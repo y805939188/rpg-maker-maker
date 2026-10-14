@@ -1,0 +1,110 @@
+{
+  "sourceContext": {
+    "codec": {
+      "aom": "3.15.1",
+      "archive": "3.8.9",
+      "cairo": "1.18.6",
+      "cgif": "0.5.4",
+      "exif": "0.6.26",
+      "expat": "2.8.5",
+      "ffi": "3.8.0",
+      "fontconfig": "2.18.3",
+      "freetype": "2.14.3",
+      "fribidi": "1.0.17",
+      "glib": "2.90.0",
+      "harfbuzz": "14.5.0",
+      "heif": "1.23.5",
+      "highway": "1.4.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.19.1",
+      "mozjpeg": "0826579",
+      "pango": "1.58.2",
+      "pixman": "0.46.4",
+      "png": "1.6.58",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.63.2",
+      "sharp": "0.35.5",
+      "tiff": "4.7.2",
+      "uhdr": "2.0.2",
+      "vips": "8.18.7",
+      "webp": "1.6.0",
+      "xml2": "2.15.4",
+      "zlib-ng": "2.3.3"
+    },
+    "commit": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d",
+    "node": "22.21.1"
+  },
+  "scenario": "db-rollback",
+  "job": {
+    "id": "d264786c-9a41-46fd-967c-feb97b7df3bc",
+    "projectId": "5910d534-4931-4330-9bf6-f2407053ebe8",
+    "input": {
+      "mode": "update",
+      "context": {
+        "node": "22.21.1",
+        "codec": {
+          "aom": "3.15.1",
+          "ffi": "3.8.0",
+          "png": "1.6.58",
+          "cgif": "0.5.4",
+          "exif": "0.6.26",
+          "glib": "2.90.0",
+          "heif": "1.23.5",
+          "lcms": "2.19.1",
+          "rsvg": "2.63.2",
+          "tiff": "4.7.2",
+          "uhdr": "2.0.2",
+          "vips": "8.18.7",
+          "webp": "1.6.0",
+          "xml2": "2.15.4",
+          "cairo": "1.18.6",
+          "expat": "2.8.5",
+          "pango": "1.58.2",
+          "sharp": "0.35.5",
+          "pixman": "0.46.4",
+          "archive": "3.8.9",
+          "fribidi": "1.0.17",
+          "highway": "1.4.0",
+          "mozjpeg": "0826579",
+          "zlib-ng": "2.3.3",
+          "freetype": "2.14.3",
+          "harfbuzz": "14.5.0",
+          "fontconfig": "2.18.3",
+          "imagequant": "2.4.1",
+          "proxy-libintl": "0.5"
+        },
+        "commit": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+        "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d"
+      },
+      "recipeId": "a104d3ce9daf1575d9a6daf9770786fabb2321baad4eac2858c149746fbafb5b",
+      "snapshotId": "4128a97045eb6735b4d530289bb6d7a6fdbfabda3ffda2d4e446bc5e0a3d20e7",
+      "expectedRevision": 1
+    },
+    "state": "FAILED",
+    "buildId": null,
+    "diagnostic": {
+      "code": "BUILD_FAILED",
+      "message": "素材未通过配方、编译或交付校验，上一成功构建仍可使用。",
+      "location": "构建任务",
+      "recovery": "检查定位组件的格式、96×144 尺寸、逻辑密度、≤256 色调色板、遮罩和三源帧；替换为新 revision 后重建。"
+    },
+    "createdAt": "2026-10-14T01:22:19.362Z"
+  },
+  "count": 0,
+  "before": {
+    "id": "5910d534-4931-4330-9bf6-f2407053ebe8",
+    "name": "R4-db-rollback-cd1d526c-4d85-4b0e-9515-9431dc7b0cec",
+    "createdAt": "2026-10-14T01:22:08.520Z",
+    "revision": 2,
+    "successfulBuildId": "9c36bfe750ef462fcb03fb7373b1edefedc315c27707267ff02c51997c3c0982"
+  },
+  "after": {
+    "id": "5910d534-4931-4330-9bf6-f2407053ebe8",
+    "name": "R4-db-rollback-cd1d526c-4d85-4b0e-9515-9431dc7b0cec",
+    "createdAt": "2026-10-14T01:22:08.520Z",
+    "revision": 2,
+    "successfulBuildId": "9c36bfe750ef462fcb03fb7373b1edefedc315c27707267ff02c51997c3c0982"
+  },
+  "internalManifest": "0c45af82ad8ec7987632594fb7b8867374cc755eddcaa99ed981b2917f7a2826"
+}

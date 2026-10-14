@@ -1,0 +1,154 @@
+{
+  "commands": [
+    {
+      "label": "control-clone",
+      "args": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r7-zip-controls-eb719236b5ef40ee823ffada6928b7d0"
+      ],
+      "cwd": ".",
+      "source": "f574 baseline/author prefreeze test helper as explicitly labeled",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 11.211,
+      "log": ".local/step07-r7-zip-fix/control-clone.log",
+      "logSHA256": "342b7b8f2ddf162d893a40c7637585a8cd5966d3e631f41e1bfaf6131ba3c2f0",
+      "logBytes": 1081
+    },
+    {
+      "label": "control-checkout",
+      "args": [
+        "git",
+        "checkout",
+        "--detach",
+        "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-controls-eb719236b5ef40ee823ffada6928b7d0",
+      "source": "f574 baseline/author prefreeze test helper as explicitly labeled",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.13,
+      "log": ".local/step07-r7-zip-fix/control-checkout.log",
+      "logSHA256": "5c757cb8b0408f3d488d9cbc7fd103c1ae47d4655e1ff9654926486913d79bb1",
+      "logBytes": 91
+    },
+    {
+      "label": "control-install",
+      "args": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-controls-eb719236b5ef40ee823ffada6928b7d0",
+      "source": "f574 baseline/author prefreeze test helper as explicitly labeled",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 2.577,
+      "log": ".local/step07-r7-zip-fix/control-install.log",
+      "logSHA256": "e44d94da747c1cd1725871fe0f29e8678908091fb96faf6ce068d9a1903df3cc",
+      "logBytes": 1170
+    },
+    {
+      "label": "control-generate",
+      "args": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-controls-eb719236b5ef40ee823ffada6928b7d0",
+      "source": "f574 baseline/author prefreeze test helper as explicitly labeled",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 2.183,
+      "log": ".local/step07-r7-zip-fix/control-generate.log",
+      "logSHA256": "81be34fb0347f67de1e809dfdf04426b72199ddfa6479984f044b295c1746c9e",
+      "logBytes": 861
+    },
+    {
+      "label": "control-build",
+      "args": [
+        "pnpm",
+        "build"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-controls-eb719236b5ef40ee823ffada6928b7d0",
+      "source": "f574 baseline/author prefreeze test helper as explicitly labeled",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 25.662,
+      "log": ".local/step07-r7-zip-fix/control-build.log",
+      "logSHA256": "3a7b7cfbe116769f3560233b1853283fd80f217b1311ac477645aabd3b2bfefc",
+      "logBytes": 4918
+    },
+    {
+      "label": "old-f574-fullcase-centralCRC-counterexample",
+      "args": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "-t",
+        "R4 real COMMIT"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-controls-eb719236b5ef40ee823ffada6928b7d0",
+      "source": "f574 baseline/author prefreeze test helper as explicitly labeled",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 139.821,
+      "log": ".local/step07-r7-zip-fix/old-f574-fullcase-centralCRC-counterexample.log",
+      "logSHA256": "83384b63a4c8d7bca9381178c774a36a5e648fa77181b72c61a96982c7b79e03",
+      "logBytes": 6038
+    },
+    {
+      "label": "new-prefreeze-fullcase-same-centralCRC-expected-rejection",
+      "args": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "-t",
+        "R4 real COMMIT"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-controls-eb719236b5ef40ee823ffada6928b7d0",
+      "source": "f574 baseline/author prefreeze test helper as explicitly labeled",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "durationSeconds": 21.332,
+      "log": ".local/step07-r7-zip-fix/new-prefreeze-fullcase-same-centralCRC-expected-rejection.log",
+      "logSHA256": "1baca313a302f20f79f45cd15e3f50073ed8d201533072d70a87751be9c0c3c8",
+      "logBytes": 2704
+    },
+    {
+      "label": "new-prefreeze-normal-sixphase",
+      "args": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "-t",
+        "R4 real COMMIT"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-controls-eb719236b5ef40ee823ffada6928b7d0",
+      "source": "f574 baseline/author prefreeze test helper as explicitly labeled",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 136.062,
+      "log": ".local/step07-r7-zip-fix/new-prefreeze-normal-sixphase.log",
+      "logSHA256": "cdcad8b26fa0ab471dcff937f24a18744c3e6a3f7f2e2bd1e6f0292b7981ce5f",
+      "logBytes": 6034
+    }
+  ]
+}

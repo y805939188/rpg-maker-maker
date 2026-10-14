@@ -1,0 +1,50 @@
+{
+  "commands": [
+    {
+      "label": "latest-normal-legal1500ms-sixphase-wire",
+      "args": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "-t",
+        "R4 real COMMIT"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "diagnosticOnlyPatch": ".local/step07-r7-zip-fix/final/latest-normal-legal1500ms-sixphase-wire.test-source.txt",
+      "diagnosticSourceSHA256": "a942c4e67b75171ddf84f93f155e6e2c16fbca8b3c1f53ba06b9ee83bff054f2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 151.069,
+      "log": ".local/step07-r7-zip-fix/final/latest-normal-legal1500ms-sixphase-wire.log",
+      "logSHA256": "b2091609a997078aecb349afc312f87635b5bf84cd6e3a87c415990942f4bdba",
+      "logBytes": 6034
+    },
+    {
+      "label": "latest-actual-centralCRC-expected-rejection",
+      "args": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "-t",
+        "R4 real COMMIT"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "diagnosticOnlyPatch": ".local/step07-r7-zip-fix/final/latest-actual-centralCRC-expected-rejection.test-source.txt",
+      "diagnosticSourceSHA256": "44a95e7007fec50291387c451709aa299c72e688db53298040fc366f1ea5a91a",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "durationSeconds": 21.107,
+      "log": ".local/step07-r7-zip-fix/final/latest-actual-centralCRC-expected-rejection.log",
+      "logSHA256": "ff0d490fc47d58cc281a4f548bba236c58459c939876ebdac8f9bf0f1d21509e",
+      "logBytes": 2701
+    }
+  ]
+}

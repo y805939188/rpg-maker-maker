@@ -1,0 +1,74 @@
+{
+  "scope": "author auxiliary evidence pipeline only; no source/product/tests changed",
+  "errors": [
+    {
+      "stage": "Python independent negative verification",
+      "error": "AssertionError stdlib accepted bad CRC",
+      "rootCause": "misread testzip return convention; it returns damaged member A1.png instead of raising",
+      "correction": "assert badMember A1.png then read(badMember) raises BadZipFile"
+    },
+    {
+      "stage": "subsequent collector",
+      "error": "latest-independent-wire-oracles.json absent because previous helper aborted",
+      "partialDocumentation": "preserved and recompleted, no prior committed evidence changed"
+    }
+  ],
+  "oldVerifierSHA256": "b1d9fb37cd94bf4be14c59aab770e4ed6256453fbb75b1d1a6f6fe51f91dac18",
+  "partialFiles": [
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/parent-r7-reverified.json",
+      "sha256": "4b93b6ef7c960a77807ed4065766287cb451bcb8cfddffcd295a5bcf9b3da8d0",
+      "bytes": 59223
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/resume-auxiliary-read-errors.json",
+      "sha256": "d7a8898cdd44fc582a3efc6c46b71b5be54d3feb0e8e5f001c0d2176c731d6fd",
+      "bytes": 462
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/review-origin.json",
+      "sha256": "0eeb37ff55dd886290fa2d0f6413b4c9fb2da86b6beee6e6ef4b52f23892fabf",
+      "bytes": 5779
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/reader-comparison.json",
+      "sha256": "a97cf0832a72e456fa5ec5033c2e81e985341f726baff4d597f507d915161771",
+      "bytes": 4535
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/case-invariance.json",
+      "sha256": "76edd3322772036c6aa0226931636915f2a2c29bcbf43e64f3fcce2ce0ce57af",
+      "bytes": 2844
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/source-freeze.json",
+      "sha256": "629366fa492226ee17fc2b864c5d919458e6c189371e5bc6f33331cf904745fb",
+      "bytes": 511
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/independent-actual-archive-oracles.json",
+      "sha256": "61920a57d8d557e7a15c58ad8f9abc6eb4192f305f5532e907b599a22bac0ef1",
+      "bytes": 10438
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/normal-recovery.json",
+      "sha256": "e57c07e294751a3899d0c3e93991e61af29f3b56155cf9c417ca6e67eb1650f7",
+      "bytes": 1453
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/source-protection.json",
+      "sha256": "1b5363693c5c9ad558d3d4971138b863e83dcabac331873045fff1f626cda24d",
+      "bytes": 38029
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/screenshots-viewed.json",
+      "sha256": "669de1854e92e99d38afb149aa95caa5b90b5594a7038423c0acf9c32bae5e8e",
+      "bytes": 888
+    },
+    {
+      "path": "docs/evidence/step-07/r7-zip-fix/engineering-verification.json",
+      "sha256": "c86124725dc85a76ed8cfb232c78c4dd42216425cbb9bfdf4bc354a2192a841d",
+      "bytes": 35419
+    }
+  ]
+}
