@@ -2216,10 +2216,11 @@
         "Run pnpm db:migrate",
         "Run pnpm test:integration",
         "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
-        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07"
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+        "Run pnpm test:e2e"
       ],
       "lastObservedActiveSteps": [
-        "Run pnpm test:e2e"
+        "Run E2E_MODE=dev pnpm test:e2e"
       ]
     },
     "ciHistoryDiagnosis": {
@@ -3162,7 +3163,7 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Candidate7GitHub38576897358 actualcheck/privacy/migrate/API/PG06 ANDstep07HTTP SUCCESS; productionE2E active. OldCI6sixphase gate passedcurrentSource0cdd onremote, butworkflow/two18 requiredstillpending. Noapproval/mainmerge yet.",
+  "lastSuccessfulCheckpoint": "Candidate7CI38576897358 actualcheck/PG06/HTTP07/productionbrowserSUCCESS; developmentbrowseractive. Latestind14wholePASS preserved, candidateWorkflowALLSUCCESSnotyet soMainapproval/mergepending.",
   "nextSafeAction": "Waitcandidate7 necessaryfullALLSUCCESS actualrun/jobs/logs. OnFAIL sameStdCoder actualcause/fixnewReview ifcodechanges no blindrerun. OnSUCCESS preauthorizedapproval andnormalmainreleasefullpipeline.",
   "cleanup": [
     {
@@ -3197,7 +3198,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T14:22:55.797360+00:00",
+  "updatedAtUtc": "2026-10-14T14:31:37.728612+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
