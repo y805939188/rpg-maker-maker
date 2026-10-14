@@ -1,5 +1,6 @@
 import { randomUUID } from 'node:crypto';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { chmod, mkdir, symlink, writeFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { afterEach, beforeAll, beforeEach, expect, it, vi } from 'vitest';
 import { loadE2EEnvironment } from '../../../e2e/environment.js';
@@ -72,19 +73,97 @@ it('rejects a real directory instead of ignoring a non-ENOENT read error', () =>
   );
 });
 
-it('rejects other I/O failures with a clear top-level message and preserves the cause', () => {
+it('rejects other I/O failures with a clear top-level message and preserves the cause', async () => {
+  const file = resolve(root, 'native-error.env');
+  await writeFile(file, 'API_PORT=4398\n');
   process.env['DATABASE_URL'] = database;
   vi.spyOn(process, 'loadEnvFile').mockImplementation(() => {
     throw Object.assign(new Error('/private/fixture-secret'), { code: 'EACCES' });
   });
-  expect(() => loadE2EEnvironment(missing)).toThrow(
+  expect(() => loadE2EEnvironment(file)).toThrow(
     'Unable to read the optional local E2E environment file.',
   );
-  expect(() => loadE2EEnvironment(missing)).not.toThrow('fixture-secret');
+  expect(() => loadE2EEnvironment(file)).not.toThrow('fixture-secret');
   try {
-    loadE2EEnvironment(missing);
+    loadE2EEnvironment(file);
   } catch (error) {
     expect((error as Error).cause).toMatchObject({ code: 'EACCES' });
+  }
+});
+
+it('rejects a real existing mode000 file even when the native loader misreports ENOENT', async () => {
+  expect(process.getuid?.(), 'permission contract requires a non-root test process').not.toBe(0);
+  const file = resolve(root, 'mode000.env');
+  await writeFile(file, 'API_PORT=4398\nWEB_PORT=5298\nENV_IO_SENTINEL=never-print-this\n');
+  process.env['DATABASE_URL'] = database;
+  await chmod(file, 0);
+  try {
+    expect(() => readFileSync(file)).toThrow(expect.objectContaining({ code: 'EACCES' }));
+    expect(() => loadE2EEnvironment(file)).toThrow(
+      'Unable to read the optional local E2E environment file.',
+    );
+    expect(process.env['API_PORT']).toBeUndefined();
+    expect(process.env['WEB_PORT']).toBeUndefined();
+  } finally {
+    await chmod(file, 0o600);
+  }
+});
+
+it('rejects a real inaccessible ancestor and restores only its own fixture permission', async () => {
+  const parent = resolve(root, 'blocked');
+  await mkdir(parent);
+  const file = resolve(parent, 'local.env');
+  await writeFile(file, 'API_PORT=4398\n');
+  process.env['DATABASE_URL'] = database;
+  await chmod(parent, 0);
+  try {
+    expect(() => readFileSync(file)).toThrow(expect.objectContaining({ code: 'EACCES' }));
+    expect(() => loadE2EEnvironment(file)).toThrow(
+      'Unable to read the optional local E2E environment file.',
+    );
+  } finally {
+    await chmod(parent, 0o700);
+  }
+});
+
+it('rejects a real non-directory ancestor instead of treating it as missing', async () => {
+  const parent = resolve(root, 'ordinary-file');
+  await writeFile(parent, 'fixture');
+  process.env['DATABASE_URL'] = database;
+  expect(() => readFileSync(resolve(parent, '.env'))).toThrow(
+    expect.objectContaining({ code: 'ENOTDIR' }),
+  );
+  expect(() => loadE2EEnvironment(resolve(parent, '.env'))).toThrow(
+    'Unable to read the optional local E2E environment file.',
+  );
+});
+
+it('rejects a real symlink loop and a dangling existing entry', async () => {
+  const loop = resolve(root, 'loop.env'),
+    dangling = resolve(root, 'dangling.env');
+  await symlink(loop, loop);
+  await symlink(resolve(root, 'missing-target.env'), dangling);
+  process.env['DATABASE_URL'] = database;
+  expect(() => readFileSync(loop)).toThrow(expect.objectContaining({ code: 'ELOOP' }));
+  for (const file of [loop, dangling])
+    expect(() => loadE2EEnvironment(file)).toThrow(
+      'Unable to read the optional local E2E environment file.',
+    );
+});
+
+it('rejects native ENOENT after a successful real read rather than falling back to defaults', async () => {
+  const file = resolve(root, 'read-then-native-failure.env');
+  await writeFile(file, 'API_PORT=4398\n');
+  process.env['DATABASE_URL'] = database;
+  vi.spyOn(process, 'loadEnvFile').mockImplementation(() => {
+    throw Object.assign(new Error('ENV_IO_PRIVATE_SENTINEL'), { code: 'ENOENT' });
+  });
+  try {
+    loadE2EEnvironment(file);
+    expect.unreachable('the second read must reject');
+  } catch (error) {
+    expect((error as Error).cause).toEqual({ code: 'ENOENT' });
+    expect(JSON.stringify((error as Error).cause)).not.toContain('ENV_IO_PRIVATE_SENTINEL');
   }
 });
 
