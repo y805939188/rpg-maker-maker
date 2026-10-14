@@ -1,0 +1,46 @@
+
+ RUN  v4.1.11 [CODING_ROOT]
+
+ ❯ apps/api/tests/studio/received-resources.test.ts (11 tests | 2 failed) 18249ms
+   × complete current network bytes survive consumer cancellation while the old response.body observer fails 15005ms
+   × abort is not completion: partial, unknown length and encoded bodies never satisfy the current receipt 176ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/api/tests/studio/received-resources.test.ts > complete current network bytes survive consumer cancellation while the old response.body observer fails
+Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ apps/api/tests/studio/received-resources.test.ts:316:1
+    314| });
+    315|
+    316| it('complete current network bytes survive consumer cancellation while…
+       | ^
+    317|   await fixture('complete-then-cancel', async (page, capture) => {
+    318|     const plan: Plan = { body: a, length: a.length, hold: 'body' };
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  apps/api/tests/studio/received-resources.test.ts > abort is not completion: partial, unknown length and encoded bodies never satisfy the current receipt
+AssertionError: expected 'pending' to be 'unavailable' // Object.is equality
+
+Expected: "unavailable"
+Received: "pending"
+
+ ❯ apps/api/tests/studio/received-resources.test.ts:363:48
+    361|       await failed;
+    362|       expect(capture.find(origin + path, sha(a))).toBeUndefined();
+    363|       expect(capture.snapshot().at(-1)?.state).toBe('unavailable');
+       |                                                ^
+    364|     }
+    365|     const plan: Plan = { body: a, length: a.length, encoding: 'gzip', …
+ ❯ fixture apps/api/tests/studio/received-resources.test.ts:97:5
+ ❯ apps/api/tests/studio/received-resources.test.ts:349:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 9 passed (11)
+   Start at  23:46:22
+   Duration  18.61s (transform 43ms, setup 0ms, import 273ms, tests 18.25s, environment 0ms)
+

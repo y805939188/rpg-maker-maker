@@ -1,0 +1,135 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-main-ci-recovery",
+        "file://[CODING_ROOT]",
+        "[CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee"
+      ],
+      "cwd": ".",
+      "source": "251f1c0cf763663fc0972f24fb44497d0bd75e95",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 6.024,
+      "rawPath": ".local/main-ci-recovery/receipt/final/clone.log",
+      "rawBytes": 1655,
+      "rawSHA256": "3246e267be3d0083eb5e5ddebadebff700456409750a2e5730eb8938748d04bd",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "251f1c0cf763663fc0972f24fb44497d0bd75e95"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee",
+      "source": "251f1c0cf763663fc0972f24fb44497d0bd75e95",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.012,
+      "rawPath": ".local/main-ci-recovery/receipt/final/checkout.log",
+      "rawBytes": 91,
+      "rawSHA256": "f06dc195dcd1ca45ea01933f4783d46a4aadd64729817945676eb1a6d923fe32",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--frozen-lockfile",
+        "--store-dir",
+        "[CODING_ROOT]/.local/main-ci-recovery/receipt/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee",
+      "source": "251f1c0cf763663fc0972f24fb44497d0bd75e95",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 25.138,
+      "rawPath": ".local/main-ci-recovery/receipt/final/install.log",
+      "rawBytes": 3389,
+      "rawSHA256": "616eeb9cec9b21609c9ccf6a027a7736905325c1879811c40db9c6057438d092",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee",
+      "source": "251f1c0cf763663fc0972f24fb44497d0bd75e95",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.63,
+      "rawPath": ".local/main-ci-recovery/receipt/final/generate.log",
+      "rawBytes": 892,
+      "rawSHA256": "01f08994783f0b09d95cc6f61430ff720ca08f3a6b1ae50c641c63154e65cee3",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "check",
+      "argv": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee",
+      "source": "251f1c0cf763663fc0972f24fb44497d0bd75e95",
+      "exitCode": 2,
+      "expectedExit": 0,
+      "seconds": 16.841,
+      "rawPath": ".local/main-ci-recovery/receipt/final/check.log",
+      "rawBytes": 7071,
+      "rawSHA256": "e302a40cf171724044d0fafc261ab4da8664c9206aecdd99a9dcca8b76375d8e",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    }
+  ]
+}

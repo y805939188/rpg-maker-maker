@@ -1,0 +1,379 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-main-ci-recovery",
+        "file://[CODING_ROOT]",
+        "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55"
+      ],
+      "cwd": ".",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 6.247,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/clone.log",
+      "rawBytes": 1886,
+      "rawSHA256": "af113972a99070ad706b128eb9c774c444349dfbaf93b6e9b61f35f6039edd00",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.068,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/checkout.log",
+      "rawBytes": 83,
+      "rawSHA256": "a78e14fa6706465c2efe71a34b2b68a8d49e828276b5dfbda3a392761f89cb70",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "[CODING_ROOT]/.local/main-ci-recovery/receipt/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.391,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/install.log",
+      "rawBytes": 1170,
+      "rawSHA256": "a99944d7e340f745a5b0ddb7cbfa7bc467819b24148216913fbc1f6adb5e07f9",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.836,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/generate.log",
+      "rawBytes": 845,
+      "rawSHA256": "dc5f26749594c69eb50c1dedde6ffeb47b079a7d7b29ed9bb2629942882daaa3",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "check",
+      "argv": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 80.19,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/check.log",
+      "rawBytes": 14636,
+      "rawSHA256": "85b36fab6f274385f34608c535cbb6635c68aaba8409f9d7458f51673965b65e",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "latest-response-browser-controls",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "apps/api/tests/studio/received-resources.test.ts"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 5.13,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/latest-response-browser-controls.log",
+      "rawBytes": 330,
+      "rawSHA256": "cad10dad6df94c01a9694d777e6118f3ad89a34b51cc9cd8e3ea287d124d3aa3",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "regression-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.93,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/regression-migrate.log",
+      "rawBytes": 2254,
+      "rawSHA256": "aa4583637afe9949e153c8a146c47017874124fb27cc09785395237c3e27042c",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "api3",
+      "argv": [
+        "pnpm",
+        "test:integration"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 11.682,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/api3.log",
+      "rawBytes": 3517,
+      "rawSHA256": "542375169983b7f8d77727f9157ce579811d670728fa0dd9a1a407ac02d10547",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "privacy5",
+      "argv": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 11.114,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/privacy5.log",
+      "rawBytes": 3512,
+      "rawSHA256": "46e86de53ea06e47b4edf5022e87010f24d5736da5a029bc77017b7bd653a3ce",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "http16",
+      "argv": [
+        "pnpm",
+        "test:step07"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 480.574,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/http16.log",
+      "rawBytes": 16002,
+      "rawSHA256": "c79f7000be712f50682b7a4b3baedf087badbbbe2de933bcc25863ba91d24435",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "production-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.44,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/production-migrate.log",
+      "rawBytes": 1386,
+      "rawSHA256": "4ed8f0fdc8a1e9332d9d3cc4f70942e9733b5e5a787ab38c6bd261d13c52981d",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/production/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "production18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 430.647,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/production18-noenv.log",
+      "rawBytes": 3780,
+      "rawSHA256": "ffec154ac47da343e1856a7a437daa11c019e41b023e382ea725f0a0a877c944",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/production/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "development-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.499,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/development-migrate.log",
+      "rawBytes": 1387,
+      "rawSHA256": "7bdcbfaba8e928e8b78e8598fe8a7a96cfe81af2cdefb8c02aeb498d47e78dcf",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/development/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "development18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 466.645,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/development18-noenv.log",
+      "rawBytes": 7163,
+      "rawSHA256": "3eb55daea81d57d9a61d76d2ef991558f9c67b7f188f9a64da2479ffaebf1663",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": "dev",
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/development/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "engineering",
+      "argv": [
+        "pnpm",
+        "build:step07"
+      ],
+      "cwd": "artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 20.903,
+      "rawPath": ".local/main-ci-recovery/receipt/final2/engineering.log",
+      "rawBytes": 28322,
+      "rawSHA256": "d96716921309843bc9d031dd121a5f9402da046aad44a5182cc5458861f91981",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/main-ci-recovery/development/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    }
+  ]
+}
