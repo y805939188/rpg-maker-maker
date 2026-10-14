@@ -1,0 +1,87 @@
+{
+  "atUtc": "2026-10-14T11:23:54.075532+00:00",
+  "runId": 38553433792,
+  "jobId": 115816658901,
+  "candidate": "0e34c40d887d713af3f7daf68f22830787036cc0",
+  "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+  "conclusion": "FAILURE",
+  "logBytes": 135643,
+  "logSha256": "a0f687988f5a4529a65d6f82e18264c6f6ec91e3501e43d080d49fa96097efda",
+  "rawLog": "private .local/orchestration-06-07/step07-candidate6-live.log.txt",
+  "checksPassed": {
+    "check": 352,
+    "API": 3,
+    "privacy": 5,
+    "step06": 23
+  },
+  "HTTP": {
+    "passed": 15,
+    "failed": 1
+  },
+  "failure": "single sixphase case original180000ms timeout; lastdevreplacement processed completed at152526+442ms; earlierallactualbody assertions completed, no missingreceipt diagnostic",
+  "lastStages": [
+    {
+      "stage": "development:replacement:terminal",
+      "event": "start",
+      "elapsedMs": 146680
+    },
+    {
+      "stage": "development:replacement:terminal",
+      "event": "end",
+      "ms": 3
+    },
+    {
+      "stage": "development:replacement:processed-image",
+      "event": "start",
+      "elapsedMs": 152526
+    },
+    {
+      "stage": "development:replacement:processed-image",
+      "event": "end",
+      "ms": 442
+    },
+    {
+      "stage": "development:replacement:download",
+      "event": "start",
+      "elapsedMs": 152968
+    },
+    {
+      "stage": "development:replacement:download",
+      "event": "end",
+      "ms": 5551
+    },
+    {
+      "stage": "development:history:prepared",
+      "event": "start",
+      "elapsedMs": 158870
+    },
+    {
+      "stage": "development:history:prepared",
+      "event": "end",
+      "ms": 7771
+    },
+    {
+      "stage": "development:history:publish",
+      "event": "start",
+      "elapsedMs": 171410
+    },
+    {
+      "stage": "development:history:publish",
+      "event": "end",
+      "ms": 7438
+    },
+    {
+      "stage": "development:history:terminal",
+      "event": "start",
+      "elapsedMs": 178849
+    },
+    {
+      "stage": "development:history:terminal",
+      "event": "end",
+      "ms": 10409
+    }
+  ],
+  "e2eModes": "SKIPPED_BY_FAILED_HTTP_GATE_NOT_PASS",
+  "exactExpensiveWait": "PENDING_CODER_ORDERED_TIMING_DIAGNOSIS",
+  "step08": "NOT_STARTED"
+}

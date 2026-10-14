@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_CANDIDATE_CI_PREPARATION_AFTER_INDEPENDENT13_PASS",
+  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND14_ACTIVE",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -49,8 +49,10 @@
       "preflight": "PASS",
       "step": 7,
       "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-ci-required-body-coding-client.json",
-      "status": "HANDOFF_COMPLETE_EXIT0_IDLE"
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-ci6-duration-coding-client.json",
+      "status": "HANDOFF_COMPLETE_EXIT0_IDLE",
+      "nativeProcessPid": 16639,
+      "execSessionId": 7377
     },
     "review": {
       "role": "step_reviewer",
@@ -59,12 +61,12 @@
       "serviceTier": "default",
       "preflight": "PASS",
       "step": 7,
-      "round": 13,
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round13-client.json",
-      "status": "REVIEW13_COMPLETE_EXIT0_IDLE",
-      "threadId": "01a139ec-3581-75f1-b3a8-3e4f5ef8a5b4",
-      "nativeProcessPid": 1757,
-      "execSessionId": 57978,
+      "round": 14,
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round14-client.json",
+      "status": "ACTIVE_FRESH_INDEPENDENT_NATIVE_SESSION",
+      "threadId": "01a13a74-123e-7063-88e6-68421e881801",
+      "nativeProcessPid": 92791,
+      "execSessionId": 28716,
       "actualClientModelEffortCwdVerified": true,
       "defaultServiceTierExplicitNativeArgs": true,
       "serverFinalModelEffortTier": "UNVERIFIED_NOT_EXPOSED"
@@ -439,8 +441,8 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT_ROUND13_PASS_PENDING_REQUIRED_CANDIDATE_CI",
-    "reviewRounds": 13,
+    "status": "INDEPENDENT_REVIEW_ROUND14_ACTIVE",
+    "reviewRounds": 14,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
@@ -459,17 +461,17 @@
       "engineeringPayloads": 206,
       "unchangedFullParentFlows": "R11samecodeindactualHTTP16/prod18dev18 notrerunbyCIonlyCoder"
     },
-    "candidateSha": "1be820a5adfbb3c41c532fbc778958774ed1c470",
-    "candidateState": "FROZEN_SOURCE1BE_DOCS8E_INDEPENDENT_WHOLE_PASS",
+    "candidateSha": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+    "candidateState": "SOURCE0CDD_DOCS65_FROZEN_UNDER_INDEPENDENT14",
     "reviewEnvironment": {
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round13/rpg-maker-maker",
-      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
-      "pgPort": 55505,
-      "apiPort": 4405,
-      "webPort": 5305,
+      "round": 14,
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round14/rpg-maker-maker",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "pgPort": 55507,
+      "apiPort": 4407,
+      "webPort": 5307,
       "output": ".local/step07-review",
-      "threadId": "01a139ec-3581-75f1-b3a8-3e4f5ef8a5b4",
-      "round": 13
+      "threadId": "01a13a74-123e-7063-88e6-68421e881801"
     },
     "supersededCodingCandidates": [
       {
@@ -511,9 +513,18 @@
         "independentReview": "NOT_EXECUTED",
         "receipt": "docs/evidence/orchestration-06-07/step07-candidate82-engineering-receipt.json",
         "status": "SUPERSEDED_UNREVIEWED_ARTIFACT_RETAINED"
+      },
+      {
+        "reason": "Source0cddproductionfixrequiresnewboundBuild",
+        "lastVerifiedBuild": {
+          "buildId": "step07-1be820a5adfb-b0249713e2495dce",
+          "manifestSha256": "dadf5d7fca44ff54ce65547d3a22362eb0f667b1db2cdbc7accba9bc2efb1e77",
+          "files": 206,
+          "actualMainPhysicalHashVerification": "PASS"
+        }
       }
     ],
-    "engineeringBuildState": "STEP07_1BE_FROZEN_BOUND_206_FILES_AND_MANIFEST_MAIN_AND_REVIEWER_VERIFIED",
+    "engineeringBuildState": "NEW_SOURCE0CDD_BOUND206_PHYSICAL_HASH_VERIFIED_UNDER_INDEPENDENT14",
     "supersededAuthorValidation82": {
       "phase": "FROZEN_CANDIDATE_VALIDATION",
       "firstActualHttpFlow": "PASS_UNFROZEN_AUTHOR_ONLY",
@@ -593,7 +604,7 @@
         "completedAtUtc": "2026-10-13T19:28:39.142001+00:00"
       }
     ],
-    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-ci-required-body-fix",
+    "codingNativeOutputCurrent": ".local/orchestration-06-07/step07-ci6-duration-fix",
     "reviews": [
       {
         "round": 1,
@@ -1517,9 +1528,17 @@
         "P1": 0,
         "blockingP2": 0,
         "nativeExit": 0
+      },
+      {
+        "round": 14,
+        "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+        "docs": "65b4330e7d83d065e88ed10d62e6b058d5ae8078",
+        "status": "IN_PROGRESS",
+        "threadId": "01a13a74-123e-7063-88e6-68421e881801",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round14-client.json"
       }
     ],
-    "latestIndependentReview": "PASS_WHOLE_CANDIDATE_REVIEW13_SOURCE1BE",
+    "latestIndependentReview": "PASS_ROUND13_SOURCE1BE_ONLY_NEW_PRODUCTION_SOURCE0CDD_UNREVIEWED",
     "codingFix": {
       "round": 4,
       "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
@@ -1638,40 +1657,52 @@
         "review": "REQUIRES_REVISION_ROUND3"
       },
       "latestReview": "PASS_REVIEW12_SOURCE_A8F",
-      "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02"
+      "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
+      "browserPreparation": "docs/evidence/orchestration-06-07/step07-release-browser-preparation.json",
+      "browserCache": ".local/release-verification/browser-cache"
     },
     "pendingCandidate": {
-      "head": "1424e04994dece65c6651953e551adc80b539f0e",
-      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "head": "0e34c40d887d713af3f7daf68f22830787036cc0",
       "branch": "codex/step-07-validation",
-      "status": "LOCAL_NORMAL_INTEGRATION_PREPARED_NOT_PUSHED_WAIT_INDEPENDENT_REVIEW13",
-      "postSourceDiff": "README_DOCS_ONLY",
-      "mainImplementationMerged": false
+      "runId": 38553433792,
+      "status": "IN_PROGRESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38553433792",
+      "remoteReadbackExact": true,
+      "latestReviewRound": 13,
+      "reviewedSource": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "authorDocs": "8e437ccfccba2c9b98cc713b002e62acfb739465",
+      "postSourcePaths": 3699,
+      "postSourceDiff": "README_DOCS_ONLY_NO_EXECUTION_IMPACT"
     },
     "nextReviewEnvironment": {
-      "atUtc": "2026-10-14T09:41:41.999859+00:00",
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round13/rpg-maker-maker",
-      "preparedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
-      "operationId": "a65cc289-c5f2-4903-99ca-db80f97a4163",
-      "pgPort": 55505,
-      "apiPort": 4405,
-      "webPort": 5305,
+      "atUtc": "2026-10-14T11:27:15.816519+00:00",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round14/rpg-maker-maker",
+      "preparedSource": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "operationId": "95e637e6-e90a-4861-b089-8b40da788481",
+      "pgPort": 55507,
+      "apiPort": 4407,
+      "webPort": 5307,
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
       "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
-      "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
+      "commands": [
+        {
+          "label": "install",
+          "exitCode": 0
+        },
+        {
+          "label": "generate",
+          "exitCode": 0
+        },
+        {
+          "label": "postgres-init",
+          "exitCode": 0
+        }
+      ],
       "migrate": "NOT_EXECUTED",
       "tests": "NOT_EXECUTED",
-      "formalReviewRound13Started": false,
-      "step08": "NOT_STARTED",
-      "step09": "NOT_STARTED",
-      "step10": "NOT_STARTED",
-      "candidateState": "LATEST1BE_FROZEN_AWAIT_FULL_AUTHOR_HANDOFF",
-      "status": "PREPARED_NO_FORMAL_REVIEW_WAIT_CURRENT_DOCUMENT_BODY_FIX_FULL_HANDOFF",
-      "formalReviewStarted": false,
-      "databaseMigration": "NOT_EXECUTED",
-      "preparedBy": "MAIN_ORCHESTRATOR",
-      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470"
+      "formalReview14Started": false,
+      "candidateState": "WAIT_CURRENT_CI6_DURATION_FIX_FROZEN_HANDOFF"
     },
     "checkpointCi": {
       "head": "552137fa00a28fccc2375bf89a8e70ca2a0132e8",
@@ -1930,22 +1961,25 @@
       "purpose": "MAIN_PUBLISHED06_CODE_PLUS07_ORCHESTRATION_DOCS_NOT07_CANDIDATE"
     },
     "engineeringBuild": {
-      "buildId": "step07-1be820a5adfb-b0249713e2495dce",
-      "manifestSha256": "dadf5d7fca44ff54ce65547d3a22362eb0f667b1db2cdbc7accba9bc2efb1e77",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "buildId": "step07-0cdd9ad6a61a-1c6e73ce7d2c3713",
+      "manifestSha256": "0dae573d54c309fea0223815235dc2b688e1c04fd65b6ee7097ff5ed758caac6",
       "files": 206,
-      "actualMainPhysicalHashVerification": "PASS"
+      "actualChangedPayloads": 11,
+      "actualUnchangedPayloads": 195,
+      "MainPhysicalFilesVerification": "PASS"
     },
-    "docsHead": "8e437ccfccba2c9b98cc713b002e62acfb739465",
-    "codingReport": "docs/reviews/step-07-ci-required-body-coding.md",
-    "codingReportSha256": "f26dd1a375db8ff084dea0a6e0755dc2562ee9b7c36727af75b4773620706dbc",
-    "codingEvidenceLedger": "docs/evidence/step-07/ci-required-body/ledger.json",
-    "codingEvidenceLedgerSha256": "5e6d3033e3a608a785aec27308098cb2dddbe95d2b2dcab1b3fb27a993dbd1f4",
-    "ledgerVerifiedCommittedFiles": 146,
+    "docsHead": "65b4330e7d83d065e88ed10d62e6b058d5ae8078",
+    "codingReport": "docs/reviews/step-07-ci-sixphase-duration-coding.md",
+    "codingReportSha256": "04f25d8a8ac63ddaedc338e1960a7d76112f12aba009435e574e4b8544d124d0",
+    "codingEvidenceLedger": "docs/evidence/step-07/ci-sixphase-duration/ledger.json",
+    "codingEvidenceLedgerSha256": "af85f253d217d8eef5e4233c1f1e80f4fb1f602515c1725efcc937b177632007",
+    "ledgerVerifiedCommittedFiles": 188,
     "postCandidateDiff": {
-      "paths": 148,
-      "scope": "PURE_SYNTHETIC_EVIDENCE_AND_REPORT_NO_EXECUTION_EFFECT"
+      "paths": 191,
+      "scope": "APPEND_ONLY_BASELINE_AND_SYNTHETIC_EVIDENCE_REPORT_NO_EXECUTION_CONSUMERS_SECRETSCAN_ZERO"
     },
-    "activeIndependentReviewRound": null,
+    "activeIndependentReviewRound": 14,
     "historicalReviewEnvironments": [
       {
         "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
@@ -2088,21 +2122,20 @@
       }
     ],
     "candidateCi": {
-      "head": "a3885c60d5c3629148a4d273cfb8542d507a7a9a",
+      "head": "0e34c40d887d713af3f7daf68f22830787036cc0",
       "branch": "codex/step-07-validation",
-      "runId": 38539713893,
+      "runId": 38553433792,
       "status": "FAILURE",
-      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38539713893",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38553433792",
       "remoteReadbackExact": true,
-      "latestReviewRound": 12,
-      "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
-      "actualCurrentJobId": 115771177624,
+      "latestReviewRound": 13,
+      "reviewedSource": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "authorDocs": "8e437ccfccba2c9b98cc713b002e62acfb739465",
+      "postSourcePaths": 3699,
+      "postSourceDiff": "README_DOCS_ONLY_NO_EXECUTION_IMPACT",
+      "actualCurrentJobId": 115816658901,
       "observedPassedSteps": [
-        "Set up job",
-        "Initialize containers",
-        "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
         "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
-        "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
         "Run pnpm install --frozen-lockfile",
         "Run pnpm db:generate",
         "Run pnpm exec playwright install --with-deps chromium",
@@ -2115,8 +2148,7 @@
       "lastObservedActiveSteps": [
         "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07"
       ],
-      "actualLinuxFirstConsumerGate": "ORIGINAL_BROWSER_INSTALL_SUCCESS_BEFORE_FULL_CHECK_SUCCESS",
-      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-fifth-failure.json"
+      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-sixth-failure.json"
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -2147,17 +2179,19 @@
       "codingNativeExitCode": 0
     },
     "currentAuthorHandoff": {
-      "atUtc": "2026-10-14T10:18:33.733069+00:00",
-      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
-      "docs": "8e437ccfccba2c9b98cc713b002e62acfb739465",
-      "buildId": "step07-1be820a5adfb-b0249713e2495dce",
-      "manifestSha256": "dadf5d7fca44ff54ce65547d3a22362eb0f667b1db2cdbc7accba9bc2efb1e77",
+      "atUtc": "2026-10-14T12:43:27.494399+00:00",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "docs": "65b4330e7d83d065e88ed10d62e6b058d5ae8078",
+      "reportPath": "docs/reviews/step-07-ci-sixphase-duration-coding.md",
+      "reportSha256": "04f25d8a8ac63ddaedc338e1960a7d76112f12aba009435e574e4b8544d124d0",
+      "ledgerPath": "docs/evidence/step-07/ci-sixphase-duration/ledger.json",
+      "ledgerSha256": "af85f253d217d8eef5e4233c1f1e80f4fb1f602515c1725efcc937b177632007",
+      "payloadsVerified": 188,
+      "postSourcePaths": 191,
+      "postSourceEffect": "APPEND_ONLY_BASELINE_AND_SYNTHETIC_EVIDENCE_REPORT_NO_EXECUTION_CONSUMERS_SECRETSCAN_ZERO",
+      "buildId": "step07-0cdd9ad6a61a-1c6e73ce7d2c3713",
+      "manifestSha256": "0dae573d54c309fea0223815235dc2b688e1c04fd65b6ee7097ff5ed758caac6",
       "physicalImmutableAndLiveFiles": 206,
-      "committedPayloads": 146,
-      "postSourcePaths": 148,
-      "postSourceAudit": "ONLY_SYNTHETIC_EVIDENCE_AND_REPORT_NO_EXECUTION_CONSUMERS_SECRET_SCAN_ZERO",
-      "reportSha256": "f26dd1a375db8ff084dea0a6e0755dc2562ee9b7c36727af75b4773620706dbc",
-      "ledgerSha256": "5e6d3033e3a608a785aec27308098cb2dddbe95d2b2dcab1b3fb27a993dbd1f4",
       "nativeExit": 0
     },
     "candidateCiHistory": [
@@ -2228,6 +2262,37 @@
         ],
         "actualCurrentJobId": 115699301665,
         "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-fourth-failure.json"
+      },
+      {
+        "head": "a3885c60d5c3629148a4d273cfb8542d507a7a9a",
+        "branch": "codex/step-07-validation",
+        "runId": 38539713893,
+        "status": "FAILURE",
+        "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38539713893",
+        "remoteReadbackExact": true,
+        "latestReviewRound": 12,
+        "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
+        "actualCurrentJobId": 115771177624,
+        "observedPassedSteps": [
+          "Set up job",
+          "Initialize containers",
+          "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+          "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "Run pnpm install --frozen-lockfile",
+          "Run pnpm db:generate",
+          "Run pnpm exec playwright install --with-deps chromium",
+          "Run pnpm check",
+          "Run pnpm test:dev-privacy",
+          "Run pnpm db:migrate",
+          "Run pnpm test:integration",
+          "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06"
+        ],
+        "lastObservedActiveSteps": [
+          "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07"
+        ],
+        "actualLinuxFirstConsumerGate": "ORIGINAL_BROWSER_INSTALL_SUCCESS_BEFORE_FULL_CHECK_SUCCESS",
+        "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-fifth-failure.json"
       }
     ],
     "ciTimeoutDiagnosis": {
@@ -2625,7 +2690,76 @@
         "latestCandidateCI": "PENDING"
       }
     },
-    "technicalApproval": "PENDING_REQUIRED_CANDIDATE_CI_NOT_APPROVED_YET"
+    "technicalApproval": "PENDING_REQUIRED_CANDIDATE_CI_NOT_APPROVED_YET",
+    "ci6DurationDiagnosis": {
+      "status": "ACTIVE_SAME_STANDARD_CODER",
+      "originalCI": "38553433792_FAILURE",
+      "lastReviewRound": 13,
+      "nextFormalReviewRound": 14,
+      "actualBodyChecks": "ALL_REACHED_PROCESSED_PNG_STAGES_PASS",
+      "failure": "SINGLE180000MS_SIXPHASE_TIMEOUT",
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "logSHA256": "a0f687988f5a4529a65d6f82e18264c6f6ec91e3501e43d080d49fa96097efda",
+      "rootCause": "VERIFIED_REDUNDANT_PUBLIC_DOMAIN_SERIALIZE_DECODE_AND_REPEATED_SAME_JOB_REPLAY; exactscopecounterexample supportsfix, latestCIstillpending",
+      "realProgressCriterion": "Verifiedrequestidentityfix holds inCI; newstage durations permit diagnosis. No mechanical5cap/no budget or identity relaxation.",
+      "checkpoint": "SOURCE0CDD_FULL354_PG23_HTTP16_BOTH18_PASS_ENGINE_GENERATED_HASH_DOCS_PENDING",
+      "observedCI6": "Packversiongrowth: replacementcommitready~17.2s, historyprepare/publish~7.7/7.4s; mostPNGreceiptchecks<0.5s",
+      "confirmedEvidence": "oldSource public readDomainRecipe:6PNG reads12nativeworker launches; ownGate acquiredmax20ms; shortTX notmaincost",
+      "privateEvidence": ".local/step07-ci-sixphase-duration/profile-summary.json and old-domain-benchmark.json in Coding tree",
+      "proposedMinimalFix": "StudioJob obtains exactrecipe from alreadyvalidatedNativearchives, samelease existingboundedReplaySession reused; publicExport continuesfullfreshreplay",
+      "sourceChange": "SEVEN_PATHS_FROZEN_CLEAN",
+      "requiredNextEvidence": "Latestcheck/HTTP16/two18/realPG23/restoration_and_fileversionfailure_regression; freshwholeReview14 required becauseproductionchanged",
+      "controlledProbeCorrection": {
+        "status": "EXACT_JOB_OLD_TIMEOUT_NEW_PASSED_PREFREEZE",
+        "reason": "liveGate includesHTTPreadlease too; firstold180sFAIL/newstage179s not precisejobonlycontrol",
+        "action": "Onlyownedincorrectcontrol normalstop; redo explicitstudiojobscope old/new samebudget",
+        "sourceOrBudgetChangedForProbe": "NO",
+        "oldControl": {
+          "seconds": 185.019,
+          "exit": 1,
+          "expectedExit": 1,
+          "scope": "exactstudiojob",
+          "phase": "production~92s with3jobx9sextra"
+        },
+        "newControl": {
+          "seconds": 118.884,
+          "exit": 0,
+          "classification": "NAMED_SINGLE_SIXPHASE_CONTROL_1PASS15NOTSELECTED_NOT_FULL16",
+          "stageNearFinishMs": 115747
+        }
+      },
+      "frozenSource": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "controlledEquivalence": "actualPNG4ZIPManifestSHA byteidentical; readDomainRecipe16->10; otherload/readBuild/prepare/publish/readExportcountsunchanged",
+      "boundSourceEvidence": {
+        "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+        "check": 354,
+        "captureIncludedAndRepeated": 8,
+        "API": 3,
+        "privacy": 5,
+        "PG06": 23,
+        "PG06Seconds": 207.059,
+        "exactJobDelayControlSeconds": 124.771,
+        "HTTP16": {
+          "passed": 16,
+          "exit": 0,
+          "suiteWithBuildSeconds": 460.12,
+          "finalSixPhaseProcessedElapsedMs": 114259
+        },
+        "prod18dev18": "BOTH_FULL18_PASS",
+        "production18": {
+          "passed": 18,
+          "exit": 0,
+          "seconds": 415.673,
+          "envAbsent": true
+        },
+        "development18": {
+          "passed": 18,
+          "exit": 0,
+          "seconds": 439.315,
+          "envAbsent": true
+        }
+      }
+    }
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -2908,10 +3042,26 @@
       "threadId": "01a139ec-3581-75f1-b3a8-3e4f5ef8a5b4",
       "testResourceLedger": ".local/step07-review/independent-round13/private fixtures and evidence/noenv-*-during.json",
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round13-preservation-and-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round14",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round14/rpg-maker-maker",
+      "pgPort": 55507,
+      "apiPort": 4407,
+      "webPort": 5307,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "ACTIVE_FRESH_REVIEW14_PG55507_OWN_PREP_DATA_PRESERVED",
+      "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
+      "formalReviewStarted": true,
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "threadId": "01a13a74-123e-7063-88e6-68421e881801"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latest Source1be/docs8e independentWHOLE13 PASS exit0; 301 originals report86c/ledger85a exact preserved; ownPG55505 API4405/Web5305 stopped data preserved. Required newcandidateCI pending, no approval/main implementation merge/push.",
-  "nextSafeAction": "Normal integrate complete review13 evidence docs into validation branch; confirm postSource docs-only; normal candidate6 push/readback/fullCI. Only after actual SUCCESS preauthorizedtechnicalapproval and normal mainrelease.",
+  "lastSuccessfulCheckpoint": "Author0cdd/docs65 exit0 clean complete354/8/API3/privacy5/PG23/HTTP16/both18 and206files Maincommitted188payload/191docpaths verified. Freshnativeultra/defaultR14 actuallydispatchedPID92791. OriginalCI6FAIL open; no mainrelease.",
+  "nextSafeAction": "Await independent14 wholeverdict/actualregression; preserveoriginals ifcomplete. LatestPASS thennewcandidate7fullCI allsuccess beforepreauthnormalmainmerge/postmerge/push/mainCI.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2945,7 +3095,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T10:56:19.404296+00:00",
+  "updatedAtUtc": "2026-10-14T12:48:01.053398+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -3016,10 +3166,10 @@
   "blockers": [
     {
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
-      "id": "STEP07-CI-38539713893",
+      "id": "STEP07-CI-38553433792",
       "status": "OPEN",
-      "reason": "requiredcurrentrenderedPNGmatchingcompletedbody unavailable devphase5000ms assertion;HTTP15pass1fail",
-      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-fifth-failure.json"
+      "reason": "single sixphase case original180000ms timeout; lastdevreplacement processed completed at152526+442ms; earlierallactualbody assertions completed, no missingreceipt diagnostic",
+      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-sixth-failure.json"
     }
   ]
 }
