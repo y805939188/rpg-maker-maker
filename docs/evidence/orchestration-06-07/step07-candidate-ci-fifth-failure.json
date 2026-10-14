@@ -1,0 +1,26 @@
+{
+  "atUtc": "2026-10-14T09:26:33.058501+00:00",
+  "runId": 38539713893,
+  "candidate": "a3885c60d5c3629148a4d273cfb8542d507a7a9a",
+  "source": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
+  "conclusion": "FAILURE",
+  "actualLogBytes": 135570,
+  "actualLogSha256": "dcf8d8eaa758ff9f515ae0e4d2406883b4e8b816c44ec5b75153b78aaf1b6d10",
+  "rawLog": "private .local/orchestration-06-07/step07-candidate-ci-38539713893-job.log.txt",
+  "previousGateProgress": "LinuxoriginalChromiuminstallbeforecheck/full349/API/privacy/migrations/PG23PASS",
+  "step07Http16": {
+    "passed": 15,
+    "failed": 1
+  },
+  "failure": {
+    "location": "apps/api/tests/studio/integration.test.ts:1395",
+    "actual": "completed actual browserbody matching currentDOMSHA missing ->Receivedundefined afteroriginal5000mspoll",
+    "expectedSha256": "31d0b0469e1aebabb84dd9f6d7cbd9234ac646d588da09aa365b570ae0d7d456",
+    "elapsedMs": 96870,
+    "lastNamedStage": "development:processed-image afterfirstcompleted Build/ZIP before nextphase",
+    "mechanismDetail": "UNVERIFIED_PENDING_REQUEST_RECORD_ANALYSIS",
+    "classification": "relatedrequiredbodylifecycle availability refinement, notbrowserinstall/notsixstage180s timeout"
+  },
+  "e2eModes": "SKIPPED_BY_FAILED_HTTP_GATE_NOT_PASS",
+  "response": "sameStandardCoder deterministiccurrentbodyrecord/lifecycle diagnosis preservingactualbrowserbytes/ownerSHA/decodeRGBA/ZIP/budgets"
+}
