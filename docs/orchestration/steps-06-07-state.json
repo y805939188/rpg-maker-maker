@@ -3119,9 +3119,13 @@
       "baseMain": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
       "failureReceipt": "docs/evidence/orchestration-06-07/step07-first-main-ci-failure.json",
       "confirmedActual": "samecurrentdocument1 GET200 ERR_ABORTED+NoData whileactualDOM96x144 SHA correct",
-      "cause": "UNVERIFIED_REQUEST_LIFECYCLE_PENDING_DETERMINISTIC_PROOF",
+      "cause": "EXACTMAIN_APPLICATION_CLEANUP_PATH_NOT_PROVEN; currentobserverrequestfinished-only availability rootunderanalysis",
       "lastFormalRound": 14,
-      "nextFormalRound": 15
+      "nextFormalRound": 15,
+      "checkpoint": "REAL_CHROMIUM_COMPLETE_PNG_STREAM_DECODE_CURRENT_DOC_ABORTED_PROTOCOL_REPRODUCED",
+      "confirmedControlledObservation": "fullfetchstreamandPNGdecodewithoutnavigation can ERR_ABORTED/PlaywrightNoData; onecontrolwithoutapplicationabortalsoobserved",
+      "nextEvidence": "actualsameCDPnetworkrequeststream bytescomplete length/SHA/CRC/currentdoc vs partial/noevidence/owner mismatch",
+      "sourceChange": "NOT_YET_FROZEN_NO_SOURCE_CHANGES_AT_LAST_CHECK"
     }
   },
   "step08": {
@@ -3458,7 +3462,7 @@
       "privateEnv": "FRESH_0600_NOT_COPIED"
     }
   ],
-  "lastSuccessfulCheckpoint": "FailedmainCIbd actualdoc1ERR_ABORTEDbody unavailable/DOMSHAcorrect preserved4f log133696; newownedCodeTreebd/sourcebranch/PG55509freshenv prepared; sameStdCoder resumedPID35234 actualnewCWD/modelxhigh verified. UserStudio4376BDdata preservedrunning. NoPUBLISHED/gateclear.",
+  "lastSuccessfulCheckpoint": "SameStdCodernewroot confirmedactualbrowser mainlikecombo fullPNGdecode/currentdoc+ERR_ABORTEDNoData noNAV, evenonewithoutappabort. Genuinefreshrequestevidence enabledrootdiagnosis; noweakening/DOMfake/serverGET anduserStudiounchanged. NewSource/ind15/fullforwardCIpending.",
   "nextSafeAction": "SameStdCoder deterministicactualnetworkbody evidence retrieval/abort lifecycle fix freshsource+docs+necessarytests→freshind15→candidateCI→normalforwardmainmerge/postmerge/push/mainCI. No historyrewrite orbodyfake/budgetweakening.",
   "cleanup": [
     {
@@ -3493,7 +3497,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T15:35:20.408876+00:00",
+  "updatedAtUtc": "2026-10-14T15:44:06.935045+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
