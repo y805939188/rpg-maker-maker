@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_MAIN_CI_AND_LOCAL_DEPLOYMENT_VERIFICATION",
+  "phase": "STEP07_MAIN_CI_CURRENT_DOC_ABORTED_RECEIPT_DIAGNOSIS",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "MAIN_PUSHED_READBACK_EXACT_REQUIRED_MAIN_CI_RUNNING",
+    "status": "MAIN_PUSHED_REQUIRED_MAIN_CI_RECEIPT_RECOVERY_FIX_PENDING",
     "reviewRounds": 14,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -3071,7 +3071,7 @@
       "postTestOnlyDocsPaths": 3,
       "mainCI": {
         "runId": 38586177993,
-        "status": "IN_PROGRESS",
+        "status": "FAILURE",
         "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38586177993"
       },
       "atUtc": "2026-10-14T15:06:11.032031+00:00"
@@ -3397,8 +3397,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Normalmainpushbd/currentmainCIpending. UserlocalStudio safelydeployedbd(Node22), oldAPI22456 noactiveJobgracefulstop->new65421, originalPG51121/.env/assets unchanged,115projects947rev179build177exports184jobs+successPointers same. RealIAB current/history/retired/processed/Export/playpause/step/refresh/ZIP hashprofilePASS; screenshots actual. OnlyendedReleasePG55481 stoppeddataretained.",
-  "nextSafeAction": "WaitmainCI38586177993 ALLSUCCESS thenformalPUBLISHED/finalreport/requirements currentmapping/STOP07 docs oncecommitpushreadbackCIs. Safeendedbranchcleanup onlyremotecontained/privateData preserved. Source08+notstarted.",
+  "lastSuccessfulCheckpoint": "Candidate7 fullALLSUCCESS/ind14 PASS/actualmerge321 fullpostmergePASS andnormalmainbd push/readback done; firstmainCI actualfailedrequiredreceipt doc1ERR_ABORTED whileDOMdecodedSHAcorrect. Newfiniteforwardfixneeded; originaluserStudioBDdataunchangedrunning. NoPUBLISHED/stop07 finalyet.",
+  "nextSafeAction": "PrepareisolatednewCodingtree frompushedBDmain/freshPG55509/API4409Web5309; resumeoriginalStdCoder intoit, deterministicactualbodycapture protocol rootfix nofake/extraGET/budgetweakening; freezefreshind15 andnormalforwardrelease. UserStudio treeuntouched.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3432,7 +3432,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T15:19:00.241139+00:00",
+  "updatedAtUtc": "2026-10-14T15:27:47.145096+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -3508,5 +3508,13 @@
       "closedBy": "docs/evidence/orchestration-06-07/step07-candidate-seven-ci-and-approval.json"
     }
   ],
-  "blockers": []
+  "blockers": [
+    {
+      "gate": "STEP07_REQUIRED_MAIN_CI",
+      "id": "STEP07-MAIN-CI-38586177993",
+      "status": "OPEN",
+      "reason": "currentdocument1 actualDOM96x144 SHA correct; onlyrecordGET200 currentdoc buttransportfailed ERR_ABORTED, responsebodyunavailable protocolNoData; original5000ms requiredreceipt fails",
+      "evidence": "docs/evidence/orchestration-06-07/step07-first-main-ci-failure.json"
+    }
+  ]
 }
