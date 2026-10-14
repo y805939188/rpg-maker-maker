@@ -1,0 +1,149 @@
+{
+  "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+  "actualReaderSourceSHA256": "6e6ef5e5e6e997498f9981493ba49efe5b82b4b4c07245a16e8e87881360a6e7",
+  "bytes": 4487,
+  "translation": "typescript ESNext/ES2022, no logic or import changes, own ignored diagnostic only",
+  "normalAccepted": 6,
+  "badRejected": 18,
+  "rows": [
+    {
+      "path": "evidence/archives/production/first-export.zip",
+      "expectedAccepted": true,
+      "accepted": true
+    },
+    {
+      "path": "evidence/archives/production/second-export.zip",
+      "expectedAccepted": true,
+      "accepted": true
+    },
+    {
+      "path": "evidence/archives/production/history-export.zip",
+      "expectedAccepted": true,
+      "accepted": true
+    },
+    {
+      "path": "evidence/archive-negative/production/first-central-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/production/first-eocd-count.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "path": "evidence/archive-negative/production/first-local-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/production/history-central-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/production/history-eocd-count.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "path": "evidence/archive-negative/production/history-local-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/production/second-central-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/production/second-eocd-count.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "path": "evidence/archive-negative/production/second-local-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archives/dev/first-export.zip",
+      "expectedAccepted": true,
+      "accepted": true
+    },
+    {
+      "path": "evidence/archives/dev/second-export.zip",
+      "expectedAccepted": true,
+      "accepted": true
+    },
+    {
+      "path": "evidence/archives/dev/history-export.zip",
+      "expectedAccepted": true,
+      "accepted": true
+    },
+    {
+      "path": "evidence/archive-negative/dev/first-central-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/dev/first-eocd-count.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "path": "evidence/archive-negative/dev/first-local-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/dev/history-central-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/dev/history-eocd-count.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "path": "evidence/archive-negative/dev/history-local-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/dev/second-central-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    },
+    {
+      "path": "evidence/archive-negative/dev/second-eocd-count.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "path": "evidence/archive-negative/dev/second-local-crc.zip",
+      "expectedAccepted": false,
+      "accepted": false,
+      "error": "Standard ZIP: local/central CRC"
+    }
+  ],
+  "scope": "latest local actual archives; R8 full wire corruption closures retain original Source"
+}

@@ -1,0 +1,352 @@
+{
+  "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+  "node": "v22.21.1",
+  "oldHelperGitSHA": "1c6eb99102d84d053b1525bed94ccf86542b04d9ddc2caf3f9546da2d166e9b4",
+  "permissionRestored": true,
+  "results": [
+    {
+      "label": "guard-connect",
+      "exit": 1,
+      "events": "CONNECT\n",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/guard-connect"
+    },
+    {
+      "label": "guard-listen",
+      "exit": 1,
+      "events": "LISTEN\n",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/guard-listen"
+    },
+    {
+      "label": "guard-child",
+      "exit": 1,
+      "events": "CHILD\n",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/guard-child"
+    },
+    {
+      "label": "SAMEFILE_NATIVE",
+      "owner": 501,
+      "ordinaryCode": "EACCES",
+      "nativeCode": "ENOENT",
+      "actualExists": true
+    },
+    {
+      "label": "old-mode000",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/old-mode000",
+      "observation": {
+        "accepted": true,
+        "api": 4310,
+        "web": 5173,
+        "databaseMatches": true,
+        "explicitMarker": false,
+        "loadedMarker": false
+      },
+      "classification": "COUNTEREXAMPLE_CAPTURED"
+    },
+    {
+      "label": "new-mode000",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/new-mode000",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "EACCES"
+        }
+      }
+    },
+    {
+      "label": "config-mode000",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/config-mode000"
+    },
+    {
+      "label": "helper-directory",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/helper-directory",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "EISDIR"
+        }
+      }
+    },
+    {
+      "label": "config-directory",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/config-directory"
+    },
+    {
+      "label": "helper-bad-ancestor",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/helper-bad-ancestor",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "ENOTDIR"
+        }
+      }
+    },
+    {
+      "label": "helper-loop",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/helper-loop",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "ELOOP"
+        }
+      }
+    },
+    {
+      "label": "config-loop",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/config-loop"
+    },
+    {
+      "label": "helper-dangling",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/helper-dangling",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "ENOENT"
+        }
+      }
+    },
+    {
+      "label": "config-dangling",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/config-dangling"
+    },
+    {
+      "label": "helper-blocked-existing",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/helper-blocked-existing",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "EACCES"
+        }
+      }
+    },
+    {
+      "label": "helper-blocked-absent",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/helper-blocked-absent",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "EACCES"
+        }
+      }
+    },
+    {
+      "label": "helper-absent",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/helper-absent",
+      "observation": {
+        "accepted": true,
+        "api": 4310,
+        "web": 5173,
+        "databaseMatches": true,
+        "explicitMarker": false,
+        "loadedMarker": false
+      }
+    },
+    {
+      "label": "config-absent",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/config-absent"
+    },
+    {
+      "label": "helper-normal",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/helper-normal",
+      "observation": {
+        "accepted": true,
+        "api": 4417,
+        "web": 5417,
+        "databaseMatches": true,
+        "explicitMarker": false,
+        "loadedMarker": true
+      }
+    },
+    {
+      "label": "config-normal",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/config-normal"
+    },
+    {
+      "label": "helper-symlink",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/helper-symlink",
+      "observation": {
+        "accepted": true,
+        "api": 4417,
+        "web": 5417,
+        "databaseMatches": true,
+        "explicitMarker": false,
+        "loadedMarker": true
+      }
+    },
+    {
+      "label": "config-symlink",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/config-symlink"
+    },
+    {
+      "label": "helper-explicit",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/helper-explicit",
+      "observation": {
+        "accepted": true,
+        "api": 4397,
+        "web": 5297,
+        "databaseMatches": true,
+        "explicitMarker": true,
+        "loadedMarker": true
+      }
+    },
+    {
+      "label": "config-explicit",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/config-explicit"
+    },
+    {
+      "label": "missing-required",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/missing-required"
+    },
+    {
+      "label": "invalid-db",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/invalid-db"
+    },
+    {
+      "label": "invalid-port",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/invalid-port"
+    },
+    {
+      "label": "equal-ports",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/equal-ports"
+    },
+    {
+      "label": "invalid-host",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/invalid-host"
+    },
+    {
+      "label": "invalid-mode",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/invalid-mode"
+    },
+    {
+      "label": "race-remove",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/race-remove",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "ENOENT"
+        }
+      }
+    },
+    {
+      "label": "race-deny",
+      "exit": 1,
+      "events": "",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953737781/race-deny",
+      "observation": {
+        "accepted": false,
+        "message": "Unable to read the optional local E2E environment file.",
+        "cause": {
+          "code": "ENOENT"
+        }
+      }
+    },
+    {
+      "label": "race-replace",
+      "exit": 0,
+      "events": "",
+      "collected18": true,
+      "rawPrivatePointer": "private/io-1791953737781/race-replace",
+      "observation": {
+        "accepted": true,
+        "api": 4427,
+        "web": 5427,
+        "databaseMatches": true,
+        "explicitMarker": false,
+        "loadedMarker": false
+      },
+      "scope": "documented_cooperative_non_atomic_second_content"
+    }
+  ]
+}

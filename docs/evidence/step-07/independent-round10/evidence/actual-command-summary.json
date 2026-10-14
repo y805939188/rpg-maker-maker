@@ -1,0 +1,270 @@
+[
+  {
+    "name": "api3",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/owned-run.mjs",
+      "api"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 13.615,
+    "rawPrivateLog": "private/api3.log",
+    "sha256": "f10f260050a201f795407593bf7ce9e6c1e783838345d0f9022690aa457289e5",
+    "bytes": 5236
+  },
+  {
+    "name": "artifact-verification",
+    "argv": [
+      "python3",
+      ".local/step07-review/independent-round10/private/verify-latest.py"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 0.162,
+    "rawPrivateLog": "private/artifact-verification.log",
+    "sha256": "c4208f0b81413dc57eb6723b5594c4a93b5f7674e8dae902318a736703190a74",
+    "bytes": 107
+  },
+  {
+    "name": "candidate-reader-controls",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/verify-reader.mjs"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 0.063,
+    "rawPrivateLog": "private/candidate-reader-controls.log",
+    "sha256": "e326ea677ab8050ab48ad0d5e5997f5c2badbf93a1e6326c55f48be1f0b8882b",
+    "bytes": 57
+  },
+  {
+    "name": "check",
+    "argv": [
+      "pnpm",
+      "check"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 74.502,
+    "rawPrivateLog": "private/check.log",
+    "sha256": "dfd2afa3f7e52144dcdf2f7096d18204930b151b5eb8e21c39e8f66d7c985241",
+    "bytes": 11324
+  },
+  {
+    "name": "clone-build",
+    "argv": [
+      "pnpm",
+      "build:step07"
+    ],
+    "cwd": "artifacts/.independent-round10-noenv",
+    "exit": 0,
+    "seconds": 25.515,
+    "rawPrivateLog": "private/clone-build.log",
+    "sha256": "911f5c4c5a1feb36d546724d61f861020b3c52944e36388f4bead83edde1c2c5",
+    "bytes": 27762
+  },
+  {
+    "name": "clone-generate",
+    "argv": [
+      "pnpm",
+      "db:generate"
+    ],
+    "cwd": "artifacts/.independent-round10-noenv",
+    "exit": 0,
+    "seconds": 1.694,
+    "rawPrivateLog": "private/clone-generate.log",
+    "sha256": "4aebc4bfe90fc462babdf3959782bb2badad483c344df754ec6e241c71d11465",
+    "bytes": 818
+  },
+  {
+    "name": "clone-install",
+    "argv": [
+      "pnpm",
+      "install",
+      "--offline",
+      "--frozen-lockfile"
+    ],
+    "cwd": "artifacts/.independent-round10-noenv",
+    "exit": 0,
+    "seconds": 3.006,
+    "rawPrivateLog": "private/clone-install.log",
+    "sha256": "f15c19988a0b5a8e425aa0313bf388d1d9df76f8890662c5b00256cd597e47b6",
+    "bytes": 1230
+  },
+  {
+    "name": "db-links-both",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/verify-db-links.mjs"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 0.244,
+    "rawPrivateLog": "private/db-links-both.log",
+    "sha256": "d743a77981f87e0516dd352e17960cdab812dfe9fef6ceab8d5b5e6a4e0300ef",
+    "bytes": 129
+  },
+  {
+    "name": "db-links-production",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/verify-db-links.mjs",
+      "production"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 0.234,
+    "rawPrivateLog": "private/db-links-production.log",
+    "sha256": "a61a47c5af18535d53388827718e64e8382630225070501c4cdaf0837a89bbec",
+    "bytes": 129
+  },
+  {
+    "name": "development18",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/owned-run.mjs",
+      "development"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 474.027,
+    "rawPrivateLog": "private/development18.log",
+    "sha256": "7f0e2395f38e9a3f2d5ece043abbbe48ebd6ff957e056869f0ab3a3221f204cb",
+    "bytes": 8442
+  },
+  {
+    "name": "http16",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/owned-run.mjs",
+      "http"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 519.482,
+    "rawPrivateLog": "private/http16.log",
+    "sha256": "fbcad37f7338249b4e4bb782b0598e7b135c74e02f056274ed350785f0afea9a",
+    "bytes": 10168
+  },
+  {
+    "name": "migrate",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/owned-run.mjs",
+      "migrate"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 1.89,
+    "rawPrivateLog": "private/migrate.log",
+    "sha256": "ff10d6260af1d506670ba1f623d51db7e43c581d2d49d9829865e719cf5964c9",
+    "bytes": 2061
+  },
+  {
+    "name": "privacy5",
+    "argv": [
+      "pnpm",
+      "test:dev-privacy"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 11.113,
+    "rawPrivateLog": "private/privacy5.log",
+    "sha256": "9344063ec03263d74bc3ea7cfb73c8c89a94bfb55d46302122a9f0e8465f3f66",
+    "bytes": 2576
+  },
+  {
+    "name": "production18",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/owned-run.mjs",
+      "production"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 452.434,
+    "rawPrivateLog": "private/production18.log",
+    "sha256": "4aa8e16702fe7e8b7013a4de25d13f5a62edb75d3b939e5945cbf367ecd819ff",
+    "bytes": 5054
+  },
+  {
+    "name": "real-io-playwright",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/env-probes.mjs"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 12.782,
+    "rawPrivateLog": "private/real-io-playwright.log",
+    "sha256": "c36e689d16aaa1281f61cc6320a31b163629acadd0cedbaf09246790de561a40",
+    "bytes": 115
+  },
+  {
+    "name": "real-io",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/env-probes.mjs"
+    ],
+    "cwd": ".",
+    "exit": 1,
+    "seconds": 0.509,
+    "rawPrivateLog": "private/real-io.log",
+    "sha256": "eb027be8a34f1259cd27c9ad42e78a413856b0c53596affc3721f0fb6e627ff2",
+    "bytes": 511
+  },
+  {
+    "name": "resources-final",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/resources-final.mjs"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 0.171,
+    "rawPrivateLog": "private/resources-final.log",
+    "sha256": "8f29e938589c9c21de5d51ef3322c8d46fed36d9e8e0002bb6e489045270312f",
+    "bytes": 130
+  },
+  {
+    "name": "secret-scan-final",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/scan-secrets.mjs"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 0.077,
+    "rawPrivateLog": "private/secret-scan-final.log",
+    "sha256": "90cb05c24fa34bb2803026a19488310eb869dd999e12fc2430930585462f0297",
+    "bytes": 48
+  },
+  {
+    "name": "secret-scan-seal",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/scan-secrets.mjs"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 0.077,
+    "rawPrivateLog": "private/secret-scan-seal.log",
+    "sha256": "c9c55d9f72cf9fab90ce7b493f49195dc4b2e2e478524ab59c1c109690fa15f2",
+    "bytes": 48
+  },
+  {
+    "name": "secret-scan",
+    "argv": [
+      "node",
+      ".local/step07-review/independent-round10/private/scan-secrets.mjs"
+    ],
+    "cwd": ".",
+    "exit": 0,
+    "seconds": 0.087,
+    "rawPrivateLog": "private/secret-scan.log",
+    "sha256": "0ce86570d49a5a5f17ac00fe5f173e771101fc051842098d8a92d225bf859b7a",
+    "bytes": 48
+  }
+]
