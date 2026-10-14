@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_FORWARD_INDEPENDENT_REVIEW15_ACTIVE",
+  "phase": "STEP07_INDEPENDENT15_REPORT_FINISH_WITH_CRC_BLOCKER",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "FORWARD_INDEPENDENT_REVIEW15_ACTIVE_MAIN_CI_RECOVERY",
+    "status": "INDEPENDENT15_BLOCKING_CRC_TEST_CONTRACT_FINDING_REPORT_PENDING",
     "reviewRounds": 15,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -1632,7 +1632,17 @@
         "docs": "2320e9e9fbfea2ad8e60ab29dafdeef91f0075eb",
         "status": "IN_PROGRESS",
         "threadId": "01a13b44-1d10-76e0-bd99-fa3b4152cd64",
-        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review15-client.json"
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review15-client.json",
+        "executionCheckpoint": {
+          "status": "NORMAL358_HTTP16_API3_PRIVACY5_BOTH18_AND_CURRENT_ARTIFACTS_PASS_NEW_BLOCKING_TEST_FINDING",
+          "finding": "STEP07-R15-001",
+          "severity": "P2_BLOCKING",
+          "trigger": "flipactualPNG IEND CRC onebit; length/SHA/currentdoc/RGBA selfconsistent butcurrentrenderedvalidatoraccepts",
+          "fullConsumerCounterexample": "original6phase119.5s returns1PASS15selectorSKIP whilebothmodesprocessedPNGbadIENDCRC; NOTPRODUCT_PASS",
+          "report": "PENDING_FINAL_REPORT_SEAL",
+          "normalGates": "CURRENT_ALLPASSED_RETAINED",
+          "productionExporter": "NO_EVIDENCE_PRODUCER_GENERATED_CORRUPT_PNG"
+        }
       }
     ],
     "latestIndependentReview": "WHOLEPASS14_0CDD_HISTORICAL_SOURCE39EC_UNREVIEWED",
@@ -3522,8 +3532,8 @@
       "threadId": "01a13b44-1d10-76e0-bd99-fa3b4152cd64"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latest39ec/doc2320 authorexit0clean full358/12/API3priv5/HTTP16/two18 +206actualSHA/183commitpayload/184docs verified. FreshStdUltraReview15 launchedactualPID43191/CIDnew. FirstmainCI failuregateopen; userBDStudio untouched.",
-  "nextSafeAction": "Await freshReview15 wholeverdict currentactualwirebytes/completion/negativeboundaries +fullscope; latestPASS thennewforwardcandidateCI/normalMainintegration/postmerge/push/mainCI beforePUBLISHED. No historyrewrite/step08.",
+  "lastSuccessfulCheckpoint": "Ind15 actual358/HTTP16/API3priv5/both18/6ZIP12PNG16Canvas4DBlinknormalPASS; independentCRCnegative+full6phaseconfirmedfalseacceptance119.5s. NewP2R15-001 reportpending, no wholePASS. Allnormal/negative/auxproxyfailuresretained; originaluserStudio unaffected.",
+  "nextSafeAction": "WaitoriginalReview15 complete formalreport+findingCRCtrigger/sourceposition/proof; preserveoriginals thensameStdCodernew55509worktree minimalPNGfullcontainerCRCvalidationregression oldnegative/newreject; freshcandidate/ind16 no gateweakening.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3557,7 +3567,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T16:44:27.826462+00:00",
+  "updatedAtUtc": "2026-10-14T17:20:08.646571+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -3640,6 +3650,14 @@
       "status": "OPEN",
       "reason": "currentdocument1 actualDOM96x144 SHA correct; onlyrecordGET200 currentdoc buttransportfailed ERR_ABORTED, responsebodyunavailable protocolNoData; original5000ms requiredreceipt fails",
       "evidence": "docs/evidence/orchestration-06-07/step07-first-main-ci-failure.json"
+    },
+    {
+      "gate": "STEP07_LATEST_INDEPENDENT_REVIEW",
+      "id": "STEP07-R15-001",
+      "status": "OPEN_REPORT_PENDING",
+      "severity": "P2",
+      "reason": "currentmandatoryrenderedPNG test validator acceptsbadIENDCRC evenfullactual6phaseconsumer",
+      "evidence": "Reviewer15privatecounterexample finalpublicreportpending"
     }
   ]
 }
