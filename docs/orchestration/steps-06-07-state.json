@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_NORMAL_MAIN_PUSH_NEXT_AFTER_POSTMERGE_PASS",
+  "phase": "STEP07_MAIN_CI_AND_LOCAL_DEPLOYMENT_VERIFICATION",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "MERGED_POSTMERGE_PASS_READY_NORMAL_MAIN_PUSH",
+    "status": "MAIN_PUSHED_READBACK_EXACT_REQUIRED_MAIN_CI_RUNNING",
     "reviewRounds": 14,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -3061,6 +3061,20 @@
       ],
       "evidence": "docs/evidence/orchestration-06-07/step07-postmerge-regression.json",
       "completedAt": "2026-10-14T15:04:27.887938+00:00"
+    },
+    "mainPublication": {
+      "status": "NORMAL_MAIN_PUSH_COMPLETED_PENDING_MAIN_CI",
+      "remoteSHA": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "originMainSHA": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "localMainSHA": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "testedMergeSHA": "321bbb307ec2f33dcd78d1e66e8b721d2a771ea1",
+      "postTestOnlyDocsPaths": 3,
+      "mainCI": {
+        "runId": 38586177993,
+        "status": "IN_PROGRESS",
+        "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38586177993"
+      },
+      "atUtc": "2026-10-14T15:06:11.032031+00:00"
     }
   },
   "step08": {
@@ -3365,8 +3379,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Actualmerge321 fullpostmerge354/16/23/API3/privacy5/prod18ALLPASS, source0cdd execdiffzero; rawlogsSHA/counts/secret0 archivedprivate receiptspublic. MainPush/readback/mainCI stillpending.",
-  "nextSafeAction": "CommitpureDocpostmergeevidence; fetch/livemain208guard/executiondiffdocs-only thennormalpushmain/readback/currentmainCI. Do notmarkPUBLISHEDbeforeCI.",
+  "lastSuccessfulCheckpoint": "Mainnormalpushbd9127 andlocal/origin/liveSHAexact; candidate7wholeCI/R14PASS+merged321 fullpostmergeallpassed. ActualmainCI38586177993inprogress; PUBLISHEDformalrecord stillpending.",
+  "nextSafeAction": "VerifyactualmainCIALLSUCCESS; meanwhile safeownedlocalStudio deployment to pushedbd runtime withvalueData/env retained andactualbrowser smoke; noPUBLISHEDuntilCIcomplete.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3400,7 +3414,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T15:04:27.887938+00:00",
+  "updatedAtUtc": "2026-10-14T15:06:11.032031+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
