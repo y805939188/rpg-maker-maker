@@ -3134,7 +3134,7 @@
       "cause": "EXACTMAIN_APPLICATION_CLEANUP_PATH_NOT_PROVEN; currentobserverrequestfinished-only availability rootunderanalysis",
       "lastFormalRound": 14,
       "nextFormalRound": 15,
-      "checkpoint": "BOUND_SOURCE39EC_CHECK358_BROWSER12_API3_PRIVACY5_PASS_HTTP16_RUNNING",
+      "checkpoint": "BOUND39EC_CHECK358_BROWSER12_API3_PRIVACY5_HTTP16_PASS_BOTH18_RUNNING",
       "confirmedControlledObservation": "realheaders/firstchunk -> streamobserve -> remainingrealbytes -> cancel; oldresponsebodyunavailable,newactualsameRequest completePNG SHA/decodeCanvasmatch",
       "nextEvidence": "actualsameCDPnetworkrequeststream bytescomplete length/SHA/CRC/currentdoc vs partial/noevidence/owner mismatch",
       "sourceChange": "TWO_TEST_PATHS_ONLY_FROZEN_NO_PRODUCTION_CHANGE",
@@ -3151,8 +3151,14 @@
         "browserControlsIncluded": 12,
         "API": 3,
         "privacy": 5,
-        "HTTP16": "RUNNING",
-        "production18development18": "PENDING"
+        "HTTP16": {
+          "passed": 16,
+          "exit": 0,
+          "suiteSeconds": 480.574,
+          "finalSixPhaseProcessedElapsedMs": 121063,
+          "processedPerMode": 5
+        },
+        "production18development18": "PRODUCTION_RUNNING_DEVELOPMENT_PENDING"
       }
     }
   },
@@ -3490,7 +3496,7 @@
       "privateEnv": "FRESH_0600_NOT_COPIED"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latestforward39ec complete358/12/API3/privacy5 boundPASS(80.19s check), new55509 freshmigration; fullHTTP16running. NoReview15/latestcandidateCI/mainCIyet; userBDStudio/data preserved.",
+  "lastSuccessfulCheckpoint": "Forward39ec complete358/12/API3/privacy5/HTTP16PASS(480.574s) andfixed200streamcomparisons old7fail/newallmatch; originalbudgets/5+5requests retained. NewownPG55509 NO.envprod18starting/devpending, docsBuild/ind15/candidateforwardCIsnotyet.",
   "nextSafeAction": "Waitlatest251authorfullbinding/sourceDocreportledgerBuildhash/exit0, thenfreshStdUltraReview15. NoPUBLISHED beforeforwardcandidate/mainCIsuccess.",
   "cleanup": [
     {
@@ -3525,7 +3531,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T16:00:15.404362+00:00",
+  "updatedAtUtc": "2026-10-14T16:08:25.227438+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
