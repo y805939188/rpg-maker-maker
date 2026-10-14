@@ -1,0 +1,71 @@
+{
+  "schema": "step07-independent-review15-progress-v1",
+  "round": 15,
+  "sourceSHA": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+  "authorDocsSHA": "2320e9e9fbfea2ad8e60ab29dafdeef91f0075eb",
+  "buildId": "step07-39ec791c4b79-d3464c591f56bb89",
+  "manifestSHA256": "4830c910fb373c87240e085175b0fbe015d131a8fa015c78d5536d820078c0d2",
+  "actualEngineeringFiles": 206,
+  "status": "STOP_REVIEWER",
+  "technicalConclusion": "REQUIRES_REVISION",
+  "P0": 0,
+  "P1": 0,
+  "blockingP2": 1,
+  "openFinding": "STEP07-R15-001",
+  "actualNormalResults": {
+    "check": 358,
+    "HTTP": 16,
+    "API": 3,
+    "privacy": 5,
+    "productionE2E": 18,
+    "developmentE2E": 18,
+    "normalE2ESkip": 0,
+    "normalE2ERetry": 0
+  },
+  "PNGNegativeFullCase": {
+    "meaning": "COUNTEREXAMPLE_CAPTURED_NOT_BAD_PNG_PASS",
+    "actualTestResult": "1PASS_15SELECTOR_SKIPS",
+    "seconds": 119.523,
+    "actualBadCRCProcessedGETs": 10,
+    "candidateIncorrectlyAccepted": true
+  },
+  "currentNormalArtifacts": {
+    "downloads": 6,
+    "atlasPNGDecodeOperations": 12,
+    "rawCanvasSamples": 16,
+    "DBBuildFinalExports": 4,
+    "distinctExportBuildIDs": 2,
+    "localZIPNegativesRejected": 18
+  },
+  "notRerun": [
+    "R14 PG23",
+    "R14 cache11/warm-file-lease4/performance",
+    "R13 extra24 immediate commits",
+    "special24scene/4creative/12+12clock",
+    "JS78/old56payload16PNG/nativeCPU8",
+    "special MZ/Host/Map003/user art/OS hidden/native RSS cap"
+  ],
+  "priorNumberingAndFailuresPreserved": true,
+  "trackedSHAProtection": {
+    "files": 8564,
+    "changed": 0
+  },
+  "resources": {
+    "PG": 55511,
+    "retainedOwnDBs": 9,
+    "API4411": "CLOSED",
+    "Web5311": "CLOSED",
+    "browserNative": "CLOSED",
+    "envOriginal0600": "RESTORED_EXACT",
+    "privateData": "RETAINED_FOR_MAIN_OWNERSHIP_SAFE_STOP"
+  },
+  "approveCommitMergePushRelease": "NOT_EXECUTED_BY_REVIEWER",
+  "newCandidateMainCI": "NOT_EXECUTED_BY_REVIEWER_FIRST_MAIN_FAILURE_RETAINED",
+  "step06": "PUBLISHED",
+  "step07": "NOT_PUBLISHED_REQUIRES_REVISION",
+  "step08": "NOT_STARTED",
+  "step09": "NOT_STARTED",
+  "step10": "NOT_STARTED",
+  "nextSafeAction": "Coding fixes mandatory PNG CRC consumer/negative contract; freeze new forward Source and new independent Review; Main release gates remain separate",
+  "sealedAtUTC": "2026-10-14T17:27:52.005232+00:00"
+}

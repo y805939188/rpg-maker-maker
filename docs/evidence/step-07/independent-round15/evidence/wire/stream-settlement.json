@@ -1,0 +1,115 @@
+{
+  "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+  "reads": 2,
+  "result": [
+    {
+      "newDocumentBeforeActualPromiseDelivery": false,
+      "actualDOM": {
+        "size": [
+          96,
+          144
+        ],
+        "hash": "c661dfc8d0c4f344afa473e84ba16e2c1b38022057a697c18adbba0890d34a30"
+      },
+      "actualCommand": {
+        "requestId": "10188.2",
+        "bufferedLength": 8
+      },
+      "atFailureBeforeActualPromiseDelivered": {
+        "id": 1,
+        "requestId": "10188.2",
+        "loaderId": "372156B3875CB52D970EDC146F9A9058",
+        "frameId": "735891CC136CE15E07E5A916DAB959DD",
+        "document": 1,
+        "url": "http://127.0.0.1:54751/api/projects/owned/recipes/recipe/processed?frame=2&ordering=false",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "unavailable",
+        "streamReady": false,
+        "wireBytes": 812,
+        "expectedBytes": 812,
+        "transportFailure": "net::ERR_ABORTED",
+        "currentDocument": true
+      },
+      "afterActualProtocolPromiseDelivered": {
+        "id": 1,
+        "requestId": "10188.2",
+        "loaderId": "372156B3875CB52D970EDC146F9A9058",
+        "frameId": "735891CC136CE15E07E5A916DAB959DD",
+        "document": 1,
+        "url": "http://127.0.0.1:54751/api/projects/owned/recipes/recipe/processed?frame=2&ordering=false",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 812,
+        "expectedBytes": 812,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "c661dfc8d0c4f344afa473e84ba16e2c1b38022057a697c18adbba0890d34a30",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      },
+      "result": "SAME_REQUEST_ACTUAL_BUFFER_AND_DATA_JOINED_AFTER_FAILURE"
+    },
+    {
+      "newDocumentBeforeActualPromiseDelivery": true,
+      "actualDOM": {
+        "size": [
+          96,
+          144
+        ],
+        "hash": "c661dfc8d0c4f344afa473e84ba16e2c1b38022057a697c18adbba0890d34a30"
+      },
+      "actualCommand": {
+        "requestId": "10188.4",
+        "bufferedLength": 8
+      },
+      "atFailureBeforeActualPromiseDelivered": {
+        "id": 2,
+        "requestId": "10188.4",
+        "loaderId": "372156B3875CB52D970EDC146F9A9058",
+        "frameId": "735891CC136CE15E07E5A916DAB959DD",
+        "document": 1,
+        "url": "http://127.0.0.1:54751/api/projects/owned/recipes/recipe/processed?frame=2&ordering=true",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "unavailable",
+        "streamReady": false,
+        "wireBytes": 812,
+        "expectedBytes": 812,
+        "transportFailure": "net::ERR_ABORTED",
+        "currentDocument": true
+      },
+      "afterActualProtocolPromiseDelivered": {
+        "id": 2,
+        "requestId": "10188.4",
+        "loaderId": "372156B3875CB52D970EDC146F9A9058",
+        "frameId": "735891CC136CE15E07E5A916DAB959DD",
+        "document": 1,
+        "url": "http://127.0.0.1:54751/api/projects/owned/recipes/recipe/processed?frame=2&ordering=true",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 812,
+        "expectedBytes": 812,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "c661dfc8d0c4f344afa473e84ba16e2c1b38022057a697c18adbba0890d34a30",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": false
+      },
+      "result": "OLD_DOCUMENT_STREAM_BYTES_RETAINED_BUT_NOT_ACCEPTED_IN_NEW_DOC"
+    }
+  ],
+  "method": "withhold only resolution of the actual CDP command return after native send completed; exact bufferedData returned unchanged, no fake Response/bytes/server GET; actual events run normally"
+}

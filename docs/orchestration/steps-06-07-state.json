@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT15_REPORT_FINISH_WITH_CRC_BLOCKER",
+  "phase": "STEP07_R15_CRC_FIX_CODING_ACTIVE",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT15_BLOCKING_CRC_TEST_CONTRACT_FINDING_REPORT_PENDING",
+    "status": "R15_CRC_FIX_CODING_ACTIVE",
     "reviewRounds": 15,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3194,6 +3194,40 @@
           "manifestIdentityAndFiles": "PENDING_MAIN_HANDOFF"
         }
       }
+    },
+    "activeReview": null,
+    "latestReview": {
+      "round": 15,
+      "result": "REQUIRES_REVISION",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "docsHead": "2320e9e9fbfea2ad8e60ab29dafdeef91f0075eb",
+      "report": "docs/evidence/step-07/independent-round15/report.md",
+      "reportSha256": "83207c1ab20234ab0c3027f5ad11e6f2cb2b211935b26a0f8b667d2bf50881c1",
+      "ledger": "docs/evidence/step-07/independent-round15/evidence/ledger.json",
+      "ledgerSha256": "6d2b15f29531b340e3f99a24948bc334f1fd0130d32ed27d34f1fb1e9d172dc3",
+      "payloads": 166,
+      "blockingP2": [
+        "STEP07-R15-001"
+      ],
+      "executed": {
+        "check": 358,
+        "http": 16,
+        "productionBrowser": 18,
+        "developmentBrowser": 18
+      },
+      "crcCounterexample": "COUNTEREXAMPLE_CAPTURED; full real six-phase consumer accepted 10 bad IEND CRC PNG; not candidate PASS",
+      "reviewServices": "STOPPED; 9 owned databases/private data retained"
+    },
+    "codingResume": {
+      "thread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "role": "step_coder",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-main-ci-recovery/rpg-maker-maker",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "default",
+      "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
+      "clientEvidence": "docs/evidence/orchestration-06-07/step07-r15-fix-client.json",
+      "roundAddressed": 15
     }
   },
   "step08": {
@@ -3532,8 +3566,8 @@
       "threadId": "01a13b44-1d10-76e0-bd99-fa3b4152cd64"
     }
   ],
-  "lastSuccessfulCheckpoint": "Ind15 actual358/HTTP16/API3priv5/both18/6ZIP12PNG16Canvas4DBlinknormalPASS; independentCRCnegative+full6phaseconfirmedfalseacceptance119.5s. NewP2R15-001 reportpending, no wholePASS. Allnormal/negative/auxproxyfailuresretained; originaluserStudio unaffected.",
-  "nextSafeAction": "WaitoriginalReview15 complete formalreport+findingCRCtrigger/sourceposition/proof; preserveoriginals thensameStdCodernew55509worktree minimalPNGfullcontainerCRCvalidationregression oldnegative/newreject; freshcandidate/ind16 no gateweakening.",
+  "lastSuccessfulCheckpoint": "R15 original report and all 166 payloads hash-verified and preserved; own reviewer services stopped; independent blocking PNG CRC gap confirmed",
+  "nextSafeAction": "Resume same Standard step_coder in main-ci-recovery isolated tree; meaningful actual PNG CRC regression; freeze new candidate then formal independent round16; no Step08",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3567,7 +3601,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T17:20:08.646571+00:00",
+  "updatedAtUtc": "2026-10-14T18:39:23.004867+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -3654,10 +3688,12 @@
     {
       "gate": "STEP07_LATEST_INDEPENDENT_REVIEW",
       "id": "STEP07-R15-001",
-      "status": "OPEN_REPORT_PENDING",
+      "status": "OPEN",
       "severity": "P2",
       "reason": "currentmandatoryrenderedPNG test validator acceptsbadIENDCRC evenfullactual6phaseconsumer",
-      "evidence": "Reviewer15privatecounterexample finalpublicreportpending"
+      "evidence": "Reviewer15privatecounterexample finalpublicreportpending",
+      "blocking": true,
+      "report": "docs/evidence/step-07/independent-round15/report.md"
     }
   ]
 }

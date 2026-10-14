@@ -1,0 +1,467 @@
+{
+  "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+  "oldSource": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+  "browserVersion": "156.0.8078.4",
+  "caseCount": 11,
+  "cases": [
+    {
+      "name": "ordered-complete",
+      "result": "OLD_FALSE_FAILURE_CAPTURED_NEW_SAME_REQUEST_COMPLETE",
+      "old": {
+        "document": 1,
+        "matchingCount": 1,
+        "records": [
+          {
+            "id": 1,
+            "document": 1,
+            "currentDocument": true,
+            "status": 200,
+            "method": "GET",
+            "contentType": "image/png",
+            "transport": "failed",
+            "state": "unavailable",
+            "requiredSHA": false,
+            "failure": "response.body: Protocol error (Network.getResponseBody): No data found for resource with given identifier\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation.",
+            "transportFailure": "net::ERR_ABORTED"
+          }
+        ]
+      },
+      "current": {
+        "document": 1,
+        "matchingCount": 1,
+        "records": [
+          {
+            "id": 1,
+            "requestId": "73058.2",
+            "loaderId": "006A7D682352733CE197B84A205B1F43",
+            "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+            "document": 1,
+            "method": "GET",
+            "status": 200,
+            "contentType": "image/png",
+            "transport": "failed",
+            "state": "received",
+            "streamReady": true,
+            "wireBytes": 821,
+            "expectedBytes": 821,
+            "transportFailure": "net::ERR_ABORTED",
+            "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+            "channel": "protocol-stream",
+            "completion": "content-length",
+            "currentDocument": true,
+            "bytes": 821,
+            "requiredSHA": true
+          }
+        ]
+      },
+      "requestEvents": [
+        {
+          "ev": "Network.requestWillBeSent",
+          "payload": {
+            "requestId": "73058.2",
+            "loaderId": "006A7D682352733CE197B84A205B1F43",
+            "documentURL": "http://127.0.0.1:62067/",
+            "request": {
+              "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=ordered-complete",
+              "method": "GET",
+              "headers": {
+                "sec-ch-ua-platform": "\"macOS\"",
+                "Referer": "http://127.0.0.1:62067/",
+                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+                "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"HeadlessChrome\";v=\"156\"",
+                "sec-ch-ua-mobile": "?0"
+              },
+              "mixedContentType": "none",
+              "initialPriority": "High",
+              "referrerPolicy": "strict-origin-when-cross-origin",
+              "isSameSite": true
+            },
+            "timestamp": 175702.203793,
+            "wallTime": 1791996207.165657,
+            "initiator": {
+              "type": "script",
+              "stack": {
+                "callFrames": [
+                  {
+                    "functionName": "window.go",
+                    "scriptId": "4",
+                    "url": "http://127.0.0.1:62067/",
+                    "lineNumber": 1,
+                    "columnNumber": 105
+                  },
+                  {
+                    "functionName": "eval",
+                    "scriptId": "11",
+                    "url": "",
+                    "lineNumber": 0,
+                    "columnNumber": 20
+                  },
+                  {
+                    "functionName": "evaluate",
+                    "scriptId": "5",
+                    "url": "",
+                    "lineNumber": 371,
+                    "columnNumber": 15
+                  },
+                  {
+                    "functionName": "",
+                    "scriptId": "10",
+                    "url": "",
+                    "lineNumber": 0,
+                    "columnNumber": 43
+                  }
+                ]
+              }
+            },
+            "redirectHasExtraInfo": false,
+            "type": "Fetch",
+            "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+            "hasUserGesture": true
+          }
+        },
+        {
+          "ev": "Network.responseReceived",
+          "payload": {
+            "requestId": "73058.2",
+            "loaderId": "006A7D682352733CE197B84A205B1F43",
+            "timestamp": 175702.205248,
+            "type": "Fetch",
+            "response": {
+              "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=ordered-complete",
+              "status": 200,
+              "statusText": "OK",
+              "headers": {
+                "Cache-Control": "no-store",
+                "Content-Length": "821",
+                "Keep-Alive": "timeout=5",
+                "Date": "Wed, 14 Oct 2026 16:43:27 GMT",
+                "Content-Type": "image/png",
+                "Connection": "keep-alive"
+              },
+              "mimeType": "image/png",
+              "charset": "",
+              "connectionReused": true,
+              "connectionId": 22,
+              "remoteIPAddress": "127.0.0.1",
+              "remotePort": 62067,
+              "fromDiskCache": false,
+              "fromServiceWorker": false,
+              "fromPrefetchCache": false,
+              "encodedDataLength": 174,
+              "timing": {
+                "requestTime": 175702.204203,
+                "proxyStart": -1,
+                "proxyEnd": -1,
+                "dnsStart": -1,
+                "dnsEnd": -1,
+                "connectStart": -1,
+                "connectEnd": -1,
+                "sslStart": -1,
+                "sslEnd": -1,
+                "workerStart": -1,
+                "workerReady": -1,
+                "workerFetchStart": -1,
+                "workerRespondWithSettled": -1,
+                "sendStart": 0.102,
+                "sendEnd": 0.14,
+                "pushStart": 0,
+                "pushEnd": 0,
+                "receiveHeadersStart": 0.73,
+                "receiveHeadersEnd": 0.762
+              },
+              "responseTime": 1791996207166.724,
+              "protocol": "http/1.1",
+              "alternateProtocolUsage": "unspecifiedReason",
+              "securityState": "secure"
+            },
+            "hasExtraInfo": true,
+            "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1"
+          }
+        },
+        {
+          "ev": "Network.dataReceived",
+          "payload": {
+            "requestId": "73058.2",
+            "timestamp": 175702.20551,
+            "dataLength": 8,
+            "encodedDataLength": 8
+          }
+        },
+        {
+          "ev": "Network.dataReceived",
+          "payload": {
+            "requestId": "73058.2",
+            "timestamp": 175702.302722,
+            "dataLength": 813,
+            "encodedDataLength": 0
+          }
+        },
+        {
+          "ev": "Network.loadingFailed",
+          "payload": {
+            "requestId": "73058.2",
+            "timestamp": 175702.304192,
+            "type": "Fetch",
+            "errorText": "net::ERR_ABORTED",
+            "canceled": true
+          }
+        }
+      ],
+      "reads": 1,
+      "dom": {
+        "ok": true,
+        "hash": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "n": 821,
+        "size": [
+          96,
+          144
+        ]
+      },
+      "validation": {
+        "chunks": 4,
+        "pixelSHA": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+        "domSize": [
+          96,
+          144
+        ]
+      }
+    },
+    {
+      "name": "partial",
+      "result": "REJECTED_INCOMPLETE_NETWORK_EVIDENCE",
+      "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=partial",
+      "dom": {
+        "ok": false,
+        "error": "page.evaluate: AbortError: signal is aborted without reason"
+      },
+      "reads": 1,
+      "entry": {
+        "id": 2,
+        "requestId": "73058.4",
+        "loaderId": "006A7D682352733CE197B84A205B1F43",
+        "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+        "document": 1,
+        "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=partial",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "unavailable",
+        "streamReady": true,
+        "wireBytes": 8,
+        "expectedBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "currentDocument": true
+      }
+    },
+    {
+      "name": "unknown-length",
+      "result": "REJECTED_INCOMPLETE_NETWORK_EVIDENCE",
+      "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=unknown-length",
+      "dom": {
+        "ok": true,
+        "hash": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "n": 821,
+        "size": [
+          96,
+          144
+        ]
+      },
+      "reads": 1,
+      "entry": {
+        "id": 3,
+        "requestId": "73058.5",
+        "loaderId": "006A7D682352733CE197B84A205B1F43",
+        "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+        "document": 1,
+        "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=unknown-length",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "unavailable",
+        "streamReady": false,
+        "wireBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "currentDocument": true
+      }
+    },
+    {
+      "name": "declared-one-byte-too-long",
+      "result": "REJECTED_INCOMPLETE_NETWORK_EVIDENCE",
+      "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=declared-one-byte-too-long",
+      "dom": {
+        "ok": true,
+        "hash": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "n": 821,
+        "size": [
+          96,
+          144
+        ]
+      },
+      "reads": 1,
+      "entry": {
+        "id": 4,
+        "requestId": "73058.7",
+        "loaderId": "006A7D682352733CE197B84A205B1F43",
+        "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+        "document": 1,
+        "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=declared-one-byte-too-long",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "unavailable",
+        "streamReady": true,
+        "wireBytes": 821,
+        "expectedBytes": 822,
+        "transportFailure": "net::ERR_ABORTED",
+        "currentDocument": true
+      }
+    },
+    {
+      "name": "bad-crc",
+      "result": "ACTUAL_BYTES_CAPTURED_CONSUMER_REJECTED_INVALID_PNG",
+      "receipt": {
+        "id": 5,
+        "requestId": "73058.9",
+        "loaderId": "006A7D682352733CE197B84A205B1F43",
+        "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+        "document": 1,
+        "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=bad-crc",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      },
+      "dom": {
+        "ok": true,
+        "hash": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57",
+        "n": 821,
+        "size": [
+          96,
+          144
+        ]
+      }
+    },
+    {
+      "name": "wrong-dimensions",
+      "result": "ACTUAL_BYTES_CAPTURED_CONSUMER_REJECTED_INVALID_PNG",
+      "receipt": {
+        "id": 6,
+        "requestId": "73058.11",
+        "loaderId": "006A7D682352733CE197B84A205B1F43",
+        "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+        "document": 1,
+        "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=wrong-dimensions",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 1077,
+        "expectedBytes": 1077,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "e2e75c936eb517f4057d9036f47a31da36c6e485d201de539157ebdd9fed9659",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      },
+      "dom": {
+        "ok": true,
+        "hash": "e2e75c936eb517f4057d9036f47a31da36c6e485d201de539157ebdd9fed9659",
+        "n": 1077,
+        "size": [
+          96,
+          143
+        ]
+      }
+    },
+    {
+      "name": "not-png",
+      "result": "ACTUAL_BYTES_CAPTURED_CONSUMER_REJECTED_INVALID_PNG",
+      "receipt": {
+        "id": 7,
+        "requestId": "73058.13",
+        "loaderId": "006A7D682352733CE197B84A205B1F43",
+        "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+        "document": 1,
+        "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=not-png",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 22,
+        "expectedBytes": 22,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "d3ca8cca8caf0b6cc560b579178d92c50466eb2fde94e8ac7dec6b2cdc7b0cf9",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      },
+      "dom": {
+        "ok": false,
+        "error": "page.evaluate: EncodingError: The source image cannot be decoded."
+      }
+    },
+    {
+      "name": "iframe",
+      "result": "REJECTED_SAME_URL_SAME_PNG_FROM_OTHER_FRAME"
+    },
+    {
+      "name": "identity",
+      "result": "WRONG_PROJECT_RECIPE_FRAME_HASH_REJECTED"
+    },
+    {
+      "name": "document",
+      "result": "SAME_DOCUMENT_AND_FAILED_NAV_KEEP_RECEIPT_RELOAD_RETIRES"
+    },
+    {
+      "name": "new-document-fresh-network",
+      "result": "ACTUAL_CURRENT_REQUEST_REQUIRED",
+      "dom": {
+        "hash": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "n": 821,
+        "size": [
+          96,
+          144
+        ]
+      },
+      "entry": {
+        "id": 8,
+        "requestId": "73063.2",
+        "loaderId": "38E4EB9C82AB6ABC394F1266BA9CA02D",
+        "frameId": "5F69C7E7E4B97FA65D785137AE8BFBD1",
+        "document": 3,
+        "url": "http://127.0.0.1:62067/api/projects/owned/recipes/recipe/processed?frame=0&case=fresh",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "finished",
+        "state": "received",
+        "streamReady": false,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "failure": "cdpSession.send: Protocol error (Network.streamResourceContent): Request with the provided ID has already finished loading",
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "channel": "protocol-body",
+        "completion": "loading-finished",
+        "currentDocument": true
+      }
+    }
+  ],
+  "fixture": "REAL_LOOPBACK_HTTP_SYNTHETIC_PNG; page Blob only displays actual fetched bytes; receipt bytes exclusively CDP for same request; canvas DOM validation only",
+  "causeLimit": "controlled reproduction does not prove exact Main/CI5 app cleanup or Chromium internal mechanism"
+}
