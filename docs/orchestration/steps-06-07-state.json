@@ -1562,7 +1562,7 @@
             }
           },
           "fullHTTP16": "PASS",
-          "twoMode18": "PENDING",
+          "twoMode18": "PRODUCTION18_RUNNING_DEVELOPMENT_PENDING",
           "oldNewControl": "IN_PROGRESS",
           "wholeVerdict": "NOT_COMPLETED",
           "independentPerformance": {
@@ -1573,8 +1573,20 @@
             "publishReadCountsUnchanged": true,
             "sixGroupsSevenPayloadBytesIdentical": true,
             "manifestSourceIdentitiesDistinctPreserved": true,
-            "controlledCost": "IN_PROGRESS",
+            "controlledCost": {
+              "oldOriginalCaseTimeoutMs": 180003,
+              "oldCommandSecondsIncludingCleanup": 201.312,
+              "newCommandSeconds": 116.758,
+              "newExit": 0,
+              "costCondition": "synthetic12s aftereach6redundantStudioJobreadDomainRecipe only; notactualCI6latencyclaim"
+            },
             "remoteCI": "NOT_EXECUTED"
+          },
+          "extraCacheValidation": {
+            "warmMutationVariantsRejected": 11,
+            "sameBytesAncestorSymlinkRejected": true,
+            "originalInodeRestoreReadable": true,
+            "differentAndEndedActualLeaseRejected": true
           }
         }
       }
@@ -3096,7 +3108,7 @@
       "threadId": "01a13a74-123e-7063-88e6-68421e881801"
     }
   ],
-  "lastSuccessfulCheckpoint": "Independent14 354/PG23/APIprivacy/HTTP16PASS and11warmmutation/path/leasefailcontrols; normalold133734/new116854ms saves168nativeforks/16880ms withotherread/publishcountsunchanged and6groups7payloadbyteequal. Controlledcost/two18/finalreportpending.",
+  "lastSuccessfulCheckpoint": "Ind14 Source0cdd check354/PG23/APIprivacy/HTTP16/206files/cache11+4realfilelease guardsPASS; normal135->117 saved168forks and7payloadx6groupbyteequal; syntheticcostold180003FAIL/new116.758PASS originalbudget. Production18 running; wholeR14/CI7/mainreleasepending.",
   "nextSafeAction": "Await independent14 wholeverdict/actualregression; preserveoriginals ifcomplete. LatestPASS thennewcandidate7fullCI allsuccess beforepreauthnormalmainmerge/postmerge/push/mainCI.",
   "cleanup": [
     {
@@ -3131,7 +3143,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T13:18:20.858245+00:00",
+  "updatedAtUtc": "2026-10-14T13:24:34.489745+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
