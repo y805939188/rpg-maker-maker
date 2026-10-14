@@ -1,0 +1,24 @@
+{
+  "atUtc": "2026-10-14T02:48:35.465882+00:00",
+  "runId": 38500746316,
+  "candidate": "b350aa88b8213223dbf8287ec42487d3ec19e391",
+  "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+  "conclusion": "FAILURE",
+  "actualLogBytes": 140051,
+  "actualLogSha256": "3da8a7d12ba4e09b378da28c5bbf0089dfc22af97977a194a0121da48c229ce9",
+  "rawLog": "private .local/orchestration-06-07/step07-candidate-ci-38500746316-job.log.txt",
+  "step07Http16": "ALL16PASS_ACTUAL_LOG",
+  "step06Pg23": "ALL23PASS_ACTUAL_LOG",
+  "productionE2e": {
+    "passed": 13,
+    "failed": 2,
+    "didNotRun": 3,
+    "cause": "ENOENT .env in unconditional process.loadEnvFile"
+  },
+  "failureLocations": [
+    "e2e/studio-recovery.test.ts:102 beforeAll",
+    "e2e/studio.test.ts:395 project-switch legacy flow"
+  ],
+  "preserve": "no user.env copied/uploaded; currentCI uses existing declared DATABASE_URL service env; no mainmerge/publish",
+  "next": "sameStandardCoder diagnose minimal correct env source policy preserving validation/alltests, frozen candidate then independent next actualround9"
+}
