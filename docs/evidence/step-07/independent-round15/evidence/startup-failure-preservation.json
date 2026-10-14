@@ -1,0 +1,41 @@
+{
+  "status": "FIRST_NOENV_PRODUCTION_STARTUP_TIMEOUT_NOT_PRODUCT_CAUSE_PROVEN",
+  "budgetUnchangedMs": 30000,
+  "testsExecuted": 0,
+  "originalFilesMovedNotDiscarded": [
+    {
+      "original": ".local/step07-review/round15/e2e-production",
+      "retained": ".local/step07-review/round15/failed-production-attempt1/e2e-production"
+    },
+    {
+      "original": ".local/step07-review/round15/e2e-production.log",
+      "retained": ".local/step07-review/round15/failed-production-attempt1/e2e-production.log"
+    },
+    {
+      "original": ".local/step07-review/round15/e2e-production.pid.json",
+      "retained": ".local/step07-review/round15/failed-production-attempt1/e2e-production.pid.json"
+    },
+    {
+      "original": ".local/step07-review/round15/e2e-production-migration.log",
+      "retained": ".local/step07-review/round15/failed-production-attempt1/e2e-production-migration.log"
+    },
+    {
+      "original": ".local/step07-review/round15/e2e-production-migration.pid.json",
+      "retained": ".local/step07-review/round15/failed-production-attempt1/e2e-production-migration.pid.json"
+    },
+    {
+      "original": ".local/step07-review/round15/production-wrapper.log",
+      "retained": ".local/step07-review/round15/failed-production-attempt1/production-wrapper.log"
+    },
+    {
+      "original": ".local/step07-review/round15/production-wrapper.pid.json",
+      "retained": ".local/step07-review/round15/failed-production-attempt1/production-wrapper.pid.json"
+    },
+    {
+      "original": ".local/step07-review/round15/db-production-private.json",
+      "retained": ".local/step07-review/round15/failed-production-attempt1/db-production-private.json"
+    }
+  ],
+  "standaloneSameConfigDBStartup": "READY_AT_4411; then own process group stopped normally; .env restored",
+  "next": "new isolated DB/root same original tests with pw:webserver debug to determine healthcheck behavior"
+}

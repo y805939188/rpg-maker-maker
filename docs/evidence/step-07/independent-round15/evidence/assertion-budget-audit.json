@@ -1,0 +1,28 @@
+{
+  "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+  "base": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+  "originalEightTestBodiesUnchanged": [
+    "real cancelled sameURL response reproduces old false failure while current actual image remains verifiable",
+    "navigation retires old sameURL bodies and requires a new actual body in the new document",
+    "a late older sameURL response cannot overwrite the newer displayed actual PNG",
+    "same-document URL changes retain the current actual PNG without another network read",
+    "a failed navigation preserves the actual document but a committed sameURL reload retires it",
+    "bounded diagnostics expose missing current evidence without leaking bodies or accepting an image alone",
+    "missing, wrong owner/origin/frame/hash and non200 bodies cannot satisfy current image identity",
+    "corrupt actual PNG or a mismatched rendered hash is rejected rather than replaced by a valid old body"
+  ],
+  "newTestBodies": [
+    "complete current network bytes survive consumer cancellation while the old response.body observer fails",
+    "abort is not completion: partial, unknown length and encoded bodies never satisfy the current receipt",
+    "an iframe full response cannot supply the main document even with the same owner URL and hash",
+    "a decoded complete PNG alone is insufficient when HTTP framing cannot prove complete reception"
+  ],
+  "integrationSHA256": "d0c2d28b1d744cd5ce5417144ce3c58b4885c28a63e00c242543768aefb4f7f3",
+  "integrationExactlySameAsBaseAndR14": true,
+  "singleCaseBudgetMs": 180000,
+  "pngMs": 15000,
+  "defaultRequiredReceiptMs": 5000,
+  "barrierAndJobMs": 60000,
+  "terminalMs": 30000,
+  "ciAndStrictZipAndRealFSAndAllProductionSame": true
+}

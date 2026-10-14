@@ -1,0 +1,88 @@
+{
+  "classification": "COUNTEREXAMPLE_CAPTURED_NOT_BAD_PNG_PASS",
+  "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+  "formalFile": "apps/api/tests/studio/received-resources.test.ts",
+  "formalFileSHA256": "05d3cb337d29fb17f18555f6a6d4d0b36516d887eb0ed2514ded4215f79824a8",
+  "exactExtractedFunction": "rendered",
+  "extractedFunctionSHA256": "22c0b2e0345f8c8f10dc53acfd67a62152cea796757c7a2a78894b386b38d224",
+  "transformation": "add export and identical imports only; all source assertions verbatim; TypeScript transpileModule; no formal test/source edit",
+  "reads": 2,
+  "rows": [
+    {
+      "name": "valid-control",
+      "independentMandatoryPNGCRCValid": true,
+      "dom": {
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "size": [
+          96,
+          144
+        ]
+      },
+      "actualCurrentFormalRenderedConsumer": "RETURNED_SUCCESS",
+      "receipt": {
+        "id": 1,
+        "requestId": "63523.2",
+        "loaderId": "367E5F63019399C09DFB95D6258BBBDB",
+        "frameId": "C948B8A3CD239ADF563A52D1222C6485",
+        "document": 1,
+        "url": "http://127.0.0.1:51604/api/projects/owned/recipes/recipe/processed?frame=0&crc=valid-control",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      },
+      "byteLength": 821,
+      "sha256": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003"
+    },
+    {
+      "name": "one-bit-invalid-IEND-CRC",
+      "independentMandatoryPNGCRCValid": false,
+      "dom": {
+        "sha": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57",
+        "size": [
+          96,
+          144
+        ]
+      },
+      "actualCurrentFormalRenderedConsumer": "RETURNED_SUCCESS",
+      "receipt": {
+        "id": 2,
+        "requestId": "63523.4",
+        "loaderId": "367E5F63019399C09DFB95D6258BBBDB",
+        "frameId": "C948B8A3CD239ADF563A52D1222C6485",
+        "document": 1,
+        "url": "http://127.0.0.1:51604/api/projects/owned/recipes/recipe/processed?frame=0&crc=one-bit-invalid-IEND-CRC",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      },
+      "byteLength": 821,
+      "sha256": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57"
+    }
+  ],
+  "invalidIEND": {
+    "storedCRC": 2923585667,
+    "actualCRC": 2923585666,
+    "validPNGStoredCRC": 2923585666
+  },
+  "expected": "bad mandatory PNG chunk CRC must fail original-budget required image validation; browser+Sharp decoding and SHA/RGBA equality do not prove PNG structural validity"
+}
