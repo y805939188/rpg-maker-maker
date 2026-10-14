@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND8",
+  "phase": "STEP07_C8_CANDIDATE_CI_PREPARATION",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT_REVIEW",
+    "status": "REVIEW_PASS_PENDING_NEW_CANDIDATE_CI",
     "reviewRounds": 8,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -456,7 +456,7 @@
       "engineeringPayloads": 206
     },
     "candidateSha": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
-    "candidateState": "C8_FROZEN_SELF_TESTED_UNDER_INDEPENDENT_ROUND8",
+    "candidateState": "C8_INDEPENDENT_ROUND8_PASS_FROZEN",
     "reviewEnvironment": {
       "atUtc": "2026-10-14T00:24:56.201326+00:00",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
@@ -473,7 +473,7 @@
       "tests": "NOT_EXECUTED",
       "formalReviewRound8Started": false,
       "candidateState": "FROZEN_STRICT_ZIP_FIX_AWAIT_FULL_AUTHOR_HANDOFF",
-      "status": "ACTIVATED_FORMAL_ROUND8",
+      "status": "ROUND8_PASS_OWN_SERVICES_STOPPED_PRIVATE_DATA_RETAINED",
       "formalReviewStarted": true,
       "databaseMigration": "NOT_EXECUTED",
       "preparedBy": "MAIN_ORCHESTRATOR",
@@ -1123,17 +1123,70 @@
         "round": 8,
         "candidate": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
         "docsHead": "401fc5471bef0b60bc9b5689ea8b29109f8420ab",
-        "status": "IN_PROGRESS",
+        "status": "PASS_WHOLE_CANDIDATE_FOR_AUTHORIZED_SCOPE",
         "threadId": "01a1380d-54c2-7e63-a6ae-5aec7293b315",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
         "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round8-client.json",
         "nativeProcess": 98043,
         "nativeOutput": ".local/orchestration-06-07/step07-review-round8",
         "mechanicalRoundLimit": null,
-        "scope": "whole latestcandidate + R7strict ZIPcentral/local/EOCD controls andactualbad realdownload rejection +normal16/budget regressions andappropriatepriorunchangedruntimeevidence"
+        "scope": "whole latestcandidate + R7strict ZIPcentral/local/EOCD controls andactualbad realdownload rejection +normal16/budget regressions andappropriatepriorunchangedruntimeevidence",
+        "clientActualContext": "cwd/head/model gpt-6.1-sol/ultra/default visible context verified; final server model/effort/tier UNVERIFIED_NOT_EXPOSED",
+        "executedProgress": {
+          "checkTests": 313,
+          "historicalR4R5R6R7IndependentPayloadsShaBytesVerified": 1272,
+          "authorLatestCommittedPayloadsShaBytesVerified": 96,
+          "authorOriginalIndexHashesVerified": 95,
+          "formalHttp16": "16_OF16_PASS_INDEPENDENT_LATESTC8",
+          "strictZipFullNegativeControl": "PENDING_INDEPENDENT_RESULT",
+          "finalConclusion": "PASS_WHOLE_CANDIDATE_ORIGINAL_SEALED_VERIFIED",
+          "independentCompleteZipParserControls": 66,
+          "realR7ZipPairs": {
+            "normal4": "ACCEPTED_NEW",
+            "bad4": "REJECTED_NEW",
+            "oldHelperGap": "centralCRC/dangerousname/EOCDcount reproduction confirmed"
+          },
+          "caseTextComparison": "f574sixstage exactexceptreadername;alloldbudgets/assertions intact",
+          "engineeringActualPayloadHashes": 206,
+          "compiledPreviousComparison": "205same;studio.jsononlycontext.commitc8",
+          "legalDelay": "PASS_AFTER_CORRECT_PHYSICAL_DEPLOYMENT_APPROX150_SECONDS_ORIGINAL_ONE180S_CASE",
+          "fourActualDownloadPositionCentralCrcControls": "ALL4_EXIT1_EXPECTED_LOCAL_CENTRAL_CRC_REJECTION_INDEPENDENT",
+          "genericZipfileOracleLimit": "independently localCRC/EOCDcount omission reproduced, complete independentparser used",
+          "normalActualDownloadedZipArchives": 4,
+          "normalArchiveNetworkIdentity": "complete independent container/CRC/PNG/Manifest/fullProfile/browserbytes MATCH",
+          "remaining": "ending trackedSHA/ownership/ports/originalwholeReportLedgerSeal",
+          "apiIntegration": 3,
+          "projectListProductionSubset": 5,
+          "projectListDevelopmentSubset": 5,
+          "reviewerR7Closure": "confirmed actualcontainer/realdownload negatives FIXED_PENDING_SEALED_REPORT",
+          "newSpecificBlockingFindings": 0
+        },
+        "auxiliaryDiagnosticFailuresRetained": [
+          {
+            "kind": "Prisma resolution in moved diagnosticcopy",
+            "result": "failed beforetestload, resolving throughAPIdeclareddeps noSourcechange"
+          },
+          {
+            "kind": "Vite development physicaldependencyroot",
+            "result": "auxsymlinkresolvedoutsideallowedroot afterproductiondelayphase, originalsretained correctownphysicaldeps retry, noVitebudget/configwidening"
+          }
+        ],
+        "report": "docs/evidence/step-07/independent-round8/report.md",
+        "reportSha256": "0af72f3658763d87c922517d8b5222ed619ae838c7e6738790e70f5ae7cc1aff",
+        "ledger": "docs/evidence/step-07/independent-round8/evidence/ledger.json",
+        "ledgerSha256": "5cf6f72ad7c1b1d16cdb83da274a8289ac652341ffa94faec4a4a60988f67943",
+        "payloadsVerified": 231,
+        "nativeExitCode": 0,
+        "sourceProtectionFiles": 3875,
+        "blockingP0": 0,
+        "blockingP1": 0,
+        "blockingP2": 0,
+        "closedFindings": [
+          "STEP07-R7-001"
+        ]
       }
     ],
-    "latestIndependentReview": "REQUIRES_REVISION_ROUND7_PARENTF574_NEWZIPFIX_UNREVIEWED",
+    "latestIndependentReview": "PASS_ROUND8_SOURCE_C8",
     "codingFix": {
       "round": 4,
       "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
@@ -1238,20 +1291,20 @@
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "status": "LOCAL_F574_DOCS2EB_EXACT_EXECUTION_R7_IN_PROGRESS_NOT_PUSHED",
+      "status": "LOCAL_C8_DOCS401_EXACT_EXECUTION_R8_IN_PROGRESS_NOT_PUSHED",
       "executableDiffZero": true,
       "database": "OWNED_POSTGRES55481_NEW_EMPTY",
       "preparation": "FROZEN_INSTALL_GENERATE_BUILD_FIVE_MIGRATIONS_SUCCESS_NOT_POSTMERGE_TESTS",
-      "candidateExecutableSource": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
-      "validationHead": "d5667f5718c496d51b6d14109fd59b7475cac9aa",
-      "postSourcePaths": 2342,
+      "candidateExecutableSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "validationHead": "37d598b16eb83dad5ad9e6c9b21137fb12b592e0",
+      "postSourcePaths": 2575,
       "remotePushed": false,
-      "authorDocs": "2eb75dd4b91f8212a572ef92c7930ff4d17336b5",
+      "authorDocs": "401fc5471bef0b60bc9b5689ea8b29109f8420ab",
       "previousReviewBasis": {
         "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "review": "REQUIRES_REVISION_ROUND3"
       },
-      "latestReview": "ROUND7_IN_PROGRESS_PARENT_R6_PASS_SOURCE87_ONLY",
+      "latestReview": "ROUND8_IN_PROGRESS_R7_REQUIRES_REVISION_PARENT_F574",
       "reviewedSource": null
     },
     "pendingCandidate": {
@@ -1497,7 +1550,7 @@
       "scope": "README_DOCS_ONLY",
       "executionImpact": "NONE_MAIN_REVIEWED_MD_REPORT_MAPPING_AND_SANITIZED_EVIDENCE_ONLY"
     },
-    "activeIndependentReviewRound": 8,
+    "activeIndependentReviewRound": null,
     "historicalReviewEnvironments": [
       {
         "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
@@ -1695,7 +1748,7 @@
       "codingNativeExitCode": 0
     },
     "zipFixRound7": {
-      "status": "C8_SOURCE_DOCS_BUILD_HANDOFF_VERIFIED_UNDER_INDEPENDENT_ROUND8",
+      "status": "FIXED_CLOSED_INDEPENDENT_ROUND8_LATEST_C8",
       "finding": "STEP07-R7-001",
       "severity": "P2_BLOCKING",
       "oldCandidate": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
@@ -1980,12 +2033,13 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
-      "credentials": "FRESH_OWN_ENV600_NO_COPY"
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "credentials": "FRESH_OWN_ENV600_NO_COPY",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round8-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "SameCoderrecoveryexit0 c8/docs401 clean;Main96committedpayload/report52d/ledgere274/98docpurposes and206actualBuild3a19 verified. FreshR8ultra/default CID01a1380d...PID98043 startedownPG55493/API4393/Web5293, R7-001stillopenuntilindependentconfirmation;noMain07merge.",
-  "nextSafeAction": "Wait fresh R8 latestc8 wholeindependentresult/R7closure, preserveoriginalSHA/privateScan/stoponlyownservices; ifPASS normalintegrateSource/docs/review into validation andnewfullcandidateCI; onlyALLPASS permitspreauth/mainnormalmerge/postmerge/push/readback/mainCI/finaldocsSTOP07.",
+  "lastSuccessfulCheckpoint": "R8nativeexit0 latestc8 wholePASS originalreport0af72/ledger5cf6 231SHA+ownsecretverified,3875source+206filesunchanged,R7-001CLOSED. OwnPG55493stopped safe10DBprivate retained APIWeboff;latestnewcandidateCI notstarted/no07Mainmerge.",
+  "nextSafeAction": "Integrate originalR8/doc/state into validation withexecutionprojection==c8;normalpush latestcandidate/fullrequiredCI.OnlyALLSUCCESS allowspreauth+Mainfetch/liveguard/normalmerge/postmerge/push/readback/mainCI/publicationdocsSTOPafter07.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2019,7 +2073,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T01:36:42.094722+00:00",
+  "updatedAtUtc": "2026-10-14T02:22:30.823578+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -2055,20 +2109,22 @@
       "reason": "separate metadata reads mix old Project pointers with new completedJob/Export and stop polling",
       "closedBy": "docs/evidence/step-07/independent-round5/report.md",
       "candidate": "59423201ba10ee71c3d1b04cebec69659017b7c7"
-    }
-  ],
-  "blockers": [
+    },
     {
       "gate": "STEP07_TECHNICAL_RELEASE",
       "id": "STEP07-R7-001",
       "severity": "P2",
-      "status": "OPEN",
+      "status": "CLOSED_INDEPENDENT_ROUND8",
       "reason": "necessary testZIP verifier ignores central/EOCD allowing real corrupted ZIPs to falsePASS",
-      "report": "docs/evidence/step-07/independent-round7/report.md"
-    },
+      "report": "docs/evidence/step-07/independent-round7/report.md",
+      "closedBy": "docs/evidence/step-07/independent-round8/report.md",
+      "candidate": "c8d41a680df42fe565882d93d3f85a04f7a10b22"
+    }
+  ],
+  "blockers": [
     {
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
-      "id": "LATEST_CANDIDATE_CI_NOT_PASS",
+      "id": "LATEST_C8_CANDIDATE_CI_PENDING",
       "status": "OPEN",
       "lastFailureRun": 38475532067
     }

@@ -1,0 +1,77 @@
+{
+  "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+  "oldSource": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+  "oldHelperSHA256": "8158be47a910bffc00ce9d3ab982bdb93bd578172d02177b888c52a4011001c0",
+  "newHelperSHA256": "6e6ef5e5e6e997498f9981493ba49efe5b82b4b4c07245a16e8e87881360a6e7",
+  "substitution": "old exact helper/CRC plus equivalent node:assert comparisons; new exact transpiled helper",
+  "rows": [
+    {
+      "file": "evidence/latest-faults/0-original.zip",
+      "pair": 0,
+      "case": "normal",
+      "expectedAccepted": true,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": true
+    },
+    {
+      "file": "evidence/latest-faults/0-central-crc.zip",
+      "pair": 0,
+      "case": "latest-real-central-crc",
+      "expectedAccepted": false,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/latest-faults/1-original.zip",
+      "pair": 1,
+      "case": "normal",
+      "expectedAccepted": true,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": true
+    },
+    {
+      "file": "evidence/latest-faults/1-central-crc.zip",
+      "pair": 1,
+      "case": "latest-real-central-crc",
+      "expectedAccepted": false,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/latest-faults/2-original.zip",
+      "pair": 2,
+      "case": "normal",
+      "expectedAccepted": true,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": true
+    },
+    {
+      "file": "evidence/latest-faults/2-central-crc.zip",
+      "pair": 2,
+      "case": "latest-real-central-crc",
+      "expectedAccepted": false,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/latest-faults/3-original.zip",
+      "pair": 3,
+      "case": "normal",
+      "expectedAccepted": true,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": true
+    },
+    {
+      "file": "evidence/latest-faults/3-central-crc.zip",
+      "pair": 3,
+      "case": "latest-real-central-crc",
+      "expectedAccepted": false,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    }
+  ]
+}

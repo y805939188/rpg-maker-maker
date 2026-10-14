@@ -1,0 +1,203 @@
+[
+  {
+    "label": "check",
+    "argv": [
+      "pnpm",
+      "check"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T01:38:58.730789+00:00",
+    "exit": 0,
+    "seconds": 75.919,
+    "privateLog": "private/check.log",
+    "logSha256": "b6ef193d878ba90805567ee14520e339521d82b3f2b936a7ff74497f1042a7ee",
+    "logBytes": 11278
+  },
+  {
+    "label": "migrate",
+    "argv": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T01:40:35.492513+00:00",
+    "exit": 0,
+    "seconds": 1.943,
+    "privateLog": "private/migrate.log",
+    "logSha256": "39b20687b0452d91bef5da8326cf24c85709c9beff988547b6664b7b15fba317",
+    "logBytes": 2059
+  },
+  {
+    "label": "http16",
+    "argv": [
+      "pnpm",
+      "test:step07"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T01:41:09.130345+00:00",
+    "exit": 0,
+    "seconds": 536.48,
+    "privateLog": "private/http16.log",
+    "logSha256": "006604392afc5b41229ad7ffb9469e74eb8fe6aeae605cb849a84043274bf517",
+    "logBytes": 10155
+  },
+  {
+    "label": "diag4-delay",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      ".local/step07-r8-private/vitest.r8.mts",
+      "-t",
+      "R4 real COMMIT first/update/history snapshots"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker/artifacts/step07-r8-aux",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T01:59:24.338404+00:00",
+    "exit": 0,
+    "seconds": 151.016,
+    "privateLog": "private/diag4-delay.log",
+    "logSha256": "71d4728ee54a995981612801069c3d986e0c80c2f12108ed0b45e2c8b24d4e91",
+    "logBytes": 6004
+  },
+  {
+    "label": "diag4-fault-0",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      ".local/step07-r8-private/vitest.r8.mts",
+      "-t",
+      "R4 real COMMIT first/update/history snapshots"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker/artifacts/step07-r8-aux",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T02:01:55.531868+00:00",
+    "exit": 1,
+    "seconds": 20.973,
+    "privateLog": "private/diag4-fault-0.log",
+    "logSha256": "b9442a9b3bb2a33da1a5bc68b358935d5885b33dabc664b147b4441c1f39e799",
+    "logBytes": 2684
+  },
+  {
+    "label": "diag4-fault-1",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      ".local/step07-r8-private/vitest.r8.mts",
+      "-t",
+      "R4 real COMMIT first/update/history snapshots"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker/artifacts/step07-r8-aux",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T02:02:16.682950+00:00",
+    "exit": 1,
+    "seconds": 43.794,
+    "privateLog": "private/diag4-fault-1.log",
+    "logSha256": "4d84ed12c7f1194047867f0674947835f04eaaeb1cc7945f16a49efdfb1252d5",
+    "logBytes": 3679
+  },
+  {
+    "label": "diag4-fault-2",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      ".local/step07-r8-private/vitest.r8.mts",
+      "-t",
+      "R4 real COMMIT first/update/history snapshots"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker/artifacts/step07-r8-aux",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T02:03:00.660557+00:00",
+    "exit": 1,
+    "seconds": 84.303,
+    "privateLog": "private/diag4-fault-2.log",
+    "logSha256": "7c5153d0b32a20eb8f0b835a13e0e0cc71d91eb275abd31a5ed31ef197f71051",
+    "logBytes": 5533
+  },
+  {
+    "label": "diag4-fault-3",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "--config",
+      ".local/step07-r8-private/vitest.r8.mts",
+      "-t",
+      "R4 real COMMIT first/update/history snapshots"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker/artifacts/step07-r8-aux",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T02:04:25.138139+00:00",
+    "exit": 1,
+    "seconds": 107.737,
+    "privateLog": "private/diag4-fault-3.log",
+    "logSha256": "4fa729c105122f5614893fa4852a468b350a3de6664d7f3f4f42b120ddf949a0",
+    "logBytes": 6544
+  },
+  {
+    "label": "api3",
+    "argv": [
+      "pnpm",
+      "test:integration"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T02:07:12.886959+00:00",
+    "exit": 0,
+    "seconds": 10.132,
+    "privateLog": "private/api3.log",
+    "logSha256": "741755bce21bb3ba9644fe763944baa3cca00a43a2f414279f18232c5d80c437",
+    "logBytes": 2568
+  },
+  {
+    "label": "list-production",
+    "argv": [
+      "pnpm",
+      "exec",
+      "playwright",
+      "test",
+      "e2e/studio-project-list.test.ts"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T02:07:23.056503+00:00",
+    "exit": 0,
+    "seconds": 37.471,
+    "privateLog": "private/list-production.log",
+    "logSha256": "d16c731c5a4c4b444e4ba6a731c71a6405ad7404d608637f5f8573c732430639",
+    "logBytes": 1561
+  },
+  {
+    "label": "list-development",
+    "argv": [
+      "pnpm",
+      "exec",
+      "playwright",
+      "test",
+      "e2e/studio-project-list.test.ts"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
+    "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "startedUtc": "2026-10-14T02:08:00.569475+00:00",
+    "exit": 0,
+    "seconds": 55.533,
+    "privateLog": "private/list-development.log",
+    "logSha256": "0ee7fb9431bf2b9ddea119a287895fa02c6fd0297e1faa6bd61c2330ac4d27d7",
+    "logBytes": 4949
+  }
+]

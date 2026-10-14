@@ -1,0 +1,1172 @@
+{
+  "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+  "oldSource": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+  "oldHelperSHA256": "8158be47a910bffc00ce9d3ab982bdb93bd578172d02177b888c52a4011001c0",
+  "newHelperSHA256": "6e6ef5e5e6e997498f9981493ba49efe5b82b4b4c07245a16e8e87881360a6e7",
+  "substitution": "old exact helper/CRC plus equivalent node:assert comparisons; new exact transpiled helper",
+  "rows": [
+    {
+      "file": "evidence/zip-controls/0-normal.zip",
+      "pair": 0,
+      "case": "normal",
+      "expectedAccepted": true,
+      "pythonAccepted": true,
+      "error": null,
+      "sha256": "db67f78bc7ab1c4fdc4bce5efb49ba8b6c06dec0f5766043ba8156d441448848",
+      "bytes": 70794,
+      "artifact": {
+        "source": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+        "exportBuildId": "step05-pack-f5740c1fd0e9-9ae629ccc89e4092",
+        "manifestSHA256": "32adb02c179458ae8ce69a5653d658699650537427f9ac8a6d32388ba3a670a4",
+        "profileSHA256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+        "members": {
+          "A1.png": {
+            "bytes": 3924,
+            "sha256": "c97ad74df1a85796133c950281873431f09876d78a7a4dd89c5f5f1958f22c91"
+          },
+          "A2.png": {
+            "bytes": 2457,
+            "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+          },
+          "INSTALL.md": {
+            "bytes": 1474,
+            "sha256": "61914127420dfe50ff72afc3354c6c60e10984760875a078f183573dbc570835"
+          },
+          "history.json": {
+            "bytes": 3,
+            "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+          },
+          "layout.json": {
+            "bytes": 10213,
+            "sha256": "d3d5d94f178f7630640c82f57b9299bcd73d5833274138c9de54b7056fbee87e"
+          },
+          "manifest.json": {
+            "bytes": 15643,
+            "sha256": "32adb02c179458ae8ce69a5653d658699650537427f9ac8a6d32388ba3a670a4"
+          },
+          "pack.json": {
+            "bytes": 10302,
+            "sha256": "a39273cc9789d70eee22ac32211b9607f5d736421b1b687e3fe289b7a1350c18"
+          },
+          "sources.json": {
+            "bytes": 25990,
+            "sha256": "b3eb3745bf1f108d79a758c05c5ede8447008f6ce959a1c6d9eddcfdadc295ed"
+          }
+        },
+        "PNG": [
+          {
+            "name": "A1.png",
+            "size": [
+              768,
+              576
+            ],
+            "RGBAsha256": "23c1b6515c916d502840f71e2334af7aebf5f19a809d1ca189a252e870439489"
+          },
+          {
+            "name": "A2.png",
+            "size": [
+              768,
+              576
+            ],
+            "RGBAsha256": "decae08380f3a2cf525dacb9e566ad35fb22babfa884f00e603287c7562f2a21"
+          }
+        ]
+      },
+      "oldHelperAccepted": true,
+      "newHelperAccepted": true
+    },
+    {
+      "file": "evidence/zip-controls/0-r7-original-bad.zip",
+      "pair": 0,
+      "case": "r7-original-bad",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "53e745d39ec2356311f28d1d9fd33adfca2239582dde5546f86f6cad12686f01",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-crc.zip",
+      "pair": 0,
+      "case": "central-crc",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "53e745d39ec2356311f28d1d9fd33adfca2239582dde5546f86f6cad12686f01",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-name.zip",
+      "pair": 0,
+      "case": "central-name",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central safe unique name",
+      "sha256": "06e5d604cdc12b25abcd1a52ea93342e25dc07839e039254bcf888c9d56bbbeb",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: safe exact member name"
+    },
+    {
+      "file": "evidence/zip-controls/0-eocd-count.zip",
+      "pair": 0,
+      "case": "eocd-count",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD disk/count",
+      "sha256": "fec79778ff295f2125205f2fdf959ad9fb69c8d480fe007c706c4bf9bd1b8494",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "file": "evidence/zip-controls/0-local-crc.zip",
+      "pair": 0,
+      "case": "local-crc",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local actual CRC",
+      "sha256": "2f01ef5e134db14e813bdc3a85b1e533dccefbc41cbba632ebe89006adbed4e0",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 1157627187\n- 1157627186\n           ^\n",
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/0-payload.zip",
+      "pair": 0,
+      "case": "payload",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local actual CRC",
+      "sha256": "76decc98060a5a9863e6561ea97e66ec29fbea858cd2611a3079f18e274d68d5",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 2537934682\n- 1157627187\n",
+      "newError": "Standard ZIP: payload CRC"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-made.zip",
+      "pair": 0,
+      "case": "central-made",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central format/version",
+      "sha256": "43ae911b52d08e64bd4145ed8b3214c30cf501af15653d6b48313a4a4af74a57",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: version"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-needed.zip",
+      "pair": 0,
+      "case": "central-needed",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central format/version",
+      "sha256": "a0ad1bbf638e83991d497a5ffd27f2b2975d1f5a14e8fe9741a806e812c5b84f",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: version"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-flags.zip",
+      "pair": 0,
+      "case": "central-flags",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "aaa9e8435d8420900e572ace7090c60779d5a4e8ee14f1b805eec2520efc2c24",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central flags/method"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-method.zip",
+      "pair": 0,
+      "case": "central-method",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "f298c70d08932774da718cbd484360fe59313266bc18f5ff9ecf716023ea5c29",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central flags/method"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-time.zip",
+      "pair": 0,
+      "case": "central-time",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "3b82fb0339232a2251d1d2eac84661e96ec052dd8139f0f6a283deb5b8c4dcfd",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central time/date"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-date.zip",
+      "pair": 0,
+      "case": "central-date",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "fcd14fe54976b4b7e6f1e2765b14ad36e48f7a6a58256668ef32cdf1175f1355",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central time/date"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-uncompressed.zip",
+      "pair": 0,
+      "case": "central-uncompressed",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central lengths",
+      "sha256": "8e35c65a34521960035e20a92a2b6b8d801e61b949e4bc5345b46b27a4cf19bf",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central stored lengths"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-name-length.zip",
+      "pair": 0,
+      "case": "central-name-length",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central name bounds",
+      "sha256": "a434421fe84065b325ab168b6b2c3ebeeed671254c4273b894c2ae45fb63fc25",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: record bounds"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-extra.zip",
+      "pair": 0,
+      "case": "central-extra",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "611d0b27381746c9a15b7031b9a749d74e9b3de61290f6eead523ff9e5376a5a",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central extra/comment"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-comment.zip",
+      "pair": 0,
+      "case": "central-comment",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "bf7f0f44795d426e3d386438eb39baa4af1c92d41c8a398507d14bf6354b2d57",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central extra/comment"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-disk.zip",
+      "pair": 0,
+      "case": "central-disk",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "505ba41d5d65146aa8bd65e1b712a42fe99a614b9494d481ae58ad7102f12e84",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central disk/attributes"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-internalattr.zip",
+      "pair": 0,
+      "case": "central-internalattr",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "120d0e44b201c8d54a025468e04ab6032f8837a1be798d0de6012871f02ac7fd",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central disk/attributes"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-externalattr.zip",
+      "pair": 0,
+      "case": "central-externalattr",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central unsupported metadata",
+      "sha256": "e307ea75e1e33565be2ab7f8457d4b01c3cc39672a734d41718e4f6dde93f555",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central disk/attributes"
+    },
+    {
+      "file": "evidence/zip-controls/0-central-offset.zip",
+      "pair": 0,
+      "case": "central-offset",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "48ebe9a43046400c908cb7ad0375885bf0afbec472ad0061b266807f57146ba0",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: record bounds"
+    },
+    {
+      "file": "evidence/zip-controls/0-local-ver.zip",
+      "pair": 0,
+      "case": "local-ver",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local format/version",
+      "sha256": "7f789226729d107d2330ec8839569d3c1a2068f6a362666602f5959e83a8a47e",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local version"
+    },
+    {
+      "file": "evidence/zip-controls/0-local-flags.zip",
+      "pair": 0,
+      "case": "local-flags",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local unsupported metadata",
+      "sha256": "646c0114bb0fe474f2fbcefc82ee4e346b81020076e2f85902c43edf4d9a6b96",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local flags/method"
+    },
+    {
+      "file": "evidence/zip-controls/0-local-method.zip",
+      "pair": 0,
+      "case": "local-method",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local unsupported metadata",
+      "sha256": "07596eb9fa7bcf41abe14b385f6ec948ff2272f0d39a8e32e1b160485aeb089d",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n\n8 !== 0\n",
+      "newError": "Standard ZIP: local flags/method"
+    },
+    {
+      "file": "evidence/zip-controls/0-local-date.zip",
+      "pair": 0,
+      "case": "local-date",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local unsupported metadata",
+      "sha256": "fc7bdb2a4d5e20e691502f41bd386405a2d392890ef54b5fd8d1c5f2a40c0f64",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local time/date"
+    },
+    {
+      "file": "evidence/zip-controls/0-local-size.zip",
+      "pair": 0,
+      "case": "local-size",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local lengths",
+      "sha256": "f418e4102fb9bb4c4dd45a3213ebc6cf26445bcb86f590e7fda4eea30e1cdae5",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n\n3924 !== 1\n",
+      "newError": "Standard ZIP: local/central lengths"
+    },
+    {
+      "file": "evidence/zip-controls/0-local-usize.zip",
+      "pair": 0,
+      "case": "local-usize",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local lengths",
+      "sha256": "7d626c72f8c041d4c971c0c5882a290e5223a4d18a3f0cfe540a0589bd005644",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n\n1 !== 3924\n",
+      "newError": "Standard ZIP: local/central lengths"
+    },
+    {
+      "file": "evidence/zip-controls/0-local-extra.zip",
+      "pair": 0,
+      "case": "local-extra",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local unsupported metadata",
+      "sha256": "dc8861bce69d597b4f55e738e0ff0ca96eb216e9c10851afd8b3fc705c2d90de",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 2127133278\n- 1157627187\n",
+      "newError": "Standard ZIP: local extra"
+    },
+    {
+      "file": "evidence/zip-controls/0-eocd-disk.zip",
+      "pair": 0,
+      "case": "eocd-disk",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD disk/count",
+      "sha256": "47163daa6edb935f380a86f151cebd21c9d79df46fa73d6ca25b498e91271490",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD disk"
+    },
+    {
+      "file": "evidence/zip-controls/0-eocd-centraldisk.zip",
+      "pair": 0,
+      "case": "eocd-centraldisk",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD disk/count",
+      "sha256": "3ec39e2d5ee06a65c04826d647e3af790fa88287fe40a8b07151795542adb782",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD disk"
+    },
+    {
+      "file": "evidence/zip-controls/0-eocd-countdisagree.zip",
+      "pair": 0,
+      "case": "eocd-countdisagree",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD disk/count",
+      "sha256": "7bc58bcaf80d6e2148fbe20363922347d7a82e2ffb83df4e2f17a32d10ea73ac",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "file": "evidence/zip-controls/0-eocd-size.zip",
+      "pair": 0,
+      "case": "eocd-size",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory bounds",
+      "sha256": "8da0004920e70d75345b65a24588cc3a957fdee36a28d1fa4ab2aca4f4523d0c",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central directory extent"
+    },
+    {
+      "file": "evidence/zip-controls/0-eocd-offset.zip",
+      "pair": 0,
+      "case": "eocd-offset",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory bounds",
+      "sha256": "63e542279402a1bbf3062e5a47ee2bf11e3ec484cda618a58dadf6562b5a2d27",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: record bounds"
+    },
+    {
+      "file": "evidence/zip-controls/0-eocd-comment.zip",
+      "pair": 0,
+      "case": "eocd-comment",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD comment",
+      "sha256": "5ca37ce5a63748f9c76fb96c22a4aef7ca11a37d767e9a1d121f59a7867de9c6",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD comment"
+    },
+    {
+      "file": "evidence/zip-controls/0-zip64-count.zip",
+      "pair": 0,
+      "case": "zip64-count",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD disk/count",
+      "sha256": "3e7383f88f1516551eed42f58ac58144c29e5038245f1e8fbc33ccf07c7e8861",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "file": "evidence/zip-controls/0-duplicate-central-name.zip",
+      "pair": 0,
+      "case": "duplicate-central-name",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central safe unique name",
+      "sha256": "d98efd1cab7604561f274baa1ee6bd9324bfa7fc6f127fe65a957e92ce21bd1d",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: unique central member"
+    },
+    {
+      "file": "evidence/zip-controls/0-duplicate-offset.zip",
+      "pair": 0,
+      "case": "duplicate-offset",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "cc3242ab7d6e441594d1f37b5997284d06abf2b6d57b3d5a87563c2113021a00",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/0-safe-mismatched-central-name.zip",
+      "pair": 0,
+      "case": "safe-mismatched-central-name",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "08d9eba792b5aa397ee9881f3c4ac50d628a91cc00f2b9dda631cc01af19fa8b",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central name"
+    },
+    {
+      "file": "evidence/zip-controls/0-empty.zip",
+      "pair": 0,
+      "case": "empty",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "short archive",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Attempt to access memory outside buffer bounds",
+      "newError": "Standard ZIP: record bounds"
+    },
+    {
+      "file": "evidence/zip-controls/0-truncated.zip",
+      "pair": 0,
+      "case": "truncated",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD at EOF",
+      "sha256": "ef5d881b178b2798cfe3fcc0f73c448e393ca388e3a8ab1ed4fa69d0de9c572d",
+      "bytes": 70793,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: exact EOCD / no trailing bytes"
+    },
+    {
+      "file": "evidence/zip-controls/0-truncated-before-directory.zip",
+      "pair": 0,
+      "case": "truncated-before-directory",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD at EOF",
+      "sha256": "51ce7a8120ad7e1eb0a7c91ec9d0a1f02660574f9dc9311065e421ae0822b171",
+      "bytes": 70325,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "The value of \"offset\" is out of range. It must be >= 0 and <= 70321. Received 70325",
+      "newError": "Standard ZIP: exact EOCD / no trailing bytes"
+    },
+    {
+      "file": "evidence/zip-controls/0-trailing.zip",
+      "pair": 0,
+      "case": "trailing",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD at EOF",
+      "sha256": "b7720b860594d63e5b21c134ef7850df17b54841f05ad60d949a3a858e2ddd34",
+      "bytes": 70795,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: exact EOCD / no trailing bytes"
+    },
+    {
+      "file": "evidence/zip-controls/0-prefix.zip",
+      "pair": 0,
+      "case": "prefix",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory bounds",
+      "sha256": "aec314fcfc7641bb9c311fbfafba1b899de72c8c6938a1a02052717c452e931b",
+      "bytes": 70795,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ []\n- [\n-   'A1.png',\n-   'A2.png',\n-   'INSTALL.md',\n-   'history.json',\n-   'layout.json',\n-   'manifest.json',\n-   'pack.json',\n-   'sources.json'\n- ]\n",
+      "newError": "Standard ZIP: central directory extent"
+    },
+    {
+      "file": "evidence/zip-controls/0-zip64-locator.zip",
+      "pair": 0,
+      "case": "zip64-locator",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory bounds",
+      "sha256": "1ec6c1ae8d75deee363bc7561e5fb84f3e914ed0bcc1b35d18d1ec44a4c5da50",
+      "bytes": 70814,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: central directory extent"
+    },
+    {
+      "file": "evidence/zip-controls/0-gap-consistent-directory.zip",
+      "pair": 0,
+      "case": "gap-consistent-directory",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local bounds",
+      "sha256": "e5534e2cc6d564d83de04ce0245c89ffac354b149820d5cb84e3e83359dfd638",
+      "bytes": 70795,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local data extent"
+    },
+    {
+      "file": "evidence/zip-controls/1-normal.zip",
+      "pair": 1,
+      "case": "normal",
+      "expectedAccepted": true,
+      "pythonAccepted": true,
+      "error": null,
+      "sha256": "5567030458143c5b21d1e141b6e19f8c95e2860602d584851e9f5617b93ae2c6",
+      "bytes": 106511,
+      "artifact": {
+        "source": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+        "exportBuildId": "step05-pack-f5740c1fd0e9-bd1c3264d43af66f",
+        "manifestSHA256": "33010a6d599ca1fbe66380f1ce746080def3ce84f79deb0d6ffed9b177ba28db",
+        "profileSHA256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+        "members": {
+          "A1.png": {
+            "bytes": 3868,
+            "sha256": "94560ba4d05afa4730a03fb1403610d32b67da521457b42e6fc99cf6931879f2"
+          },
+          "A2.png": {
+            "bytes": 2457,
+            "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+          },
+          "INSTALL.md": {
+            "bytes": 1474,
+            "sha256": "482fcf4055224a308efff3d22b4f448af3d86c582859795402931c329c1159c1"
+          },
+          "history.json": {
+            "bytes": 10940,
+            "sha256": "e6dee80ebb88a7cbc9275b7590ead68d20aa30c71e9e58b1664db4cf45259e8f"
+          },
+          "layout.json": {
+            "bytes": 10213,
+            "sha256": "bdd82a05ae22f97d14d926025e3056b251b524ad7106055bd849dc7d5c605d51"
+          },
+          "manifest.json": {
+            "bytes": 15709,
+            "sha256": "33010a6d599ca1fbe66380f1ce746080def3ce84f79deb0d6ffed9b177ba28db"
+          },
+          "pack.json": {
+            "bytes": 10364,
+            "sha256": "0687aa63cb7e751b5864b6e8b4bf52935e69944505954bf536da722d95e037b1"
+          },
+          "sources.json": {
+            "bytes": 50698,
+            "sha256": "cffc53c05fc2606353260e3008abbd8b9cd4612c8ee48dc3bee7b556856b4cdf"
+          }
+        },
+        "PNG": [
+          {
+            "name": "A1.png",
+            "size": [
+              768,
+              576
+            ],
+            "RGBAsha256": "d8c07fb2d245c7b10c5f2bd1e1ba066a2450a256830add49f04f4e276b3ef6a1"
+          },
+          {
+            "name": "A2.png",
+            "size": [
+              768,
+              576
+            ],
+            "RGBAsha256": "decae08380f3a2cf525dacb9e566ad35fb22babfa884f00e603287c7562f2a21"
+          }
+        ]
+      },
+      "oldHelperAccepted": true,
+      "newHelperAccepted": true
+    },
+    {
+      "file": "evidence/zip-controls/1-r7-original-bad.zip",
+      "pair": 1,
+      "case": "r7-original-bad",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "e306ba53d2c4883419dbea1ed5a5612da5be2243fd2aeae15062b237e7fa5fef",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/1-central-crc.zip",
+      "pair": 1,
+      "case": "central-crc",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "e306ba53d2c4883419dbea1ed5a5612da5be2243fd2aeae15062b237e7fa5fef",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/1-central-name.zip",
+      "pair": 1,
+      "case": "central-name",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central safe unique name",
+      "sha256": "80fe985912ca814d8c3cbedaa9a212f8c6eebd2bda03343e06755199800d0040",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: safe exact member name"
+    },
+    {
+      "file": "evidence/zip-controls/1-eocd-count.zip",
+      "pair": 1,
+      "case": "eocd-count",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD disk/count",
+      "sha256": "fac78d428782948224ad55814c25fff3ce1fb8a4b98bcecb09a706ba5435e822",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "file": "evidence/zip-controls/1-local-crc.zip",
+      "pair": 1,
+      "case": "local-crc",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local actual CRC",
+      "sha256": "7d3b4483e8889eff628ffa104e69a8fb892a60c27373b2f9ccf1fa7e91fb17b1",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 3693877792\n- 3693877793\n           ^\n",
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/1-payload.zip",
+      "pair": 1,
+      "case": "payload",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local actual CRC",
+      "sha256": "080fb19f1b77df1daa4a5855df7fb3fe81259471f1f620dc6e7141e4a005497c",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 3044324652\n- 3693877792\n",
+      "newError": "Standard ZIP: payload CRC"
+    },
+    {
+      "file": "evidence/zip-controls/2-normal.zip",
+      "pair": 2,
+      "case": "normal",
+      "expectedAccepted": true,
+      "pythonAccepted": true,
+      "error": null,
+      "sha256": "db67f78bc7ab1c4fdc4bce5efb49ba8b6c06dec0f5766043ba8156d441448848",
+      "bytes": 70794,
+      "artifact": {
+        "source": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+        "exportBuildId": "step05-pack-f5740c1fd0e9-9ae629ccc89e4092",
+        "manifestSHA256": "32adb02c179458ae8ce69a5653d658699650537427f9ac8a6d32388ba3a670a4",
+        "profileSHA256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+        "members": {
+          "A1.png": {
+            "bytes": 3924,
+            "sha256": "c97ad74df1a85796133c950281873431f09876d78a7a4dd89c5f5f1958f22c91"
+          },
+          "A2.png": {
+            "bytes": 2457,
+            "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+          },
+          "INSTALL.md": {
+            "bytes": 1474,
+            "sha256": "61914127420dfe50ff72afc3354c6c60e10984760875a078f183573dbc570835"
+          },
+          "history.json": {
+            "bytes": 3,
+            "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+          },
+          "layout.json": {
+            "bytes": 10213,
+            "sha256": "d3d5d94f178f7630640c82f57b9299bcd73d5833274138c9de54b7056fbee87e"
+          },
+          "manifest.json": {
+            "bytes": 15643,
+            "sha256": "32adb02c179458ae8ce69a5653d658699650537427f9ac8a6d32388ba3a670a4"
+          },
+          "pack.json": {
+            "bytes": 10302,
+            "sha256": "a39273cc9789d70eee22ac32211b9607f5d736421b1b687e3fe289b7a1350c18"
+          },
+          "sources.json": {
+            "bytes": 25990,
+            "sha256": "b3eb3745bf1f108d79a758c05c5ede8447008f6ce959a1c6d9eddcfdadc295ed"
+          }
+        },
+        "PNG": [
+          {
+            "name": "A1.png",
+            "size": [
+              768,
+              576
+            ],
+            "RGBAsha256": "23c1b6515c916d502840f71e2334af7aebf5f19a809d1ca189a252e870439489"
+          },
+          {
+            "name": "A2.png",
+            "size": [
+              768,
+              576
+            ],
+            "RGBAsha256": "decae08380f3a2cf525dacb9e566ad35fb22babfa884f00e603287c7562f2a21"
+          }
+        ]
+      },
+      "oldHelperAccepted": true,
+      "newHelperAccepted": true
+    },
+    {
+      "file": "evidence/zip-controls/2-r7-original-bad.zip",
+      "pair": 2,
+      "case": "r7-original-bad",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "53e745d39ec2356311f28d1d9fd33adfca2239582dde5546f86f6cad12686f01",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/2-central-crc.zip",
+      "pair": 2,
+      "case": "central-crc",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "53e745d39ec2356311f28d1d9fd33adfca2239582dde5546f86f6cad12686f01",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/2-central-name.zip",
+      "pair": 2,
+      "case": "central-name",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central safe unique name",
+      "sha256": "06e5d604cdc12b25abcd1a52ea93342e25dc07839e039254bcf888c9d56bbbeb",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: safe exact member name"
+    },
+    {
+      "file": "evidence/zip-controls/2-eocd-count.zip",
+      "pair": 2,
+      "case": "eocd-count",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD disk/count",
+      "sha256": "fec79778ff295f2125205f2fdf959ad9fb69c8d480fe007c706c4bf9bd1b8494",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "file": "evidence/zip-controls/2-local-crc.zip",
+      "pair": 2,
+      "case": "local-crc",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local actual CRC",
+      "sha256": "2f01ef5e134db14e813bdc3a85b1e533dccefbc41cbba632ebe89006adbed4e0",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 1157627187\n- 1157627186\n           ^\n",
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/2-payload.zip",
+      "pair": 2,
+      "case": "payload",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local actual CRC",
+      "sha256": "76decc98060a5a9863e6561ea97e66ec29fbea858cd2611a3079f18e274d68d5",
+      "bytes": 70794,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 2537934682\n- 1157627187\n",
+      "newError": "Standard ZIP: payload CRC"
+    },
+    {
+      "file": "evidence/zip-controls/3-normal.zip",
+      "pair": 3,
+      "case": "normal",
+      "expectedAccepted": true,
+      "pythonAccepted": true,
+      "error": null,
+      "sha256": "5567030458143c5b21d1e141b6e19f8c95e2860602d584851e9f5617b93ae2c6",
+      "bytes": 106511,
+      "artifact": {
+        "source": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+        "exportBuildId": "step05-pack-f5740c1fd0e9-bd1c3264d43af66f",
+        "manifestSHA256": "33010a6d599ca1fbe66380f1ce746080def3ce84f79deb0d6ffed9b177ba28db",
+        "profileSHA256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+        "members": {
+          "A1.png": {
+            "bytes": 3868,
+            "sha256": "94560ba4d05afa4730a03fb1403610d32b67da521457b42e6fc99cf6931879f2"
+          },
+          "A2.png": {
+            "bytes": 2457,
+            "sha256": "ce800dd337e00e1dc37caf86b7e03eabf7673666b25b47806d5405be1247b2e0"
+          },
+          "INSTALL.md": {
+            "bytes": 1474,
+            "sha256": "482fcf4055224a308efff3d22b4f448af3d86c582859795402931c329c1159c1"
+          },
+          "history.json": {
+            "bytes": 10940,
+            "sha256": "e6dee80ebb88a7cbc9275b7590ead68d20aa30c71e9e58b1664db4cf45259e8f"
+          },
+          "layout.json": {
+            "bytes": 10213,
+            "sha256": "bdd82a05ae22f97d14d926025e3056b251b524ad7106055bd849dc7d5c605d51"
+          },
+          "manifest.json": {
+            "bytes": 15709,
+            "sha256": "33010a6d599ca1fbe66380f1ce746080def3ce84f79deb0d6ffed9b177ba28db"
+          },
+          "pack.json": {
+            "bytes": 10364,
+            "sha256": "0687aa63cb7e751b5864b6e8b4bf52935e69944505954bf536da722d95e037b1"
+          },
+          "sources.json": {
+            "bytes": 50698,
+            "sha256": "cffc53c05fc2606353260e3008abbd8b9cd4612c8ee48dc3bee7b556856b4cdf"
+          }
+        },
+        "PNG": [
+          {
+            "name": "A1.png",
+            "size": [
+              768,
+              576
+            ],
+            "RGBAsha256": "d8c07fb2d245c7b10c5f2bd1e1ba066a2450a256830add49f04f4e276b3ef6a1"
+          },
+          {
+            "name": "A2.png",
+            "size": [
+              768,
+              576
+            ],
+            "RGBAsha256": "decae08380f3a2cf525dacb9e566ad35fb22babfa884f00e603287c7562f2a21"
+          }
+        ]
+      },
+      "oldHelperAccepted": true,
+      "newHelperAccepted": true
+    },
+    {
+      "file": "evidence/zip-controls/3-r7-original-bad.zip",
+      "pair": 3,
+      "case": "r7-original-bad",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "e306ba53d2c4883419dbea1ed5a5612da5be2243fd2aeae15062b237e7fa5fef",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/3-central-crc.zip",
+      "pair": 3,
+      "case": "central-crc",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "directory identity mismatch",
+      "sha256": "e306ba53d2c4883419dbea1ed5a5612da5be2243fd2aeae15062b237e7fa5fef",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/3-central-name.zip",
+      "pair": 3,
+      "case": "central-name",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "central safe unique name",
+      "sha256": "80fe985912ca814d8c3cbedaa9a212f8c6eebd2bda03343e06755199800d0040",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: safe exact member name"
+    },
+    {
+      "file": "evidence/zip-controls/3-eocd-count.zip",
+      "pair": 3,
+      "case": "eocd-count",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "EOCD disk/count",
+      "sha256": "fac78d428782948224ad55814c25fff3ce1fb8a4b98bcecb09a706ba5435e822",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": true,
+      "newHelperAccepted": false,
+      "newError": "Standard ZIP: EOCD member counts"
+    },
+    {
+      "file": "evidence/zip-controls/3-local-crc.zip",
+      "pair": 3,
+      "case": "local-crc",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local actual CRC",
+      "sha256": "7d3b4483e8889eff628ffa104e69a8fb892a60c27373b2f9ccf1fa7e91fb17b1",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 3693877792\n- 3693877793\n           ^\n",
+      "newError": "Standard ZIP: local/central CRC"
+    },
+    {
+      "file": "evidence/zip-controls/3-payload.zip",
+      "pair": 3,
+      "case": "payload",
+      "expectedAccepted": false,
+      "pythonAccepted": false,
+      "error": "local actual CRC",
+      "sha256": "080fb19f1b77df1daa4a5855df7fb3fe81259471f1f620dc6e7141e4a005497c",
+      "bytes": 106511,
+      "artifact": null,
+      "oldHelperAccepted": false,
+      "newHelperAccepted": false,
+      "oldError": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 3044324652\n- 3693877792\n",
+      "newError": "Standard ZIP: payload CRC"
+    }
+  ]
+}

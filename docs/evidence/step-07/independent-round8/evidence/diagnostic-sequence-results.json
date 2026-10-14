@@ -1,0 +1,96 @@
+[
+  {
+    "variant": "delay",
+    "actualExit": 0,
+    "expectedExit": 0,
+    "correct": true,
+    "meaning": "NORMAL_LEGAL_DELAY_FULL_SIXPHASE_PASS",
+    "capturePrivateRelative": "private/wire4-delay",
+    "sameCase180000": true,
+    "formalSourceUnchanged": true
+  },
+  {
+    "variant": "fault-0",
+    "actualExit": 1,
+    "expectedExit": 1,
+    "correct": true,
+    "meaning": "EXPECTED_BAD_CONTAINER_REJECTION_NOT_ARTIFACT_PASS",
+    "capturePrivateRelative": "private/wire4-fault-0",
+    "sameCase180000": true,
+    "formalSourceUnchanged": true,
+    "mutation": {
+      "index": 0,
+      "url": "http://127.0.0.1:4393/api/projects/9432cb84-5b59-487e-a944-110c5af3f280/builds/585f135e75a67c26fffb6485f8e912350564374c549b5b937a47a1ae3adf07d6/download",
+      "status": 200,
+      "originalSHA": "6a19636bdd842010bd30a938852f2da7c778fe63fa85cfca49092221b3d8032e",
+      "badSHA": "c29bc2001c59143779c6a2dcf33dbd1cf24f9f5a08f4ae597495f55966e9f84f",
+      "centralCRCBitChanged": true,
+      "offset": 70341,
+      "outerBodySHARecomputed": "c29bc2001c59143779c6a2dcf33dbd1cf24f9f5a08f4ae597495f55966e9f84f",
+      "exportManifestHeader": "4e681108eeeaed39c231fc73ccc1f0bc5214b40d0ffbfb3262a56beff84fc0ac"
+    }
+  },
+  {
+    "variant": "fault-1",
+    "actualExit": 1,
+    "expectedExit": 1,
+    "correct": true,
+    "meaning": "EXPECTED_BAD_CONTAINER_REJECTION_NOT_ARTIFACT_PASS",
+    "capturePrivateRelative": "private/wire4-fault-1",
+    "sameCase180000": true,
+    "formalSourceUnchanged": true,
+    "mutation": {
+      "index": 1,
+      "url": "http://127.0.0.1:4393/api/projects/02ed8383-f033-4950-b991-36a4108d6b04/builds/fb2d5328b8370e1874e06f6c545f874f77abeafb0b1e82da41975dd217cc1a58/download",
+      "status": 200,
+      "originalSHA": "ab29bae407d80f15bbf9a4c818a6f4d8a49476fcb0806f145ed25d9a8ad24205",
+      "badSHA": "07bca2b1acd8c4d4a3d089597cb70a5d1179ba9b2c1af4e45a5c101f0c3f0884",
+      "centralCRCBitChanged": true,
+      "offset": 106058,
+      "outerBodySHARecomputed": "07bca2b1acd8c4d4a3d089597cb70a5d1179ba9b2c1af4e45a5c101f0c3f0884",
+      "exportManifestHeader": "3cfcb21653758efbb77901cb950f08e7e218cd96b1d538f3927dab86412a596b"
+    }
+  },
+  {
+    "variant": "fault-2",
+    "actualExit": 1,
+    "expectedExit": 1,
+    "correct": true,
+    "meaning": "EXPECTED_BAD_CONTAINER_REJECTION_NOT_ARTIFACT_PASS",
+    "capturePrivateRelative": "private/wire4-fault-2",
+    "sameCase180000": true,
+    "formalSourceUnchanged": true,
+    "mutation": {
+      "index": 2,
+      "url": "http://127.0.0.1:4393/api/projects/8e035613-9f4f-4947-97af-8f3d86d5eeda/builds/ca90c75f00f38a0bf3acebb4dd0eb50dec67e505bf7f3947ce1d5b448f6c6787/download",
+      "status": 200,
+      "originalSHA": "6a19636bdd842010bd30a938852f2da7c778fe63fa85cfca49092221b3d8032e",
+      "badSHA": "c29bc2001c59143779c6a2dcf33dbd1cf24f9f5a08f4ae597495f55966e9f84f",
+      "centralCRCBitChanged": true,
+      "offset": 70341,
+      "outerBodySHARecomputed": "c29bc2001c59143779c6a2dcf33dbd1cf24f9f5a08f4ae597495f55966e9f84f",
+      "exportManifestHeader": "4e681108eeeaed39c231fc73ccc1f0bc5214b40d0ffbfb3262a56beff84fc0ac"
+    }
+  },
+  {
+    "variant": "fault-3",
+    "actualExit": 1,
+    "expectedExit": 1,
+    "correct": true,
+    "meaning": "EXPECTED_BAD_CONTAINER_REJECTION_NOT_ARTIFACT_PASS",
+    "capturePrivateRelative": "private/wire4-fault-3",
+    "sameCase180000": true,
+    "formalSourceUnchanged": true,
+    "mutation": {
+      "index": 3,
+      "url": "http://127.0.0.1:4393/api/projects/9c4198d4-9b15-4c46-8197-0a9987897132/builds/5cddfc9aa633533775d04e78b753f40b11c13fb5762e43d98f075847031b878c/download",
+      "status": 200,
+      "originalSHA": "ab29bae407d80f15bbf9a4c818a6f4d8a49476fcb0806f145ed25d9a8ad24205",
+      "badSHA": "07bca2b1acd8c4d4a3d089597cb70a5d1179ba9b2c1af4e45a5c101f0c3f0884",
+      "centralCRCBitChanged": true,
+      "offset": 106058,
+      "outerBodySHARecomputed": "07bca2b1acd8c4d4a3d089597cb70a5d1179ba9b2c1af4e45a5c101f0c3f0884",
+      "exportManifestHeader": "3cfcb21653758efbb77901cb950f08e7e218cd96b1d538f3927dab86412a596b"
+    }
+  }
+]
