@@ -6,6 +6,7 @@ import sharp from 'sharp';
 import { loadNativeOracle, nativeRects } from '../scripts/mz-oracle.js';
 import { Persistence, resolveAssetRoot } from '@tileset/persistence';
 import type { Resources } from '../apps/api/src/studio-service.js';
+import { loadE2EEnvironment } from './environment.js';
 const mode = process.env['E2E_MODE'] === 'dev' ? 'dev' : 'production';
 const sha = (b: Uint8Array) => createHash('sha256').update(b).digest('hex');
 const screenshotRoot = resolve('.local/step07/browser', mode);
@@ -391,13 +392,13 @@ test('project switches keep real build/recipe identities coherent while data is 
   page,
 }) => {
   test.setTimeout(180000);
+  const environment = loadE2EEnvironment();
   await mkdir(screenshotRoot, { recursive: true });
-  process.loadEnvFile('.env');
   const resources = JSON.parse(
       await readFile('apps/api/dist/resources/studio.json', 'utf8'),
     ) as Resources,
     store = new Persistence(
-      process.env['DATABASE_URL']!,
+      environment.DATABASE_URL,
       await resolveAssetRoot(process.env),
       resources.profile,
     ),
@@ -549,7 +550,7 @@ test('project switches keep real build/recipe identities coherent while data is 
     expect(responses.filter((r) => r.status >= 400)).toEqual([]);
     expect(errors).toEqual([]);
     const check = new Persistence(
-      process.env['DATABASE_URL']!,
+      environment.DATABASE_URL,
       await resolveAssetRoot(process.env),
       resources.profile,
     );
