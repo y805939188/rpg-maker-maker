@@ -1,0 +1,21 @@
+{
+  "parser": "project pinned yaml 2.9.1",
+  "exactSingleLineMove": true,
+  "semanticEqualityExceptMove": true,
+  "uniqueInstall": 1,
+  "firstBrowserConsumer": "pnpm check",
+  "runSteps": [
+    "pnpm install --frozen-lockfile",
+    "pnpm db:generate",
+    "pnpm exec playwright install --with-deps chromium",
+    "pnpm check",
+    "pnpm test:dev-privacy",
+    "pnpm db:migrate",
+    "pnpm test:integration",
+    "TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+    "TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+    "pnpm test:e2e",
+    "E2E_MODE=dev pnpm test:e2e"
+  ],
+  "unchangedPinsPermissionsServicesEnvBudgets": true
+}

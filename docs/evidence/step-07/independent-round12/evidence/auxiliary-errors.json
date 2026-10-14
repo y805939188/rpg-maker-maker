@@ -1,0 +1,45 @@
+[
+  {
+    "operation": "workflow YAML helper v1",
+    "actual": "ESM named import version does not exist in pinned CJS module; helper did not execute",
+    "toolChunk": "9b339f",
+    "original": "workflow-audit-v1.mjs",
+    "correction": "removed unused version import in ignored diagnostic only; production/config/test unchanged"
+  },
+  {
+    "operation": "initial filename lookup",
+    "actual": "apps/web/tests/received-resources.test.ts absent; correct file is apps/api/tests/studio/received-resources.test.ts",
+    "toolChunk": "c01abc"
+  },
+  {
+    "operation": "premature check log read",
+    "actual": "log absent while preceding full source audit running",
+    "toolChunk": "2370aa"
+  },
+  {
+    "operation": "attempt to stop completed slow own audit",
+    "actual": "ps -p returned exit1 because audit already finished; guard prevented any signal, no cancellation or production action",
+    "toolChunk": "7c7d3e",
+    "following": "original byte audit completed successfully and cold-check started normally"
+  },
+  {
+    "operation": "original pointer safety allowlist v1",
+    "actual": "own audit refused documentary pointer outside .local at assertion before reading; expected latest author physical artifact and Main R11 originals needed",
+    "toolChunk": "f757fb",
+    "original": "audit-evidence-v1.py",
+    "correction": "allow exact latest author artifact and exact prior R11 evidence directory, read-only hash; no production access or modification"
+  },
+  {
+    "operation": "final canonical read-only snapshot guard v1",
+    "actual": "concurrent Main canonical bytes changed; own tracked/HEAD and service guards had passed, no source mutation",
+    "toolChunk": "290016",
+    "original": "final-audit-v1.py",
+    "correction": "record both canonical hashes and current observed status; do not impose immutable requirement on external Orchestrator-owned state, do not modify it or infer a mutator"
+  },
+  {
+    "operation": "private native error receipt extraction v1",
+    "actual": "looked for function_call_output but functions.exec uses custom_tool_call_output, retained0 and assert refused",
+    "toolChunk": "1bfe35",
+    "correction": "read actual record schema then extracted exact7 original error output JSONL records; no product/config/test or original output changed"
+  }
+]

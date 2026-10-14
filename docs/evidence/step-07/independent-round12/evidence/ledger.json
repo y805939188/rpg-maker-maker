@@ -1,0 +1,308 @@
+{
+  "schema": "step07-independent-review-ledger-v1",
+  "round": 12,
+  "source": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
+  "authorDocsHEAD": "428d981925bc265527b32409f51f9cc5cc149c8c",
+  "result": "PASS_WHOLE_CANDIDATE",
+  "blocking": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "closed": [
+    "STEP07-R11-001"
+  ],
+  "maintainedClosed": [
+    "STEP07-R4-001",
+    "STEP07-R4-002",
+    "STEP07-R4-003",
+    "STEP07-R7-001",
+    "STEP07-R9-001",
+    "R1–R3 original scope"
+  ],
+  "authorReportSHA256": "660a06bb892e6a5f7e4253f220fcf954d90e779f327c1e343e88eeec890481a0",
+  "authorLedgerSHA256": "ef56290ae67e35bd305a2203410c1bb3fc73c259f1f6e94d61b8cedf5e9990d4",
+  "authorPayloadCount": 43,
+  "actualAuthorOriginalCount": 43,
+  "postSourceDocsPaths": 45,
+  "engineeringBuild": "step07-a8f23ef5ad21-98ff2ad493f17c56",
+  "engineeringManifestSHA256": "fad3661d65d8f290ec57f71579d37003db001746e5477fb5f48ccb4e99d3b637",
+  "engineeringPayloads": 206,
+  "profileSHA256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+  "absoluteReviewroot": "/Users/dingshinn/.codex/worktrees/step-07-review-round12/rpg-maker-maker/.local/step07-review",
+  "fileKeyBase": "reviewroot; all files keys relative",
+  "report": "report.md",
+  "progress": "progress.json",
+  "payloadCount": 51,
+  "files": {
+    "evidence/actual-command-summary.json": {
+      "sha256": "1f44640af77e51db46c415767a8a3d8dcc431f717d4be5355f64a6063662564c",
+      "bytes": 7491,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/author-bindings.json": {
+      "sha256": "cd10542cec9be9a2ed128f9812ceefb661d3211fcfaf54925c05596e3dd241a1",
+      "bytes": 256,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/author-ledger.json": {
+      "sha256": "ef56290ae67e35bd305a2203410c1bb3fc73c259f1f6e94d61b8cedf5e9990d4",
+      "bytes": 67727,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/author-payload-original-audit.json": {
+      "sha256": "e511708ebf270c98f86bd7c84c5cf3458d6f8a82f527f6997976ae4515d0be94",
+      "bytes": 20937,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/author-report.md": {
+      "sha256": "660a06bb892e6a5f7e4253f220fcf954d90e779f327c1e343e88eeec890481a0",
+      "bytes": 7729,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/auxiliary-errors.json": {
+      "sha256": "37c032a25ee99ea4e4d0ba937a4df349a8296a6cdf8dfe22698dbd48840a6d9f",
+      "bytes": 2306,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/browser-identity.json": {
+      "sha256": "a64cc43d76f426f49e0824cca60d570e37f1ea63c508e8d4eb14e9a42ae3ff91",
+      "bytes": 484,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/browser-identity.result.json": {
+      "sha256": "432455b9ad9e3a17cae77583ffb6d02730b2aa63da814a61589d8708839db516",
+      "bytes": 261,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/canonical-end-summary.json": {
+      "sha256": "0deb227faf563729b6a260dc77f86f611f5496570f2f95ae25e6cd265904f5e2",
+      "bytes": 415,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/complete-check/cancel-same-url.json": {
+      "sha256": "02059dd14c4c93b47f50ff34cd4b7c390bb79b7bb41f1d82f06fa86aa1e45105",
+      "bytes": 1421,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/complete-check/corrupt-and-hash.json": {
+      "sha256": "0fae2c9c5a6a0282d4a797965cfa5230aa846204b31ad9895130e94e113fac03",
+      "bytes": 1197,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/complete-check/identity-negatives.json": {
+      "sha256": "172c168ce45766e272336a98494dcd7e974c20e28189cf408cb92c9c0a7d543e",
+      "bytes": 423,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/complete-check/late-same-url.json": {
+      "sha256": "8ee2c556d64d3851b5298508a60122cc95e86a27dfaf8235b267436f8d6281eb",
+      "bytes": 810,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/complete-check/navigation.json": {
+      "sha256": "5610f9ba48a1b8eea6eb27636de00e2a0c25641791d7c13e252c0a4638452eb2",
+      "bytes": 1423,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/separate-five/cancel-same-url.json": {
+      "sha256": "db9584d95259466faf4c5797d1bc0758f904390703b967a04b62a876c9da6c0a",
+      "bytes": 1421,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/separate-five/corrupt-and-hash.json": {
+      "sha256": "5b34c6c794f9d6a02e2ba51ededb8298bb475b9e1d0334b72d91a0da2ae7c6fb",
+      "bytes": 1197,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/separate-five/identity-negatives.json": {
+      "sha256": "e0c331427c89bc7866c556d65378b40529cff34da6f59605091d1b75a5bd6f20",
+      "bytes": 423,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/separate-five/late-same-url.json": {
+      "sha256": "6532209b866a44dd697eae289c4eb491b3280b2f71dc8a710c1a56b682f999dd",
+      "bytes": 810,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture/separate-five/navigation.json": {
+      "sha256": "54db84b578dc08eb4793e29e69424007c264cde97843a1bc6ad95023c2a6b60a",
+      "bytes": 1423,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/capture-retention.json": {
+      "sha256": "d503f97dca0b02042c7947bd4f5280f79b8c5145c6c6f917f58b80fe0f7f60e9",
+      "bytes": 4027,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/ci-originals-audit.json": {
+      "sha256": "68f6ee52c8607deadaeb7e6afb64da004ff475305eb822607b2f7af6207a111f",
+      "bytes": 1855,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/cold-browser-install.result.json": {
+      "sha256": "433039ae9ebd46764305668ecbbc2479e6737304b3cf7e106fc25786f8071760",
+      "bytes": 297,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/cold-cache-after.json": {
+      "sha256": "e1a9d747a9e1f5a4ffb5988e4476fd1ac4522e76edeaf5bfa26a257a71d84be1",
+      "bytes": 111540,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/cold-cache-before.json": {
+      "sha256": "6cb318d220759ddddd2ae24fae343c1b7736df49b598a13d9dc033ba5be109f8",
+      "bytes": 63,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/cold-check.result.json": {
+      "sha256": "f0c4db0aeaa505bddf0180337d045b7ade7006aa3a413a6add7ce26eddee7afd",
+      "bytes": 220,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/compiled-parent-impact.json": {
+      "sha256": "a7fc58729f5a465db04fa18bc77cf64c854207bc61c5da500f7042bb245b04a5",
+      "bytes": 358,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/engineering-audit.result.json": {
+      "sha256": "a66cb6d1484fd0b8a4c0659e9e284ccc4d2f80cb7b01614794d5cfa4c81fb7f0",
+      "bytes": 262,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/engineering-identity-independent.json": {
+      "sha256": "cfed8778ba62598dbdc728c3affc074dcc966544d281c7604d3cb08e2342ca45",
+      "bytes": 451,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/engineering-manifest.json": {
+      "sha256": "fad3661d65d8f290ec57f71579d37003db001746e5477fb5f48ccb4e99d3b637",
+      "bytes": 25562,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/engineering-verification.json": {
+      "sha256": "7b4ad472a4093b33f2f749ce55481055bd8a2c5cea10024d30ccdc58454fcbbb",
+      "bytes": 35549,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/execution-impact-map.json": {
+      "sha256": "9d5377c8575ce74e830e4f3df54192d177aba1f08799daa3f91aac7fc7275b5e",
+      "bytes": 178075,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/independent-identity.result.json": {
+      "sha256": "ba2517e871483533d8bcec596b93622f6409200dd316385644effb9fc7100d90",
+      "bytes": 268,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/lifecycle-five.result.json": {
+      "sha256": "7a9084c3cd3ba31145817cb340508686ca74ea9cb9db096658b4e10124d3ed94",
+      "bytes": 303,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/main-client-request.json": {
+      "sha256": "f35ccabbd629d1607396c869ffd59690cb9198d5c9e9032e189e6e416a5d0897",
+      "bytes": 1214,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/native-auxiliary-error-pointers.json": {
+      "sha256": "f38920714783203caff58782e0abe821807a95029b8ad0304ddb938bfe670fd1",
+      "bytes": 2357,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/parent-cold-failure-binding.json": {
+      "sha256": "008561736ab09a54d703eb2e2270af0d0d2f5c2cf83edff1505fec8388d14a38",
+      "bytes": 521,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/preservation-final.json": {
+      "sha256": "7e4cf9f6d3b430489593e6614af45febc91d4a662958ba904b4fe60e7d14a97f",
+      "bytes": 1935,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/prior-ledgers-audit.json": {
+      "sha256": "929421587c44e8a7e0f551986568b013ce80bd3669b25d334c8164c647dacd84",
+      "bytes": 3211,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/private-original-pointers.json": {
+      "sha256": "f9a0d0c558fb9279b645957833095784f378b5631e0770b4ff4e051b92e5a1f9",
+      "bytes": 2604,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/public-sensitive-scan.json": {
+      "sha256": "cf042a235ff31e9efa8669bbb7a08715eb9ad112179fdcc5d2fcc9e3826f77f6",
+      "bytes": 242,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/reading-index.json": {
+      "sha256": "44c244f4335073739aa35d6de52a40c970ccdf586285035c05c32c1d6f17888c",
+      "bytes": 7891,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/report-format.result.json": {
+      "sha256": "10b3317b0fe6566620f82bc46fb7a10a43530ed507521034b46075d8a8209795",
+      "bytes": 328,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/resource-readback.result.json": {
+      "sha256": "28e0d1c712162d58705af2e54d5096ec81a671471fab66bdb11f12d80ffc9e8e",
+      "bytes": 286,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/resources-pg.json": {
+      "sha256": "d1fd0e52aa820abb27ea40093ef8a3b3ac606d67bfd52f8eb136c6c2ef0d5b70",
+      "bytes": 464,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/source-diff-audit.json": {
+      "sha256": "559e5e374495feec093229f65c4171d62b7d316bb042c67fbec5b9725d94dd3f",
+      "bytes": 4158,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/tracked-end.json": {
+      "sha256": "8f2e9271e6de24b05e8a931483da706f20199c2854ba9ff938285ae2dce980a8",
+      "bytes": 890963,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/tracked-start.json": {
+      "sha256": "8f2e9271e6de24b05e8a931483da706f20199c2854ba9ff938285ae2dce980a8",
+      "bytes": 890963,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/turn-context.json": {
+      "sha256": "4a28459c1b563e26b1af8d163367c46b116502d437d73dc50b034137106949e8",
+      "bytes": 943,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "evidence/workflow-semantics.json": {
+      "sha256": "1f6a081be534c717998b4ebf1bb7bbca850a5113fe52c857b9ace65116085911",
+      "bytes": 654,
+      "purpose": "current independent report/progress/evidence; parent/author material explicitly attributed"
+    },
+    "progress.json": {
+      "sha256": "902de6e4696ebb5a5009abace1c8b576f73d84e8244e65b26e01f18cc882ae53",
+      "bytes": 1069,
+      "purpose": "independent whole technical verdict / stopped progress"
+    },
+    "report.md": {
+      "sha256": "d16099de484b782d786372a66d3f6f2c6b3e99c394210a3312d55511daa39307",
+      "bytes": 23896,
+      "purpose": "independent whole technical verdict / stopped progress"
+    }
+  },
+  "excluded": [
+    "ledger itself (no self-reference)",
+    "raw logs/full canonical snapshots/pid receipts/scripts/cache bytes/env/DSN/full ownership/DB/dump/license/private inputs/sensitive trace; originals retained privately with hash pointers"
+  ],
+  "serverFinalModelEffortTier": "UNVERIFIED_NOT_EXPOSED",
+  "reviewerApproved": false,
+  "reviewerCommitMergePushPublication": "NOT_EXECUTED",
+  "newCandidateCI": "NOT_EXECUTED_REMAINING_MAIN_GATE",
+  "step06": "PUBLISHED",
+  "step08": "NOT_STARTED",
+  "step09": "NOT_STARTED",
+  "step10": "NOT_STARTED",
+  "stop": "STOP_REVIEWER",
+  "finishedUtc": "2026-10-14T09:00:32.787441+00:00"
+}
