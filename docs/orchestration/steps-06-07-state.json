@@ -1554,11 +1554,16 @@
             "privacy5": {
               "exitCode": 0,
               "seconds": 10.587
+            },
+            "HTTP16": {
+              "exitCode": 0,
+              "passed": 16,
+              "seconds": 455.322
             }
           },
-          "fullHTTP16": "PENDING_OR_RUNNING",
+          "fullHTTP16": "PASS",
           "twoMode18": "PENDING",
-          "oldNewControl": "PENDING_OR_RUNNING",
+          "oldNewControl": "IN_PROGRESS",
           "wholeVerdict": "NOT_COMPLETED"
         }
       }
@@ -3080,7 +3085,7 @@
       "threadId": "01a13a74-123e-7063-88e6-68421e881801"
     }
   ],
-  "lastSuccessfulCheckpoint": "Independent14 actualcheck354/PG23(200.551s)/API3/privacy5 allSource0cdd PASS; actualbudget/assertion audit andold/new6phase/fullHTTP/two18 continuing. No wholePASS/mainapproval/release.",
+  "lastSuccessfulCheckpoint": "Independent14 Source0cdd354/PG23/API3/privacy5/HTTP16 fullPASS(455.322s); live206Build/MF hashmatches. Old/new normal+controlled comparisons andfullboth18 stillpending, no wholePASS or CI7/mainrelease.",
   "nextSafeAction": "Await independent14 wholeverdict/actualregression; preserveoriginals ifcomplete. LatestPASS thennewcandidate7fullCI allsuccess beforepreauthnormalmainmerge/postmerge/push/mainCI.",
   "cleanup": [
     {
@@ -3115,7 +3120,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T13:01:36.227477+00:00",
+  "updatedAtUtc": "2026-10-14T13:08:20.113019+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
