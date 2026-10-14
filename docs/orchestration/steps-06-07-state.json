@@ -513,9 +513,18 @@
         "independentReview": "NOT_EXECUTED",
         "receipt": "docs/evidence/orchestration-06-07/step07-candidate82-engineering-receipt.json",
         "status": "SUPERSEDED_UNREVIEWED_ARTIFACT_RETAINED"
+      },
+      {
+        "reason": "Source0cddproductionfixrequiresnewboundBuild",
+        "lastVerifiedBuild": {
+          "buildId": "step07-1be820a5adfb-b0249713e2495dce",
+          "manifestSha256": "dadf5d7fca44ff54ce65547d3a22362eb0f667b1db2cdbc7accba9bc2efb1e77",
+          "files": 206,
+          "actualMainPhysicalHashVerification": "PASS"
+        }
       }
     ],
-    "engineeringBuildState": "STEP07_1BE_FROZEN_BOUND_206_FILES_AND_MANIFEST_MAIN_AND_REVIEWER_VERIFIED",
+    "engineeringBuildState": "OLD_SOURCE1BE_BUILD_HISTORICAL_NEW0CDD_BUILD_PENDING",
     "supersededAuthorValidation82": {
       "phase": "FROZEN_CANDIDATE_VALIDATION",
       "firstActualHttpFlow": "PASS_UNFROZEN_AUTHOR_ONLY",
@@ -1944,10 +1953,9 @@
       "purpose": "MAIN_PUBLISHED06_CODE_PLUS07_ORCHESTRATION_DOCS_NOT07_CANDIDATE"
     },
     "engineeringBuild": {
-      "buildId": "step07-1be820a5adfb-b0249713e2495dce",
-      "manifestSha256": "dadf5d7fca44ff54ce65547d3a22362eb0f667b1db2cdbc7accba9bc2efb1e77",
-      "files": 206,
-      "actualMainPhysicalHashVerification": "PASS"
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "status": "PENDING_LATEST_BOUND_GENERATION",
+      "previousImmutableBuildPreserved": true
     },
     "docsHead": "8e437ccfccba2c9b98cc713b002e62acfb739465",
     "codingReport": "docs/reviews/step-07-ci-required-body-coding.md",
@@ -3054,7 +3062,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T12:14:30.701671+00:00",
+  "updatedAtUtc": "2026-10-14T12:15:53.713461+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
