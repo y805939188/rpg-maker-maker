@@ -3134,7 +3134,7 @@
       "cause": "EXACTMAIN_APPLICATION_CLEANUP_PATH_NOT_PROVEN; currentobserverrequestfinished-only availability rootunderanalysis",
       "lastFormalRound": 14,
       "nextFormalRound": 15,
-      "checkpoint": "BOUND39EC_CHECK358_BROWSER12_API3_PRIVACY5_HTTP16_PASS_BOTH18_RUNNING",
+      "checkpoint": "BOUND39EC_FULL358_HTTP16_PRODUCTION18_PASS_DEVELOPMENT_RUNNING",
       "confirmedControlledObservation": "realheaders/firstchunk -> streamobserve -> remainingrealbytes -> cancel; oldresponsebodyunavailable,newactualsameRequest completePNG SHA/decodeCanvasmatch",
       "nextEvidence": "actualsameCDPnetworkrequeststream bytescomplete length/SHA/CRC/currentdoc vs partial/noevidence/owner mismatch",
       "sourceChange": "TWO_TEST_PATHS_ONLY_FROZEN_NO_PRODUCTION_CHANGE",
@@ -3158,7 +3158,13 @@
           "finalSixPhaseProcessedElapsedMs": 121063,
           "processedPerMode": 5
         },
-        "production18development18": "PRODUCTION_RUNNING_DEVELOPMENT_PENDING"
+        "production18development18": "PRODUCTION18_PASS_DEVELOPMENT18_RUNNING",
+        "production18": {
+          "passed": 18,
+          "exit": 0,
+          "seconds": 430.647,
+          "noEnv": true
+        }
       }
     }
   },
@@ -3496,7 +3502,7 @@
       "privateEnv": "FRESH_0600_NOT_COPIED"
     }
   ],
-  "lastSuccessfulCheckpoint": "Forward39ec complete358/12/API3/privacy5/HTTP16PASS(480.574s) andfixed200streamcomparisons old7fail/newallmatch; originalbudgets/5+5requests retained. NewownPG55509 NO.envprod18starting/devpending, docsBuild/ind15/candidateforwardCIsnotyet.",
+  "lastSuccessfulCheckpoint": "Latestforward39ec bound358/12/APIpriv/HTTP16 andNO.envproduction18PASS430.647; oldfixed200readfail7/newallmatch. Dev18running; newBuild/docsreportledger/ind15/normalforwardCI/mainCIstillpending. UserBDStudio/runtimeunmodified.",
   "nextSafeAction": "Waitlatest251authorfullbinding/sourceDocreportledgerBuildhash/exit0, thenfreshStdUltraReview15. NoPUBLISHED beforeforwardcandidate/mainCIsuccess.",
   "cleanup": [
     {
@@ -3531,7 +3537,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T16:08:25.227438+00:00",
+  "updatedAtUtc": "2026-10-14T16:15:39.458648+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
