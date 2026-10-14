@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_C8_CANDIDATE_CI_PREPARATION",
+  "phase": "STEP07_C8_REQUIRED_CANDIDATE_CI",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "REVIEW_PASS_PENDING_NEW_CANDIDATE_CI",
+    "status": "CANDIDATE_CI",
     "reviewRounds": 8,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -1291,21 +1291,21 @@
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "status": "LOCAL_C8_DOCS401_EXACT_EXECUTION_R8_IN_PROGRESS_NOT_PUSHED",
+      "status": "PUSHED_REMOTE_READBACK_EXACT_C8_REQUIRED_CI_IN_PROGRESS",
       "executableDiffZero": true,
       "database": "OWNED_POSTGRES55481_NEW_EMPTY",
       "preparation": "FROZEN_INSTALL_GENERATE_BUILD_FIVE_MIGRATIONS_SUCCESS_NOT_POSTMERGE_TESTS",
       "candidateExecutableSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
-      "validationHead": "37d598b16eb83dad5ad9e6c9b21137fb12b592e0",
+      "validationHead": "b350aa88b8213223dbf8287ec42487d3ec19e391",
       "postSourcePaths": 2575,
-      "remotePushed": false,
+      "remotePushed": true,
       "authorDocs": "401fc5471bef0b60bc9b5689ea8b29109f8420ab",
       "previousReviewBasis": {
         "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "review": "REQUIRES_REVISION_ROUND3"
       },
-      "latestReview": "ROUND8_IN_PROGRESS_R7_REQUIRES_REVISION_PARENT_F574",
-      "reviewedSource": null
+      "latestReview": "PASS_ROUND8_SOURCEC8",
+      "reviewedSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22"
     },
     "pendingCandidate": {
       "sha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
@@ -1626,15 +1626,14 @@
       }
     ],
     "candidateCi": {
-      "head": "b868e351f01edcbcfc63b3b9e15dc26981427361",
+      "head": "b350aa88b8213223dbf8287ec42487d3ec19e391",
       "branch": "codex/step-07-validation",
-      "runId": 38475532067,
-      "status": "FAILURE",
-      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38475532067",
+      "runId": 38500746316,
+      "status": "IN_PROGRESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38500746316",
       "remoteReadbackExact": true,
-      "latestReviewRound": 6,
-      "reviewedSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
-      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-second-failure.json"
+      "latestReviewRound": 8,
+      "reviewedSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22"
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -1688,6 +1687,17 @@
         "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38464677883",
         "remoteReadbackExact": true,
         "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-first-failure.json"
+      },
+      {
+        "head": "b868e351f01edcbcfc63b3b9e15dc26981427361",
+        "branch": "codex/step-07-validation",
+        "runId": 38475532067,
+        "status": "FAILURE",
+        "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38475532067",
+        "remoteReadbackExact": true,
+        "latestReviewRound": 6,
+        "reviewedSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+        "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-second-failure.json"
       }
     ],
     "ciTimeoutDiagnosis": {
@@ -2038,8 +2048,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round8-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "R8nativeexit0 latestc8 wholePASS originalreport0af72/ledger5cf6 231SHA+ownsecretverified,3875source+206filesunchanged,R7-001CLOSED. OwnPG55493stopped safe10DBprivate retained APIWeboff;latestnewcandidateCI notstarted/no07Mainmerge.",
-  "nextSafeAction": "Integrate originalR8/doc/state into validation withexecutionprojection==c8;normalpush latestcandidate/fullrequiredCI.OnlyALLSUCCESS allowspreauth+Mainfetch/liveguard/normalmerge/postmerge/push/readback/mainCI/publicationdocsSTOPafter07.",
+  "lastSuccessfulCheckpoint": "Latestc8/docs401 R8wholePASS originals231/source3875unchanged ownPG55493stop10DBprivate retained. Normalvalidationpushb350 exactremote/readback newfullCI38500746316running;prior2failures preserved;no07Mainmerge/preauthyet.",
+  "nextSafeAction": "Wait fullnewcandidateCI38500746316 SUCCESS exactb350;fetch/liveMain guard preauthorizedtechnicalapproval,normalMainmerge+actualpostmerge necessaryregression,normalpush/readback/mainCI thenformalpublicationdocs/stoppedafter07 no08.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2073,7 +2083,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T02:22:30.823578+00:00",
+  "updatedAtUtc": "2026-10-14T02:23:40.505237+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -2126,7 +2136,12 @@
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
       "id": "LATEST_C8_CANDIDATE_CI_PENDING",
       "status": "OPEN",
-      "lastFailureRun": 38475532067
+      "latestRun": 38500746316,
+      "latestCandidate": "b350aa88b8213223dbf8287ec42487d3ec19e391",
+      "oldFailedRuns": [
+        38464677883,
+        38475532067
+      ]
     }
   ]
 }
