@@ -1,0 +1,71 @@
+
+> @tileset/prototype@0.0.2 test:e2e /Users/dingshinn/.codex/worktrees/step-07-review-round13/rpg-maker-maker
+> playwright test
+
+[WebServer] (node:81882) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:81902) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:81926) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:81952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:81989) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:82027) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:82071) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:82108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:82146) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:82218) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:82490) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:82823) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:83483) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:83942) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:84371) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85116) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85109) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85142) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85119) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85155) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:85155) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 1 worker
+
+(node:85173) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 e2e/shell.test.ts:3:1 › browser persists a project and restores its selected Studio (929ms)
+  ✓   2 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated upload and preserves persisted selection (4.0s)
+  ✓   3 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated invalid-upload and preserves persisted selection (3.8s)
+  ✓   4 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated adopt and preserves persisted selection (6.5s)
+  ✓   5 e2e/studio-project-list.test.ts:194:1 › created-project replacement list supersedes delayed initial list; selected details and list refresh stay coherent (7.1s)
+  ✓   6 e2e/studio-project-list.test.ts:266:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list (3.2s)
+  ✓   7 e2e/studio-recovery.test.ts:177:1 › 1300ms legal poll responses deliver success and failure, fast controls and late old projects stay correct (52.2s)
+  ✓   8 e2e/studio-recovery.test.ts:284:1 › three ordinary switches cancel unfinished processed work and display real decoded current PNG (37.4s)
+  ✓   9 e2e/studio-recovery.test.ts:328:1 › real bounded BUSY pressure recovers or reports failure, explicit reread and cancelled-frame download stay valid (13.0s)
+  ✓  10 e2e/studio-recovery.test.ts:402:1 › invalid PNG and timed-out reads report errors, preserve last decoded frame and allow bounded explicit recovery (10.4s)
+  ✓  11 e2e/studio-state-ownership.test.ts:206:3 › continuous 503 poll errors stop at five and explicit read recovers the actual completed job (16.5s)
+  ✓  12 e2e/studio-state-ownership.test.ts:206:3 › continuous 429 poll errors stop at five and explicit read recovers the actual completed job (16.5s)
+  ✓  13 e2e/studio-state-ownership.test.ts:206:3 › continuous network poll errors stop at five and explicit read recovers the actual completed job (16.8s)
+  ✓  14 e2e/studio-state-ownership.test.ts:319:1 › late real upload preserves another project and same-project explicit source choice; normal upload still works (16.9s)
+  ✓  15 e2e/studio-state-ownership.test.ts:384:1 › late adoption preserves target recipe and same-project historical recipe selection (19.2s)
+  ✓  16 e2e/studio-state-ownership.test.ts:431:1 › late error, accepted build, visual repair record and created project cannot write another project UI (1.0m)
+  ✓  17 e2e/studio.test.ts:131:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP (1.5m)
+  ✓  18 e2e/studio.test.ts:391:1 › project switches keep real build/recipe identities coherent while data is delayed and legacy export is converted (33.1s)
+
+  18 passed (7.8m)

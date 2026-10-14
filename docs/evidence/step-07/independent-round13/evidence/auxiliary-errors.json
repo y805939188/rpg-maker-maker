@@ -1,0 +1,59 @@
+[
+  {
+    "id": "AUX01",
+    "error": "Ownership mismatch before operation",
+    "cause": "review runner compared stored root with trailing slash to cwd as string",
+    "correction": "normalize own root with resolve; exact PG55505 actual data_directory subsequently verified",
+    "productionChange": false
+  },
+  {
+    "id": "AUX02",
+    "error": "KeyError slice(None,1,None)",
+    "cause": "review audit assumed ledger.files array; actual dictionary",
+    "correction": "iterate dictionary; all 146 committed and145 pointed originals verified",
+    "productionChange": false
+  },
+  {
+    "id": "AUX03",
+    "error": "KeyError originalPath",
+    "cause": "read-only summary assumed report entry must have original pointer",
+    "correction": "treat single report entry without pointer separately;146 committed145 originals",
+    "productionChange": false
+  },
+  {
+    "id": "AUX04",
+    "error": "Probe requestfailed 30000ms timeout",
+    "receipt": "evidence/probe.result.json",
+    "cause": "own probe assumed every navigation immediately cancels in-flight fetch; real Chromium left obsolete-document request pending",
+    "correction": "preserved snapshot and raw failure; no product assertion changed; use explicit real response.body settlement gate to test late async receipt across commit",
+    "productionChange": false
+  },
+  {
+    "id": "AUX05",
+    "error": "Probe body state pending vs received5000ms",
+    "receipt": "evidence/probe2.result.json",
+    "cause": "own follow-up assumed old-document request event must settle after server ended while browser lifecycle suspended; snapshot remains obsolete pending",
+    "correction": "preserved all probe2 originals; deterministic gated real body settlement probe3 passed, obsolete document receipt never matches",
+    "productionChange": false
+  },
+  {
+    "id": "AUX06",
+    "error": "unterminated triple quoted string",
+    "cause": "own ignored runner edit script syntax rejected before any file write",
+    "correction": "apply_patch only ignored runner; no formal files modified",
+    "productionChange": false
+  },
+  {
+    "id": "AUX07",
+    "error": "TypeError list object is not callable",
+    "cause": "own HTTP summary variable shadowed Python all builtin",
+    "correction": "renamed local variable; strict5+5 receipt summary passed",
+    "productionChange": false
+  },
+  {
+    "id": "AUX08",
+    "error": "view_image no such file",
+    "cause": "own guessed screenshot filename did not exist",
+    "correction": "rg found actual screenshot; view_image read actual06-current-reloaded.png; no product change or false screenshot observation"
+  }
+]
