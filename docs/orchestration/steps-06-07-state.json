@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_CI6_ORDERED_DURATION_DIAGNOSIS",
+  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND14_ACTIVE",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -50,7 +50,7 @@
       "step": 7,
       "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
       "configurationEvidence": "docs/evidence/orchestration-06-07/step07-ci6-duration-coding-client.json",
-      "status": "ACTIVE_NATIVE_RECOVERY_CI6_DURATION",
+      "status": "HANDOFF_COMPLETE_EXIT0_IDLE",
       "nativeProcessPid": 16639,
       "execSessionId": 7377
     },
@@ -61,12 +61,12 @@
       "serviceTier": "default",
       "preflight": "PASS",
       "step": 7,
-      "round": 13,
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round13-client.json",
-      "status": "REVIEW13_COMPLETE_EXIT0_IDLE",
-      "threadId": "01a139ec-3581-75f1-b3a8-3e4f5ef8a5b4",
-      "nativeProcessPid": 1757,
-      "execSessionId": 57978,
+      "round": 14,
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round14-client.json",
+      "status": "ACTIVE_FRESH_INDEPENDENT_NATIVE_SESSION",
+      "threadId": "01a13a74-123e-7063-88e6-68421e881801",
+      "nativeProcessPid": 92791,
+      "execSessionId": 28716,
       "actualClientModelEffortCwdVerified": true,
       "defaultServiceTierExplicitNativeArgs": true,
       "serverFinalModelEffortTier": "UNVERIFIED_NOT_EXPOSED"
@@ -441,8 +441,8 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "CODING_REQUIRED_CI6_SIXPHASE_TIMEOUT_DIAGNOSIS",
-    "reviewRounds": 13,
+    "status": "INDEPENDENT_REVIEW_ROUND14_ACTIVE",
+    "reviewRounds": 14,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
@@ -462,16 +462,16 @@
       "unchangedFullParentFlows": "R11samecodeindactualHTTP16/prod18dev18 notrerunbyCIonlyCoder"
     },
     "candidateSha": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
-    "candidateState": "SOURCE0CDD_FROZEN_FULL_BOUND_VALIDATION_PENDING_UNREVIEWED",
+    "candidateState": "SOURCE0CDD_DOCS65_FROZEN_UNDER_INDEPENDENT14",
     "reviewEnvironment": {
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round13/rpg-maker-maker",
-      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
-      "pgPort": 55505,
-      "apiPort": 4405,
-      "webPort": 5305,
+      "round": 14,
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round14/rpg-maker-maker",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "pgPort": 55507,
+      "apiPort": 4407,
+      "webPort": 5307,
       "output": ".local/step07-review",
-      "threadId": "01a139ec-3581-75f1-b3a8-3e4f5ef8a5b4",
-      "round": 13
+      "threadId": "01a13a74-123e-7063-88e6-68421e881801"
     },
     "supersededCodingCandidates": [
       {
@@ -524,7 +524,7 @@
         }
       }
     ],
-    "engineeringBuildState": "OLD_SOURCE1BE_BUILD_HISTORICAL_NEW0CDD_BUILD_PENDING",
+    "engineeringBuildState": "NEW_SOURCE0CDD_BOUND206_PHYSICAL_HASH_VERIFIED_UNDER_INDEPENDENT14",
     "supersededAuthorValidation82": {
       "phase": "FROZEN_CANDIDATE_VALIDATION",
       "firstActualHttpFlow": "PASS_UNFROZEN_AUTHOR_ONLY",
@@ -1528,6 +1528,14 @@
         "P1": 0,
         "blockingP2": 0,
         "nativeExit": 0
+      },
+      {
+        "round": 14,
+        "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+        "docs": "65b4330e7d83d065e88ed10d62e6b058d5ae8078",
+        "status": "IN_PROGRESS",
+        "threadId": "01a13a74-123e-7063-88e6-68421e881801",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round14-client.json"
       }
     ],
     "latestIndependentReview": "PASS_ROUND13_SOURCE1BE_ONLY_NEW_PRODUCTION_SOURCE0CDD_UNREVIEWED",
@@ -1954,20 +1962,24 @@
     },
     "engineeringBuild": {
       "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
-      "status": "PENDING_LATEST_BOUND_GENERATION",
-      "previousImmutableBuildPreserved": true
+      "buildId": "step07-0cdd9ad6a61a-1c6e73ce7d2c3713",
+      "manifestSha256": "0dae573d54c309fea0223815235dc2b688e1c04fd65b6ee7097ff5ed758caac6",
+      "files": 206,
+      "actualChangedPayloads": 11,
+      "actualUnchangedPayloads": 195,
+      "MainPhysicalFilesVerification": "PASS"
     },
-    "docsHead": "8e437ccfccba2c9b98cc713b002e62acfb739465",
-    "codingReport": "docs/reviews/step-07-ci-required-body-coding.md",
-    "codingReportSha256": "f26dd1a375db8ff084dea0a6e0755dc2562ee9b7c36727af75b4773620706dbc",
-    "codingEvidenceLedger": "docs/evidence/step-07/ci-required-body/ledger.json",
-    "codingEvidenceLedgerSha256": "5e6d3033e3a608a785aec27308098cb2dddbe95d2b2dcab1b3fb27a993dbd1f4",
-    "ledgerVerifiedCommittedFiles": 146,
+    "docsHead": "65b4330e7d83d065e88ed10d62e6b058d5ae8078",
+    "codingReport": "docs/reviews/step-07-ci-sixphase-duration-coding.md",
+    "codingReportSha256": "04f25d8a8ac63ddaedc338e1960a7d76112f12aba009435e574e4b8544d124d0",
+    "codingEvidenceLedger": "docs/evidence/step-07/ci-sixphase-duration/ledger.json",
+    "codingEvidenceLedgerSha256": "af85f253d217d8eef5e4233c1f1e80f4fb1f602515c1725efcc937b177632007",
+    "ledgerVerifiedCommittedFiles": 188,
     "postCandidateDiff": {
-      "paths": 148,
-      "scope": "PURE_SYNTHETIC_EVIDENCE_AND_REPORT_NO_EXECUTION_EFFECT"
+      "paths": 191,
+      "scope": "APPEND_ONLY_BASELINE_AND_SYNTHETIC_EVIDENCE_REPORT_NO_EXECUTION_CONSUMERS_SECRETSCAN_ZERO"
     },
-    "activeIndependentReviewRound": null,
+    "activeIndependentReviewRound": 14,
     "historicalReviewEnvironments": [
       {
         "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
@@ -2167,17 +2179,19 @@
       "codingNativeExitCode": 0
     },
     "currentAuthorHandoff": {
-      "atUtc": "2026-10-14T10:18:33.733069+00:00",
-      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
-      "docs": "8e437ccfccba2c9b98cc713b002e62acfb739465",
-      "buildId": "step07-1be820a5adfb-b0249713e2495dce",
-      "manifestSha256": "dadf5d7fca44ff54ce65547d3a22362eb0f667b1db2cdbc7accba9bc2efb1e77",
+      "atUtc": "2026-10-14T12:43:27.494399+00:00",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "docs": "65b4330e7d83d065e88ed10d62e6b058d5ae8078",
+      "reportPath": "docs/reviews/step-07-ci-sixphase-duration-coding.md",
+      "reportSha256": "04f25d8a8ac63ddaedc338e1960a7d76112f12aba009435e574e4b8544d124d0",
+      "ledgerPath": "docs/evidence/step-07/ci-sixphase-duration/ledger.json",
+      "ledgerSha256": "af85f253d217d8eef5e4233c1f1e80f4fb1f602515c1725efcc937b177632007",
+      "payloadsVerified": 188,
+      "postSourcePaths": 191,
+      "postSourceEffect": "APPEND_ONLY_BASELINE_AND_SYNTHETIC_EVIDENCE_REPORT_NO_EXECUTION_CONSUMERS_SECRETSCAN_ZERO",
+      "buildId": "step07-0cdd9ad6a61a-1c6e73ce7d2c3713",
+      "manifestSha256": "0dae573d54c309fea0223815235dc2b688e1c04fd65b6ee7097ff5ed758caac6",
       "physicalImmutableAndLiveFiles": 206,
-      "committedPayloads": 146,
-      "postSourcePaths": 148,
-      "postSourceAudit": "ONLY_SYNTHETIC_EVIDENCE_AND_REPORT_NO_EXECUTION_CONSUMERS_SECRET_SCAN_ZERO",
-      "reportSha256": "f26dd1a375db8ff084dea0a6e0755dc2562ee9b7c36727af75b4773620706dbc",
-      "ledgerSha256": "5e6d3033e3a608a785aec27308098cb2dddbe95d2b2dcab1b3fb27a993dbd1f4",
       "nativeExit": 0
     },
     "candidateCiHistory": [
@@ -3039,13 +3053,15 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
+      "serviceStatus": "ACTIVE_FRESH_REVIEW14_PG55507_OWN_PREP_DATA_PRESERVED",
       "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
-      "formalReviewStarted": false
+      "formalReviewStarted": true,
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "threadId": "01a13a74-123e-7063-88e6-68421e881801"
     }
   ],
-  "lastSuccessfulCheckpoint": "0cdd bound354/8/API3/privacy5/PG23/HTTP16/prod18dev18 allPASS; prod415.673s/dev439.315s; engineeringcommand20.041s exit0. ActualBuildID/MF206orcount/docsreportledger andnewind14 NOTYETCOMPLETE.",
-  "nextSafeAction": "WaitsameStandardCoder complete boundSource0cdd authorhandoff/actualrequiredregression/enginehash; verifydocuments thenfreshultraDefaultReview14 inexact0cdd ownPG55507.",
+  "lastSuccessfulCheckpoint": "Author0cdd/docs65 exit0 clean complete354/8/API3/privacy5/PG23/HTTP16/both18 and206files Maincommitted188payload/191docpaths verified. Freshnativeultra/defaultR14 actuallydispatchedPID92791. OriginalCI6FAIL open; no mainrelease.",
+  "nextSafeAction": "Await independent14 wholeverdict/actualregression; preserveoriginals ifcomplete. LatestPASS thennewcandidate7fullCI allsuccess beforepreauthnormalmainmerge/postmerge/push/mainCI.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3079,7 +3095,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T12:36:21.590707+00:00",
+  "updatedAtUtc": "2026-10-14T12:48:01.053398+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
