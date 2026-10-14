@@ -1658,29 +1658,34 @@
       "postSourceDiff": "README_DOCS_ONLY_NO_EXECUTION_IMPACT"
     },
     "nextReviewEnvironment": {
-      "atUtc": "2026-10-14T09:41:41.999859+00:00",
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round13/rpg-maker-maker",
-      "preparedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
-      "operationId": "a65cc289-c5f2-4903-99ca-db80f97a4163",
-      "pgPort": 55505,
-      "apiPort": 4405,
-      "webPort": 5305,
+      "atUtc": "2026-10-14T11:27:15.816519+00:00",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round14/rpg-maker-maker",
+      "preparedSource": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "operationId": "95e637e6-e90a-4861-b089-8b40da788481",
+      "pgPort": 55507,
+      "apiPort": 4407,
+      "webPort": 5307,
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
       "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
-      "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
+      "commands": [
+        {
+          "label": "install",
+          "exitCode": 0
+        },
+        {
+          "label": "generate",
+          "exitCode": 0
+        },
+        {
+          "label": "postgres-init",
+          "exitCode": 0
+        }
+      ],
       "migrate": "NOT_EXECUTED",
       "tests": "NOT_EXECUTED",
-      "formalReviewRound13Started": false,
-      "step08": "NOT_STARTED",
-      "step09": "NOT_STARTED",
-      "step10": "NOT_STARTED",
-      "candidateState": "LATEST1BE_FROZEN_AWAIT_FULL_AUTHOR_HANDOFF",
-      "status": "PREPARED_NO_FORMAL_REVIEW_WAIT_CURRENT_DOCUMENT_BODY_FIX_FULL_HANDOFF",
-      "formalReviewStarted": false,
-      "databaseMigration": "NOT_EXECUTED",
-      "preparedBy": "MAIN_ORCHESTRATOR",
-      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470"
+      "formalReview14Started": false,
+      "candidateState": "WAIT_CURRENT_CI6_DURATION_FIX_FROZEN_HANDOFF"
     },
     "checkpointCi": {
       "head": "552137fa00a28fccc2375bf89a8e70ca2a0132e8",
@@ -2958,6 +2963,20 @@
       "threadId": "01a139ec-3581-75f1-b3a8-3e4f5ef8a5b4",
       "testResourceLedger": ".local/step07-review/independent-round13/private fixtures and evidence/noenv-*-during.json",
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round13-preservation-and-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round14",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round14/rpg-maker-maker",
+      "pgPort": 55507,
+      "apiPort": 4407,
+      "webPort": 5307,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
+      "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
+      "formalReviewStarted": false
     }
   ],
   "lastSuccessfulCheckpoint": "R13 independentPASS preserved; CI6 failed original180s sixphase afteractualPNGbodymatches passed anddevreplacement at152.526s. Mainnotapproved/merged/pushed; logsnowavailablenewnamedstages, previousCI5causeunknown retained.",
@@ -2995,7 +3014,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T11:25:36.784640+00:00",
+  "updatedAtUtc": "2026-10-14T11:27:35.003196+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
