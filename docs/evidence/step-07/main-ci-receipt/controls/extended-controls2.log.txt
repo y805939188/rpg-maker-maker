@@ -1,0 +1,26 @@
+
+ RUN  v4.1.11 [CODING_ROOT]
+
+ ❯ apps/api/tests/studio/received-resources.test.ts (11 tests | 1 failed) 18612ms
+   × complete current network bytes survive consumer cancellation while the old response.body observer fails 15005ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/api/tests/studio/received-resources.test.ts > complete current network bytes survive consumer cancellation while the old response.body observer fails
+Error: Test timed out in 15000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ apps/api/tests/studio/received-resources.test.ts:316:1
+    314| });
+    315|
+    316| it('complete current network bytes survive consumer cancellation while…
+       | ^
+    317|   await fixture('complete-then-cancel', async (page, capture) => {
+    318|     const plan: Plan = { body: a, length: a.length, hold: 'body' };
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 10 passed (11)
+   Start at  23:47:57
+   Duration  18.96s (transform 42ms, setup 0ms, import 266ms, tests 18.61s, environment 0ms)

@@ -1,0 +1,764 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55/node_modules/@playwright/test/cli.js",
+      "test"
+    ],
+    "configFile": "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55/playwright.config.ts",
+    "rootDir": "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55/e2e",
+        "snapshotDir": "[CODING_ROOT]/artifacts/.step07-main-receipt-final-9b29a87414d94cac9d678cbb4d4cbe55/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4409",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": ".local/e2e/production.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm start",
+      "url": "http://127.0.0.1:4409/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "shell.test.ts",
+      "file": "shell.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "browser persists a project and restores its selected Studio",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 402,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:06:30.326Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0afc6be0f8e72ea599d4-bf5d21ad107ec9abeee9",
+          "file": "shell.test.ts",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "studio-project-list.test.ts",
+      "file": "studio-project-list.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "real delayed initial project list survives unrelated upload and preserves persisted selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3890,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:06:30.885Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-9cbda09986836d45c42b",
+          "file": "studio-project-list.test.ts",
+          "line": 93,
+          "column": 3
+        },
+        {
+          "title": "real delayed initial project list survives unrelated invalid-upload and preserves persisted selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3703,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:06:42.726Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-7e994dc03ab1dc2d5bb3",
+          "file": "studio-project-list.test.ts",
+          "line": 93,
+          "column": 3
+        },
+        {
+          "title": "real delayed initial project list survives unrelated adopt and preserves persisted selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6420,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:06:46.435Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-6cf0f27f3306aa032833",
+          "file": "studio-project-list.test.ts",
+          "line": 93,
+          "column": 3
+        },
+        {
+          "title": "created-project replacement list supersedes delayed initial list; selected details and list refresh stay coherent",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7016,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:06:52.862Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-6fcf7e2413f1f9171f70",
+          "file": "studio-project-list.test.ts",
+          "line": 194,
+          "column": 1
+        },
+        {
+          "title": "project list failure has bounded explicit read-only recovery and unmount cancels pending list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3652,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:06:59.885Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-7470dc58b10bf4ca1a60",
+          "file": "studio-project-list.test.ts",
+          "line": 266,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "studio-recovery.test.ts",
+      "file": "studio-recovery.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "1300ms legal poll responses deliver success and failure, fast controls and late old projects stay correct",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 43640,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:07:03.639Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8d85ec25f47ffad97441-0bfd22fd1335014b856a",
+          "file": "studio-recovery.test.ts",
+          "line": 177,
+          "column": 1
+        },
+        {
+          "title": "three ordinary switches cancel unfinished processed work and display real decoded current PNG",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 37071,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:07:58.010Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8d85ec25f47ffad97441-3d9d5c67f260e765c065",
+          "file": "studio-recovery.test.ts",
+          "line": 284,
+          "column": 1
+        },
+        {
+          "title": "real bounded BUSY pressure recovers or reports failure, explicit reread and cancelled-frame download stay valid",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13288,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:08:35.089Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8d85ec25f47ffad97441-736bd000ea4c6facffbf",
+          "file": "studio-recovery.test.ts",
+          "line": 328,
+          "column": 1
+        },
+        {
+          "title": "invalid PNG and timed-out reads report errors, preserve last decoded frame and allow bounded explicit recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10302,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:08:48.383Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8d85ec25f47ffad97441-38fda4b40b857450edfc",
+          "file": "studio-recovery.test.ts",
+          "line": 402,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "studio-state-ownership.test.ts",
+      "file": "studio-state-ownership.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "continuous 503 poll errors stop at five and explicit read recovers the actual completed job",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14839,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:08:58.702Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "92648d9b0fcc9e20e6f2-255180f0c29035708d08",
+          "file": "studio-state-ownership.test.ts",
+          "line": 206,
+          "column": 3
+        },
+        {
+          "title": "continuous 429 poll errors stop at five and explicit read recovers the actual completed job",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15303,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:09:29.301Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "92648d9b0fcc9e20e6f2-a8c0dcdc1994edca1196",
+          "file": "studio-state-ownership.test.ts",
+          "line": 206,
+          "column": 3
+        },
+        {
+          "title": "continuous network poll errors stop at five and explicit read recovers the actual completed job",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15221,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:09:44.610Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "92648d9b0fcc9e20e6f2-83728f9a84f363e5eaa7",
+          "file": "studio-state-ownership.test.ts",
+          "line": 206,
+          "column": 3
+        },
+        {
+          "title": "late real upload preserves another project and same-project explicit source choice; normal upload still works",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 17459,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:09:59.837Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "92648d9b0fcc9e20e6f2-b85dc4902f325db3d371",
+          "file": "studio-state-ownership.test.ts",
+          "line": 319,
+          "column": 1
+        },
+        {
+          "title": "late adoption preserves target recipe and same-project historical recipe selection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20203,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:10:17.301Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "92648d9b0fcc9e20e6f2-2fb9d28911c7b2ba771f",
+          "file": "studio-state-ownership.test.ts",
+          "line": 384,
+          "column": 1
+        },
+        {
+          "title": "late error, accepted build, visual repair record and created project cannot write another project UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 61647,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:10:37.511Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "92648d9b0fcc9e20e6f2-1e410d90837ed60a0f17",
+          "file": "studio-state-ownership.test.ts",
+          "line": 431,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "studio.test.ts",
+      "file": "studio.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 240000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 82449,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:11:39.182Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ca266d4ddad09c174b7-c59b54606d0cbf540c25",
+          "file": "studio.test.ts",
+          "line": 131,
+          "column": 1
+        },
+        {
+          "title": "project switches keep real build/recipe identities coherent while data is delayed and legacy export is converted",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 33647,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-14T16:13:01.646Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "9ca266d4ddad09c174b7-f3002ef7c6bd9b408d41",
+          "file": "studio.test.ts",
+          "line": 391,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-14T16:06:26.004Z",
+    "duration": 429390.12700000004,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
