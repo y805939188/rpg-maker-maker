@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_CANDIDATE_CI_PREPARATION_AFTER_INDEPENDENT13_PASS",
+  "phase": "STEP07_REQUIRED_CANDIDATE6_CI_RUNNING",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -439,7 +439,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT_ROUND13_PASS_PENDING_REQUIRED_CANDIDATE_CI",
+    "status": "INDEPENDENT_ROUND13_PASS_CANDIDATE_CI_RUNNING",
     "reviewRounds": 13,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -1641,12 +1641,17 @@
       "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02"
     },
     "pendingCandidate": {
-      "head": "1424e04994dece65c6651953e551adc80b539f0e",
-      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "head": "0e34c40d887d713af3f7daf68f22830787036cc0",
       "branch": "codex/step-07-validation",
-      "status": "LOCAL_NORMAL_INTEGRATION_PREPARED_NOT_PUSHED_WAIT_INDEPENDENT_REVIEW13",
-      "postSourceDiff": "README_DOCS_ONLY",
-      "mainImplementationMerged": false
+      "runId": 38553433792,
+      "status": "IN_PROGRESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38553433792",
+      "remoteReadbackExact": true,
+      "latestReviewRound": 13,
+      "reviewedSource": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "authorDocs": "8e437ccfccba2c9b98cc713b002e62acfb739465",
+      "postSourcePaths": 3699,
+      "postSourceDiff": "README_DOCS_ONLY_NO_EXECUTION_IMPACT"
     },
     "nextReviewEnvironment": {
       "atUtc": "2026-10-14T09:41:41.999859+00:00",
@@ -2088,35 +2093,17 @@
       }
     ],
     "candidateCi": {
-      "head": "a3885c60d5c3629148a4d273cfb8542d507a7a9a",
+      "head": "0e34c40d887d713af3f7daf68f22830787036cc0",
       "branch": "codex/step-07-validation",
-      "runId": 38539713893,
-      "status": "FAILURE",
-      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38539713893",
+      "runId": 38553433792,
+      "status": "IN_PROGRESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38553433792",
       "remoteReadbackExact": true,
-      "latestReviewRound": 12,
-      "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
-      "actualCurrentJobId": 115771177624,
-      "observedPassedSteps": [
-        "Set up job",
-        "Initialize containers",
-        "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
-        "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
-        "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
-        "Run pnpm install --frozen-lockfile",
-        "Run pnpm db:generate",
-        "Run pnpm exec playwright install --with-deps chromium",
-        "Run pnpm check",
-        "Run pnpm test:dev-privacy",
-        "Run pnpm db:migrate",
-        "Run pnpm test:integration",
-        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06"
-      ],
-      "lastObservedActiveSteps": [
-        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07"
-      ],
-      "actualLinuxFirstConsumerGate": "ORIGINAL_BROWSER_INSTALL_SUCCESS_BEFORE_FULL_CHECK_SUCCESS",
-      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-fifth-failure.json"
+      "latestReviewRound": 13,
+      "reviewedSource": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+      "authorDocs": "8e437ccfccba2c9b98cc713b002e62acfb739465",
+      "postSourcePaths": 3699,
+      "postSourceDiff": "README_DOCS_ONLY_NO_EXECUTION_IMPACT"
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -2228,6 +2215,37 @@
         ],
         "actualCurrentJobId": 115699301665,
         "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-fourth-failure.json"
+      },
+      {
+        "head": "a3885c60d5c3629148a4d273cfb8542d507a7a9a",
+        "branch": "codex/step-07-validation",
+        "runId": 38539713893,
+        "status": "FAILURE",
+        "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38539713893",
+        "remoteReadbackExact": true,
+        "latestReviewRound": 12,
+        "reviewedSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
+        "actualCurrentJobId": 115771177624,
+        "observedPassedSteps": [
+          "Set up job",
+          "Initialize containers",
+          "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+          "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "Run pnpm install --frozen-lockfile",
+          "Run pnpm db:generate",
+          "Run pnpm exec playwright install --with-deps chromium",
+          "Run pnpm check",
+          "Run pnpm test:dev-privacy",
+          "Run pnpm db:migrate",
+          "Run pnpm test:integration",
+          "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06"
+        ],
+        "lastObservedActiveSteps": [
+          "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07"
+        ],
+        "actualLinuxFirstConsumerGate": "ORIGINAL_BROWSER_INSTALL_SUCCESS_BEFORE_FULL_CHECK_SUCCESS",
+        "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-fifth-failure.json"
       }
     ],
     "ciTimeoutDiagnosis": {
@@ -2910,8 +2928,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round13-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latest Source1be/docs8e independentWHOLE13 PASS exit0; 301 originals report86c/ledger85a exact preserved; ownPG55505 API4405/Web5305 stopped data preserved. Required newcandidateCI pending, no approval/main implementation merge/push.",
-  "nextSafeAction": "Normal integrate complete review13 evidence docs into validation branch; confirm postSource docs-only; normal candidate6 push/readback/fullCI. Only after actual SUCCESS preauthorizedtechnicalapproval and normal mainrelease.",
+  "lastSuccessfulCheckpoint": "Candidate6 normalpush completed; remoteReadback0e34 exact; fullCI38553433792 in_progress. R13 wholePASS boundSource1be/docs8e/Builddadf remains latest. Mainremote208 unchanged; technicalapproval and normalmainmerge pending.",
+  "nextSafeAction": "Wait necessary candidate6 ALLSUCCESS; onactualfailure inspect preserved logs and sameStandardCoder fix+independent review if code changes. Do not blindly retry or bypass. AfterSUCCESS fetch/liveMain guard and authorizednormalrelease.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2945,7 +2963,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T10:56:19.404296+00:00",
+  "updatedAtUtc": "2026-10-14T11:00:52.190418+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
