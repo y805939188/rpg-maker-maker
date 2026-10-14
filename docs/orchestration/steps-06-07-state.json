@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_39DAA_REQUIRED_CANDIDATE_CI",
+  "phase": "STEP07_CI_ACTUAL_PNG_RESPONSE_LIFECYCLE_FIX",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "CANDIDATE_CI",
+    "status": "CODING_CI_RESPONSE_LIFECYCLE_DIAGNOSIS",
     "reviewRounds": 10,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -1841,11 +1841,29 @@
       "head": "e097ba156c660acdb351fc5abe62efc9db4b6f87",
       "branch": "codex/step-07-validation",
       "runId": 38517441385,
-      "status": "IN_PROGRESS",
+      "status": "FAILURE",
       "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38517441385",
       "remoteReadbackExact": true,
       "latestReviewRound": 10,
-      "reviewedSource": "39daa13188eb401c2048a24e0606c1a91192e04a"
+      "reviewedSource": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "observedPassedSteps": [
+        "Set up job",
+        "Initialize containers",
+        "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+        "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+        "Run pnpm install --frozen-lockfile",
+        "Run pnpm db:generate",
+        "Run pnpm check",
+        "Run pnpm test:dev-privacy",
+        "Run pnpm db:migrate",
+        "Run pnpm test:integration"
+      ],
+      "lastObservedActiveSteps": [
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06"
+      ],
+      "actualCurrentJobId": 115699301665,
+      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-fourth-failure.json"
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -2171,6 +2189,25 @@
       "actualAtlasPngDecodes": 12,
       "newEngineering206": "GENERATED_PENDING_FINAL_HASH_HANDOFF",
       "codingNativeExitCode": 0
+    },
+    "ciResponseLifecycleDiagnosis": {
+      "status": "CODING_ACTUAL_CI_BODY_LIFECYCLE_DIAGNOSIS_RUNNING",
+      "run": 38517441385,
+      "candidate": "e097ba156c660acdb351fc5abe62efc9db4b6f87",
+      "oldSource": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "oldDocs": "6c9d7d9a2d139482ec5b411323cdfbc4d3f22fb2",
+      "actualLogBytes": 128878,
+      "actualLogSha256": "034727568a8fe94cf1cc107d90cd5170666ee97b394820e9372a5e79d9c7a591",
+      "codingThread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "nativeProcess": 83450,
+      "nativeOutput": ".local/orchestration-06-07/step07-ci-response-lifecycle-fix",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-ci-response-lifecycle-coding-client.json",
+      "originalAllBudgetsUnchangedRequired": true,
+      "actualObservedStage": "productionfirstprocessed-image afterCOMMIT24s, not180timeout",
+      "originalPngZipIdentityAssertionsRequired": true,
+      "mechanism": "PENDING_CODER_DETERMINISTIC_REPRODUCTION",
+      "nextFormalReviewIfChanges": 11,
+      "round11Started": false
     }
   },
   "step08": {
@@ -2410,8 +2447,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round10-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Review10whole latest39daa/docs6c9 PASS originals114/source4111unchanged/realIOpolicyclosed alloldfindingsheld,ownPG55497stopsafe7DBprivate retained.NormalVALpushe097readbackexact newfullCI38517441385running;3oldfailuresretained.No07Mainmerge/preauthyet.",
-  "nextSafeAction": "Wait newfullcandidateCI38517441385 SUCCESS exacte097;fetch/liveMain guard+preauthAPPROVED_BY_PREAUTHORIZED_ORCHESTRATOR,normalMainmerge andactualpostmerge regression,normalpush/readback/mainCI,formalpublicationdocsStop07.No08–10.",
+  "lastSuccessfulCheckpoint": "CI4actual38517441385FAIL128878logSHA034727... latestPG23/checks passed,HTTP15pass1bodyProtocolError24111ms namedproductionfirstprocessedimage afterCOMMIT. R10wholePASS Source39daa preserved realIOclosed;newobserverlifecyclefixneeded, noMainmerge.",
+  "nextSafeAction": "SameStandardCoder inspect actualCI4body lifecycle anddeterministicoldrepro, minimalcorrecttestcapture/newwholefreeze;latestindR11/fullCI beforeMainnormalrelease, nobudgets/assertionsweakening/noredundantPNGreads.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2445,7 +2482,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T05:36:20.697382+00:00",
+  "updatedAtUtc": "2026-10-14T06:02:11.876190+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -2506,15 +2543,10 @@
   "blockers": [
     {
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
-      "id": "LATEST39DAA_CANDIDATE_CI_PENDING",
+      "id": "STEP07-CI-38517441385",
       "status": "OPEN",
-      "latestRun": 38517441385,
-      "latestCandidate": "e097ba156c660acdb351fc5abe62efc9db4b6f87",
-      "oldFailedRuns": [
-        38464677883,
-        38475532067,
-        38500746316
-      ]
+      "reason": "actualHTTPtest responsebody afternavigation unavailable atproductionfirstprocessedimage,15pass1fail,e2e gateskipped",
+      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-fourth-failure.json"
     }
   ]
 }
