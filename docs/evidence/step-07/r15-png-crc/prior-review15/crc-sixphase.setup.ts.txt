@@ -1,0 +1,27 @@
+import { StudioService } from '../../../apps/api/src/studio-service.js';
+import { afterAll } from 'vitest';
+import { writeFile, mkdir } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { createHash } from 'node:crypto';
+import assert from 'node:assert/strict';
+const dir=resolve('.local/step07-review/round15/crc-sixphase');
+const original=StudioService.prototype.processed;
+const rows:unknown[]=[];
+const hash=(b:Uint8Array)=>createHash('sha256').update(b).digest('hex');
+StudioService.prototype.processed=async function(projectId:string,recipeId:string,frame:number){
+ const actual=await original.call(this,projectId,recipeId,frame),bad=Buffer.from(actual);
+ assert.equal(bad.toString('ascii',bad.length-8,bad.length-4),'IEND');
+ const goodCRC=bad.readUInt32BE(bad.length-4);bad[bad.length-1]=bad[bad.length-1]!^1;
+ await mkdir(dir,{recursive:true});
+ const index=rows.length;
+ await writeFile(resolve(dir,`${index}-original.png`),actual);
+ await writeFile(resolve(dir,`${index}-bad-iend-crc.png`),bad);
+ rows.push({index,projectId,recipeId,frame,byteLength:bad.length,originalSHA256:hash(actual),mutatedSHA256:hash(bad),originalIENDCRC:goodCRC,mutatedIENDCRC:bad.readUInt32BE(bad.length-4),mutatedBytes:1,purpose:'CONTROLLED_HTTP_BODY_FIXTURE_AFTER_REAL_PROCESSING; actual real browser request gets these bytes; file/IR/DB/Export untouched'});
+ return bad;
+};
+afterAll(async()=>{
+ StudioService.prototype.processed=original;
+ await mkdir(dir,{recursive:true});
+ assert.ok(rows.length>0,'fixture must actually execute');
+ await writeFile(resolve(dir,'actual-network-mutations.json'),JSON.stringify({classification:'CONTROLLED_NEGATIVE_NOT_VALID_ARTIFACT_PASS',source:'39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd',count:rows.length,rows},null,2)+'\n');
+});

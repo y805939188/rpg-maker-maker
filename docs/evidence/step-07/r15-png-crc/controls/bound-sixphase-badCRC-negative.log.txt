@@ -1,0 +1,36 @@
+
+ RUN  v4.1.11 [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5
+
+R4_STAGE {"stage":"production:fixture","event":"start","elapsedMs":0}
+R4_STAGE {"stage":"production:fixture","event":"end","ms":2589}
+R4_STAGE {"stage":"production:page","event":"start","elapsedMs":2637}
+R4_STAGE {"stage":"production:page","event":"end","ms":74}
+R4_STAGE {"stage":"production:processed-image","event":"start","elapsedMs":4388}
+R4_STAGE {"stage":"production:processed-image","event":"end","ms":27}
+ ❯ apps/api/tests/studio/integration.test.ts (16 tests | 1 failed | 15 skipped) 6037ms
+   × R4 real COMMIT first/update/history snapshots keep production and dev browser current, preview, ZIP and retirement coherent 4995ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/api/tests/studio/integration.test.ts > R4 real COMMIT first/update/history snapshots keep production and dev browser current, preview, ZIP and retirement coherent
+AssetError: PNG chunk checksum is invalid.
+ ❯ requireRule packages/asset-core/src/index.ts:18:25
+ ❯ inspectPng packages/image-adapter/src/png-policy.ts:59:16
+     57|       'Invalid or truncated PNG chunk.',
+     58|     );
+     59|     requireRule(
+       |                ^
+     60|       crc(b.subarray(offset + 4, offset + 8 + length)) === b.readUInt3…
+     61|       'PNG_CRC',
+ ❯ assertReceivedPng apps/api/tests/studio/received-png.ts:7:5
+ ❯ image apps/api/tests/studio/integration.test.ts:1432:9
+ ❯ step apps/api/tests/studio/integration.test.ts:1299:21
+ ❯ apps/api/tests/studio/integration.test.ts:1453:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 15 skipped (16)
+   Start at  14:55:11
+   Duration  7.13s (transform 271ms, setup 352ms, import 645ms, tests 6.04s, environment 0ms)

@@ -1,0 +1,219 @@
+
+> @tileset/prototype@0.0.2 test:step07 [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5
+> pnpm build && vitest run --config vitest.step07.config.ts
+
+
+> @tileset/prototype@0.0.2 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5
+> node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && node dist/scripts/studio-resources.js && pnpm --filter @tileset/web build
+
+
+> @tileset/prototype@0.0.2 build:prototype [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5
+> pnpm build:contracts && tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/packages/local-executor
+> tsc -p tsconfig.json
+
+
+> @tileset/api@0.0.2 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/apps/api
+> tsc -p tsconfig.json
+
+
+> @tileset/web@0.0.2 build [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5/apps/web
+> tsc --noEmit && vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 779 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.41 kB │ gzip:   0.28 kB
+dist/assets/index-CsM4c782.css                      3.12 kB │ gzip:   1.22 kB
+dist/assets/getTextureBatchBindGroup-D-53rPlt.js    0.39 kB │ gzip:   0.29 kB
+dist/assets/getTexelRangeRects-DfZBalEY.js          3.62 kB │ gzip:   1.24 kB
+dist/assets/canvasUtils-DY-Cvxjp.js                 5.71 kB │ gzip:   1.81 kB
+dist/assets/webworkerAll-B8KgPBJa.js               15.46 kB │ gzip:   4.87 kB
+dist/assets/CanvasPool-CWsteclb.js                 16.93 kB │ gzip:   5.97 kB
+dist/assets/browserAll-DVdHwz8S.js                 43.97 kB │ gzip:  11.41 kB
+dist/assets/WebGPURenderer-CEOq4plQ.js             53.80 kB │ gzip:  15.37 kB
+dist/assets/WebGLRenderer-C-4G6VH1.js              56.77 kB │ gzip:  15.66 kB
+dist/assets/RenderTargetSystem-CaSqe-W4.js         72.33 kB │ gzip:  20.30 kB
+dist/assets/CanvasRenderer-CuHZ-s_P.js             90.26 kB │ gzip:  28.57 kB
+dist/assets/index-CylqNgkq.js                     461.13 kB │ gzip: 137.26 kB
+✓ built in 2.96s
+
+ RUN  v4.1.11 [CODING_ROOT]/artifacts/.step07-r15-png-final-3b0da1c36f3d4402ada473f26b54a7e5
+
+R4_STAGE {"stage":"production:fixture","event":"start","elapsedMs":0}
+R4_STAGE {"stage":"production:fixture","event":"end","ms":2548}
+R4_STAGE {"stage":"production:page","event":"start","elapsedMs":2596}
+R4_STAGE {"stage":"production:page","event":"end","ms":67}
+R4_STAGE {"stage":"production:processed-image","event":"start","elapsedMs":4294}
+R4_STAGE {"stage":"production:processed-image","event":"end","ms":268}
+R4_STAGE {"stage":"production:first:commit-ready","event":"start","elapsedMs":4624}
+R4_STAGE {"stage":"production:first:commit-ready","event":"end","ms":5189}
+R4_STAGE {"stage":"production:first:read-held","event":"start","elapsedMs":9814}
+R4_STAGE {"stage":"production:first:read-held","event":"end","ms":609}
+R4_STAGE {"stage":"production:first:terminal","event":"start","elapsedMs":10424}
+R4_STAGE {"stage":"production:first:terminal","event":"end","ms":108}
+R4_CHECKPOINT {"stage":"production:first:ui-terminal-wait","elapsedMs":10534}
+R4_CHECKPOINT {"stage":"production:first:metadata-confirmed","elapsedMs":11854}
+R4_CHECKPOINT {"stage":"production:first:select-build","elapsedMs":14287}
+R4_CHECKPOINT {"stage":"production:first:canvas-ready","elapsedMs":14331}
+R4_STAGE {"stage":"production:first:processed-image","event":"start","elapsedMs":14331}
+R4_STAGE {"stage":"production:first:processed-image","event":"end","ms":235}
+R4_STAGE {"stage":"production:first:download","event":"start","elapsedMs":14566}
+R4_STAGE {"stage":"production:first:download","event":"end","ms":1638}
+R4_CHECKPOINT {"stage":"production:first:zip-body-and-directory","elapsedMs":16210}
+R4_CHECKPOINT {"stage":"production:first:zip-verified","elapsedMs":16210}
+R4_CHECKPOINT {"stage":"production:first:actual-browser-files-matched","elapsedMs":16236}
+R4_CHECKPOINT {"stage":"production:first:descriptor-and-screenshot-complete","elapsedMs":16357}
+R4_STAGE {"stage":"production:replacement:upload","event":"start","elapsedMs":16357}
+R4_STAGE {"stage":"production:replacement:upload","event":"end","ms":8}
+R4_STAGE {"stage":"production:replacement:recipe","event":"start","elapsedMs":16538}
+R4_STAGE {"stage":"production:replacement:recipe","event":"end","ms":2048}
+R4_STAGE {"stage":"production:processed-image","event":"start","elapsedMs":18587}
+R4_STAGE {"stage":"production:processed-image","event":"end","ms":1525}
+R4_STAGE {"stage":"production:replacement:commit-ready","event":"start","elapsedMs":20186}
+R4_STAGE {"stage":"production:replacement:commit-ready","event":"end","ms":8480}
+R4_STAGE {"stage":"production:replacement:read-held","event":"start","elapsedMs":28666}
+R4_STAGE {"stage":"production:replacement:read-held","event":"end","ms":662}
+R4_STAGE {"stage":"production:replacement:terminal","event":"start","elapsedMs":29330}
+R4_STAGE {"stage":"production:replacement:terminal","event":"end","ms":107}
+R4_CHECKPOINT {"stage":"production:replacement:ui-terminal-wait","elapsedMs":29438}
+R4_CHECKPOINT {"stage":"production:replacement:metadata-confirmed","elapsedMs":30769}
+R4_CHECKPOINT {"stage":"production:replacement:select-build","elapsedMs":30771}
+R4_CHECKPOINT {"stage":"production:replacement:canvas-ready","elapsedMs":33847}
+R4_STAGE {"stage":"production:replacement:processed-image","event":"start","elapsedMs":33847}
+R4_STAGE {"stage":"production:replacement:processed-image","event":"end","ms":228}
+R4_STAGE {"stage":"production:replacement:download","event":"start","elapsedMs":34076}
+R4_STAGE {"stage":"production:replacement:download","event":"end","ms":3653}
+R4_CHECKPOINT {"stage":"production:replacement:zip-body-and-directory","elapsedMs":37735}
+R4_CHECKPOINT {"stage":"production:replacement:zip-verified","elapsedMs":37736}
+R4_CHECKPOINT {"stage":"production:replacement:actual-browser-files-matched","elapsedMs":37760}
+R4_CHECKPOINT {"stage":"production:replacement:descriptor-and-screenshot-complete","elapsedMs":37874}
+R4_STAGE {"stage":"production:history:prepared","event":"start","elapsedMs":37931}
+R4_STAGE {"stage":"production:history:prepared","event":"end","ms":1882}
+R4_STAGE {"stage":"production:history:snapshot","event":"start","elapsedMs":39814}
+R4_STAGE {"stage":"production:history:snapshot","event":"end","ms":23}
+R4_STAGE {"stage":"production:history:adopt","event":"start","elapsedMs":39838}
+R4_STAGE {"stage":"production:history:adopt","event":"end","ms":17}
+R4_STAGE {"stage":"production:history:current-prepare","event":"start","elapsedMs":39856}
+R4_STAGE {"stage":"production:history:current-prepare","event":"end","ms":1477}
+R4_STAGE {"stage":"production:history:assemble","event":"start","elapsedMs":41333}
+R4_STAGE {"stage":"production:history:assemble","event":"end","ms":1553}
+R4_STAGE {"stage":"production:history:publish","event":"start","elapsedMs":42888}
+R4_STAGE {"stage":"production:history:publish","event":"end","ms":5038}
+R4_STAGE {"stage":"production:history:terminal","event":"start","elapsedMs":47927}
+R4_STAGE {"stage":"production:history:terminal","event":"end","ms":6787}
+R4_STAGE {"stage":"production:history:processed-image","event":"start","elapsedMs":59855}
+R4_STAGE {"stage":"production:history:processed-image","event":"end","ms":243}
+R4_STAGE {"stage":"development:fixture","event":"start","elapsedMs":60144}
+R4_STAGE {"stage":"development:fixture","event":"end","ms":2473}
+R4_STAGE {"stage":"development:page","event":"start","elapsedMs":62668}
+R4_STAGE {"stage":"development:page","event":"end","ms":117}
+R4_STAGE {"stage":"development:processed-image","event":"start","elapsedMs":64402}
+R4_STAGE {"stage":"development:processed-image","event":"end","ms":212}
+R4_STAGE {"stage":"development:first:commit-ready","event":"start","elapsedMs":64683}
+R4_STAGE {"stage":"development:first:commit-ready","event":"end","ms":5200}
+R4_STAGE {"stage":"development:first:read-held","event":"start","elapsedMs":69884}
+R4_STAGE {"stage":"development:first:read-held","event":"end","ms":608}
+R4_STAGE {"stage":"development:first:terminal","event":"start","elapsedMs":70493}
+R4_STAGE {"stage":"development:first:terminal","event":"end","ms":107}
+R4_CHECKPOINT {"stage":"development:first:ui-terminal-wait","elapsedMs":70601}
+R4_CHECKPOINT {"stage":"development:first:metadata-confirmed","elapsedMs":71927}
+R4_CHECKPOINT {"stage":"development:first:select-build","elapsedMs":74373}
+R4_CHECKPOINT {"stage":"development:first:canvas-ready","elapsedMs":74408}
+R4_STAGE {"stage":"development:first:processed-image","event":"start","elapsedMs":74408}
+R4_STAGE {"stage":"development:first:processed-image","event":"end","ms":222}
+R4_STAGE {"stage":"development:first:download","event":"start","elapsedMs":74631}
+R4_STAGE {"stage":"development:first:download","event":"end","ms":1647}
+R4_CHECKPOINT {"stage":"development:first:zip-body-and-directory","elapsedMs":76283}
+R4_CHECKPOINT {"stage":"development:first:zip-verified","elapsedMs":76283}
+R4_CHECKPOINT {"stage":"development:first:actual-browser-files-matched","elapsedMs":76308}
+R4_CHECKPOINT {"stage":"development:first:descriptor-and-screenshot-complete","elapsedMs":76430}
+R4_STAGE {"stage":"development:replacement:upload","event":"start","elapsedMs":76430}
+R4_STAGE {"stage":"development:replacement:upload","event":"end","ms":15}
+R4_STAGE {"stage":"development:replacement:recipe","event":"start","elapsedMs":76614}
+R4_STAGE {"stage":"development:replacement:recipe","event":"end","ms":2070}
+R4_STAGE {"stage":"development:processed-image","event":"start","elapsedMs":78684}
+R4_STAGE {"stage":"development:processed-image","event":"end","ms":992}
+R4_STAGE {"stage":"development:replacement:commit-ready","event":"start","elapsedMs":79747}
+R4_STAGE {"stage":"development:replacement:commit-ready","event":"end","ms":8484}
+R4_STAGE {"stage":"development:replacement:read-held","event":"start","elapsedMs":88231}
+R4_STAGE {"stage":"development:replacement:read-held","event":"end","ms":686}
+R4_STAGE {"stage":"development:replacement:terminal","event":"start","elapsedMs":88918}
+R4_STAGE {"stage":"development:replacement:terminal","event":"end","ms":105}
+R4_CHECKPOINT {"stage":"development:replacement:ui-terminal-wait","elapsedMs":89024}
+R4_CHECKPOINT {"stage":"development:replacement:metadata-confirmed","elapsedMs":90358}
+R4_CHECKPOINT {"stage":"development:replacement:select-build","elapsedMs":90360}
+R4_CHECKPOINT {"stage":"development:replacement:canvas-ready","elapsedMs":93447}
+R4_STAGE {"stage":"development:replacement:processed-image","event":"start","elapsedMs":93447}
+R4_STAGE {"stage":"development:replacement:processed-image","event":"end","ms":230}
+R4_STAGE {"stage":"development:replacement:download","event":"start","elapsedMs":93678}
+R4_STAGE {"stage":"development:replacement:download","event":"end","ms":3713}
+R4_CHECKPOINT {"stage":"development:replacement:zip-body-and-directory","elapsedMs":97396}
+R4_CHECKPOINT {"stage":"development:replacement:zip-verified","elapsedMs":97397}
+R4_CHECKPOINT {"stage":"development:replacement:actual-browser-files-matched","elapsedMs":97420}
+R4_CHECKPOINT {"stage":"development:replacement:descriptor-and-screenshot-complete","elapsedMs":97544}
+R4_STAGE {"stage":"development:history:prepared","event":"start","elapsedMs":97618}
+R4_STAGE {"stage":"development:history:prepared","event":"end","ms":1811}
+R4_STAGE {"stage":"development:history:snapshot","event":"start","elapsedMs":99429}
+R4_STAGE {"stage":"development:history:snapshot","event":"end","ms":21}
+R4_STAGE {"stage":"development:history:adopt","event":"start","elapsedMs":99451}
+R4_STAGE {"stage":"development:history:adopt","event":"end","ms":15}
+R4_STAGE {"stage":"development:history:current-prepare","event":"start","elapsedMs":99467}
+R4_STAGE {"stage":"development:history:current-prepare","event":"end","ms":1470}
+R4_STAGE {"stage":"development:history:assemble","event":"start","elapsedMs":100938}
+R4_STAGE {"stage":"development:history:assemble","event":"end","ms":1559}
+R4_STAGE {"stage":"development:history:publish","event":"start","elapsedMs":102497}
+R4_STAGE {"stage":"development:history:publish","event":"end","ms":4928}
+R4_STAGE {"stage":"development:history:terminal","event":"start","elapsedMs":107426}
+R4_STAGE {"stage":"development:history:terminal","event":"end","ms":6945}
+R4_STAGE {"stage":"development:history:processed-image","event":"start","elapsedMs":119529}
+R4_STAGE {"stage":"development:history:processed-image","event":"end","ms":238}
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  14:57:28
+   Duration  451.39s (transform 322ms, setup 0ms, import 1.07s, tests 450.22s, environment 0ms)

@@ -1,0 +1,148 @@
+{
+  "classification": "OLD_BAD_PNG_FALSE_PASS_CAPTURED_NEW_REJECTION_VALID_CONTROL; negative rejection is not bad artifact PASS",
+  "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+  "oldSource": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+  "reads": 4,
+  "rows": [
+    {
+      "channel": "finished",
+      "name": "valid",
+      "reads": 1,
+      "receipt": {
+        "id": 1,
+        "requestId": "40530.2",
+        "loaderId": "1CCE5974BEC4201A5456928E0F1542CA",
+        "frameId": "DB62F7DD6F40A5C207DDB8275234059C",
+        "document": 1,
+        "url": "http://127.0.0.1:63183/api/projects/owned/recipes/recipe/processed?frame=0",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "finished",
+        "state": "received",
+        "streamReady": false,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "failure": "cdpSession.send: Protocol error (Network.streamResourceContent): Request with the provided ID has already finished loading",
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "channel": "protocol-body",
+        "completion": "loading-finished",
+        "currentDocument": true
+      },
+      "actualBytes": 821,
+      "actualSHA256": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+      "pixelsSHA256": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "oldConsumer": "RETURNED_SUCCESS",
+      "newRejectionAssertionAgainstOld": "NOT_APPLICABLE_VALID_CONTROL",
+      "newConsumer": "VALID_SAME_REQUEST_PASS"
+    },
+    {
+      "channel": "finished",
+      "name": "bad-IEND-CRC",
+      "reads": 1,
+      "receipt": {
+        "id": 1,
+        "requestId": "40732.2",
+        "loaderId": "EA1A32889A9CB4D913E9336104761020",
+        "frameId": "FB98D755684539B17EDD323A1B212676",
+        "document": 1,
+        "url": "http://127.0.0.1:63183/api/projects/owned/recipes/recipe/processed?frame=0",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "finished",
+        "state": "received",
+        "streamReady": false,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "failure": "cdpSession.send: Protocol error (Network.streamResourceContent): Request with the provided ID has already finished loading",
+        "sha": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57",
+        "channel": "protocol-body",
+        "completion": "loading-finished",
+        "currentDocument": true
+      },
+      "actualBytes": 821,
+      "actualSHA256": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57",
+      "pixelsSHA256": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "oldConsumer": "RETURNED_SUCCESS",
+      "newRejectionAssertionAgainstOld": {
+        "name": "AssertionError",
+        "message": "Missing expected rejection."
+      },
+      "newConsumer": {
+        "code": "PNG_CRC",
+        "message": "PNG chunk checksum is invalid."
+      }
+    },
+    {
+      "channel": "complete-abort",
+      "name": "valid",
+      "reads": 1,
+      "receipt": {
+        "id": 1,
+        "requestId": "40958.2",
+        "loaderId": "7E7B4C16267B5152C91C29EC2982DE3E",
+        "frameId": "A08334C1FDFC803E44E587E340DAD858",
+        "document": 1,
+        "url": "http://127.0.0.1:63183/api/projects/owned/recipes/recipe/processed?frame=0",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      },
+      "actualBytes": 821,
+      "actualSHA256": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+      "pixelsSHA256": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "oldConsumer": "RETURNED_SUCCESS",
+      "newRejectionAssertionAgainstOld": "NOT_APPLICABLE_VALID_CONTROL",
+      "newConsumer": "VALID_SAME_REQUEST_PASS"
+    },
+    {
+      "channel": "complete-abort",
+      "name": "bad-IEND-CRC",
+      "reads": 1,
+      "receipt": {
+        "id": 1,
+        "requestId": "41037.2",
+        "loaderId": "0F4543EB819CA51D555779E93587F689",
+        "frameId": "0039820F4C206056BE03803E4333F3ED",
+        "document": 1,
+        "url": "http://127.0.0.1:63183/api/projects/owned/recipes/recipe/processed?frame=0",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      },
+      "actualBytes": 821,
+      "actualSHA256": "003dcacef36fa73338fbdbdfc98f69046e7581f1fc147be6ebc945c95ea20f57",
+      "pixelsSHA256": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "oldConsumer": "RETURNED_SUCCESS",
+      "newRejectionAssertionAgainstOld": {
+        "name": "AssertionError",
+        "message": "Missing expected rejection."
+      },
+      "newConsumer": {
+        "code": "PNG_CRC",
+        "message": "PNG chunk checksum is invalid."
+      }
+    }
+  ]
+}

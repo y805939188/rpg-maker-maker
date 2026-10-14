@@ -7,6 +7,7 @@ import { beforeAll, afterAll, it, expect } from 'vitest';
 import { chromium, expect as browserExpect, type Page } from '@playwright/test';
 import sharp from 'sharp';
 import { ReceivedResources } from './received-resources.js';
+import { assertReceivedPng } from './received-png.js';
 
 type Plan = {
   body: Buffer;
@@ -114,6 +115,7 @@ async function rendered(page: Page, capture: ReceivedResources, url = origin + p
   const received = capture.find(url, hash);
   assert.ok(received, 'current required actual body is missing or unavailable');
   assert.equal(received.sha, hash);
+  assertReceivedPng(received.bytes!, { width: 96, height: 144 });
   const decoded = await sharp(received.bytes!)
     .ensureAlpha()
     .raw()
@@ -424,3 +426,42 @@ it('a decoded complete PNG alone is insufficient when HTTP framing cannot prove 
     }
   });
 });
+
+it.each(['finished', 'complete-abort'] as const)(
+  'rejects bad PNG CRC on the same actual %s request before pixel equivalence can imply validity',
+  async (channel) => {
+    await fixture('crc-' + channel, async (page, capture) => {
+      const bad = Buffer.from(a);
+      bad[bad.length - 1] = bad[bad.length - 1]! ^ 1;
+      if (channel === 'finished') {
+        await complete(page, capture, bad);
+      } else {
+        const plan: Plan = { body: bad, length: bad.length, hold: 'body' };
+        plans.push(plan);
+        const failed = page.waitForEvent('requestfailed', { timeout: 5000 }),
+          consumer = page.evaluate('window.consumeThenCancel(' + JSON.stringify(path) + ')');
+        await browserExpect.poll(() => capture.snapshot().at(-1)?.streamReady).toBe(true);
+        plan.response!.write(bad.subarray(8));
+        expect(await consumer).toBe(sha(bad));
+        await failed;
+        plan.response!.end();
+        await browserExpect.poll(() => capture.find(origin + path, sha(bad))?.sha).toBe(sha(bad));
+      }
+      const receipt = capture.find(origin + path, sha(bad));
+      expect(receipt?.bytes).toEqual(bad);
+      expect(receipt?.completion).toBe(
+        channel === 'finished' ? 'loading-finished' : 'content-length',
+      );
+      expect(await page.locator('#saved').getAttribute('data-sha')).toBe(sha(bad));
+      // Both real decoders still accept these bytes. CRC validity is a separate mandatory check.
+      const original = await sharp(a).ensureAlpha().raw().toBuffer(),
+        decodedBad = await sharp(receipt!.bytes!).ensureAlpha().raw().toBuffer();
+      expect(decodedBad).toEqual(original);
+      await expect(rendered(page, capture)).rejects.toMatchObject({ code: 'PNG_CRC' });
+      await writeFile(resolve(root, 'crc-' + channel + '-invalid.png'), bad);
+      await page.screenshot({ path: resolve(root, 'crc-' + channel + '-decoded.png') });
+      await complete(page, capture, a);
+      await rendered(page, capture);
+    });
+  },
+);

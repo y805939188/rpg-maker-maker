@@ -1,6 +1,7 @@
 import { pathToFileURL } from 'node:url';
 import { readStoredStandardZip } from './stored-zip.js';
 import { ReceivedResources } from './received-resources.js';
+import { assertReceivedPng } from './received-png.js';
 import ts from 'typescript';
 import { decodeSource } from '@tileset/image-adapter';
 import { runIsolated } from '../../../../packages/image-adapter/src/isolation.js';
@@ -1428,6 +1429,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
         expect(received!.contentType.split(';')[0]).toBe('image/png');
         const bytes = new Uint8Array(received!.bytes!);
         expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes));
+        assertReceivedPng(bytes, { width: 96, height: 144 });
         const expected = await sharp(bytes).ensureAlpha().raw().toBuffer(),
           actual = await element.evaluate((i) => {
             const c = document.createElement('canvas');
@@ -1570,6 +1572,8 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             expect(hashBytes(files[name]!)).toBe(meta.sha256);
             expect(files[name]!.length).toBe(meta.bytes);
           }
+          for (const name of ['A1.png', 'A2.png'])
+            assertReceivedPng(files[name]!, { width: 768, height: 576 });
           mark(mode + ':' + phase + ':zip-verified');
           for (const name of ['A1.png', 'A2.png', 'manifest.json']) {
             const resourceURL = new URL(
@@ -1586,6 +1590,8 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
               'selected delivery resource must have been received by browser',
             ).toBeDefined();
             expect(actualResponse!.bytes).toEqual(files[name]);
+            if (name.endsWith('.png'))
+              assertReceivedPng(actualResponse!.bytes!, { width: 768, height: 576 });
           }
           mark(mode + ':' + phase + ':actual-browser-files-matched');
           const selectedScene = await page.getByLabel('检查场景').inputValue();
