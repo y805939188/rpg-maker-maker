@@ -1,0 +1,89 @@
+{
+  "commands": [
+    {
+      "label": "old-scoped-rebuild",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "source": "UNFROZEN_CONTROL_ON_1be old/new exact diffs in control-sources.json",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 20.501,
+      "rawPath": ".local/step07-ci-sixphase-duration/old-scoped-rebuild.log",
+      "rawSHA256": "8055e4acb42b9c6658d4e4c03dafb95ae78300a7652d9ae5a9cb6580c70748eb",
+      "rawBytes": 4933
+    },
+    {
+      "label": "old-scoped-job-domain-delay9s",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "--testNamePattern",
+        "R4 real COMMIT"
+      ],
+      "source": "UNFROZEN_CONTROL_ON_1be old/new exact diffs in control-sources.json",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "seconds": 185.019,
+      "rawPath": ".local/step07-ci-sixphase-duration/old-scoped-job-domain-delay9s.log",
+      "rawSHA256": "6726878c7200ef152f6fec6de462ffe234067dce5091256e311885a67589fc21",
+      "rawBytes": 6902
+    },
+    {
+      "label": "new-prefreeze-build",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "source": "UNFROZEN_CONTROL_ON_1be old/new exact diffs in control-sources.json",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 19.941,
+      "rawPath": ".local/step07-ci-sixphase-duration/new-prefreeze-build.log",
+      "rawSHA256": "8055e4acb42b9c6658d4e4c03dafb95ae78300a7652d9ae5a9cb6580c70748eb",
+      "rawBytes": 4933
+    },
+    {
+      "label": "new-prefreeze-replay-tests",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "packages/persistence/tests/replay.test.ts"
+      ],
+      "source": "UNFROZEN_CONTROL_ON_1be old/new exact diffs in control-sources.json",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 8.226,
+      "rawPath": ".local/step07-ci-sixphase-duration/new-prefreeze-replay-tests.log",
+      "rawSHA256": "ddad773a87df21f2e0cd7d9661fc459b519fe61387148ba7f2a37ca524019874",
+      "rawBytes": 317
+    },
+    {
+      "label": "new-scoped-job-domain-delay9s",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "--testNamePattern",
+        "R4 real COMMIT"
+      ],
+      "source": "UNFROZEN_CONTROL_ON_1be old/new exact diffs in control-sources.json",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 118.884,
+      "rawPath": ".local/step07-ci-sixphase-duration/new-scoped-job-domain-delay9s.log",
+      "rawSHA256": "8e95fe278c6e2d588d96eb0705634acc2f1631342ea88f9a410d95553aeb7099",
+      "rawBytes": 10637
+    }
+  ]
+}

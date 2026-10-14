@@ -1,0 +1,30 @@
+{
+  "receipt": {
+    "label": "install",
+    "argv": [
+      "pnpm",
+      "install",
+      "--offline",
+      "--frozen-lockfile",
+      "--store-dir",
+      "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+    ],
+    "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+    "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 2.597,
+    "rawPath": ".local/step07-ci-sixphase-duration/final/install.log",
+    "rawBytes": 1170,
+    "rawSHA256": "7e19c4e7898397601bdbafa0aabb5f52704ee05b4981f082bdf2b369aaa54354",
+    "noRootDotEnv": true,
+    "safeEnvironment": {
+      "API_HOST": "127.0.0.1",
+      "API_PORT": "4398",
+      "WEB_PORT": "5298",
+      "E2E_MODE": null,
+      "TILESET_ASSET_ROOT": null
+    }
+  },
+  "text": "Scope: all 13 workspace projects\nLockfile is up to date, resolution step is skipped\nProgress: resolved 1, reused 0, downloaded 0, added 0\nPackages: +372\n++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\nProgress: resolved 372, reused 372, downloaded 0, added 326\nProgress: resolved 372, reused 372, downloaded 0, added 372, done\n\ndependencies:\n+ sharp 0.35.5\n\ndevDependencies:\n+ @eslint/js 10.0.1\n+ @playwright/test 1.64.0\n+ @tileset/ai-gateway 0.0.2 <- packages/ai-gateway\n+ @tileset/asset-core 0.0.3 <- packages/asset-core\n+ @tileset/image-adapter 0.0.3 <- packages/image-adapter\n+ @tileset/local-executor 0.0.6 <- packages/local-executor\n+ @tileset/material-processing 0.0.3 <- packages/material-processing\n+ @tileset/mz-compiler 0.0.4 <- packages/mz-compiler\n+ @tileset/pack-assembly 0.0.5 <- packages/pack-assembly\n+ @tileset/pack-export 0.0.7 <- packages/pack-export\n+ @tileset/persistence 0.0.6 <- packages/persistence\n+ @types/node 22.19.0\n+ eslint 10.12.0\n+ prettier 3.9.10\n+ typescript 5.9.3\n+ typescript-eslint 8.71.1\n+ vitest 4.1.11\n\n. preinstall$ node scripts/toolchain.mjs\n. preinstall: Done\nDone in 2.5s using pnpm v10.20.0\n"
+}
