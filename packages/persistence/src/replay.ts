@@ -200,12 +200,14 @@ export class ReplaySession {
   #cache = new Map<string, Awaited<ReturnType<typeof replayUncached>>>();
   #retainedBytes = 0;
   async replay(value: unknown) {
+    this.signal?.throwIfAborted();
     const archives = freezeJson(z.array(ArchiveSchema).min(1).max(128).parse(freezeJson(value)));
     const records: Awaited<ReturnType<typeof replayUncached>>['records'] = [],
       fragments: Awaited<ReturnType<typeof replayUncached>>['fragments'] = [];
     let total = 0;
     const seen = new Set<string>();
     for (const archive of archives) {
+      this.signal?.throwIfAborted();
       assert.ok(!seen.has(archive.recipe.ref.contentHash));
       seen.add(archive.recipe.ref.contentHash);
       for (const source of archive.sources) {
@@ -250,6 +252,7 @@ export class ReplaySession {
       records.push(...replay.records);
       fragments.push(...replay.fragments);
     }
+    this.signal?.throwIfAborted();
     return { archives, records, fragments };
   }
 }

@@ -522,6 +522,7 @@ export class Persistence {
     projectSnapshotId: string,
     operations: unknown,
     context: Parameters<typeof prepareBundle>[4],
+    session?: ReplaySession,
   ) {
     const pack = await this.db.pack.findUniqueOrThrow({ where: { id: packId } });
     assert.equal(pack.projectId, projectId);
@@ -529,7 +530,11 @@ export class Persistence {
       where: { id: projectSnapshotId },
     });
     assert.equal(snapshot.projectId, projectId);
-    const session = new ReplaySession(this.gate.current()?.signal);
+    if (session) {
+      assert.ok(session instanceof ReplaySession);
+      assert.equal(session.signal, this.gate.current()?.signal, 'Replay session lifetime differs');
+    }
+    session ??= new ReplaySession(this.gate.current()?.signal);
     const archives = await this.loadArchives(projectId, session),
       history = await this.db.packVersion.findMany({
         where: { packId },

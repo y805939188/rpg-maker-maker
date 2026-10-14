@@ -12,7 +12,7 @@ import {
   shorelineRecipe,
   shorelineParameters,
 } from '@tileset/material-processing';
-import { Persistence, resolveAssetRoot, dbJson } from '@tileset/persistence';
+import { Persistence, ReplaySession, resolveAssetRoot, dbJson } from '@tileset/persistence';
 import { PROFILE_HASH, validateProfile } from '@tileset/pack-assembly';
 import { assembleExport } from '@tileset/pack-export';
 import { StudioSchema, JobSchema, BuildDetailSchema, ComponentSchema } from '@tileset/contracts';
@@ -615,7 +615,7 @@ export class StudioService {
       await this.write((tx) => tx.studioJob.update({ where: { id }, data: { state: 'RUNNING' } }));
       await this.store.gate.write(
         async (lease) => {
-          const recipe = await this.store.readDomainRecipe(job.projectId, input.recipeId),
+          const session = new ReplaySession(lease.signal),
             project = await this.project(job.projectId);
           const prior = project.successfulBuildId
             ? await this.store.db.build.findUniqueOrThrow({
@@ -625,12 +625,23 @@ export class StudioService {
           const pack = prior
             ? await this.store.db.pack.findUniqueOrThrow({ where: { id: prior.packId } })
             : await this.store.createPack(job.projectId, 'studio-pack');
-          const archives = await this.store.loadArchives(job.projectId),
+          // loadArchives recreates owned source/IR/Compiler objects and verifies
+          // their exact durable revision and processing descriptors. Do not also
+          // serialize/redecode the same recipe through the generic IR reader.
+          const recipe = await this.store.db.assetRevision.findFirstOrThrow({
+              where: { id: input.recipeId, projectId: job.projectId, kind: 'recipe' },
+            }),
+            archives = await this.store.loadArchives(job.projectId, session),
             r = archives.records.find(
-              (r) => r.recipe.ref.contentHash === recipe.recipe.ref.contentHash,
+              (r) =>
+                r.recipe.ref.id === recipe.logicalId &&
+                r.recipe.ref.revision === recipe.revision &&
+                r.recipe.ref.contentHash === recipe.contentHash,
             )!;
           assert.ok(r);
-          const last = pack.currentBuildId ? await this.store.readBuild(pack.currentBuildId) : null;
+          const last = pack.currentBuildId
+            ? await this.store.readBuild(pack.currentBuildId, session)
+            : null;
           const active = last?.replay.snapshot.slots.find(
             (s) => s.atlas === 'A1' && s.state === 'ACTIVE',
           );
@@ -690,6 +701,7 @@ export class StudioService {
             input.snapshotId,
             operations,
             input.context,
+            session,
           );
           await lease.checkpoint();
           const bundle = JSON.parse(
