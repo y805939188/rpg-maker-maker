@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_TECHNICAL_GATE_APPROVED_NORMAL_MAIN_MERGE_NEXT",
+  "phase": "STEP07_ACTUAL_MAIN_MERGE_POSTMERGE_REGRESSION_RUNNING",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT14_PASS_REQUIRED_CANDIDATE7_CI_RUNNING",
+    "status": "MERGED_LOCAL_REQUIRED_POSTMERGE_REGRESSION_RUNNING",
     "reviewRounds": 14,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -2890,6 +2890,32 @@
           "envAbsent": true
         }
       }
+    },
+    "mainMerge": {
+      "status": "NORMAL_NO_FF_MERGED_LOCAL",
+      "head": "321bbb307ec2f33dcd78d1e66e8b721d2a771ea1",
+      "candidate": "1d5ad26d05eba12b56994310b191754fa73a654e",
+      "baseRemoteMain": "208f304115ce629ec6117d0a84055debaaa623a3",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "codeConflicts": 0,
+      "atUtc": "2026-10-14T14:43:52.985009+00:00"
+    },
+    "postmergeVerification": {
+      "status": "RUNNING",
+      "head": "321bbb307ec2f33dcd78d1e66e8b721d2a771ea1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
+      "execSessionId": 21808,
+      "output": ".local/release-verification/postmerge/321bbb307ec2/attempt-1",
+      "checks": [
+        "check",
+        "step07",
+        "step06",
+        "api",
+        "privacy",
+        "browser-production"
+      ],
+      "mainPush": "NOT_EXECUTED_YET"
     }
   },
   "step08": {
@@ -3008,9 +3034,11 @@
       "temporaryRoot": ".local/release-verification",
       "apiPort": 4381,
       "webPort": 5281,
-      "serviceStatus": "OWNED_POSTGRES55481_STOPPED_PRIVATE_DATA_RETAINED_API_WEB_NOT_STARTED",
+      "serviceStatus": "OWN_PG55481_RUNNING_FROZEN_MERGED321_FULL_REGRESSION_ACTIVE",
       "credentials": "FRESH_PRIVATE_ENV600_NO_COPY",
-      "migrationPreparation": "FIVE_MIGRATIONS_SUCCESS_NEW_EMPTY_DB_NO_RESET"
+      "migrationPreparation": "FIVE_MIGRATIONS_SUCCESS_NEW_EMPTY_DB_NO_RESET",
+      "pgPid": 76340,
+      "source": "321bbb307ec2f33dcd78d1e66e8b721d2a771ea1"
     },
     {
       "owner": "step07_reviewer_round3",
@@ -3192,8 +3220,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latestind14wholePASS andcandidate7 fullCI ALLSUCCESS verified354/23/16/both18. DelegatedAPPROVED recorded underpreauth; fetched/liveMain208 unchanged, localunpublishedMainDocsOnly. Mainmerge/postmerge/pushstillpending.",
-  "nextSafeAction": "NormalnoffMainmerge reviewedcandidate; actualmergedHEAD inownRelease env fullnecessarypostmerge, thennormalpush/readback/mainCI beforePUBLISHED.",
+  "lastSuccessfulCheckpoint": "Whole14+candidate7CIALLSUCCESS gavepreauth technicalapproval; live208 guardverified; normalnoff localMain321 no conflicts. Ownreleaseexact321/env600/data/browsercache preserved,PG55481pid76340guardstarted andfullpostmerge session21808running. NOmainpush/PUBLISHEDyet.",
+  "nextSafeAction": "Await everyactualmerged321 fullpostmerge check/HTTP16/PG23/API/privacy/prod18 PASS; preserveevidence withpureDocdiff checkthen normalpushmain/readback/mainCI. Failureactualfixsourceorownedsetup, nopublishingfailed.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3227,7 +3255,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T14:42:58.661962+00:00",
+  "updatedAtUtc": "2026-10-14T14:45:26.096355+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
