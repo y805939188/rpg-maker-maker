@@ -1,4 +1,5 @@
 import { pathToFileURL } from 'node:url';
+import { readStoredStandardZip } from './stored-zip.js';
 import ts from 'typescript';
 import { decodeSource } from '@tileset/image-adapter';
 import { runIsolated } from '../../../../packages/image-adapter/src/isolation.js';
@@ -1233,39 +1234,6 @@ it.each(['existing-standard', 'file-failure', 'db-rollback', 'lost-receipt'] as 
   },
 );
 
-function r4DownloadedFiles(zip: Buffer) {
-  const files: Record<string, Buffer> = {};
-  let at = 0;
-  while (zip.readUInt32LE(at) === 0x04034b50) {
-    expect(zip.readUInt16LE(at + 8)).toBe(0);
-    const length = zip.readUInt32LE(at + 18),
-      nameLength = zip.readUInt16LE(at + 26),
-      extra = zip.readUInt16LE(at + 28),
-      start = at + 30 + nameLength + extra;
-    expect(zip.readUInt32LE(at + 22)).toBe(length);
-    const name = zip.subarray(at + 30, at + 30 + nameLength).toString();
-    expect(files[name]).toBeUndefined();
-    const bytes = zip.subarray(start, start + length);
-    expect(bytes.length).toBe(length);
-    expect(crc(bytes)).toBe(zip.readUInt32LE(at + 14));
-    files[name] = bytes;
-    at = start + length;
-  }
-  expect(Object.keys(files).sort()).toEqual(
-    [
-      'A1.png',
-      'A2.png',
-      'INSTALL.md',
-      'history.json',
-      'layout.json',
-      'manifest.json',
-      'pack.json',
-      'sources.json',
-    ].sort(),
-  );
-  return files;
-}
-
 it('R4 real COMMIT first/update/history snapshots keep production and dev browser current, preview, ZIP and retirement coherent', async () => {
   const vite = spawn(
     'pnpm',
@@ -1532,7 +1500,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           expect(zip.status).toBe(200);
           const zipBytes = Buffer.from(await zip.arrayBuffer()),
             zipSHA = hashBytes(zipBytes),
-            files = r4DownloadedFiles(zipBytes),
+            files = readStoredStandardZip(zipBytes),
             exported = await service.store.db.finalExport.findUniqueOrThrow({
               where: { buildId: actual.buildId! },
             }),
