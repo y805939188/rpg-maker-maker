@@ -1,0 +1,19 @@
+{
+  "receipt": {
+    "label": "regression-migrate",
+    "args": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+    "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+    "exitCode": 1,
+    "expectedExit": 0,
+    "durationSeconds": 0.449,
+    "log": ".local/step07-ci-env/final/regression-migrate.log",
+    "logBytes": 1887,
+    "logSHA256": "e46e9d3392225fbb8c928d50f4b4f4a5589b7c214d60cf7bfd5c4c7f8cd97dad",
+    "noDotEnv": true
+  },
+  "sanitizedText": "\n> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97\n> pnpm --filter @tileset/api db:migrate\n\n\n> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/apps/api\n> node scripts/migrate.mjs\n\nnode:internal/modules/esm/resolve:274\n    throw new ERR_MODULE_NOT_FOUND(\n          ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find module '/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/apps/api/dist/config.js' imported from /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/apps/api/scripts/migrate.mjs\n    at finalizeResolution (node:internal/modules/esm/resolve:274:11)\n    at moduleResolve (node:internal/modules/esm/resolve:859:10)\n    at defaultResolve (node:internal/modules/esm/resolve:983:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:731:20)\n    at ModuleLoader.resolve (node:internal/modules/esm/loader:708:38)\n    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:310:38)\n    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {\n  code: 'ERR_MODULE_NOT_FOUND',\n  url: 'file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/apps/api/dist/config.js'\n}\n\nNode.js v22.21.1\n/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/apps/api:\n ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @tileset/api@0.0.2 db:migrate: `node scripts/migrate.mjs`\nExit status 1\n ELIFECYCLE  Command failed with exit code 1.\n"
+}

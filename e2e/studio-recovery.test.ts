@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import sharp from 'sharp';
 import { Persistence, resolveAssetRoot } from '@tileset/persistence';
 import type { Resources } from '../apps/api/src/studio-service.js';
+import { loadE2EEnvironment } from './environment.js';
 
 const mode = process.env['E2E_MODE'] === 'dev' ? 'dev' : 'production';
 const out = resolve('.local/step07/browser', mode, 'r2-recovery');
@@ -98,8 +99,8 @@ function capture(page: Page) {
   return log;
 }
 test.beforeAll(async () => {
+  const environment = loadE2EEnvironment();
   await mkdir(out, { recursive: true });
-  process.loadEnvFile('.env');
   const resources = JSON.parse(
     await readFile('apps/api/dist/resources/studio.json', 'utf8'),
   ) as Resources;
@@ -128,7 +129,7 @@ test.beforeAll(async () => {
   expect(done.state).toBe('COMPLETED');
   modern = { ...p, build: done.buildId!, recipe };
   const store = new Persistence(
-    process.env['DATABASE_URL']!,
+    environment.DATABASE_URL,
     await resolveAssetRoot(process.env),
     resources.profile,
   );

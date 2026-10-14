@@ -1,0 +1,125 @@
+{
+  "commands": [
+    {
+      "label": "old-clone",
+      "args": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-control-b3cc5b7392f94f8cb766f6a26d04845d"
+      ],
+      "cwd": ".",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 11.36,
+      "log": ".local/step07-ci-env/old-clone.log",
+      "logBytes": 1113,
+      "logSHA256": "5dd38808dc118dc0a633ae7ceb41508d3bc4359407f397e123fb5ae4187bc57d"
+    },
+    {
+      "label": "old-checkout",
+      "args": [
+        "git",
+        "checkout",
+        "--detach",
+        "c8d41a680df42fe565882d93d3f85a04f7a10b22"
+      ],
+      "cwd": "artifacts/.step07-ci-env-control-b3cc5b7392f94f8cb766f6a26d04845d",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.749,
+      "log": ".local/step07-ci-env/old-checkout.log",
+      "logBytes": 88,
+      "logSHA256": "89d08648e91f28d0b8af06f2b929128db83aa0d548d2722d4d7b6804d3c9ee47"
+    },
+    {
+      "label": "old-install",
+      "args": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-ci-env-control-b3cc5b7392f94f8cb766f6a26d04845d",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 2.573,
+      "log": ".local/step07-ci-env/old-install.log",
+      "logBytes": 1170,
+      "logSHA256": "8bd15f6532db5d8b0e75807c1f8b0ce8bb8a17f923bf2cf99f6ea73728c2ed97"
+    },
+    {
+      "label": "old-generate",
+      "args": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-ci-env-control-b3cc5b7392f94f8cb766f6a26d04845d",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 1.737,
+      "log": ".local/step07-ci-env/old-generate.log",
+      "logBytes": 817,
+      "logSHA256": "3d7a9ab0f6b4b78a3c7a965047b42c2adae4c30fdee63b28d59186e05894c893"
+    },
+    {
+      "label": "old-build",
+      "args": [
+        "pnpm",
+        "build"
+      ],
+      "cwd": "artifacts/.step07-ci-env-control-b3cc5b7392f94f8cb766f6a26d04845d",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 24.762,
+      "log": ".local/step07-ci-env/old-build.log",
+      "logBytes": 4903,
+      "logSHA256": "61d609f1475456017f3a2ff42434de9604bb674d6f131b038b32609e836920ea"
+    },
+    {
+      "label": "old-migrate",
+      "args": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-ci-env-control-b3cc5b7392f94f8cb766f6a26d04845d",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 1.657,
+      "log": ".local/step07-ci-env/old-migrate.log",
+      "logBytes": 2224,
+      "logSHA256": "41dfbe59c0f347677ecb401a85ad8572851ba091a192ad8ae789161d7a01b6e0"
+    },
+    {
+      "label": "old-noenv-two-real-browser-failures",
+      "args": [
+        "pnpm",
+        "exec",
+        "playwright",
+        "test",
+        "--grep",
+        "1300ms legal poll|project switches keep real build"
+      ],
+      "cwd": "artifacts/.step07-ci-env-control-b3cc5b7392f94f8cb766f6a26d04845d",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "durationSeconds": 8.295,
+      "log": ".local/step07-ci-env/old-noenv-two-real-browser-failures.log",
+      "logBytes": 4648,
+      "logSHA256": "1c53c12feee2d7a948372256862961665d009d8facdbe0a5578778d629cd1ef9"
+    }
+  ]
+}

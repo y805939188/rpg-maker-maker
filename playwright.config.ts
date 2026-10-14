@@ -1,6 +1,8 @@
 import { defineConfig } from '@playwright/test';
+import { loadE2EEnvironment } from './e2e/environment.js';
+const environment = loadE2EEnvironment();
 const dev = process.env['E2E_MODE'] === 'dev';
-const port = Number(process.env[dev ? 'WEB_PORT' : 'API_PORT'] ?? (dev ? 5173 : 4310));
+const port = dev ? environment.WEB_PORT : environment.API_PORT;
 export default defineConfig({
   testDir: 'e2e',
   workers: 1,
@@ -13,7 +15,7 @@ export default defineConfig({
   },
   webServer: {
     command: dev ? 'pnpm dev' : 'pnpm start',
-    url: `http://127.0.0.1:${dev ? Number(process.env['API_PORT'] ?? 4310) : port}/api/health`,
+    url: `http://127.0.0.1:${environment.API_PORT}/api/health`,
     reuseExistingServer: false,
     timeout: 30000,
   },
