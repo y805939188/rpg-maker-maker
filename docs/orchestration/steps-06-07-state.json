@@ -2204,7 +2204,22 @@
       "reviewedSource": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
       "authorDocs": "65b4330e7d83d065e88ed10d62e6b058d5ae8078",
       "postSourcePaths": 3915,
-      "postSourceDiff": "README_DOCS_ONLY_NO_EXECUTION_IMPACT"
+      "postSourceDiff": "README_DOCS_ONLY_NO_EXECUTION_IMPACT",
+      "actualCurrentJobId": 115896263479,
+      "observedPassedSteps": [
+        "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+        "Run pnpm install --frozen-lockfile",
+        "Run pnpm db:generate",
+        "Run pnpm exec playwright install --with-deps chromium",
+        "Run pnpm check",
+        "Run pnpm test:dev-privacy",
+        "Run pnpm db:migrate",
+        "Run pnpm test:integration",
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06"
+      ],
+      "lastObservedActiveSteps": [
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07"
+      ]
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -3146,7 +3161,7 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Source0cdd/docs65 independent14 wholePASS exit0,196originals preserved; ownPG55507stopped guardeddataretained. Candidate7 normalpush1d5ad exactremote, actualCI38576897358inprogress; main208 unchanged, no technicalapproval/merge.",
+  "lastSuccessfulCheckpoint": "Candidate7CI38576897358 actualcheck/privacy/migrate/API/step06PGsuccess; step07 fullHTTP nowrunning. Source0cdd latestWHOLE14PASS exact196originals saved; no mainapproval/merge yet.",
   "nextSafeAction": "Waitcandidate7 necessaryfullALLSUCCESS actualrun/jobs/logs. OnFAIL sameStdCoder actualcause/fixnewReview ifcodechanges no blindrerun. OnSUCCESS preauthorizedapproval andnormalmainreleasefullpipeline.",
   "cleanup": [
     {
@@ -3181,7 +3196,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T14:03:16.613130+00:00",
+  "updatedAtUtc": "2026-10-14T14:12:09.121528+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
