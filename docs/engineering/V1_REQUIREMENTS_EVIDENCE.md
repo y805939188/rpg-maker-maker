@@ -52,3 +52,70 @@
 完整命令、失败保留、Build 与哈希见 [步骤06 Coding 报告](../reviews/step-06-coding.md)、[基线](STEP_06_BASELINE.md)、[命令](../evidence/step-06/coding/commands.json)。状态最多 **READY_FOR_REVIEW**；独立 Review/远端 CI 未由 Coding 执行，未批准、合并或推送。新 GUI/游戏/美术及 Original Host NOT_EXECUTED；既有步骤05独立 PASS/用户观察和延期边界保持。Main 唯一管理 orchestration 状态；Coding 未修改该状态文件。
 
 步骤06第1轮独立Review整改检查点：原a2878a9/bae为 REQUIRES_REVISION；IR-001 gate lifetime、IR-002精确reference revision、IR-003正式CLI资产根和IR-004工具日志可搬运性已在 `debcce716e5b563eec881eb24eaa41aebcccac30` 实施并作者复测。原Report SHA `a983e4a763801ee83a74afccfc9e71fece162a255092fe898ba6f99ebb5b5fa4` 和旧ledger不改写。新增真实pg_terminate_backend仅终止本实例明确持有的锁会话，维护独占后不再submit/固化/登记；已有可能请求保留UNKNOWN；scope事务fencing与exclusive备份失锁、同字节精确rev1/rev2/PG最大值及负控制、恢复后的选择、正式CLI自定义root read/rebuild/Mock均进入已有CI命令。作者冻结check230、DB16、API3、browser1+1、JS78、标准56payload/16PNG哈希通过。新证据/命令见 [整改报告](../reviews/step-06-fix-round-1-coding.md)及 [fix-round1](../evidence/step-06/fix-round1/commands.json)。本记录仅 SELF_TESTED_PENDING_ROUND2 / READY_FOR_REVIEW；下次正式第2轮，未IndependentPASS/批准/发布，步骤07未启动，Main canonical状态未写。
+
+## 步骤07最新作者候选（2026-10-13）
+
+source `4f6a40f3e8be990b4068dafee488249be737f7ad`，**READY_FOR_REVIEW**；上文历史检查点不改写。06发布/R3独立PASS及本轮06–07授权覆盖历史停止文字，07作者不能自行IndependentPASS或发布，08–10未启动。
+
+| 要求                                            | 当前作者证据                                                                                                                  | 边界                                                                       |
+| ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| 人工完整Studio / 精确版本 / 固定配方 / 标准下载 | 两模式真实浏览器导入→采用→构建→预览→ZIP；源/配方/历史刷新可读                                                                 | 无AI/Key/模型选择/DB或内部JSON操作                                         |
+| 实际交付与创作Pixi / MZ逻辑时钟                 | 原源Pixi像素、8组交付Canvas独立母版scene逐像素、pinned native-core矩形；fixed60/30 updates                                    | 编号/原创母版不重置，CPU/browser不冒充GUI/用户美术                         |
+| 标准八文件 / Profile / 历史与retired            | mz-pack-build-v1实际8file重读；完整Profile嵌入Manifest，PNG/预览/ZIP同Export；56旧payload/16PNG SHA不变                       | 06四文件不冒充正式导出；旧构建POST转换不改current或原Manifest              |
+| 构建/任务/current失败保护                       | 7项HTTP/PG包含真实延期COMMIT拒绝、同内容不同ID、CAS/late/retired；06完整23项回归                                              | 新job完成与Build/Export/CAS同TX，不回退last success                        |
+| 一致备份恢复 / Studio读回与再建                 | 新空DB/root公开restore后真实再建；恢复实例浏览器current/history/旧ZIP一致                                                     | private dump/.env/runtime不入库，未reset已有环境                           |
+| 新HTTP入口 / 资源与路径保护                     | 4MiB PNG、独立JSON8KiB、真实format/metadata/pixel/density/read/codec timeout/cancel/concurrency/cleanup；真实Vite privacy保持 | 旧无上传豁免取消；heap128MiB≠OS/native RSS硬上限，实测保留                 |
+| QA risk / 验收状态分离                          | 硬校验聚合、seam/repetition/color/flicker/low-animation定位与阈值；人工视觉追加记录                                           | 单指标非质量，Profile阶段基线非ARTIFACT_MZ_TESTED；本产物MZ/用户美术未执行 |
+
+完整 [Coding报告](../reviews/step-07-coding.md)、[基线](STEP_07_BASELINE.md)和 [ledger](../evidence/step-07/coding/ledger.json)绑定上述唯一最新candidate。工程238、API3、07真实HTTP7、06 PG23、两browser各2及11生产exports通过；远端CI/Independent Review未由Coder执行，Main管理canonicalstate。
+
+## 步骤07正式R1整改检查点
+
+上述初始07记录保留为历史。正式R1/5为REQUIRES_REVISION，原报告SHA `96fd739b24d4bfac0e937f695eb5469591d570780d4b3fc7bd0ae3e824820686`不改写。最新source `d343171ca866a8d1d1c4e272823ef475229d8032`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND2**，下一次正式2/5；作者不自行IndependentPASS、批准、发布或写Main canonical。
+
+| 要求 / R1问题                                         | 最新作者证据                                                                                                                                                      | 责任与局限                                                                                     |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| §13.2资产root边界 / STEP07-R1-001 P2 BLOCKING         | 共享逐层路径、root dev/ino、O_NOFOLLOW/fd身份及前后复核；15新增文件case；真实source/A1/JSON/ZIP等同SHA祖先链接422，普通/恢复200；真实坏restore父目录无文件/DB写入 | 保持SHA/bytes与合法历史；合作式不可变目录协议，不声称任意秘密泄露、HTTP种链接或防恶意管理员ABA |
+| §4.1/4.4项目/产物身份 / STEP07-R1-002 P3 NON_BLOCKING | data.projectId及Build/recipe成员检查；加载时旧资源不渲染；两模式真实延迟/legacy转换/反向切换，共74/94响应无400+                                                   | 最小状态协调；非阻断原分级保持，无新交互架构/美术打磨                                          |
+| 06–07完整持久/恢复/素材与资源政策                     | 新候选check253、HTTP8、06 PG23、API3、privacy5、两browser各3、11exports、旧56payload/16PNG、JS78、8原生CPU对照及真实恢复browser                                   | 不借旧4f PASS；原预算/失败/Profile/母版/Compiler/Pack语义不改，native CPU非新artifact MZ实机   |
+
+精确source/docs/工程Build/Export/关键hash、原反例和新验证见 [R1整改Coding报告](../reviews/step-07-fix-round-1-coding.md)与 [新ledger](../evidence/step-07/fix-round1/ledger.json)。IndependentReview/CI/Release NOT_EXECUTED_BY_CODER，实际产物MZ/用户美术及既有延期仍NOT_EXECUTED，08–10未启动。
+
+## 步骤07正式R2整改检查点
+
+正式R2/5为REQUIRES_REVISION，原报告SHA `1411559d5e0d8376ef34caae414f643392b63b59ad45d59c36363fdf9f200a6d`、386证据保留。最新source `5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND3**；正式已用2/5，下轮3/5，不重置。作者不独立关闭发现、批准、发布或写Main canonical。
+
+| 要求 / R2问题                                      | 最新作者证据                                                                                                                                                             | 责任与局限                                                                                   |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| §4.4/§7真实任务状态 / STEP07-R2-001 P2 BLOCKING    | poll本次settle后800ms再排，同项目单inflight；两模式1300ms合法慢成功/失败、快控制、旧请求迟到，UI终态/按钮与实际backend一致                                               | 保留project/revision/generation与取消保护；不靠用户刷新或增大原case时限                      |
+| §4.4/§11.3创作处理预览 / STEP07-R2-002 P2 BLOCKING | project/recipe/frame可取消PNG，descriptor协调、5attempt/60s BUSY-only恢复、明确错误/重读；两模式三次无注入普通切换、三源帧、真实槽压力/取消与PNG decode/SHA/RGBA一致     | 保持native1/等待1/codec5s/close后释放、HTTP预算和R1路径；无无限队列/重试或永久隐藏必需预览   |
+| 06–07持久恢复/真实双预览/标准包                    | source冻结check263、HTTP9、PG06 23、API3、privacy5、browser7+7；206工程文件、旧56payload/16PNG、JS78、8 CPU；干净恢复后source/recipe/current/history/rebuild/PNG/ZIP连接 | 同选定Export、完整Profile hash48844001…、四/八文件分层；CPU/作者截图非用户美术或新MZ实机PASS |
+
+精确source/docs/Build/Manifest/逐项SHA、原失败与实际资源见 [R2整改Coding报告](../reviews/step-07-fix-round-2-coding.md)与 [ledger](../evidence/step-07/fix-round2/ledger.json)。R1问题由正式R2在原范围CLOSED，作者本次不代替R3独立结论。CI/IndependentReview/Release NOT_EXECUTED_BY_CODER；新artifact MZ/用户美术/既有延期NOT_EXECUTED，08–10未开始。
+
+## 步骤07正式R3整改检查点
+
+R3/5 REQUIRES_REVISION原报告SHA `c18e713ac7e3ee14b9b342234af5d6d4fe9225a67a547ceb93b003ccbf4c6fdf`、437证据保留。source `ef30dc2ab011d204d1d0a4d099a335b68458cdca`，SELF_TESTED_READY_FOR_ROUND4；已用3/5，下轮4/5。作者不关闭独立问题/批准/发布/写Main canonical。
+
+| 要求/发现                              | 最新作者证据                                                                                                                                                   | 局限/门禁                                                                                |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| §4.4/§7真实状态与有界恢复 / R3-001 P2  | 连续错误5次/60s共享截止，成功重置/正常poll不截断；两模式503/429/network后81s+20s停止、未知/last-success及真实只读恢复；POST1                                   | 保留single inflight/generation/取消；受控故障非真实DB掉线，待独立R4                      |
+| §4.1/4.3/4.4/7.2迟到写保护 / R3-002 P2 | project/selection/action世代保护所有相关UI写回调；真实201上传/采用、同项目选择、422/error/202Build/visual-false/create迟到；实际source/recipe/PNG/目标快照一致 | 旧真实提交保留，abort不等于撤销；不新架构/美术打磨，待独立R4                             |
+| 06–07持久/预览/交付及原关闭问题        | check266/HTTP9/PG23/API3/privacy5/browser13+13；206工程/195source/2525保护；24scene/4source/12+12clock/nearest/ZIP/restore；旧56payload16PNG/JS78/8CPU         | Profile/Compiler/slot/时基/通行/所有权/路径/预算不变；R1/R2由原R3 CLOSED，原失败全部保留 |
+
+精确source/docs/Build/Manifest/每项SHA及资源见 [R3整改Coding报告](../reviews/step-07-fix-round-3-coding.md)与 [ledger](../evidence/step-07/fix-round3/ledger.json)。原独立参考probe作为作者重跑，不冒充新IndependentPASS；CI/Release NOT_EXECUTED_BY_CODER，新artifact MZ/用户美术/Host/Map003延期NOT_EXECUTED，08–10未开始。
+
+## 步骤07 R4整改证据增补（2026-10-14）
+
+最新Source `59423201ba10ee71c3d1b04cebec69659017b7c7`，SELF_TESTED_READY_FOR_REVIEW_ROUND5；正式已用4、待5，新授权取消机械五轮上限但历史不重置。此处仅作者验证映射，三项Independent finding待下一Reviewer关闭；旧批准/失败/母版/Manifest不改。[完整报告](../reviews/step-07-fix-round-4-coding.md)、[逐文件ledger](../evidence/step-07/fix-round4/ledger.json)。
+
+| 要求/触发                                                                  | 新证据                                                                                                                                                                                       |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| §7.1/§10.2 Studio完成＋FinalExport同TX、合法旧06四文件幂等/八文件resume    | HTTP16中新7：实际c227 writer竞态、标准重复、文件失败/延期COMMIT rollback/丢回执；[旧writer](../evidence/step-07/fix-round4/http-and-recovery/r4-duplicate-legacy.json)                       |
+| §4.1 持久项目列表/加载/失败恢复及迟到读取归属                              | 新5case＋旧13，prod/dev18各自实际上传/失败/采用/创建反向列表/手动恢复/卸载取消；[列表](../evidence/step-07/fix-round4/browser-production/r4-project-list/initial-upload.json)                |
+| §4.4/§7.1/§10.2 Project/adoption/Build/Export/Job一致终态与current/history | 真实PG COMMIT屏障＋两个实际客户端首个/替换/history-only；[六阶段](../evidence/step-07/fix-round4/http-and-recovery/r4-ui-consistent-publication.json)                                        |
+| 06–07备份/公开restore/source/recipe/retired/实际再建/旧ZIP                 | 最新06回归23和HTTP16整合恢复；恢复browser真15source/2recipe/5Build与processed decode/SHA/RGBA/ZIP；[恢复](../evidence/step-07/fix-round4/restored-browser-complete/evidence.json)            |
+| Profile/Compiler/像素/clock与真正selectedExport                            | 24scene/4creative、12+12 clock三周期、12ZIP、206工程SHA、56旧payload16PNG/JS78/8CPU；[独立参考](../evidence/step-07/fix-round4/independent-reference/browser-pixel-zip-verification.json)    |
+| 资源安全/原失败/审查独立性                                                 | 原预算/路径/close-release/PNG真实入口保留，原430R4验真，2951历史保护、客户端default/serverFinalUNVERIFIED；Review/CI/Release NOT_EXECUTED_BY_CODER，artifactMZ/艺术/Host/Map003仍未执行/延期 |
+
+所有新增case由既有CI命令`pnpm test:step07`及两模式`pnpm test:e2e`自动发现；远端CI本人未执行。当前V0.1人工工作台不宣称AI或V1.0完成，08–10 NOT_STARTED。

@@ -1,0 +1,29 @@
+{
+  "name": "@tileset/pack-export",
+  "version": "0.0.7",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@tileset/asset-core": "workspace:*",
+    "@tileset/material-processing": "workspace:*",
+    "@tileset/image-adapter": "workspace:*",
+    "@tileset/mz-compiler": "workspace:*",
+    "@tileset/pack-assembly": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

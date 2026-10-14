@@ -1,0 +1,305 @@
+{
+  "baseHEAD": "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d",
+  "productSourceR5": "59423201ba10ee71c3d1b04cebec69659017b7c7",
+  "legacyCommit": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+  "action": "11d5960a326750d5838078e36cf38b85af677262",
+  "defaultFetchDepth": 1,
+  "actualShallowCheckout": true,
+  "reachableCommits": 1,
+  "objectAlternates": false,
+  "currentWriterFilesPresent": true,
+  "sixLegacyGitShowExits": [
+    128,
+    128,
+    128,
+    128,
+    128,
+    128
+  ],
+  "originalFailure": "Missing historical Git objects; actual git show fails, not a product/native/DB test result",
+  "noImplicitHistoryMechanism": "CI has one checkout without with.fetch-depth and no later git fetch/history step; pinned input helper defaults1, fetch depth reaches Git --depth argument; setup/install/build scripts contain no history fetch",
+  "ownership": "Private file-transport repositories only; no remote credentials/network Git fetch, services, env, DB or asset writes",
+  "legacyFiles": [
+    {
+      "path": "packages/persistence/src/store.ts",
+      "legacyCommit": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "sha256": "1442bd0c6c0fda1192edf893321f6bd32e10230b8ee44d851f004db76e428c14",
+      "bytes": 37045
+    },
+    {
+      "path": "packages/persistence/src/storage.ts",
+      "legacyCommit": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "sha256": "1b86535792fba52f4cd537049fb97953e6ad74a0cc14065519dd254d9dfd3e00",
+      "bytes": 6733
+    },
+    {
+      "path": "packages/persistence/src/gate.ts",
+      "legacyCommit": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "sha256": "2f5bc4bbfbd059485cce88fbb794362e960039e9f0a5b4c5b786f2dc552906c4",
+      "bytes": 7237
+    },
+    {
+      "path": "packages/persistence/src/domain.ts",
+      "legacyCommit": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "sha256": "cef440415944e165fbbe11a430d9e009a3c3f1a1f7cbec92a2fcf0fa03a9714d",
+      "bytes": 3786
+    },
+    {
+      "path": "packages/persistence/src/replay.ts",
+      "legacyCommit": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "sha256": "037b0ff6218bc4d4642947a8e2c6465ce6d6600b4038b132b96ff3b8a9f3432d",
+      "bytes": 11986
+    },
+    {
+      "path": "packages/persistence/src/config.ts",
+      "legacyCommit": "c227f8c6ecfe85895937013e4687deb40247a6ee",
+      "sha256": "addcfbb3df3f071b11c14e52b31e4939b16746dd06ef24674fee7851296d2291",
+      "bytes": 1734
+    }
+  ],
+  "commands": [
+    {
+      "label": "origin-init",
+      "args": [
+        "git",
+        "init",
+        "--bare",
+        "<CODING_WORKTREE>/.local/step07-ci-history/origin.git"
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.04,
+      "log": ".local/step07-ci-history/origin-init.log",
+      "logSHA256": "6bc87e47b0fe188db7e588771a512590650926ff4b46c47bb03039aaa21cb554",
+      "logBytes": 932
+    },
+    {
+      "label": "origin-copy-own-candidate",
+      "args": [
+        "git",
+        "fetch",
+        "--no-tags",
+        "file://<CODING_WORKTREE>",
+        "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d:refs/heads/candidate"
+      ],
+      "cwd": ".local/step07-ci-history/origin.git",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 9.822,
+      "log": ".local/step07-ci-history/origin-copy-own-candidate.log",
+      "logSHA256": "802b17b1cfc014f19bfdaefb30418538d99f73871a026d3e83d17420d00b3516",
+      "logBytes": 454
+    },
+    {
+      "label": "shallow-init",
+      "args": [
+        "git",
+        "init",
+        "<CODING_WORKTREE>/.local/step07-ci-history/default-shallow"
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.03,
+      "log": ".local/step07-ci-history/shallow-init.log",
+      "logSHA256": "e25a50090317ec62e5bfd245252b0f0cfce29608b21c10afc3fc284472932315",
+      "logBytes": 937
+    },
+    {
+      "label": "shallow-remote",
+      "args": [
+        "git",
+        "remote",
+        "add",
+        "origin",
+        "file://<CODING_WORKTREE>/.local/step07-ci-history/origin.git"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.021,
+      "log": ".local/step07-ci-history/shallow-remote.log",
+      "logSHA256": "2a24bcfb64603c8c8ee11e38df7ba8d3f3588aa35dd7894010b3b1cd513eadc7",
+      "logBytes": 283
+    },
+    {
+      "label": "shallow-fetch",
+      "args": [
+        "git",
+        "-c",
+        "protocol.version=2",
+        "fetch",
+        "--no-tags",
+        "--prune",
+        "--no-recurse-submodules",
+        "--depth=1",
+        "origin",
+        "+5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d:refs/remotes/origin/candidate"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 2.148,
+      "log": ".local/step07-ci-history/shallow-fetch.log",
+      "logSHA256": "6db0ca9806ae89e0a3d0ac848a667d494218b0db59c2be3b3e8eb2924264186c",
+      "logBytes": 522
+    },
+    {
+      "label": "shallow-checkout",
+      "args": [
+        "git",
+        "checkout",
+        "--force",
+        "-B",
+        "candidate",
+        "refs/remotes/origin/candidate"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 1.576,
+      "log": ".local/step07-ci-history/shallow-checkout.log",
+      "logSHA256": "3cb533bed844e68f73cea27abbccd8afbad105843fcec7e3f5909de07e2dcc5c",
+      "logBytes": 312
+    },
+    {
+      "label": "shallow-status",
+      "args": [
+        "git",
+        "rev-parse",
+        "--is-shallow-repository"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.019,
+      "log": ".local/step07-ci-history/shallow-status.log",
+      "logSHA256": "08f6b11cccd537c187500dddb5fa0651be8400106bd47322dd289bbaa588f892",
+      "logBytes": 190
+    },
+    {
+      "label": "shallow-count",
+      "args": [
+        "git",
+        "rev-list",
+        "--count",
+        "HEAD"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.022,
+      "log": ".local/step07-ci-history/shallow-count.log",
+      "logSHA256": "a86c5aa65ca89a418fc2f2bff29e330af75665dd8d33c9a6cbbeedb336eb17e7",
+      "logBytes": 178
+    },
+    {
+      "label": "shallow-missing-store",
+      "args": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/store.ts"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 128,
+      "expectedExit": 128,
+      "durationSeconds": 0.02,
+      "log": ".local/step07-ci-history/shallow-missing-store.log",
+      "logSHA256": "7abecc94036c4db4d7b8616f8df70aef13f0e308ae7a5da8f1debbc43e39917b",
+      "logBytes": 351
+    },
+    {
+      "label": "shallow-missing-storage",
+      "args": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/storage.ts"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 128,
+      "expectedExit": 128,
+      "durationSeconds": 0.02,
+      "log": ".local/step07-ci-history/shallow-missing-storage.log",
+      "logSHA256": "7659465b79070941ae9d4d14a9a7eec7ac5a099d6d94450ed0d6ed2cd7613392",
+      "logBytes": 355
+    },
+    {
+      "label": "shallow-missing-gate",
+      "args": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/gate.ts"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 128,
+      "expectedExit": 128,
+      "durationSeconds": 0.02,
+      "log": ".local/step07-ci-history/shallow-missing-gate.log",
+      "logSHA256": "65286e7f9184318cee6b4c382d60077cafaf8397dc996e4ee26d352d86403c4b",
+      "logBytes": 349
+    },
+    {
+      "label": "shallow-missing-domain",
+      "args": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/domain.ts"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 128,
+      "expectedExit": 128,
+      "durationSeconds": 0.02,
+      "log": ".local/step07-ci-history/shallow-missing-domain.log",
+      "logSHA256": "e0d56e6009a4bd48c7549bf8e5d7add99a2e4534cbc922722401560ca584ba30",
+      "logBytes": 353
+    },
+    {
+      "label": "shallow-missing-replay",
+      "args": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/replay.ts"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 128,
+      "expectedExit": 128,
+      "durationSeconds": 0.02,
+      "log": ".local/step07-ci-history/shallow-missing-replay.log",
+      "logSHA256": "ffb772e4022b4a588b0abff4e027b2c98f9e0cadaf8bee86ca4dfc19bf769515",
+      "logBytes": 353
+    },
+    {
+      "label": "shallow-missing-config",
+      "args": [
+        "git",
+        "show",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee:packages/persistence/src/config.ts"
+      ],
+      "cwd": ".local/step07-ci-history/default-shallow",
+      "exitCode": 128,
+      "expectedExit": 128,
+      "durationSeconds": 0.02,
+      "log": ".local/step07-ci-history/shallow-missing-config.log",
+      "logSHA256": "a41ac6ed7d4b6fa05f4e76f6fdb65377c0f2636aa2a139f86916bb3acf045d9a",
+      "logBytes": 353
+    },
+    {
+      "label": "legacy-is-ancestor",
+      "args": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "c227f8c6ecfe85895937013e4687deb40247a6ee",
+        "5c3361b9cb28a49c7cbdcabf28f03c8eba470d6d"
+      ],
+      "cwd": ".",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.028,
+      "log": ".local/step07-ci-history/legacy-is-ancestor.log",
+      "logSHA256": "2698f3877d8ab6c060bfd518525bd45f9ad448a59ba9e15abdea1a48db928895",
+      "logBytes": 223
+    }
+  ]
+}

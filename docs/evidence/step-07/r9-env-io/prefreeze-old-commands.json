@@ -1,0 +1,123 @@
+{
+  "commands": [
+    {
+      "label": "old-clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec"
+      ],
+      "cwd": ".",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 12.185,
+      "rawPath": ".local/step07-r9-env-io/old-clone.log",
+      "rawSHA256": "5722b07f7352dc806f4fef2e0803530bdb5891e52f6d9e68aefe38f19fdf1b8d",
+      "rawBytes": 1084
+    },
+    {
+      "label": "old-checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "50fd6d84197b8c6d222f139a142ab24c918db0db"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.675,
+      "rawPath": ".local/step07-r9-env-io/old-checkout.log",
+      "rawSHA256": "6ae9be7349b8176e3c6a7a61b5029679d4e166b06dd7f8a807801f75bdc8f0d9",
+      "rawBytes": 101
+    },
+    {
+      "label": "old-install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.582,
+      "rawPath": ".local/step07-r9-env-io/old-install.log",
+      "rawSHA256": "1fa49db6222fa12f3aafee6a4adabc6d85c1a7ccc37f1fcce350dcfd77d760a7",
+      "rawBytes": 1170
+    },
+    {
+      "label": "old-generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.783,
+      "rawPath": ".local/step07-r9-env-io/old-generate.log",
+      "rawSHA256": "1864af9b9345c15214d5d128f4a2d9f8efcb3ccc940fa497d75dfab961e8eeaa",
+      "rawBytes": 824
+    },
+    {
+      "label": "old-build",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 24.674,
+      "rawPath": ".local/step07-r9-env-io/old-build.log",
+      "rawSHA256": "312dc9bfeb04a7a47f496786719816972c5504896c9c4baea76c4e91814ef50d",
+      "rawBytes": 4963
+    },
+    {
+      "label": "old-real-fs-native",
+      "argv": [
+        "node",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-r9-env-io/unreadable-native.cjs"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.031,
+      "rawPath": ".local/step07-r9-env-io/old-real-fs-native.log",
+      "rawSHA256": "0868088c6eb07cd25a1ea68504258db2119d6f16e44beb743d044978d7b30090",
+      "rawBytes": 109
+    },
+    {
+      "label": "old-real-playwright-false-accept",
+      "argv": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--list"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.961,
+      "rawPath": ".local/step07-r9-env-io/old-real-playwright-false-accept.log",
+      "rawSHA256": "41efbe16c560cacbd035ee45b108489120519d50ec0f5af2761c7498185b3574",
+      "rawBytes": 2486
+    }
+  ]
+}

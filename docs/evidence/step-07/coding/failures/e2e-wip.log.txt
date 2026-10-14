@@ -1,0 +1,83 @@
+
+> @tileset/prototype@0.0.2 test:e2e <WORKTREE>
+> playwright test
+
+[WebServer] (node:36879) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:36904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:36925) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:36929) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 e2e/shell.test.ts:3:1 › browser persists a project, reloads it, and initializes Pixi (5.4s)
+(node:36967) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 e2e/studio.test.ts:113:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP (33.1s)
+
+
+  1) e2e/shell.test.ts:3:1 › browser persists a project, reloads it, and initializes Pixi ──────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('画布已就绪')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('画布已就绪') with timeout 5000ms
+      - waiting for getByText('画布已就绪')
+
+
+      17 |   await page.reload();
+      18 |   await expect(page.getByRole('listitem').filter({ hasText: name })).toBeVisible();
+    > 19 |   await expect(page.getByText('画布已就绪', { exact: false })).toBeVisible();
+         |                                                           ^
+      20 |   await page.screenshot({
+      21 |     path: '.local/e2e/' + (process.env['E2E_MODE'] === 'dev' ? 'dev' : 'production') + '.png',
+      22 |     fullPage: true,
+        at <WORKTREE>/e2e/shell.test.ts:19:59
+
+    Error Context: test-results/shell-browser-persists-a-p-41c43-ads-it-and-initializes-Pixi/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/shell-browser-persists-a-p-41c43-ads-it-and-initializes-Pixi/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/shell-browser-persists-a-p-41c43-ads-it-and-initializes-Pixi/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) e2e/studio.test.ts:113:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP 
+
+    Error: expect(received).not.toBe(expected) // Object.is equality
+
+    Expected: not "6e9858aa7c4b781eaa0a6c0ef85ceeb914f989204c2d2fc4197d1ff32499d6d3"
+
+      247 |   await adopt(page);
+      248 |   const second = await build(page);
+    > 249 |   expect(second).not.toBe(first);
+          |                      ^
+      250 |   expect(network.some((r) => r.url.includes(`/builds/${second}/files/A1.png`))).toBe(true);
+      251 |   const nextDownload = page.waitForEvent('download');
+      252 |   await page.getByRole('link', { name: '下载此构建的标准 MZ 素材包 ZIP' }).click();
+        at <WORKTREE>/e2e/studio.test.ts:249:22
+
+    Error Context: test-results/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/studio-deployed-manual-Stu-c58ca-ixels-clock-history-and-ZIP/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    e2e/shell.test.ts:3:1 › browser persists a project, reloads it, and initializes Pixi ───────────
+    e2e/studio.test.ts:113:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP 
+ ELIFECYCLE  Command failed with exit code 1.

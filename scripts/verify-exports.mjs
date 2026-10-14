@@ -1,8 +1,12 @@
 import { execFileSync } from 'node:child_process';
 const checks = [
   [
+    'packages/pack-export',
+    "import {assembleExport,verifyExportFiles} from '@tileset/pack-export'; if(typeof assembleExport !== 'function' || typeof verifyExportFiles !== 'function') throw Error('export package');",
+  ],
+  [
     'packages/persistence',
-    "import {Persistence,AssetStorage} from '@tileset/persistence'; if(typeof Persistence !== 'function' || typeof AssetStorage !== 'function') throw Error('persistence export');",
+    "import {Persistence,AssetStorage,ReplaySession} from '@tileset/persistence'; if(typeof Persistence !== 'function' || typeof AssetStorage !== 'function' || typeof ReplaySession !== 'function') throw Error('persistence export');",
   ],
   [
     'packages/local-executor',

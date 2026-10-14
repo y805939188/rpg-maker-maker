@@ -1,0 +1,7 @@
+{
+  "phase": "Author preliminary package-path inspection",
+  "actualError": "Cannot find module 'playwright-core/package.json' from root [stdin]; rg guessed virtual-store path not found",
+  "cause": "playwright-core is a transitive dependency, not a root direct dependency; resolver must start at declared @playwright/test then playwright package",
+  "productOrCITestFailure": false,
+  "action": "Keep error record; use createRequire along installed dependency declarations"
+}

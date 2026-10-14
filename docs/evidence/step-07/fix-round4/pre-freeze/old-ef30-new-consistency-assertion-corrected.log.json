@@ -1,0 +1,7 @@
+{
+  "privateOriginal": ".local/step07/fix-round4/old-ef30-new-consistency-assertion-corrected.log",
+  "originalSHA256": "25a08cf117003414939461b4ee35b7ff399270d2eef8dd4640b94c313e52cc2b",
+  "originalBytes": 1122,
+  "sanitized": true,
+  "text": "\n RUN  v4.1.11 <CODING_WORKTREE>\n\n ❯ apps/api/tests/studio/integration.test.ts (11 tests | 1 failed | 10 skipped) 10225ms\n   × R4 first-build HTTP state across real COMMIT is a complete old or new metadata snapshot, never mixed completion 9166ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  apps/api/tests/studio/integration.test.ts > R4 first-build HTTP state across real COMMIT is a complete old or new metadata snapshot, never mixed completion\nAssertionError: healthy completion cannot combine obsolete null pointer with new terminal Job: expected null to be '8f24422dd85424a8b9dc689946ed4c29c9ce5…' // Object.is equality\n\n- Expected:\n\"8f24422dd85424a8b9dc689946ed4c29c9ce5b10bc0a379b3647405aa59c2978\"\n\n+ Received:\nnull\n\n ❯ apps/api/tests/studio/integration.test.ts:867:118\n\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 10 skipped (11)\n   Start at  01:47:43\n   Duration  11.13s (transform 261ms, setup 0ms, import 813ms, tests 10.23s, environment 0ms)\n\n"
+}

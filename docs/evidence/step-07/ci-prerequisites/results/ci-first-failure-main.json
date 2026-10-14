@@ -1,0 +1,28 @@
+{
+  "atUtc": "2026-10-13T20:55:22.852294+00:00",
+  "runId": 38464677883,
+  "head": "70bcdcc3cdd44da983bddb87a0ece1057175f188",
+  "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38464677883",
+  "conclusion": "FAILURE",
+  "actualLogSha256": "60a318ff8b476934fdf6a053577419b5b88b4007faa136486896b2a2eda6704b",
+  "actualLogBytes": 103227,
+  "rawLog": "retained privately .local/orchestration-06-07/step07-candidate-ci-38464677883-job.log.txt",
+  "step07HttpTests": {
+    "passed": 14,
+    "failed": 2,
+    "total": 16
+  },
+  "failures": [
+    {
+      "test": "R4 duplicate real old06 four-file publication completes only with transactional standard export and actual HTTP delivery",
+      "actual": "git show old c227 object exits128; expected0",
+      "rootCause": "default shallow actions checkout has no historical commit"
+    },
+    {
+      "test": "R4 real COMMIT first/update/history snapshots keep production and dev browser current, preview, ZIP and retirement coherent",
+      "actual": "browserType.launch: Executable does not exist",
+      "rootCause": "pnpm test:step07 consumes Chromium before playwright install step"
+    }
+  ],
+  "response": "Coding-only minimal workflow prerequisites fix; independent round6 required; no assertion/config budget reduction; no main merge or release"
+}

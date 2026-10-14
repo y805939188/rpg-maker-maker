@@ -1,0 +1,8 @@
+{
+  "package": "playwright-core1.64.0",
+  "originalPath": "node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js",
+  "rawSHA256": "2325ca4c1c83070e89dc49fb82525508f0a68e0cf12e2a624277968da216b7e0",
+  "rawBytes": 3584989,
+  "snippet": "      async internalBody() {\n        await this._finishedPromise;\n        if (this._status >= 300 && this._status <= 399)\n          throw new Error(\"Response body is unavailable for redirect responses\");\n        if (this._request._responseBodyOverride) {\n          const { body, isBase64 } = this._request._responseBodyOverride;\n          return Buffer.from(body, isBase64 ? \"base64\" : \"utf-8\");\n        }\n        try {\n          return await this._getResponseBodyCallback();\n        } catch (e) {\n          if (isProtocolError(e) && e.type === \"error\")\n            rewriteErrorMessage(e, e.message + \"\\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation.\");\n          throw e;\n        }\n      }\n",
+  "meaning": "navigation text is appended on general protocol-error; not proof of navigation"
+}

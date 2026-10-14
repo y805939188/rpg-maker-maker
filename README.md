@@ -1,3 +1,43 @@
+# 步骤07 R4整改当前作者候选
+
+功能source `59423201ba10ee71c3d1b04cebec69659017b7c7`，**SELF_TESTED_READY_FOR_REVIEW_ROUND5**。标准Export幂等完成事务、项目列表独立请求归属、Studio一致元数据快照已整改自测。正式已用4轮、待第5轮；2026-10-14用户取消机械五轮上限，原历史和门禁保留。作者不独立关闭问题、不批准/合并/推送、不开始08–10。
+
+最新check266、真实HTTP/PG16（原9＋新7）、06回归23、API3/privacy5、production/development18＋18、24scene/12＋12clock/实际PNG/12ZIP/干净恢复、JS78/旧56payload16PNG/8CPU通过。精确Source/Build/hash、原失败、资源和未执行项见 [R4整改Coding报告](docs/reviews/step-07-fix-round-4-coding.md) 与 [最终ledger](docs/evidence/step-07/fix-round4/ledger.json)。自有production entry `http://127.0.0.1:4376` 保留，AI尚未开放。
+
+以下全部作者检查点为历史，原文本/报告/失败/Manifest保留；R3原两项已由独立R4关闭，本轮三个P2待第5轮独立确认。
+
+# 步骤07 R3整改当前作者候选
+
+功能source `ef30dc2ab011d204d1d0a4d099a335b68458cdca`，**SELF_TESTED_READY_FOR_ROUND4**。正式已用3/5，R3为REQUIRES_REVISION；连续错误poll共享5次/60s、明确未知/只读重读与project/selection/action异步写回调守卫已自测，待Main第4/5轮独立复审。未批准、合并、推送或启动08。
+
+最新冻结check266、真实HTTP/PG9、06回归23、API3/privacy5、prod/dev完整browser13+13、24scene/12+12clock/实际PNG/ZIP/干净恢复、JS78/旧56payload16PNG/8CPU通过。精确source/Build/hash/原失败及未执行见 [R3整改Coding报告](docs/reviews/step-07-fix-round-3-coding.md)。专属生产入口 `http://127.0.0.1:4376` 保留；AI仍尚未开放。
+
+以下作者检查点均为历史，原内容/证据保留；R1/R2问题已由独立R3在原范围关闭，R3新两P2仍待R4。
+
+# 步骤07 R2整改作者候选（历史）
+
+最新source `5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND3**。正式已用2/5，R2为REQUIRES_REVISION；慢响应串行轮询和处理PNG可取消、有界BUSY恢复已整改自测，下一次正式3/5，由Main独立复审。未批准、合并、推送或启动08。
+
+冻结候选check263、真实HTTP/PG9、06回归23、API3、privacy5、生产/开发browser各7、实际PNG/独立像素/ZIP/恢复及旧Pack比较通过。精确source/Build/hash、原失败、资源和未执行项见 [R2整改Coding报告](docs/reviews/step-07-fix-round-2-coding.md)。专属生产入口 `http://127.0.0.1:4376` 保留；AI仍尚未开放。
+
+以下R1及更早作者候选为历史检查点，原内容和证据保留；R1问题在R2中由独立Reviewer关闭，R2两个新问题仍待R3确认。
+
+# 步骤07 R1整改作者候选（历史）
+
+最新source `d343171ca866a8d1d1c4e272823ef475229d8032`，**READY_FOR_REVIEW / SELF_TESTED_PENDING_ROUND2**。R1/5为REQUIRES_REVISION；共享存储祖先/root边界与非阻断P3项目切换已整改自测，下一次正式2/5，由Main复审。未批准、合并、推送或启动08。
+
+冻结候选check253、真实HTTP/PG8、06回归23、API3、privacy5、生产/开发browser各3、独立实际像素/ZIP/恢复及旧Pack比较通过。精确Build/hash/运行资源/原失败与未执行项见 [R1整改Coding报告](docs/reviews/step-07-fix-round-1-coding.md)。专属生产入口4376保留；AI仍尚未开放。
+
+以下初始07作者候选为历史检查点，已被正式R1要求整改；原内容及证据保留。
+
+# 步骤07初始作者候选（历史）
+
+最新source `4f6a40f3e8be990b4068dafee488249be737f7ad`，状态 **READY_FOR_REVIEW**，Main独立Review/CI/批准与发布待执行。人工PNG Studio现具备项目、精确组件/配方、构建/历史、双Pixi预览、QA和实际标准ZIP下载；AI尚未开放，不宣称V1.0完成。
+
+运行：本工作树已有专属PG55476/.env，固定已有Node22.21.1后 `pnpm start`，生产入口 `http://127.0.0.1:4376`；停止自身生产服务后 `pnpm dev`，开发入口5276。新部署的安装/构建/迁移顺序、资源政策与用户工作流见 [步骤07基线](docs/engineering/STEP_07_BASELINE.md)，精确构建/验证/截图/未执行项见 [Coding报告](docs/reviews/step-07-coding.md)。源码只在本地codex分支冻结，作者不发布或开始08。
+
+以下保留历史检查点；当前06已PUBLISHED，见 [06发布交接](docs/orchestration/step-06-release.md)。历史“尚未开放Studio”文字不作为07已新增HTTP入口的豁免。
+
 # AI Tileset Studio — 当前开发基线
 
 步骤 01–05 的已审成果现已发布至 main `fa0b4a6`，候选及 main CI 均成功。步骤 05 最新功能 `ad669a0` 已取得独立复审 PASS，原发布归属阻断已关闭，用户已批准开始步骤 06。当前本轮仅授权步骤 06、07 串行开发与独立 Review/发布，步骤 07 发布后停止；完整人工 Studio 与真实 AI 尚不能声明完成。

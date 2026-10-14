@@ -1,0 +1,10 @@
+{
+  "stage": "AUTHOR_DOCUMENTATION_HANDOFF_AUDIT",
+  "attempt": 1,
+  "exitCode": 1,
+  "sourceSHA": "4f6a40f3e8be990b4068dafee488249be737f7ad",
+  "recordedAtUtc": "2026-10-13T04:24:29.115259+00:00",
+  "output": "Traceback (most recent call last):\n  File \"<stdin>\", line 73, in <module>\nAssertionError: ('docs/reviews/step-07-coding.md', '../evidence/step-07/coding/handoff-audit.json')\n",
+  "cause": "Planned audit link was checked before the audit target was written.",
+  "correction": "Write completed audit target before validating all links. No source, test, threshold, fixture or log changes."
+}

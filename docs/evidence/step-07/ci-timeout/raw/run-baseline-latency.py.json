@@ -1,0 +1,7 @@
+{
+  "privateOriginal": ".local/step07-ci-timeout/run-baseline-latency.py",
+  "originalSHA256": "dd4764ff97fa18b8b7afabe689adc4c9feca5a11c821a3beca7ecb5a5b17d1d1",
+  "originalBytes": 1143,
+  "text": "from pathlib import Path\nimport json,subprocess,os,time,hashlib\nroot=Path.cwd();s=root/'.local/step07-ci-timeout';private=json.loads((s/'runtime-private.json').read_text());w=Path(private.pop('workspace'));env={**os.environ,**private,'PATH':'/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+os.environ['PATH']};args=['pnpm','exec','vitest','run','--config','vitest.step07.config.ts','-t','R4 real COMMIT'];start=time.time();log=s/'baseline-legal-png-latency.log'\nwith log.open('w')as f:p=subprocess.run(args,cwd=w,env=env,stdout=f,stderr=subprocess.STDOUT)\nrow={'label':'baseline87-1500ms-legal-processed-response-latency','args':args,'baselineSource':'87e13a8a99db3058dce8680d3ae985969b8a9bac','privateInstrumentationOnly':True,'global180000Unchanged':True,'exitCode':p.returncode,'durationSeconds':round(time.time()-start,3),'log':str(log.relative_to(root)),'logSHA256':hashlib.sha256(log.read_bytes()).hexdigest(),'logBytes':log.stat().st_size};(s/'baseline-legal-latency-command.json').write_text(json.dumps(row,indent=2)+'\\n');print(json.dumps({k:row[k] for k in ['label','exitCode','durationSeconds']}));raise SystemExit(p.returncode)\n",
+  "sanitized": true
+}

@@ -1,0 +1,82 @@
+{
+  "recordedAtUtc": "2026-10-13T04:20:00.006092+00:00",
+  "step": "07",
+  "role": "step_coder",
+  "sameContextCID": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+  "normalRecoveryAttempt": 1,
+  "sourceSHA": "4f6a40f3e8be990b4068dafee488249be737f7ad",
+  "formalReviewRounds": 0,
+  "formalReviewLimit": 5,
+  "clientConfiguration": {
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "default",
+    "userLabel": "Standard",
+    "serverFinalFields": "UNVERIFIED_NOT_EXPOSED"
+  },
+  "lastEventUpdateUtc": "2026-10-13T03:37:40.508853+00:00",
+  "mainNoActiveToolsCheckedAtUtc": "2026-10-13T04:10:25.826803+00:00",
+  "mainAction": "NORMAL_SIGINT_ONLY_OWNED_NATIVE_CODEX_CLIENT",
+  "originalClientPid": 43827,
+  "originalWrapperPid": 43826,
+  "interruptedAtUtc": "2026-10-13T04:12:20.555208+00:00",
+  "exit": {
+    "exitCode": 1,
+    "finishedAtUtc": "2026-10-13T04:12:23.150712+00:00"
+  },
+  "serverCause": "UNVERIFIED",
+  "classification": "CLIENT_INTERRUPTION_NOT_TEST_OR_REVIEW_PASS",
+  "originalRecords": [
+    {
+      "privateOriginal": "<MAIN_PRIVATE>/.local/orchestration-06-07/step07-coding/client-configuration.json",
+      "sha256": "fff852c093ced6175b2bf87cce86e0bc3c4a306e10075f5c9ebb7b28240ac7e4",
+      "bytes": 1186,
+      "sanitizedCopy": "client-recovery/client-configuration.json",
+      "sanitization": "Only absolute workspace/private-root paths replaced; original retained read-only."
+    },
+    {
+      "privateOriginal": "<MAIN_PRIVATE>/.local/orchestration-06-07/step07-coding/normal-recovery-attempt1.json",
+      "sha256": "12d4810ba26a3a3e88ab0d7205b6f71cc02b950b91d42b34b41655e50ca50bd4",
+      "bytes": 430,
+      "sanitizedCopy": "client-recovery/normal-recovery-attempt1.json",
+      "sanitization": "Only absolute workspace/private-root paths replaced; original retained read-only."
+    },
+    {
+      "privateOriginal": "<MAIN_PRIVATE>/.local/orchestration-06-07/step07-coding/stall-diagnosis.json",
+      "sha256": "f71152df36ebfbdbf482e74ad2900a4c1aab716f536b11ee59d2c7f11fea089b",
+      "bytes": 357,
+      "sanitizedCopy": "client-recovery/stall-diagnosis.json",
+      "sanitization": "Only absolute workspace/private-root paths replaced; original retained read-only."
+    },
+    {
+      "privateOriginal": "<MAIN_PRIVATE>/.local/orchestration-06-07/step07-coding/exit.json",
+      "sha256": "8dffa7ee0e3d88e448ea38c072a14fd75906fd5c63dbadc9b69dbb259e9a3b4d",
+      "bytes": 69,
+      "sanitizedCopy": "client-recovery/exit.json",
+      "sanitization": "Only absolute workspace/private-root paths replaced; original retained read-only."
+    },
+    {
+      "privateOriginal": "<MAIN_PRIVATE>/.local/orchestration-06-07/step07-coding/stderr.log",
+      "sha256": "704ba4f7024a1b3a75d0d92646556fcd9244550323751f0459f0a573e1fb073b",
+      "bytes": 1650,
+      "sanitizedCopy": "client-recovery/stderr.log.txt",
+      "sanitization": "Only absolute workspace/private-root paths replaced; original retained read-only."
+    },
+    {
+      "privateOriginal": "<MAIN_PRIVATE>/.local/orchestration-06-07/step07-coding/events.jsonl",
+      "sha256": "0c9aa3343f48951df49e3259c26a86f9ab5db248319a8675fafadc4b9ec26c14",
+      "bytes": 1615875,
+      "copy": "NOT_INCLUDED_PRIVATE_EVENT_STREAM"
+    },
+    {
+      "privateOriginal": "<MAIN_PRIVATE>/.local/orchestration-06-07/step07-coding/observer.json",
+      "sha256": "035a75f66dcc42015d8a563fa7aa3de239061bd159b57ba465272aecbc2ed08d",
+      "bytes": 17,
+      "copy": "NOT_INCLUDED_PRIVATE_EVENT_STREAM"
+    }
+  ],
+  "scopeAfterRecovery": "Evidence/documentation, original-hash and source-scope audit, local docs commit only. No source changes or repeated feature tests.",
+  "independentReview": "NOT_EXECUTED_BY_CODER",
+  "ci": "NOT_EXECUTED_BY_CODER",
+  "release": "NOT_EXECUTED_BY_CODER"
+}

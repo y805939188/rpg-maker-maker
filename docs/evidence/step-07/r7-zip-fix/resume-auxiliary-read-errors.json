@@ -1,0 +1,16 @@
+{
+  "errors": [
+    {
+      "operation": "bounded metadata read",
+      "commandFragment": "unmatched source*.json shell glob",
+      "exit": "zsh no matches found",
+      "impact": "no mutation; corrected to pathlib inventory"
+    },
+    {
+      "operation": "archive-summary read",
+      "error": "KeyError scope on additional variants",
+      "impact": "no mutation; corrected by using newHelperAccepted common key"
+    }
+  ],
+  "validationFailures": false
+}

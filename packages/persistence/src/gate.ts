@@ -60,7 +60,9 @@ export class WriteGate {
     exclusive: boolean,
     operation: (lease: GateLease) => Promise<T>,
     scope?: string,
+    signal?: AbortSignal,
   ): Promise<T> {
+    signal?.throwIfAborted();
     let parents = this.#context.getStore() ?? [],
       parent = parents.at(-1);
     // A new session cannot replace an invalid inherited lifetime. Maintenance is
@@ -90,6 +92,9 @@ export class WriteGate {
         parent = undefined;
       } else controller.abort(reason);
     };
+    const externalEnd = () => controller.abort(signal?.reason);
+    signal?.addEventListener('abort', externalEnd, { once: true });
+    if (signal?.aborted) externalEnd();
     parent?.signal.addEventListener('abort', inheritedEnd, { once: true });
     controller.signal.addEventListener('abort', () => void end(), { once: true });
     client.on('error', lost);
@@ -168,6 +173,7 @@ export class WriteGate {
       });
     } finally {
       ending = true;
+      signal?.removeEventListener('abort', externalEnd);
       parent?.signal.removeEventListener('abort', inheritedEnd);
       // Normal completion closes a lifetime too, but is not connection loss.
       // Unawaited descendants cannot outlive the operation that owns their locks.
@@ -175,8 +181,8 @@ export class WriteGate {
       await end();
     }
   }
-  write<T>(operation: (lease: GateLease) => Promise<T>, scope?: string) {
-    return this.run(false, operation, scope);
+  write<T>(operation: (lease: GateLease) => Promise<T>, scope?: string, signal?: AbortSignal) {
+    return this.run(false, operation, scope, signal);
   }
   pause<T>(operation: (lease: GateLease) => Promise<T>) {
     return this.run(true, operation);

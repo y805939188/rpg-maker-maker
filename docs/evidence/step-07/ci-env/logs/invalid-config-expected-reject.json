@@ -1,0 +1,22 @@
+{
+  "receipt": {
+    "label": "invalid-config-expected-reject",
+    "args": [
+      "pnpm",
+      "exec",
+      "playwright",
+      "test",
+      "--list"
+    ],
+    "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+    "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+    "exitCode": 1,
+    "expectedExit": 1,
+    "durationSeconds": 0.561,
+    "log": ".local/step07-ci-env/final/invalid-config-expected-reject.log",
+    "logBytes": 2297,
+    "logSHA256": "acf619b477b306695ab5e6b054c1e5346802c7e4b3497c65ac98dfba143548bb",
+    "noDotEnv": true
+  },
+  "sanitizedText": "Error: Invalid local server configuration. Check the documented .env fields.\n    at parseConfig (file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/apps/api/src/config.ts:40:11)\n    at loadE2EEnvironment (file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/e2e/environment.ts:18:10)\n    at file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/playwright.config.ts:3:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)\n    at requireOrImport (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/common/index.js:1096:12)\n    at loadUserConfig (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/common/index.js:1283:46)\n    at loadConfig (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/common/index.js:1290:22)\n    at Object.loadConfigFromFile (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/common/index.js:1508:10)\n    at runTests (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/cli/testActions.js:44:18)\n    at _Command.<anonymous> (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/program.js:55:7)\n"
+}

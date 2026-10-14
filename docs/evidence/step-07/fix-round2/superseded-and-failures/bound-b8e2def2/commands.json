@@ -1,0 +1,140 @@
+{
+  "sourceSHA": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+  "records": [
+    {
+      "label": "check",
+      "args": [
+        "pnpm",
+        "check"
+      ],
+      "sourceSHA": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 64.39,
+      "log": ".local/step07/fix-round2/final/check.log",
+      "logSha256": "0e8dca484fbb3bb12ea9ca09025dc0121b6abd63bc33d90c68efb950e5586e16"
+    },
+    {
+      "label": "db-migrate",
+      "args": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "sourceSHA": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 1.12,
+      "log": ".local/step07/fix-round2/final/db-migrate.log",
+      "logSha256": "4aa6e55eb3be8138834289de1c0774b5ff22b9a0f9019f4e050560f9347139b6"
+    },
+    {
+      "label": "step07",
+      "args": [
+        "pnpm",
+        "test:step07"
+      ],
+      "sourceSHA": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 221.7,
+      "log": ".local/step07/fix-round2/final/step07.log",
+      "logSha256": "2a6b864991d7d54b86a03f04b865c0de5925e186104e48082aa1662f46046893"
+    },
+    {
+      "label": "api-integration",
+      "args": [
+        "pnpm",
+        "test:integration"
+      ],
+      "sourceSHA": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 9.7,
+      "log": ".local/step07/fix-round2/final/api-integration.log",
+      "logSha256": "7904a0177a4c40cc8fc6f766336a0da49f5cd80b48e729c7e9d630ebb6aa6433"
+    },
+    {
+      "label": "dev-privacy",
+      "args": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "sourceSHA": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 10.06,
+      "log": ".local/step07/fix-round2/final/dev-privacy.log",
+      "logSha256": "f46178ef1b0ac846f99907e835e0d4940daa8e0b4ce9a54022524d9b0f3da809"
+    },
+    {
+      "label": "browser-production",
+      "args": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "sourceSHA": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 0,
+      "durationSeconds": 245.9,
+      "log": ".local/step07/fix-round2/final/browser-production.log",
+      "logSha256": "5ed25da0f7cd66a4cdec4288c90dda85c59ff0db14974a4e5ac676ade91b8cd4"
+    },
+    {
+      "label": "browser-development",
+      "args": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "sourceSHA": "b8e2def2f2b1ae87b1fa2fb980eda32431e6c4a3",
+      "env": {
+        "API_PORT": "4376",
+        "WEB_PORT": "5276",
+        "INTEGRATION_API_PORT": "4376",
+        "STEP07_TEST_API_PORT": "4376",
+        "E2E_MODE": "dev",
+        "MZ_CORE_PATH": "LOCAL_PINNED_NATIVE_CORE_SHA4ad828ae"
+      },
+      "exitCode": 1,
+      "durationSeconds": 245.25,
+      "log": ".local/step07/fix-round2/final/browser-development.log",
+      "logSha256": "1f794980e289fbeb79d76dcb680123259193a33ab8330df78e78bef828151091"
+    }
+  ],
+  "originalSHA256": "fa26b6bb90ae4917276f3f76271a9ba55912d38a2e1add13d7ed90c1895568b8"
+}

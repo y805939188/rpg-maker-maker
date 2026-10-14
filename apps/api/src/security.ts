@@ -53,7 +53,16 @@ export function localRequestBoundary(config: ServerConfig): RequestHandler {
         deny(403, 'FORBIDDEN', 'Write requests require the local client boundary.');
         return;
       }
+      const upload =
+        /^\/api\/projects\/[a-f0-9-]{36}\/sources\/(grass|water-[012]|mask|overlay)\/upload$/.test(
+          req.path,
+        );
+      if (upload && (req.method !== 'POST' || req.headers['content-type'] !== 'image/png')) {
+        deny(415, 'UNSUPPORTED_MEDIA_TYPE', 'PNG upload requires image/png.');
+        return;
+      }
       if (
+        !upload &&
         !/^application\/json(?:\s*;\s*charset=utf-8)?$/i.test(req.headers['content-type'] ?? '')
       ) {
         deny(415, 'UNSUPPORTED_MEDIA_TYPE', 'Only JSON requests are supported.');

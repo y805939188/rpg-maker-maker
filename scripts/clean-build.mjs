@@ -12,5 +12,6 @@ for (const path of [
   'packages/pack-assembly/dist',
   'packages/persistence/dist',
   'packages/local-executor/dist',
+  'packages/pack-export/dist',
 ])
   await rm(new URL('../' + path, import.meta.url), { recursive: true, force: true });

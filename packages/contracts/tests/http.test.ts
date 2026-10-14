@@ -22,6 +22,19 @@ describe('JSON HTTP boundary and OpenAPI', () => {
       '/api/health',
       '/api/projects',
       '/api/projects/{id}',
+      '/api/projects/{id}/studio',
+      '/api/projects/{id}/builds/{build}/export',
+      '/api/projects/{id}/preset',
+      '/api/projects/{id}/recipe',
+      '/api/projects/{id}/builds',
+      '/api/projects/{id}/builds/{build}/preview',
+      '/api/projects/{id}/builds/{build}/visual',
+      '/api/projects/{id}/sources/{component}/upload',
+      '/api/projects/{id}/sources/{source}/png',
+      '/api/projects/{id}/recipes/{recipe}/processed',
+      '/api/projects/{id}/builds/{build}/files/{name}',
+      '/api/projects/{id}/builds/{build}/profile',
+      '/api/projects/{id}/builds/{build}/download',
     ]);
     expect(document.paths['/api/projects']?.post?.responses['201']).toBeDefined();
     expect(JSON.stringify(document)).not.toMatch(/DATABASE_URL|localPath|predictionId|apiKey/);

@@ -1,0 +1,8 @@
+{
+  "originalPath": "/Users/dingshinn/Desktop/rpg-maker-maker/docs/evidence/step-07/independent-round11/evidence/optional-install-cancel.json",
+  "originalSHA256": "9be3825713ab3d8e4c3eeb984a1ed4c89887af242fb53d57b8f523e75f87ef0d",
+  "originalBytes": 867,
+  "purpose": "Read-only original R11 counterexample; FAIL/cancel retained, not new candidate PASS",
+  "redacted": false,
+  "text": "{\n  \"status\": \"OWN_CONTROL_INSTALL_SIGTERM_PARTIAL_DOWNLOAD_RETAINED\",\n  \"reason\": \"Optional installation-order positive control is not required to establish the independently reproduced cold-check failure; avoid spending more time downloading unused full Chromium. Existing exact1248 launch/full349/5realcases already prove normal cache execution. No Linux CI PASS inferred.\",\n  \"command\": [\n    \"pnpm\",\n    \"exec\",\n    \"playwright\",\n    \"install\",\n    \"--with-deps\",\n    \"chromium\"\n  ],\n  \"cwd\": \"/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792\",\n  \"privateLogSHA256\": \"e660988a5626a6f75f55040c57ce1612409db179a1162896c88fd7a86efebb69\",\n  \"privateLogBytes\": 1014,\n  \"installedControl\": \"NOT_EXECUTED\",\n  \"partialCachePreserved\": true,\n  \"otherServicesNotSignaled\": true\n}\n"
+}

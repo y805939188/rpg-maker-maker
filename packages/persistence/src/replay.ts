@@ -140,7 +140,7 @@ export type RecipeArchive = z.infer<typeof ArchiveSchema>;
 export const jsonBytes = (value: unknown) =>
   new TextEncoder().encode(JSON.stringify(value, null, 2) + '\n');
 /** JSON is a description, never a substitute for owned source/IR/Compiler objects. */
-async function replayUncached(value: unknown) {
+async function replayUncached(value: unknown, signal?: AbortSignal) {
   const archives = freezeJson(z.array(ArchiveSchema).min(1).max(128).parse(freezeJson(value)));
   const records = [],
     fragments = [],
@@ -158,6 +158,7 @@ async function replayUncached(value: unknown) {
       assert.ok(total <= 32 * 1024 * 1024, 'Archive budget exceeded');
       const result = await decodeSource(
         new RawSource({ ...source.descriptor, encoding: 'png', bytes }),
+        signal,
       );
       if (result.status !== 'validated') throw Error(result.diagnostic.code);
       assert.ok(sameRef(result.source.ref, source.ref));
@@ -195,15 +196,18 @@ async function replayUncached(value: unknown) {
 
 /** Per-operation cache stores only identical archives that have already crossed every public boundary. */
 export class ReplaySession {
+  constructor(readonly signal?: AbortSignal) {}
   #cache = new Map<string, Awaited<ReturnType<typeof replayUncached>>>();
   #retainedBytes = 0;
   async replay(value: unknown) {
+    this.signal?.throwIfAborted();
     const archives = freezeJson(z.array(ArchiveSchema).min(1).max(128).parse(freezeJson(value)));
     const records: Awaited<ReturnType<typeof replayUncached>>['records'] = [],
       fragments: Awaited<ReturnType<typeof replayUncached>>['fragments'] = [];
     let total = 0;
     const seen = new Set<string>();
     for (const archive of archives) {
+      this.signal?.throwIfAborted();
       assert.ok(!seen.has(archive.recipe.ref.contentHash));
       seen.add(archive.recipe.ref.contentHash);
       for (const source of archive.sources) {
@@ -218,7 +222,7 @@ export class ReplaySession {
       });
       let replay = this.#cache.get(key);
       if (!replay) {
-        replay = await replayUncached([archive]);
+        replay = await replayUncached([archive], this.signal);
         for (const record of replay.records) {
           Object.freeze(record.sources);
           Object.freeze(record);
@@ -248,6 +252,7 @@ export class ReplaySession {
       records.push(...replay.records);
       fragments.push(...replay.fragments);
     }
+    this.signal?.throwIfAborted();
     return { archives, records, fragments };
   }
 }
@@ -323,8 +328,8 @@ export async function bundleFiles(value: unknown, session?: ReplaySession) {
   const replay = await replayBundle(value, session);
   const files: Record<string, Uint8Array> = {
     'bundle.json': jsonBytes(replay.bundle),
-    'A1.png': await encodePng(replay.atlases.a1),
-    'A2.png': await encodePng(replay.atlases.a2),
+    'A1.png': await encodePng(replay.atlases.a1, session?.signal),
+    'A2.png': await encodePng(replay.atlases.a2, session?.signal),
   };
   const manifest = freezeJson({
     contract: 'durable-build-v1',

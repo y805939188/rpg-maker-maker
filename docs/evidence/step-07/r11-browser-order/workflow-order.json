@@ -1,0 +1,8 @@
+{
+  "originalPath": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-r11-browser-order/workflow-order.json",
+  "originalSHA256": "595b2e8e492af8144a1a67489c93b29c6e3365db3d35ced89f1051980faaa911",
+  "originalBytes": 1221,
+  "purpose": "Latest frozen Source author validation; documentary wrapper, original retained privately",
+  "redacted": false,
+  "text": "{\n  \"oldRuns\": [\n    \"pnpm install --frozen-lockfile\",\n    \"pnpm db:generate\",\n    \"pnpm check\",\n    \"pnpm test:dev-privacy\",\n    \"pnpm db:migrate\",\n    \"pnpm test:integration\",\n    \"TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06\",\n    \"pnpm exec playwright install --with-deps chromium\",\n    \"TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07\",\n    \"pnpm test:e2e\",\n    \"E2E_MODE=dev pnpm test:e2e\"\n  ],\n  \"newRuns\": [\n    \"pnpm install --frozen-lockfile\",\n    \"pnpm db:generate\",\n    \"pnpm exec playwright install --with-deps chromium\",\n    \"pnpm check\",\n    \"pnpm test:dev-privacy\",\n    \"pnpm db:migrate\",\n    \"pnpm test:integration\",\n    \"TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06\",\n    \"TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07\",\n    \"pnpm test:e2e\",\n    \"E2E_MODE=dev pnpm test:e2e\"\n  ],\n  \"installCount\": 1,\n  \"onlyExactInstallLineMoved\": true,\n  \"pinsServicesPermissionsBudgetsAndOtherStepsUnchanged\": true,\n  \"oldWorkflow\": {\n    \"sha256\": \"431fc28504104a33b29f49b4c9b306b97d9748f97e11830e514a7aaf5a57182e\",\n    \"bytes\": 1516\n  },\n  \"newWorkflow\": {\n    \"sha256\": \"ceba58a5b4e26b28374e226dbf3682881782cce4979c67b6a8d14206554e70e9\",\n    \"bytes\": 1516\n  }\n}\n"
+}

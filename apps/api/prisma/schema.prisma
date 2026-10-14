@@ -133,6 +133,7 @@ model Build {
   projectSnapshot     ProjectSnapshot @relation(fields: [projectSnapshotId], references: [id], onDelete: Restrict)
   currentForProject   Project? @relation("ProjectSuccess")
   currentForPack      Pack? @relation("PackSuccess")
+  finalExport         FinalExport?
   files               BuildFile[]
   acceptance          AcceptanceRecord[]
 }
@@ -194,4 +195,22 @@ model TaskArtifact {
   file     FileObject @relation(fields: [sha256], references: [sha256], onDelete: Restrict)
   asset    OriginalAsset @relation(fields: [assetId], references: [id], onDelete: Restrict)
   @@id([taskId, ordinal])
+}
+
+model FinalExport {
+  buildId String @id
+  exportId String @unique
+  manifestSha String
+  profileHash String
+  files Json
+  build Build @relation(fields: [buildId], references: [id], onDelete: Restrict)
+}
+model StudioJob {
+  id String @id @db.Uuid
+  projectId String @db.Uuid
+  input Json
+  state String
+  buildId String?
+  diagnostic Json?
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
 }

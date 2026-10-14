@@ -1,0 +1,39 @@
+{
+  "sourceSHA": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+  "parentDocsHEAD": "401fc5471bef0b60bc9b5689ea8b29109f8420ab",
+  "parentIndependentR8Source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+  "sourcePaths": {
+    "apps/api/tests/e2e-environment.test.ts": {
+      "sha256": "5aa8d238ce55a1b03a9ecf28aaeae627636229f5a8bf90358c88ed1d9be8f812",
+      "bytes": 4704
+    },
+    "e2e/environment.ts": {
+      "sha256": "1c6eb99102d84d053b1525bed94ccf86542b04d9ddc2caf3f9546da2d166e9b4",
+      "bytes": 852
+    },
+    "e2e/studio-recovery.test.ts": {
+      "sha256": "204c535a6c7e59ca826ea8e881b2b7b747f1b7e0a8d4b2caa113e4a02ac7a410",
+      "bytes": 18993
+    },
+    "e2e/studio.test.ts": {
+      "sha256": "78b64fa87a53d1e226f84e7995853909392abafa43660d921c804602df1d5010",
+      "bytes": 24381
+    },
+    "playwright.config.ts": {
+      "sha256": "e9685c304f7e6bf8ef0eae7cbd435984cde6cc54e2b98019c58f2e3418dda026",
+      "bytes": 802
+    }
+  },
+  "productionChanged": false,
+  "workflowChanged": false,
+  "schemaLockCompilerProfileChanged": false,
+  "reviewUsed": 8,
+  "nextReview": 9,
+  "worktreeCleanAtFreeze": true,
+  "unconditionalLoadAudit": {
+    "e2e": "all sites now use one optional-file helper",
+    "persistenceTests": "existing try/catch allows only ENOENT with explicit DATABASE_URL; unchanged, not unconditional",
+    "production": "dotenv optional file / override:false followed by shared parseConfig; unchanged",
+    "helper": "catches only ENOENT; shared parseConfig before Persistence or server"
+  }
+}

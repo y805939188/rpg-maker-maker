@@ -1,0 +1,26 @@
+{
+  "receipt": {
+    "label": "generate",
+    "argv": [
+      "pnpm",
+      "db:generate"
+    ],
+    "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+    "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 1.729,
+    "rawPath": ".local/step07-ci-sixphase-duration/final/generate.log",
+    "rawBytes": 877,
+    "rawSHA256": "9bb8c925db601e4bde9655921d4188725db1ef8db4ee878d1cf088953a475d9e",
+    "noRootDotEnv": true,
+    "safeEnvironment": {
+      "API_HOST": "127.0.0.1",
+      "API_PORT": "4398",
+      "WEB_PORT": "5298",
+      "E2E_MODE": null,
+      "TILESET_ASSET_ROOT": null
+    }
+  },
+  "text": "\n> @tileset/prototype@0.0.2 db:generate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1\n> pnpm --filter @tileset/api db:generate\n\n\n> @tileset/api@0.0.2 db:generate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/apps/api\n> prisma generate --schema prisma/schema.prisma\n\nPrisma schema loaded from prisma/schema.prisma\n\n✔ Generated Prisma Client (v6.19.3) to ./../../node_modules/.pnpm/@prisma+client@6.19.3_prisma@6.19.3_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 97ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\nTip: Interested in query caching in just a few lines of code? Try Accelerate today! https://pris.ly/tip-3-accelerate\n\n"
+}

@@ -1,0 +1,151 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "args": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0"
+      ],
+      "cwd": ".",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 11.756,
+      "log": ".local/step07-r7-zip-fix/final/clone.log",
+      "logSHA256": "9a177bd57c3ce6baa381431e0be97ed126b2d0a44f3d0617146bc10464f4ae95",
+      "logBytes": 1045
+    },
+    {
+      "label": "checkout",
+      "args": [
+        "git",
+        "checkout",
+        "--detach",
+        "c8d41a680df42fe565882d93d3f85a04f7a10b22"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.345,
+      "log": ".local/step07-r7-zip-fix/final/checkout.log",
+      "logSHA256": "89d08648e91f28d0b8af06f2b929128db83aa0d548d2722d4d7b6804d3c9ee47",
+      "logBytes": 88
+    },
+    {
+      "label": "install",
+      "args": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 2.44,
+      "log": ".local/step07-r7-zip-fix/final/install.log",
+      "logSHA256": "6ff1b6db235893312ad2e1c0470060ed504826945bff479778815d986be7c453",
+      "logBytes": 1170
+    },
+    {
+      "label": "generate",
+      "args": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 1.811,
+      "log": ".local/step07-r7-zip-fix/final/generate.log",
+      "logSHA256": "25c2004022248c8505bb99e9ca1edd881afa0641c2f5c56d472a7be4ae02fc8b",
+      "logBytes": 856
+    },
+    {
+      "label": "check",
+      "args": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 75.921,
+      "log": ".local/step07-r7-zip-fix/final/check.log",
+      "logSHA256": "60c6b2379969a3cc9d4249bcd6628e74bd371cb60c7e9d998953d52ebe74371e",
+      "logBytes": 13900
+    },
+    {
+      "label": "http16",
+      "args": [
+        "pnpm",
+        "test:step07"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 538.505,
+      "log": ".local/step07-r7-zip-fix/final/http16.log",
+      "logSHA256": "7531910cfc5b7cfd0c1d4f5fb66bacc925e8a9251e502f29d664b00523ae57dc",
+      "logBytes": 11120
+    },
+    {
+      "label": "api3",
+      "args": [
+        "pnpm",
+        "test:integration"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 10.346,
+      "log": ".local/step07-r7-zip-fix/final/api3.log",
+      "logSHA256": "8a1bab6e0d53203b9372897601fceea17176faeeeef89f9664416db3ff2a931e",
+      "logBytes": 3309
+    },
+    {
+      "label": "privacy5",
+      "args": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 10.839,
+      "log": ".local/step07-r7-zip-fix/final/privacy5.log",
+      "logSHA256": "54edc044e30e4a5caac6066d512e6d902991c526a12966980eb6c9f4c244cc06",
+      "logBytes": 3304
+    },
+    {
+      "label": "engineering",
+      "args": [
+        "pnpm",
+        "build:step07"
+      ],
+      "cwd": "artifacts/.step07-r7-zip-final-d39c2d212efe4ff0bd55e15735806ac0",
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 21.171,
+      "log": ".local/step07-r7-zip-fix/final/engineering.log",
+      "logSHA256": "5d06af4c59aa7509a54d805cf4575d6866fdefef0f42c8e3efc081d2d6306bba",
+      "logBytes": 28066
+    }
+  ]
+}

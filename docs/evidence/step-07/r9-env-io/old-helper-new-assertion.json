@@ -1,0 +1,20 @@
+{
+  "source": "50fd old helper byte exact; new regression diagnostic only",
+  "argv": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "apps/api/tests/e2e-environment-startup.test.ts",
+    "-t",
+    "rejects a real existing mode000"
+  ],
+  "exitCode": 1,
+  "expectedExit": 1,
+  "seconds": 1.123,
+  "rawPath": ".local/step07-r9-env-io/old-helper-new-real-assertion-fails.log",
+  "rawBytes": 1330,
+  "rawSHA256": "49b861a39db92424e075ecc850b4c1e28da99a19094bb017c6b2f49eda48f85f",
+  "result": "new real guard assertion catches old false acceptance; NOT old candidate PASS",
+  "newHelperRestored": true
+}

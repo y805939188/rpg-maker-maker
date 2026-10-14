@@ -1,3 +1,5 @@
+import * as studio from './studio.js';
+export * from './studio.js';
 import { z } from 'zod';
 import type { OpenAPIObject } from 'openapi3-ts/oas30';
 import {
@@ -40,6 +42,10 @@ export const ErrorSchema = z
       .object({
         code: z.enum([
           'INVALID_REQUEST',
+          'BUSY',
+          'TIMEOUT',
+          'CONFLICT',
+          'VALIDATION_FAILED',
           'FORBIDDEN',
           'NOT_FOUND',
           'PAYLOAD_TOO_LARGE',
@@ -47,7 +53,16 @@ export const ErrorSchema = z
           'SERVICE_UNAVAILABLE',
           'INTERNAL_ERROR',
         ]),
-        message: z.string().max(160),
+        message: z.string().max(240),
+        diagnostic: z
+          .object({
+            code: z.string().max(80),
+            message: z.string().max(240),
+            recovery: z.string().max(240),
+            location: z.string().max(100),
+          })
+          .strict()
+          .optional(),
       })
       .strict(),
   })
@@ -60,7 +75,7 @@ export function createOpenApiDocument(): OpenAPIObject {
   const registry = new OpenAPIRegistry();
   const project = registry.register('Project', ProjectSchema);
   const errors = Object.fromEntries(
-    [400, 403, 404, 413, 415, 500, 503].map((status) => [
+    [400, 403, 404, 408, 409, 413, 415, 422, 429, 500, 503].map((status) => [
       status,
       {
         description: 'Safe error response',
@@ -119,6 +134,130 @@ export function createOpenApiDocument(): OpenAPIObject {
       ...errors,
     },
   });
+
+  const params = z.object({ id: ProjectIdSchema });
+  const writeHeaders = z.object({
+    'x-tileset-client': z.literal(WRITE_HEADER_VALUE),
+    origin: z.string().url(),
+  });
+  const jsonRoutes = [
+    ['get', '/api/projects/{id}/studio', undefined, studio.StudioSchema, 200],
+    [
+      'post',
+      '/api/projects/{id}/builds/{build}/export',
+      studio.EmptyQuerySchema,
+      studio.SavedSchema,
+      200,
+    ],
+    ['post', '/api/projects/{id}/preset', studio.PresetRequestSchema, studio.SavedSchema, 201],
+    ['post', '/api/projects/{id}/recipe', studio.RecipeRequestSchema, studio.SavedSchema, 201],
+    ['post', '/api/projects/{id}/builds', studio.BuildRequestSchema, studio.JobSchema, 202],
+    ['get', '/api/projects/{id}/builds/{build}/preview', undefined, studio.BuildDetailSchema, 200],
+    [
+      'post',
+      '/api/projects/{id}/builds/{build}/visual',
+      studio.ConfirmationSchema,
+      studio.SavedSchema,
+      200,
+    ],
+  ] as const;
+  for (const [method, path, input, output, status] of jsonRoutes)
+    registry.registerPath({
+      method,
+      path,
+      description: 'Studio local-first route. JSON body ≤8 KiB; no server paths or external URLs.',
+      request: {
+        params: path.includes('{build}') ? params.extend({ build: studio.HashSchema }) : params,
+        ...(method === 'post'
+          ? {
+              headers: writeHeaders,
+              body: { required: true, content: { 'application/json': { schema: input! } } },
+            }
+          : {}),
+        query:
+          method === 'get' && path.endsWith('/preview')
+            ? studio.PreviewQuerySchema
+            : studio.EmptyQuerySchema,
+      },
+      responses: {
+        [status]: {
+          description: 'Validated Studio response',
+          content: { 'application/json': { schema: output } },
+        },
+        ...errors,
+      },
+    });
+  registry.registerPath({
+    method: 'post',
+    path: '/api/projects/{id}/sources/{component}/upload',
+    description:
+      'Raw single RGBA8 sRGB PNG. ≤4 MiB, 5s read, 5s isolated codec, one processing slot/no queue; exact Origin/custom header required. Not the JSON budget.',
+    request: {
+      params: params.extend({ component: studio.ComponentSchema }),
+      headers: writeHeaders,
+      query: studio.UploadQuerySchema,
+      body: {
+        required: true,
+        content: {
+          'image/png': { schema: z.string().openapi({ type: 'string', format: 'binary' }) },
+        },
+      },
+    },
+    responses: {
+      201: {
+        description: 'Owned source revision',
+        content: { 'application/json': { schema: studio.UploadResultSchema } },
+      },
+      ...errors,
+    },
+  });
+  for (const [path, extra, query, media] of [
+    [
+      '/api/projects/{id}/sources/{source}/png',
+      { source: studio.HashSchema },
+      studio.EmptyQuerySchema,
+      'image/png',
+    ],
+    [
+      '/api/projects/{id}/recipes/{recipe}/processed',
+      { recipe: studio.HashSchema },
+      studio.ProcessedQuerySchema,
+      'image/png',
+    ],
+    [
+      '/api/projects/{id}/builds/{build}/files/{name}',
+      { build: studio.HashSchema, name: studio.ExportFileNameSchema },
+      studio.EmptyQuerySchema,
+      'application/octet-stream',
+    ],
+    [
+      '/api/projects/{id}/builds/{build}/profile',
+      { build: studio.HashSchema },
+      studio.EmptyQuerySchema,
+      'application/json',
+    ],
+    [
+      '/api/projects/{id}/builds/{build}/download',
+      { build: studio.HashSchema },
+      studio.EmptyQuerySchema,
+      'application/zip',
+    ],
+  ] as const)
+    registry.registerPath({
+      method: 'get',
+      path,
+      request: { params: params.extend(extra), query },
+      responses: {
+        200: {
+          description:
+            'Hash-verified resource belonging to this project and exact build. Full TargetProfile is also embedded in the standard export Manifest.',
+          content: {
+            [media]: { schema: z.string().openapi({ type: 'string', format: 'binary' }) },
+          },
+        },
+        ...errors,
+      },
+    });
   return new OpenApiGeneratorV3(registry.definitions).generateDocument({
     openapi: '3.0.3',
     info: { title: 'AI Tileset Studio local API', version: '0.0.2' },

@@ -1,0 +1,23 @@
+{
+  "receipt": {
+    "source": "50fd old helper byte exact; new regression diagnostic only",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/api/tests/e2e-environment-startup.test.ts",
+      "-t",
+      "rejects a real existing mode000"
+    ],
+    "exitCode": 1,
+    "expectedExit": 1,
+    "seconds": 1.123,
+    "rawPath": ".local/step07-r9-env-io/old-helper-new-real-assertion-fails.log",
+    "rawBytes": 1330,
+    "rawSHA256": "49b861a39db92424e075ecc850b4c1e28da99a19094bb017c6b2f49eda48f85f",
+    "result": "new real guard assertion catches old false acceptance; NOT old candidate PASS",
+    "newHelperRestored": true
+  },
+  "sanitizedText": "\n RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec\n\n ❯ apps/api/tests/e2e-environment-startup.test.ts (6 tests | 1 failed | 5 skipped) 593ms\n   × rejects a real existing mode000 env in the actual Playwright config before discovery or effects 592ms\n\n⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯\n\n FAIL  apps/api/tests/e2e-environment-startup.test.ts > rejects a real existing mode000 env in the actual Playwright config before discovery or effects\nAssertionError: expected +0 to be 1 // Object.is equality\n\n- Expected\n+ Received\n\n- 1\n+ 0\n\n ❯ apps/api/tests/e2e-environment-startup.test.ts:112:27\n    110|     expect(() => readFileSync(file)).toThrow(expect.objectContaining({…\n    111|     const result = collect(f);\n    112|     expect(result.status).toBe(1);\n       |                           ^\n    113|     expect(result.stderr).toContain('Unable to read the optional local…\n    114|     expect(result.stdout).not.toContain('Total: 18 tests');\n\n⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯\n\n\n Test Files  1 failed (1)\n      Tests  1 failed | 5 skipped (6)\n   Start at  12:16:25\n   Duration  717ms (transform 20ms, setup 0ms, import 30ms, tests 593ms, environment 0ms)\n\n"
+}

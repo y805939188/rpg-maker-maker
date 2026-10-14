@@ -1,0 +1,13 @@
+{
+  "receipt": {
+    "label": "new-helper-onlyDB-rejects",
+    "exitCode": 1,
+    "expectedExit": 1,
+    "seconds": 0.455,
+    "rawPath": ".local/step07-r9-env-io/new-helper-onlyDB-rejects.log",
+    "rawSHA256": "1bb47d9651ab78c01ded003c089eb04e59b534005addc7e4a6a425c5e8f621f4",
+    "rawBytes": 2367,
+    "guardEvents": 0
+  },
+  "sanitizedText": "Error: Unable to read the optional local E2E environment file.\n    at readFailure (file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/e2e/environment.ts:22:10)\n    at loadE2EEnvironment (file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/e2e/environment.ts:45:25)\n    at file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/playwright.config.ts:3:21\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)\n    at processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)\n    at requireOrImport (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/common/index.js:1096:12)\n    at loadUserConfig (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/common/index.js:1283:46)\n    at loadConfig (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/common/index.js:1290:22)\n    at Object.loadConfigFromFile (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/common/index.js:1508:10)\n    at runTests (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/cli/testActions.js:44:18)\n    at _Command.<anonymous> (/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/program.js:55:7) {\n  [cause]: { code: 'EACCES' }\n}\n"
+}

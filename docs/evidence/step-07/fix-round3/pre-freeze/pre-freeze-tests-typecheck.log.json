@@ -1,0 +1,7 @@
+{
+  "privateOriginal": ".local/step07/fix-round3/pre-freeze-tests-typecheck.log",
+  "originalSHA256": "7f6ce12c22d6bb2a023adfbb37dbc1bb092911aaca76c2fc0d2940ef0bea6307",
+  "originalBytes": 811,
+  "sanitized": true,
+  "text": "e2e/studio-state-ownership.test.ts(189,7): error TS2769: No overload matches this call.\n  Overload 1 of 2, '(input: string | URL | Request, init?: RequestInit | undefined): Promise<Response>', gave the following error.\n    Type 'Buffer<ArrayBufferLike>' is not assignable to type 'BodyInit | null | undefined'.\n      Type 'Buffer<ArrayBufferLike>' is missing the following properties from type 'URLSearchParams': size, append, delete, get, and 2 more.\n  Overload 2 of 2, '(input: URL | RequestInfo, init?: RequestInit | undefined): Promise<Response>', gave the following error.\n    Type 'Buffer<ArrayBufferLike>' is not assignable to type 'BodyInit | null | undefined'.\n      Type 'Buffer<ArrayBufferLike>' is missing the following properties from type 'URLSearchParams': size, append, delete, get, and 2 more.\n"
+}

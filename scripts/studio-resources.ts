@@ -1,0 +1,10 @@
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {PROFILE} from '../src/profile.js';
+import {makeCompilerFixture} from './step04-fixture.js';
+import {archiveFixture,currentBuildContext} from '@tileset/pack-export';
+import {hashBytes} from '@tileset/asset-core';
+const context=await currentBuildContext(execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),hashBytes(await readFile('pnpm-lock.yaml')));
+const presets={art:archiveFixture(await makeCompilerFixture('art')),diagnostic:archiveFixture(await makeCompilerFixture('diagnostic'))};
+await mkdir('apps/api/dist/resources',{recursive:true});
+await writeFile('apps/api/dist/resources/studio.json',JSON.stringify({profile:PROFILE,context,presets},null,2)+'\n');

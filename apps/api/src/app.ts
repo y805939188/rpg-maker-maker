@@ -9,12 +9,16 @@ import { WriteGate } from '@tileset/persistence';
 import express, { type ErrorRequestHandler } from 'express';
 import helmet from 'helmet';
 import { repositoryRoot, type ServerConfig } from './config.js';
+import { requestBudget } from './request-budget.js';
+import { StudioService } from './studio-service.js';
+import { mountStudio } from './studio-http.js';
 import { ProjectsController } from './projects.js';
 import { localRequestBoundary } from './security.js';
 import { SafeExceptionFilter, safeError } from './errors.js';
 
-export async function createApplication(config: ServerConfig) {
+export async function createApplication(config: ServerConfig, injectedStudio?: StudioService) {
   const db = new PrismaClient({ datasources: { db: { url: config.DATABASE_URL } }, log: [] });
+  const studio = injectedStudio ?? (await StudioService.open(config));
   const server = express();
   server.disable('x-powered-by');
   server.set('trust proxy', false);
@@ -32,7 +36,9 @@ export async function createApplication(config: ServerConfig) {
     }),
   );
   server.use(localRequestBoundary(config));
+  server.use(requestBudget());
   server.use(express.json({ limit: '8kb', strict: true, inflate: false }));
+  mountStudio(server, studio);
   @Module({
     controllers: [ProjectsController],
     providers: [
@@ -62,11 +68,13 @@ export async function createApplication(config: ServerConfig) {
     };
     server.use(parserErrors);
     const close = async () => {
+      await studio.close();
       await app.close();
       await db.$disconnect();
     };
-    return { app, db, close };
+    return { app, db, studio, close };
   } catch (error) {
+    await studio.close();
     await app.close();
     await db.$disconnect();
     throw error;

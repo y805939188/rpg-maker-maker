@@ -1,0 +1,19 @@
+{
+  "receipt": {
+    "label": "production-migrate",
+    "args": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+    "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "durationSeconds": 1.229,
+    "log": ".local/step07-ci-env/final/production-migrate.log",
+    "logBytes": 1355,
+    "logSHA256": "95609bd66fbd46a004ffda1c4d9b01b54a333acb2b0b2925c71a914699670abf",
+    "noDotEnv": true
+  },
+  "sanitizedText": "\n> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97\n> pnpm --filter @tileset/api db:migrate\n\n\n> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/apps/api\n> node scripts/migrate.mjs\n\nPrisma schema loaded from prisma/schema.prisma\nDatasource \"db\": PostgreSQL database \"[REDACTED_OWN_TEST_DB]\", schema \"public\" at \"127.0.0.1:55476\"\n\n5 migrations found in prisma/migrations\n\nApplying migration `202610120001_step02_project`\nApplying migration `202610130001_step06_persistence`\nApplying migration `202610130002_step06_task_references`\nApplying migration `202610130003_step06_processing_stages`\nApplying migration `202610130004_step07_studio`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 202610120001_step02_project/\n    └─ migration.sql\n  └─ 202610130001_step06_persistence/\n    └─ migration.sql\n  └─ 202610130002_step06_task_references/\n    └─ migration.sql\n  └─ 202610130003_step06_processing_stages/\n    └─ migration.sql\n  └─ 202610130004_step07_studio/\n    └─ migration.sql\n      \nAll migrations have been successfully applied.\n"
+}

@@ -1,0 +1,294 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "args": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97"
+      ],
+      "cwd": ".",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 10.687,
+      "log": ".local/step07-ci-env/final/clone.log",
+      "logBytes": 1111,
+      "logSHA256": "2ab5876a4b7b92c4f6bd86c053dab4dc52b768c051857e9cfa7688bbe4f17f28",
+      "noDotEnv": true
+    },
+    {
+      "label": "checkout",
+      "args": [
+        "git",
+        "checkout",
+        "--detach",
+        "50fd6d84197b8c6d222f139a142ab24c918db0db"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 0.308,
+      "log": ".local/step07-ci-env/final/checkout.log",
+      "logBytes": 101,
+      "logSHA256": "6ae9be7349b8176e3c6a7a61b5029679d4e166b06dd7f8a807801f75bdc8f0d9",
+      "noDotEnv": true
+    },
+    {
+      "label": "install",
+      "args": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 2.449,
+      "log": ".local/step07-ci-env/final/install.log",
+      "logBytes": 1170,
+      "logSHA256": "6c316d8caf1e992b8ca0857d69995f3579cbd4f6a8802417e85a2edacd051698",
+      "noDotEnv": true
+    },
+    {
+      "label": "generate",
+      "args": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 1.695,
+      "log": ".local/step07-ci-env/final/generate.log",
+      "logBytes": 812,
+      "logSHA256": "ba72cef82e969aec6b25422f48803391a9e1741a3c8ec54edf2f78719b2fe389",
+      "noDotEnv": true
+    },
+    {
+      "label": "regression-migrate",
+      "args": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 1,
+      "expectedExit": 0,
+      "durationSeconds": 0.449,
+      "log": ".local/step07-ci-env/final/regression-migrate.log",
+      "logBytes": 1887,
+      "logSHA256": "e46e9d3392225fbb8c928d50f4b4f4a5589b7c214d60cf7bfd5c4c7f8cd97dad",
+      "noDotEnv": true
+    },
+    {
+      "label": "missing-config-expected-reject",
+      "args": [
+        "pnpm",
+        "exec",
+        "playwright",
+        "test",
+        "--list"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "durationSeconds": 1.183,
+      "log": ".local/step07-ci-env/final/missing-config-expected-reject.log",
+      "logBytes": 2137,
+      "logSHA256": "5ed60bb2c7ae9dd65481dac8b95d93a8fcf88625d67c12ae406aafccead5c99a",
+      "noDotEnv": true
+    },
+    {
+      "label": "invalid-config-expected-reject",
+      "args": [
+        "pnpm",
+        "exec",
+        "playwright",
+        "test",
+        "--list"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "durationSeconds": 0.561,
+      "log": ".local/step07-ci-env/final/invalid-config-expected-reject.log",
+      "logBytes": 2297,
+      "logSHA256": "acf619b477b306695ab5e6b054c1e5346802c7e4b3497c65ac98dfba143548bb",
+      "noDotEnv": true
+    },
+    {
+      "label": "check",
+      "args": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 72.951,
+      "log": ".local/step07-ci-env/final/check.log",
+      "logBytes": 13900,
+      "logSHA256": "c66aa1505cbf8525ca315d7b6fcb6ca19c053f12c97201997e449b9bea8a9d58",
+      "noDotEnv": true
+    },
+    {
+      "label": "regression-migrate-after-check",
+      "args": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 1.777,
+      "log": ".local/step07-ci-env/final/regression-migrate-after-check.log",
+      "logBytes": 2223,
+      "logSHA256": "e6669cf7debd4058fe465051a541440e2d09872a990da691bb259304dc0891df",
+      "noDotEnv": true
+    },
+    {
+      "label": "api3",
+      "args": [
+        "pnpm",
+        "test:integration"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 10.429,
+      "log": ".local/step07-ci-env/final/api3.log",
+      "logBytes": 3309,
+      "logSHA256": "3fb058dde292b432bf19d50c77ae61ae1293b629bb4eaa4e28b9b6acdb2343b7",
+      "noDotEnv": true
+    },
+    {
+      "label": "privacy5",
+      "args": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 10.295,
+      "log": ".local/step07-ci-env/final/privacy5.log",
+      "logBytes": 3304,
+      "logSHA256": "47b12913fb9dc57dcdbcce9b4938e215612e20862a5fc0f2f6662f2b8f431f7a",
+      "noDotEnv": true
+    },
+    {
+      "label": "http16",
+      "args": [
+        "pnpm",
+        "test:step07"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 522.165,
+      "log": ".local/step07-ci-env/final/http16.log",
+      "logBytes": 11123,
+      "logSHA256": "4e286af2e3eeac26f4353096e8374933bc59a48a0c06230d64f1cad8d7ffe468",
+      "noDotEnv": true
+    },
+    {
+      "label": "production-migrate",
+      "args": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 1.229,
+      "log": ".local/step07-ci-env/final/production-migrate.log",
+      "logBytes": 1355,
+      "logSHA256": "95609bd66fbd46a004ffda1c4d9b01b54a333acb2b0b2925c71a914699670abf",
+      "noDotEnv": true
+    },
+    {
+      "label": "production18-noenv",
+      "args": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 448.177,
+      "log": ".local/step07-ci-env/final/production18-noenv.log",
+      "logBytes": 3764,
+      "logSHA256": "c3bd06fead820c4d6f6b999a7e1010216361d07f0deefd6dda22030426e72d7d",
+      "noDotEnv": true
+    },
+    {
+      "label": "development-migrate",
+      "args": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 1.237,
+      "log": ".local/step07-ci-env/final/development-migrate.log",
+      "logBytes": 1356,
+      "logSHA256": "a5706469ab20a47597bd7e2fc79dd77e1c865de8b8bdc270cb6d23446473dec2",
+      "noDotEnv": true
+    },
+    {
+      "label": "development18-noenv",
+      "args": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 474.164,
+      "log": ".local/step07-ci-env/final/development18-noenv.log",
+      "logBytes": 7148,
+      "logSHA256": "e3f9c50834d48f2f5008950cf6b08ff3643e7b5c9e81f05409cefb660dcbbadf",
+      "noDotEnv": true
+    },
+    {
+      "label": "engineering",
+      "args": [
+        "pnpm",
+        "build:step07"
+      ],
+      "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+      "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "durationSeconds": 20.167,
+      "log": ".local/step07-ci-env/final/engineering.log",
+      "logBytes": 28066,
+      "logSHA256": "deb09895f46a4f4bc400b3696a8545369199d1ffad7639c693bf5716b46acf04",
+      "noDotEnv": true
+    }
+  ]
+}

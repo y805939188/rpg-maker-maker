@@ -1,0 +1,85 @@
+{
+  "commands": [
+    {
+      "label": "prefreeze-browser-v2",
+      "args": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "apps/api/tests/studio/received-resources.test.ts"
+      ],
+      "cwd": "artifacts/.step07-ci-response-controls-60d9b39f8e564309831378910c580019",
+      "source": "prefreeze only",
+      "exitCode": 0,
+      "seconds": 2.433,
+      "rawPath": ".local/step07-ci-response-lifecycle/prefreeze-browser-v2.log",
+      "rawSHA256": "c779cf6cda68698dd199dc7559ec1697aa1c774639f06695b734a82050dd69e1",
+      "rawBytes": 320
+    },
+    {
+      "label": "control-generate",
+      "args": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-ci-response-controls-60d9b39f8e564309831378910c580019",
+      "source": "prefreeze only",
+      "exitCode": 0,
+      "seconds": 1.716,
+      "rawPath": ".local/step07-ci-response-lifecycle/control-generate.log",
+      "rawSHA256": "de519b5dd622e1a0943785a4449acc5df04a4f921b1cf96dd2e4bfb7f8d87df2",
+      "rawBytes": 829
+    },
+    {
+      "label": "control-build",
+      "args": [
+        "pnpm",
+        "build"
+      ],
+      "cwd": "artifacts/.step07-ci-response-controls-60d9b39f8e564309831378910c580019",
+      "source": "prefreeze only",
+      "exitCode": 0,
+      "seconds": 23.447,
+      "rawPath": ".local/step07-ci-response-lifecycle/control-build.log",
+      "rawSHA256": "7a259225f056e21919b6419e0d9e98e4a9748ebefdcdf1f6c498c372a7c05812",
+      "rawBytes": 4993
+    },
+    {
+      "label": "prefreeze-type-v2",
+      "args": [
+        "pnpm",
+        "exec",
+        "tsc",
+        "-p",
+        "tsconfig.tests.json",
+        "--noEmit"
+      ],
+      "cwd": "artifacts/.step07-ci-response-controls-60d9b39f8e564309831378910c580019",
+      "source": "prefreeze only",
+      "exitCode": 0,
+      "seconds": 3.014,
+      "rawPath": ".local/step07-ci-response-lifecycle/prefreeze-type-v2.log",
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0
+    },
+    {
+      "label": "prefreeze-lint-v2",
+      "args": [
+        "pnpm",
+        "exec",
+        "eslint",
+        "apps/api/tests/studio/received-resources.ts",
+        "apps/api/tests/studio/received-resources.test.ts",
+        "apps/api/tests/studio/integration.test.ts"
+      ],
+      "cwd": "artifacts/.step07-ci-response-controls-60d9b39f8e564309831378910c580019",
+      "source": "prefreeze only",
+      "exitCode": 0,
+      "seconds": 1.779,
+      "rawPath": ".local/step07-ci-response-lifecycle/prefreeze-lint-v2.log",
+      "rawSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rawBytes": 0
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "role": "sanitized non-executable documentary source; original private bytes indexed",
+  "sourceText": "const fs = require('node:fs');\nconst deny = (kind) => function () {\n  if (process.env.ENV_IO_GUARD_EVENTS) fs.appendFileSync(process.env.ENV_IO_GUARD_EVENTS, kind + '\\n');\n  throw new Error('ENV_IO_FORBIDDEN_' + kind);\n};\nconst net = require('node:net');\nnet.Socket.prototype.connect = deny('NETWORK');\nnet.Server.prototype.listen = deny('LISTEN');\nnet.connect = net.createConnection = deny('NETWORK');\nconst cp = require('node:child_process');\nfor (const key of ['spawn','spawnSync','exec','execSync','execFile','execFileSync','fork']) cp[key] = deny('SERVICE');\nrequire('node:module').syncBuiltinESMExports();\n"
+}

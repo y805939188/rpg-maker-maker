@@ -293,3 +293,16 @@ describe('pull ingress allocation and cancellation', () => {
     expect(inspectPng(await readBoundedPng(valid()))).toEqual({ width: 1, height: 1 });
   });
 });
+
+it('caller cancellation waits for an owned stalled codec child to close before slot reuse', async () => {
+  const controller = new AbortController();
+  const work = runIsolated(
+    { operation: 'runtime' },
+    new URL('./fixtures/stalled-worker.mjs', import.meta.url),
+    5000,
+    controller.signal,
+  );
+  setTimeout(() => controller.abort(new Error('test cancelled')), 30);
+  await expect(work).rejects.toMatchObject({ code: 'CODEC_CANCELLED' });
+  expect((await codecRuntime()).sharp).toBe('0.35.5');
+});

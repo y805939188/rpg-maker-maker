@@ -1,8 +1,8 @@
 import { strict as assert } from 'node:assert';
 import { spawn } from 'node:child_process';
-import { createReadStream, constants } from 'node:fs';
+import { constants } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { lstat, mkdir, readFile, readdir, open, copyFile, chmod, rename } from 'node:fs/promises';
+import { lstat, mkdir, open, rename } from 'node:fs/promises';
 import { resolve, relative } from 'node:path';
 import { z } from 'zod';
 import type { PackSnapshot } from '@tileset/pack-assembly';
@@ -10,6 +10,7 @@ import { fingerprint, validateAdoptionIdentities } from '@tileset/asset-core';
 import type { GateLease } from './gate.js';
 import { Persistence } from './store.js';
 import { ReplaySession, RefSchema, jsonBytes } from './replay.js';
+import { PathBoundary } from './paths.js';
 
 const BackupSchema = z
   .object({
@@ -39,6 +40,8 @@ const tables = [
   'LogicalTask',
   'SubmissionAttempt',
   'TaskArtifact',
+  'FinalExport',
+  'StudioJob',
 ];
 async function digest(store: Persistence) {
   const data: Record<string, unknown> = {};
@@ -57,6 +60,7 @@ export async function verifyDatabase(store: Persistence) {
   const builds = new Map<string, Awaited<ReturnType<Persistence['readBuild']>>>();
   for (const build of await store.db.build.findMany())
     builds.set(build.id, await store.readBuild(build.id, session));
+  for (const e of await store.db.finalExport.findMany()) await store.readExport(e.buildId);
   const projects = await store.db.project.findMany();
   for (const p of projects) {
     if (
@@ -165,71 +169,106 @@ async function command(binary: string, args: string[], url: string, lease: GateL
     });
   });
 }
-async function filesUnder(directory: string) {
+async function filesUnder(directory: string, paths: PathBoundary) {
   const out: Record<string, string> = {};
   async function visit(path: string) {
-    for (const item of await readdir(path, { withFileTypes: true })) {
-      const full = resolve(path, item.name),
-        stat = await lstat(full);
-      assert.ok(!stat.isSymbolicLink());
-      if (stat.isDirectory()) await visit(full);
-      else {
-        assert.ok(stat.isFile());
-        out[relative(directory, full)] = full;
+    return paths.guarded(path, 'directory', async () => {
+      for (const name of await paths.directory(path)) {
+        const full = resolve(path, name),
+          stat = await lstat(full);
+        assert.ok(!stat.isSymbolicLink());
+        if (stat.isDirectory()) await visit(full);
+        else {
+          assert.ok(stat.isFile());
+          await paths.inspect(full, 'file');
+          out[relative(directory, full)] = full;
+        }
       }
-    }
+    });
   }
   await visit(directory);
   return out;
 }
-async function fileHash(path: string, lease?: GateLease) {
+async function fileHash(path: string, paths: PathBoundary, lease?: GateLease) {
   lease?.check();
   const hash = createHash('sha256');
   let bytes = 0;
-  for await (const chunk of createReadStream(path, lease ? { signal: lease.signal } : {})) {
-    lease?.check();
-    bytes += chunk.length;
-    hash.update(chunk);
-  }
+  await paths.file(path, async (fd) => {
+    for await (const chunk of fd.createReadStream({ autoClose: false, signal: lease?.signal })) {
+      lease?.check();
+      bytes += chunk.length;
+      hash.update(chunk);
+    }
+  });
   lease?.check();
   return { sha256: hash.digest('hex'), bytes };
 }
-async function sync(path: string) {
-  const fd = await open(path, 'r');
-  try {
-    await fd.sync();
-  } finally {
-    await fd.close();
-  }
+async function sync(path: string, paths: PathBoundary, kind: 'directory' | 'file' = 'directory') {
+  if (kind === 'file') return paths.file(path, (fd) => fd.sync());
+  return paths.guarded(path, 'directory', async () => {
+    const fd = await open(path, constants.O_RDONLY | constants.O_DIRECTORY | constants.O_NOFOLLOW);
+    try {
+      await fd.sync();
+    } finally {
+      await fd.close();
+    }
+  });
 }
-async function copy(source: string, target: string, lease: GateLease) {
+async function copy(
+  source: string,
+  target: string,
+  lease: GateLease,
+  from: PathBoundary,
+  to: PathBoundary,
+) {
   const step = <T>(operation: () => Promise<T>) => checked(lease, operation);
-  await step(() => mkdir(resolve(target, '..'), { recursive: true, mode: 0o700 }));
-  await step(() => copyFile(source, target, constants.COPYFILE_EXCL));
-  await step(() => chmod(target, 0o600));
-  await step(() => sync(target));
-  await step(() => sync(resolve(target, '..')));
+  const parent = resolve(target, '..');
+  await step(() =>
+    to.guarded(parent, 'directory', () => mkdir(parent, { recursive: true, mode: 0o700 }), true),
+  );
+  await from.file(source, async (input) => {
+    const { fd, view } = await to.openFile(target, true);
+    try {
+      for await (const chunk of input.createReadStream({
+        autoClose: false,
+        signal: lease.signal,
+      })) {
+        await lease.checkpoint();
+        await fd.writeFile(chunk, { signal: lease.signal });
+        await lease.checkpoint();
+      }
+      await step(() => fd.sync());
+      await to.recheck(view);
+    } finally {
+      await fd.close();
+    }
+  });
+  await step(() => sync(parent, to));
 }
-async function write(path: string, bytes: Uint8Array, lease: GateLease) {
+async function write(path: string, bytes: Uint8Array, lease: GateLease, paths: PathBoundary) {
   const step = <T>(operation: () => Promise<T>) => checked(lease, operation);
   await lease.checkpoint();
-  await step(() => mkdir(resolve(path, '..'), { recursive: true, mode: 0o700 }));
-  const file = await open(path, 'wx', 0o600);
+  await step(() =>
+    paths.guarded(
+      resolve(path, '..'),
+      'directory',
+      () => mkdir(resolve(path, '..'), { recursive: true, mode: 0o700 }),
+      true,
+    ),
+  );
+  const { fd: file, view } = await paths.openFile(path, true);
   try {
     await lease.checkpoint();
+    await paths.recheck(view);
     await file.writeFile(bytes, { signal: lease.signal });
     await lease.checkpoint();
     await file.sync();
     await lease.checkpoint();
+    await paths.recheck(view);
   } finally {
     await file.close();
   }
-  const parent = await open(resolve(path, '..'), 'r');
-  try {
-    await parent.sync();
-  } finally {
-    await parent.close();
-  }
+  await sync(resolve(path, '..'), paths);
 }
 async function checked<T>(lease: GateLease, operation: () => Promise<T>) {
   await lease.checkpoint();
@@ -239,37 +278,53 @@ async function checked<T>(lease: GateLease, operation: () => Promise<T>) {
 }
 /** Stops cooperative writes, executor submit/query/archive and cleanup across all instance processes. */
 export async function backup(store: Persistence, destination: string, pgBin: string) {
+  const output = new PathBoundary(destination);
   return store.gate.pause(async (lease) => {
     const step = <T>(operation: () => Promise<T>) => checked(lease, operation);
     const databaseDigest = await step(() => verifyDatabase(store));
     await step(() => store.fault('backup-view-verified'));
-    await step(() => mkdir(resolve(destination, '..'), { recursive: true, mode: 0o700 }));
-    await step(() => mkdir(destination, { mode: 0o700 }));
-    await command(
-      resolve(pgBin, 'pg_dump'),
-      [
-        '--format=custom',
-        '--no-owner',
-        '--no-privileges',
-        '--file',
-        resolve(destination, 'database.dump'),
-      ],
-      store.databaseUrl,
-      lease,
+    await step(() =>
+      output.guarded(
+        destination,
+        'directory',
+        async () => {
+          await mkdir(resolve(destination, '..'), { recursive: true, mode: 0o700 });
+          await mkdir(destination, { mode: 0o700 });
+        },
+        true,
+      ),
     );
-    await step(() => sync(resolve(destination, 'database.dump')));
+    await output.guarded(
+      resolve(destination, 'database.dump'),
+      'file',
+      () =>
+        command(
+          resolve(pgBin, 'pg_dump'),
+          [
+            '--format=custom',
+            '--no-owner',
+            '--no-privileges',
+            '--file',
+            resolve(destination, 'database.dump'),
+          ],
+          store.databaseUrl,
+          lease,
+        ),
+      true,
+    );
+    await step(() => sync(resolve(destination, 'database.dump'), output, 'file'));
     const files: Record<string, { sha256: string; bytes: number }> = {
-      'database.dump': await fileHash(resolve(destination, 'database.dump'), lease),
+      'database.dump': await fileHash(resolve(destination, 'database.dump'), output, lease),
     };
     for (const directory of ['objects', 'builds']) {
       await store.storage.initialize();
       for (const [name, source] of Object.entries(
-        await filesUnder(resolve(store.storage.root, directory)),
+        await filesUnder(resolve(store.storage.root, directory), store.storage.paths),
       )) {
         const key = `assets/${directory}/${name}`;
-        await copy(source, resolve(destination, key), lease);
+        await copy(source, resolve(destination, key), lease, store.storage.paths, output);
         await step(() => store.fault('backup-file-copied'));
-        files[key] = await fileHash(resolve(destination, key), lease);
+        files[key] = await fileHash(resolve(destination, key), output, lease);
       }
     }
     assert.equal(await step(() => digest(store)), databaseDigest, 'Database changed during backup');
@@ -279,20 +334,43 @@ export async function backup(store: Persistence, destination: string, pgBin: str
       databaseDigest,
       files: Object.fromEntries(Object.entries(files).sort()),
     };
-    await write(resolve(destination, 'manifest.pending'), jsonBytes(manifest), lease);
-    await verifyInventory(destination, 'manifest.pending', lease);
+    await write(resolve(destination, 'manifest.pending'), jsonBytes(manifest), lease, output);
+    await verifyInventory(destination, 'manifest.pending', lease, output);
     await step(() =>
-      rename(resolve(destination, 'manifest.pending'), resolve(destination, 'manifest.json')),
+      output.guarded(
+        resolve(destination, 'manifest.json'),
+        'file',
+        () =>
+          output.guarded(
+            resolve(destination, 'manifest.pending'),
+            'file',
+            () =>
+              rename(
+                resolve(destination, 'manifest.pending'),
+                resolve(destination, 'manifest.json'),
+              ),
+            true,
+            true,
+          ),
+        true,
+      ),
     );
-    await step(() => sync(destination));
+    await step(() => sync(destination, output));
     return manifest;
   });
 }
-async function verifyInventory(directory: string, marker: string, lease?: GateLease) {
+async function verifyInventory(
+  directory: string,
+  marker: string,
+  lease?: GateLease,
+  paths = new PathBoundary(directory),
+) {
   lease?.check();
-  const all = await filesUnder(directory);
+  const all = await filesUnder(directory, paths);
   assert.ok(all[marker]);
-  const manifest = BackupSchema.parse(JSON.parse(await readFile(all[marker], 'utf8')));
+  const manifest = BackupSchema.parse(
+    JSON.parse(await paths.file(all[marker], (fd) => fd.readFile('utf8'))),
+  );
   assert.deepEqual(
     Object.keys(all)
       .filter((k) => k !== marker)
@@ -306,7 +384,7 @@ async function verifyInventory(directory: string, marker: string, lease?: GateLe
     );
     const path = all[key];
     assert.ok(path);
-    assert.deepEqual(await fileHash(path, lease), ref);
+    assert.deepEqual(await fileHash(path, paths, lease), ref);
   }
   return { manifest, files: all };
 }
@@ -315,38 +393,55 @@ export async function verifyBackup(directory: string) {
 }
 /** Requires an empty database and an absent asset root; never resets or overwrites an environment. */
 export async function restore(store: Persistence, directory: string, pgBin: string) {
-  const verified = await verifyBackup(directory);
+  const input = new PathBoundary(directory),
+    output = store.storage.paths;
+  const verified = await verifyInventory(directory, 'manifest.json', undefined, input);
   return store.gate.pause(async (lease) => {
     const step = <T>(operation: () => Promise<T>) => checked(lease, operation);
     const tables: unknown = await store.db
       .$queryRaw`SELECT table_name FROM information_schema.tables WHERE table_schema='public'`;
     assert.ok(Array.isArray(tables) && tables.length === 0, 'Restore database must be empty');
-    await step(() => mkdir(resolve(store.storage.root, '..'), { recursive: true, mode: 0o700 }));
-    await step(() => mkdir(store.storage.root, { mode: 0o700 }));
+    await step(() =>
+      output.guarded(
+        store.storage.root,
+        'directory',
+        async () => {
+          await mkdir(resolve(store.storage.root, '..'), { recursive: true, mode: 0o700 });
+          await mkdir(store.storage.root, { mode: 0o700 });
+        },
+        true,
+      ),
+    );
     for (const [key, source] of Object.entries(verified.files))
       if (key.startsWith('assets/')) {
         const target = resolve(store.storage.root, key.slice(7));
-        await copy(source, target, lease);
-        assert.deepEqual(await fileHash(target, lease), verified.manifest.files[key]);
-        await step(() => chmod(target, 0o444));
-        await step(() => sync(target));
+        await copy(source, target, lease, input, output);
+        assert.deepEqual(await fileHash(target, output, lease), verified.manifest.files[key]);
+        await step(() =>
+          output.file(target, async (fd) => {
+            await fd.chmod(0o444);
+            await fd.sync();
+          }),
+        );
       }
-    await step(() => sync(store.storage.root));
+    await step(() => sync(store.storage.root, output));
     await step(() => store.fault('restore-before-db'));
     // All immutable files are durable before the atomic database restore registers references.
-    await command(
-      resolve(pgBin, 'pg_restore'),
-      [
-        '--exit-on-error',
-        '--single-transaction',
-        '--no-owner',
-        '--no-privileges',
-        '--dbname',
-        new URL(store.databaseUrl).pathname.slice(1),
-        resolve(directory, 'database.dump'),
-      ],
-      store.databaseUrl,
-      lease,
+    await input.guarded(resolve(directory, 'database.dump'), 'file', () =>
+      command(
+        resolve(pgBin, 'pg_restore'),
+        [
+          '--exit-on-error',
+          '--single-transaction',
+          '--no-owner',
+          '--no-privileges',
+          '--dbname',
+          new URL(store.databaseUrl).pathname.slice(1),
+          resolve(directory, 'database.dump'),
+        ],
+        store.databaseUrl,
+        lease,
+      ),
     );
     assert.equal(
       await step(() => verifyDatabase(store)),

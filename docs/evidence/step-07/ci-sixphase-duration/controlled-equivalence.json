@@ -1,0 +1,98 @@
+{
+  "oldNormalSource": "exact1be with transparent profiler",
+  "newSource": "unfrozen7pathfix contextstill1be",
+  "oldNormalProof": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-consistent-publication.json",
+  "newControlledProof": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-consistent-publication.json",
+  "original180msCaseOldControlled": "FAIL180003ms",
+  "newIdenticalJobDelay9SecondsControl": "PASS118.884s command; same6phase one180s assertion set",
+  "delayOnlyStudioJobScope": true,
+  "sameActualPNGAnd4ZIPManifestBytes": true,
+  "rows": [
+    {
+      "mode": "production",
+      "phase": "first",
+      "imageSHA": "9a8c4c09f1ed0bdab87dc6e55bae41ae22ee8d15e9bb97819a49e09e3d802a72",
+      "actualSourceFrame": "0",
+      "actual96x144": [
+        96,
+        144
+      ],
+      "zipSHA": "c45cbec3d554bd21eb63a42abcb1044f4b2f9a330cec87531f9a27a15f14f257",
+      "manifestSHA": "fc28036c4251383ebf7daa6e14eb22c5c82755d04a75447a4db1eb6d6bb0533c"
+    },
+    {
+      "mode": "production",
+      "phase": "replacement",
+      "imageSHA": "31d0b0469e1aebabb84dd9f6d7cbd9234ac646d588da09aa365b570ae0d7d456",
+      "actualSourceFrame": "0",
+      "actual96x144": [
+        96,
+        144
+      ],
+      "zipSHA": "6f8a0469e2fa1b0c8054aad0e761124bfc40517589e8eac51e0f3bdbb2ff737f",
+      "manifestSHA": "9a2d7c3f4d337118b46cf2fec10e3e61dc7f72df5ed17ce1b171d64fd736901b"
+    },
+    {
+      "mode": "production",
+      "phase": "true-history-only",
+      "imageSHA": "31d0b0469e1aebabb84dd9f6d7cbd9234ac646d588da09aa365b570ae0d7d456",
+      "actualSourceFrame": "0",
+      "actual96x144": [
+        96,
+        144
+      ]
+    },
+    {
+      "mode": "development",
+      "phase": "first",
+      "imageSHA": "9a8c4c09f1ed0bdab87dc6e55bae41ae22ee8d15e9bb97819a49e09e3d802a72",
+      "actualSourceFrame": "0",
+      "actual96x144": [
+        96,
+        144
+      ],
+      "zipSHA": "c45cbec3d554bd21eb63a42abcb1044f4b2f9a330cec87531f9a27a15f14f257",
+      "manifestSHA": "fc28036c4251383ebf7daa6e14eb22c5c82755d04a75447a4db1eb6d6bb0533c"
+    },
+    {
+      "mode": "development",
+      "phase": "replacement",
+      "imageSHA": "31d0b0469e1aebabb84dd9f6d7cbd9234ac646d588da09aa365b570ae0d7d456",
+      "actualSourceFrame": "0",
+      "actual96x144": [
+        96,
+        144
+      ],
+      "zipSHA": "6f8a0469e2fa1b0c8054aad0e761124bfc40517589e8eac51e0f3bdbb2ff737f",
+      "manifestSHA": "9a2d7c3f4d337118b46cf2fec10e3e61dc7f72df5ed17ce1b171d64fd736901b"
+    },
+    {
+      "mode": "development",
+      "phase": "true-history-only",
+      "imageSHA": "31d0b0469e1aebabb84dd9f6d7cbd9234ac646d588da09aa365b570ae0d7d456",
+      "actualSourceFrame": "0",
+      "actual96x144": [
+        96,
+        144
+      ]
+    }
+  ],
+  "oldMethodCounts": {
+    "readDomainRecipe": 16,
+    "loadArchives": 14,
+    "readBuild": 14,
+    "prepareBuild": 8,
+    "readExport": 10,
+    "publish": 8
+  },
+  "newMethodCounts": {
+    "readDomainRecipe": 10,
+    "loadArchives": 14,
+    "readBuild": 14,
+    "prepareBuild": 8,
+    "readExport": 10,
+    "publish": 8
+  },
+  "exactCI6NativeDelayMagnitude": "NOT_PROVEN; controlled overhead not CI reproduction byte-for-byte",
+  "publicreadExportCountUnchanged": true
+}
