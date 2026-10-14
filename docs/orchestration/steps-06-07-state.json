@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_ROUND7_ZIP_TEST_FIX_CODING_DISPATCH",
+  "phase": "STEP07_ROUND7_ZIP_TEST_FIX_CODING",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -453,8 +453,8 @@
       "engineeringPayloads": 206,
       "fullUnaffectedR5Suites": "NOT_RERUN"
     },
-    "candidateSha": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
-    "candidateState": "F574_REVIEW_REQUIRES_REVISION_TEST_ZIP_GAP",
+    "candidateSha": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+    "candidateState": "STRICT_ZIP_TEST_SOURCE_FROZEN_AWAIT_BOUND_SELFTESTS_HANDOFF",
     "reviewEnvironment": {
       "atUtc": "2026-10-13T22:55:11.042335+00:00",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker",
@@ -1118,7 +1118,7 @@
         ]
       }
     ],
-    "latestIndependentReview": "REQUIRES_REVISION_ROUND7",
+    "latestIndependentReview": "REQUIRES_REVISION_ROUND7_PARENTF574_NEWZIPFIX_UNREVIEWED",
     "codingFix": {
       "round": 4,
       "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
@@ -1245,28 +1245,26 @@
       "status": "AUTHOR_FULL_HANDOFF_COMPLETE_UNDER_REVIEW_ROUND5"
     },
     "nextReviewEnvironment": {
-      "atUtc": "2026-10-13T22:55:11.042335+00:00",
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker",
-      "preparedSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
-      "operationId": "007d7e27-a94d-41bc-a44c-c3f8827c816a",
-      "pgPort": 55491,
-      "apiPort": 4391,
-      "webPort": 5291,
+      "atUtc": "2026-10-14T00:24:56.201326+00:00",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
+      "preparedSource": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "operationId": "3339364b-1faa-4c3b-a5f6-a5e19106a22a",
+      "pgPort": 55493,
+      "apiPort": 4393,
+      "webPort": 5293,
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
       "credentials": "FRESH_OWN_ENV600_NOT_COPIED",
       "preparation": "FROZEN_INSTALL_GENERATE_EXCLUSIVE_PG_INIT_SUCCESS",
       "migrate": "NOT_EXECUTED",
       "tests": "NOT_EXECUTED",
-      "formalReviewRound7Started": false,
-      "candidateState": "FROZEN_TEST_FIX_AWAIT_FULL_AUTHOR_HANDOFF",
-      "status": "ACTIVATED_FORMAL_ROUND7",
-      "formalReviewStarted": true,
+      "formalReviewRound8Started": false,
+      "candidateState": "FROZEN_STRICT_ZIP_FIX_AWAIT_FULL_AUTHOR_HANDOFF",
+      "status": "PREPARED_NO_FORMAL_REVIEW_WAIT_R7_ZIP_FIX_FREEZE",
+      "formalReviewStarted": false,
       "databaseMigration": "NOT_EXECUTED",
       "preparedBy": "MAIN_ORCHESTRATOR",
-      "source": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
-      "threadId": "01a13797-04c8-7940-aecb-e57f5c53bcc7",
-      "docsHead": "2eb75dd4b91f8212a572ef92c7930ff4d17336b5"
+      "source": "c8d41a680df42fe565882d93d3f85a04f7a10b22"
     },
     "checkpointCi": {
       "head": "552137fa00a28fccc2375bf89a8e70ca2a0132e8",
@@ -1651,6 +1649,60 @@
       "newImmutableEngineeringBuild": "GENERATED_PENDING_FULL_HASH_HANDOFF",
       "sameFrozenSourceDelayControl": "RUNNING_PENDING_FINAL_RECORD",
       "codingNativeExitCode": 0
+    },
+    "zipFixRound7": {
+      "status": "C8_FROZEN_BOUND_VALIDATION_NORMAL_RECOVERY_RUNNING",
+      "finding": "STEP07-R7-001",
+      "severity": "P2_BLOCKING",
+      "oldCandidate": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "oldDocs": "2eb75dd4b91f8212a572ef92c7930ff4d17336b5",
+      "codingThread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "nativeProcess": 61583,
+      "nativeOutput": ".local/orchestration-06-07/step07-r7-zip-fix",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-r7-zip-fix-coding-client.json",
+      "ownership": [
+        "apps/api/tests/studio/integration.test.ts",
+        "necessary ZIP negative tests and report/evidence"
+      ],
+      "originalBudgetsUnchangedRequired": true,
+      "nextFormalReview": 8,
+      "round8Started": false,
+      "actualContainerRegressionCases": 47,
+      "originalR7FourZipPairs": {
+        "oldHelper": "ACCEPTS_ALL_FOUR_BAD_CENTRAL_CRC",
+        "newHelper": "REJECTS_ALL_FOUR_BAD_ACCEPTS_ALL_FOUR_VALID",
+        "independentOracle": "COMPLETE_LOCAL_CENTRAL_EOCD_PYTHON_AGREES",
+        "genericZipfileLimit": "alone missed localCRC/EOCDcount checks; limitation documented"
+      },
+      "productionExporterUnchanged": true,
+      "formalIndependentClosure": "NOT_YET",
+      "frozenSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+      "fullMutationControl": {
+        "oldF574": "FALSE_PASS_AT_APPROX139.8S_ORIGINAL_RETAINED",
+        "newReader": "CENTRAL_CRC_REJECT_FIRST_ACTUAL_DOWNLOAD_APPROX21.3S",
+        "badArtifact": "NOT_PASS_NEGATIVE_CORRECTLY_CAPTURED"
+      },
+      "normalSame180sCase": "RUNNING_PENDING_RESULT",
+      "prefreezeControls": {
+        "oldF574FullCentralCrcFault": "EXIT0_FALSE_PASS_COUNTEREXAMPLE_RETAINED",
+        "newSameFault": "EXIT1_EXPECTED_REJECTION_BAD_ARTIFACT_NOT_PASS",
+        "newNormalSixphase": "EXIT0_PASS",
+        "scope": "private isolated prefreeze controls, not latest frozen whole suite or independentclosure"
+      },
+      "recovery": {
+        "attempt": 1,
+        "status": "SAME_NATIVE_NORMAL_RESUME_RUNNING",
+        "originalNativePid": 61583,
+        "originalExitCode": 1,
+        "reason": "normalSIGINT after >15min no newevents oractiveverification; servercauseUNVERIFIED, no transport error exposed",
+        "receipt": "docs/evidence/orchestration-06-07/step07-r7-zip-fix-normal-interruption.json",
+        "nativeProcess": 9498,
+        "nativeOutput": ".local/orchestration-06-07/step07-r7-zip-fix-recovery",
+        "configurationEvidence": "docs/evidence/orchestration-06-07/step07-r7-zip-fix-recovery-client.json",
+        "sameThread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+        "reviewRoundNotReset": 7,
+        "sourceUnchanged": "c8d41a680df42fe565882d93d3f85a04f7a10b22"
+      }
     }
   },
   "step08": {
@@ -1846,9 +1898,22 @@
       "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
       "credentials": "FRESH_OWN_ENV600_NO_COPY",
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round7-preservation-and-service-stop.json"
+    },
+    {
+      "owner": "step07_reviewer_round8",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round8/rpg-maker-maker",
+      "pgPort": 55493,
+      "apiPort": 4393,
+      "webPort": 5293,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review",
+      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
+      "credentials": "FRESH_OWN_ENV600_NO_COPY"
     }
   ],
-  "lastSuccessfulCheckpoint": "R7nativeexit0 REQUIRES_REVISION uniqueP2R7-001;Main216originalSHA/passwordverified,all3781source+206buildunchanged,ownPG55491stopsafely7DBprivate retained. Normal266/HTTP16/API3/list5+5 andold/newdelay proven,CRCnegativefakepassconfirmed. NoMainmerge/publish.",
+  "lastSuccessfulCheckpoint": "Ownednative61583 normalSIGINT after>15minnoevents/noactiveverification exit1 interruptionnotPASS;sourcec8clean allprefreezecontrols preserved. SameCIDnative9498/xhigh/default normalresume onlyincomplete bindings;R8prep no formal, count7 unchanged.",
   "nextSafeAction": "Resume sameStandard/xhighCoder fixformalR7-001 minimalstrictstoredZIP/testnegatives preservingall originalbudget/sixstage;newfrozenSource/docs/206Build thenfreshactualR8 independentwholePASS andrequirednewCI before normalrelease.08–10notstarted.",
   "cleanup": [
     {
@@ -1883,7 +1948,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T00:18:46.134578+00:00",
+  "updatedAtUtc": "2026-10-14T01:08:30.944174+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
