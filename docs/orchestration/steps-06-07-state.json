@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_39DAA_CANDIDATE_CI_PREPARATION",
+  "phase": "STEP07_39DAA_REQUIRED_CANDIDATE_CI",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "REVIEW_PASS_PENDING_NEW_CANDIDATE_CI",
+    "status": "CANDIDATE_CI",
     "reviewRounds": 10,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -1440,21 +1440,21 @@
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "status": "LOCAL39DAA_DOCS6C9_EXACT_EXECUTION_REVIEW10_IN_PROGRESS_NOT_PUSHED",
+      "status": "PUSHED_REMOTE_READBACK_EXACT_LATEST39DAA_REQUIRED_CI_IN_PROGRESS",
       "executableDiffZero": true,
       "database": "OWNED_POSTGRES55481_NEW_EMPTY",
       "preparation": "FROZEN_INSTALL_GENERATE_BUILD_FIVE_MIGRATIONS_SUCCESS_NOT_POSTMERGE_TESTS",
       "candidateExecutableSource": "39daa13188eb401c2048a24e0606c1a91192e04a",
-      "validationHead": "d62c109054c6f35b738f1cc4714e14298e6b2cf7",
+      "validationHead": "e097ba156c660acdb351fc5abe62efc9db4b6f87",
       "postSourcePaths": 3049,
-      "remotePushed": false,
+      "remotePushed": true,
       "authorDocs": "6c9d7d9a2d139482ec5b411323cdfbc4d3f22fb2",
       "previousReviewBasis": {
         "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "review": "REQUIRES_REVISION_ROUND3"
       },
-      "latestReview": "REVIEW10_IN_PROGRESS_PARENT_R9_REQUIRES_REVISION",
-      "reviewedSource": null
+      "latestReview": "PASS_REVIEW10_SOURCE39DAA",
+      "reviewedSource": "39daa13188eb401c2048a24e0606c1a91192e04a"
     },
     "pendingCandidate": {
       "sha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
@@ -1838,24 +1838,14 @@
       }
     ],
     "candidateCi": {
-      "head": "b350aa88b8213223dbf8287ec42487d3ec19e391",
+      "head": "e097ba156c660acdb351fc5abe62efc9db4b6f87",
       "branch": "codex/step-07-validation",
-      "runId": 38500746316,
-      "status": "FAILURE",
-      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38500746316",
+      "runId": 38517441385,
+      "status": "IN_PROGRESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38517441385",
       "remoteReadbackExact": true,
-      "latestReviewRound": 8,
-      "reviewedSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
-      "observedPassedSteps": [
-        "install-frozen",
-        "generate",
-        "check",
-        "dev-privacy",
-        "migrate",
-        "API-integration"
-      ],
-      "lastObservedActiveStep": "step06 realPostgres regression",
-      "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-third-failure.json"
+      "latestReviewRound": 10,
+      "reviewedSource": "39daa13188eb401c2048a24e0606c1a91192e04a"
     },
     "ciHistoryDiagnosis": {
       "status": "BOTH_CI_PREREQUISITES_INDEPENDENTLY_SUPPORTED_FIXED_ROUND6_REMOTE_CI_PENDING",
@@ -1920,6 +1910,26 @@
         "latestReviewRound": 6,
         "reviewedSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
         "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-second-failure.json"
+      },
+      {
+        "head": "b350aa88b8213223dbf8287ec42487d3ec19e391",
+        "branch": "codex/step-07-validation",
+        "runId": 38500746316,
+        "status": "FAILURE",
+        "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38500746316",
+        "remoteReadbackExact": true,
+        "latestReviewRound": 8,
+        "reviewedSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+        "observedPassedSteps": [
+          "install-frozen",
+          "generate",
+          "check",
+          "dev-privacy",
+          "migrate",
+          "API-integration"
+        ],
+        "lastObservedActiveStep": "step06 realPostgres regression",
+        "failureReceipt": "docs/evidence/orchestration-06-07/step07-candidate-ci-third-failure.json"
       }
     ],
     "ciTimeoutDiagnosis": {
@@ -2400,8 +2410,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round10-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Review10nativeexit0 latest39daa wholePASS report346e/ledgere844114actualSHA+ownancestorsecretScanverified,4111source+206filesunchanged,R9-001CLOSED.Alloldclosuresmaintained.OwnPG55497stopsafe7DBprivate retained/APIWeboff. LatestnewcandidateCInotstarted/noMain07merge.",
-  "nextSafeAction": "Integrate originalReview10/doc/state into VAL executionprojection==39daa;normalpush latestcandidate+fullrequiredCI.OnlyALLSUCCESS permitspreAuth/fetchliveguard/normalMainmerge/actualpostmerge/push/readback/mainCI/formalpublicationdocsSTOPafter07.",
+  "lastSuccessfulCheckpoint": "Review10whole latest39daa/docs6c9 PASS originals114/source4111unchanged/realIOpolicyclosed alloldfindingsheld,ownPG55497stopsafe7DBprivate retained.NormalVALpushe097readbackexact newfullCI38517441385running;3oldfailuresretained.No07Mainmerge/preauthyet.",
+  "nextSafeAction": "Wait newfullcandidateCI38517441385 SUCCESS exacte097;fetch/liveMain guard+preauthAPPROVED_BY_PREAUTHORIZED_ORCHESTRATOR,normalMainmerge andactualpostmerge regression,normalpush/readback/mainCI,formalpublicationdocsStop07.No08–10.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2435,7 +2445,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T05:34:40.003019+00:00",
+  "updatedAtUtc": "2026-10-14T05:36:20.697382+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -2498,7 +2508,13 @@
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
       "id": "LATEST39DAA_CANDIDATE_CI_PENDING",
       "status": "OPEN",
-      "lastFailureRun": 38500746316
+      "latestRun": 38517441385,
+      "latestCandidate": "e097ba156c660acdb351fc5abe62efc9db4b6f87",
+      "oldFailedRuns": [
+        38464677883,
+        38475532067,
+        38500746316
+      ]
     }
   ]
 }
