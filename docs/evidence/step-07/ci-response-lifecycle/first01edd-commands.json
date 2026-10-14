@@ -1,0 +1,249 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c"
+      ],
+      "cwd": ".",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 11.784,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/clone.log",
+      "rawBytes": 1281,
+      "rawSHA256": "e9814b0bd8baf21a6acf2b499cc85c8df17485619f5bd25775abadd90aa82a47",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.4,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/checkout.log",
+      "rawBytes": 101,
+      "rawSHA256": "f41d0b625842ac0f6497880da653e5f31eecc742448c1e6242240f6379bfafba",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.499,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/install.log",
+      "rawBytes": 1170,
+      "rawSHA256": "868682d33f5220be5a51ed0717aad0894065560659a37a77dda498bb827b4796",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.732,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/generate.log",
+      "rawBytes": 865,
+      "rawSHA256": "e90987cf1fd4c1abca83f681a602f9264541887095b8691e4252dbe0fc87cb81",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "check",
+      "argv": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 74.471,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/check.log",
+      "rawBytes": 14130,
+      "rawSHA256": "1fc483735e05efa8d94315b91b81e34c41d79c2b027fb2d184880250cba3b485",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-response/regression/assets"
+      }
+    },
+    {
+      "label": "latest-response-browser-controls",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "apps/api/tests/studio/received-resources.test.ts"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.447,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/latest-response-browser-controls.log",
+      "rawBytes": 317,
+      "rawSHA256": "3d9f7fe1840d704c89da737541269f214a1b399826d7da29d66d7bff2491e0e5",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-response/regression/assets"
+      }
+    },
+    {
+      "label": "regression-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.812,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/regression-migrate.log",
+      "rawBytes": 2233,
+      "rawSHA256": "56b81faf62e84ff44a951eefb12bf4a01e0a762c465785168eb1f8803355956a",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-response/regression/assets"
+      }
+    },
+    {
+      "label": "api3",
+      "argv": [
+        "pnpm",
+        "test:integration"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.559,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/api3.log",
+      "rawBytes": 3374,
+      "rawSHA256": "489c64a9bab18adb2aa3fefda1c7a2f6c18c3e16d3932fe241c2eb9f3fadd0dc",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-response/regression/assets"
+      }
+    },
+    {
+      "label": "privacy5",
+      "argv": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.318,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/privacy5.log",
+      "rawBytes": 3369,
+      "rawSHA256": "744fce2cbc62a5d82a0b4b2b4a5fc8b647154091b8137275ca62a0af1b9a1146",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-response/regression/assets"
+      }
+    },
+    {
+      "label": "http16",
+      "argv": [
+        "pnpm",
+        "test:step07"
+      ],
+      "cwd": "artifacts/.step07-ci-response-final-21fec34d43754b72a62ee29ce8cee41c",
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "exitCode": 1,
+      "expectedExit": 0,
+      "seconds": 408.808,
+      "rawPath": ".local/step07-ci-response-lifecycle/final/http16.log",
+      "rawBytes": 7273,
+      "rawSHA256": "abb811e6399bbe8dfcbf147103e903cf148e01df9c1bf95efd4be672cb1e6699",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-response/regression/assets"
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "commands": [
+    {
+      "label": "control-clone",
+      "args": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-controls-60d9b39f8e564309831378910c580019"
+      ],
+      "exitCode": 0,
+      "seconds": 11.846,
+      "rawPath": ".local/step07-ci-response-lifecycle/control-clone.log",
+      "rawSHA256": "8358655137d8a790d705921df0e5c25c76cd852e082a1a0d02958890af7396c7",
+      "rawBytes": 1218
+    },
+    {
+      "label": "control-checkout",
+      "args": [
+        "git",
+        "checkout",
+        "--detach",
+        "39daa13188eb401c2048a24e0606c1a91192e04a"
+      ],
+      "exitCode": 0,
+      "seconds": 0.347,
+      "rawPath": ".local/step07-ci-response-lifecycle/control-checkout.log",
+      "rawSHA256": "786dde65ea70a32c3a121681eb79ede45d3da065058a58b28ed3ef7e81880109",
+      "rawBytes": 101
+    },
+    {
+      "label": "control-install",
+      "args": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "exitCode": 0,
+      "seconds": 2.562,
+      "rawPath": ".local/step07-ci-response-lifecycle/control-install.log",
+      "rawSHA256": "507f9f34c4c02160988fedffc8e96a9fbaea34c7395a71ce48849344c81c77b7",
+      "rawBytes": 1170
+    },
+    {
+      "label": "old-real-abort",
+      "args": [
+        "node",
+        ".local/reproduce.mjs"
+      ],
+      "exitCode": 0,
+      "rawPath": ".local/step07-ci-response-lifecycle/old-real-abort.log",
+      "rawSHA256": "69503ef5fc36b100a8bb998eec733cd5a579ee779a3cb55bd1d921334ecf746b",
+      "rawBytes": 127
+    }
+  ]
+}

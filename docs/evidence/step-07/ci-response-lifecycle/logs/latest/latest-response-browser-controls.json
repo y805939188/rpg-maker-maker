@@ -1,0 +1,29 @@
+{
+  "receipt": {
+    "label": "latest-response-browser-controls",
+    "argv": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/api/tests/studio/received-resources.test.ts"
+    ],
+    "cwd": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 2.59,
+    "rawPath": ".local/step07-ci-response-lifecycle/final-latest/latest-response-browser-controls.log",
+    "rawBytes": 318,
+    "rawSHA256": "9ff4620a21f7929aed1652f4f3d260c77086a0f4cc5f79ac98b4f77b9b843399",
+    "noRootDotEnv": true,
+    "safeEnvironment": {
+      "API_HOST": "127.0.0.1",
+      "API_PORT": "4398",
+      "WEB_PORT": "5298",
+      "E2E_MODE": null,
+      "TILESET_ASSET_ROOT": ".local/ci-response/regression/assets"
+    }
+  },
+  "sanitizedText": "\n RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735\n\n\n Test Files  1 passed (1)\n      Tests  5 passed (5)\n   Start at  14:31:33\n   Duration  2.19s (transform 34ms, setup 0ms, import 249ms, tests 1.86s, environment 0ms)\n\n"
+}

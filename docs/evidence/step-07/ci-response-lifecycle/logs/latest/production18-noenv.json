@@ -1,0 +1,26 @@
+{
+  "receipt": {
+    "label": "production18-noenv",
+    "argv": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "cwd": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 447.469,
+    "rawPath": ".local/step07-ci-response-lifecycle/final-latest/production18-noenv.log",
+    "rawBytes": 3770,
+    "rawSHA256": "cf51ed520ddb085e51a260aac331517a16899ad7c26e1db07225d22c24aee82e",
+    "noRootDotEnv": true,
+    "safeEnvironment": {
+      "API_HOST": "127.0.0.1",
+      "API_PORT": "4398",
+      "WEB_PORT": "5298",
+      "E2E_MODE": null,
+      "TILESET_ASSET_ROOT": ".local/ci-response/production/assets"
+    }
+  },
+  "sanitizedText": "\n> @tileset/prototype@0.0.2 test:e2e /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735\n> playwright test\n\n[WebServer] (node:24950) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:24976) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:24997) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n\nRunning 18 tests using 1 worker\n\n(node:25002) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n  ✓   1 e2e/shell.test.ts:3:1 › browser persists a project and restores its selected Studio (396ms)\n  ✓   2 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated upload and preserves persisted selection (3.3s)\n  ✓   3 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated invalid-upload and preserves persisted selection (3.2s)\n  ✓   4 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated adopt and preserves persisted selection (6.3s)\n  ✓   5 e2e/studio-project-list.test.ts:194:1 › created-project replacement list supersedes delayed initial list; selected details and list refresh stay coherent (6.0s)\n  ✓   6 e2e/studio-project-list.test.ts:266:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list (3.1s)\n  ✓   7 e2e/studio-recovery.test.ts:177:1 › 1300ms legal poll responses deliver success and failure, fast controls and late old projects stay correct (51.0s)\n  ✓   8 e2e/studio-recovery.test.ts:284:1 › three ordinary switches cancel unfinished processed work and display real decoded current PNG (36.7s)\n  ✓   9 e2e/studio-recovery.test.ts:328:1 › real bounded BUSY pressure recovers or reports failure, explicit reread and cancelled-frame download stay valid (13.3s)\n  ✓  10 e2e/studio-recovery.test.ts:402:1 › invalid PNG and timed-out reads report errors, preserve last decoded frame and allow bounded explicit recovery (10.3s)\n  ✓  11 e2e/studio-state-ownership.test.ts:206:3 › continuous 503 poll errors stop at five and explicit read recovers the actual completed job (16.5s)\n  ✓  12 e2e/studio-state-ownership.test.ts:206:3 › continuous 429 poll errors stop at five and explicit read recovers the actual completed job (16.8s)\n  ✓  13 e2e/studio-state-ownership.test.ts:206:3 › continuous network poll errors stop at five and explicit read recovers the actual completed job (16.6s)\n  ✓  14 e2e/studio-state-ownership.test.ts:319:1 › late real upload preserves another project and same-project explicit source choice; normal upload still works (16.7s)\n  ✓  15 e2e/studio-state-ownership.test.ts:384:1 › late adoption preserves target recipe and same-project historical recipe selection (18.9s)\n  ✓  16 e2e/studio-state-ownership.test.ts:431:1 › late error, accepted build, visual repair record and created project cannot write another project UI (1.0m)\n  ✓  17 e2e/studio.test.ts:131:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP (1.5m)\n  ✓  18 e2e/studio.test.ts:391:1 › project switches keep real build/recipe identities coherent while data is delayed and legacy export is converted (32.9s)\n\n  18 passed (7.4m)\n"
+}

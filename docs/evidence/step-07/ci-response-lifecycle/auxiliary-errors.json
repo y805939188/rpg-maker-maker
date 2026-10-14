@@ -1,0 +1,38 @@
+{
+  "readErrors": [
+    {
+      "probe": "old unbundled playwright server file paths",
+      "actual": "shell glob no matches",
+      "correction": "read installed bundled coreBundle.js exactprimarysource"
+    }
+  ],
+  "prefreezeFailures": [
+    {
+      "label": "prefreeze-browser",
+      "actual": "3PASS2TIMEOUT at original15s",
+      "cause": "navigation left old stream pending; subsequent held-header control did not complete and original sequential fixture was invalid after timeout; original logs/state preserved",
+      "fix": "explicit abort barrier before navigation; no-store test fetch; no budget/test assertion reduction",
+      "rawLog": ".local/step07-ci-response-lifecycle/prefreeze-browser.log",
+      "limit": "cache coalescing is a control concern addressed with no-store, not claimed as the observed CI request mechanism"
+    }
+  ],
+  "originalCI": "hard necessary capture lifecycle failure, not auxiliary or transient",
+  "sourceAfterFreezeChanged": false,
+  "frozenCandidateFailures": [
+    {
+      "source": "01edd90974c0731c3f1530b3fd14d4e3d6ad13e2",
+      "actual": "check349/controls5/API3/privacy5 passed; HTTP15PASS1FAIL initial image labelinputValue timeout15000",
+      "cause": "new exact label locator did not account for select option text in accessible label",
+      "correction": "use unique existing label match without exact flag, keeping all identity assertions; newSource freeze and all required latest checks",
+      "rawLog": ".local/step07-ci-response-lifecycle/final/http16.log",
+      "oldBuild": "NOT_GENERATED"
+    }
+  ],
+  "warnings": [
+    {
+      "scope": "private handoff-helper AST validation",
+      "actual": "missing whitespace before and generated Python SyntaxWarning, no execution failure",
+      "correction": "space inserted in private verification helper; source candidate unchanged"
+    }
+  ]
+}
