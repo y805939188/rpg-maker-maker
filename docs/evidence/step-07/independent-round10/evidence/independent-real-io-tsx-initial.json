@@ -1,0 +1,59 @@
+{
+  "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+  "node": "v22.21.1",
+  "oldHelperGitSHA": "1c6eb99102d84d053b1525bed94ccf86542b04d9ddc2caf3f9546da2d166e9b4",
+  "permissionRestored": true,
+  "results": [
+    {
+      "label": "guard-connect",
+      "exit": 1,
+      "events": "CONNECT\n",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953668526/guard-connect"
+    },
+    {
+      "label": "guard-listen",
+      "exit": 1,
+      "events": "LISTEN\n",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953668526/guard-listen"
+    },
+    {
+      "label": "guard-child",
+      "exit": 1,
+      "events": "CHILD\n",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953668526/guard-child"
+    },
+    {
+      "label": "SAMEFILE_NATIVE",
+      "owner": 501,
+      "ordinaryCode": "EACCES",
+      "nativeCode": "ENOENT",
+      "actualExists": true
+    },
+    {
+      "label": "old-mode000",
+      "exit": 0,
+      "events": "CONNECT\nCONNECT\nCONNECT\n",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953668526/old-mode000",
+      "observation": {
+        "accepted": true,
+        "api": 4310,
+        "web": 5173,
+        "databaseMatches": true,
+        "explicitMarker": false,
+        "loadedMarker": false
+      },
+      "classification": "COUNTEREXAMPLE_CAPTURED"
+    },
+    {
+      "label": "new-mode000",
+      "exit": 1,
+      "events": "CONNECT\nCONNECT\nCONNECT\nCHILD\n",
+      "collected18": false,
+      "rawPrivatePointer": "private/io-1791953668526/new-mode000"
+    }
+  ]
+}

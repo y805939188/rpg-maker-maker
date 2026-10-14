@@ -1,0 +1,110 @@
+{
+  "sourceContext": {
+    "codec": {
+      "aom": "3.15.1",
+      "archive": "3.8.9",
+      "cairo": "1.18.6",
+      "cgif": "0.5.4",
+      "exif": "0.6.26",
+      "expat": "2.8.5",
+      "ffi": "3.8.0",
+      "fontconfig": "2.18.3",
+      "freetype": "2.14.3",
+      "fribidi": "1.0.17",
+      "glib": "2.90.0",
+      "harfbuzz": "14.5.0",
+      "heif": "1.23.5",
+      "highway": "1.4.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.19.1",
+      "mozjpeg": "0826579",
+      "pango": "1.58.2",
+      "pixman": "0.46.4",
+      "png": "1.6.58",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.63.2",
+      "sharp": "0.35.5",
+      "tiff": "4.7.2",
+      "uhdr": "2.0.2",
+      "vips": "8.18.7",
+      "webp": "1.6.0",
+      "xml2": "2.15.4",
+      "zlib-ng": "2.3.3"
+    },
+    "commit": "39daa13188eb401c2048a24e0606c1a91192e04a",
+    "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d",
+    "node": "22.21.1"
+  },
+  "scenario": "file-failure",
+  "job": {
+    "id": "2bfa9f34-c6e0-4b17-a428-3890ce5db5f4",
+    "projectId": "5517671d-420f-4075-8ea3-f949833848a3",
+    "input": {
+      "mode": "update",
+      "context": {
+        "node": "22.21.1",
+        "codec": {
+          "aom": "3.15.1",
+          "ffi": "3.8.0",
+          "png": "1.6.58",
+          "cgif": "0.5.4",
+          "exif": "0.6.26",
+          "glib": "2.90.0",
+          "heif": "1.23.5",
+          "lcms": "2.19.1",
+          "rsvg": "2.63.2",
+          "tiff": "4.7.2",
+          "uhdr": "2.0.2",
+          "vips": "8.18.7",
+          "webp": "1.6.0",
+          "xml2": "2.15.4",
+          "cairo": "1.18.6",
+          "expat": "2.8.5",
+          "pango": "1.58.2",
+          "sharp": "0.35.5",
+          "pixman": "0.46.4",
+          "archive": "3.8.9",
+          "fribidi": "1.0.17",
+          "highway": "1.4.0",
+          "mozjpeg": "0826579",
+          "zlib-ng": "2.3.3",
+          "freetype": "2.14.3",
+          "harfbuzz": "14.5.0",
+          "fontconfig": "2.18.3",
+          "imagequant": "2.4.1",
+          "proxy-libintl": "0.5"
+        },
+        "commit": "39daa13188eb401c2048a24e0606c1a91192e04a",
+        "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d"
+      },
+      "recipeId": "974a0fce07c669b3b527c2a0ee96ca4df018719a1dc45a37837deb26f9ec099e",
+      "snapshotId": "a71ab1a1eee0e50829ad993638b8b80912c074978ae442a8f87921f902176049",
+      "expectedRevision": 1
+    },
+    "state": "FAILED",
+    "buildId": null,
+    "diagnostic": {
+      "code": "BUILD_FAILED",
+      "message": "\u7d20\u6750\u672a\u901a\u8fc7\u914d\u65b9\u3001\u7f16\u8bd1\u6216\u4ea4\u4ed8\u6821\u9a8c\uff0c\u4e0a\u4e00\u6210\u529f\u6784\u5efa\u4ecd\u53ef\u4f7f\u7528\u3002",
+      "location": "\u6784\u5efa\u4efb\u52a1",
+      "recovery": "\u68c0\u67e5\u5b9a\u4f4d\u7ec4\u4ef6\u7684\u683c\u5f0f\u300196\u00d7144 \u5c3a\u5bf8\u3001\u903b\u8f91\u5bc6\u5ea6\u3001\u2264256 \u8272\u8c03\u8272\u677f\u3001\u906e\u7f69\u548c\u4e09\u6e90\u5e27\uff1b\u66ff\u6362\u4e3a\u65b0 revision \u540e\u91cd\u5efa\u3002"
+    },
+    "createdAt": "2026-10-14T05:00:04.322Z"
+  },
+  "count": 0,
+  "before": {
+    "id": "5517671d-420f-4075-8ea3-f949833848a3",
+    "name": "R4-file-failure-aeab2fcf-f716-4727-9749-09917c7e4840",
+    "createdAt": "2026-10-14T04:59:53.897Z",
+    "revision": 2,
+    "successfulBuildId": "f8ceb183009154675877f76dc85d92a629279c7db03e3eed35b851ef0947739f"
+  },
+  "after": {
+    "id": "5517671d-420f-4075-8ea3-f949833848a3",
+    "name": "R4-file-failure-aeab2fcf-f716-4727-9749-09917c7e4840",
+    "createdAt": "2026-10-14T04:59:53.897Z",
+    "revision": 2,
+    "successfulBuildId": "f8ceb183009154675877f76dc85d92a629279c7db03e3eed35b851ef0947739f"
+  },
+  "internalManifest": "6dbb673a15485c02e1b3c204dcb152a9b7f0c03f34cd86348d0db63e42731b22"
+}

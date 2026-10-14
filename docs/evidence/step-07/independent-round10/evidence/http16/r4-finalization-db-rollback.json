@@ -1,0 +1,110 @@
+{
+  "sourceContext": {
+    "codec": {
+      "aom": "3.15.1",
+      "archive": "3.8.9",
+      "cairo": "1.18.6",
+      "cgif": "0.5.4",
+      "exif": "0.6.26",
+      "expat": "2.8.5",
+      "ffi": "3.8.0",
+      "fontconfig": "2.18.3",
+      "freetype": "2.14.3",
+      "fribidi": "1.0.17",
+      "glib": "2.90.0",
+      "harfbuzz": "14.5.0",
+      "heif": "1.23.5",
+      "highway": "1.4.0",
+      "imagequant": "2.4.1",
+      "lcms": "2.19.1",
+      "mozjpeg": "0826579",
+      "pango": "1.58.2",
+      "pixman": "0.46.4",
+      "png": "1.6.58",
+      "proxy-libintl": "0.5",
+      "rsvg": "2.63.2",
+      "sharp": "0.35.5",
+      "tiff": "4.7.2",
+      "uhdr": "2.0.2",
+      "vips": "8.18.7",
+      "webp": "1.6.0",
+      "xml2": "2.15.4",
+      "zlib-ng": "2.3.3"
+    },
+    "commit": "39daa13188eb401c2048a24e0606c1a91192e04a",
+    "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d",
+    "node": "22.21.1"
+  },
+  "scenario": "db-rollback",
+  "job": {
+    "id": "279397a7-ce23-4078-b92c-ae38f3e06ac1",
+    "projectId": "aae42cf8-98d2-4571-bfcf-a580b02aa8db",
+    "input": {
+      "mode": "update",
+      "context": {
+        "node": "22.21.1",
+        "codec": {
+          "aom": "3.15.1",
+          "ffi": "3.8.0",
+          "png": "1.6.58",
+          "cgif": "0.5.4",
+          "exif": "0.6.26",
+          "glib": "2.90.0",
+          "heif": "1.23.5",
+          "lcms": "2.19.1",
+          "rsvg": "2.63.2",
+          "tiff": "4.7.2",
+          "uhdr": "2.0.2",
+          "vips": "8.18.7",
+          "webp": "1.6.0",
+          "xml2": "2.15.4",
+          "cairo": "1.18.6",
+          "expat": "2.8.5",
+          "pango": "1.58.2",
+          "sharp": "0.35.5",
+          "pixman": "0.46.4",
+          "archive": "3.8.9",
+          "fribidi": "1.0.17",
+          "highway": "1.4.0",
+          "mozjpeg": "0826579",
+          "zlib-ng": "2.3.3",
+          "freetype": "2.14.3",
+          "harfbuzz": "14.5.0",
+          "fontconfig": "2.18.3",
+          "imagequant": "2.4.1",
+          "proxy-libintl": "0.5"
+        },
+        "commit": "39daa13188eb401c2048a24e0606c1a91192e04a",
+        "lockSha256": "66938282842a20a9dddaa5e3afddb418fa19e76d1c928d6e45d60192ba29379d"
+      },
+      "recipeId": "a38134e600d279af8d319fada19f9409f629fa592d6eda9ad411f316ffd78f44",
+      "snapshotId": "a736d58f7ea43d3e93af572825f0debc1f041ebe6f5b47a559ee6633f907e42c",
+      "expectedRevision": 1
+    },
+    "state": "FAILED",
+    "buildId": null,
+    "diagnostic": {
+      "code": "BUILD_FAILED",
+      "message": "\u7d20\u6750\u672a\u901a\u8fc7\u914d\u65b9\u3001\u7f16\u8bd1\u6216\u4ea4\u4ed8\u6821\u9a8c\uff0c\u4e0a\u4e00\u6210\u529f\u6784\u5efa\u4ecd\u53ef\u4f7f\u7528\u3002",
+      "location": "\u6784\u5efa\u4efb\u52a1",
+      "recovery": "\u68c0\u67e5\u5b9a\u4f4d\u7ec4\u4ef6\u7684\u683c\u5f0f\u300196\u00d7144 \u5c3a\u5bf8\u3001\u903b\u8f91\u5bc6\u5ea6\u3001\u2264256 \u8272\u8c03\u8272\u677f\u3001\u906e\u7f69\u548c\u4e09\u6e90\u5e27\uff1b\u66ff\u6362\u4e3a\u65b0 revision \u540e\u91cd\u5efa\u3002"
+    },
+    "createdAt": "2026-10-14T05:00:35.135Z"
+  },
+  "count": 0,
+  "before": {
+    "id": "aae42cf8-98d2-4571-bfcf-a580b02aa8db",
+    "name": "R4-db-rollback-1cdc2eca-6703-4ff8-b728-7c1b16c65757",
+    "createdAt": "2026-10-14T05:00:24.889Z",
+    "revision": 2,
+    "successfulBuildId": "9909e42eed4b21fb51c8f2be6a7b760f40698d9a4c32cc94e6f7c04ed56e54c4"
+  },
+  "after": {
+    "id": "aae42cf8-98d2-4571-bfcf-a580b02aa8db",
+    "name": "R4-db-rollback-1cdc2eca-6703-4ff8-b728-7c1b16c65757",
+    "createdAt": "2026-10-14T05:00:24.889Z",
+    "revision": 2,
+    "successfulBuildId": "9909e42eed4b21fb51c8f2be6a7b760f40698d9a4c32cc94e6f7c04ed56e54c4"
+  },
+  "internalManifest": "6dbb673a15485c02e1b3c204dcb152a9b7f0c03f34cd86348d0db63e42731b22"
+}
