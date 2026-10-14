@@ -1,0 +1,400 @@
+[
+  {
+    "label": "api3-migrate",
+    "cmd": [
+      "pnpm",
+      "--filter",
+      "@tileset/api",
+      "exec",
+      "prisma",
+      "migrate",
+      "deploy"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 1.412,
+    "log": "evidence/api3-migrate.log.txt",
+    "logSHA": "5fbcb71533f77319bc4f1f857a9acd3428fc929f78dcc0c682063deffb2e6b59",
+    "bytes": 1759,
+    "rawSHA": "9c2746cbc0be0d8a1e7c07ebd92c78e577c839a39af5babfda067084cc2ea135",
+    "rawBytes": 1805,
+    "redactions": 0
+  },
+  {
+    "label": "api3",
+    "cmd": [
+      "pnpm",
+      "test:integration"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 10.643,
+    "log": "evidence/api3.log.txt",
+    "logSHA": "1538eeea11d8de60323467195cb2ca89fb7469df154b8e9468fff11589dd69ae",
+    "bytes": 3465,
+    "rawSHA": "1538eeea11d8de60323467195cb2ca89fb7469df154b8e9468fff11589dd69ae",
+    "rawBytes": 3465,
+    "redactions": 0
+  },
+  {
+    "label": "check",
+    "cmd": [
+      "pnpm",
+      "check"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 73.13,
+    "log": "evidence/check.log.txt",
+    "logSHA": "613f3ea3fbe0bd7bccde3762d5d9dc613f5f9d324179a872a313edff2b940d2d",
+    "bytes": 11324,
+    "rawSHA": "613f3ea3fbe0bd7bccde3762d5d9dc613f5f9d324179a872a313edff2b940d2d",
+    "rawBytes": 11324,
+    "redactions": 0
+  },
+  {
+    "label": "checkout",
+    "cmd": [
+      "git",
+      "checkout",
+      "--detach",
+      "dc61fe03f64e644b7ac63057b3f7d7d26df547f8"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 0.081,
+    "log": "evidence/checkout.log.txt",
+    "logSHA": "6e40245709913567e00e6fb3766a7cae7b973b4dcf9a1a83efdcc0b22c684e1a",
+    "bytes": 91,
+    "rawSHA": "6e40245709913567e00e6fb3766a7cae7b973b4dcf9a1a83efdcc0b22c684e1a",
+    "rawBytes": 91,
+    "redactions": 0
+  },
+  {
+    "label": "clone",
+    "cmd": [
+      "git",
+      "clone",
+      "--no-local",
+      "--quiet",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 10.144,
+    "log": "evidence/clone.log.txt",
+    "logSHA": "140df6fd5377cca5d89b7226def1d6fdafc18faaa206e7a0237b0e0ebd6a7ae8",
+    "bytes": 580,
+    "rawSHA": "140df6fd5377cca5d89b7226def1d6fdafc18faaa206e7a0237b0e0ebd6a7ae8",
+    "rawBytes": 580,
+    "redactions": 0
+  },
+  {
+    "label": "cold-browser-install",
+    "cmd": [
+      "pnpm",
+      "exec",
+      "playwright",
+      "install",
+      "--with-deps",
+      "chromium"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": -15,
+    "seconds": 657.23,
+    "log": "evidence/cold-browser-install.log.txt",
+    "logSHA": "e660988a5626a6f75f55040c57ce1612409db179a1162896c88fd7a86efebb69",
+    "bytes": 1014,
+    "rawSHA": "e660988a5626a6f75f55040c57ce1612409db179a1162896c88fd7a86efebb69",
+    "rawBytes": 1014,
+    "redactions": 0
+  },
+  {
+    "label": "cold-check",
+    "cmd": [
+      "pnpm",
+      "check"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 1,
+    "seconds": 57.154,
+    "log": "evidence/cold-check.log.txt",
+    "logSHA": "134eca0742057643352b4a9ef84adb3dced0cae1092b17a9b87fb2c0c805e4fb",
+    "bytes": 10991,
+    "rawSHA": "134eca0742057643352b4a9ef84adb3dced0cae1092b17a9b87fb2c0c805e4fb",
+    "rawBytes": 10991,
+    "redactions": 0
+  },
+  {
+    "label": "development18-migrate",
+    "cmd": [
+      "pnpm",
+      "--filter",
+      "@tileset/api",
+      "exec",
+      "prisma",
+      "migrate",
+      "deploy"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 0.833,
+    "log": "evidence/development18-migrate.log.txt",
+    "logSHA": "732a862ebcae1b22a272b2d3f8ccbae7a33d37af8b24562f16ac5d0d6ec6650c",
+    "bytes": 891,
+    "rawSHA": "3a42aa11fe48976783bed3f80429ae3b5fed869293c5ef04174ca8745c669db5",
+    "rawBytes": 946,
+    "redactions": 0
+  },
+  {
+    "label": "development18",
+    "cmd": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 474.729,
+    "log": "evidence/development18.log.txt",
+    "logSHA": "829b73cb3edfbb75ca0a6a64bee78d8ea6e94715975b0eebf35a76166f45621d",
+    "bytes": 7160,
+    "rawSHA": "829b73cb3edfbb75ca0a6a64bee78d8ea6e94715975b0eebf35a76166f45621d",
+    "rawBytes": 7160,
+    "redactions": 0
+  },
+  {
+    "label": "http16",
+    "cmd": [
+      "pnpm",
+      "test:step07"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 529.487,
+    "log": "evidence/http16.log.txt",
+    "logSHA": "7286aed157a8f54ebaca588b26757b2c650fa30296fdc19068ad001c9a886196",
+    "bytes": 10169,
+    "rawSHA": "7286aed157a8f54ebaca588b26757b2c650fa30296fdc19068ad001c9a886196",
+    "rawBytes": 10169,
+    "redactions": 0
+  },
+  {
+    "label": "independent-navigation",
+    "cmd": [
+      "node",
+      ".local/step07-review/independent-round11/private/response-navigation-boundaries.mjs"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 1.784,
+    "log": "evidence/independent-navigation.log.txt",
+    "logSHA": "4fabe0655a93a7f4a845262c5e3a66dd05505eb914fb78cc4912e7264fb1ee44",
+    "bytes": 39,
+    "rawSHA": "4fabe0655a93a7f4a845262c5e3a66dd05505eb914fb78cc4912e7264fb1ee44",
+    "rawBytes": 39,
+    "redactions": 0
+  },
+  {
+    "label": "independent-responses",
+    "cmd": [
+      "node",
+      ".local/step07-review/independent-round11/private/response-boundaries.mjs"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 1.345,
+    "log": "evidence/independent-responses.log.txt",
+    "logSHA": "ed28a26fef17166e3f16718618ae23566d92d62069d0371f4266f43a6c501afd",
+    "bytes": 39,
+    "rawSHA": "ed28a26fef17166e3f16718618ae23566d92d62069d0371f4266f43a6c501afd",
+    "rawBytes": 39,
+    "redactions": 0
+  },
+  {
+    "label": "lifecycle-empty-browser",
+    "cmd": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/api/tests/studio/received-resources.test.ts"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 1,
+    "seconds": 0.765,
+    "log": "evidence/lifecycle-empty-browser.log.txt",
+    "logSHA": "d635db78f8bbb6bce1741c61ef5d352c5d3528692b0bf1a02a4d103a91336be5",
+    "bytes": 2000,
+    "rawSHA": "d635db78f8bbb6bce1741c61ef5d352c5d3528692b0bf1a02a4d103a91336be5",
+    "rawBytes": 2000,
+    "redactions": 0
+  },
+  {
+    "label": "lifecycle5",
+    "cmd": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "apps/api/tests/studio/received-resources.test.ts"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 2.342,
+    "log": "evidence/lifecycle5.log.txt",
+    "logSHA": "3ab2bfd7c7da910d47112de4c0a248b3922ed69c69674f1250bc3670905f807c",
+    "bytes": 256,
+    "rawSHA": "3ab2bfd7c7da910d47112de4c0a248b3922ed69c69674f1250bc3670905f807c",
+    "rawBytes": 256,
+    "redactions": 0
+  },
+  {
+    "label": "migrate-after-build",
+    "cmd": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 1.871,
+    "log": "evidence/migrate-after-build.log.txt",
+    "logSHA": "9b31ee269e72069a6e0be5e45150b132b0d23ffae09eb5b79e59deccb04a0aa7",
+    "bytes": 2061,
+    "rawSHA": "9b31ee269e72069a6e0be5e45150b132b0d23ffae09eb5b79e59deccb04a0aa7",
+    "rawBytes": 2061,
+    "redactions": 0
+  },
+  {
+    "label": "migrate",
+    "cmd": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 1,
+    "seconds": 0.505,
+    "log": "evidence/migrate.log.txt",
+    "logSHA": "d72bbac24380b21d3343a817b44358fcfbc845b3a62f53ada1b9e25a90d046e3",
+    "bytes": 1551,
+    "rawSHA": "d72bbac24380b21d3343a817b44358fcfbc845b3a62f53ada1b9e25a90d046e3",
+    "rawBytes": 1551,
+    "redactions": 0
+  },
+  {
+    "label": "privacy5",
+    "cmd": [
+      "pnpm",
+      "test:dev-privacy"
+    ],
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 10.867,
+    "log": "evidence/privacy5.log.txt",
+    "logSHA": "15596bbcc099c987ceee434dd169bc0e7bf16fb144ef7a756c5805caa5f5460c",
+    "bytes": 2576,
+    "rawSHA": "15596bbcc099c987ceee434dd169bc0e7bf16fb144ef7a756c5805caa5f5460c",
+    "rawBytes": 2576,
+    "redactions": 0
+  },
+  {
+    "label": "production18-migrate",
+    "cmd": [
+      "pnpm",
+      "--filter",
+      "@tileset/api",
+      "exec",
+      "prisma",
+      "migrate",
+      "deploy"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 0.845,
+    "log": "evidence/production18-migrate.log.txt",
+    "logSHA": "732a862ebcae1b22a272b2d3f8ccbae7a33d37af8b24562f16ac5d0d6ec6650c",
+    "bytes": 891,
+    "rawSHA": "ac0a46f8b5686370c7f6ef94078f9ecd9aa88704515a011980783d6bf5ff862f",
+    "rawBytes": 945,
+    "redactions": 0
+  },
+  {
+    "label": "production18",
+    "cmd": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 451.978,
+    "log": "evidence/production18.log.txt",
+    "logSHA": "cc2863d31713c90bd893ba87a2124b05cd48d8bbfc467bc47be8225adbe3b7b1",
+    "bytes": 3776,
+    "rawSHA": "cc2863d31713c90bd893ba87a2124b05cd48d8bbfc467bc47be8225adbe3b7b1",
+    "rawBytes": 3776,
+    "redactions": 0
+  },
+  {
+    "label": "runtime-build",
+    "cmd": [
+      "pnpm",
+      "build:step07"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 20.234,
+    "log": "evidence/runtime-build.log.txt",
+    "logSHA": "947ed346d5d0a07da33040b035f96f94882456b40cf8645e089c3d9480dfd8de",
+    "bytes": 28258,
+    "rawSHA": "947ed346d5d0a07da33040b035f96f94882456b40cf8645e089c3d9480dfd8de",
+    "rawBytes": 28258,
+    "redactions": 0
+  },
+  {
+    "label": "runtime-generate",
+    "cmd": [
+      "pnpm",
+      "db:generate"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 1.799,
+    "log": "evidence/runtime-generate.log.txt",
+    "logSHA": "cf09185861b2856d4f5030fa710491ee0fec7eaa29cb23fd2034132af2a42bc1",
+    "bytes": 837,
+    "rawSHA": "cf09185861b2856d4f5030fa710491ee0fec7eaa29cb23fd2034132af2a42bc1",
+    "rawBytes": 837,
+    "redactions": 0
+  },
+  {
+    "label": "runtime-install",
+    "cmd": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile",
+      "--offline"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/artifacts/.step07-review11-runtime-f0ec72eb441946e1ac4f391fd598f792",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "seconds": 2.594,
+    "log": "evidence/runtime-install.log.txt",
+    "logSHA": "ebd80bf4d81573a3211466d1340ab94874e3b66bc8464213b7087dd013c4ed3f",
+    "bytes": 1170,
+    "rawSHA": "ebd80bf4d81573a3211466d1340ab94874e3b66bc8464213b7087dd013c4ed3f",
+    "rawBytes": 1170,
+    "redactions": 0
+  }
+]

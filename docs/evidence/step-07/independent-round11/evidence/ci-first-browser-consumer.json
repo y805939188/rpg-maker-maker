@@ -1,0 +1,50 @@
+{
+  "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+  "workflowSHA256": "431fc28504104a33b29f49b4c9b306b97d9748f97e11830e514a7aaf5a57182e",
+  "runs": [
+    "pnpm install --frozen-lockfile",
+    "pnpm db:generate",
+    "pnpm check",
+    "pnpm test:dev-privacy",
+    "pnpm db:migrate",
+    "pnpm test:integration",
+    "TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+    "pnpm exec playwright install --with-deps chromium",
+    "TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+    "pnpm test:e2e",
+    "E2E_MODE=dev pnpm test:e2e"
+  ],
+  "checkIndex": 2,
+  "browserInstallIndex": 7,
+  "installCount": 1,
+  "firstBrowserConsumer": "pnpm check -> vitest run -> received-resources.test.ts beforeAll chromium.launch()",
+  "discovery": "apps/api/tests/**/*.test.ts includes new file; exclusion only exact integration.test.ts",
+  "lineSites": {
+    ".github/workflows/ci.yml": [
+      36,
+      41
+    ],
+    "apps/api/tests/studio/received-resources.test.ts": [
+      52,
+      59
+    ],
+    "vitest.config.ts": [
+      7,
+      10
+    ]
+  },
+  "actualColdCheck": {
+    "exitCode": 1,
+    "testFilesFailed": 1,
+    "testFilesPassed": 29,
+    "testsPassed": 344,
+    "testsSkipped": 5,
+    "testsTotal": 349
+  },
+  "currentDefaultCacheNormal": {
+    "check": 349,
+    "newCases": 5
+  },
+  "scope": "Current local controlled cold-cache reproduction plus exact workflow ordering; not a new GitHub CI run. CI1 same revision missing executable retained as independent historical corroboration.",
+  "minimalFix": "Move existing exact browser install before pnpm check; retain one install command and all versions, budgets, tests/assertions and permissions. Independent empty-cache current check required after re-freeze."
+}

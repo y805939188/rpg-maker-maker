@@ -1,0 +1,392 @@
+{
+  "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+  "parentSource": "39daa13188eb401c2048a24e0606c1a91192e04a",
+  "oldAssertionSites": [
+    {
+      "line": 1371,
+      "text": "browserExpect(element).toHaveAttribute('data-project-id', f.project, { timeout: 15000, })"
+    },
+    {
+      "line": 1390,
+      "text": "expect( received, 'actual rendered recipe/frame PNG response must be captured', ).toBeDefined()"
+    },
+    {
+      "line": 1395,
+      "text": "expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes))"
+    },
+    {
+      "line": 1405,
+      "text": "expect(Buffer.from(actual)).toEqual(expected)"
+    },
+    {
+      "line": 1409,
+      "text": "browserExpect( page.getByRole('button', { name: '构建当前配套', exact: true }), ).toBeEnabled()"
+    },
+    {
+      "line": 1422,
+      "text": "expect((await upload).status()).toBe(201)"
+    },
+    {
+      "line": 1423,
+      "text": "browserExpect(page.locator('.notice')).toContainText('新 revision')"
+    },
+    {
+      "line": 1425,
+      "text": "browserExpect(page.locator('.notice')).toContainText('固定岸线配方')"
+    },
+    {
+      "line": 1466,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1474,
+      "text": "expect(actual.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1480,
+      "text": "browserExpect(row).toContainText('完成')"
+    },
+    {
+      "line": 1482,
+      "text": "expect(state.successfulBuildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1483,
+      "text": "expect(state.needsRebuild).toBe(false)"
+    },
+    {
+      "line": 1484,
+      "text": "browserExpect( page.getByRole('button', { name: '退役旧组并建立第二组', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1488,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"交付拼接预览\"]')).toHaveAttribute( 'data-build-id', actual.buildId!, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1493,
+      "text": "browserExpect( page.getByText('画布已就绪 · 实际导出图集', { exact: false }), ).toBeVisible()"
+    },
+    {
+      "line": 1500,
+      "text": "expect(zip.status).toBe(200)"
+    },
+    {
+      "line": 1510,
+      "text": "expect(zip.headers.get('x-content-sha256')).toBe(zipSHA)"
+    },
+    {
+      "line": 1511,
+      "text": "expect(hashBytes(files['manifest.json']!)).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1512,
+      "text": "expect(zip.headers.get('x-export-manifest-sha256')).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1513,
+      "text": "expect(manifest.identity.context.commit).toBe(resources.context.commit)"
+    },
+    {
+      "line": 1514,
+      "text": "expect(fingerprint(manifest.identity.profile)).toBe( '48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793', )"
+    },
+    {
+      "line": 1518,
+      "text": "expect(hashBytes(files[name]!)).toBe(meta.sha256)"
+    },
+    {
+      "line": 1519,
+      "text": "expect(files[name]!.length).toBe(meta.bytes)"
+    },
+    {
+      "line": 1528,
+      "text": "expect( actualResponse, 'selected delivery resource must have been received by browser', ).toBeDefined()"
+    },
+    {
+      "line": 1532,
+      "text": "expect(await actualResponse!).toEqual(files[name])"
+    },
+    {
+      "line": 1539,
+      "text": "expect(descriptorEntry).toBeDefined()"
+    },
+    {
+      "line": 1543,
+      "text": "expect(descriptor.buildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1544,
+      "text": "expect(descriptor.exportBuildId).toBe(manifest.buildId)"
+    },
+    {
+      "line": 1545,
+      "text": "expect(descriptor.manifestSha).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1593,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1629,
+      "text": "expect(job.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1631,
+      "text": "expect(state.successfulBuildId).toBe(current.id)"
+    },
+    {
+      "line": 1632,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).current).toBe(false)"
+    },
+    {
+      "line": 1633,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).publication).toBe( 'HISTORICAL', )"
+    },
+    {
+      "line": 1640,
+      "text": "browserExpect(row).toContainText('完成')"
+    },
+    {
+      "line": 1642,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"交付拼接预览\"]')).toHaveAttribute( 'data-build-id', current.id, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1647,
+      "text": "browserExpect( page.getByRole('button', { name: '退役旧组并建立第二组', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1663,
+      "text": "expect(errors).toEqual([])"
+    }
+  ],
+  "newAssertionSites": [
+    {
+      "line": 1369,
+      "text": "browserExpect(element).toHaveAttribute('data-project-id', f.project, { timeout: 15000, })"
+    },
+    {
+      "line": 1382,
+      "text": "browserExpect(element).toHaveAttribute('data-recipe-id', recipeId)"
+    },
+    {
+      "line": 1383,
+      "text": "browserExpect(element).toHaveAttribute('data-source-frame', frame)"
+    },
+    {
+      "line": 1389,
+      "text": "expect(renderedSHA).toMatch(/^[a-f0-9]{64}$/)"
+    },
+    {
+      "line": 1397,
+      "text": "expect( received, 'actual rendered recipe/frame PNG response must be captured', ).toBeDefined()"
+    },
+    {
+      "line": 1401,
+      "text": "expect(received!.contentType.split(';')[0]).toBe('image/png')"
+    },
+    {
+      "line": 1403,
+      "text": "expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes))"
+    },
+    {
+      "line": 1413,
+      "text": "expect(Buffer.from(actual)).toEqual(expected)"
+    },
+    {
+      "line": 1417,
+      "text": "browserExpect( page.getByRole('button', { name: '构建当前配套', exact: true }), ).toBeEnabled()"
+    },
+    {
+      "line": 1430,
+      "text": "expect((await upload).status()).toBe(201)"
+    },
+    {
+      "line": 1431,
+      "text": "browserExpect(page.locator('.notice')).toContainText('新 revision')"
+    },
+    {
+      "line": 1433,
+      "text": "browserExpect(page.locator('.notice')).toContainText('固定岸线配方')"
+    },
+    {
+      "line": 1474,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1482,
+      "text": "expect(actual.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1488,
+      "text": "browserExpect(row).toContainText('完成')"
+    },
+    {
+      "line": 1490,
+      "text": "expect(state.successfulBuildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1491,
+      "text": "expect(state.needsRebuild).toBe(false)"
+    },
+    {
+      "line": 1492,
+      "text": "browserExpect( page.getByRole('button', { name: '退役旧组并建立第二组', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1496,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"交付拼接预览\"]')).toHaveAttribute( 'data-build-id', actual.buildId!, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1501,
+      "text": "browserExpect( page.getByText('画布已就绪 · 实际导出图集', { exact: false }), ).toBeVisible()"
+    },
+    {
+      "line": 1508,
+      "text": "expect(zip.status).toBe(200)"
+    },
+    {
+      "line": 1518,
+      "text": "expect(zip.headers.get('x-content-sha256')).toBe(zipSHA)"
+    },
+    {
+      "line": 1519,
+      "text": "expect(hashBytes(files['manifest.json']!)).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1520,
+      "text": "expect(zip.headers.get('x-export-manifest-sha256')).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1521,
+      "text": "expect(manifest.identity.context.commit).toBe(resources.context.commit)"
+    },
+    {
+      "line": 1522,
+      "text": "expect(fingerprint(manifest.identity.profile)).toBe( '48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793', )"
+    },
+    {
+      "line": 1526,
+      "text": "expect(hashBytes(files[name]!)).toBe(meta.sha256)"
+    },
+    {
+      "line": 1527,
+      "text": "expect(files[name]!.length).toBe(meta.bytes)"
+    },
+    {
+      "line": 1539,
+      "text": "expect( actualResponse, 'selected delivery resource must have been received by browser', ).toBeDefined()"
+    },
+    {
+      "line": 1543,
+      "text": "expect(actualResponse!.bytes).toEqual(files[name])"
+    },
+    {
+      "line": 1550,
+      "text": "expect(descriptorEntry).toBeDefined()"
+    },
+    {
+      "line": 1554,
+      "text": "expect(descriptor.buildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1555,
+      "text": "expect(descriptor.exportBuildId).toBe(manifest.buildId)"
+    },
+    {
+      "line": 1556,
+      "text": "expect(descriptor.manifestSha).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1557,
+      "text": "expect(descriptor.scene).toBe(selectedScene)"
+    },
+    {
+      "line": 1605,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1641,
+      "text": "expect(job.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1643,
+      "text": "expect(state.successfulBuildId).toBe(current.id)"
+    },
+    {
+      "line": 1644,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).current).toBe(false)"
+    },
+    {
+      "line": 1645,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).publication).toBe( 'HISTORICAL', )"
+    },
+    {
+      "line": 1652,
+      "text": "browserExpect(row).toContainText('完成')"
+    },
+    {
+      "line": 1654,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"交付拼接预览\"]')).toHaveAttribute( 'data-build-id', current.id, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1659,
+      "text": "browserExpect( page.getByRole('button', { name: '退役旧组并建立第二组', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1675,
+      "text": "expect(errors).toEqual([])"
+    }
+  ],
+  "unchangedOldAssertionSites": 38,
+  "changedSites": [
+    {
+      "line": 1532,
+      "text": "expect(await actualResponse!).toEqual(files[name])"
+    }
+  ],
+  "semanticMappings": [
+    {
+      "old": "recipe/frame read from DOM",
+      "current": "inputValue current exact recipe/frame + toHaveAttribute matching DOM",
+      "intent": "strengthened owner identity"
+    },
+    {
+      "old": "Promise from URL map awaited actual bytes",
+      "current": "poll within original5s for request/document finished body whose fullURL and SHA match currently rendered DOM",
+      "intent": "same actual delivered bytes without rejected URL overwrite"
+    },
+    {
+      "old": "A1/A2/Manifest Promise actual bytes match actual ZIP",
+      "current": "completed current-document exact fullURL + actualZIP hash actualbytes match",
+      "intent": "preserved cross-resource identity"
+    },
+    {
+      "old": "first build preview body",
+      "current": "last completed same Build + scene; BuildDetail.parse preserving Build/Export/Manifest checks and selected scene",
+      "intent": "strengthened selection identity"
+    }
+  ],
+  "budgets": [
+    {
+      "file": "vitest.step07.config.ts",
+      "unchangedBytes": true,
+      "sha256": "68279dbb45a7e11274abe9074af71b04681c8ba6e76ab4c0182c8a268a1dcdb4"
+    },
+    {
+      "file": "vitest.config.ts",
+      "unchangedBytes": true,
+      "sha256": "794c42ac8217a3a2b034514b87da9af5fbe729af3fde94fb37175e5ada5aa006"
+    },
+    {
+      "file": "playwright.config.ts",
+      "unchangedBytes": true,
+      "sha256": "e9685c304f7e6bf8ef0eae7cbd435984cde6cc54e2b98019c58f2e3418dda026"
+    },
+    {
+      "file": ".github/workflows/ci.yml",
+      "unchangedBytes": true,
+      "sha256": "431fc28504104a33b29f49b4c9b306b97d9748f97e11830e514a7aaf5a57182e"
+    }
+  ],
+  "scope": "Callsites not product coverage; original180s single case, 15s page/PNG,5s expect,60s barrier/30s terminal preserved; no extra PNG/serverGET/readExport"
+}
