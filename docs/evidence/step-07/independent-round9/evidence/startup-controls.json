@@ -1,0 +1,71 @@
+{
+  "noEnvReadback": true,
+  "serviceAndNetworkFunctions": "guarded to throw on call",
+  "results": [
+    {
+      "label": "startup-missing",
+      "args": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--list"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+      "exitCode": 1,
+      "expected": 1,
+      "seconds": 0.493,
+      "log": "startup-missing.log",
+      "sha256": "9da20c89953cd9604e19168addceebcfe3093a54f627ca26d6f426192dd53170",
+      "bytes": 1905
+    },
+    {
+      "label": "startup-invalid-db",
+      "args": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--list"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+      "exitCode": 1,
+      "expected": 1,
+      "seconds": 0.41,
+      "log": "startup-invalid-db.log",
+      "sha256": "efd0cff69772c8c6ff7cb59efcd29217de53183c933d4f40bf280a2897e97fb5",
+      "bytes": 2036
+    },
+    {
+      "label": "startup-invalid-port",
+      "args": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--list"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+      "exitCode": 1,
+      "expected": 1,
+      "seconds": 0.415,
+      "log": "startup-invalid-port.log",
+      "sha256": "efd0cff69772c8c6ff7cb59efcd29217de53183c933d4f40bf280a2897e97fb5",
+      "bytes": 2036
+    },
+    {
+      "label": "startup-ci-minimal",
+      "args": [
+        "node",
+        "node_modules/@playwright/test/cli.js",
+        "test",
+        "--list"
+      ],
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+      "exitCode": 0,
+      "expected": 0,
+      "seconds": 0.926,
+      "log": "startup-ci-minimal.log",
+      "sha256": "41efbe16c560cacbd035ee45b108489120519d50ec0f5af2761c7498185b3574",
+      "bytes": 2486
+    }
+  ],
+  "ciMinimal": "DATABASE_URL only; existing defaults; 18 collected, not browser PASS"
+}

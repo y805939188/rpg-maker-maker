@@ -1,0 +1,423 @@
+[
+  {
+    "label": "ci-clone",
+    "args": [
+      "git",
+      "clone",
+      "--shared",
+      "--no-checkout",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 0.054,
+    "log": "ci-clone.log",
+    "sha256": "ad9b3879081034ab0517e0ad609d83b9fac3deb1a4779278294af75a0b9c3a37",
+    "bytes": 124
+  },
+  {
+    "label": "ci-checkout",
+    "args": [
+      "git",
+      "checkout",
+      "--detach",
+      "50fd6d84197b8c6d222f139a142ab24c918db0db"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 2.46,
+    "log": "ci-checkout.log",
+    "sha256": "6ae9be7349b8176e3c6a7a61b5029679d4e166b06dd7f8a807801f75bdc8f0d9",
+    "bytes": 101
+  },
+  {
+    "label": "ci-install",
+    "args": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 2.62,
+    "log": "ci-install.log",
+    "sha256": "1dcd45b73c096dbc2fbbab0166798544ff716797453d5d28c7743b5fbc2aa8e9",
+    "bytes": 1170
+  },
+  {
+    "label": "ci-generate",
+    "args": [
+      "pnpm",
+      "db:generate"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 1.734,
+    "log": "ci-generate.log",
+    "sha256": "350e0c1331a449038dd888fa98d1188095af6aea30bed44fbfa3cf432a2fcb58",
+    "bytes": 755
+  },
+  {
+    "label": "ci-build",
+    "args": [
+      "pnpm",
+      "build"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 26.651,
+    "log": "ci-build.log",
+    "sha256": "e6229561f101fc05102345615e550e06f9eff2c485d2389b6e38b28fbef935db",
+    "bytes": 4438
+  },
+  {
+    "label": "check",
+    "args": [
+      "pnpm",
+      "check"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 74.491,
+    "log": "check.log",
+    "sha256": "963a1f79f0c483f91efc6700cb75a6ccb91bf69b1dea2bd35fdf307658a5f763",
+    "bytes": 11278
+  },
+  {
+    "label": "engineering",
+    "args": [
+      "node",
+      "scripts/build-engineering.mjs",
+      "step07"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 0.194,
+    "log": "engineering.log",
+    "sha256": "5ee7fd3306bc1280d600974382d9bc57feb38d04fdd94bc7f993cd6a00908ae8",
+    "bytes": 22964
+  },
+  {
+    "label": "regression-migrate",
+    "args": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 1.845,
+    "log": "regression-migrate.log",
+    "sha256": "d46f3e98b45ed98a6b9bfcb4b91501045c9bc37e6851a3700991ed25b27785a1",
+    "bytes": 2079
+  },
+  {
+    "label": "api3",
+    "args": [
+      "pnpm",
+      "test:integration"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 10.666,
+    "log": "api3.log",
+    "sha256": "3b8cfe115b0a1dddcc9232ad09f0f26a93667a3b74d0dfc91bef2081ccbc697f",
+    "bytes": 2568
+  },
+  {
+    "label": "privacy5",
+    "args": [
+      "pnpm",
+      "test:dev-privacy"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 10.203,
+    "log": "privacy5.log",
+    "sha256": "ea94d6bbe4f09541eaf527f07749fb8b4255049a5ea98504c127d7a510cbcf14",
+    "bytes": 2563
+  },
+  {
+    "label": "startup-missing",
+    "args": [
+      "node",
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "--list"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 1,
+    "expected": 1,
+    "seconds": 0.493,
+    "log": "startup-missing.log",
+    "sha256": "9da20c89953cd9604e19168addceebcfe3093a54f627ca26d6f426192dd53170",
+    "bytes": 1905
+  },
+  {
+    "label": "startup-invalid-db",
+    "args": [
+      "node",
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "--list"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 1,
+    "expected": 1,
+    "seconds": 0.41,
+    "log": "startup-invalid-db.log",
+    "sha256": "efd0cff69772c8c6ff7cb59efcd29217de53183c933d4f40bf280a2897e97fb5",
+    "bytes": 2036
+  },
+  {
+    "label": "startup-invalid-port",
+    "args": [
+      "node",
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "--list"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 1,
+    "expected": 1,
+    "seconds": 0.415,
+    "log": "startup-invalid-port.log",
+    "sha256": "efd0cff69772c8c6ff7cb59efcd29217de53183c933d4f40bf280a2897e97fb5",
+    "bytes": 2036
+  },
+  {
+    "label": "startup-ci-minimal",
+    "args": [
+      "node",
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "--list"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 0.926,
+    "log": "startup-ci-minimal.log",
+    "sha256": "41efbe16c560cacbd035ee45b108489120519d50ec0f5af2761c7498185b3574",
+    "bytes": 2486
+  },
+  {
+    "label": "unreadable-native",
+    "args": [
+      "node",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/.local/step07-review/unreadable-native.cjs"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 0.029,
+    "log": "unreadable-native.log",
+    "sha256": "0868088c6eb07cd25a1ea68504258db2119d6f16e44beb743d044978d7b30090",
+    "bytes": 109
+  },
+  {
+    "label": "unreadable-playwright",
+    "args": [
+      "node",
+      "node_modules/@playwright/test/cli.js",
+      "test",
+      "--list"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 0.584,
+    "log": "unreadable-playwright.log",
+    "sha256": "41efbe16c560cacbd035ee45b108489120519d50ec0f5af2761c7498185b3574",
+    "bytes": 2486
+  },
+  {
+    "label": "old-clone",
+    "args": [
+      "git",
+      "clone",
+      "--shared",
+      "--no-checkout",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+      "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-old"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 0.06,
+    "log": "old-clone.log",
+    "sha256": "43617372ef15eab0b0203f1bacd903841c2f829de8d892687f57c8ac3cdb7c2f",
+    "bytes": 125
+  },
+  {
+    "label": "old-checkout",
+    "args": [
+      "git",
+      "checkout",
+      "--detach",
+      "c8d41a680df42fe565882d93d3f85a04f7a10b22"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-old",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 1.502,
+    "log": "old-checkout.log",
+    "sha256": "da74a054c25e95e5c41c751ff5903e9b6fb1173a6429ebebb62e9da8934fba4d",
+    "bytes": 201
+  },
+  {
+    "label": "old-install",
+    "args": [
+      "pnpm",
+      "install",
+      "--frozen-lockfile"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-old",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 2.672,
+    "log": "old-install.log",
+    "sha256": "028e97a17f93b6fbc7934b83d3edaf1ce4a34c28a77554f06a8cf3ed0ac46092",
+    "bytes": 1230
+  },
+  {
+    "label": "old-generate",
+    "args": [
+      "pnpm",
+      "db:generate"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-old",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 1.784,
+    "log": "old-generate.log",
+    "sha256": "e15e597a90d0efb142129f7de59c22e2320c6fd6e01e83571d88071c22b17aa9",
+    "bytes": 757
+  },
+  {
+    "label": "old-build",
+    "args": [
+      "pnpm",
+      "build"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-old",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 25.351,
+    "log": "old-build.log",
+    "sha256": "c27f88d948e16e3ed186e14306a3187ef9bee08667ee6bfc3e168432f05df5cc",
+    "bytes": 4453
+  },
+  {
+    "label": "http16",
+    "args": [
+      "pnpm",
+      "test:step07"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 521.936,
+    "log": "http16.log",
+    "sha256": "66795f2fbe5a585ff422ddff6e5fd7e1911dec780fb321f8c2a1db3932367181",
+    "bytes": 10156
+  },
+  {
+    "label": "old-migrate",
+    "args": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-old",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 1.769,
+    "log": "old-migrate.log",
+    "sha256": "e2915417d9858e170fd77f4c2d4bb413ac8916ebd83bfeed7b407f228dc916af",
+    "bytes": 2136
+  },
+  {
+    "label": "old-two-browser-enoent",
+    "args": [
+      "pnpm",
+      "exec",
+      "playwright",
+      "test",
+      "--grep",
+      "1300ms legal poll|project switches keep real"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-old",
+    "exitCode": 1,
+    "expected": 1,
+    "seconds": 7.183,
+    "log": "old-two-browser-enoent.log",
+    "sha256": "8f48210d96b4ce6d791ecbb070744139e234d751f9b1a48a8e1399482e06703f",
+    "bytes": 4587
+  },
+  {
+    "label": "production-migrate",
+    "args": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 1.714,
+    "log": "production-migrate.log",
+    "sha256": "9608b9b22387732730455552be2064044939154a3d9a563fe2c84d5eae15e355",
+    "bytes": 2143
+  },
+  {
+    "label": "production-e2e18",
+    "args": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 453.868,
+    "log": "production-e2e18.log",
+    "sha256": "f39b389edda2c7c9dce2b403b2395ee726b641c4a534ceb54272017a483452d8",
+    "bytes": 3735
+  },
+  {
+    "label": "dev-migrate",
+    "args": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 1.305,
+    "log": "dev-migrate.log",
+    "sha256": "8a3ef24a9a8056a29817b42ecd71d18654d8f7e607ef5aaee481df01b249da39",
+    "bytes": 1268
+  },
+  {
+    "label": "dev-e2e18",
+    "args": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci",
+    "exitCode": 0,
+    "expected": 0,
+    "seconds": 470.227,
+    "log": "dev-e2e18.log",
+    "sha256": "5db214c9651a95a52522b6ab23b5628a9cd67cb195e4842242cadfaa159123b8",
+    "bytes": 7119
+  }
+]

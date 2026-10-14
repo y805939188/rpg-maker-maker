@@ -1,0 +1,24 @@
+[
+  {
+    "id": "STEP07-R9-001",
+    "severity": "P2",
+    "blocking": true,
+    "file": "e2e/environment.ts",
+    "line": 9,
+    "relatedTest": "apps/api/tests/e2e-environment.test.ts:75",
+    "spec": "R9 hard configuration policy: only genuinely absent optional .env may be ignored; actual EACCES/EISDIR/other read failures reject before services or DB",
+    "trigger": "fixed Node22.21.1, existing own .env mode000, valid explicit process DB/ports",
+    "actual": "fs.readFileSync confirms EACCES; process.loadEnvFile reports ENOENT; helper swallows it and real Playwright config exits0/collects18",
+    "expected": "reject unreadable existing file before test discovery/services/DB",
+    "reproEvidence": [
+      "evidence/unreadable-counterexample.json",
+      "unreadable-native.log",
+      "unreadable-playwright.log",
+      "environment-controls-corrected.log",
+      "unreadable-port-control.log"
+    ],
+    "minimumFix": "distinguish actual filesystem absence from native loadEnvFile error normalization using real filesystem read semantics; preserve explicit process precedence and production parseConfig; add real unreadable-file regression on pinned Node, not only mocked thrown EACCES",
+    "status": "OPEN_REQUIRES_REVISION",
+    "additionalActual": "With only explicit DATABASE_URL and an existing mode000 .env declaring API4395/Web5295, loader silently returns default API4310/Web5173."
+  }
+]
