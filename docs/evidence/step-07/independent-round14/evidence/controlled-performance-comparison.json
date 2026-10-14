@@ -1,0 +1,186 @@
+{
+  "declaredSyntheticCostPerExactRedundantJobReadMs": 12000,
+  "oldSource": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+  "newSource": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+  "old": {
+    "exit": 1,
+    "commandSeconds": 201.312,
+    "elapsedWithCleanupMs": 200543,
+    "actualFailure": "original single test timed out at180003ms",
+    "injectedCalls": [
+      {
+        "id": 23,
+        "name": "readDomainRecipe",
+        "scope": "studio-job:a74b538e-c4d2-4139-a0c0-b0326c3882ca",
+        "startMs": 7006,
+        "durationMs": 13041,
+        "status": "completed",
+        "injectedMs": 12003
+      },
+      {
+        "id": 64,
+        "name": "readDomainRecipe",
+        "scope": "studio-job:dfb7c9ee-4436-44d6-b4cb-2ae9d3b7e3c6",
+        "startMs": 35633,
+        "durationMs": 13046,
+        "status": "completed",
+        "injectedMs": 12003
+      },
+      {
+        "id": 89,
+        "name": "readDomainRecipe",
+        "scope": "studio-job:9e19fcc2-ad86-4e0a-b58c-30c480d393a8",
+        "startMs": 67331,
+        "durationMs": 13043,
+        "status": "completed",
+        "injectedMs": 12005
+      },
+      {
+        "id": 139,
+        "name": "readDomainRecipe",
+        "scope": "studio-job:da97eff5-a6e1-4176-b345-93a7a09a4135",
+        "startMs": 108182,
+        "durationMs": 13049,
+        "status": "completed",
+        "injectedMs": 12001
+      },
+      {
+        "id": 180,
+        "name": "readDomainRecipe",
+        "scope": "studio-job:f7b9d290-ebb3-45d7-bbdf-01d7c89cec5f",
+        "startMs": 137067,
+        "durationMs": 13114,
+        "status": "completed",
+        "injectedMs": 12003
+      },
+      {
+        "id": 205,
+        "name": "readDomainRecipe",
+        "scope": "studio-job:df191049-ca3a-44ea-9409-397371381562",
+        "startMs": 168942,
+        "durationMs": 13104,
+        "status": "completed",
+        "injectedMs": 12002
+      }
+    ],
+    "maxGateSetupMs": 22,
+    "aggregate": {
+      "transaction": {
+        "count": 42,
+        "inclusiveMs": 3169,
+        "maxMs": 734,
+        "jobCount": 0
+      },
+      "readSource": {
+        "count": 114,
+        "inclusiveMs": 10611,
+        "maxMs": 202,
+        "jobCount": 36
+      },
+      "readDomainRecipe": {
+        "count": 15,
+        "inclusiveMs": 88269,
+        "maxMs": 13114,
+        "jobCount": 6
+      },
+      "loadArchives": {
+        "count": 14,
+        "inclusiveMs": 13484,
+        "maxMs": 1159,
+        "jobCount": 12
+      },
+      "prepareBuild": {
+        "count": 8,
+        "inclusiveMs": 10063,
+        "maxMs": 1410,
+        "jobCount": 6
+      },
+      "publish": {
+        "count": 8,
+        "inclusiveMs": 38221,
+        "maxMs": 5516,
+        "jobCount": 6
+      },
+      "readExport": {
+        "count": 9,
+        "inclusiveMs": 19550,
+        "maxMs": 2704,
+        "jobCount": 0
+      },
+      "readBuild": {
+        "count": 13,
+        "inclusiveMs": 13934,
+        "maxMs": 1376,
+        "jobCount": 4
+      }
+    }
+  },
+  "new": {
+    "exit": 0,
+    "commandSeconds": 116.758,
+    "elapsedMs": 115977,
+    "injectedCalls": [],
+    "maxGateSetupMs": 12,
+    "aggregate": {
+      "transaction": {
+        "count": 42,
+        "inclusiveMs": 2888,
+        "maxMs": 814,
+        "jobCount": 0
+      },
+      "readSource": {
+        "count": 84,
+        "inclusiveMs": 7731,
+        "maxMs": 206,
+        "jobCount": 0
+      },
+      "readDomainRecipe": {
+        "count": 10,
+        "inclusiveMs": 10962,
+        "maxMs": 1221,
+        "jobCount": 0
+      },
+      "loadArchives": {
+        "count": 14,
+        "inclusiveMs": 7996,
+        "maxMs": 1103,
+        "jobCount": 12
+      },
+      "prepareBuild": {
+        "count": 8,
+        "inclusiveMs": 4761,
+        "maxMs": 1409,
+        "jobCount": 6
+      },
+      "publish": {
+        "count": 8,
+        "inclusiveMs": 37174,
+        "maxMs": 5134,
+        "jobCount": 6
+      },
+      "readExport": {
+        "count": 10,
+        "inclusiveMs": 22057,
+        "maxMs": 2677,
+        "jobCount": 0
+      },
+      "readBuild": {
+        "count": 14,
+        "inclusiveMs": 11979,
+        "maxMs": 1330,
+        "jobCount": 4
+      }
+    }
+  },
+  "unchangedBudgets": [
+    "single180000",
+    "assertions5s/15s",
+    "barrier60000",
+    "job60000",
+    "terminal30000",
+    "native5000"
+  ],
+  "scope": "ordered exact operation cost after real validation only, no body/state changes or extra HTTP; no claim this12s occurred in Linux CI6; all posttimeout events not budgetPASS",
+  "requiredFull16RunSeparately": true,
+  "newRemoteCI": "NOT_EXECUTED"
+}
