@@ -1,0 +1,20 @@
+{
+  "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+  "result": "COUNTEREXAMPLE_CAPTURED_NOT_CANDIDATE_PASS",
+  "trigger": "existing own synthetic .env mode000; explicit valid process DB/ports",
+  "actualNative": {
+    "node": "v22.21.1",
+    "uid": 501,
+    "exists": true,
+    "mode": "0",
+    "fsRead": {
+      "code": "EACCES"
+    },
+    "native": {
+      "code": "ENOENT"
+    }
+  },
+  "actualPlaywright": "exit0 18 collected; no network or child process allowed by guards",
+  "expected": "read failure rejected before test discovery/service start",
+  "fileRetained": ".local/unreadable.env.retained mode600; .env absence rechecked"
+}

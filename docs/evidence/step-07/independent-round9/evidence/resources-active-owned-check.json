@@ -1,0 +1,38 @@
+{
+  "listeners": [
+    {
+      "port": 4395,
+      "listenerExit": 0,
+      "processes": [
+        {
+          "pid": 28873,
+          "cwd": [
+            "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/artifacts/.review-round9-ci/apps/api"
+          ]
+        }
+      ]
+    },
+    {
+      "port": 5295,
+      "listenerExit": 1,
+      "processes": []
+    },
+    {
+      "port": 55495,
+      "listenerExit": 0,
+      "processes": [
+        {
+          "pid": 49687,
+          "cwd": [
+            "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/.local/postgres/data"
+          ]
+        }
+      ]
+    }
+  ],
+  "envMode": "0o600",
+  "root": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
+  "pgDataRoot": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/.local/postgres/data",
+  "auxNoEnvActualLstat": true,
+  "MainPreparation": "own fresh env600 and exclusive empty PG; not reinitialized; tests/migration by Reviewer only after build"
+}

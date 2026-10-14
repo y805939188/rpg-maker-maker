@@ -1,0 +1,7 @@
+{
+  "originalPath": "unreadable-native.cjs",
+  "sha256": "ff7e1e09022a98742db8bee88d807c8f7a938f0147ac25ba1e0a9f73536fd20f",
+  "bytes": 399,
+  "purpose": "owned ignored independent diagnostic; no formal tracked patch",
+  "documentarySource": "const fs=require('node:fs'),path=require('node:path');const f=path.resolve('.env');const out={node:process.version,uid:process.getuid(),exists:fs.existsSync(f),mode:(fs.statSync(f).mode&511).toString(8)};try{fs.readFileSync(f);out.fsRead='accepted'}catch(e){out.fsRead={code:e.code}}try{process.loadEnvFile(f);out.native='accepted'}catch(e){out.native={code:e.code}}console.log(JSON.stringify(out));"
+}

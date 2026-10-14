@@ -1,0 +1,85 @@
+{
+  "records": [
+    {
+      "scope": "first own environment probe",
+      "actual": "exit1 because it required native EISDIR errno; Node22 actual directory cause ERR_INVALID_ARG_TYPE",
+      "classification": "AUXILIARY_EXPECTATION_ERROR; top-level helper rejection was correct",
+      "preserved": [
+        "environment-controls.original.ts",
+        "environment-controls.log"
+      ],
+      "correction": "only own probe checks non-ENOENT native cause; no candidate changes"
+    },
+    {
+      "scope": "second own real permission probe",
+      "actual": "exit1 missing expected exception for real mode000 unreadable file",
+      "classification": "REAL_CANDIDATE_COUNTEREXAMPLE_STEP07-R9-001; never reclassified as setup-only",
+      "preserved": [
+        "environment-controls.second.ts",
+        "environment-controls-corrected.log"
+      ],
+      "followup": "independent fs EACCES/native ENOENT plus actual Playwright config accepts; explicit counterexample harness captures bad behavior, not candidate PASS"
+    },
+    {
+      "scope": "engineering identity read-only calculation",
+      "actual": "inline exit1 because reviewer initially included manifest documentary validation/note fields in identity hash",
+      "classification": "AUXILIARY_EXPECTATION_ERROR",
+      "preserved": [
+        "private/native-original-error-records.json"
+      ],
+      "correction": "exclude non-identity fields per original builder; independent recomputation then exact matching Build ID; no builder or manifest changes"
+    },
+    {
+      "scope": "initial baseline exec output rendering",
+      "actual": "only output text forwarded, so initial exec session id was omitted from visible result",
+      "classification": "AUXILIARY_OUTPUT_HANDLING; original process continued and completed normally",
+      "preserved": [
+        "commands.jsonl",
+        "check.log",
+        "http16.log"
+      ],
+      "correction": "used actual process/log/command completion rather than duplicate test run"
+    },
+    {
+      "scope": "owned final report collector AST check",
+      "actual": "SyntaxError extra closing parenthesis in resource metadata expression; collector did not execute",
+      "classification": "AUXILIARY_SCRIPT_SYNTAX_ERROR",
+      "preserved": [
+        "seal-review.original.py",
+        "native original tool output",
+        "private/native-original-error-records.json"
+      ],
+      "correction": "only owned ignored script parenthesis corrected; no product/test/config change or affected test rerun"
+    },
+    {
+      "scope": "preseal documentary uniqueness assertion",
+      "actual": "reviewer assumed four distinct content ExportBuildIDs; actual six downloads contain two deterministic content IDs across modes, plus repeated history. AssertionError preserved in native output; shell then ran own collector.",
+      "classification": "AUXILIARY_COUNT_ASSUMPTION_ERROR; not a product defect or missing execution",
+      "correction": "describe four per-mode first/second delivery registration positions separately from two content identities; original first sealed report/ledger/progress preserved privately before corrected final seal",
+      "preserved": [
+        {
+          "path": "private/first-seal-corrected-documentary-count/report.md",
+          "sha256": "224f45b9ccb0ed37ba1fac79a5385c89a1300f6f940de95e27c82e9ea5d8e7fc",
+          "bytes": 17218
+        },
+        {
+          "path": "private/first-seal-corrected-documentary-count/progress.json",
+          "sha256": "cf8ccbb7b6a30a2fce5d564509968f76d2cd7f002a87a5df09148c8f87164a91",
+          "bytes": 1311
+        },
+        {
+          "path": "private/first-seal-corrected-documentary-count/ledger.json",
+          "sha256": "2c45f070b5ce273a01a103b4f22b540a24c8926253ac797a28f916ab1b71dd5b",
+          "bytes": 31460
+        }
+      ]
+    }
+  ],
+  "candidateCodeChanged": false,
+  "platformInterruptions": 0,
+  "nativeRecordOriginal": {
+    "path": "private/native-original-error-records.json",
+    "sha256": "27ae666a0270b53e858baa91211d4b2b9651f7f06162128e6dcdd713f2cb36a8",
+    "bytes": 70571
+  }
+}

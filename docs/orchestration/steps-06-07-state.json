@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND9",
+  "phase": "STEP07_ROUND9_REAL_ENV_IO_FIX_CODING_DISPATCH",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT_REVIEW",
+    "status": "CHANGES_REQUESTED_ROUND9",
     "reviewRounds": 9,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -460,7 +460,7 @@
       "engineeringPayloads": 206
     },
     "candidateSha": "50fd6d84197b8c6d222f139a142ab24c918db0db",
-    "candidateState": "50FD_FROZEN_SELF_TESTED_UNDER_INDEPENDENT_ROUND9",
+    "candidateState": "50FD_REVIEW_REQUIRES_REVISION_REAL_ENV_IO_GAP",
     "reviewEnvironment": {
       "atUtc": "2026-10-14T02:55:39.030380+00:00",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
@@ -477,7 +477,7 @@
       "tests": "NOT_EXECUTED",
       "formalReviewRound9Started": false,
       "candidateState": "FROZEN_ENV_TEST_FIX_AWAIT_FULL_AUTHOR_HANDOFF",
-      "status": "ACTIVATED_FORMAL_ROUND9",
+      "status": "ROUND9_COMPLETE_OWN_SERVICES_STOPPED_PRIVATE_DATA_RETAINED",
       "formalReviewStarted": true,
       "databaseMigration": "NOT_EXECUTED",
       "preparedBy": "MAIN_ORCHESTRATOR",
@@ -1193,17 +1193,67 @@
         "round": 9,
         "candidate": "50fd6d84197b8c6d222f139a142ab24c918db0db",
         "docsHead": "f8f885b4dfb45f42daaed61dc08c5307a6722244",
-        "status": "IN_PROGRESS",
+        "status": "REQUIRES_REVISION",
         "threadId": "01a13877-13d1-7951-a638-1a4fbb10949f",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker",
         "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round9-client.json",
         "nativeProcess": 74265,
         "nativeOutput": ".local/orchestration-06-07/step07-review-round9",
         "mechanicalRoundLimit": null,
-        "scope": "whole latestcandidate with actualNO.env explicitownedconfiguration allproduction18/development18 and envmissinginvalid/IOfail policy, appropriateoldclosure/sourcebinding regressions;step09NOTSTARTED"
+        "scope": "whole latestcandidate with actualNO.env explicitownedconfiguration allproduction18/development18 and envmissinginvalid/IOfail policy, appropriateoldclosure/sourcebinding regressions;step09NOTSTARTED",
+        "initialScopeVerification": "exact detachedclean Source50fd, only expected5execution files vsR8, priorassertions/budgets/configpolicy reviewinprogress",
+        "provisionalIndependentFinding": {
+          "status": "FORMAL_STEP07_R9_001_OPEN",
+          "topic": "actual unreadable mode000 file: readFileSync EACCES vs process.loadEnvFile ENOENT, optionalhelper maywronglyswallow existingfileIOfail",
+          "severity": "P2",
+          "blocking": true,
+          "sourceNotModified": true,
+          "actual": "existingmode000.env wronglyignored, actualconfigentrycollects18; no-network/no-service guardsverified",
+          "expected": "only trulyabsentoptionalfile ignored, realnonENOENTIOfailure rejected",
+          "additionalActualImpact": "only explicitDATABASE_URL: existingunreadable.env portvalues silentlyignored/helperusesdefaults, parseonly no-service/no-network"
+        },
+        "executedProgress": {
+          "checkTests": 333,
+          "apiIntegration": 3,
+          "privacyTests": 5,
+          "engineeringActualPayloadHashes": 206,
+          "compiledParentComparison": "205unchanged;studio.jsoncommitonly",
+          "formalHttp16": "16_OF16_PASS_INDEPENDENT",
+          "bothFullNoEnv18": "PENDING",
+          "configurationFileIoNegative": "mode000 existingfile accepted;onlyDATABASE_URL declared yields ignoredfileports/defaultports confirmedsameblockP2",
+          "wholeConclusion": "PENDING",
+          "oldNoEnvActualBrowserCases": "bothtrueENOENT reproduced c8 independently",
+          "latestProduction18": "18_OF18_NO_ENV_INDEPENDENT_PASS_NO_SKIP",
+          "latestDevelopment18": "18_OF18_NO_ENV_INDEPENDENT_PASS_NO_SKIP",
+          "actualZipArchivesVerified": 6,
+          "atlasPngDecodes": 12,
+          "strictZipCorruptionControls": 18,
+          "normalAndBadZip": "normalaccepted/bad rejected independent",
+          "remaining": "tracked protection/resources/originalREQUIRESREVISIONreportseal"
+        },
+        "report": "docs/evidence/step-07/independent-round9/report.md",
+        "reportSha256": "c5a5d36c5ea2aea42431a3cab8be4acbb954c50c858bbb1eeddd546eca268877",
+        "ledger": "docs/evidence/step-07/independent-round9/evidence/ledger.json",
+        "ledgerSha256": "c8f510e2cea58a1ce59b72b2504aa1436a12bafaba4c97d260d07b06c7346def",
+        "payloadsVerified": 184,
+        "nativeExitCode": 0,
+        "blockingP0": 0,
+        "blockingP1": 0,
+        "blockingP2": 1,
+        "findings": [
+          {
+            "id": "STEP07-R9-001",
+            "severity": "P2",
+            "blocking": true,
+            "status": "OPEN",
+            "location": "e2e/environment.ts:7",
+            "trigger": "real mode000.env readFile EACCES/native loadEnvFileENOENT swallowed, actualPlaywrightcollect18/defaultportsaccepted",
+            "minimalFix": "use realFS error semantics distinguishtrueabsencevsunreadable, actualfixedNodefile andconfigentrynegative regression"
+          }
+        ]
       }
     ],
-    "latestIndependentReview": "PASS_ROUND8_SOURCEC8_ONLY_NEW_TEST_ENV_UNREVIEWED",
+    "latestIndependentReview": "REQUIRES_REVISION_ROUND9",
     "codingFix": {
       "round": 4,
       "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
@@ -1308,21 +1358,21 @@
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "status": "PUSHED_REMOTE_READBACK_EXACT_C8_REQUIRED_CI_IN_PROGRESS",
+      "status": "LOCAL50FD_DOCSF8_EXACT_EXECUTION_R9_IN_PROGRESS_NOT_PUSHED",
       "executableDiffZero": true,
       "database": "OWNED_POSTGRES55481_NEW_EMPTY",
       "preparation": "FROZEN_INSTALL_GENERATE_BUILD_FIVE_MIGRATIONS_SUCCESS_NOT_POSTMERGE_TESTS",
-      "candidateExecutableSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
-      "validationHead": "b350aa88b8213223dbf8287ec42487d3ec19e391",
-      "postSourcePaths": 2575,
-      "remotePushed": true,
-      "authorDocs": "401fc5471bef0b60bc9b5689ea8b29109f8420ab",
+      "candidateExecutableSource": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+      "validationHead": "702fa58794f33dbf4222e2d811eaa50489eef862",
+      "postSourcePaths": 2851,
+      "remotePushed": false,
+      "authorDocs": "f8f885b4dfb45f42daaed61dc08c5307a6722244",
       "previousReviewBasis": {
         "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "review": "REQUIRES_REVISION_ROUND3"
       },
-      "latestReview": "PASS_ROUND8_SOURCEC8",
-      "reviewedSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22"
+      "latestReview": "ROUND9_IN_PROGRESS_PARENT_R8_C8_PASS_ONLY",
+      "reviewedSource": null
     },
     "pendingCandidate": {
       "sha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
@@ -1582,7 +1632,7 @@
       "scope": "README_DOCS_ONLY",
       "executionImpact": "NONE_MAIN_REVIEWED_MD_REPORT_MAPPING_AND_SANITIZED_EVIDENCE_ONLY"
     },
-    "activeIndependentReviewRound": 9,
+    "activeIndependentReviewRound": null,
     "historicalReviewEnvironments": [
       {
         "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
@@ -2162,12 +2212,13 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
-      "credentials": "FRESH_OWN_ENV600_NO_COPY"
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "credentials": "FRESH_OWN_ENV600_NO_COPY",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round9-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "SameCoderexit0 latest50fd/docsf8 clean;Main133committedpayload/reportc129/ledgerd348/135pureDocs and206actualBuild0c63 verified. FreshR9ultra/default CID01a13877...PID74265 startedownPG55495/API4395/Web5295. OriginalCI3ENVfailure retained;R8wholePASSonlyparentc8;noMain07merge.",
-  "nextSafeAction": "Wait latest50fd R9wholeindresult with realNO.env both18 and strictconfig policy, preserveoriginals/stopownservices; ifPASS normalintegrateSource/docs/review thennewfullcandidateCI; onlyALLSUCCESS allowspreAuth/Mainnormalmerge/postmerge/push/readback/mainCI/finaldocsSTOP07.",
+  "lastSuccessfulCheckpoint": "R9nativeexit0REQUIRESREV uniqueP2R9-001;Main184originalSHA/passwordverified3975source+206filesunchanged,ownPG55495stop8DBprivate retained APIWeboff. Normal333/16/API3/privacy5/prod18dev18pass doesnotoffsetrealunreadable counterexample. NoMainmerge/pub.",
+  "nextSafeAction": "SameStandard/xhighCoder fixesformalR9-001 realfilesystem policy withactualmode000/errorguards/sourcefreeze+normalflowchecks;newlatestindependentR10(step07Review10notStep10impl)/newfullCI before normalmainrelease.No08–10.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2201,7 +2252,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T03:32:16.946861+00:00",
+  "updatedAtUtc": "2026-10-14T04:08:30.003564+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -2251,11 +2302,18 @@
   ],
   "blockers": [
     {
-      "gate": "STEP07_REQUIRED_CANDIDATE_CI",
-      "id": "STEP07-CI-38500746316",
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "id": "STEP07-R9-001",
+      "severity": "P2",
       "status": "OPEN",
-      "reason": "two e2e unconditional.env loads reject valid CI env configuration beforeflow,3 testsnotrun",
-      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-third-failure.json"
+      "reason": "realexistingunreadable.env falselyclassifiedENOENT andsilentlyaccepted,nonmissingIO mustreject",
+      "report": "docs/evidence/step-07/independent-round9/report.md"
+    },
+    {
+      "gate": "STEP07_REQUIRED_CANDIDATE_CI",
+      "id": "LATEST_CANDIDATE_CI_NOT_PASS",
+      "status": "OPEN",
+      "lastFailureRun": 38500746316
     }
   ]
 }

@@ -1,0 +1,7 @@
+{
+  "originalPath": "startup-no-effects.cjs",
+  "sha256": "e534a9b043c098c520bce6fd4a2864e30b4a27dc49a4ea52410793498d1d1058",
+  "bytes": 301,
+  "purpose": "owned ignored independent diagnostic; no formal tracked patch",
+  "documentarySource": "const net=require('node:net');net.Socket.prototype.connect=function(){throw Error('REVIEW_FORBIDDEN_NETWORK_ATTEMPT')};const cp=require('node:child_process');for(const k of ['spawn','spawnSync','exec','execFile','execFileSync','fork'])cp[k]=function(){throw Error('REVIEW_FORBIDDEN_SERVICE_LAUNCH')};\n"
+}

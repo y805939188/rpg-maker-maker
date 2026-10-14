@@ -1,0 +1,7 @@
+{
+  "originalPath": "unreadable-port-control.ts",
+  "sha256": "ff10986a5b0ebf56191dc14252fba9f8d45d4c5a3336b9f11dce836dc04fb823",
+  "bytes": 1204,
+  "purpose": "owned ignored independent diagnostic; no formal tracked patch",
+  "documentarySource": "import {mkdirSync,writeFileSync,readFileSync,chmodSync} from 'node:fs';\nimport {resolve} from 'node:path';\nimport assert from 'node:assert/strict';\nimport {loadE2EEnvironment} from '../../e2e/environment.ts';\nconst root=resolve('/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/.local/step07-review/config-controls-ports');mkdirSync(root);\nconst path=resolve(root,'.env');writeFileSync(path,'API_PORT=4395\\nWEB_PORT=5295\\n',{mode:0,flag:'wx'});\nfor(const key of ['API_HOST','API_PORT','WEB_PORT','NODE_ENV'])delete process.env[key];process.env.DATABASE_URL='[REDACTED_DSN]';\nlet errno='';try{readFileSync(path)}catch(e:any){errno=e.code}assert.equal(errno,'EACCES');\nconst config=loadE2EEnvironment(path);assert.deepEqual([config.API_PORT,config.WEB_PORT],[4310,5173]);\nconsole.log(JSON.stringify({source:'50fd6d84197b8c6d222f139a142ab24c918db0db',result:'COUNTEREXAMPLE_CAPTURED_NOT_CANDIDATE_PASS',actualFsError:errno,existingFilePorts:[4395,5295],explicitConfiguration:'DATABASE_URL only',actualSilentlyDefaultedPorts:[config.API_PORT,config.WEB_PORT],expected:'reject unreadable existing file',DBConnected:false}));\nchmodSync(path,0o600);\n"
+}

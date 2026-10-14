@@ -1,0 +1,7 @@
+{
+  "originalPath": "read-latest-zips.ts",
+  "sha256": "1ea0157740e2edd528397f458cb20a40c05383f8b98a55b636fbf927c5c2f025",
+  "bytes": 1068,
+  "purpose": "owned ignored independent diagnostic; no formal tracked patch",
+  "documentarySource": "import {readdir,readFile} from 'node:fs/promises';\nimport {resolve} from 'node:path';\nimport assert from 'node:assert/strict';\nimport {readStoredStandardZip} from '../../apps/api/tests/studio/stored-zip.ts';\nconst root=resolve('/Users/dingshinn/.codex/worktrees/step-07-review-round9/rpg-maker-maker/.local/step07-review/evidence');\nconst rows:any[]=[];\nfor(const mode of ['production','dev'])for(const label of ['first','second','history']){\n const base=resolve(root,'archives',mode,label+'-export.zip');\n const normal=await readFile(base);assert.equal(Object.keys(readStoredStandardZip(normal)).length,8);rows.push({mode,label,case:'normal',accepted:true});\n for(const kind of ['central-crc','eocd-count','local-crc']){\n  const bad=await readFile(resolve(root,'archive-negative',mode,label+'-'+kind+'.zip'));\n  assert.throws(()=>readStoredStandardZip(bad),/Standard ZIP:/);rows.push({mode,label,case:kind,accepted:false});\n }\n}\nconsole.log(JSON.stringify({source:'50fd6d84197b8c6d222f139a142ab24c918db0db',controls:24,normalAccepted:6,badRejected:18,rows},null,2));\n"
+}
