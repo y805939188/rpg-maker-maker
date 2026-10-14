@@ -1377,8 +1377,8 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             ]),
           )
           .toEqual([96, 144]);
-        const recipeId = await page.getByLabel('精确配方 revision', { exact: true }).inputValue(),
-          frame = await page.getByLabel('创作源水面状态', { exact: true }).inputValue();
+        const recipeId = await page.getByLabel('精确配方 revision').inputValue(),
+          frame = await page.getByLabel('创作源水面状态').inputValue();
         await browserExpect(element).toHaveAttribute('data-recipe-id', recipeId);
         await browserExpect(element).toHaveAttribute('data-source-frame', frame);
         const receivedURL = new URL(
@@ -1542,7 +1542,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             ).toBeDefined();
             expect(actualResponse!.bytes).toEqual(files[name]);
           }
-          const selectedScene = await page.getByLabel('检查场景', { exact: true }).inputValue();
+          const selectedScene = await page.getByLabel('检查场景').inputValue();
           await browserExpect
             .poll(() => bodies.preview(actual.buildId!, selectedScene)?.sha)
             .toBeTruthy();
