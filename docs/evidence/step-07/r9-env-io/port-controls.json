@@ -1,0 +1,39 @@
+{
+  "scope": "diagnostic wrapper imports exact actual Playwright config/helper and only emits ports; testDir absolute for wrapper location",
+  "fileDeclaredPorts": [
+    4398,
+    5298
+  ],
+  "explicitProcessConfig": "DATABASE_URL only",
+  "oldResult": "COUNTEREXAMPLE_CAPTURED: silent defaults4310/5173; NOT PASS",
+  "newResult": "expected reject before port selection/test discovery",
+  "wrapperPath": "artifacts/.step07-r9-env-io-controls-0cacc04100f544c899190a383fff8fec/.local/io-port-control.config.ts",
+  "wrapperSHA256": "e8b45381b708cf780289bad73f2b70daccc5cb2c819764693338a584fdf74a63",
+  "rows": [
+    {
+      "label": "old-onlyDB-silent-defaults",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.662,
+      "rawPath": ".local/step07-r9-env-io/old-onlyDB-silent-defaults.log",
+      "rawSHA256": "78e7d81e0b6ba8c06dc8a50a001092411f13203b2dffc13b1906dd2640cdcaca",
+      "rawBytes": 2522,
+      "guardEvents": 0
+    },
+    {
+      "label": "new-helper-onlyDB-rejects",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "seconds": 0.455,
+      "rawPath": ".local/step07-r9-env-io/new-helper-onlyDB-rejects.log",
+      "rawSHA256": "1bb47d9651ab78c01ded003c089eb04e59b534005addc7e4a6a425c5e8f621f4",
+      "rawBytes": 2367,
+      "guardEvents": 0
+    }
+  ],
+  "newHelperRestored": true,
+  "oldSource": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+  "newHelperSource": "39daa13188eb401c2048a24e0606c1a91192e04a",
+  "oldHelperSHA256": "1c6eb99102d84d053b1525bed94ccf86542b04d9ddc2caf3f9546da2d166e9b4",
+  "newHelperSHA256": "6e8f7a124771de2bfcf754dedac8e3df778e82982897b1d1742e1014e6f06d00"
+}
