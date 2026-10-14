@@ -1,0 +1,26 @@
+{
+  "receipt": {
+    "label": "api3",
+    "argv": [
+      "pnpm",
+      "test:integration"
+    ],
+    "cwd": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 10.468,
+    "rawPath": ".local/step07-ci-response-lifecycle/final-latest/api3.log",
+    "rawBytes": 3387,
+    "rawSHA256": "923efd87211d1ff918e58fa717c953e2e4914c5293f150aed0eb1ff30d418df9",
+    "noRootDotEnv": true,
+    "safeEnvironment": {
+      "API_HOST": "127.0.0.1",
+      "API_PORT": "4398",
+      "WEB_PORT": "5298",
+      "E2E_MODE": null,
+      "TILESET_ASSET_ROOT": ".local/ci-response/regression/assets"
+    }
+  },
+  "sanitizedText": "\n> @tileset/prototype@0.0.2 test:integration /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735\n> pnpm build:contracts && vitest run --config vitest.integration.config.ts\n\n\n> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735\n> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build\n\n\n> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/contracts\n> tsc -p tsconfig.json\n\n\n> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/ai-gateway\n> tsc -p tsconfig.json\n\n\n> @tileset/asset-core@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/asset-core\n> tsc -p tsconfig.json\n\n\n> @tileset/material-processing@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/material-processing\n> tsc -p tsconfig.json\n\n\n> @tileset/image-adapter@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/image-adapter\n> tsc -p tsconfig.json\n\n\n> @tileset/mz-compiler@0.0.4 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/mz-compiler\n> tsc -p tsconfig.json\n\n\n> @tileset/pack-assembly@0.0.5 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/pack-assembly\n> tsc -p tsconfig.json\n\n\n> @tileset/pack-export@0.0.7 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/pack-export\n> tsc -p tsconfig.json\n\n\n> @tileset/persistence@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/persistence\n> tsc -p tsconfig.json\n\n\n> @tileset/local-executor@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/packages/local-executor\n> tsc -p tsconfig.json\n\n\n RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735\n\n\n Test Files  1 passed (1)\n      Tests  3 passed (3)\n   Start at  14:31:46\n   Duration  1.18s (transform 196ms, setup 0ms, import 565ms, tests 534ms, environment 0ms)\n\n"
+}

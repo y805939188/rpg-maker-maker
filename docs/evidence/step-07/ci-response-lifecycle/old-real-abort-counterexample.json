@@ -1,0 +1,28 @@
+{
+  "classification": "OLD_URL_MAP_COUNTEREXAMPLE_CAPTURED_NOT_PASS",
+  "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+  "navigations": 1,
+  "reads": 2,
+  "retainedFirstImage": true,
+  "firstBodyBytes": 821,
+  "error": "response.body: Protocol error (Network.getResponseBody): No data found for resource with given identifier\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation.",
+  "network": [
+    {
+      "event": "response",
+      "url": "http://127.0.0.1:50433/api/projects/owned/recipes/recipe/processed?frame=0",
+      "status": 200
+    },
+    {
+      "event": "response",
+      "url": "http://127.0.0.1:50433/api/projects/owned/recipes/recipe/processed?frame=0",
+      "status": 200
+    },
+    {
+      "event": "failed",
+      "url": "http://127.0.0.1:50433/api/projects/owned/recipes/recipe/processed?frame=0",
+      "failure": {
+        "errorText": "net::ERR_ABORTED"
+      }
+    }
+  ]
+}

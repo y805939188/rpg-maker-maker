@@ -1,0 +1,1367 @@
+{
+  "schema": "step07-author-ledger-v1",
+  "status": "READY_FOR_REVIEW_ROUND11",
+  "sourceSHA": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+  "sourcePaths": {
+    "apps/api/tests/studio/integration.test.ts": {
+      "sha256": "325e0ef57f5aadc82679eeec409dccdff2b03c6b729546763c5af9937abf2df2",
+      "bytes": 68698
+    },
+    "apps/api/tests/studio/received-resources.test.ts": {
+      "sha256": "a09750b91b62c4b7efaac7eb5de04fd921e6016c8e598a24b62c469247fc6c55",
+      "bytes": 10369
+    },
+    "apps/api/tests/studio/received-resources.ts": {
+      "sha256": "25ada67ef318d36b538ef80ede657912eddc42cc7053587b5d1ae10b97517137",
+      "bytes": 4426
+    }
+  },
+  "parentDocsHEAD": "6c9d7d9a2d139482ec5b411323cdfbc4d3f22fb2",
+  "parentR10Source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+  "docsHEADBinding": "Final pure-docs commit SHA in final handoff and private coding-progress, no self-referential commit hash",
+  "formalReviewUsed": 10,
+  "nextFormalReview": 11,
+  "mechanicalCap": null,
+  "newIndependentReview": "NOT_EXECUTED_BY_CODER",
+  "newCandidateCI": "NOT_EXECUTED_BY_CODER_PENDING_MAIN",
+  "newApproveMergePushRelease": "NOT_EXECUTED_BY_CODER",
+  "R10Original": "wholePASS old39daa only; R9 I/O and R4/R7 closures preserved; new Source independent pending round11",
+  "build": {
+    "buildId": "step07-dc61fe03f64e-a84e6c675d40997d",
+    "manifestSHA256": "798eb69ca61ca16146dc28a0bacb9c24f503129f37c417b5d78414aff431bc24",
+    "manifestPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/artifacts/step07-dc61fe03f64e-a84e6c675d40997d/manifest.json",
+    "payloads": 206,
+    "allRecomputed": true
+  },
+  "report": {
+    "path": "docs/reviews/step-07-ci-response-lifecycle-coding.md",
+    "sha256": "27d51797283f423213fa10abb5f84924bb9b152c4bebd52674767c04d2aca575",
+    "bytes": 12595
+  },
+  "fileKeyBase": "repository root; all final committed payloads including PNG/ZIP and JSON documentary wrappers",
+  "payloadCount": 163,
+  "files": {
+    "docs/evidence/step-07/ci-response-lifecycle/archives/dev/first-export.zip": {
+      "sha256": "9214bc18715a7fe3cbfc8df9a48dc92c21582003dd78a489633d9fdfd6d871f6",
+      "bytes": 70794,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/first-export.zip",
+      "originalSHA256": "9214bc18715a7fe3cbfc8df9a48dc92c21582003dd78a489633d9fdfd6d871f6",
+      "originalBytes": 70794,
+      "purpose": "actual synthetic browser standard ZIP download"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/archives/dev/history-export.zip": {
+      "sha256": "9214bc18715a7fe3cbfc8df9a48dc92c21582003dd78a489633d9fdfd6d871f6",
+      "bytes": 70794,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/history-export.zip",
+      "originalSHA256": "9214bc18715a7fe3cbfc8df9a48dc92c21582003dd78a489633d9fdfd6d871f6",
+      "originalBytes": 70794,
+      "purpose": "actual synthetic browser standard ZIP download"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/archives/dev/second-export.zip": {
+      "sha256": "2bb9baa16c4661785897377feb872b0747c12fa621d7bc58fabb0ca86e85f34c",
+      "bytes": 106511,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/second-export.zip",
+      "originalSHA256": "2bb9baa16c4661785897377feb872b0747c12fa621d7bc58fabb0ca86e85f34c",
+      "originalBytes": 106511,
+      "purpose": "actual synthetic browser standard ZIP download"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/archives/production/first-export.zip": {
+      "sha256": "9214bc18715a7fe3cbfc8df9a48dc92c21582003dd78a489633d9fdfd6d871f6",
+      "bytes": 70794,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/first-export.zip",
+      "originalSHA256": "9214bc18715a7fe3cbfc8df9a48dc92c21582003dd78a489633d9fdfd6d871f6",
+      "originalBytes": 70794,
+      "purpose": "actual synthetic browser standard ZIP download"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/archives/production/history-export.zip": {
+      "sha256": "9214bc18715a7fe3cbfc8df9a48dc92c21582003dd78a489633d9fdfd6d871f6",
+      "bytes": 70794,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/history-export.zip",
+      "originalSHA256": "9214bc18715a7fe3cbfc8df9a48dc92c21582003dd78a489633d9fdfd6d871f6",
+      "originalBytes": 70794,
+      "purpose": "actual synthetic browser standard ZIP download"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/archives/production/second-export.zip": {
+      "sha256": "2bb9baa16c4661785897377feb872b0747c12fa621d7bc58fabb0ca86e85f34c",
+      "bytes": 106511,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/second-export.zip",
+      "originalSHA256": "2bb9baa16c4661785897377feb872b0747c12fa621d7bc58fabb0ca86e85f34c",
+      "originalBytes": 106511,
+      "purpose": "actual synthetic browser standard ZIP download"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/auxiliary-errors.json": {
+      "sha256": "95f3a117350ddb1c766a68d33206e21f8541d3bd933a4a586c9dfbd27ab9f64b",
+      "bytes": 1857,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/auxiliary-errors.json",
+      "originalSHA256": "95f3a117350ddb1c766a68d33206e21f8541d3bd933a4a586c9dfbd27ab9f64b",
+      "originalBytes": 1857
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/evidence.json": {
+      "sha256": "1d36387319781f819c10f17e4ba487feb2b6851ea0dced6066fb7083dc1b6316",
+      "bytes": 33581,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/evidence.json",
+      "originalSHA256": "1d36387319781f819c10f17e4ba487feb2b6851ea0dced6066fb7083dc1b6316",
+      "originalBytes": 33581
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/playwright.json": {
+      "sha256": "a3fff6ba2710fe4b9d2caa4a49555869b46f316f64405c0a1ac6a3f311288653",
+      "bytes": 23962,
+      "purpose": "actual18 outcomes,0skip,0retry,NO.env",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/e2e/dev.json",
+      "originalSHA256": "0a95e5b0ae0fa3478404cdae4aec1909b64353dcf5511fe9d7aad237ae12f726",
+      "originalBytes": 23961
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r1-project-switch.json": {
+      "sha256": "3415703fbba42d67aaf77770010a495c8cf4a553faf3c8fcb49a410724ebdea7",
+      "bytes": 40597,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r1-project-switch.json",
+      "originalSHA256": "3415703fbba42d67aaf77770010a495c8cf4a553faf3c8fcb49a410724ebdea7",
+      "originalBytes": 40597
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r2-recovery/fixtures.json": {
+      "sha256": "e3beea097a48d71cc83bf948137d49d99959323a7da3b505d53604955773df1d",
+      "bytes": 1679,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r2-recovery/fixtures.json",
+      "originalSHA256": "e3beea097a48d71cc83bf948137d49d99959323a7da3b505d53604955773df1d",
+      "originalBytes": 1679
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r2-recovery/invalid-and-timeout.json": {
+      "sha256": "2a87100a54bec4e7cf37e109012a3f05a37532b8e71370867acac53612d62654",
+      "bytes": 9554,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r2-recovery/invalid-and-timeout.json",
+      "originalSHA256": "2a87100a54bec4e7cf37e109012a3f05a37532b8e71370867acac53612d62654",
+      "originalBytes": 9554
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r2-recovery/ordinary-switch.json": {
+      "sha256": "17d0cab92a71a4dbb4e8f453b42ff0193dc74aff7a97de70a7e59d8759fda5db",
+      "bytes": 46606,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r2-recovery/ordinary-switch.json",
+      "originalSHA256": "17d0cab92a71a4dbb4e8f453b42ff0193dc74aff7a97de70a7e59d8759fda5db",
+      "originalBytes": 46606
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r2-recovery/poll.json": {
+      "sha256": "d8222d903a13f1ae80fa877b9dae07e70f4c4365476a0b9475e944c1daaaed51",
+      "bytes": 45874,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r2-recovery/poll.json",
+      "originalSHA256": "d8222d903a13f1ae80fa877b9dae07e70f4c4365476a0b9475e944c1daaaed51",
+      "originalBytes": 45874
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r2-recovery/pressure-network.json": {
+      "sha256": "5897d5dcffd45b4942030a3840beb1c50388feaf8d85d73da4a8be3a39876e89",
+      "bytes": 8890,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r2-recovery/pressure-network.json",
+      "originalSHA256": "5897d5dcffd45b4942030a3840beb1c50388feaf8d85d73da4a8be3a39876e89",
+      "originalBytes": 8890
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r2-recovery/pressure.json": {
+      "sha256": "73eeef024e1fb8c39d5b7602fcbaed0ec4b270631e6058ae9445b0a51fa7cd59",
+      "bytes": 9575,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r2-recovery/pressure.json",
+      "originalSHA256": "73eeef024e1fb8c39d5b7602fcbaed0ec4b270631e6058ae9445b0a51fa7cd59",
+      "originalBytes": 9575
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r3-state-ownership/fixtures.json": {
+      "sha256": "d18b209b70702ca85682096e4f8d836bacdd71726f4f06fa28a0c60e9143aed7",
+      "bytes": 958,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r3-state-ownership/fixtures.json",
+      "originalSHA256": "d18b209b70702ca85682096e4f8d836bacdd71726f4f06fa28a0c60e9143aed7",
+      "originalBytes": 958
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r3-state-ownership/late-actions.json": {
+      "sha256": "6898de9155b365afe62a79f5878972ea6f1c916939c7c8bb5df147503e090c66",
+      "bytes": 72236,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r3-state-ownership/late-actions.json",
+      "originalSHA256": "6898de9155b365afe62a79f5878972ea6f1c916939c7c8bb5df147503e090c66",
+      "originalBytes": 72236
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r3-state-ownership/late-adoption.json": {
+      "sha256": "2d6937688ae87b148e1c5581aae5f00449fa32d764c5de8646f36b879493e96b",
+      "bytes": 27958,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r3-state-ownership/late-adoption.json",
+      "originalSHA256": "2d6937688ae87b148e1c5581aae5f00449fa32d764c5de8646f36b879493e96b",
+      "originalBytes": 27958
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r3-state-ownership/late-upload.json": {
+      "sha256": "f806dcaf9b3909977218c067437de063aab13c59a54945ca92e6a329f7011578",
+      "bytes": 29083,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r3-state-ownership/late-upload.json",
+      "originalSHA256": "f806dcaf9b3909977218c067437de063aab13c59a54945ca92e6a329f7011578",
+      "originalBytes": 29083
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r3-state-ownership/poll-429.json": {
+      "sha256": "25843aef0db99e649010994f3b6e749edc02cc1a62c29663e836e0319b9b5c0d",
+      "bytes": 15164,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r3-state-ownership/poll-429.json",
+      "originalSHA256": "25843aef0db99e649010994f3b6e749edc02cc1a62c29663e836e0319b9b5c0d",
+      "originalBytes": 15164
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r3-state-ownership/poll-503.json": {
+      "sha256": "416b746fd56d1b0d92414414db2dcd0499be920bd5c831c5105a3af1173e14af",
+      "bytes": 15174,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r3-state-ownership/poll-503.json",
+      "originalSHA256": "416b746fd56d1b0d92414414db2dcd0499be920bd5c831c5105a3af1173e14af",
+      "originalBytes": 15174
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r3-state-ownership/poll-network.json": {
+      "sha256": "631b0300481a9e2cbd05e40e7eaa1eb34a51ca31fdfc11893a1ae649f930bdf0",
+      "bytes": 14163,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r3-state-ownership/poll-network.json",
+      "originalSHA256": "631b0300481a9e2cbd05e40e7eaa1eb34a51ca31fdfc11893a1ae649f930bdf0",
+      "originalBytes": 14163
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r4-project-list/failure-cancel.json": {
+      "sha256": "35c3240d433dbd9cebfd561d52195ae1656803f119d79f706147233ccd4f2b2e",
+      "bytes": 4113,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r4-project-list/failure-cancel.json",
+      "originalSHA256": "35c3240d433dbd9cebfd561d52195ae1656803f119d79f706147233ccd4f2b2e",
+      "originalBytes": 4113
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r4-project-list/fixture.json": {
+      "sha256": "72216a1d5e83ef82e5f5b8d0bb79646ff60ee4624253640e46c8109398d1f0d0",
+      "bytes": 195,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r4-project-list/fixture.json",
+      "originalSHA256": "72216a1d5e83ef82e5f5b8d0bb79646ff60ee4624253640e46c8109398d1f0d0",
+      "originalBytes": 195
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r4-project-list/initial-adopt.json": {
+      "sha256": "40deea76336f5c1b8ac4785f218a9c3f4bd1fde81b84411af25b0e4f80214fc9",
+      "bytes": 16006,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r4-project-list/initial-adopt.json",
+      "originalSHA256": "40deea76336f5c1b8ac4785f218a9c3f4bd1fde81b84411af25b0e4f80214fc9",
+      "originalBytes": 16006
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r4-project-list/initial-invalid-upload.json": {
+      "sha256": "62767dd7ce0a90393cb767484029fc8048d707408193cbb8fd6947756541ddea",
+      "bytes": 15290,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r4-project-list/initial-invalid-upload.json",
+      "originalSHA256": "62767dd7ce0a90393cb767484029fc8048d707408193cbb8fd6947756541ddea",
+      "originalBytes": 15290
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r4-project-list/initial-upload.json": {
+      "sha256": "a29d82d6e8e4d39454b2cb13851def029e93e3bbf82f76dc2bd0a7af82a78c94",
+      "bytes": 15001,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r4-project-list/initial-upload.json",
+      "originalSHA256": "a29d82d6e8e4d39454b2cb13851def029e93e3bbf82f76dc2bd0a7af82a78c94",
+      "originalBytes": 15001
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/dev/r4-project-list/replacement-list.json": {
+      "sha256": "e04faf54691c47e26ecf399a8111acdf4fa8b3f6c22afd5dfcddcd96e3058f76",
+      "bytes": 5971,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r4-project-list/replacement-list.json",
+      "originalSHA256": "e04faf54691c47e26ecf399a8111acdf4fa8b3f6c22afd5dfcddcd96e3058f76",
+      "originalBytes": 5971
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/evidence.json": {
+      "sha256": "e32a0008254626e4e4fed006978e61c2b9576bdf998c11a39a116f04c51e6e60",
+      "bytes": 27137,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/evidence.json",
+      "originalSHA256": "e32a0008254626e4e4fed006978e61c2b9576bdf998c11a39a116f04c51e6e60",
+      "originalBytes": 27137
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/playwright.json": {
+      "sha256": "cd924fde18b35c8eec04f91f4296d3b8a527018facca5c8afe74c6c00c6eefe1",
+      "bytes": 23971,
+      "purpose": "actual18 outcomes,0skip,0retry,NO.env",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/e2e/production.json",
+      "originalSHA256": "f3d5bd6a3f4c300468fa41748fad41d91b83ed8d343be36012382201a9252b00",
+      "originalBytes": 23970
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r1-project-switch.json": {
+      "sha256": "e536567c49fed15b8c835b421df0c84776e3d87636461671a87dd478bda57d3c",
+      "bytes": 33228,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r1-project-switch.json",
+      "originalSHA256": "e536567c49fed15b8c835b421df0c84776e3d87636461671a87dd478bda57d3c",
+      "originalBytes": 33228
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r2-recovery/fixtures.json": {
+      "sha256": "488faa0beeacd337aa4ad1b12b7d8b7a1b6e8ac1a37e4b4b61b9148030c4738b",
+      "bytes": 1679,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r2-recovery/fixtures.json",
+      "originalSHA256": "488faa0beeacd337aa4ad1b12b7d8b7a1b6e8ac1a37e4b4b61b9148030c4738b",
+      "originalBytes": 1679
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r2-recovery/invalid-and-timeout.json": {
+      "sha256": "2c00548551d23c4d10309a51c3a4526fd8d1b9c931f84b7bb7808a8ab18cf3ab",
+      "bytes": 8406,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r2-recovery/invalid-and-timeout.json",
+      "originalSHA256": "2c00548551d23c4d10309a51c3a4526fd8d1b9c931f84b7bb7808a8ab18cf3ab",
+      "originalBytes": 8406
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r2-recovery/ordinary-switch.json": {
+      "sha256": "1604e9c02c72654d1dca964114e6ee3ea7a2b39868e85a782b5e5c2c237acb32",
+      "bytes": 40120,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r2-recovery/ordinary-switch.json",
+      "originalSHA256": "1604e9c02c72654d1dca964114e6ee3ea7a2b39868e85a782b5e5c2c237acb32",
+      "originalBytes": 40120
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r2-recovery/poll.json": {
+      "sha256": "bd564924564cd3a8800b99a39580f01f7d746957f6e1c0a3fe5d2389591db432",
+      "bytes": 41430,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r2-recovery/poll.json",
+      "originalSHA256": "bd564924564cd3a8800b99a39580f01f7d746957f6e1c0a3fe5d2389591db432",
+      "originalBytes": 41430
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r2-recovery/pressure-network.json": {
+      "sha256": "284361037ecff5b675f3e80548a26ff414b0349a82c880768a526e3c880730e5",
+      "bytes": 7742,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r2-recovery/pressure-network.json",
+      "originalSHA256": "284361037ecff5b675f3e80548a26ff414b0349a82c880768a526e3c880730e5",
+      "originalBytes": 7742
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r2-recovery/pressure.json": {
+      "sha256": "490b2b589fe2a8e11e5c3dd6b428216b063eab530689d3165e27acd1e3b116d0",
+      "bytes": 8427,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r2-recovery/pressure.json",
+      "originalSHA256": "490b2b589fe2a8e11e5c3dd6b428216b063eab530689d3165e27acd1e3b116d0",
+      "originalBytes": 8427
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r3-state-ownership/fixtures.json": {
+      "sha256": "2790eb2efc1ea35b522addb88af1df5a9767c957bddb2feadb4538a6f0bf01e5",
+      "bytes": 958,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r3-state-ownership/fixtures.json",
+      "originalSHA256": "2790eb2efc1ea35b522addb88af1df5a9767c957bddb2feadb4538a6f0bf01e5",
+      "originalBytes": 958
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r3-state-ownership/late-actions.json": {
+      "sha256": "bb75d12bcfff0126ca65afbc838f9cad2110c1f196f03c6d053101b8ba213b66",
+      "bytes": 63000,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r3-state-ownership/late-actions.json",
+      "originalSHA256": "bb75d12bcfff0126ca65afbc838f9cad2110c1f196f03c6d053101b8ba213b66",
+      "originalBytes": 63000
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r3-state-ownership/late-adoption.json": {
+      "sha256": "07b6343f9a17d0a402b6136027536b425659f8717c554a71f69d55a22cf7656d",
+      "bytes": 24354,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r3-state-ownership/late-adoption.json",
+      "originalSHA256": "07b6343f9a17d0a402b6136027536b425659f8717c554a71f69d55a22cf7656d",
+      "originalBytes": 24354
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r3-state-ownership/late-upload.json": {
+      "sha256": "5bcb63948654b44ad8d9d5f562e03274dfdccd429faa3ba7c46ae66640b609e9",
+      "bytes": 25479,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r3-state-ownership/late-upload.json",
+      "originalSHA256": "5bcb63948654b44ad8d9d5f562e03274dfdccd429faa3ba7c46ae66640b609e9",
+      "originalBytes": 25479
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r3-state-ownership/poll-429.json": {
+      "sha256": "6b9dc16f922bee4a486063cb4fe04646ca975d68a4e913519b512912d3185260",
+      "bytes": 12972,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r3-state-ownership/poll-429.json",
+      "originalSHA256": "6b9dc16f922bee4a486063cb4fe04646ca975d68a4e913519b512912d3185260",
+      "originalBytes": 12972
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r3-state-ownership/poll-503.json": {
+      "sha256": "06f0321aeccca2ad37ff559ed0543a766d74064dfb2f0413a078aa087691cd0f",
+      "bytes": 12982,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r3-state-ownership/poll-503.json",
+      "originalSHA256": "06f0321aeccca2ad37ff559ed0543a766d74064dfb2f0413a078aa087691cd0f",
+      "originalBytes": 12982
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r3-state-ownership/poll-network.json": {
+      "sha256": "1c2a86dae44584d80995853bc35c24e83c6f3e8ec49e417157bfd47140316cd1",
+      "bytes": 11971,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r3-state-ownership/poll-network.json",
+      "originalSHA256": "1c2a86dae44584d80995853bc35c24e83c6f3e8ec49e417157bfd47140316cd1",
+      "originalBytes": 11971
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r4-project-list/failure-cancel.json": {
+      "sha256": "33830655f484f7c5fdb397c7299068c6c9365cc5b3f00be28356e21ba4199fb2",
+      "bytes": 3337,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r4-project-list/failure-cancel.json",
+      "originalSHA256": "33830655f484f7c5fdb397c7299068c6c9365cc5b3f00be28356e21ba4199fb2",
+      "originalBytes": 3337
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r4-project-list/fixture.json": {
+      "sha256": "d415d662ff514b369269240157e1040415ea52f196e96073187e1a367b3d031c",
+      "bytes": 195,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r4-project-list/fixture.json",
+      "originalSHA256": "d415d662ff514b369269240157e1040415ea52f196e96073187e1a367b3d031c",
+      "originalBytes": 195
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r4-project-list/initial-adopt.json": {
+      "sha256": "eb5a43e4ea42363df284edcee5b5a4c893e3d61e97af54c592994c709ea26a90",
+      "bytes": 15228,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r4-project-list/initial-adopt.json",
+      "originalSHA256": "eb5a43e4ea42363df284edcee5b5a4c893e3d61e97af54c592994c709ea26a90",
+      "originalBytes": 15228
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r4-project-list/initial-invalid-upload.json": {
+      "sha256": "146998ef808a2f2530401ee7b23b0cbd7108de2e92b6247e64395c30893c06b6",
+      "bytes": 14514,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r4-project-list/initial-invalid-upload.json",
+      "originalSHA256": "146998ef808a2f2530401ee7b23b0cbd7108de2e92b6247e64395c30893c06b6",
+      "originalBytes": 14514
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r4-project-list/initial-upload.json": {
+      "sha256": "7fb2630aa05fa717c5fb2583e3a11e4b297d2d812c0b3f824c09020614230d29",
+      "bytes": 14225,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r4-project-list/initial-upload.json",
+      "originalSHA256": "7fb2630aa05fa717c5fb2583e3a11e4b297d2d812c0b3f824c09020614230d29",
+      "originalBytes": 14225
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/browser/production/r4-project-list/replacement-list.json": {
+      "sha256": "550c40bc9e7430e7b3027066ab46a1084d6f23570a027e99ff9ce67fb5db381c",
+      "bytes": 4733,
+      "purpose": "actual pixels/PNG/clock/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r4-project-list/replacement-list.json",
+      "originalSHA256": "550c40bc9e7430e7b3027066ab46a1084d6f23570a027e99ff9ce67fb5db381c",
+      "originalBytes": 4733
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/1732b80b-ea65-48c5-93ae-ac850f58c1be/cancel-same-url.json": {
+      "sha256": "a4b3601caf0cd128d0ad6f05249542177d98566afa2ffadb6074a3ee2c3db9d1",
+      "bytes": 1421,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/1732b80b-ea65-48c5-93ae-ac850f58c1be/cancel-same-url.json",
+      "originalSHA256": "a4b3601caf0cd128d0ad6f05249542177d98566afa2ffadb6074a3ee2c3db9d1",
+      "originalBytes": 1421
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/1732b80b-ea65-48c5-93ae-ac850f58c1be/corrupt-and-hash.json": {
+      "sha256": "fc3ee1330c0c649b1dd121826668355814721676e0ec1baab5b8b09efb2fbc7a",
+      "bytes": 1197,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/1732b80b-ea65-48c5-93ae-ac850f58c1be/corrupt-and-hash.json",
+      "originalSHA256": "fc3ee1330c0c649b1dd121826668355814721676e0ec1baab5b8b09efb2fbc7a",
+      "originalBytes": 1197
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/1732b80b-ea65-48c5-93ae-ac850f58c1be/identity-negatives.json": {
+      "sha256": "4aba63294c47022afc3e775b2650a80918969196bbfb47f58e4e85fcebb46611",
+      "bytes": 423,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/1732b80b-ea65-48c5-93ae-ac850f58c1be/identity-negatives.json",
+      "originalSHA256": "4aba63294c47022afc3e775b2650a80918969196bbfb47f58e4e85fcebb46611",
+      "originalBytes": 423
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/1732b80b-ea65-48c5-93ae-ac850f58c1be/late-same-url.json": {
+      "sha256": "69a6c84e186fe7366be279ce3c85e6d0b9d6f387c2fe995f0d0ebef9c05a2bf9",
+      "bytes": 810,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/1732b80b-ea65-48c5-93ae-ac850f58c1be/late-same-url.json",
+      "originalSHA256": "69a6c84e186fe7366be279ce3c85e6d0b9d6f387c2fe995f0d0ebef9c05a2bf9",
+      "originalBytes": 810
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/1732b80b-ea65-48c5-93ae-ac850f58c1be/navigation.json": {
+      "sha256": "e3364a2c9f4a88ed07cca6f9b1da454e3382560d94770cfdd3e4d11da7246163",
+      "bytes": 1423,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/1732b80b-ea65-48c5-93ae-ac850f58c1be/navigation.json",
+      "originalSHA256": "e3364a2c9f4a88ed07cca6f9b1da454e3382560d94770cfdd3e4d11da7246163",
+      "originalBytes": 1423
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/244d08a0-d568-4acc-82ef-05b1fa496b77/cancel-same-url.json": {
+      "sha256": "1cf37e1ce713591bb49afb7efd9eb9a84794d46d92adc8439b1732f7645dd68d",
+      "bytes": 1421,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/244d08a0-d568-4acc-82ef-05b1fa496b77/cancel-same-url.json",
+      "originalSHA256": "1cf37e1ce713591bb49afb7efd9eb9a84794d46d92adc8439b1732f7645dd68d",
+      "originalBytes": 1421
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/244d08a0-d568-4acc-82ef-05b1fa496b77/corrupt-and-hash.json": {
+      "sha256": "9cfb61027e092d783a1cfbbe1ac0f1c304560460060538c0ebd9e09c481d7f3d",
+      "bytes": 1197,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/244d08a0-d568-4acc-82ef-05b1fa496b77/corrupt-and-hash.json",
+      "originalSHA256": "9cfb61027e092d783a1cfbbe1ac0f1c304560460060538c0ebd9e09c481d7f3d",
+      "originalBytes": 1197
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/244d08a0-d568-4acc-82ef-05b1fa496b77/identity-negatives.json": {
+      "sha256": "70f930f5abe0885124c0204ff0b21b611f06178c68ca185036388dccecfcba88",
+      "bytes": 423,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/244d08a0-d568-4acc-82ef-05b1fa496b77/identity-negatives.json",
+      "originalSHA256": "70f930f5abe0885124c0204ff0b21b611f06178c68ca185036388dccecfcba88",
+      "originalBytes": 423
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/244d08a0-d568-4acc-82ef-05b1fa496b77/late-same-url.json": {
+      "sha256": "ea5a2f8426eac786037e0ffdca770371787dfb29fe4cee6249fddb0b001c75f1",
+      "bytes": 810,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/244d08a0-d568-4acc-82ef-05b1fa496b77/late-same-url.json",
+      "originalSHA256": "ea5a2f8426eac786037e0ffdca770371787dfb29fe4cee6249fddb0b001c75f1",
+      "originalBytes": 810
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture/244d08a0-d568-4acc-82ef-05b1fa496b77/navigation.json": {
+      "sha256": "8d55f8e232f4b00d6eea8ae550cb53eff3f8e75fdfe1b38ab9d1edc45d3b8b76",
+      "bytes": 1423,
+      "purpose": "latest real browser network/response lifecycle controlled cases",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/received-resource-tests/244d08a0-d568-4acc-82ef-05b1fa496b77/navigation.json",
+      "originalSHA256": "8d55f8e232f4b00d6eea8ae550cb53eff3f8e75fdfe1b38ab9d1edc45d3b8b76",
+      "originalBytes": 1423
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/capture-verification.json": {
+      "sha256": "2890e67f8675483339a4bdb08f3f52e458657dfe6a4747c1b77adc3a73d02f27",
+      "bytes": 36513,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/capture-verification.json",
+      "originalSHA256": "2890e67f8675483339a4bdb08f3f52e458657dfe6a4747c1b77adc3a73d02f27",
+      "originalBytes": 36513
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/downloads-independent.json": {
+      "sha256": "ebdcef345b3d28b7146e2ecb0ae6c5c9f755f01d2094d12e0f0dd87586da27de",
+      "bytes": 15613,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/downloads-independent.json",
+      "originalSHA256": "ebdcef345b3d28b7146e2ecb0ae6c5c9f755f01d2094d12e0f0dd87586da27de",
+      "originalBytes": 15613
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/engineering-manifest-documentary.json": {
+      "sha256": "2363d4a98fad72cbe07d3912f16824db47153af94099fcf53ff8bf745a7f1aa1",
+      "bytes": 26256,
+      "purpose": "206 engineering payload identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/artifacts/step07-dc61fe03f64e-a84e6c675d40997d/manifest.json",
+      "originalSHA256": "798eb69ca61ca16146dc28a0bacb9c24f503129f37c417b5d78414aff431bc24",
+      "originalBytes": 25562
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/engineering-verification.json": {
+      "sha256": "36a68a964f71fc9d1b862ff94b507f899846a8cd5c39e0edf6629abeb0bfb146",
+      "bytes": 35365,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/engineering-verification.json",
+      "originalSHA256": "36a68a964f71fc9d1b862ff94b507f899846a8cd5c39e0edf6629abeb0bfb146",
+      "originalBytes": 35365
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/first01edd-commands.json": {
+      "sha256": "3abe573d4179560723124d87d6bce90c187d461aabc9128a59affa0432accd08",
+      "bytes": 8038,
+      "purpose": "exact source/cwd/argv/exit/time/raw provenance, prefreeze distinct",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/commands.json",
+      "originalSHA256": "3abe573d4179560723124d87d6bce90c187d461aabc9128a59affa0432accd08",
+      "originalBytes": 8038
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/atomic-job-export-cas.json": {
+      "sha256": "23c85dff06e1fc0be03ce4d3f3792c220ea4f3cbd2f8d4fa7e3a8b4f2b467b9d",
+      "bytes": 1081,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/atomic-job-export-cas.json",
+      "originalSHA256": "23c85dff06e1fc0be03ce4d3f3792c220ea4f3cbd2f8d4fa7e3a8b4f2b467b9d",
+      "originalBytes": 1081
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/component-identity-equal-bytes.json": {
+      "sha256": "d1011f6805c94e552812b7c5c7034005c910a93ef4c72138f9b36ae57a7bae6f",
+      "bytes": 386,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/component-identity-equal-bytes.json",
+      "originalSHA256": "d1011f6805c94e552812b7c5c7034005c910a93ef4c72138f9b36ae57a7bae6f",
+      "originalBytes": 386
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/http-codec-deadline-cancel.json": {
+      "sha256": "312a6f8770f3f84dbbf981de5d5289d3bb754d29b2f054fbb36cce872a673dd8",
+      "bytes": 260,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/http-codec-deadline-cancel.json",
+      "originalSHA256": "312a6f8770f3f84dbbf981de5d5289d3bb754d29b2f054fbb36cce872a673dd8",
+      "originalBytes": 260
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/ingress-failures.json": {
+      "sha256": "65e578555a30260f6c409f18bc888f31f83e9f49d7fda8c4cbb0b27ac5637ea1",
+      "bytes": 128,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/ingress-failures.json",
+      "originalSHA256": "65e578555a30260f6c409f18bc888f31f83e9f49d7fda8c4cbb0b27ac5637ea1",
+      "originalBytes": 128
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/integrated-restoration.json": {
+      "sha256": "5610e19a53011fec0a3142224e5009b682a6381dfc714bbc1a9e0e88db53371c",
+      "bytes": 33864,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/integrated-restoration.json",
+      "originalSHA256": "9a148f782909a1e3851645fce65849f0f96ca854767d7536fdcaaed4cc3a0278",
+      "originalBytes": 33889
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/largest-http-decoded-plane.json": {
+      "sha256": "19163799ac6a407e0f0770aa05a193d88e982da59e42b0b14915f61cb5c70938",
+      "bytes": 1038,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/largest-http-decoded-plane.json",
+      "originalSHA256": "19163799ac6a407e0f0770aa05a193d88e982da59e42b0b14915f61cb5c70938",
+      "originalBytes": 1038
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/legacy06-standard-conversion.json": {
+      "sha256": "6a20c8595ebe4955b4e063a5c1113ca60ab48e42b1fead8a32031b7c27970875",
+      "bytes": 3985,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/legacy06-standard-conversion.json",
+      "originalSHA256": "6a20c8595ebe4955b4e063a5c1113ca60ab48e42b1fead8a32031b7c27970875",
+      "originalBytes": 3985
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/ownership-summary.json": {
+      "sha256": "bb53c611835091e9bb643bb56f91be324347e6d0a00df3335cb26e95bef4531c",
+      "bytes": 1063,
+      "purpose": "safe owned resource summary",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/ownership.json",
+      "originalSHA256": "93d6fa5482727d2810c4906334b494112ae40b14bc07a0bd0708361fc0410c2b",
+      "originalBytes": 1303
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r1-public-storage-boundaries.json": {
+      "sha256": "2c68cdcc40a7d9c43d340b99bfe3e98c14b7b76ef34e80547756d84adc139b47",
+      "bytes": 7340,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r1-public-storage-boundaries.json",
+      "originalSHA256": "2c68cdcc40a7d9c43d340b99bfe3e98c14b7b76ef34e80547756d84adc139b47",
+      "originalBytes": 7340
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r1-rejected-restore-parent.json": {
+      "sha256": "f3df1674efecb2a38b6a94e88ffc0ad35fc402d051d597c435c0248abecbce8e",
+      "bytes": 614,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r1-rejected-restore-parent.json",
+      "originalSHA256": "93ec3e638e08bb2ae1f6ee4431c4636b5123254985c11e802de0aa462c591f30",
+      "originalBytes": 639
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r2-processed-busy-cancel-download.json": {
+      "sha256": "05e63a236df9fcb9c997059691c9cd4e08cae9853b66c375e71a8fb12cc3663e",
+      "bytes": 959,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r2-processed-busy-cancel-download.json",
+      "originalSHA256": "05e63a236df9fcb9c997059691c9cd4e08cae9853b66c375e71a8fb12cc3663e",
+      "originalBytes": 959
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-consistent-first.json": {
+      "sha256": "976e060ed64ab86f29d58587580db61ec49c732c87c1c34491d3fae1734231fb",
+      "bytes": 7203,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-consistent-first.json",
+      "originalSHA256": "976e060ed64ab86f29d58587580db61ec49c732c87c1c34491d3fae1734231fb",
+      "originalBytes": 7203
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-duplicate-legacy.json": {
+      "sha256": "0e326e309eaf6f0ffb0f89c3e116e88a3654d1ee8370d2a7af5ddd7ebc88cc47",
+      "bytes": 2879,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-duplicate-legacy.json",
+      "originalSHA256": "0e326e309eaf6f0ffb0f89c3e116e88a3654d1ee8370d2a7af5ddd7ebc88cc47",
+      "originalBytes": 2879
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-finalization-db-rollback.json": {
+      "sha256": "821c3b363b3adaed9889623122246304edf8957d35e2545b43c3f9d21892d58f",
+      "bytes": 3557,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-finalization-db-rollback.json",
+      "originalSHA256": "821c3b363b3adaed9889623122246304edf8957d35e2545b43c3f9d21892d58f",
+      "originalBytes": 3557
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-finalization-existing-standard.json": {
+      "sha256": "93e928ec2e4ff03abbcc8bd214b34b59cf5ba7076f318ed7a27c7d696fa616cc",
+      "bytes": 3311,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-finalization-existing-standard.json",
+      "originalSHA256": "93e928ec2e4ff03abbcc8bd214b34b59cf5ba7076f318ed7a27c7d696fa616cc",
+      "originalBytes": 3311
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-finalization-file-failure.json": {
+      "sha256": "810fa821e75905246200c8ef3fb7df29eb123846c567e89c6860c6796c501035",
+      "bytes": 3560,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-finalization-file-failure.json",
+      "originalSHA256": "810fa821e75905246200c8ef3fb7df29eb123846c567e89c6860c6796c501035",
+      "originalBytes": 3560
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-finalization-lost-receipt.json": {
+      "sha256": "0589372b4c3ba234c424c30886eb7060e5e47c22de9c70a21368da5a978c4e66",
+      "bytes": 3296,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-finalization-lost-receipt.json",
+      "originalSHA256": "0589372b4c3ba234c424c30886eb7060e5e47c22de9c70a21368da5a978c4e66",
+      "originalBytes": 3296
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-received-resources-development.json": {
+      "sha256": "89b9f89b05199391b6c39f1537cbab9d0a838a06139ba768e2d452574831237c",
+      "bytes": 13567,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-received-resources-development.json",
+      "originalSHA256": "89b9f89b05199391b6c39f1537cbab9d0a838a06139ba768e2d452574831237c",
+      "originalBytes": 13567
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-received-resources-production.json": {
+      "sha256": "09f90d17d9d3733fc47c14f8aa7f2d967ef6d14db12c88a8f986c8c4d1323f41",
+      "bytes": 10609,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-received-resources-production.json",
+      "originalSHA256": "09f90d17d9d3733fc47c14f8aa7f2d967ef6d14db12c88a8f986c8c4d1323f41",
+      "originalBytes": 10609
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-ui-consistent-publication.json": {
+      "sha256": "b147019b1aad997e12857e6de5eb17ccbc3083cdcc5895d20a36f897fdba7b13",
+      "bytes": 15963,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-ui-consistent-publication.json",
+      "originalSHA256": "b147019b1aad997e12857e6de5eb17ccbc3083cdcc5895d20a36f897fdba7b13",
+      "originalBytes": 15963
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-ui-network-development.json": {
+      "sha256": "c1d1d228b3a32694cf199af31b21c21db2c02051dbd6a0bc74290a16dd99fb9d",
+      "bytes": 30060,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-ui-network-development.json",
+      "originalSHA256": "c1d1d228b3a32694cf199af31b21c21db2c02051dbd6a0bc74290a16dd99fb9d",
+      "originalBytes": 30060
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-ui-network-production.json": {
+      "sha256": "5f7815c6528a6b04a048b266e0ead864e13647c70ad01c8f645264294ab0ccc1",
+      "bytes": 25571,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-ui-network-production.json",
+      "originalSHA256": "5f7815c6528a6b04a048b266e0ead864e13647c70ad01c8f645264294ab0ccc1",
+      "originalBytes": 25571
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-ui-progress.json": {
+      "sha256": "bc31be47de0c9c4d54c05a4ec53ad4c0edb31e027ecfc45453db8130b5393eb0",
+      "bytes": 3906,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-ui-progress.json",
+      "originalSHA256": "bc31be47de0c9c4d54c05a4ec53ad4c0edb31e027ecfc45453db8130b5393eb0",
+      "originalBytes": 3906
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/r4-ui-timing.json": {
+      "sha256": "fdf2ab0490c48863566eeb5900268d9438293856bf1875200d4de9f0d632694b",
+      "bytes": 4852,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/r4-ui-timing.json",
+      "originalSHA256": "fdf2ab0490c48863566eeb5900268d9438293856bf1875200d4de9f0d632694b",
+      "originalBytes": 4852
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/http16/upload-native-measurement.json": {
+      "sha256": "0a45fd0f49d8c0068b6193053d12eef421931352bc748d1e6dbb4191c1fc839b",
+      "bytes": 756,
+      "purpose": "actual fullHTTP16 state/read/export/restore/received-resource identity",
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/tests/1a6d950b-ed5b-48be-835a-7d8cfdb0d8ad/upload-native-measurement.json",
+      "originalSHA256": "0a45fd0f49d8c0068b6193053d12eef421931352bc748d1e6dbb4191c1fc839b",
+      "originalBytes": 756
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/latest-commands.json": {
+      "sha256": "9d264014a31ed9446e8d0375c7372ee7c3cd77d8fceea7aa033d0f09bd4f48e0",
+      "bytes": 12007,
+      "purpose": "exact source/cwd/argv/exit/time/raw provenance, prefreeze distinct",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/commands.json",
+      "originalSHA256": "9d264014a31ed9446e8d0375c7372ee7c3cd77d8fceea7aa033d0f09bd4f48e0",
+      "originalBytes": 12007
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/api3.json": {
+      "sha256": "f0a7d002629ac83243843a88d34599b0808bd6ff7f443210d41786f19d5dc68f",
+      "bytes": 4171,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/api3.log",
+      "originalSHA256": "489c64a9bab18adb2aa3fefda1c7a2f6c18c3e16d3932fe241c2eb9f3fadd0dc",
+      "originalBytes": 3374
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/check.json": {
+      "sha256": "ea4a652b75d35eecec158906c3628019efe9d7473e83a20fd488cd1d194bf8db",
+      "bytes": 15099,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/check.log",
+      "originalSHA256": "1fc483735e05efa8d94315b91b81e34c41d79c2b027fb2d184880250cba3b485",
+      "originalBytes": 14130
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/checkout.json": {
+      "sha256": "69947a8d6215646c56d76b0e6e215318feef899e50f69eeaf1c79ed2b2bcd83c",
+      "bytes": 871,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/checkout.log",
+      "originalSHA256": "f41d0b625842ac0f6497880da653e5f31eecc742448c1e6242240f6379bfafba",
+      "originalBytes": 101
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/clone.json": {
+      "sha256": "f981260db1ca69c39f90b8af0089dcfe2b0d2b0405d3e78eb3a5459ce32fb6f8",
+      "bytes": 2266,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/clone.log",
+      "originalSHA256": "e9814b0bd8baf21a6acf2b499cc85c8df17485619f5bd25775abadd90aa82a47",
+      "originalBytes": 1281
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/generate.json": {
+      "sha256": "85ab7e508081717e1b3581c6932fd23da5ae85bb1aea43a346dfc321c1579eb6",
+      "bytes": 1588,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/generate.log",
+      "originalSHA256": "e90987cf1fd4c1abca83f681a602f9264541887095b8691e4252dbe0fc87cb81",
+      "originalBytes": 865
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/http16.json": {
+      "sha256": "55ab349a634a3466f16adad4692d57fdb941519345e80e715a44d0a7237a7a12",
+      "bytes": 8204,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/http16.log",
+      "originalSHA256": "abb811e6399bbe8dfcbf147103e903cf148e01df9c1bf95efd4be672cb1e6699",
+      "originalBytes": 7273
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/install.json": {
+      "sha256": "99fa053ac2cf8e47157aade9382ce2a2d11333b3095515f5005d699cd2b7822a",
+      "bytes": 2082,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/install.log",
+      "originalSHA256": "868682d33f5220be5a51ed0717aad0894065560659a37a77dda498bb827b4796",
+      "originalBytes": 1170
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/latest-response-browser-controls.json": {
+      "sha256": "c75e8765d9d50e90fa4afd7c0134bf0e596b847edf390774f737f65946e2b051",
+      "bytes": 1195,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/latest-response-browser-controls.log",
+      "originalSHA256": "3d9f7fe1840d704c89da737541269f214a1b399826d7da29d66d7bff2491e0e5",
+      "originalBytes": 317
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/privacy5.json": {
+      "sha256": "26247260ee2735daf2e890ac4bcc6d9643e73cea2087d0ecccd7d34ad88bd084",
+      "bytes": 4174,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/privacy5.log",
+      "originalSHA256": "744fce2cbc62a5d82a0b4b2b4a5fc8b647154091b8137275ca62a0af1b9a1146",
+      "originalBytes": 3369
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/first01edd/regression-migrate.json": {
+      "sha256": "921db90c34d5eabee9111af133242607dc7b8de275608dc539fd7bd52c4d7153",
+      "bytes": 3004,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final/regression-migrate.log",
+      "originalSHA256": "56b81faf62e84ff44a951eefb12bf4a01e0a762c465785168eb1f8803355956a",
+      "originalBytes": 2233
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/api3.json": {
+      "sha256": "330c51bfbddab9fa065bbcaa68c394eaa940a3f385051f57ac1d9dbb4c8c6ac7",
+      "bytes": 4192,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/api3.log",
+      "originalSHA256": "923efd87211d1ff918e58fa717c953e2e4914c5293f150aed0eb1ff30d418df9",
+      "originalBytes": 3387
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/check.json": {
+      "sha256": "4c9a79d73ddf81ad54d0c36a3a810413eb483da993066c64bba002c7f7eb4511",
+      "bytes": 15153,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/check.log",
+      "originalSHA256": "e17bef9094e866b03898464d0c8bdcccc755cd01c33426f5a5a45c85b4d51aa9",
+      "originalBytes": 14176
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/checkout.json": {
+      "sha256": "be4c739c8b105026fa0f2347b316d9e57340c9603fcfbac20bad173d663d6030",
+      "bytes": 870,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/checkout.log",
+      "originalSHA256": "6e40245709913567e00e6fb3766a7cae7b973b4dcf9a1a83efdcc0b22c684e1a",
+      "originalBytes": 91
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/clone.json": {
+      "sha256": "f6289b4e5de784e603c53b705e61f51fca05397ec88b72e18fa394a6b8faa405",
+      "bytes": 2173,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/clone.log",
+      "originalSHA256": "9f5b6ac0ba42e25f43e76349b0b282d5bab7f9db4ec6291aa058cad5f6614a92",
+      "originalBytes": 1183
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/development-migrate.json": {
+      "sha256": "3b2b3c0b45826acaf518f12f6168299d32d403e12250cc0fd22ecbd61974bce4",
+      "bytes": 2139,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/development-migrate.log",
+      "originalSHA256": "58e35b6d9178732091f75fa244022ddc889342e74cf9f8bbacdbe48f14e5bb30",
+      "originalBytes": 1368
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/development18-noenv.json": {
+      "sha256": "2b0e01ba3c40168afe2d2c486c7df37aadc49ea87e4f5cd0161b49c580b352da",
+      "bytes": 7998,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/development18-noenv.log",
+      "originalSHA256": "db8a233d85198573c7c59369fe27ccdd10ea49e2b6a775a616cc6c9691e21b47",
+      "originalBytes": 7154
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/engineering.json": {
+      "sha256": "a9214de098ac5ad9ddc6928b0fd7ba6e6799264861b9be4a1b0bd613db4794c6",
+      "bytes": 30056,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/engineering.log",
+      "originalSHA256": "7c025b25aca98c273da4000738f53b6d3cc05ff7d066ec07f52700bebc451ac1",
+      "originalBytes": 28162
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/generate.json": {
+      "sha256": "01ca1056d96c7a65a06968e472be1bfa95d121278a00d91f666df3d2b9873402",
+      "bytes": 1603,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/generate.log",
+      "originalSHA256": "75c9e0839a2f8c5cf85aa5ed7be8afb5e4e6629adead5adf4c57044a4fcf496e",
+      "originalBytes": 872
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/http16.json": {
+      "sha256": "38c0468dcadc9d55c893cdbf2df12a172f775b2c4431c0f4f5ad99fcb652697c",
+      "bytes": 12854,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/http16.log",
+      "originalSHA256": "15d253b845e9d0ac9905c998a83a08871f71e653a5080143db78382d6e6fa9fb",
+      "originalBytes": 11221
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/install.json": {
+      "sha256": "e384c799a98b0040a5b79bbf922c124ca36fb231d6436bd5cd9cd798f578fc13",
+      "bytes": 2151,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/install.log",
+      "originalSHA256": "e928db6707549a644eb372d37dd6b53e206266911be54fdf71774bb58be6b2ad",
+      "originalBytes": 1230
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/latest-response-browser-controls.json": {
+      "sha256": "c11121a741e514c43944baa0feb6d4b658ac771f2c6f3f01ae400a8b6022cac1",
+      "bytes": 1203,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/latest-response-browser-controls.log",
+      "originalSHA256": "9ff4620a21f7929aed1652f4f3d260c77086a0f4cc5f79ac98b4f77b9b843399",
+      "originalBytes": 318
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/privacy5.json": {
+      "sha256": "acd2dc9b9c7f7964a2d11d8928f19ca4399cdbc43e217cda0f22167acc355398",
+      "bytes": 4195,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/privacy5.log",
+      "originalSHA256": "60ce148e6d908005fea0795b4412219321a957ee805a25c1128c371be9807cdb",
+      "originalBytes": 3382
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/production-migrate.json": {
+      "sha256": "201fd90a089eae6fbe61ccc3cb3abced459a1bd2b76c0cc4d9e231320e72f04c",
+      "bytes": 2136,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/production-migrate.log",
+      "originalSHA256": "1c6c9994f31f80ae5d7235d5f093cb2024f6d0897feb3e87c90af55597de33cc",
+      "originalBytes": 1367
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/production18-noenv.json": {
+      "sha256": "d047ffdf9548f28c968cfcbea18f5dc355d3ad58c5aaf8fdda914b1e12da5919",
+      "bytes": 4574,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/production18-noenv.log",
+      "originalSHA256": "cf51ed520ddb085e51a260aac331517a16899ad7c26e1db07225d22c24aee82e",
+      "originalBytes": 3770
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/latest/regression-migrate.json": {
+      "sha256": "63e2d3581d6793803297f8240e7ddfeaf7c4869c26d3b77c0dd50a0a96417791",
+      "bytes": 3014,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/final-latest/regression-migrate.log",
+      "originalSHA256": "d3415d7f7e3aaad4b7a1c05efe23eaeed3dbc912dd303de577380430a74f33d3",
+      "originalBytes": 2235
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/original-ci-job.json": {
+      "sha256": "babbd7c3c5c12c0d4ff3005f3333de7018b1576f03290bf9af30da6dcd18c6e8",
+      "bytes": 137792,
+      "purpose": "full original actual CI failure, no artifact PASS",
+      "originalPath": ".local/step07-ci-response-lifecycle/original-ci-job.log",
+      "originalSHA256": "034727568a8fe94cf1cc107d90cd5170666ee97b394820e9372a5e79d9c7a591",
+      "originalBytes": 128878
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/control-build.json": {
+      "sha256": "e2eb468fcbe588dd626eaff1e7f6e71acdf1bc6bafd5eafb329a70d54bd5f218",
+      "bytes": 5535,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/control-build.log",
+      "originalSHA256": "7a259225f056e21919b6419e0d9e98e4a9748ebefdcdf1f6c498c372a7c05812",
+      "originalBytes": 4993
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/control-checkout.json": {
+      "sha256": "585a6b915cd14039f27af0b177a33b833c19d9d274770b6b3c1d03e8149120c8",
+      "bytes": 521,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/control-checkout.log",
+      "originalSHA256": "786dde65ea70a32c3a121681eb79ede45d3da065058a58b28ed3ef7e81880109",
+      "originalBytes": 101
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/control-clone.json": {
+      "sha256": "c736ad7fa8313190a5b2a01fd8e005c5be657c843a70c81bbee4ddaf72142875",
+      "bytes": 1919,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/control-clone.log",
+      "originalSHA256": "8358655137d8a790d705921df0e5c25c76cd852e082a1a0d02958890af7396c7",
+      "originalBytes": 1218
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/control-generate.json": {
+      "sha256": "7937ff66f2f4786afb96e6885bb74329d8b0b7d320f4afef0fa6598d4f8b2a7c",
+      "bytes": 1318,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/control-generate.log",
+      "originalSHA256": "de519b5dd622e1a0943785a4449acc5df04a4f921b1cf96dd2e4bfb7f8d87df2",
+      "originalBytes": 829
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/control-install.json": {
+      "sha256": "8c17074372fd112ba6c89c986a630583304939a335ed224812567a5bb13e5358",
+      "bytes": 1730,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/control-install.log",
+      "originalSHA256": "507f9f34c4c02160988fedffc8e96a9fbaea34c7395a71ce48849344c81c77b7",
+      "originalBytes": 1170
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/old-real-abort.json": {
+      "sha256": "f60427a808aedcdffedc4c4b0a9af419c70e83cbbbdf6663527c5ce33c7668f6",
+      "bytes": 466,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/old-real-abort.log",
+      "originalSHA256": "69503ef5fc36b100a8bb998eec733cd5a579ee779a3cb55bd1d921334ecf746b",
+      "originalBytes": 127
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/prefreeze-browser-v2.json": {
+      "sha256": "5a5839706de461e1544e54773c4edcdb33c0de0d29b82894a395383f832d327e",
+      "bytes": 890,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-browser-v2.log",
+      "originalSHA256": "c779cf6cda68698dd199dc7559ec1697aa1c774639f06695b734a82050dd69e1",
+      "originalBytes": 320
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/prefreeze-browser-v3.json": {
+      "sha256": "5594bbfbf09f670d6e0762fec5d720db6f8868799a89f8a3371956f0a222e7c6",
+      "bytes": 890,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-browser-v3.log",
+      "originalSHA256": "88aff55ed2945de532100f673bc0f078406d1cd9e8defd00e41d8e10f732a2ac",
+      "originalBytes": 320
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/prefreeze-browser.json": {
+      "sha256": "6a7e1ab5ada233e501de353e7b05a2af86cbb7ad454a8a882f4e65605e4a8d4c",
+      "bytes": 2626,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-browser.log",
+      "originalSHA256": "76ae4440b57591c765590f55f977c81cee5713a88912e748a53535f1c7649508",
+      "originalBytes": 2024
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/prefreeze-lint-v2.json": {
+      "sha256": "0f66d8f1bb18fb708c01dcd3ffd29b544145ea2bab03ab20b7a1e660df926d43",
+      "bytes": 644,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-lint-v2.log",
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/prefreeze-lint-v3.json": {
+      "sha256": "ad88f9aa995a20ff83e68ac94a0aac94d9861b627f11ce72fbdc645227f75830",
+      "bytes": 644,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-lint-v3.log",
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/prefreeze-type-v2.json": {
+      "sha256": "1a53af41ffc082ef811c5021dfebbf74b730c8bca9a5189ad8ad82246d9fbf4e",
+      "bytes": 538,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-type-v2.log",
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze/prefreeze-type-v3.json": {
+      "sha256": "ea63a3cafdb7b539b480cf0aee767d9bf647c584f75084e8c8c3e0b3980f036e",
+      "bytes": 538,
+      "purpose": "raw command log; expected counterexamples and first control failures retained",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-type-v3.log",
+      "originalSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/logs/prefreeze-fixed-selector-sixphase.json": {
+      "sha256": "6eface5ac3b74103bf3413662dd499ed4132ecb0faea4961e985cd555c8d1dbd",
+      "bytes": 6867,
+      "purpose": "corrected selectors full single180s sixphase prefreeze; not latestSource fullHTTP",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-fixed-selector-sixphase.log",
+      "originalSHA256": "a835e5025614be1dee7e24fcb22b7e8cc1f3c22ac4ed6c463c2eef11f9e62a28",
+      "originalBytes": 6040
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/old-real-abort-counterexample.json": {
+      "sha256": "34214ec35e9cd080c60bffae418d39bbe0fa38eeb26bf44ddf2443e31a353cab",
+      "bytes": 985,
+      "purpose": "real Chromium exact old-map failure; no second navigation; NOT PASS",
+      "originalPath": ".local/step07-ci-response-lifecycle/real-abort/evidence.json",
+      "originalSHA256": "34214ec35e9cd080c60bffae418d39bbe0fa38eeb26bf44ddf2443e31a353cab",
+      "originalBytes": 985
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/original-ci.json": {
+      "sha256": "4b1e1af74f55cfde004f68e36b4047a937f827c45628746b9332dd7113a30130",
+      "bytes": 526,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/original-ci.json",
+      "originalSHA256": "4b1e1af74f55cfde004f68e36b4047a937f827c45628746b9332dd7113a30130",
+      "originalBytes": 526
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/parent-review10.json": {
+      "sha256": "2b2b9c7dd8f898ae058f4478ead7fd2a0272d65b3628b61e0a3872c983a23800",
+      "bytes": 30155,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/parent-review10.json",
+      "originalSHA256": "2b2b9c7dd8f898ae058f4478ead7fd2a0272d65b3628b61e0a3872c983a23800",
+      "originalBytes": 30155
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/playwright-primary-source.json": {
+      "sha256": "579c155c8bf450bcdb8aad007fc2e6de79f1c89a6cc0d6827f4a4bbbb23747f3",
+      "bytes": 1171,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/playwright-primary-source.json",
+      "originalSHA256": "579c155c8bf450bcdb8aad007fc2e6de79f1c89a6cc0d6827f4a4bbbb23747f3",
+      "originalBytes": 1171
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/prefreeze-control-commands.json": {
+      "sha256": "93c2014733bbf5241e7776c61facc7261af1c087357853f69820b17798a1bda9",
+      "bytes": 1945,
+      "purpose": "exact source/cwd/argv/exit/time/raw provenance, prefreeze distinct",
+      "originalPath": ".local/step07-ci-response-lifecycle/control-commands.json",
+      "originalSHA256": "93c2014733bbf5241e7776c61facc7261af1c087357853f69820b17798a1bda9",
+      "originalBytes": 1945
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/prefreeze-fixed-selector-sixphase.json": {
+      "sha256": "28cc5eaa1457355a595ea310e097541a7b31ec53e09deab445f5563d4b753029",
+      "bytes": 561,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-fixed-selector-sixphase.json",
+      "originalSHA256": "28cc5eaa1457355a595ea310e097541a7b31ec53e09deab445f5563d4b753029",
+      "originalBytes": 561
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/prefreeze-prefreeze-commands.json": {
+      "sha256": "7399ae40d71daa0161cc37fa19527e4061b09b87d4360acdb943e01e1cd8604c",
+      "bytes": 577,
+      "purpose": "exact source/cwd/argv/exit/time/raw provenance, prefreeze distinct",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-commands.json",
+      "originalSHA256": "7399ae40d71daa0161cc37fa19527e4061b09b87d4360acdb943e01e1cd8604c",
+      "originalBytes": 577
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/prefreeze-prefreeze-v2-commands.json": {
+      "sha256": "968b1c18a59d9af4c201a70da6041669b5abcacd0166ca27e35c22f256f94a1a",
+      "bytes": 2679,
+      "purpose": "exact source/cwd/argv/exit/time/raw provenance, prefreeze distinct",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-v2-commands.json",
+      "originalSHA256": "968b1c18a59d9af4c201a70da6041669b5abcacd0166ca27e35c22f256f94a1a",
+      "originalBytes": 2679
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/prefreeze-prefreeze-v3-commands.json": {
+      "sha256": "7a0d61178ddc58addb79d6e1657100ae3f46ba6a98e51128b4fb3ee322332faa",
+      "bytes": 1761,
+      "purpose": "exact source/cwd/argv/exit/time/raw provenance, prefreeze distinct",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-v3-commands.json",
+      "originalSHA256": "7a0d61178ddc58addb79d6e1657100ae3f46ba6a98e51128b4fb3ee322332faa",
+      "originalBytes": 1761
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/private-inventory.json": {
+      "sha256": "c94684f40ae43085fb00803fdff7bd15280e5aff562c59fb20a4655080b0a59e",
+      "bytes": 686242,
+      "purpose": "preserves raw failures, original first timeouts and outputs"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/prefreeze-sixphase.py.json": {
+      "sha256": "8dfe1e066a157000174a01e1324180fa6899fb53b3cacc15760a1df53267792a",
+      "bytes": 1703,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-sixphase.py",
+      "originalSHA256": "31b39586e483173433bb923dd4cc83052f533ef2b85d5ef45c742aa5231d74ea",
+      "originalBytes": 1581
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/prefreeze-v2.py.json": {
+      "sha256": "2110be94203c815f8e437d1cab1c1a528dfcba7304546ca0042623611eee1a7a",
+      "bytes": 1504,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-v2.py",
+      "originalSHA256": "d40ec8445862c88ec4a7e8ac3bf0245e2f4b4db543961da73ccaf544a8368dba",
+      "originalBytes": 1383
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/prefreeze-v3.py.json": {
+      "sha256": "c6f5cbfdf2aa7325dc6e5ccfe383fbe58af18d423c1c0fcc3aaa2b77154ae07b",
+      "bytes": 1425,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze-v3.py",
+      "originalSHA256": "5ff1212a48481c979117244d4db3f70d621f472f86f94eb5bd3201eabfb17e41",
+      "originalBytes": 1304
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/prefreeze.py.json": {
+      "sha256": "9902caf45d0b62497bbfadcbad277f2520c81d9c68c20fcfcfa57c24bdc88621",
+      "bytes": 1492,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/prefreeze.py",
+      "originalSHA256": "01ce9807bacda69c2076897c4f027601aa206b5bd117f6af0e98c98d61f1f768",
+      "originalBytes": 1371
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/reproduce.mjs.json": {
+      "sha256": "66408e54ee2df27364d8bc7b334a20e6a0130f6f28dbe3b625beff0a0babede9",
+      "bytes": 3280,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/reproduce.mjs",
+      "originalSHA256": "fa690b047820a109acf5d29f47dedb56517ba0342cf6f023de6465dbaaf5accb",
+      "originalBytes": 3145
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/run-final.py.json": {
+      "sha256": "e8d21923c1ec1ef6f82b46fccd9e84bab7a62f76b8173e8b19350304de45b39a",
+      "bytes": 4283,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/run-final.py",
+      "originalSHA256": "e55101476a6d2fab3067cc807f3d59fcf6a7204e82afe94b7f1664e4e67450fc",
+      "originalBytes": 4142
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/run-latest.py.json": {
+      "sha256": "fe0c8ad1da6528e5511d33b862d87fe4460f65c60706a0d06cd4f6e39ff8869a",
+      "bytes": 4291,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/run-latest.py",
+      "originalSHA256": "0bbc20dfddd66f7d45aeb7ba97782cc7e6a8445c5f343fcb7122c4a33fdff25f",
+      "originalBytes": 4150
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/setup-control.py.json": {
+      "sha256": "77de3c75b78a94e9fb303428dabf1a22f7c32a8207cd43e2b871ac78d9b6b3b0",
+      "bytes": 2137,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/setup-control.py",
+      "originalSHA256": "00a519fd714b9148908d1ecd83fe54989ea81f2026f3ed78d414087c1ef1d8ee",
+      "originalBytes": 2012
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/verify-build.py.json": {
+      "sha256": "594a6b694e172a0e5839fc1f52dd6e77d7228c469de731de0ee2ace3c718948e",
+      "bytes": 1865,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/verify-build.py",
+      "originalSHA256": "8575553158e44dcef368e27539b3855e53430116e05dccc5bf787eeb716c4e4a",
+      "originalBytes": 1743
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/verify-capture.py.json": {
+      "sha256": "e9a3f65d046b7558609b1d836e0641b0b4cafb2bfb9024daeff944a095ad9456",
+      "bytes": 2192,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/verify-capture.py",
+      "originalSHA256": "e89de9aec47681510be6cbddbd335ce39930885efe8ecee755e2a06531553d74",
+      "originalBytes": 2064
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/probes/verify-downloads.py.json": {
+      "sha256": "492d1700a1a4aa5d8e3b2420010729701295015f717d8076a648ad66bc6e15bb",
+      "bytes": 1786,
+      "purpose": "reproducible author controls, no production code imports",
+      "originalPath": ".local/step07-ci-response-lifecycle/verify-downloads.py",
+      "originalSHA256": "26cae273293da6b10d8f1c43fde967f3013c7773bf60064368d1340f2f4276bd",
+      "originalBytes": 1657
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/screenshots/dev/05-retired.png": {
+      "sha256": "7e614d8e13d0e21ce3ec4ef0d4bed1013be502609b1abb1132d9e2ec0f87572e",
+      "bytes": 419281,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/05-retired.png",
+      "originalSHA256": "7e614d8e13d0e21ce3ec4ef0d4bed1013be502609b1abb1132d9e2ec0f87572e",
+      "originalBytes": 419281,
+      "purpose": "technical screenshot, not user art or artifact MZ approval"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/screenshots/dev/06-current-reloaded.png": {
+      "sha256": "849edb53d1ab1cee8cf2dd8f47a252ec3416da68640b1752f93d13bf78ad57ff",
+      "bytes": 423772,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/06-current-reloaded.png",
+      "originalSHA256": "849edb53d1ab1cee8cf2dd8f47a252ec3416da68640b1752f93d13bf78ad57ff",
+      "originalBytes": 423772,
+      "purpose": "technical screenshot, not user art or artifact MZ approval"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/screenshots/dev/r1-project-switch-stable.png": {
+      "sha256": "964606cf9904a3b9a8572cf34b2211a0526cfc08c98d862972673182473431f2",
+      "bytes": 413808,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/dev/r1-project-switch-stable.png",
+      "originalSHA256": "964606cf9904a3b9a8572cf34b2211a0526cfc08c98d862972673182473431f2",
+      "originalBytes": 413808,
+      "purpose": "technical screenshot, not user art or artifact MZ approval"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/screenshots/production/05-retired.png": {
+      "sha256": "ad3fd9201c9b9b856d7cff1dadfb2c4b616da8d46e6e77d99c3142eaa8789ca2",
+      "bytes": 421212,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/05-retired.png",
+      "originalSHA256": "ad3fd9201c9b9b856d7cff1dadfb2c4b616da8d46e6e77d99c3142eaa8789ca2",
+      "originalBytes": 421212,
+      "purpose": "technical screenshot, not user art or artifact MZ approval"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/screenshots/production/06-current-reloaded.png": {
+      "sha256": "d7e4b202141a93b57e04674b7f806994248af6ba2c70b7c59ba05c9913c38960",
+      "bytes": 425015,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/06-current-reloaded.png",
+      "originalSHA256": "d7e4b202141a93b57e04674b7f806994248af6ba2c70b7c59ba05c9913c38960",
+      "originalBytes": 425015,
+      "purpose": "technical screenshot, not user art or artifact MZ approval"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/screenshots/production/r1-project-switch-stable.png": {
+      "sha256": "d6863d02ed5591c6a20dc635260c5d2d691357f53dd8824728896a39c40b8bf4",
+      "bytes": 418245,
+      "originalPath": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/.local/step07/browser/production/r1-project-switch-stable.png",
+      "originalSHA256": "d6863d02ed5591c6a20dc635260c5d2d691357f53dd8824728896a39c40b8bf4",
+      "originalBytes": 418245,
+      "purpose": "technical screenshot, not user art or artifact MZ approval"
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/screenshots-viewed.json": {
+      "sha256": "eaaae0ae767c53cc4c5af0bcfffb0dbb41aef5b4e61c8359f75c225ed6d824c1",
+      "bytes": 1729,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/screenshots-viewed.json",
+      "originalSHA256": "eaaae0ae767c53cc4c5af0bcfffb0dbb41aef5b4e61c8359f75c225ed6d824c1",
+      "originalBytes": 1729
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/service-state-final.json": {
+      "sha256": "b500c681c586606c35f875b45ad2da88867383df7f194a3ac091f59a500adb0d",
+      "bytes": 1586,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/service-state-final.json",
+      "originalSHA256": "b500c681c586606c35f875b45ad2da88867383df7f194a3ac091f59a500adb0d",
+      "originalBytes": 1586
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/source-freeze.json": {
+      "sha256": "2b83542e2d9890e7932715bf27aa416f4848409528c5e4befe11acb8820a68fb",
+      "bytes": 1113,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/source-freeze.json",
+      "originalSHA256": "2b83542e2d9890e7932715bf27aa416f4848409528c5e4befe11acb8820a68fb",
+      "originalBytes": 1113
+    },
+    "docs/evidence/step-07/ci-response-lifecycle/source-protection.json": {
+      "sha256": "cbfb084056437ce4fb32ca33fc5e4b4a2ae2cc01498110f1f9a4c000c706d259",
+      "bytes": 24472,
+      "purpose": "original CI/independent history, precise diagnosis, source and latest actual verification",
+      "originalPath": ".local/step07-ci-response-lifecycle/source-protection.json",
+      "originalSHA256": "681171cd25d01fafdafa31bbd4e27159bfc33ef85b1474dae6c175144c5ca7b6",
+      "originalBytes": 24517
+    }
+  },
+  "excluded": [
+    "ledger itself (no self-reference)",
+    "raw .env/DSN/password/fullDB ownership/dump/private inputs/licensedRuntime/trace bytes; retained privately with hash-only inventory"
+  ],
+  "publicSensitiveScan": {
+    "actualOwnedDSNAndPasswordAbsent": true,
+    "scannedPayloadsAndReport": 164,
+    "secretsNotPrinted": true
+  },
+  "sourceFreezeAudit": "all postSource changes are this report and evidence only; all production/CI/ZIP repair bytes retained",
+  "configuration": {
+    "role": "step_coder",
+    "model": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "tier": "default(Standard)",
+    "serverFinalFields": "UNVERIFIED_NOT_EXPOSED",
+    "collaboration": false,
+    "globalConfigChanged": false
+  },
+  "scope": "same step07; independent next round11; steps08-10 NOT_STARTED",
+  "negativeClassification": "old URL-map real abort protocol error is counterexample not PASS; first prefreeze timeout controls and first01edd locator failure preserved; latest capture requires current document/full owner URL/status/finished/hash/PNG actual pixels"
+}

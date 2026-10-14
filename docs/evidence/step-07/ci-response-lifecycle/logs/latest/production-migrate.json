@@ -1,0 +1,26 @@
+{
+  "receipt": {
+    "label": "production-migrate",
+    "argv": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735",
+    "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 1.184,
+    "rawPath": ".local/step07-ci-response-lifecycle/final-latest/production-migrate.log",
+    "rawBytes": 1367,
+    "rawSHA256": "1c6c9994f31f80ae5d7235d5f093cb2024f6d0897feb3e87c90af55597de33cc",
+    "noRootDotEnv": true,
+    "safeEnvironment": {
+      "API_HOST": "127.0.0.1",
+      "API_PORT": "4398",
+      "WEB_PORT": "5298",
+      "E2E_MODE": null,
+      "TILESET_ASSET_ROOT": ".local/ci-response/production/assets"
+    }
+  },
+  "sanitizedText": "\n> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735\n> pnpm --filter @tileset/api db:migrate\n\n\n> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-response-latest-3c87eec0449f4160a87849bd633ec735/apps/api\n> node scripts/migrate.mjs\n\nPrisma schema loaded from prisma/schema.prisma\nDatasource \"db\": PostgreSQL database \"[REDACTED_OWN_TEST_DB]\", schema \"public\" at \"127.0.0.1:55476\"\n\n5 migrations found in prisma/migrations\n\nApplying migration `202610120001_step02_project`\nApplying migration `202610130001_step06_persistence`\nApplying migration `202610130002_step06_task_references`\nApplying migration `202610130003_step06_processing_stages`\nApplying migration `202610130004_step07_studio`\n\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 202610120001_step02_project/\n    └─ migration.sql\n  └─ 202610130001_step06_persistence/\n    └─ migration.sql\n  └─ 202610130002_step06_task_references/\n    └─ migration.sql\n  └─ 202610130003_step06_processing_stages/\n    └─ migration.sql\n  └─ 202610130004_step07_studio/\n    └─ migration.sql\n      \nAll migrations have been successfully applied.\n"
+}
