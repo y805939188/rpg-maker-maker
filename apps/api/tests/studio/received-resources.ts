@@ -89,7 +89,7 @@ export class ReceivedResources {
 
   private request = (event: {
     requestId: string;
-    frameId: string;
+    frameId?: string;
     loaderId: string;
     request: { url: string; method: string };
     redirectResponse?: unknown;
@@ -187,15 +187,16 @@ export class ReceivedResources {
     this.settleStream(wire);
   };
 
-  private save(wire: Wire, bytes: Buffer, channel: Received['channel']) {
+  private save(wire: Wire, bytes: Buffer, channel: NonNullable<Received['channel']>) {
     const { entry } = wire;
-    if (this.disposed || wire.overflow || bytes.length > MAX_BYTES) return;
-    if (entry.expectedBytes !== undefined && entry.expectedBytes !== bytes.length) return;
+    if (this.disposed || wire.overflow || bytes.length > MAX_BYTES) return false;
+    if (entry.expectedBytes !== undefined && entry.expectedBytes !== bytes.length) return false;
     entry.bytes = bytes;
     entry.sha = createHash('sha256').update(bytes).digest('hex');
     entry.channel = channel;
     entry.completion = entry.transport === 'finished' ? 'loading-finished' : 'content-length';
     entry.state = 'received';
+    return true;
   }
 
   private settleStream(wire: Wire) {
@@ -220,8 +221,8 @@ export class ReceivedResources {
     void this.documentSession!.send('Network.getResponseBody', { requestId: event.requestId }).then(
       ({ body, base64Encoded }) => {
         if (wire.entry.state === 'received') return;
-        this.save(wire, Buffer.from(body, base64Encoded ? 'base64' : 'utf8'), 'protocol-body');
-        if (wire.entry.state !== 'received') wire.entry.state = 'unavailable';
+        if (!this.save(wire, Buffer.from(body, base64Encoded ? 'base64' : 'utf8'), 'protocol-body'))
+          wire.entry.state = 'unavailable';
       },
       (error: unknown) => {
         if (wire.entry.state === 'received') return;
@@ -296,7 +297,13 @@ export class ReceivedResources {
 
   dispose() {
     this.disposed = true;
-    this.documentSession?.removeAllListeners();
+    const session = this.documentSession;
+    session?.off('Page.frameNavigated', this.documentCommitted);
+    session?.off('Network.requestWillBeSent', this.request);
+    session?.off('Network.responseReceived', this.response);
+    session?.off('Network.dataReceived', this.data);
+    session?.off('Network.loadingFinished', this.finished);
+    session?.off('Network.loadingFailed', this.failed);
     // Context/page close detaches this dedicated session; no shared page session is modified.
   }
 }

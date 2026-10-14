@@ -13,7 +13,7 @@ type Plan = {
   status?: number;
   hold?: 'headers' | 'body';
   response?: ServerResponse;
-  length?: number;
+  length?: number | undefined;
   encoding?: string;
 };
 const root = resolve('.local/received-resource-tests', randomUUID());
