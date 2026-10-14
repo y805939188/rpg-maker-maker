@@ -3254,7 +3254,32 @@
       "envMode": "0600",
       "restoredExistingProductionService": true,
       "noMigrationBuildResetOrDataMutation": true
-    }
+    },
+    "crcFixAuthorProgress": {
+      "status": "AUTHOR_CONTROL_PROGRESS_NOT_INDEPENDENT_CLOSE",
+      "oldConsumer": "bad IEND CRC accepted on actual same request ordinary finished and complete-abort; new rejection assertions fail on old extracted functions",
+      "workingFix": "PNG_CRC rejects both; valid controls pass; 34 consumer/protocol checks pass per live coder message",
+      "scope": "4 current test paths; source not yet frozen",
+      "requires": "whole six-phase negative, bound full regressions, independent16",
+      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+      "boundCheck": 380,
+      "boundConsumerControls": 34,
+      "controlsOverlap": "34 included in380; do not add totals",
+      "api": 3,
+      "privacy": 5,
+      "fullSixPhaseNegative": "EXPECTED_PNG_CRC_REJECTION first image approximately7.5 seconds per author; pending independent16",
+      "normalHttp16": {
+        "exitCode": 0,
+        "tests": 16,
+        "seconds": 472.283,
+        "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+        "authorResult": "PASS_NOT_INDEPENDENT"
+      },
+      "auxiliaryFailure": "private mixed-case database tag rejected; preserved; new lowercase isolated database used; production whitelist unchanged",
+      "production18": "RUNNING_NO_ROOT_ENV",
+      "development18": "NOT_YET_EXECUTED"
+    },
+    "authorSourceInVerification": "abd035ac20e6c4de5d19609d932935b99851b2b0"
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -3599,14 +3624,15 @@
       "pgPort": 55513,
       "apiPort": 4413,
       "webPort": 5313,
-      "status": "PREPARED_PG_RUNNING_EMPTY_SCHEMA; waiting new frozen candidate",
+      "status": "FROZEN_SOURCE_PREPARED; waiting author whole regression and handoff; formal not started",
       "env": "own new ignored .env, not copied",
       "assetRoot": ".local/step07-review/assets",
       "outputRoot": ".local/step07-review/independent-round16",
       "pgPid": 81665,
       "database": "tileset_studio",
       "privateEnv": "OWN_NEW_0600_NOT_COPIED",
-      "formalReviewStarted": false
+      "formalReviewStarted": false,
+      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0"
     }
   ],
   "lastSuccessfulCheckpoint": "R15 report preserved, owned review PG stopped; Standard coder resumed and original CRC counterexample audited; user Studio restored with unchanged data; R16 environment prepared only",
@@ -3644,7 +3670,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T18:43:59.926229+00:00",
+  "updatedAtUtc": "2026-10-14T19:05:53.466108+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
