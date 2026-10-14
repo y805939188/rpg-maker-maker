@@ -6,9 +6,9 @@
     7
   ],
   "stopAfter": 7,
-  "workflow": "IN_PROGRESS",
+  "workflow": "BLOCKED_AT_STEP07_INDEPENDENT_REVIEW16",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT16_PLATFORM_INTERRUPTED_NORMAL_RECOVERY",
+  "phase": "STEP07_BLOCKED_REPEATED_PLATFORM_INDEPENDENT_REVIEW16",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT16_INTERRUPTED_NOT_PASS",
+    "status": "BLOCKED_NECESSARY_INDEPENDENT_REVIEW16_PLATFORM",
     "reviewRounds": 16,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3195,7 +3195,7 @@
         }
       }
     },
-    "activeReview": 16,
+    "activeReview": null,
     "latestReview": {
       "round": 15,
       "result": "REQUIRES_REVISION",
@@ -3340,7 +3340,13 @@
         "pageErrors": 0,
         "status": "INDEPENDENT_PASS"
       },
-      "development18": "RUNNING_SEPARATE_NEW_DATABASE_ASSET_ROOT",
+      "development18": {
+        "tests": 18,
+        "skip": 0,
+        "unexpected": 0,
+        "flaky": 0,
+        "status": "ACTUAL_RUN_PASS_ORIGINAL_REPORTER; no final whole review verdict"
+      },
       "additionalFinding": "PNG high-bit chunk name normalization; exact consumer rejected by Sharp; report severity/scope pending",
       "remoteMainReadback": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
       "remoteValidation": "1d5ad26d05eba12b56994310b191754fa73a654e",
@@ -3371,7 +3377,43 @@
       "reviewVerdict": "INTERRUPTED_NOT_PASS",
       "normalRecoveryAttempt": 1,
       "strategy": "same thread same model ultra default, resume unfinished authorized review; no task disguise or security bypass"
-    }
+    },
+    "review16RepeatedPlatformBlock": {
+      "atUtc": "2026-10-14T20:01:29.948467+00:00",
+      "round": 16,
+      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+      "thread": "01a13be2-635b-7d11-a98d-ca81dc9906de",
+      "normalRecoveryAttempt": 1,
+      "nativeExit": 1,
+      "events": [
+        {
+          "type": "error",
+          "message": "This content was flagged for possible cybersecurity risk. If this seems wrong, try rephrasing your request. If you’re doing authorized security work that requires more cyber permissive safeguards, apply for Daybreak access via https://platform.openai.com/settings/organization/status-and-access before retrying."
+        },
+        {
+          "type": "turn.failed",
+          "error": {
+            "message": "This content was flagged for possible cybersecurity risk. If this seems wrong, try rephrasing your request. If you’re doing authorized security work that requires more cyber permissive safeguards, apply for Daybreak access via https://platform.openai.com/settings/organization/status-and-access before retrying."
+          }
+        }
+      ],
+      "rawEventsSha256": "a3c4558328586096fb35c0e5d5f24a5a2ea22ef62b81c04507bbf56563e0573d",
+      "rawEventsPath": ".local/orchestration-06-07/step07-review-round16-resume1/events.jsonl",
+      "status": "REPEATED_PLATFORM_BLOCK; NO_FURTHER_RETRY; NO_INDEPENDENT_PASS",
+      "report": "NOT_PRODUCED",
+      "ledger": "NOT_PRODUCED",
+      "mainRelease": "STOPPED_BEFORE_CANDIDATE8_PUSH"
+    },
+    "review16PartialPreservation": "docs/evidence/orchestration-06-07/step07-review16-partial-preservation.json",
+    "latestCompleteReview": {
+      "round": 15,
+      "result": "REQUIRES_REVISION",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd"
+    },
+    "finalIndependentPass": "NOT_OBTAINED_PLATFORM_BLOCK",
+    "candidate8CI": "NOT_STARTED",
+    "forwardMainRelease": "NOT_STARTED",
+    "finalReviewedSource": null
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -3689,7 +3731,7 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/main-ci-recovery/assets",
       "temporaryRoot": ".local/main-ci-recovery",
-      "serviceStatus": "OWN_NEW_PG55509_STARTED_EMPTY_CODE_RECOVERY_ACTIVE_API_WEB_NOT_STARTED",
+      "serviceStatus": "STOPPED_AFTER_CODE_HANDOFF;18DBs/privateData retained",
       "privateEnv": "FRESH_0600_NOT_COPIED"
     },
     {
@@ -3716,7 +3758,7 @@
       "pgPort": 55513,
       "apiPort": 4413,
       "webPort": 5313,
-      "status": "ACTIVE_INDEPENDENT16",
+      "status": "STOPPED_BLOCKED;9DBs/privateData retained",
       "env": "own new ignored .env, not copied",
       "assetRoot": ".local/step07-review/assets",
       "outputRoot": ".local/step07-review/independent-round16",
@@ -3728,8 +3770,8 @@
       "threadId": "01a13be2-635b-7d11-a98d-ca81dc9906de"
     }
   ],
-  "lastSuccessfulCheckpoint": "R15 report preserved, owned review PG stopped; Standard coder resumed and original CRC counterexample audited; user Studio restored with unchanged data; R16 environment prepared only",
-  "nextSafeAction": "Resume same Standard step_coder in main-ci-recovery isolated tree; meaningful actual PNG CRC regression; freeze new candidate then formal independent round16; no Step08",
+  "lastSuccessfulCheckpoint": "R15 CRC repair author complete; independent16 actual check380/API3/privacy5/HTTP16/prod18/dev18 passed; no complete independent report/PASS due repeated platform security block; source8750 protected and private394 evidence files hash-indexed; isolated PG55509/55513 stopped, user runtime4376/55476 running",
+  "nextSafeAction": "When platform allows necessary independent review, continue frozen round16 same-source remaining download/RawCanvas/DB links and formal report/ledger, no reimplementation or reset; only whole independent PASS permits new candidate8 CI and normal forward publication; do not evade current platform checks",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3763,7 +3805,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T19:59:02.252757+00:00",
+  "updatedAtUtc": "2026-10-14T20:04:28.729947+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -3850,12 +3892,22 @@
     {
       "gate": "STEP07_LATEST_INDEPENDENT_REVIEW",
       "id": "STEP07-R15-001",
-      "status": "OPEN",
+      "status": "PARTIAL_INDEPENDENT_FIXED_FULL_REVIEW_REPORT_PENDING",
       "severity": "P2",
       "reason": "currentmandatoryrenderedPNG test validator acceptsbadIENDCRC evenfullactual6phaseconsumer",
       "evidence": "Reviewer15privatecounterexample finalpublicreportpending",
       "blocking": true,
-      "report": "docs/evidence/step-07/independent-round15/report.md"
+      "report": "docs/evidence/step-07/independent-round15/report.md",
+      "note": "Reviewer partial original finding confirms CRC fixed; wholePASS absent, not release gate closed"
+    },
+    {
+      "id": "STEP07-INDEPENDENT16-PLATFORM",
+      "status": "OPEN",
+      "blocking": true,
+      "reason": "Two same-role same-context native attempts failed with platform possible cybersecurity risk; formal report/ledger not produced; no whole independent PASS",
+      "evidence": "docs/evidence/orchestration-06-07/step07-review16-platform-repeated-block.json",
+      "safeNext": "complete necessary independent review only when platform permits; no bypass/new task disguise"
     }
-  ]
+  ],
+  "finalReport": "docs/orchestration/steps-06-07-final-report.md"
 }

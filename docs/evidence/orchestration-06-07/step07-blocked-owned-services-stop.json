@@ -1,0 +1,29 @@
+{
+  "atUtc": "2026-10-14T20:02:25.886653+00:00",
+  "resources": [
+    {
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round16/rpg-maker-maker",
+      "port": 55513,
+      "pid": 81665,
+      "activeClientsBefore": 0,
+      "databasesRetained": 9,
+      "ownApiWebStopped": true,
+      "postgres": "STOPPED_NORMAL",
+      "envMode": "0o600",
+      "privateData": "ALL_RETAINED_NO_DELETION"
+    },
+    {
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-main-ci-recovery/rpg-maker-maker",
+      "port": 55509,
+      "pid": 33299,
+      "activeClientsBefore": 0,
+      "databasesRetained": 18,
+      "ownApiWebStopped": true,
+      "postgres": "STOPPED_NORMAL",
+      "envMode": "0o600",
+      "privateData": "ALL_RETAINED_NO_DELETION"
+    }
+  ],
+  "guardCorrection": "initial read-only guard used two SQL resultsets; psql returned last only, stopped before any signal; changed to single aggregate row; no DB writes",
+  "userRuntime": "API4376/PG55476 retained running, untouched"
+}
