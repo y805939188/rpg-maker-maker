@@ -1,0 +1,21 @@
+{
+  "label": "prefreeze-new-harness-1500ms-legal-processed-latency",
+  "args": [
+    "pnpm",
+    "exec",
+    "vitest",
+    "run",
+    "--config",
+    "vitest.step07.config.ts",
+    "-t",
+    "R4 real COMMIT"
+  ],
+  "baselineSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+  "privateInstrumentationOnly": true,
+  "global180000Unchanged": true,
+  "exitCode": 0,
+  "durationSeconds": 151.648,
+  "log": ".local/step07-ci-timeout/prefreeze-harness-legal-latency.log",
+  "logSHA256": "7663b8495223441cb377ac721981cb7f52d87a52f9a18be4b1e3231e4c22f05a",
+  "logBytes": 6034
+}

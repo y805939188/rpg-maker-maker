@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND7",
+  "phase": "STEP07_ROUND7_ZIP_TEST_FIX_CODING_DISPATCH",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT_REVIEW",
+    "status": "CHANGES_REQUESTED_ROUND7",
     "reviewRounds": 7,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -454,7 +454,7 @@
       "fullUnaffectedR5Suites": "NOT_RERUN"
     },
     "candidateSha": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
-    "candidateState": "F574_FROZEN_SELF_TESTED_UNDER_INDEPENDENT_ROUND7",
+    "candidateState": "F574_REVIEW_REQUIRES_REVISION_TEST_ZIP_GAP",
     "reviewEnvironment": {
       "atUtc": "2026-10-13T22:55:11.042335+00:00",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker",
@@ -471,7 +471,7 @@
       "tests": "NOT_EXECUTED",
       "formalReviewRound7Started": false,
       "candidateState": "FROZEN_TEST_FIX_AWAIT_FULL_AUTHOR_HANDOFF",
-      "status": "ACTIVATED_FORMAL_ROUND7",
+      "status": "ROUND7_COMPLETE_OWN_SERVICES_STOPPED_PRIVATE_DATA_RETAINED",
       "formalReviewStarted": true,
       "databaseMigration": "NOT_EXECUTED",
       "preparedBy": "MAIN_ORCHESTRATOR",
@@ -1060,17 +1060,65 @@
         "round": 7,
         "candidate": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
         "docsHead": "2eb75dd4b91f8212a572ef92c7930ff4d17336b5",
-        "status": "IN_PROGRESS",
+        "status": "REQUIRES_REVISION",
         "threadId": "01a13797-04c8-7940-aecb-e57f5c53bcc7",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round7/rpg-maker-maker",
         "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round7-client.json",
         "nativeProcess": 96827,
         "nativeOutput": ".local/orchestration-06-07/step07-review-round7",
         "mechanicalRoundLimit": null,
-        "scope": "whole latestintegratedcandidate, original assertions/budgets and actual browsernetworkPNG/sameZIP identity, test-only workload improvement, appropriate actualcrossmodule regressions plus independently applicable parent proof"
+        "scope": "whole latestintegratedcandidate, original assertions/budgets and actual browsernetworkPNG/sameZIP identity, test-only workload improvement, appropriate actualcrossmodule regressions plus independently applicable parent proof",
+        "sourceProtectionFiles": 3781,
+        "clientActualContext": "gpt-6.1-sol/ultra/cwd verified;default requested;final server fields UNVERIFIED_NOT_EXPOSED",
+        "executedProgress": {
+          "checkTests": 266,
+          "productionExports": 11,
+          "actualAppAndTestDiffScope": "only original studio integration test harness; production and CI unchanged",
+          "assertionMapping": "INDEPENDENTLY_IN_PROGRESS",
+          "auxiliaryEnvironmentProbe": "root transitive Prisma resolution failure retained; corrected through declared API dependency without product change",
+          "finalConclusion": "PENDING",
+          "formalHttp16": "16_OF16_PASS_INDEPENDENT",
+          "normalSixStageApproxSeconds": 133,
+          "oldSame1500msDelay": "ORIGINAL_180000MS_BUDGET_FAIL_AT180003MS_RETAINED",
+          "newSameDelay": "PASS_INDEPENDENT_150.964_SECONDS_COMMAND",
+          "zipFullAssertionNegativeControl": "FOUR_CORRUPT_REAL_ZIPS_ACCEPTED_ENTIRE_SIXSTAGE_CASE_INDEPENDENT_DECODER_REJECTS",
+          "processedRequestsPerMode": {
+            "oldApprox": 10,
+            "new": 5
+          }
+        },
+        "provisionalIndependentFinding": {
+          "status": "FORMAL_STEP07_R7_001_OPEN",
+          "topic": "test ZIP helper ignores central-directory CRC/member-name mutations while local CRC mutation rejected",
+          "severity": "P2",
+          "blocking": true,
+          "negativeControls": "helper isolated proof plus actual mutated download in full six-stage test currently in progress",
+          "actual": "four real downloaded ZIPs with central CRC corrupted and outer body hash recomputed accepted by entire six-stage case; independent decoder rejects all four",
+          "normalProductionZip": "independently valid originals pass"
+        },
+        "report": "docs/evidence/step-07/independent-round7/report.md",
+        "reportSha256": "ae1e528e69a4552a4c39e580bf4f6e45ea7e5ee786d8c387ffea41751c456443",
+        "ledger": "docs/evidence/step-07/independent-round7/evidence/ledger.json",
+        "ledgerSha256": "e96e5bb9327f00ab76278134864a2686e7e69c0bc46f652c3ba8b72688d738aa",
+        "payloadsVerified": 216,
+        "nativeExitCode": 0,
+        "blockingP0": 0,
+        "blockingP1": 0,
+        "blockingP2": 1,
+        "findings": [
+          {
+            "id": "STEP07-R7-001",
+            "severity": "P2",
+            "blocking": true,
+            "status": "OPEN",
+            "location": "apps/api/tests/studio/integration.test.ts:1236",
+            "trigger": "centralCRC/name/EOCDcount mutation accepted;four actualZIPs passentirecase despite independentdecoderreject",
+            "minimalFix": "strict central/local/EOCD consistency and real corruptarchive negativecontrols without budget orproduction changes"
+          }
+        ]
       }
     ],
-    "latestIndependentReview": "PASS_ROUND6_SOURCE87_ONLY_NEW_TEST_UNREVIEWED",
+    "latestIndependentReview": "REQUIRES_REVISION_ROUND7",
     "codingFix": {
       "round": 4,
       "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
@@ -1175,21 +1223,21 @@
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "status": "PUSHED_REMOTE_READBACK_EXACT_NEW_REQUIRED_CI_IN_PROGRESS",
+      "status": "LOCAL_F574_DOCS2EB_EXACT_EXECUTION_R7_IN_PROGRESS_NOT_PUSHED",
       "executableDiffZero": true,
       "database": "OWNED_POSTGRES55481_NEW_EMPTY",
       "preparation": "FROZEN_INSTALL_GENERATE_BUILD_FIVE_MIGRATIONS_SUCCESS_NOT_POSTMERGE_TESTS",
-      "candidateExecutableSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
-      "validationHead": "b868e351f01edcbcfc63b3b9e15dc26981427361",
-      "postSourcePaths": 2181,
-      "remotePushed": true,
-      "authorDocs": "1e83c986091739f76899d35eeeb5879e7bf0bf58",
+      "candidateExecutableSource": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+      "validationHead": "d5667f5718c496d51b6d14109fd59b7475cac9aa",
+      "postSourcePaths": 2342,
+      "remotePushed": false,
+      "authorDocs": "2eb75dd4b91f8212a572ef92c7930ff4d17336b5",
       "previousReviewBasis": {
         "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "review": "REQUIRES_REVISION_ROUND3"
       },
-      "latestReview": "PASS_ROUND6_SOURCE87",
-      "reviewedSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac"
+      "latestReview": "ROUND7_IN_PROGRESS_PARENT_R6_PASS_SOURCE87_ONLY",
+      "reviewedSource": null
     },
     "pendingCandidate": {
       "sha": "59423201ba10ee71c3d1b04cebec69659017b7c7",
@@ -1419,7 +1467,7 @@
       "scope": "README_DOCS_ONLY",
       "executionImpact": "NONE_MAIN_REVIEWED_MD_REPORT_MAPPING_AND_SANITIZED_EVIDENCE_ONLY"
     },
-    "activeIndependentReviewRound": 7,
+    "activeIndependentReviewRound": null,
     "historicalReviewEnvironments": [
       {
         "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
@@ -1795,12 +1843,13 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
-      "credentials": "FRESH_OWN_ENV600_NO_COPY"
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "credentials": "FRESH_OWN_ENV600_NO_COPY",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round7-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latestf574/docs2eb Coderexit0 clean;Main90committedpayload/report5eb/ledger6e5/92docs用途 +actual206Build71c1 verified. FormalnewR7Ultra/default native96827/CID01a13797... started ownPG55491/API4391/Web5291. OldCI2 actualtimeout retained;noMain07merge.",
-  "nextSafeAction": "Wait fresh latestF574 R7 independent wholecandidate result, preserveoriginals/closeownservices; ifPASS integrateSource/docs/review into validation andnewfullcandidateCI; oldfailed2CIsremain.OnlylatestPASS+requiredCI success permitsnormalMainmerge/postmerge/push/readback/mainCI/finaldocsSTOP07.",
+  "lastSuccessfulCheckpoint": "R7nativeexit0 REQUIRES_REVISION uniqueP2R7-001;Main216originalSHA/passwordverified,all3781source+206buildunchanged,ownPG55491stopsafely7DBprivate retained. Normal266/HTTP16/API3/list5+5 andold/newdelay proven,CRCnegativefakepassconfirmed. NoMainmerge/publish.",
+  "nextSafeAction": "Resume sameStandard/xhighCoder fixformalR7-001 minimalstrictstoredZIP/testnegatives preservingall originalbudget/sixstage;newfrozenSource/docs/206Build thenfreshactualR8 independentwholePASS andrequirednewCI before normalrelease.08–10notstarted.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -1834,7 +1883,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-13T23:27:20.306141+00:00",
+  "updatedAtUtc": "2026-10-14T00:18:46.134578+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -1874,11 +1923,18 @@
   ],
   "blockers": [
     {
-      "gate": "STEP07_REQUIRED_CANDIDATE_CI",
-      "id": "STEP07-CI-38475532067",
+      "gate": "STEP07_TECHNICAL_RELEASE",
+      "id": "STEP07-R7-001",
+      "severity": "P2",
       "status": "OPEN",
-      "reason": "actual 180s two-mode six-stage COMMIT test timeout; root cause unverified",
-      "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-second-failure.json"
+      "reason": "necessary testZIP verifier ignores central/EOCD allowing real corrupted ZIPs to falsePASS",
+      "report": "docs/evidence/step-07/independent-round7/report.md"
+    },
+    {
+      "gate": "STEP07_REQUIRED_CANDIDATE_CI",
+      "id": "LATEST_CANDIDATE_CI_NOT_PASS",
+      "status": "OPEN",
+      "lastFailureRun": 38475532067
     }
   ]
 }

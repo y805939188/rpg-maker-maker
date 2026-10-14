@@ -1,0 +1,7 @@
+{
+  "privateOriginal": ".local/step07-ci-timeout/run-prefreeze-normal2.py",
+  "originalSHA256": "b85b1309fa5178acbc49bc233bb4db64e45d671181b8b80c3c1fb9522cce033c",
+  "originalBytes": 1123,
+  "text": "from pathlib import Path\nimport json,subprocess,os,time,hashlib\nroot=Path.cwd();s=root/'.local/step07-ci-timeout';private=json.loads((s/'runtime-private.json').read_text());w=Path(private.pop('workspace'));env={**os.environ,**private,'PATH':'/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+os.environ['PATH']};args=['pnpm','exec','vitest','run','--config','vitest.step07.config.ts','-t','R4 real COMMIT'];start=time.time();log=s/'prefreeze-harness-normal2.log'\nwith log.open('w')as f:p=subprocess.run(args,cwd=w,env=env,stdout=f,stderr=subprocess.STDOUT)\nrow={'label':'prefreeze-new-harness-normal','args':args,'baselineSource':'87e13a8a99db3058dce8680d3ae985969b8a9bac','privateInstrumentationOnly':True,'global180000Unchanged':True,'exitCode':p.returncode,'durationSeconds':round(time.time()-start,3),'log':str(log.relative_to(root)),'logSHA256':hashlib.sha256(log.read_bytes()).hexdigest(),'logBytes':log.stat().st_size};(s/'prefreeze-harness-normal2-command.json').write_text(json.dumps(row,indent=2)+'\\n');print(json.dumps({k:row[k] for k in ['label','exitCode','durationSeconds']}));raise SystemExit(p.returncode)\n",
+  "sanitized": true
+}

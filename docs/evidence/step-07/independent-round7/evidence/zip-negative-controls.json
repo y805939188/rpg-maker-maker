@@ -1,0 +1,48 @@
+{
+  "source": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+  "helperSHA256": "bd277d3ee7d14b363ebc06fdbf7bd30c58df035d57a21bb40924f89446e1db74",
+  "normalActualR6Download": "/Users/dingshinn/Desktop/rpg-maker-maker/docs/evidence/step-07/independent-round6/evidence/download/production-first.zip",
+  "normalSHA256": "f02578dffa1e0318138cf9c51a8de239f9efa4720e6ff6f527c698d1e15f61e7",
+  "substitution": "Only Vitest expect comparison methods replaced with equivalent node:assert operations; helper/CRC source unchanged",
+  "centralOffset": 70325,
+  "controls": [
+    {
+      "name": "normal",
+      "acceptedByExactCandidateHelper": true,
+      "sha256": "f02578dffa1e0318138cf9c51a8de239f9efa4720e6ff6f527c698d1e15f61e7",
+      "bytes": 70794
+    },
+    {
+      "name": "local-crc",
+      "acceptedByExactCandidateHelper": false,
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 1157627187\n- 1157627186\n           ^\n",
+      "sha256": "86c605d964697df4eb2852460fb2349610f28ab1f6ec6bacb6dc1b11e42e3e4f",
+      "bytes": 70794
+    },
+    {
+      "name": "central-crc",
+      "acceptedByExactCandidateHelper": true,
+      "sha256": "16f2bceab35e5834d4e4f19266fb15fbbffa4de807e4be6cb06a1fead52e9099",
+      "bytes": 70794
+    },
+    {
+      "name": "central-unsafe-member",
+      "acceptedByExactCandidateHelper": true,
+      "sha256": "17ad16839ec57047ae123cae3ab3f868a5ff76fdeb1d9f13e71346e52c19b631",
+      "bytes": 70794
+    },
+    {
+      "name": "central-extra-count",
+      "acceptedByExactCandidateHelper": true,
+      "sha256": "d42c3ee9d4ef05a142805ab92759079a399dd51fb5a255b4a6a5359cbc24c18f",
+      "bytes": 70794
+    },
+    {
+      "name": "local-file-pixel",
+      "acceptedByExactCandidateHelper": false,
+      "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 1947661395\n- 1157627187\n",
+      "sha256": "8b6c3dd5ca47e33d51af9554227730c60b7ac70ce068d173f7ad2f147ca4c346",
+      "bytes": 70794
+    }
+  ]
+}
