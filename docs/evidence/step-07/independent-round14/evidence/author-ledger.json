@@ -1,0 +1,2684 @@
+{
+  "schema": "step07-author-ledger-v1",
+  "status": "READY_FOR_REVIEW_ROUND14",
+  "sourceSHA": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+  "parentSource": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+  "parentDocsHEAD": "8e437ccfccba2c9b98cc713b002e62acfb739465",
+  "docsHEADBinding": "Final pure-docs commit SHA in final handoff/private coding-progress; no self-reference",
+  "formalReviewUsed": 13,
+  "nextFormalReview": 14,
+  "mechanicalCap": null,
+  "sourcePaths": {
+    "apps/api/src/studio-service.ts": {
+      "sha256": "6efa6200ebe1b82c78a3d4690a566ea6ed15ec19e4fd788a47f29d52db60baf5",
+      "bytes": 32125
+    },
+    "apps/api/tests/studio/integration.test.ts": {
+      "sha256": "d0c2d28b1d744cd5ce5417144ce3c58b4885c28a63e00c242543768aefb4f7f3",
+      "bytes": 71335
+    },
+    "packages/persistence/src/index.ts": {
+      "sha256": "72dfc5721c677e5d1c9ab3eb00072e2eb398fe873abb2ea2e01b27f2df817c1a",
+      "bytes": 686
+    },
+    "packages/persistence/src/replay.ts": {
+      "sha256": "93ba8c9face83f8c332c2daf1d62525bbbc23138144166a3330073a0a32f85dd",
+      "bytes": 12226
+    },
+    "packages/persistence/src/store.ts": {
+      "sha256": "b7324d6ed44922d120b81584d589ef4a4998c2ab38f10a2cff4415b7a913f77c",
+      "bytes": 47708
+    },
+    "packages/persistence/tests/replay.test.ts": {
+      "sha256": "e88373d66aa6d0ee3fb82a5d9df330f87eafb0bc572406e267ba9bc5dff7cf29",
+      "bytes": 5732
+    },
+    "scripts/verify-exports.mjs": {
+      "sha256": "d73a51955813bc2e911f381dcec325c671f9292246c30fc218652409f1c2b5d7",
+      "bytes": 2956
+    }
+  },
+  "sourceTrackedPaths": 4647,
+  "unchangedSourcePaths": 4640,
+  "newIndependentReview": "NOT_EXECUTED_BY_CODER_PENDING_MAIN_ROUND14",
+  "newCandidateCI": "NOT_EXECUTED_BY_CODER_PENDING_MAIN_LINUX_FULL_GATE",
+  "approveMergePushRelease": "NOT_EXECUTED_BY_CODER",
+  "confirmedMechanism": "redundant public domain serialize/redecode plus separately replaying identical MZ archives within one StudioJob; exact bounded lease now reused, all actual file/hash/Export checks retained",
+  "CI6ExactTimingAttribution": "coarse completed CI stage events known; local method/gate/worker profile proves repeated work; controlled9s not actual remote9s claim; CI5 cause remainsUNKNOWN",
+  "originalCI6": "FAILURE retained; completed135643bytes/a0f687988f5a4529a65d6f82e18264c6f6ec91e3501e43d080d49fa96097efda; one180s timeout, body stages all passed",
+  "negativeClassification": "first wrong predicate oldFAIL/newcanceled retained; exactstudioJobscope old180003msFAIL/new118.884prefreezePASS; latestSourcebound124.771PASS; expected negative is notartifactPASS",
+  "latestExecuted": {
+    "check": "354all0skip includes8capture,31IO,47ZIP,new2 bounded session tests",
+    "captureStandalone": "8passed repeated, not362unique",
+    "API": 3,
+    "devPrivacy": 5,
+    "HTTP": 16,
+    "singleSixPhaseCaseMs": 114264,
+    "PG06FullFaultRecovery": 23,
+    "processedSuccessfulReads": {
+      "production": 5,
+      "development": 5
+    },
+    "productionE2E": {
+      "passed": 18,
+      "skipped": 0,
+      "retries": 0,
+      "envFileAbsent": true
+    },
+    "developmentE2E": {
+      "passed": 18,
+      "skipped": 0,
+      "retries": 0,
+      "envFileAbsent": true
+    },
+    "actualZIPs": 6,
+    "independentDecodedPNG": 12,
+    "engineeringFiles": 206
+  },
+  "notExecutedThisRound": [
+    "old56payload16PNG/JS78/8native CPU compare",
+    "new Independent Review14",
+    "new GitHub full candidateCI",
+    "approval/merge/push/publication",
+    "new artifact nativeMZ/user artwork"
+  ],
+  "build": {
+    "buildId": "step07-0cdd9ad6a61a-1c6e73ce7d2c3713",
+    "manifestSHA256": "0dae573d54c309fea0223815235dc2b688e1c04fd65b6ee7097ff5ed758caac6",
+    "manifestPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/artifacts/step07-0cdd9ad6a61a-1c6e73ce7d2c3713/manifest.json",
+    "payloads": 206,
+    "allRecomputed": true,
+    "actualUnchangedPayloadCount": 195,
+    "actualChangedPayloads": [
+      "apps/api/dist/resources/studio.json",
+      "apps/api/dist/studio-service.js",
+      "apps/api/dist/studio-service.js.map",
+      "packages/persistence/dist/index.d.ts",
+      "packages/persistence/dist/index.js",
+      "packages/persistence/dist/index.js.map",
+      "packages/persistence/dist/replay.js",
+      "packages/persistence/dist/replay.js.map",
+      "packages/persistence/dist/store.d.ts",
+      "packages/persistence/dist/store.js",
+      "packages/persistence/dist/store.js.map"
+    ],
+    "files": [
+      {
+        "path": "apps/api/dist/app.d.ts",
+        "sha256": "e6188c003d3e99fc5a4bd54184be541ee6e13de7bd959376d1ffc163ceaf4347",
+        "bytes": 613
+      },
+      {
+        "path": "apps/api/dist/app.js",
+        "sha256": "ce0bd48af13bfa4f1e2d61a768fadc702c9b30f322386f1a58dfcdf9b3753a72",
+        "bytes": 3792
+      },
+      {
+        "path": "apps/api/dist/app.js.map",
+        "sha256": "a4243a214d98676f4a1a3bed6d5e679e7d1bf035fb56e0bd9c54b2e52e338bc3",
+        "bytes": 3340
+      },
+      {
+        "path": "apps/api/dist/config.d.ts",
+        "sha256": "1effd003995f60cb09b580599658f8fef7effe2d7e8048ea95683bf803621bae",
+        "bytes": 967
+      },
+      {
+        "path": "apps/api/dist/config.js",
+        "sha256": "a70f29c0ecc10e55ab16adc0349c9a453c1e365bc8a90fb01daf998fe3b64d15",
+        "bytes": 1582
+      },
+      {
+        "path": "apps/api/dist/config.js.map",
+        "sha256": "c77d6ba110a5d2c506999456ca80cdfd3a2940b4dd83a05f53659e88880c1701",
+        "bytes": 1805
+      },
+      {
+        "path": "apps/api/dist/errors.d.ts",
+        "sha256": "1dc76b7022ac6a51de2b0a007f8fc405122be270ac526da3ed4d402738e0bb07",
+        "bytes": 357
+      },
+      {
+        "path": "apps/api/dist/errors.js",
+        "sha256": "67457c31ea806d527cf2bc3aea1af708544475decbd287551d1ad2c1e5a74939",
+        "bytes": 3981
+      },
+      {
+        "path": "apps/api/dist/errors.js.map",
+        "sha256": "bbdf8a15f5b74ebb40dbdbceac5a13da4ec927bff4c7202e2cf2374c0e2e95a2",
+        "bytes": 2420
+      },
+      {
+        "path": "apps/api/dist/main.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "apps/api/dist/main.js",
+        "sha256": "448e71c38d498ce6bfd094d35d81606150a38fe4488ef9129b25fb0200c41d6b",
+        "bytes": 1191
+      },
+      {
+        "path": "apps/api/dist/main.js.map",
+        "sha256": "98492e72a9db1e22feb7386943f557232b25fd1135d7f4f2ceef880631c8679e",
+        "bytes": 1311
+      },
+      {
+        "path": "apps/api/dist/projects.d.ts",
+        "sha256": "7d155033513f0a2ee2dd95bb792fe4e3e074caf5b3d72d6bca661fd2889b4321",
+        "bytes": 926
+      },
+      {
+        "path": "apps/api/dist/projects.js",
+        "sha256": "2f3d0a4cb73e977d39b65f2e9d8a1619b4fd83d567b97abdfae25d12ace8dcff",
+        "bytes": 4264
+      },
+      {
+        "path": "apps/api/dist/projects.js.map",
+        "sha256": "3972b4d118dfd6d46458836170129856b3a2df65719a7cfeacf7b08674f98dae",
+        "bytes": 2649
+      },
+      {
+        "path": "apps/api/dist/request-budget.d.ts",
+        "sha256": "1b3ee5acc7583b64e80816a7162aaa51f2d9368e90045e74981aedb29cb49136",
+        "bytes": 192
+      },
+      {
+        "path": "apps/api/dist/request-budget.js",
+        "sha256": "b69f5a6f7586c4a43f6ba68fdbae03a9ba05cdf452050c03c3b1381f6640d58b",
+        "bytes": 1535
+      },
+      {
+        "path": "apps/api/dist/request-budget.js.map",
+        "sha256": "9405a6948106dc3a04ab751ef5ef291b2ecfbf5e1a726ed2174a5b9c56b0e923",
+        "bytes": 1544
+      },
+      {
+        "path": "apps/api/dist/resources/studio.json",
+        "sha256": "3efdf701e2adec26b62420753f799398e46f32b076d9368cb78fdfa4f4a6556b",
+        "bytes": 66892
+      },
+      {
+        "path": "apps/api/dist/security.d.ts",
+        "sha256": "c82d8c80bd30d16b4447214a3a867f395ea5d981713034c939b3d618528797c9",
+        "bytes": 180
+      },
+      {
+        "path": "apps/api/dist/security.js",
+        "sha256": "52dec6bf098388304bbbb74f76a3f7d0518c90bcb33961d9df9530a725ce7d13",
+        "bytes": 2878
+      },
+      {
+        "path": "apps/api/dist/security.js.map",
+        "sha256": "d3d7c97fa3317cc0c96c2ba12f89685820af781451acd5e1dfb824aacbb5b21d",
+        "bytes": 2805
+      },
+      {
+        "path": "apps/api/dist/studio-errors.d.ts",
+        "sha256": "1abab5a639a4da8c498cfec1f895d97ec33a0bd75ab8be4381e53bf88d516aed",
+        "bytes": 337
+      },
+      {
+        "path": "apps/api/dist/studio-errors.js",
+        "sha256": "9ede48beaf97d2b5133b13a2f6716bb4266921852a478f8dc8a4c815c9a5e654",
+        "bytes": 4375
+      },
+      {
+        "path": "apps/api/dist/studio-errors.js.map",
+        "sha256": "3dc830328898bc0329a5e3d82725a1b6d775dd34f7f79c1c4827f5015c91cd3f",
+        "bytes": 2590
+      },
+      {
+        "path": "apps/api/dist/studio-http.d.ts",
+        "sha256": "409cf5024419a07ce427c5b7d3e72b322a1759029facc12c4d6974c3edd57c8c",
+        "bytes": 177
+      },
+      {
+        "path": "apps/api/dist/studio-http.js",
+        "sha256": "ab2fda0de63890c9050d5d24588e9161504535494ca7da63499cb6c0359d9167",
+        "bytes": 6875
+      },
+      {
+        "path": "apps/api/dist/studio-http.js.map",
+        "sha256": "e3160e9d8ddd63daf88cb8e6ac3c6225eeae25dda2d46c74fcb09cb3a41ece48",
+        "bytes": 8509
+      },
+      {
+        "path": "apps/api/dist/studio-ingress.d.ts",
+        "sha256": "9e666a71aa0a994dfeba7828df4e6ed04bb4b4e6ad8a1d4bc7c586d2c569ff01",
+        "bytes": 550
+      },
+      {
+        "path": "apps/api/dist/studio-ingress.js",
+        "sha256": "187ba5b130277c1105616bfb5568b4e61599fe80e238e7744701fe9650e88d86",
+        "bytes": 3978
+      },
+      {
+        "path": "apps/api/dist/studio-ingress.js.map",
+        "sha256": "139bca352d6fa63d1dba933c60bb4609d6bef22b6d9b2275afe65fc0aa1a7988",
+        "bytes": 3781
+      },
+      {
+        "path": "apps/api/dist/studio-qa.d.ts",
+        "sha256": "d5545a3ce3d54e4de15fbf8eb71e140de4638d860aa1cabea7377e6b1d87d32e",
+        "bytes": 232
+      },
+      {
+        "path": "apps/api/dist/studio-qa.js",
+        "sha256": "051570e73780662b3914e44debfbb4a0901a1489a26196343f0c9f592711effc",
+        "bytes": 2786
+      },
+      {
+        "path": "apps/api/dist/studio-qa.js.map",
+        "sha256": "c3e775592b59543d9de6ae85d73e4368deadae081e19a6773fd3ec9a45b02c93",
+        "bytes": 3766
+      },
+      {
+        "path": "apps/api/dist/studio-scenes.d.ts",
+        "sha256": "4ab3e25aa9baf9ae5a8743ed46307f3fedec97723399df3b6e4a3845715a7637",
+        "bytes": 1234
+      },
+      {
+        "path": "apps/api/dist/studio-scenes.js",
+        "sha256": "e75682244fe7cd0d2824db41f481b926317b4c3fbe1e4fbc49009c75c5b5eaf3",
+        "bytes": 2833
+      },
+      {
+        "path": "apps/api/dist/studio-scenes.js.map",
+        "sha256": "d6e5ab860723dd76d2b15c88da129fa4a00cf7d3dc2d0812b360c5727401e871",
+        "bytes": 3200
+      },
+      {
+        "path": "apps/api/dist/studio-service.d.ts",
+        "sha256": "0c3c66989c6480f9cea24f49dea141bbb34c55fbe70a8acc8b2afd99b811eae1",
+        "bytes": 32690
+      },
+      {
+        "path": "apps/api/dist/studio-service.js",
+        "sha256": "b34076ae3ae45a28d6dc2d2efb38e930cfdcdca66b987d48aa0fb71874421e5a",
+        "bytes": 31773
+      },
+      {
+        "path": "apps/api/dist/studio-service.js.map",
+        "sha256": "e68a7a33843cb8a6d3a788f666d67008315f3e9ceb8035ab6d52dc2b7580c3e4",
+        "bytes": 30295
+      },
+      {
+        "path": "apps/api/dist/studio-zip.d.ts",
+        "sha256": "310d7207127dfb78fbb39927747c02776b9e45b7a2e0054e377b85c3a17a781d",
+        "bytes": 100
+      },
+      {
+        "path": "apps/api/dist/studio-zip.js",
+        "sha256": "6e33eeeb27235f0c959bcea0d8966db13202942021ae928a10c008f5abd1c85c",
+        "bytes": 1874
+      },
+      {
+        "path": "apps/api/dist/studio-zip.js.map",
+        "sha256": "ef0bf0e5ac84095eb854eafc150bcfff04ae65a8267d55753753b083edb58fe7",
+        "bytes": 2660
+      },
+      {
+        "path": "apps/api/prisma/migrations/202610120001_step02_project/migration.sql",
+        "sha256": "e56bb72edc5d52874e6ab54e527cb70aabd4f9a5ac4e54d9e7cbd915e74e4ed8",
+        "bytes": 193
+      },
+      {
+        "path": "apps/api/prisma/migrations/202610130001_step06_persistence/migration.sql",
+        "sha256": "177aa7af3ac7bca48531dbee43b0c9eaacca73c9a3d523020a751853fd0176a2",
+        "bytes": 13595
+      },
+      {
+        "path": "apps/api/prisma/migrations/202610130002_step06_task_references/migration.sql",
+        "sha256": "f2c6f6a6026ffc3e6c5fa8c9f0e5bfdca53553661586512816fa1809fb0aeb98",
+        "bytes": 1379
+      },
+      {
+        "path": "apps/api/prisma/migrations/202610130003_step06_processing_stages/migration.sql",
+        "sha256": "473fbfedd0f6a2487c1194e02ffcadc7145d60e06aacff7fd93482ad83e679dd",
+        "bytes": 385
+      },
+      {
+        "path": "apps/api/prisma/migrations/202610130004_step07_studio/migration.sql",
+        "sha256": "f4aec3b88e7446f695503d19fe36f6ed1e1035cf6fd8f6107adcd4c5023c5048",
+        "bytes": 1229
+      },
+      {
+        "path": "apps/api/prisma/migrations/migration_lock.toml",
+        "sha256": "1db17a8d051aa136110736752c5e1f8b7ed92b6ea8e803112fbbe2497047c210",
+        "bytes": 24
+      },
+      {
+        "path": "apps/api/prisma/schema.prisma",
+        "sha256": "21e7707b5d627e4096b81857f1db93514562663b23be0b1d3c18e461d62b07b5",
+        "bytes": 7536
+      },
+      {
+        "path": "apps/web/dist/assets/CanvasPool-CWsteclb.js",
+        "sha256": "418e5579863a48d9cbcde29be4aa9fbcf8d9d9fdbc48dfb40833fee8c782adee",
+        "bytes": 16928
+      },
+      {
+        "path": "apps/web/dist/assets/CanvasRenderer-CuHZ-s_P.js",
+        "sha256": "7833bfb7c4c7ecd81f83a44e0550f0334e7c2ddd0f52aba2d6a922a1f16b9d4b",
+        "bytes": 90264
+      },
+      {
+        "path": "apps/web/dist/assets/RenderTargetSystem-CaSqe-W4.js",
+        "sha256": "ea877aa8e162a1ca359a86d63058d829deb202a26bdc66a01e03624e2d5bfef0",
+        "bytes": 72332
+      },
+      {
+        "path": "apps/web/dist/assets/WebGLRenderer-C-4G6VH1.js",
+        "sha256": "8265f3b97afd05334cabec1a54d1d9d77906bb0bf3e07255b3326b7cc6ec966c",
+        "bytes": 56772
+      },
+      {
+        "path": "apps/web/dist/assets/WebGPURenderer-CEOq4plQ.js",
+        "sha256": "b1f0888758fa5f31b4ea3b0922a049c3f1aac6b821129409be62d199de35291f",
+        "bytes": 53801
+      },
+      {
+        "path": "apps/web/dist/assets/browserAll-DVdHwz8S.js",
+        "sha256": "92e8e593a8108a90384ea64fb8184894ea3238b293c1b3086ec83c51066af91f",
+        "bytes": 43966
+      },
+      {
+        "path": "apps/web/dist/assets/canvasUtils-DY-Cvxjp.js",
+        "sha256": "39458f15fdef3f140c425330918686c93abf98a365fcb32aed1dd2cbf83aeab6",
+        "bytes": 5709
+      },
+      {
+        "path": "apps/web/dist/assets/getTexelRangeRects-DfZBalEY.js",
+        "sha256": "fa3a6a87e5824ebda8bb32f4123d3b25a3c11be075032d8c5878d7fa78c39456",
+        "bytes": 3622
+      },
+      {
+        "path": "apps/web/dist/assets/getTextureBatchBindGroup-D-53rPlt.js",
+        "sha256": "d955c6a71413ea32e1bf2b5f01dcb93ea4d8d23d0a96299b6b984e0da0747504",
+        "bytes": 390
+      },
+      {
+        "path": "apps/web/dist/assets/index-CsM4c782.css",
+        "sha256": "7f6b86d4946cc56cb130c01a3462774873f6fdf9bcbb159223e49ae1c18e3c73",
+        "bytes": 3116
+      },
+      {
+        "path": "apps/web/dist/assets/index-CylqNgkq.js",
+        "sha256": "dbd1747e6145c0913238612fa78953e481e330a2208afe045526a1685d2f3e80",
+        "bytes": 461130
+      },
+      {
+        "path": "apps/web/dist/assets/webworkerAll-B8KgPBJa.js",
+        "sha256": "4f8ac2274236c7bdeffd47cb47b56b49cc2015346b88b9fed14254d9e778f467",
+        "bytes": 15462
+      },
+      {
+        "path": "apps/web/dist/index.html",
+        "sha256": "1ee321c9e38d440e1b573ec9c558a44156cca6266c8d7ac7d19b641349900b37",
+        "bytes": 405
+      },
+      {
+        "path": "dist/scripts/build-pack-sample.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/build-pack-sample.js",
+        "sha256": "af3d62b5d5749862e0c0550bf8f78c9d724638cb1e38d82cc66929d90bb2d327",
+        "bytes": 4789
+      },
+      {
+        "path": "dist/scripts/build-prototype.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/build-prototype.js",
+        "sha256": "b54682e00c4763332d71da88c5797eb829ae4d9ed2bda9f5f8f1712350c5ee2e",
+        "bytes": 3590
+      },
+      {
+        "path": "dist/scripts/export-pack.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/export-pack.js",
+        "sha256": "1627dce0290ec0e46302000bff895ad9787c3e61317839bbdb0f01a63630b1bf",
+        "bytes": 1086
+      },
+      {
+        "path": "dist/scripts/io.d.ts",
+        "sha256": "118e216e9b91f81b4768c71bb87b058cecc543c89054fead91f493adc4e28cd0",
+        "bytes": 187
+      },
+      {
+        "path": "dist/scripts/io.js",
+        "sha256": "6186a5d34905696d62db52d4e814ff3de26e9bab0080ad695ad7faf331f67ec0",
+        "bytes": 427
+      },
+      {
+        "path": "dist/scripts/make-fixtures.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/make-fixtures.js",
+        "sha256": "b38ee6caf8bf89aa612e17e3fc9f4394a35ba962dafa7e45b21e9033179e45a1",
+        "bytes": 5106
+      },
+      {
+        "path": "dist/scripts/mz-oracle.d.ts",
+        "sha256": "6dedeb8bed28bcfeafbd9710d6923f2f62608f20fd725eab1049f79021873e2a",
+        "bytes": 724
+      },
+      {
+        "path": "dist/scripts/mz-oracle.js",
+        "sha256": "815adce4cc634488727a80b03a121dc7586197c5267e9cba75a593b74adb188c",
+        "bytes": 1572
+      },
+      {
+        "path": "dist/scripts/pack-export.d.ts",
+        "sha256": "fc9dbd8701ba87f335094ed160aee98b7e65e42105bbe09d2e4a68c7e5a8880d",
+        "bytes": 5732
+      },
+      {
+        "path": "dist/scripts/pack-export.js",
+        "sha256": "739f748c4eafe8f65354cde141e27713b0c7c5dbc92e02afa1306613617b0d49",
+        "bytes": 590
+      },
+      {
+        "path": "dist/scripts/prepare-mz.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/prepare-mz.js",
+        "sha256": "8bbdc00bf4114bcffc8170bbe14a629fff09fe49d7b87076b8b621918ac075f7",
+        "bytes": 6383
+      },
+      {
+        "path": "dist/scripts/prepare-step04.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/prepare-step04.js",
+        "sha256": "4764a7d31c6667e2899fc3d190957bef594385665fb60aa3e3e73791e85ad768",
+        "bytes": 6575
+      },
+      {
+        "path": "dist/scripts/prepare-step05.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/prepare-step05.js",
+        "sha256": "2d427ec20f198dd8d1597cae1b4d82ebd393a76f9d0f7f340e4913a9d4b63305",
+        "bytes": 5555
+      },
+      {
+        "path": "dist/scripts/prototype-input.d.ts",
+        "sha256": "287acaf0b9400124c5b5826945ce9e34ecd15afe6acbee3271d5769c8a3b0130",
+        "bytes": 2887
+      },
+      {
+        "path": "dist/scripts/prototype-input.js",
+        "sha256": "bbe0b46c4de229352ef75064b98a51cad65735e94c5660684390d32e951811c8",
+        "bytes": 4607
+      },
+      {
+        "path": "dist/scripts/run-mock-executor.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/run-mock-executor.js",
+        "sha256": "bf074fd407cb8a7972c6538ad3b1142ff9a16cad325638f596c890db2a6a4f41",
+        "bytes": 3587
+      },
+      {
+        "path": "dist/scripts/step04-diagnostic.d.ts",
+        "sha256": "7347871d7512916213acd069a68ad400f6967a270aad0f8c9d4f3f7730798429",
+        "bytes": 337
+      },
+      {
+        "path": "dist/scripts/step04-diagnostic.js",
+        "sha256": "9697afe2c06bb933ff913a754fcaab97099393e5314dc235b819c61544d10faa",
+        "bytes": 1030
+      },
+      {
+        "path": "dist/scripts/step04-fixture.d.ts",
+        "sha256": "1e9637d5157cf6199b7cabd1db59f73e1d76735ec594329f471abd953bd12a45",
+        "bytes": 863
+      },
+      {
+        "path": "dist/scripts/step04-fixture.js",
+        "sha256": "dcd13b7fd1a8ee84bc5c96eb5d8a7acb86ccd5710ef9488e2a29d092ab9a73e8",
+        "bytes": 6200
+      },
+      {
+        "path": "dist/scripts/step04-input.d.ts",
+        "sha256": "3e3f71c0c02c87f75e5634534f780771dea2ffe62f7047fbd09858e44cb41faa",
+        "bytes": 956
+      },
+      {
+        "path": "dist/scripts/step04-input.js",
+        "sha256": "a3db9ed2622f669c88f35f378cb136db5c63770f18b15fc89b3cc297f3f9dd62",
+        "bytes": 5297
+      },
+      {
+        "path": "dist/scripts/step05-fixture.d.ts",
+        "sha256": "ecca4d54d966b6b4172887ebdfd6088c69de8eff3057e00df0727e1d6584dde4",
+        "bytes": 1145
+      },
+      {
+        "path": "dist/scripts/step05-fixture.js",
+        "sha256": "9d61bf8a8ea782016a4823aceb990c7c9751fb408c27bac394d8e7e28a41f47e",
+        "bytes": 2887
+      },
+      {
+        "path": "dist/scripts/step06-maintenance.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/step06-maintenance.js",
+        "sha256": "17778c35f0f20ccb5203f9428a4f1cf4e78c22f1f237a93d2dde40fee15ce99b",
+        "bytes": 1081
+      },
+      {
+        "path": "dist/scripts/step06-process.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/step06-process.js",
+        "sha256": "bb576725fbb355e72e6f540cc17662742b308665351c5d4775317a5a283a6202",
+        "bytes": 3101
+      },
+      {
+        "path": "dist/scripts/studio-resources.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/studio-resources.js",
+        "sha256": "d7ca1d7013d0e492ee2004bf1d5cc6891b5f3bd7ab760f3adf9ddcd5d0a39c99",
+        "bytes": 837
+      },
+      {
+        "path": "dist/scripts/verify-mz.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/verify-mz.js",
+        "sha256": "cfb70cce434cba5a2c6774c92aeeeea0906d5a176e3a182e8daab3b18942a9c5",
+        "bytes": 4043
+      },
+      {
+        "path": "dist/scripts/verify-step04.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/verify-step04.js",
+        "sha256": "7ce97373ff5456bcb7abf66379013af46bbe50fb3287c9a01a101819a349b29a",
+        "bytes": 4099
+      },
+      {
+        "path": "dist/scripts/verify-step05.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/scripts/verify-step05.js",
+        "sha256": "251830b284b16991b23ed9437df6149201407feb84671f1b9531b8564370c551",
+        "bytes": 4422
+      },
+      {
+        "path": "dist/src/compiler.d.ts",
+        "sha256": "a8320a0ac347d3a0d446abeba3d45392f3a80b9e47f418c3378d1c4cd1e92e80",
+        "bytes": 270
+      },
+      {
+        "path": "dist/src/compiler.js",
+        "sha256": "4e6bbde1ab1ad6800993feadf7965ac52dd62a27015e536e619c241295dad0cd",
+        "bytes": 1345
+      },
+      {
+        "path": "dist/src/index.d.ts",
+        "sha256": "359f8b1c64eae4b53d52bad66785cd75b7bb86a874c1596ed0d0d1d1800c7a5d",
+        "bytes": 90
+      },
+      {
+        "path": "dist/src/index.js",
+        "sha256": "954bd2ce6da2c8a6be0c74eae38582629756e64c9d17e97bf71d44cf22ffe322",
+        "bytes": 175
+      },
+      {
+        "path": "dist/src/pixels.d.ts",
+        "sha256": "eb940e5e0ccd11625a4991992e101cb0dd7508593b9a91f75555c8d262cc4797",
+        "bytes": 616
+      },
+      {
+        "path": "dist/src/pixels.js",
+        "sha256": "660e18d2bc6ab4ac75094639616eab15f83b873186111183e9559ecdd941368f",
+        "bytes": 6455
+      },
+      {
+        "path": "dist/src/profile.d.ts",
+        "sha256": "0ead686e74334fa24a2baa6dec578e73b10364e6e706329fc39bf1783b6b91b9",
+        "bytes": 1731
+      },
+      {
+        "path": "dist/src/profile.js",
+        "sha256": "927e8e8924b13b4166a10fdeb12036517d986b924024fb81ee0f210a03b7dd86",
+        "bytes": 1269
+      },
+      {
+        "path": "dist/tests/codec-runtime.test.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/tests/codec-runtime.test.js",
+        "sha256": "e63ebbc60a888f848f6741331a19e47b49535c6a45779b14c0f354c3af1c834b",
+        "bytes": 4973
+      },
+      {
+        "path": "dist/tests/copy-rect.test.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/tests/copy-rect.test.js",
+        "sha256": "6596b83236d679c1376f6e6d9a4334e63630324871d202be7300ab057f65b5e5",
+        "bytes": 2651
+      },
+      {
+        "path": "dist/tests/mz-plugin-file.test.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/tests/mz-plugin-file.test.js",
+        "sha256": "81ff4f5bfae37706a6a345b20fe9fb924764e66955a529d619c90bd2c0696019",
+        "bytes": 1394
+      },
+      {
+        "path": "dist/tests/pack-export.test.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/tests/pack-export.test.js",
+        "sha256": "3739219552bca6784728fac05302be1eed6b7239290fecba8cac661f77cf1701",
+        "bytes": 6031
+      },
+      {
+        "path": "dist/tests/png-samples.d.ts",
+        "sha256": "fa32e8857eb8311e5d6d12e52c7788091d2e5152f6208c7fd9c55dbccf649421",
+        "bytes": 161
+      },
+      {
+        "path": "dist/tests/png-samples.js",
+        "sha256": "4cc1c383398dae681b4ea2f4c110da204bb30bead7401d0071f18d915cad42a6",
+        "bytes": 1688
+      },
+      {
+        "path": "dist/tests/prepare-mz.test.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/tests/prepare-mz.test.js",
+        "sha256": "3a7719c1fcdac96dd7882e843136dad794e462c896cbf192a57ab89ce623aebc",
+        "bytes": 6281
+      },
+      {
+        "path": "dist/tests/prototype.test.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/tests/prototype.test.js",
+        "sha256": "8bfbf247704339b189c1145eea615bd33a8a4eaf16306d3eb21a01c08c164161",
+        "bytes": 11473
+      },
+      {
+        "path": "dist/tests/publication-ownership.test.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "dist/tests/publication-ownership.test.js",
+        "sha256": "06c48692e88c00683a04329ac47e4414f6787d453de96b48be899de42709c9ce",
+        "bytes": 12724
+      },
+      {
+        "path": "packages/ai-gateway/dist/index.d.ts",
+        "sha256": "ca34fd09f1ab4a4b3983f0f68e3a3c626026f9a1fb68b4240e6a85df508f7888",
+        "bytes": 11508
+      },
+      {
+        "path": "packages/ai-gateway/dist/index.js",
+        "sha256": "5ea75fe53eaaa32e5aeb750c5b013db3ce2715b96a9725ca3231eb4aa8090865",
+        "bytes": 2482
+      },
+      {
+        "path": "packages/ai-gateway/dist/index.js.map",
+        "sha256": "e29b44ce4238d7f16e064934e506e046726402b4df33382288d4b880a1314c8c",
+        "bytes": 2883
+      },
+      {
+        "path": "packages/asset-core/dist/index.d.ts",
+        "sha256": "25d9ffd2ae1a713e900d6966d9c1a55f0a977603b32cf51d0e8bdaddd774bbfb",
+        "bytes": 7946
+      },
+      {
+        "path": "packages/asset-core/dist/index.js",
+        "sha256": "5633830a8debb42fb460dddc194b8e88fbeb43b83979a7b12c02da5501a3a82e",
+        "bytes": 22345
+      },
+      {
+        "path": "packages/asset-core/dist/index.js.map",
+        "sha256": "e5e24fdf7f6b843ac5600c4d901bad8f50b25fd6497289fb287473a2a1bf801e",
+        "bytes": 23751
+      },
+      {
+        "path": "packages/contracts/dist/index.d.ts",
+        "sha256": "8e2649b76c37de4a293de24f427ce7cd09202d143de2644a271cbb9f6213d6ea",
+        "bytes": 4376
+      },
+      {
+        "path": "packages/contracts/dist/index.js",
+        "sha256": "f0b8561040091da017938fcb867608c14f9fbb6dd01409b036f192e7fedad247",
+        "bytes": 8883
+      },
+      {
+        "path": "packages/contracts/dist/index.js.map",
+        "sha256": "b9f173ccde44ddf86ee2e1e62e68abb532bd3a759daec49ee9184eae70b559ce",
+        "bytes": 7367
+      },
+      {
+        "path": "packages/contracts/dist/studio.d.ts",
+        "sha256": "09f8e3ad1d2cbe405e8bef5bca4ad18a44397662ae198342a1fd7d5e094d0b88",
+        "bytes": 30558
+      },
+      {
+        "path": "packages/contracts/dist/studio.js",
+        "sha256": "6a60337dea32ef3b4039dc45d2cca16661f4bc7e68ef04cd21ba7c6d6bb9f958",
+        "bytes": 6018
+      },
+      {
+        "path": "packages/contracts/dist/studio.js.map",
+        "sha256": "0952e93180c5baadba37d559b083f4c000e2949baf29bf9aeb94e42e4f3c3140",
+        "bytes": 7847
+      },
+      {
+        "path": "packages/image-adapter/dist/codec-worker.d.ts",
+        "sha256": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881",
+        "bytes": 11
+      },
+      {
+        "path": "packages/image-adapter/dist/codec-worker.js",
+        "sha256": "865cd06922a3df44e055b9af79f321eae8529f96ac342f63d12d617e9760f570",
+        "bytes": 3318
+      },
+      {
+        "path": "packages/image-adapter/dist/codec-worker.js.map",
+        "sha256": "282ce4a357ff194a9a6e232d3dd01fafe610c435f44057ba4a05a25e416141d2",
+        "bytes": 3315
+      },
+      {
+        "path": "packages/image-adapter/dist/index.d.ts",
+        "sha256": "437f7991c0f774e312f8a64476227c4dbf1a4508ad1f2760de996a4981755981",
+        "bytes": 1317
+      },
+      {
+        "path": "packages/image-adapter/dist/index.js",
+        "sha256": "fddff82833add01dbfeb88085429ed9c597b3a1651d0455cbc369d8d367fb114",
+        "bytes": 5433
+      },
+      {
+        "path": "packages/image-adapter/dist/index.js.map",
+        "sha256": "4d1a51ef877343dbee8538e041bf180dbbe19caf22fcd6d75cf4fcac3b68f279",
+        "bytes": 5216
+      },
+      {
+        "path": "packages/image-adapter/dist/isolation.d.ts",
+        "sha256": "138ebd15114098dab2c6cbb9ad815366b3fdeddbce4b7e73a32b9eb9ee70d1f5",
+        "bytes": 648
+      },
+      {
+        "path": "packages/image-adapter/dist/isolation.js",
+        "sha256": "1144ac9bda2d5a464c48e628f53e2b70608ade65ba10457e018666d266780ef0",
+        "bytes": 3640
+      },
+      {
+        "path": "packages/image-adapter/dist/isolation.js.map",
+        "sha256": "7d1d7ec5818b98d8e667fdc67ae0fe27b83f5ce43b5242b7625d232309f4bbde",
+        "bytes": 2927
+      },
+      {
+        "path": "packages/image-adapter/dist/png-policy.d.ts",
+        "sha256": "1a413dd7b89c92dfd5a0b9262c666b25a98196955f8c48d3fa5a131b199159ab",
+        "bytes": 527
+      },
+      {
+        "path": "packages/image-adapter/dist/png-policy.js",
+        "sha256": "57266eabca07411f6bac6c82c6dab8b967fc2ce5175a814649a33d16b8ef6d6d",
+        "bytes": 5379
+      },
+      {
+        "path": "packages/image-adapter/dist/png-policy.js.map",
+        "sha256": "9c6b3b022029e50a1f5e958a0838d9e2cc061ec560bd9caf1c25ad99df0a181b",
+        "bytes": 5329
+      },
+      {
+        "path": "packages/local-executor/dist/executor.d.ts",
+        "sha256": "dfa5da785689f5c38e1be38c5c674428e56a4e1b3f3168935d4d06586f17c401",
+        "bytes": 1360
+      },
+      {
+        "path": "packages/local-executor/dist/executor.js",
+        "sha256": "218902c58143a46e0e7965e9df0e57683d4ec2bff8c0d130bb0202ac75eb655b",
+        "bytes": 9594
+      },
+      {
+        "path": "packages/local-executor/dist/executor.js.map",
+        "sha256": "9dd9a6b5cc2a53d665b07068ead5c618bfffcc3598fed9f21e7637fccbd6ab1e",
+        "bytes": 8753
+      },
+      {
+        "path": "packages/local-executor/dist/index.d.ts",
+        "sha256": "f16afb3a3f1d20998fe7a6fce311d0ae10ee2a6cca593d892935d09b82e304d4",
+        "bytes": 154
+      },
+      {
+        "path": "packages/local-executor/dist/index.js",
+        "sha256": "2b561d82c8cfade67175b250376746026a47ccfe0f8aa84db0b6dec66b036b92",
+        "bytes": 136
+      },
+      {
+        "path": "packages/local-executor/dist/index.js.map",
+        "sha256": "8933153a26b7b93c2b1e0812f34c80b0e98d96a1a7e6883f78f7b7f6c0be6cfd",
+        "bytes": 194
+      },
+      {
+        "path": "packages/local-executor/dist/mock-provider.d.ts",
+        "sha256": "48f74ecfe86d8d6476f33563d3308ee5064a8a0583d2fd9f01b7af5c8f3910c2",
+        "bytes": 905
+      },
+      {
+        "path": "packages/local-executor/dist/mock-provider.js",
+        "sha256": "50de2b3f424f8746c47f6b43f7a04fa9f5274da0e02f189f274797cb3453301a",
+        "bytes": 4040
+      },
+      {
+        "path": "packages/local-executor/dist/mock-provider.js.map",
+        "sha256": "9f30af5bbe8ce2d2dba81903378486e9eb26580c520d16c236c7397ee349a014",
+        "bytes": 4655
+      },
+      {
+        "path": "packages/material-processing/dist/index.d.ts",
+        "sha256": "cfa9eab57b2058ad8a4478a4cf848434bb8a39234df0f8cc26f75dec562f4356",
+        "bytes": 2162
+      },
+      {
+        "path": "packages/material-processing/dist/index.js",
+        "sha256": "a14fa99624b9ba7fd98bbf822e3a54a76c6f843650885d712942cbe5df022daa",
+        "bytes": 11139
+      },
+      {
+        "path": "packages/material-processing/dist/index.js.map",
+        "sha256": "817ff1cf5c4e478d68b4f210baab0a4935116f736655db76d4d7545c5711c5af",
+        "bytes": 13328
+      },
+      {
+        "path": "packages/mz-compiler/dist/index.d.ts",
+        "sha256": "932d20035ad77f7bfd58629321d303f2211e6591b797ef0da78d50313264d8ce",
+        "bytes": 2998
+      },
+      {
+        "path": "packages/mz-compiler/dist/index.js",
+        "sha256": "4db09bae83d533ec5d8fdfa28efc2f1d85a4b3efe6f878ce026ec4bd38544be5",
+        "bytes": 11163
+      },
+      {
+        "path": "packages/mz-compiler/dist/index.js.map",
+        "sha256": "b97f67fdfb11479be99b5eb1b881ae67c6165e0ce4d3e6e2e7d0cb303e22aa62",
+        "bytes": 12075
+      },
+      {
+        "path": "packages/mz-compiler/dist/rules.d.ts",
+        "sha256": "a0bae407f147520bfbe2e6e014504dfbaedac2e7eb02ff3ab736cdf875819cc1",
+        "bytes": 1014
+      },
+      {
+        "path": "packages/mz-compiler/dist/rules.js",
+        "sha256": "2128b772507727d58384b6851f11a2236fd156029a8619b8d43f30c07c1af75b",
+        "bytes": 2754
+      },
+      {
+        "path": "packages/mz-compiler/dist/rules.js.map",
+        "sha256": "3af97e8606c4b91d170d7a8f38267eb18517ca02eb8d9b04efa22963a490e6fb",
+        "bytes": 4086
+      },
+      {
+        "path": "packages/pack-assembly/dist/index.d.ts",
+        "sha256": "ce0979732bebc94e52ddf0d249df748fcb610b3b7f139ee0971f99c778f91405",
+        "bytes": 5128
+      },
+      {
+        "path": "packages/pack-assembly/dist/index.js",
+        "sha256": "fd4317f7ecbc3b64ededa7e3b65e510dbc47a9f39d435db18995d820cdbd1b44",
+        "bytes": 16713
+      },
+      {
+        "path": "packages/pack-assembly/dist/index.js.map",
+        "sha256": "ecbbdd180b7058f6520d720a621da719e7b19cf2cc77191ee3865ef45210d3f3",
+        "bytes": 16986
+      },
+      {
+        "path": "packages/pack-export/dist/index.d.ts",
+        "sha256": "3d2d4b3f5664737b71bf5d231234a10de88c9274146b9006db868b4eaadc2ff9",
+        "bytes": 13081
+      },
+      {
+        "path": "packages/pack-export/dist/index.js",
+        "sha256": "eaf8de18d17ba62726a80bf08b4c82c79dbfc69d2741ee13dc377d31caa72d5c",
+        "bytes": 14570
+      },
+      {
+        "path": "packages/pack-export/dist/index.js.map",
+        "sha256": "4bfdfec3bed39ae3fdfcd90df3110617549d1db85afc16641c327abd6d030f66",
+        "bytes": 14160
+      },
+      {
+        "path": "packages/persistence/dist/backup.d.ts",
+        "sha256": "a7c3d3ab87cc366f0143d0f8a9c2d420532c7825f5d1fd590804cba731114ca9",
+        "bytes": 1141
+      },
+      {
+        "path": "packages/persistence/dist/backup.js",
+        "sha256": "cdaf552d4e9bb4add79102c88b791459fd9bf3533d8a8eb9e4232c36ad6b2b53",
+        "bytes": 15854
+      },
+      {
+        "path": "packages/persistence/dist/backup.js.map",
+        "sha256": "27e5eb0adc61b2999d06ed4a418c1dbbaf78f32dcb9f636eda85e7af88a97515",
+        "bytes": 18258
+      },
+      {
+        "path": "packages/persistence/dist/config.d.ts",
+        "sha256": "cf5f5ad40836557f796652934a66159b8c8e290a9dd90045bce91a6a8b3c6caa",
+        "bytes": 229
+      },
+      {
+        "path": "packages/persistence/dist/config.js",
+        "sha256": "a00d2e3e1bee0cd5742fca2c9032f942ecb9002507e0b7f3d9a9bcc4dc6d4655",
+        "bytes": 1852
+      },
+      {
+        "path": "packages/persistence/dist/config.js.map",
+        "sha256": "b940e8af994ee72fdc65e87ae29d75a23a9f139fb4c9a80b4bcd006aea1b360c",
+        "bytes": 1792
+      },
+      {
+        "path": "packages/persistence/dist/domain.d.ts",
+        "sha256": "9ea652e4b119b7c4c375e772bb51c69d1f5248508ea3f50a5e94de51cb90229e",
+        "bytes": 6119
+      },
+      {
+        "path": "packages/persistence/dist/domain.js",
+        "sha256": "a01584b8a2d0e9bd89a7d744f7823a9f160a1dd9b46db525cffadd3e967e2b34",
+        "bytes": 3871
+      },
+      {
+        "path": "packages/persistence/dist/domain.js.map",
+        "sha256": "6e5a2a503d9d6d7eda7624e0b0fbfd3caa12927471445e5443452446141ec1a2",
+        "bytes": 4319
+      },
+      {
+        "path": "packages/persistence/dist/gate.d.ts",
+        "sha256": "c347e0788c2afe3378673b5051c71a062a20d589bda438de639da5e584b32267",
+        "bytes": 889
+      },
+      {
+        "path": "packages/persistence/dist/gate.js",
+        "sha256": "6916375d780adfcc335b3a8009ad4f223916885958a825146d71f9d0df306f40",
+        "bytes": 7767
+      },
+      {
+        "path": "packages/persistence/dist/gate.js.map",
+        "sha256": "6975214a78d3d48986f1eabd061ab7c7768bb14d11ae94c521c097898e40fba8",
+        "bytes": 6003
+      },
+      {
+        "path": "packages/persistence/dist/index.d.ts",
+        "sha256": "d9ba4a2e4fbc2aad0865e86de06d59fe4f6dc8599f1e5d3a6092b097d1ffc8af",
+        "bytes": 668
+      },
+      {
+        "path": "packages/persistence/dist/index.js",
+        "sha256": "3fd6fa9210d108729abb35f1933fcb9c7b822b30aa6183e1c6f697353e964fb5",
+        "bytes": 551
+      },
+      {
+        "path": "packages/persistence/dist/index.js.map",
+        "sha256": "d21ebe37c183985a27ec96d02bd5662c3e109b1e860673c03f9cc7c7146fef7a",
+        "bytes": 547
+      },
+      {
+        "path": "packages/persistence/dist/paths.d.ts",
+        "sha256": "fcfbbc2a6a8a95d21cc1cc7be8d74b225f9b6edb7b1c733ada40a52cced9c395",
+        "bytes": 1140
+      },
+      {
+        "path": "packages/persistence/dist/paths.js",
+        "sha256": "c219644c3c365a81ceae6667b7f4d9fa5d18ab1aa9cd623e670288ed3f7f278a",
+        "bytes": 4466
+      },
+      {
+        "path": "packages/persistence/dist/paths.js.map",
+        "sha256": "e910b0c8a4d81e2f315c8c63334b63fd9a63833fe7c7a317f91826c3f6295fa6",
+        "bytes": 5175
+      },
+      {
+        "path": "packages/persistence/dist/replay.d.ts",
+        "sha256": "940227176c4dd05b21ac60dd3406637fc8dd31ca920a2e2947cba42a0e42787f",
+        "bytes": 157718
+      },
+      {
+        "path": "packages/persistence/dist/replay.js",
+        "sha256": "0c473f682da9984997dbdeb0caf1892f3696f8b0f310ab130136cee8962b64de",
+        "bytes": 12077
+      },
+      {
+        "path": "packages/persistence/dist/replay.js.map",
+        "sha256": "9334c998c40d1defae167fa4c125c96504f0f50d1677f72887c1c3782917caaf",
+        "bytes": 14128
+      },
+      {
+        "path": "packages/persistence/dist/storage.d.ts",
+        "sha256": "4a578fa393e059b0af69ced9ee5f1117d9cd8a53e6cd79735ab6cab68c9ad18c",
+        "bytes": 1404
+      },
+      {
+        "path": "packages/persistence/dist/storage.js",
+        "sha256": "ff74318136ceddfa48d3d14687d1597bd89ad264f2a822c49735157ddf4bef0e",
+        "bytes": 9198
+      },
+      {
+        "path": "packages/persistence/dist/storage.js.map",
+        "sha256": "24544fb697becdb7a03aaef4542004dbd5333ce694ef671528ce6db49120c6fa",
+        "bytes": 11055
+      },
+      {
+        "path": "packages/persistence/dist/store.d.ts",
+        "sha256": "82c15455bd6465fd306282dff269a0919ccc8868623d3050ad4c4dcb3c7714ab",
+        "bytes": 89561
+      },
+      {
+        "path": "packages/persistence/dist/store.js",
+        "sha256": "b0143c69a815808a941ec00fc38d8ae2cd1ae5c6d5f39912cf1c3a5ed6431432",
+        "bytes": 49652
+      },
+      {
+        "path": "packages/persistence/dist/store.js.map",
+        "sha256": "f573253e99f471e39404c04e853644556b7940b1031dcfa0224e174b3257082a",
+        "bytes": 51571
+      }
+    ]
+  },
+  "baseline": {
+    "path": "docs/engineering/STEP_07_BASELINE.md",
+    "sha256": "822c73a1458ffdef0420de3c2569857d5547f8044441134a695387b97569245d",
+    "bytes": 20468
+  },
+  "report": {
+    "path": "docs/reviews/step-07-ci-sixphase-duration-coding.md",
+    "sha256": "04f25d8a8ac63ddaedc338e1960a7d76112f12aba009435e574e4b8544d124d0",
+    "bytes": 11424
+  },
+  "fileKeyBase": "repository root; final committed documentary JSON/actual synthetic PNG and standard ZIP",
+  "payloadCount": 188,
+  "files": {
+    "docs/evidence/step-07/ci-sixphase-duration/archives/dev/first-export.zip": {
+      "sha256": "76f8788e96be48b58e838d9139b97f275884fcae5c6362818b629633729db78a",
+      "bytes": 70794,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/first-export.zip",
+      "originalSHA256": "76f8788e96be48b58e838d9139b97f275884fcae5c6362818b629633729db78a",
+      "originalBytes": 70794,
+      "purpose": "actual synthetic browser standard ZIP download; independent directories/CRC8 validation"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/archives/dev/history-export.zip": {
+      "sha256": "76f8788e96be48b58e838d9139b97f275884fcae5c6362818b629633729db78a",
+      "bytes": 70794,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/history-export.zip",
+      "originalSHA256": "76f8788e96be48b58e838d9139b97f275884fcae5c6362818b629633729db78a",
+      "originalBytes": 70794,
+      "purpose": "actual synthetic browser standard ZIP download; independent directories/CRC8 validation"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/archives/dev/second-export.zip": {
+      "sha256": "c174c87a6b81ae979fbe51cd5abc0137147b6cdf6f1a70f08572ae37fe1f2d22",
+      "bytes": 106511,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/second-export.zip",
+      "originalSHA256": "c174c87a6b81ae979fbe51cd5abc0137147b6cdf6f1a70f08572ae37fe1f2d22",
+      "originalBytes": 106511,
+      "purpose": "actual synthetic browser standard ZIP download; independent directories/CRC8 validation"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/archives/production/first-export.zip": {
+      "sha256": "76f8788e96be48b58e838d9139b97f275884fcae5c6362818b629633729db78a",
+      "bytes": 70794,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/first-export.zip",
+      "originalSHA256": "76f8788e96be48b58e838d9139b97f275884fcae5c6362818b629633729db78a",
+      "originalBytes": 70794,
+      "purpose": "actual synthetic browser standard ZIP download; independent directories/CRC8 validation"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/archives/production/history-export.zip": {
+      "sha256": "76f8788e96be48b58e838d9139b97f275884fcae5c6362818b629633729db78a",
+      "bytes": 70794,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/history-export.zip",
+      "originalSHA256": "76f8788e96be48b58e838d9139b97f275884fcae5c6362818b629633729db78a",
+      "originalBytes": 70794,
+      "purpose": "actual synthetic browser standard ZIP download; independent directories/CRC8 validation"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/archives/production/second-export.zip": {
+      "sha256": "c174c87a6b81ae979fbe51cd5abc0137147b6cdf6f1a70f08572ae37fe1f2d22",
+      "bytes": 106511,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/second-export.zip",
+      "originalSHA256": "c174c87a6b81ae979fbe51cd5abc0137147b6cdf6f1a70f08572ae37fe1f2d22",
+      "originalBytes": 106511,
+      "purpose": "actual synthetic browser standard ZIP download; independent directories/CRC8 validation"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/assertion-audit.json": {
+      "sha256": "a8691f8129817c42e139479f624395f106b6c43d2ec3675ae215557612868061",
+      "bytes": 230,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/assertion-audit.json",
+      "originalSHA256": "a8691f8129817c42e139479f624395f106b6c43d2ec3675ae215557612868061",
+      "originalBytes": 230
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/auxiliary-errors.json": {
+      "sha256": "ff3704a6dc03afa00735cd9ba7209935b3f6abbea98b14264d56bc547e5e9c37",
+      "bytes": 1300,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/auxiliary-errors.json",
+      "originalSHA256": "ff3704a6dc03afa00735cd9ba7209935b3f6abbea98b14264d56bc547e5e9c37",
+      "originalBytes": 1300
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/bound-control-commands.json": {
+      "sha256": "1853cb02d52737191a81791da1b9551a2641489447af6e98ca1dbe04711cc289",
+      "bytes": 4420,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/bound-control-commands.json",
+      "originalSHA256": "96000376251e39b0ef7a55214323a9d725e9a8ebf87c2e6af6e7757adcd993ab",
+      "originalBytes": 4451
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/evidence.json": {
+      "sha256": "3c5c4f1f0d851b8ac5cf5706d109fde03d2db346e31bf2fcdec6bc777f1400ba",
+      "bytes": 32329,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/evidence.json",
+      "originalSHA256": "3c5c4f1f0d851b8ac5cf5706d109fde03d2db346e31bf2fcdec6bc777f1400ba",
+      "originalBytes": 32329
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/playwright.json": {
+      "sha256": "8da343319a7cde42c92409669186481324ae70ba10ebec562f46b35768b6fff2",
+      "bytes": 24002,
+      "purpose": "actual18 outcomes0skip0retry NO.env latest Source",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/e2e/dev.json",
+      "originalSHA256": "cb421976b8abf6cb94b926991a3a9a60485da8d06f0828d2c81e0b59fc6092e0",
+      "originalBytes": 24001
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r1-project-switch.json": {
+      "sha256": "cf8d8992e492d71c547fbe9eaeb32e00b97ef285e6172cd6ba141dd43f3a7a0d",
+      "bytes": 40339,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r1-project-switch.json",
+      "originalSHA256": "cf8d8992e492d71c547fbe9eaeb32e00b97ef285e6172cd6ba141dd43f3a7a0d",
+      "originalBytes": 40339
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r2-recovery/fixtures.json": {
+      "sha256": "2f4d098c41557ff5ac0d19fb22686bb894d9971e743a4b8600b321e344fe726c",
+      "bytes": 1679,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r2-recovery/fixtures.json",
+      "originalSHA256": "2f4d098c41557ff5ac0d19fb22686bb894d9971e743a4b8600b321e344fe726c",
+      "originalBytes": 1679
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r2-recovery/invalid-and-timeout.json": {
+      "sha256": "c3aa0c1bd81aaee1f10957e985674459f88938db5bca5b185c17a2c29bfb8e27",
+      "bytes": 9554,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r2-recovery/invalid-and-timeout.json",
+      "originalSHA256": "c3aa0c1bd81aaee1f10957e985674459f88938db5bca5b185c17a2c29bfb8e27",
+      "originalBytes": 9554
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r2-recovery/ordinary-switch.json": {
+      "sha256": "b2b299c0cd106d53267d27151fbc61287eb60030cf487a0ac32b073bbe171717",
+      "bytes": 46606,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r2-recovery/ordinary-switch.json",
+      "originalSHA256": "b2b299c0cd106d53267d27151fbc61287eb60030cf487a0ac32b073bbe171717",
+      "originalBytes": 46606
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r2-recovery/poll.json": {
+      "sha256": "b341058aff8218a6cc4eed9f1085be0cedd9868d6a8ecedeecb16905a20f41ef",
+      "bytes": 38918,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r2-recovery/poll.json",
+      "originalSHA256": "b341058aff8218a6cc4eed9f1085be0cedd9868d6a8ecedeecb16905a20f41ef",
+      "originalBytes": 38918
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r2-recovery/pressure-network.json": {
+      "sha256": "5b436896c239aca79b363e7203e69e8f8914052a9a701597aba5a82cbd190e4f",
+      "bytes": 8890,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r2-recovery/pressure-network.json",
+      "originalSHA256": "5b436896c239aca79b363e7203e69e8f8914052a9a701597aba5a82cbd190e4f",
+      "originalBytes": 8890
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r2-recovery/pressure.json": {
+      "sha256": "78107f9dea19c9de6f62afa4fbcc62c6ac18d017547c72beccb5b1a4c097cf92",
+      "bytes": 9575,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r2-recovery/pressure.json",
+      "originalSHA256": "78107f9dea19c9de6f62afa4fbcc62c6ac18d017547c72beccb5b1a4c097cf92",
+      "originalBytes": 9575
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r3-state-ownership/fixtures.json": {
+      "sha256": "82a8d41ef06562d63bfc751e04561438a9b99de72e30128f7e4a9162f310ba78",
+      "bytes": 958,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r3-state-ownership/fixtures.json",
+      "originalSHA256": "82a8d41ef06562d63bfc751e04561438a9b99de72e30128f7e4a9162f310ba78",
+      "originalBytes": 958
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r3-state-ownership/late-actions.json": {
+      "sha256": "6c62d28f7da26296f3dc43984d8c5d510ed6780628b6053c65f942e4813e8d56",
+      "bytes": 72236,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r3-state-ownership/late-actions.json",
+      "originalSHA256": "6c62d28f7da26296f3dc43984d8c5d510ed6780628b6053c65f942e4813e8d56",
+      "originalBytes": 72236
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r3-state-ownership/late-adoption.json": {
+      "sha256": "93cd911990fe9eaa82f7d515164afe869bbbdc3509a05db97a133ec6b6a2cb9e",
+      "bytes": 27958,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r3-state-ownership/late-adoption.json",
+      "originalSHA256": "93cd911990fe9eaa82f7d515164afe869bbbdc3509a05db97a133ec6b6a2cb9e",
+      "originalBytes": 27958
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r3-state-ownership/late-upload.json": {
+      "sha256": "49d471ea9172b5a25ff22d4d235753513d28ac3d8b43c883ba47450270f2d866",
+      "bytes": 29083,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r3-state-ownership/late-upload.json",
+      "originalSHA256": "49d471ea9172b5a25ff22d4d235753513d28ac3d8b43c883ba47450270f2d866",
+      "originalBytes": 29083
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r3-state-ownership/poll-429.json": {
+      "sha256": "98d994b2b07a49c79cd986ad3c85cd84895e0e592206077ad00f1a18c4735cc9",
+      "bytes": 15164,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r3-state-ownership/poll-429.json",
+      "originalSHA256": "98d994b2b07a49c79cd986ad3c85cd84895e0e592206077ad00f1a18c4735cc9",
+      "originalBytes": 15164
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r3-state-ownership/poll-503.json": {
+      "sha256": "4d6478d438e58859c39a3a41bee46fcdd7175e4856e2d8397a569868678d12dc",
+      "bytes": 15174,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r3-state-ownership/poll-503.json",
+      "originalSHA256": "4d6478d438e58859c39a3a41bee46fcdd7175e4856e2d8397a569868678d12dc",
+      "originalBytes": 15174
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r3-state-ownership/poll-network.json": {
+      "sha256": "c640de9147e532b42ab9eaf3477c555212fdb603d5cd187381e06f346b7deede",
+      "bytes": 14163,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r3-state-ownership/poll-network.json",
+      "originalSHA256": "c640de9147e532b42ab9eaf3477c555212fdb603d5cd187381e06f346b7deede",
+      "originalBytes": 14163
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r4-project-list/failure-cancel.json": {
+      "sha256": "1543bea68f2881610d29d42342d97e9f84a59a986ad5863540295e7ba1c989b4",
+      "bytes": 4113,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r4-project-list/failure-cancel.json",
+      "originalSHA256": "1543bea68f2881610d29d42342d97e9f84a59a986ad5863540295e7ba1c989b4",
+      "originalBytes": 4113
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r4-project-list/fixture.json": {
+      "sha256": "b16ad36cd9dd3b95e21f8e65e4ae851892e61e9f346a794abe9c8c02c2a4c779",
+      "bytes": 195,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r4-project-list/fixture.json",
+      "originalSHA256": "b16ad36cd9dd3b95e21f8e65e4ae851892e61e9f346a794abe9c8c02c2a4c779",
+      "originalBytes": 195
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r4-project-list/initial-adopt.json": {
+      "sha256": "53ed38dc96602af31ca3b78c5a69d2a1f861d1d369e59c5d73df624e49132782",
+      "bytes": 16006,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r4-project-list/initial-adopt.json",
+      "originalSHA256": "53ed38dc96602af31ca3b78c5a69d2a1f861d1d369e59c5d73df624e49132782",
+      "originalBytes": 16006
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r4-project-list/initial-invalid-upload.json": {
+      "sha256": "462acfe8595a306046fe77c743789759eced0718ca740743a306098cb4cc4112",
+      "bytes": 15290,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r4-project-list/initial-invalid-upload.json",
+      "originalSHA256": "462acfe8595a306046fe77c743789759eced0718ca740743a306098cb4cc4112",
+      "originalBytes": 15290
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r4-project-list/initial-upload.json": {
+      "sha256": "d52d4f39da433e82c87182caf88d888800d7a9f906ac64bf7dfa281015d61a60",
+      "bytes": 15001,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r4-project-list/initial-upload.json",
+      "originalSHA256": "d52d4f39da433e82c87182caf88d888800d7a9f906ac64bf7dfa281015d61a60",
+      "originalBytes": 15001
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/dev/r4-project-list/replacement-list.json": {
+      "sha256": "21ebd331a891b5ec26553ad57ab62598662e41cfac3c830dbb291c168adb0522",
+      "bytes": 5971,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/r4-project-list/replacement-list.json",
+      "originalSHA256": "21ebd331a891b5ec26553ad57ab62598662e41cfac3c830dbb291c168adb0522",
+      "originalBytes": 5971
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/evidence.json": {
+      "sha256": "b81e999c8f45f059e911b42de6d68416f5f89d6ae7b083d6462609bf82b10025",
+      "bytes": 25473,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/evidence.json",
+      "originalSHA256": "b81e999c8f45f059e911b42de6d68416f5f89d6ae7b083d6462609bf82b10025",
+      "originalBytes": 25473
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/playwright.json": {
+      "sha256": "97c343b926fd6abe36e551a59d9d7d163c3e1c0d0bb2fbeb7a09defeffab2692",
+      "bytes": 24010,
+      "purpose": "actual18 outcomes0skip0retry NO.env latest Source",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/e2e/production.json",
+      "originalSHA256": "fcb6b8b12543ca20fe87250650289b4b0d1914ff27c9b18e41e1f2d8b97035b2",
+      "originalBytes": 24009
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r1-project-switch.json": {
+      "sha256": "e9286fc4a7dcc090417b3e2a3cc17d4e6db47e894425664dc49b100625060043",
+      "bytes": 32970,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r1-project-switch.json",
+      "originalSHA256": "e9286fc4a7dcc090417b3e2a3cc17d4e6db47e894425664dc49b100625060043",
+      "originalBytes": 32970
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r2-recovery/fixtures.json": {
+      "sha256": "c5b2839f6f25a9c292e45fd23f2ef7b0b4edbc713d484a7915ba543652b3c46a",
+      "bytes": 1679,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r2-recovery/fixtures.json",
+      "originalSHA256": "c5b2839f6f25a9c292e45fd23f2ef7b0b4edbc713d484a7915ba543652b3c46a",
+      "originalBytes": 1679
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r2-recovery/invalid-and-timeout.json": {
+      "sha256": "7946f413979099a8882e8649e9cb695b7ed2be83518861bef821e1c881143578",
+      "bytes": 8406,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r2-recovery/invalid-and-timeout.json",
+      "originalSHA256": "7946f413979099a8882e8649e9cb695b7ed2be83518861bef821e1c881143578",
+      "originalBytes": 8406
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r2-recovery/ordinary-switch.json": {
+      "sha256": "abb9732fc4bc973606365f359b9cb1f6fea00c94b8fd7fb65455d45ae54e0d28",
+      "bytes": 40120,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r2-recovery/ordinary-switch.json",
+      "originalSHA256": "abb9732fc4bc973606365f359b9cb1f6fea00c94b8fd7fb65455d45ae54e0d28",
+      "originalBytes": 40120
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r2-recovery/poll.json": {
+      "sha256": "f87868a2b8acd75a9e67a5398a7f521b4fa0e32cc196b558296e929b31155062",
+      "bytes": 36104,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r2-recovery/poll.json",
+      "originalSHA256": "f87868a2b8acd75a9e67a5398a7f521b4fa0e32cc196b558296e929b31155062",
+      "originalBytes": 36104
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r2-recovery/pressure-network.json": {
+      "sha256": "182871431bc9a4dca854a68a311221aaaddb5df8ecdf59e99c12985eeb1d2ae7",
+      "bytes": 7742,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r2-recovery/pressure-network.json",
+      "originalSHA256": "182871431bc9a4dca854a68a311221aaaddb5df8ecdf59e99c12985eeb1d2ae7",
+      "originalBytes": 7742
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r2-recovery/pressure.json": {
+      "sha256": "4fd752476c1717119e995ba7403d46a27d09ef34680e33c5b3a2e6c57ee5f225",
+      "bytes": 8427,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r2-recovery/pressure.json",
+      "originalSHA256": "4fd752476c1717119e995ba7403d46a27d09ef34680e33c5b3a2e6c57ee5f225",
+      "originalBytes": 8427
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r3-state-ownership/fixtures.json": {
+      "sha256": "013c20bfd538374756c98935e181cba4961f9ae48c6ad0653d8a7d3a6cebc2d5",
+      "bytes": 958,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r3-state-ownership/fixtures.json",
+      "originalSHA256": "013c20bfd538374756c98935e181cba4961f9ae48c6ad0653d8a7d3a6cebc2d5",
+      "originalBytes": 958
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r3-state-ownership/late-actions.json": {
+      "sha256": "4aece0a2c67d1ee4c52e6e998697bc83c828d110279d02ca72d90b4334186af6",
+      "bytes": 63000,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r3-state-ownership/late-actions.json",
+      "originalSHA256": "4aece0a2c67d1ee4c52e6e998697bc83c828d110279d02ca72d90b4334186af6",
+      "originalBytes": 63000
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r3-state-ownership/late-adoption.json": {
+      "sha256": "599f926f59b580e4ee489b9899c56753bdd6193375a31a29370717d923f6965a",
+      "bytes": 24354,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r3-state-ownership/late-adoption.json",
+      "originalSHA256": "599f926f59b580e4ee489b9899c56753bdd6193375a31a29370717d923f6965a",
+      "originalBytes": 24354
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r3-state-ownership/late-upload.json": {
+      "sha256": "95974f2146a5e83b0deb00044ad6a5cb8a58944c357ac0c65c63b9d9ff54a826",
+      "bytes": 25479,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r3-state-ownership/late-upload.json",
+      "originalSHA256": "95974f2146a5e83b0deb00044ad6a5cb8a58944c357ac0c65c63b9d9ff54a826",
+      "originalBytes": 25479
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r3-state-ownership/poll-429.json": {
+      "sha256": "6be8aefe6a411af8620de2c88b76de3ef492ca67409a82063943ec67ca539faf",
+      "bytes": 12972,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r3-state-ownership/poll-429.json",
+      "originalSHA256": "6be8aefe6a411af8620de2c88b76de3ef492ca67409a82063943ec67ca539faf",
+      "originalBytes": 12972
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r3-state-ownership/poll-503.json": {
+      "sha256": "4e10d4d243288279524220d1acedd3164d0cad54a464e6d080a503d1f6fc81de",
+      "bytes": 12982,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r3-state-ownership/poll-503.json",
+      "originalSHA256": "4e10d4d243288279524220d1acedd3164d0cad54a464e6d080a503d1f6fc81de",
+      "originalBytes": 12982
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r3-state-ownership/poll-network.json": {
+      "sha256": "c87adbc1ed5e6e27be9e8da047738e72276980f8b6a9848f2d511071d619ff16",
+      "bytes": 11971,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r3-state-ownership/poll-network.json",
+      "originalSHA256": "c87adbc1ed5e6e27be9e8da047738e72276980f8b6a9848f2d511071d619ff16",
+      "originalBytes": 11971
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r4-project-list/failure-cancel.json": {
+      "sha256": "e96c34a841a0038dc71d1542ce3f51cbb56dce682f9486344a6785a0f630dd74",
+      "bytes": 3337,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r4-project-list/failure-cancel.json",
+      "originalSHA256": "e96c34a841a0038dc71d1542ce3f51cbb56dce682f9486344a6785a0f630dd74",
+      "originalBytes": 3337
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r4-project-list/fixture.json": {
+      "sha256": "f3246f159a80be64dd70d3806531055e4c768b0c9b036431d1879e07848e2063",
+      "bytes": 195,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r4-project-list/fixture.json",
+      "originalSHA256": "f3246f159a80be64dd70d3806531055e4c768b0c9b036431d1879e07848e2063",
+      "originalBytes": 195
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r4-project-list/initial-adopt.json": {
+      "sha256": "6f7ef44e72ff6eeb09bb8da9f658f20af386777aa90d97c7e1a1638b8a7916f0",
+      "bytes": 15228,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r4-project-list/initial-adopt.json",
+      "originalSHA256": "6f7ef44e72ff6eeb09bb8da9f658f20af386777aa90d97c7e1a1638b8a7916f0",
+      "originalBytes": 15228
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r4-project-list/initial-invalid-upload.json": {
+      "sha256": "6b3b94f5b901d3a8531555e257b1afc55b0d4c4cc6ea39e34d46a0534fedc6f4",
+      "bytes": 14514,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r4-project-list/initial-invalid-upload.json",
+      "originalSHA256": "6b3b94f5b901d3a8531555e257b1afc55b0d4c4cc6ea39e34d46a0534fedc6f4",
+      "originalBytes": 14514
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r4-project-list/initial-upload.json": {
+      "sha256": "bfbba5b525a1fd38e6a346714c17525c05ec6f4f27ee40c32f20c4afeff44b96",
+      "bytes": 14225,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r4-project-list/initial-upload.json",
+      "originalSHA256": "bfbba5b525a1fd38e6a346714c17525c05ec6f4f27ee40c32f20c4afeff44b96",
+      "originalBytes": 14225
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/browser/production/r4-project-list/replacement-list.json": {
+      "sha256": "9da065bea26d9f03e95bc7a0c2cbe29d70793c04c7397c0154e8712e1767e9ae",
+      "bytes": 4733,
+      "purpose": "actual PNG/clock/independent pixels/UI/network/Build identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/r4-project-list/replacement-list.json",
+      "originalSHA256": "9da065bea26d9f03e95bc7a0c2cbe29d70793c04c7397c0154e8712e1767e9ae",
+      "originalBytes": 4733
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/4def7210-2849-4600-a6c6-d0e5a0b1fe62/bounded-diagnostics.json": {
+      "sha256": "2982b1c2ffe431586764b214a13631190d2e8e6e9ac983b5a4fc77e0ea480e59",
+      "bytes": 3908,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/4def7210-2849-4600-a6c6-d0e5a0b1fe62/bounded-diagnostics.json",
+      "originalSHA256": "2982b1c2ffe431586764b214a13631190d2e8e6e9ac983b5a4fc77e0ea480e59",
+      "originalBytes": 3908
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/4def7210-2849-4600-a6c6-d0e5a0b1fe62/cancel-same-url.json": {
+      "sha256": "3314160a6e4910f4d42f48c1df0ef25bf41e06cdbd1def00cd87a9de02b83ea2",
+      "bytes": 1421,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/4def7210-2849-4600-a6c6-d0e5a0b1fe62/cancel-same-url.json",
+      "originalSHA256": "3314160a6e4910f4d42f48c1df0ef25bf41e06cdbd1def00cd87a9de02b83ea2",
+      "originalBytes": 1421
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/4def7210-2849-4600-a6c6-d0e5a0b1fe62/corrupt-and-hash.json": {
+      "sha256": "4ecc96d39be4da5f0d0bc15f0e38a9ea0150b9325ca5c2c0570fed50c8d85df8",
+      "bytes": 1197,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/4def7210-2849-4600-a6c6-d0e5a0b1fe62/corrupt-and-hash.json",
+      "originalSHA256": "4ecc96d39be4da5f0d0bc15f0e38a9ea0150b9325ca5c2c0570fed50c8d85df8",
+      "originalBytes": 1197
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/4def7210-2849-4600-a6c6-d0e5a0b1fe62/failed-and-reload.json": {
+      "sha256": "e21340fde55b914db9af1892b0baf7aefce31fdf0d7ff57d7c2aff279e1b30b5",
+      "bytes": 811,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/4def7210-2849-4600-a6c6-d0e5a0b1fe62/failed-and-reload.json",
+      "originalSHA256": "e21340fde55b914db9af1892b0baf7aefce31fdf0d7ff57d7c2aff279e1b30b5",
+      "originalBytes": 811
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/4def7210-2849-4600-a6c6-d0e5a0b1fe62/identity-negatives.json": {
+      "sha256": "f8d79b9c391317d18b4c22909f8834c18d98a110f71f50ce9b12eed954f85934",
+      "bytes": 423,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/4def7210-2849-4600-a6c6-d0e5a0b1fe62/identity-negatives.json",
+      "originalSHA256": "f8d79b9c391317d18b4c22909f8834c18d98a110f71f50ce9b12eed954f85934",
+      "originalBytes": 423
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/4def7210-2849-4600-a6c6-d0e5a0b1fe62/late-same-url.json": {
+      "sha256": "25335259746b1a4fc54007ee81c4d422241d6a8e16df3310a771e32f00cdd1f4",
+      "bytes": 810,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/4def7210-2849-4600-a6c6-d0e5a0b1fe62/late-same-url.json",
+      "originalSHA256": "25335259746b1a4fc54007ee81c4d422241d6a8e16df3310a771e32f00cdd1f4",
+      "originalBytes": 810
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/4def7210-2849-4600-a6c6-d0e5a0b1fe62/navigation.json": {
+      "sha256": "fc50c3275398f658e1219696e0ef5777ca7e9c0f26b1084f413bf8476b040558",
+      "bytes": 1423,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/4def7210-2849-4600-a6c6-d0e5a0b1fe62/navigation.json",
+      "originalSHA256": "fc50c3275398f658e1219696e0ef5777ca7e9c0f26b1084f413bf8476b040558",
+      "originalBytes": 1423
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/4def7210-2849-4600-a6c6-d0e5a0b1fe62/same-document.json": {
+      "sha256": "23eef84f7640595415533b6ef75b24fc74bf946778560bbac6438b20baf36fcf",
+      "bytes": 423,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/4def7210-2849-4600-a6c6-d0e5a0b1fe62/same-document.json",
+      "originalSHA256": "23eef84f7640595415533b6ef75b24fc74bf946778560bbac6438b20baf36fcf",
+      "originalBytes": 423
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/bounded-diagnostics.json": {
+      "sha256": "e436cdc3d5ff0d1a0a4df2ceaff6a3ef699d193456c4f70945e2126c5591a3f9",
+      "bytes": 3908,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/bounded-diagnostics.json",
+      "originalSHA256": "e436cdc3d5ff0d1a0a4df2ceaff6a3ef699d193456c4f70945e2126c5591a3f9",
+      "originalBytes": 3908
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/cancel-same-url.json": {
+      "sha256": "76d14a3d37b0249c16083f5fa06caad4bf155087786397fc00b4d662c6dfd7e6",
+      "bytes": 1421,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/cancel-same-url.json",
+      "originalSHA256": "76d14a3d37b0249c16083f5fa06caad4bf155087786397fc00b4d662c6dfd7e6",
+      "originalBytes": 1421
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/corrupt-and-hash.json": {
+      "sha256": "0a323d5b4adceaa69c7eda0a146e2f820e32598706016e47bddd6a28c135e107",
+      "bytes": 1197,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/corrupt-and-hash.json",
+      "originalSHA256": "0a323d5b4adceaa69c7eda0a146e2f820e32598706016e47bddd6a28c135e107",
+      "originalBytes": 1197
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/failed-and-reload.json": {
+      "sha256": "b1a0919bdb12205a96341757e7b9f57c10cf95979dd22462b2a34f569f27ff6f",
+      "bytes": 811,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/failed-and-reload.json",
+      "originalSHA256": "b1a0919bdb12205a96341757e7b9f57c10cf95979dd22462b2a34f569f27ff6f",
+      "originalBytes": 811
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/identity-negatives.json": {
+      "sha256": "d875d99375fb87e38b12af6c36f6467d43c44e0c5d22c2b979360f59b47acb29",
+      "bytes": 423,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/identity-negatives.json",
+      "originalSHA256": "d875d99375fb87e38b12af6c36f6467d43c44e0c5d22c2b979360f59b47acb29",
+      "originalBytes": 423
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/late-same-url.json": {
+      "sha256": "34c03237a6506bab588ec08fa42f59f6cec28e1a05f714357a39c343a35e6715",
+      "bytes": 810,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/late-same-url.json",
+      "originalSHA256": "34c03237a6506bab588ec08fa42f59f6cec28e1a05f714357a39c343a35e6715",
+      "originalBytes": 810
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/navigation.json": {
+      "sha256": "fb8f4313ac35e031e2f2512826b6ef86889c9b621872af6b878c2da6d715b514",
+      "bytes": 1423,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/navigation.json",
+      "originalSHA256": "fb8f4313ac35e031e2f2512826b6ef86889c9b621872af6b878c2da6d715b514",
+      "originalBytes": 1423
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/same-document.json": {
+      "sha256": "5758c7ee997dd66cef61f9ebaf108ed4cf49d3b5ffe39a0ea760a1e651fea5a4",
+      "bytes": 423,
+      "purpose": "latest8 original capture cases; counts overlapcheck",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/received-resource-tests/91173b32-2e2f-4df0-954d-d1b7bcaa83b5/same-document.json",
+      "originalSHA256": "5758c7ee997dd66cef61f9ebaf108ed4cf49d3b5ffe39a0ea760a1e651fea5a4",
+      "originalBytes": 423
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/capture-verification.json": {
+      "sha256": "9a6e16d67d790c3a84b63c2df8f28c379e277ddeafa9b2bcd82932d80c65d7a0",
+      "bytes": 26619,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/capture-verification.json",
+      "originalSHA256": "9a6e16d67d790c3a84b63c2df8f28c379e277ddeafa9b2bcd82932d80c65d7a0",
+      "originalBytes": 26619
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/ci6-original-and-timings.json": {
+      "sha256": "1a99d145ef9e6c5e37a89f7a3abd6a96cd64336c231071dacf31fecde348748f",
+      "bytes": 12490,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/ci6-original-and-timings.json",
+      "originalSHA256": "1a99d145ef9e6c5e37a89f7a3abd6a96cd64336c231071dacf31fecde348748f",
+      "originalBytes": 12490
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controlled-commands.json": {
+      "sha256": "f690bb2257225836d7a69d9c4b0886a2d9a1e6fe24fa41ba857a76f91967808e",
+      "bytes": 1654,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/controlled-commands.json",
+      "originalSHA256": "f690bb2257225836d7a69d9c4b0886a2d9a1e6fe24fa41ba857a76f91967808e",
+      "originalBytes": 1654
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controlled-equivalence.json": {
+      "sha256": "1640676ca71139736a2037fc142086937473578674dcc3ecdbfe6bc9c138b1c5",
+      "bytes": 3364,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/controlled-equivalence.json",
+      "originalSHA256": "1640676ca71139736a2037fc142086937473578674dcc3ecdbfe6bc9c138b1c5",
+      "originalBytes": 3364
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-detailed-spans.json": {
+      "sha256": "20a22139ea4f0c30d3fc364b04135b130d456c79c352dd3f43e54d423e9ee8ca",
+      "bytes": 339454,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-detailed-spans.json",
+      "originalSHA256": "20a22139ea4f0c30d3fc364b04135b130d456c79c352dd3f43e54d423e9ee8ca",
+      "originalBytes": 339454
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-received-resources-development.json": {
+      "sha256": "dedd20e7ffd4ef941ef7ae61520e3f91dd65fb40cb47926876d128c374ae9bd5",
+      "bytes": 5319,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-received-resources-development.json",
+      "originalSHA256": "dedd20e7ffd4ef941ef7ae61520e3f91dd65fb40cb47926876d128c374ae9bd5",
+      "originalBytes": 5319
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-received-resources-production.json": {
+      "sha256": "9549690c954881791cea7182952c74c19ba7d7bacc2016367344641746107919",
+      "bytes": 10609,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-received-resources-production.json",
+      "originalSHA256": "9549690c954881791cea7182952c74c19ba7d7bacc2016367344641746107919",
+      "originalBytes": 10609
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-ui-network-production.json": {
+      "sha256": "236ee186f346dcf7c4d00885ced2fbd9decb16ab259dfdf24de4d49ae9fa3931",
+      "bytes": 30705,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-ui-network-production.json",
+      "originalSHA256": "236ee186f346dcf7c4d00885ced2fbd9decb16ab259dfdf24de4d49ae9fa3931",
+      "originalBytes": 30705
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-ui-progress.json": {
+      "sha256": "fcc082240f75d541665694d1e09752a11d49819f165e5a36235dd477ba235d98",
+      "bytes": 2591,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-ui-progress.json",
+      "originalSHA256": "fcc082240f75d541665694d1e09752a11d49819f165e5a36235dd477ba235d98",
+      "originalBytes": 2591
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-ui-timing.json": {
+      "sha256": "cfbfc9dbb0131280931d52e25a3e4c5a0a00c032e58b44b2b4eaeb09461dcda2",
+      "bytes": 3537,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/20358fa1-8b12-4708-b294-0b5d39c6c6e8/r4-ui-timing.json",
+      "originalSHA256": "cfbfc9dbb0131280931d52e25a3e4c5a0a00c032e58b44b2b4eaeb09461dcda2",
+      "originalBytes": 3537
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/4d16ede2-f3d7-4933-9ed5-a4a0b90e23fe/r4-ui-network-production.json": {
+      "sha256": "a4bafe773f7a3757f46eca7ff71e1601988399c982e712bef02386bcfb5db20a",
+      "bytes": 24665,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/4d16ede2-f3d7-4933-9ed5-a4a0b90e23fe/r4-ui-network-production.json",
+      "originalSHA256": "a4bafe773f7a3757f46eca7ff71e1601988399c982e712bef02386bcfb5db20a",
+      "originalBytes": 24665
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/4d16ede2-f3d7-4933-9ed5-a4a0b90e23fe/r4-ui-progress.json": {
+      "sha256": "7c43b6939f7f7b8ffb0ea4df360c0bf80bedb1db11b89b8e071932d7f4c4a1d8",
+      "bytes": 4844,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/4d16ede2-f3d7-4933-9ed5-a4a0b90e23fe/r4-ui-progress.json",
+      "originalSHA256": "7c43b6939f7f7b8ffb0ea4df360c0bf80bedb1db11b89b8e071932d7f4c4a1d8",
+      "originalBytes": 4844
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-detailed-spans.json": {
+      "sha256": "9b3da49fb6b1a7a4e1ad4766df94d15e72ee94e89d5f02828836136f7a639213",
+      "bytes": 529919,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-detailed-spans.json",
+      "originalSHA256": "9b3da49fb6b1a7a4e1ad4766df94d15e72ee94e89d5f02828836136f7a639213",
+      "originalBytes": 529919
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-received-resources-development.json": {
+      "sha256": "55911a6b64128706f861fe633ee3bdd8a731242cd6f47530126ee9ae5838448b",
+      "bytes": 10184,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-received-resources-development.json",
+      "originalSHA256": "55911a6b64128706f861fe633ee3bdd8a731242cd6f47530126ee9ae5838448b",
+      "originalBytes": 10184
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-received-resources-production.json": {
+      "sha256": "4f011474ac0c39925863739fbc0fa7608cb440efcfb5edf1f612e2baaa5b79e7",
+      "bytes": 10609,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-received-resources-production.json",
+      "originalSHA256": "4f011474ac0c39925863739fbc0fa7608cb440efcfb5edf1f612e2baaa5b79e7",
+      "originalBytes": 10609
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-ui-network-production.json": {
+      "sha256": "0aabacfe5268df67bef45b535c3c3635feb28422e15070f7c778b3a2e303ae07",
+      "bytes": 30705,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-ui-network-production.json",
+      "originalSHA256": "0aabacfe5268df67bef45b535c3c3635feb28422e15070f7c778b3a2e303ae07",
+      "originalBytes": 30705
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-ui-progress.json": {
+      "sha256": "69ffa7bbd5e1510d52461a3884c42a6cd21954242469665df60131d3c6fdddcc",
+      "bytes": 3788,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-ui-progress.json",
+      "originalSHA256": "69ffa7bbd5e1510d52461a3884c42a6cd21954242469665df60131d3c6fdddcc",
+      "originalBytes": 3788
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-ui-timing.json": {
+      "sha256": "14a350f724f071a491a8ae13b3bd8dfcf98c91a8a07a3127f951a48e112cf701",
+      "bytes": 4734,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/526c45b5-2d4d-4919-a25a-c171afaef37d/r4-ui-timing.json",
+      "originalSHA256": "14a350f724f071a491a8ae13b3bd8dfcf98c91a8a07a3127f951a48e112cf701",
+      "originalBytes": 4734
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/53914ce3-a853-46f6-95af-93714411ee6b/r4-detailed-spans.json": {
+      "sha256": "97faf1639ea9d16855d51dcb937823fae47469a0a39d545539d49aa6b67a1bfe",
+      "bytes": 438834,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-detailed-spans.json",
+      "originalSHA256": "97faf1639ea9d16855d51dcb937823fae47469a0a39d545539d49aa6b67a1bfe",
+      "originalBytes": 438834
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/53914ce3-a853-46f6-95af-93714411ee6b/r4-received-resources-development.json": {
+      "sha256": "3dbd8a0acde760ea9fd0201dd437150fc13a571c21d46968c19ec80bb0d5d9cf",
+      "bytes": 13567,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-received-resources-development.json",
+      "originalSHA256": "3dbd8a0acde760ea9fd0201dd437150fc13a571c21d46968c19ec80bb0d5d9cf",
+      "originalBytes": 13567
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/53914ce3-a853-46f6-95af-93714411ee6b/r4-received-resources-production.json": {
+      "sha256": "851150f0b9ca858a85accf253e55acb961ef637cc75e96f4393895a486cb5ca6",
+      "bytes": 10609,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-received-resources-production.json",
+      "originalSHA256": "851150f0b9ca858a85accf253e55acb961ef637cc75e96f4393895a486cb5ca6",
+      "originalBytes": 10609
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-consistent-publication.json": {
+      "sha256": "5a66b4d09b3599d848889cdc60373be4be9e180fd41e9baa63c1d7a5e4e4a010",
+      "bytes": 15963,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-consistent-publication.json",
+      "originalSHA256": "5a66b4d09b3599d848889cdc60373be4be9e180fd41e9baa63c1d7a5e4e4a010",
+      "originalBytes": 15963
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-network-development.json": {
+      "sha256": "f2e7f857bf700d69aca97ddd8b810b7109ff723b0aeb7b5675a2f501efe9ccbf",
+      "bytes": 30060,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-network-development.json",
+      "originalSHA256": "f2e7f857bf700d69aca97ddd8b810b7109ff723b0aeb7b5675a2f501efe9ccbf",
+      "originalBytes": 30060
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-network-production.json": {
+      "sha256": "f32319bd5a956920596e2cf94ae019e1fdd78906806e521cb98a6673737543fa",
+      "bytes": 26024,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-network-production.json",
+      "originalSHA256": "f32319bd5a956920596e2cf94ae019e1fdd78906806e521cb98a6673737543fa",
+      "originalBytes": 26024
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-progress.json": {
+      "sha256": "a2527b8dbb5abddd0c570220a976c36f9cb9e18da2b52c0f8a9feb523d6a06d7",
+      "bytes": 3906,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-progress.json",
+      "originalSHA256": "a2527b8dbb5abddd0c570220a976c36f9cb9e18da2b52c0f8a9feb523d6a06d7",
+      "originalBytes": 3906
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-timing.json": {
+      "sha256": "3c80a9dee186b66ab36d834be0d71ec25d0254b5bf3bf5f9fc3af4f17a2a9f40",
+      "bytes": 4852,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/53914ce3-a853-46f6-95af-93714411ee6b/r4-ui-timing.json",
+      "originalSHA256": "3c80a9dee186b66ab36d834be0d71ec25d0254b5bf3bf5f9fc3af4f17a2a9f40",
+      "originalBytes": 4852
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-detailed-spans.json": {
+      "sha256": "5affb5f4ee345e474f96b3c6a442899408e823a1bca4e795e93e02e2b6b7f3b1",
+      "bytes": 397000,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-detailed-spans.json",
+      "originalSHA256": "5affb5f4ee345e474f96b3c6a442899408e823a1bca4e795e93e02e2b6b7f3b1",
+      "originalBytes": 397000
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-received-resources-development.json": {
+      "sha256": "3b9a48131afda54d8f3d8c9ea7debc10e36c5a70eb416e481a86627226c2fa31",
+      "bytes": 13567,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-received-resources-development.json",
+      "originalSHA256": "3b9a48131afda54d8f3d8c9ea7debc10e36c5a70eb416e481a86627226c2fa31",
+      "originalBytes": 13567
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-received-resources-production.json": {
+      "sha256": "63a701329bb1f504d3ce43751bfed3e8d54930d7f1ca9308b5b44adc8832852c",
+      "bytes": 10609,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-received-resources-production.json",
+      "originalSHA256": "63a701329bb1f504d3ce43751bfed3e8d54930d7f1ca9308b5b44adc8832852c",
+      "originalBytes": 10609
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-consistent-publication.json": {
+      "sha256": "91bae24393c7fba0bf79663f0c48d27e75c964422d2b2159325eba81311ec7a9",
+      "bytes": 15963,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-consistent-publication.json",
+      "originalSHA256": "91bae24393c7fba0bf79663f0c48d27e75c964422d2b2159325eba81311ec7a9",
+      "originalBytes": 15963
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-network-development.json": {
+      "sha256": "32b8c54d735cef27de33d50f5d1eaed2eb224ed3979d4e0cc33e32e751cd1e1b",
+      "bytes": 28852,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-network-development.json",
+      "originalSHA256": "32b8c54d735cef27de33d50f5d1eaed2eb224ed3979d4e0cc33e32e751cd1e1b",
+      "originalBytes": 28852
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-network-production.json": {
+      "sha256": "02a8af78e7ff2c65b09717763b051ea1ae2f7a264b9c0bd2fa7bb334cd9574b6",
+      "bytes": 24665,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-network-production.json",
+      "originalSHA256": "02a8af78e7ff2c65b09717763b051ea1ae2f7a264b9c0bd2fa7bb334cd9574b6",
+      "originalBytes": 24665
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-progress.json": {
+      "sha256": "d0c28584247166c07ad4fd03c479ab2da365764ed79fc22975058ccb75c316b9",
+      "bytes": 5168,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-progress.json",
+      "originalSHA256": "d0c28584247166c07ad4fd03c479ab2da365764ed79fc22975058ccb75c316b9",
+      "originalBytes": 5168
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/controls/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-timing.json": {
+      "sha256": "b5e145b681c2b0cdc373b7695dd148928f9299497e18fbe43407df678f9ec8ea",
+      "bytes": 9233,
+      "purpose": "transparent old/new source control records; canceled first wrong predicate separate, notcandidatePASS",
+      "originalPath": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60/.local/step07/tests/76301bb2-0d7e-4590-b749-65a1711f0d22/r4-ui-timing.json",
+      "originalSHA256": "b5e145b681c2b0cdc373b7695dd148928f9299497e18fbe43407df678f9ec8ea",
+      "originalBytes": 9233
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/downloads-independent.json": {
+      "sha256": "42f7fea211a2af14b6af24e3f3543ccfbdce6d868d3f3579a01f4eff97fca80c",
+      "bytes": 15673,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/downloads-independent.json",
+      "originalSHA256": "42f7fea211a2af14b6af24e3f3543ccfbdce6d868d3f3579a01f4eff97fca80c",
+      "originalBytes": 15673
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/engineering-manifest-documentary.json": {
+      "sha256": "5e8e51ac98fac80c072598229900529b89284b52c1847f2a5df587b42b010882",
+      "bytes": 26246,
+      "purpose": "engineering206 identity",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/artifacts/step07-0cdd9ad6a61a-1c6e73ce7d2c3713/manifest.json",
+      "originalSHA256": "0dae573d54c309fea0223815235dc2b688e1c04fd65b6ee7097ff5ed758caac6",
+      "originalBytes": 25562
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/engineering-verification.json": {
+      "sha256": "3517eecb9e5607756271325ca9bc24af76d7e67a107a2c8dd7e4714203838593",
+      "bytes": 36061,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/engineering-verification.json",
+      "originalSHA256": "3517eecb9e5607756271325ca9bc24af76d7e67a107a2c8dd7e4714203838593",
+      "originalBytes": 36061
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/github-completed-log-readback.json": {
+      "sha256": "51609a269cfa53801fb2966ee76661ecee8ca4b1be5ba85f32ee7bf4284a79f2",
+      "bytes": 7454,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/github-completed-log-readback.json",
+      "originalSHA256": "51609a269cfa53801fb2966ee76661ecee8ca4b1be5ba85f32ee7bf4284a79f2",
+      "originalBytes": 7454
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/atomic-job-export-cas.json": {
+      "sha256": "a2607533d0b4dd0d1d31e0ab3dee1b3bd1d93bd3f4046929212dc959d66fd506",
+      "bytes": 1081,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/atomic-job-export-cas.json",
+      "originalSHA256": "a2607533d0b4dd0d1d31e0ab3dee1b3bd1d93bd3f4046929212dc959d66fd506",
+      "originalBytes": 1081
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/component-identity-equal-bytes.json": {
+      "sha256": "c1d1ffcb31413b66fdc788c39be16ecdbd29626475518c0051a0772f83383925",
+      "bytes": 386,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/component-identity-equal-bytes.json",
+      "originalSHA256": "c1d1ffcb31413b66fdc788c39be16ecdbd29626475518c0051a0772f83383925",
+      "originalBytes": 386
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/http-codec-deadline-cancel.json": {
+      "sha256": "312a6f8770f3f84dbbf981de5d5289d3bb754d29b2f054fbb36cce872a673dd8",
+      "bytes": 260,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/http-codec-deadline-cancel.json",
+      "originalSHA256": "312a6f8770f3f84dbbf981de5d5289d3bb754d29b2f054fbb36cce872a673dd8",
+      "originalBytes": 260
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/ingress-failures.json": {
+      "sha256": "65e578555a30260f6c409f18bc888f31f83e9f49d7fda8c4cbb0b27ac5637ea1",
+      "bytes": 128,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/ingress-failures.json",
+      "originalSHA256": "65e578555a30260f6c409f18bc888f31f83e9f49d7fda8c4cbb0b27ac5637ea1",
+      "originalBytes": 128
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/integrated-restoration.json": {
+      "sha256": "893b3e6bf4f0d10e76b837bd95ffa783ea4b4a57fec2f5651fb15ae2fceaebf6",
+      "bytes": 33869,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/integrated-restoration.json",
+      "originalSHA256": "8f16bc14d691bef9349e57c4b72ea9360704a6c77f7865d62b2452b36fb2a071",
+      "originalBytes": 33894
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/largest-http-decoded-plane.json": {
+      "sha256": "3cc804ee63c0511dc98c9c328aaf28efc37805fdefef37b496baf3cb170dd0d3",
+      "bytes": 1046,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/largest-http-decoded-plane.json",
+      "originalSHA256": "3cc804ee63c0511dc98c9c328aaf28efc37805fdefef37b496baf3cb170dd0d3",
+      "originalBytes": 1046
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/legacy06-standard-conversion.json": {
+      "sha256": "70f1bf5f021a5a687c06f99fc57396a980a282bf80a16678c0f945073dacf9c7",
+      "bytes": 3985,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/legacy06-standard-conversion.json",
+      "originalSHA256": "70f1bf5f021a5a687c06f99fc57396a980a282bf80a16678c0f945073dacf9c7",
+      "originalBytes": 3985
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/ownership-summary.json": {
+      "sha256": "33c59ba1a3d141838cee2941777c8e8154d65e17b9113110177583390a9f6a4f",
+      "bytes": 1058,
+      "purpose": "safe owned resource summary",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/ownership.json",
+      "originalSHA256": "2e5e12d8484b8d758978b3160ba188f72bc4b815a98020f2947e2f5d9a315c0c",
+      "originalBytes": 1308
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r1-public-storage-boundaries.json": {
+      "sha256": "9242213bfb2779efb4faa57ff1f5e4c0697b15b41fdf2940a13c6e51959bfe3a",
+      "bytes": 7350,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r1-public-storage-boundaries.json",
+      "originalSHA256": "9242213bfb2779efb4faa57ff1f5e4c0697b15b41fdf2940a13c6e51959bfe3a",
+      "originalBytes": 7350
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r1-rejected-restore-parent.json": {
+      "sha256": "054b4e966d970ca04b00f74d5172224df368f64dfca22e7ebb48d5a7058eef6b",
+      "bytes": 624,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r1-rejected-restore-parent.json",
+      "originalSHA256": "c5f3e6c6d780ad125511f5355bfabc6b755739bfa80057ff20d6de13d8692dcc",
+      "originalBytes": 649
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r2-processed-busy-cancel-download.json": {
+      "sha256": "edfdcd2b76ec877acd395ed817647b9739b37c78c3d22683af02b7721b62edfd",
+      "bytes": 959,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r2-processed-busy-cancel-download.json",
+      "originalSHA256": "edfdcd2b76ec877acd395ed817647b9739b37c78c3d22683af02b7721b62edfd",
+      "originalBytes": 959
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-consistent-first.json": {
+      "sha256": "f0bc077c24714a43eac5bc6919fc65aa5fbd179d410a43c8ad8c0dec52ee9aeb",
+      "bytes": 7203,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-consistent-first.json",
+      "originalSHA256": "f0bc077c24714a43eac5bc6919fc65aa5fbd179d410a43c8ad8c0dec52ee9aeb",
+      "originalBytes": 7203
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-duplicate-legacy.json": {
+      "sha256": "b6a2f2a2f78197f047c951051e29351e082de51d79059e59467b81a74f81e461",
+      "bytes": 2879,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-duplicate-legacy.json",
+      "originalSHA256": "b6a2f2a2f78197f047c951051e29351e082de51d79059e59467b81a74f81e461",
+      "originalBytes": 2879
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-finalization-db-rollback.json": {
+      "sha256": "613d1eaf44daa709aa15cc9ecb1c62f2ea839c3cb44f91c0706750121da7eb56",
+      "bytes": 3557,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-finalization-db-rollback.json",
+      "originalSHA256": "613d1eaf44daa709aa15cc9ecb1c62f2ea839c3cb44f91c0706750121da7eb56",
+      "originalBytes": 3557
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-finalization-existing-standard.json": {
+      "sha256": "c8359269e7bc97b074e3f42ceed923e43976d8b5d38fd5a8722c1e2a9ac56a7d",
+      "bytes": 3311,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-finalization-existing-standard.json",
+      "originalSHA256": "c8359269e7bc97b074e3f42ceed923e43976d8b5d38fd5a8722c1e2a9ac56a7d",
+      "originalBytes": 3311
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-finalization-file-failure.json": {
+      "sha256": "833a409fc268a403ba617a8d9113d59bad84a09cabf35c70f4131cde62586e67",
+      "bytes": 3560,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-finalization-file-failure.json",
+      "originalSHA256": "833a409fc268a403ba617a8d9113d59bad84a09cabf35c70f4131cde62586e67",
+      "originalBytes": 3560
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-finalization-lost-receipt.json": {
+      "sha256": "a792109256a9d97d612ebd1028efe931e23d967d3462973d24a92c02a3d8adc8",
+      "bytes": 3296,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-finalization-lost-receipt.json",
+      "originalSHA256": "a792109256a9d97d612ebd1028efe931e23d967d3462973d24a92c02a3d8adc8",
+      "originalBytes": 3296
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-received-resources-development.json": {
+      "sha256": "013c5993feb99171bf02fa8a39bb11d6e102e900d7a5b2546f73501d227331bb",
+      "bytes": 13567,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-received-resources-development.json",
+      "originalSHA256": "013c5993feb99171bf02fa8a39bb11d6e102e900d7a5b2546f73501d227331bb",
+      "originalBytes": 13567
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-received-resources-production.json": {
+      "sha256": "0f2e5efa9e618eb6359e2ea494267b08778e7fb1a11dc34dbbac414dc6380a22",
+      "bytes": 10609,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-received-resources-production.json",
+      "originalSHA256": "0f2e5efa9e618eb6359e2ea494267b08778e7fb1a11dc34dbbac414dc6380a22",
+      "originalBytes": 10609
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-ui-consistent-publication.json": {
+      "sha256": "fc7617f68cb306fffa54f330ac2cb50c47420b3521221bbc321b8b50be829ab7",
+      "bytes": 15963,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-ui-consistent-publication.json",
+      "originalSHA256": "fc7617f68cb306fffa54f330ac2cb50c47420b3521221bbc321b8b50be829ab7",
+      "originalBytes": 15963
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-ui-network-development.json": {
+      "sha256": "a137d9eaad36eb70d6b0855a5c18d91a68fc6ef006fd0b30184e32cf90b80c3e",
+      "bytes": 28852,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-ui-network-development.json",
+      "originalSHA256": "a137d9eaad36eb70d6b0855a5c18d91a68fc6ef006fd0b30184e32cf90b80c3e",
+      "originalBytes": 28852
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-ui-network-production.json": {
+      "sha256": "24948b098b1b7810f9ccd1814eb3300d35ee3213812233165e960f123de3f56c",
+      "bytes": 24514,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-ui-network-production.json",
+      "originalSHA256": "24948b098b1b7810f9ccd1814eb3300d35ee3213812233165e960f123de3f56c",
+      "originalBytes": 24514
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-ui-progress.json": {
+      "sha256": "5f7b70e448f460781fd192857ceb7cec0f363f982cfd5b77270b880882d7d04e",
+      "bytes": 5167,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-ui-progress.json",
+      "originalSHA256": "5f7b70e448f460781fd192857ceb7cec0f363f982cfd5b77270b880882d7d04e",
+      "originalBytes": 5167
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/r4-ui-timing.json": {
+      "sha256": "8607667b6062056d50b220df9c5b9b5c46f493c39657bc32d4bcc67106b1a69c",
+      "bytes": 9231,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-ui-timing.json",
+      "originalSHA256": "8607667b6062056d50b220df9c5b9b5c46f493c39657bc32d4bcc67106b1a69c",
+      "originalBytes": 9231
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/http16/upload-native-measurement.json": {
+      "sha256": "f124494c9f10bb7914e35abf8bfdb8ab82238c3ecb2c3ae2b312035126ebfbe9",
+      "bytes": 755,
+      "purpose": "actual completeHTTP16 read/restore/CAS/export/received-resource checks",
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/upload-native-measurement.json",
+      "originalSHA256": "f124494c9f10bb7914e35abf8bfdb8ab82238c3ecb2c3ae2b312035126ebfbe9",
+      "originalBytes": 755
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/latest-commands.json": {
+      "sha256": "65265d26a5e001cf3699c0ce2902493562cb55e119b5a7480c4963c15f2fbdc0",
+      "bytes": 12832,
+      "purpose": "frozen latest Source actual cwd/argv/exit/elapsed/provenance, no prior results relabeled",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/commands.json",
+      "originalSHA256": "65265d26a5e001cf3699c0ce2902493562cb55e119b5a7480c4963c15f2fbdc0",
+      "originalBytes": 12832
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/controls/bound-sixphase.log.json": {
+      "sha256": "16a7a17a540e510015bf3741f66bc5e2668af5b37b43a11a09cdef804dc46bc6",
+      "bytes": 12051,
+      "purpose": "retained positive/negative control logs",
+      "originalPath": ".local/step07-ci-sixphase-duration/bound-sixphase.log",
+      "originalSHA256": "3141fac8d5b003a1d76746ce6f1688c2cc433befba0cc107e9aa1406aca9c794",
+      "originalBytes": 10650
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/controls/new-identical-job-domain-delay9s.log.json": {
+      "sha256": "0dee5e383ecf3c04ad093aaa7ea45213f08a818206dc8ce0b6572e03faef1a20",
+      "bytes": 11436,
+      "purpose": "retained positive/negative control logs",
+      "originalPath": ".local/step07-ci-sixphase-duration/new-identical-job-domain-delay9s.log",
+      "originalSHA256": "1ce1ff1155e89bdbfb3fe0d3a7ab39fcee92aa652d3175191409006402357c7e",
+      "originalBytes": 10096
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/controls/new-scoped-job-domain-delay9s.log.json": {
+      "sha256": "6f7c74e2bb4ccaf935066f24815e452dee2e96e709476d2b371356666b9c1ff3",
+      "bytes": 12038,
+      "purpose": "retained positive/negative control logs",
+      "originalPath": ".local/step07-ci-sixphase-duration/new-scoped-job-domain-delay9s.log",
+      "originalSHA256": "8e95fe278c6e2d588d96eb0705634acc2f1631342ea88f9a410d95553aeb7099",
+      "originalBytes": 10637
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/controls/old-domain-benchmark.log.json": {
+      "sha256": "fbfe92620672a70784932e1ec814e251438af0c9f3551a732eea134d97d1a887",
+      "bytes": 234,
+      "purpose": "retained positive/negative control logs",
+      "originalPath": ".local/step07-ci-sixphase-duration/old-domain-benchmark.log",
+      "originalSHA256": "ebb7da130df25b4b0f2e2abee99246dbf51ab91cbb2d82c7d0c866f01ac3392c",
+      "originalBytes": 111
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/controls/old-redundant-job-domain-delay9s.log.json": {
+      "sha256": "31e3134174c36680e66c2cf6b4bc85684a5ddd9e98803fe7547c220c28f3f5d9",
+      "bytes": 5769,
+      "purpose": "retained positive/negative control logs",
+      "originalPath": ".local/step07-ci-sixphase-duration/old-redundant-job-domain-delay9s.log",
+      "originalSHA256": "10b31cf671a1bb7a8322361775779dd28ca865383d03d98ab420d64b5bfa6d36",
+      "originalBytes": 5100
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/controls/old-scoped-job-domain-delay9s.log.json": {
+      "sha256": "7838af0558444160b2848cb584da2cbd93755fbd66750435381cd61747f5742d",
+      "bytes": 7813,
+      "purpose": "retained positive/negative control logs",
+      "originalPath": ".local/step07-ci-sixphase-duration/old-scoped-job-domain-delay9s.log",
+      "originalSHA256": "6726878c7200ef152f6fec6de462ffe234067dce5091256e311885a67589fc21",
+      "originalBytes": 6902
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/controls/profile-sixphase.log.json": {
+      "sha256": "68c96e5843b918bd4dced8ea5b08dc5c1e6a76d03fe7e98a722882cd21d60d58",
+      "bytes": 6947,
+      "purpose": "retained positive/negative control logs",
+      "originalPath": ".local/step07-ci-sixphase-duration/profile-sixphase.log",
+      "originalSHA256": "306e868c6ef113b1eff93a230df66bbabaef89a38368a8a7bb02642e8fa35be6",
+      "originalBytes": 6034
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/controls/warm-read-boundary.log.json": {
+      "sha256": "7d2d31bcce60b989746c9a4e109557f664b64027a2e2f0fa8fb7e0f087900cc8",
+      "bytes": 374,
+      "purpose": "retained positive/negative control logs",
+      "originalPath": ".local/step07-ci-sixphase-duration/warm-read-boundary.log",
+      "originalSHA256": "8901c0735a3ee74295666423f0ad9601b64e190875577e95128c05808e55d03a",
+      "originalBytes": 245
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/api3.json": {
+      "sha256": "739d8f3cf83a37efd43f5c4778c815d463fad6995d3bdf7fca503de1df1f42e1",
+      "bytes": 4254,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/api3.log",
+      "originalSHA256": "e699c07687ca4fcdb77f6d275e7cad24307bfe69a3c3f306f7a11682058dc603",
+      "originalBytes": 3452
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/check.json": {
+      "sha256": "98a853482882efee94c0c842ea49199e1e8f5a2232d4f63bec07c16c085f542d",
+      "bytes": 15380,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/check.log",
+      "originalSHA256": "9889ff36f98ae318a88ac84e0c6a26b6b4b0a9afdc43a56816a0bd3024660dbd",
+      "originalBytes": 14406
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/checkout.json": {
+      "sha256": "9fbb15ac5b0103ed83b98436deeabd21b7ca7f9aaea41cdd5e4c692372dbbd66",
+      "bytes": 848,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/checkout.log",
+      "originalSHA256": "15c27e5c38d17b7492542f81a41a60eeda9d84ba04036c729b5c19dc7b7cb67d",
+      "originalBytes": 81
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/clone.json": {
+      "sha256": "504b822938d763e8bc9663470ecb4ce9b7acf10c4260b2abbd7f3b0f144ad05b",
+      "bytes": 1103,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/clone.log",
+      "originalSHA256": "ec5c83d6ec2e5ffcc7be80bf01edfb7456f42bac90926149b48c10a19ade7dc3",
+      "originalBytes": 158
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/development-migrate.json": {
+      "sha256": "92911ec1e5dda7efe2b49a0ced4d5ce64ab71d3b6544f34d693bfcecf12f3217",
+      "bytes": 2146,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/development-migrate.log",
+      "originalSHA256": "3f7fd03ab25343884b8a8961cfd1ac42b4fb8b7c24467cf99b425e2642f0ba1f",
+      "originalBytes": 1378
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/development18-noenv.json": {
+      "sha256": "8bf452c82fb165c0f35093398264c7520d94fc31ad2da64d7a4f22cf4e4f4039",
+      "bytes": 8000,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/development18-noenv.log",
+      "originalSHA256": "a5c3df0ecdedca477e0f6d82e6ae943e21dc9864a284c57d800f982ba8cb4f11",
+      "originalBytes": 7159
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/engineering.json": {
+      "sha256": "e3ac470f8d14ae5b445498f3445c3ced188fa4d17cc52d9b2f99efe01f05adb0",
+      "bytes": 30133,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/engineering.log",
+      "originalSHA256": "bdac534291d15596485b35ab28c7c8de595c9fdca9ee909f23b2ff392019cf98",
+      "originalBytes": 28242
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/generate.json": {
+      "sha256": "2d12668a3f4acbb7db07d98090a8d9db9977649d0e5c017b3c5d0a98ab018102",
+      "bytes": 1596,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/generate.log",
+      "originalSHA256": "9bb8c925db601e4bde9655921d4188725db1ef8db4ee878d1cf088953a475d9e",
+      "originalBytes": 877
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/http16.json": {
+      "sha256": "dd722178d8514293bc93521244184b6f624a400688941dcb7d0f5583195c89b3",
+      "bytes": 18025,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/http16.log",
+      "originalSHA256": "899b6c4f5e576f68befc7edc3fb272cdade276a73997aeba5bb624999e0572ba",
+      "originalBytes": 15908
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/install.json": {
+      "sha256": "9611751b8046c4176697301e121f3996a024892987b007f48c078d4034b4d183",
+      "bytes": 2078,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/install.log",
+      "originalSHA256": "7e19c4e7898397601bdbafa0aabb5f52704ee05b4981f082bdf2b369aaa54354",
+      "originalBytes": 1170
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/latest-response-browser-controls.json": {
+      "sha256": "3bdb6ad1373a0424e2369dd1e1d4378fc4c843ba34c23b8bdc12d006fbf061c8",
+      "bytes": 1206,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/latest-response-browser-controls.log",
+      "originalSHA256": "2743cb0369e31b153d3276694651f8687e84a2f283e57e65ac300581a322137f",
+      "originalBytes": 323
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/pg06-full23.json": {
+      "sha256": "2116f1a9d4f9f7b71d78579e01aeeba1bc8c4d6e5e7c40ee6e20e209dd82e03c",
+      "bytes": 4479,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/pg06-full23.log",
+      "originalSHA256": "e5b647b862445d53f6bfd077ed8232d6cb4572d4a19dfd2db0ed0d66392a2b1c",
+      "originalBytes": 3663
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/privacy5.json": {
+      "sha256": "3c10335323c56e10df53110e8cb2cbb09c27a8b4bb7adea9cac14b2426f53a63",
+      "bytes": 4257,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/privacy5.log",
+      "originalSHA256": "0d2c04c78d39f67dcae5d1da517fd1327b6449d374f645dd8aa85520939eef25",
+      "originalBytes": 3447
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/production-migrate.json": {
+      "sha256": "da4b3362405e58522aab446991da203778391ffeebe19ed791f5436d4e61725a",
+      "bytes": 2143,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/production-migrate.log",
+      "originalSHA256": "e4347ed3b716ddef5778a48565f5ec1e901486a8182ef52de1a5f67ef229f491",
+      "originalBytes": 1377
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/production18-noenv.json": {
+      "sha256": "1d484c1f1c03a5a9877f5809388ca3414d41d80cd8a30134c892895de196cb82",
+      "bytes": 4577,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/production18-noenv.log",
+      "originalSHA256": "b34c99bc099c1fcf82041dad5651775021e3f57de580a9032ee4147ca5673c16",
+      "originalBytes": 3776
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/logs/latest/regression-migrate.json": {
+      "sha256": "f0341c125b1e0d17fdfdcc46849afc89af3c86dfeaae55d2e684a0a870193c19",
+      "bytes": 3021,
+      "purpose": "actual latest Source raw command log; originals preserved",
+      "originalPath": ".local/step07-ci-sixphase-duration/final/regression-migrate.log",
+      "originalSHA256": "c0ccda8937d71a957110c740f85d95a8dfd0fc3f0ce8e698ca4f62f840c7b370",
+      "originalBytes": 2245
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/old-domain-benchmark.json": {
+      "sha256": "81bd0cb1307f0ba68a07e611fcb71db7d57d679253ff4cf9e3b322af746a1f07",
+      "bytes": 1533,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/old-domain-benchmark.json",
+      "originalSHA256": "81bd0cb1307f0ba68a07e611fcb71db7d57d679253ff4cf9e3b322af746a1f07",
+      "originalBytes": 1533
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/parent-review13.json": {
+      "sha256": "373b469ccf9009e6a763bc77d970e2e3c807c4850f1b4dbce339c6ee88bb1365",
+      "bytes": 500,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/parent-review13.json",
+      "originalSHA256": "373b469ccf9009e6a763bc77d970e2e3c807c4850f1b4dbce339c6ee88bb1365",
+      "originalBytes": 500
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/private-inventory.json": {
+      "sha256": "246b9b85aba0aca96e5473bcda094adebb1bd288a88c8b5e2321c0b232c95810",
+      "bytes": 1015561,
+      "purpose": "raw failures/cache/test outputs retained; sensitive ownership and trace bytes excluded"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/bench-domain.mjs.json": {
+      "sha256": "e0d6dc36911a38a64cf427aa5c30f7e1c75117b38b24e2e103e35ffd0e2809b0",
+      "bytes": 1528,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/bench-domain.mjs",
+      "originalSHA256": "6be74ee54e71c054c438b06788a2b4a4b1af26df39c9da0d2fb8a5570ba8c8ae",
+      "originalBytes": 1418
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/instrument.py.json": {
+      "sha256": "287734927aaf1ba5603f1f88a53de4ab107908554d84ee78c7ffbd4bfcd2ac67",
+      "bytes": 2548,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/instrument.py",
+      "originalSHA256": "346797ebf65d2ef5e3e1d33bf2748d13fb4c3b4aa0e5cf8a896b136c690751b2",
+      "originalBytes": 2404
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/run-bound-control.py.json": {
+      "sha256": "69d1903413185e50585ef8f6ad9d47291b1a51e8e9f79a53090b396cf27fe942",
+      "bytes": 3643,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/run-bound-control.py",
+      "originalSHA256": "ecdbc29fc144f59ec83ad5282645b52cae47f728898a05e5d8bfb548010ed36f",
+      "originalBytes": 3522
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/run-controls.py.json": {
+      "sha256": "5503a2d7af5e735645930ed6a80edd79b3bb1a6529e404fcd58a8b334dd57f70",
+      "bytes": 3968,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/run-controls.py",
+      "originalSHA256": "9055c0e0aa0451ca885ebbd60c99d4e812d66c4e13132edc0695ae3d7eea994d",
+      "originalBytes": 3844
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/run-final.py.json": {
+      "sha256": "c58cf35e9afbeedcd416358501570c8c814fddd081724cf56e522dceeba5c5ac",
+      "bytes": 4403,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/run-final.py",
+      "originalSHA256": "a4747428b5d3933587d7ed2f93b2b1d93a96b2d1794cf8ec192a838a684e135f",
+      "originalBytes": 4272
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/run-scoped-controls.py.json": {
+      "sha256": "c729d0cc6794285eb74de50a6db53c03b98334f50ca82c6f6feb94094181cc4e",
+      "bytes": 4146,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/run-scoped-controls.py",
+      "originalSHA256": "871fcb3f2a2fff97c1c03d4c308d74e369838407d05058bca5e4cd9b74cb650a",
+      "originalBytes": 4022
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/setup-profile.py.json": {
+      "sha256": "6c1681d45936e6a055b1cc78ad800948e6228b66c9d50cd58d87fe5329614696",
+      "bytes": 3244,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/setup-profile.py",
+      "originalSHA256": "ffcd68b897725cdb43503ca27602a927c97d20a96f451d91ee173f2ea555477a",
+      "originalBytes": 3125
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/verify-build.py.json": {
+      "sha256": "2d5cd293cdec7ce8c2a49cf348885eb2c96ba96b3cfd5b2ac46fd64b498f0ca7",
+      "bytes": 2420,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/verify-build.py",
+      "originalSHA256": "7d0fe8b1566006a1e975d83245f484b8ea1c4d2cec6ff1b915c256b0a0ffc80f",
+      "originalBytes": 2305
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/verify-capture.py.json": {
+      "sha256": "46aab7e15aa16aeb8dc1eac6e91b6613a47b104e776cf3b3ccf23cfdeb65f179",
+      "bytes": 2649,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/verify-capture.py",
+      "originalSHA256": "1ede9221ded53aad8c7d9870f0dceaed573c48826323e2004d8f8bdf2d40a06e",
+      "originalBytes": 2536
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/verify-downloads.py.json": {
+      "sha256": "de8dbb406d073fa37b79104fd123ca5043b416205e505a195fda0c413f7b0126",
+      "bytes": 1768,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/verify-downloads.py",
+      "originalSHA256": "4add0181c745653c7e520af8d0915700c385dc3e25c5596219561b09cd503680",
+      "originalBytes": 1649
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/probes/warm-read-boundary.mjs.json": {
+      "sha256": "fb790671aaac2956926fcf396fdc4a13e9b5eebac380e16b7ce235105787a1f4",
+      "bytes": 1962,
+      "purpose": "reproducible control scripts, no runtime import from docs",
+      "originalPath": ".local/step07-ci-sixphase-duration/warm-read-boundary.mjs",
+      "originalSHA256": "9f17cdf4a5493890fe0c27b0e9c80181e529b93cb71fb126a550d08c690d2794",
+      "originalBytes": 1842
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/profile-commands.json": {
+      "sha256": "1a392ba9deb48335aa2a555dbfcb2c3ec75dd1476855e60897472af97d370e55",
+      "bytes": 4411,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/profile-commands.json",
+      "originalSHA256": "5fc52dbd9ba92cebd62d3a0fa2844d3440dee0b6d38931104902e43ad7bbcacd",
+      "originalBytes": 4442
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/profile-summary.json": {
+      "sha256": "90f99a48ed04009a0985aeef5d329908d08b924d8624fa499cf4d1f52a6ef6de",
+      "bytes": 4150,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/profile-summary.json",
+      "originalSHA256": "90f99a48ed04009a0985aeef5d329908d08b924d8624fa499cf4d1f52a6ef6de",
+      "originalBytes": 4150
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/scoped-controlled-commands.json": {
+      "sha256": "7b662e786c59575a5eb81fc3213db33259a896025c903f8b91489964da248754",
+      "bytes": 2720,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/scoped-controlled-commands.json",
+      "originalSHA256": "7b662e786c59575a5eb81fc3213db33259a896025c903f8b91489964da248754",
+      "originalBytes": 2720
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots/dev/05-retired.png": {
+      "sha256": "fbbb4cb4cc7f9cad3d94e16aa38dd172b21447c7078254e401ae12c6d4c6bfdd",
+      "bytes": 418536,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/05-retired.png",
+      "originalSHA256": "fbbb4cb4cc7f9cad3d94e16aa38dd172b21447c7078254e401ae12c6d4c6bfdd",
+      "originalBytes": 418536,
+      "purpose": "actual technical screenshot; only images named in viewed receipt inspected; not art/MZ PASS"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots/dev/06-current-reloaded.png": {
+      "sha256": "d714c8eb0e63d2af157a0953bd937ea94fe8f3b167eb24b2d3f2f7add88ed6b0",
+      "bytes": 422757,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/dev/06-current-reloaded.png",
+      "originalSHA256": "d714c8eb0e63d2af157a0953bd937ea94fe8f3b167eb24b2d3f2f7add88ed6b0",
+      "originalBytes": 422757,
+      "purpose": "actual technical screenshot; only images named in viewed receipt inspected; not art/MZ PASS"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots/http16/r4-development-first.png": {
+      "sha256": "60ecf259fc0c74ed032c9d46b169f811281a487acab6653b4b63c9585421f9b0",
+      "bytes": 443649,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-development-first.png",
+      "originalSHA256": "60ecf259fc0c74ed032c9d46b169f811281a487acab6653b4b63c9585421f9b0",
+      "originalBytes": 443649,
+      "purpose": "actual6phase PNG screenshots; only images in viewed receipt are author view_image inspected"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots/http16/r4-development-replacement.png": {
+      "sha256": "88089024d007f845399a9f7b137935fc4e13657a8fd1ba01b47bdf915931df9b",
+      "bytes": 451272,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-development-replacement.png",
+      "originalSHA256": "88089024d007f845399a9f7b137935fc4e13657a8fd1ba01b47bdf915931df9b",
+      "originalBytes": 451272,
+      "purpose": "actual6phase PNG screenshots; only images in viewed receipt are author view_image inspected"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots/http16/r4-production-first.png": {
+      "sha256": "401ec58c90ef78d853d5536f5556f04f1bdd89a6714930fa4b464eabe7b4f19e",
+      "bytes": 436030,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-production-first.png",
+      "originalSHA256": "401ec58c90ef78d853d5536f5556f04f1bdd89a6714930fa4b464eabe7b4f19e",
+      "originalBytes": 436030,
+      "purpose": "actual6phase PNG screenshots; only images in viewed receipt are author view_image inspected"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots/http16/r4-production-replacement.png": {
+      "sha256": "d135fe6ff12cc24486c49661e58b4abadcb17e7d053e80b339f3ef2ae352ad7a",
+      "bytes": 444384,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/tests/585490c2-c1dc-4c26-bcf3-882c5d85dfa7/r4-production-replacement.png",
+      "originalSHA256": "d135fe6ff12cc24486c49661e58b4abadcb17e7d053e80b339f3ef2ae352ad7a",
+      "originalBytes": 444384,
+      "purpose": "actual6phase PNG screenshots; only images in viewed receipt are author view_image inspected"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots/production/05-retired.png": {
+      "sha256": "a6c464bcc2f4f191a57eca7acbc65a4d5390491363647fbf02631a960a5dc4e1",
+      "bytes": 421489,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/05-retired.png",
+      "originalSHA256": "a6c464bcc2f4f191a57eca7acbc65a4d5390491363647fbf02631a960a5dc4e1",
+      "originalBytes": 421489,
+      "purpose": "actual technical screenshot; only images named in viewed receipt inspected; not art/MZ PASS"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots/production/06-current-reloaded.png": {
+      "sha256": "237e621bf87a254d24474b21b05dc73df8a5f6e9284330112a4caf3765efc0f1",
+      "bytes": 425450,
+      "originalPath": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1/.local/step07/browser/production/06-current-reloaded.png",
+      "originalSHA256": "237e621bf87a254d24474b21b05dc73df8a5f6e9284330112a4caf3765efc0f1",
+      "originalBytes": 425450,
+      "purpose": "actual technical screenshot; only images named in viewed receipt inspected; not art/MZ PASS"
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/screenshots-viewed.json": {
+      "sha256": "1b8c97fd9548986fae5b9a0cc85fe6d540e65996aa45c207d982c54078f5bf1b",
+      "bytes": 1109,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/screenshots-viewed.json",
+      "originalSHA256": "1b8c97fd9548986fae5b9a0cc85fe6d540e65996aa45c207d982c54078f5bf1b",
+      "originalBytes": 1109
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/service-state-final.json": {
+      "sha256": "09cbc25300cc2dd08258a87eae243d0fd3b69ee7229d7388c1b185bfe28e7ed3",
+      "bytes": 635,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/service-state-final.json",
+      "originalSHA256": "09cbc25300cc2dd08258a87eae243d0fd3b69ee7229d7388c1b185bfe28e7ed3",
+      "originalBytes": 635
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/source-freeze.json": {
+      "sha256": "00670d4f53714ff515dac94c27488a67450cfbd07483858b0d4ff3e3b06add44",
+      "bytes": 1668,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/source-freeze.json",
+      "originalSHA256": "00670d4f53714ff515dac94c27488a67450cfbd07483858b0d4ff3e3b06add44",
+      "originalBytes": 1668
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/source-protection.json": {
+      "sha256": "f2c3b062324005726c0630c26c8319b544a56fbed3e9ca2e76e9eb5ac1d6c6d4",
+      "bytes": 561,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/source-protection.json",
+      "originalSHA256": "f2c3b062324005726c0630c26c8319b544a56fbed3e9ca2e76e9eb5ac1d6c6d4",
+      "originalBytes": 561
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/visible-client-configuration.json": {
+      "sha256": "beca8a67cc8bce49bbd1d5d7641c35f193d09ec9b50f18e191b9809eb3c58790",
+      "bytes": 548,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/visible-client-configuration.json",
+      "originalSHA256": "beca8a67cc8bce49bbd1d5d7641c35f193d09ec9b50f18e191b9809eb3c58790",
+      "originalBytes": 548
+    },
+    "docs/evidence/step-07/ci-sixphase-duration/warm-read-boundary.json": {
+      "sha256": "f8ba1f2ca7ae718b94e6c021207fdc970447a39542facc46df3d4cfb6cd59160",
+      "bytes": 266,
+      "purpose": "precise Source/scope; real method timings and legal old/new controls; actual CI6 magnitude not inferred from local speed",
+      "originalPath": ".local/step07-ci-sixphase-duration/warm-read-boundary.json",
+      "originalSHA256": "f8ba1f2ca7ae718b94e6c021207fdc970447a39542facc46df3d4cfb6cd59160",
+      "originalBytes": 266
+    }
+  },
+  "excluded": [
+    "ledger itself (no self-reference)",
+    "raw env/DSN/password/full DB ownership/private dumps/licensed runtime/trace bytes retained privately"
+  ],
+  "publicSensitiveScan": {
+    "actualOwnedDSNPasswordAndFullTestDBNamesAbsent": true,
+    "scannedReportBaselineAndPayloads": 190,
+    "valuesNeverPrinted": true
+  },
+  "postSourceAudit": "only report/evidence/Baseline addition; no execution imports; source7 execution bytes unchanged",
+  "resources": {
+    "originalAPI": "PID22456/4376 retained",
+    "originalPG": "PID51121/55476 retained",
+    "originalEnv600Live206Source594": "unchanged",
+    "ownIsolatedDBsAssetsCacheClonesRawLogs": "retained no reset/drop",
+    "ownTemporaryAPIWebBrowser": "closed after tests"
+  },
+  "configuration": {
+    "role": "step_coder",
+    "model": "gpt-6.1-sol",
+    "effort": "xhigh",
+    "tier": "default(Standard)",
+    "serverFinal": "UNVERIFIED_NOT_EXPOSED",
+    "collaboration": false,
+    "globalChanges": false
+  },
+  "step06": "PUBLISHED_NOT_REPEATED",
+  "step08": "NOT_STARTED",
+  "step09": "NOT_STARTED",
+  "step10": "NOT_STARTED",
+  "stop": "STOP_WAIT_MAIN_REVIEW14"
+}

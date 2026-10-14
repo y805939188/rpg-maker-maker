@@ -1,0 +1,18 @@
+{
+  "label": "toolchain",
+  "command": [
+    "node",
+    "-e",
+    "console.log(JSON.stringify({node:process.version,pnpm:require('child_process').execFileSync('pnpm',['--version'],{encoding:'utf8'}).trim(),pg:require('child_process').execFileSync('/opt/homebrew/opt/postgresql@14/bin/pg_config',['--version'],{encoding:'utf8'}).trim()}))"
+  ],
+  "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round14/rpg-maker-maker",
+  "head": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+  "exitCode": 0,
+  "seconds": 0.766,
+  "log": "evidence/toolchain.log",
+  "sha256": "5c71c733204cb57e7bf55631e789f4fba965015d7bf1d12211ef2a160f01595c",
+  "bytes": 72,
+  "privateRawSHA": "5c71c733204cb57e7bf55631e789f4fba965015d7bf1d12211ef2a160f01595c",
+  "rawSecretMatchesRedacted": 0,
+  "atUTC": "2026-10-14T13:20:28.770526+00:00"
+}
