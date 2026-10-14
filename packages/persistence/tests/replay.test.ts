@@ -2,6 +2,7 @@ import { beforeAll, describe, it, expect } from 'vitest';
 import { archiveDomain, replayDomainArchive } from '@tileset/persistence';
 import {
   replayArchives,
+  ReplaySession,
   prepareBundle,
   bundleFiles,
   verifyBundleFiles,
@@ -13,6 +14,7 @@ import { pairOperations, fragmentsFor } from '../../../scripts/step05-fixture.js
 import { fixture, art } from '../../material-processing/tests/fixture.js';
 import { compileFragment } from '@tileset/mz-compiler';
 import { codecRuntime } from '@tileset/image-adapter';
+import { isValidatedSource } from '@tileset/asset-core';
 let archive: ReturnType<typeof archiveFixture>;
 let operations: ReturnType<typeof pairOperations>;
 beforeAll(async () => {
@@ -21,6 +23,41 @@ beforeAll(async () => {
   operations = pairOperations('replay', 1, fragmentsFor(f));
 });
 describe('public JSON restore boundary', () => {
+  it('one bounded replay session reuses only identical validated archives and independently owned bytes', async () => {
+    const session = new ReplaySession(),
+      first = await replayArchives([archive], session),
+      second = await replayArchives([archive], session);
+    expect(second.records[0]).toBe(first.records[0]);
+    expect(second.records[0]!.sources.every(isValidatedSource)).toBe(true);
+    const source = second.records[0]!.sources[0]!,
+      pixels = source.image.pixelHash,
+      bytes = source.raw.bytes();
+    bytes.fill(0);
+    source.image.bytes().fill(0);
+    expect(source.image.pixelHash).toBe(pixels);
+    expect(source.raw.bytes()).not.toEqual(bytes);
+    const corrupt = {
+      ...archive,
+      sources: archive.sources.map((s, n) => (n === 0 ? { ...s, png: 'AAAA' } : s)),
+    };
+    await expect(replayArchives([corrupt], session)).rejects.toThrow();
+  });
+
+  it('a warmed session still rejects changed validation metadata and an ended lifetime', async () => {
+    const controller = new AbortController(),
+      session = new ReplaySession(controller.signal);
+    await replayArchives([archive], session);
+    const corrupt = {
+      ...archive,
+      sources: archive.sources.map((s, n) =>
+        n === 0 ? { ...s, validationHash: '0'.repeat(64) } : s,
+      ),
+    };
+    await expect(replayArchives([corrupt], session)).rejects.toThrow();
+    controller.abort(new Error('owned replay lifetime ended'));
+    await expect(replayArchives([archive], session)).rejects.toThrow('owned replay lifetime ended');
+  });
+
   it('restores legal engine-free RGBA IR without requiring MZ compatibility', async () => {
     const input = fixture(),
       archive = archiveDomain(input),

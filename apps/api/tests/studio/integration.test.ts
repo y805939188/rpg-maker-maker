@@ -1279,6 +1279,12 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
   const timing: { stage: string; ms: number; status: string }[] = [],
     started = performance.now();
   let pending = 'setup';
+  const checkpoints: { stage: string; elapsedMs: number }[] = [];
+  function mark(stage: string) {
+    const point = { stage, elapsedMs: Math.round(performance.now() - started) };
+    checkpoints.push(point);
+    process.stderr.write('R4_CHECKPOINT ' + JSON.stringify(point) + '\n');
+  }
   async function step<T>(stage: string, fn: () => Promise<T>): Promise<T> {
     pending = stage;
     const start = performance.now();
@@ -1451,15 +1457,19 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           const upload = page.waitForResponse(
             (r) => r.request().method() === 'POST' && r.url().includes('/sources/water-0/upload'),
           );
-          await page.getByLabel('上传水面源帧 0', { exact: true }).setInputFiles({
-            name: 'changed.png',
-            mimeType: 'image/png',
-            buffer: Buffer.from(resources.presets.art.sources[2]!.png, 'base64'),
-          });
+          await step(mode + ':replacement:upload', () =>
+            page.getByLabel('上传水面源帧 0', { exact: true }).setInputFiles({
+              name: 'changed.png',
+              mimeType: 'image/png',
+              buffer: Buffer.from(resources.presets.art.sources[2]!.png, 'base64'),
+            }),
+          );
           expect((await upload).status()).toBe(201);
           await browserExpect(page.locator('.notice')).toContainText('新 revision');
-          await page.getByRole('button', { name: '验证并采用固定岸线配方', exact: true }).click();
-          await browserExpect(page.locator('.notice')).toContainText('固定岸线配方');
+          await step(mode + ':replacement:recipe', async () => {
+            await page.getByRole('button', { name: '验证并采用固定岸线配方', exact: true }).click();
+            await browserExpect(page.locator('.notice')).toContainText('固定岸线配方');
+          });
           await step(mode + ':processed-image', image);
         }
         let entered!: () => void,
@@ -1509,6 +1519,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             r4Terminal(f.project, accepted.id),
           );
           expect(actual.state).toBe('COMPLETED');
+          mark(mode + ':' + phase + ':ui-terminal-wait');
           allowRead();
           const row = page
             .getByRole('list', { name: '构建任务' })
@@ -1518,9 +1529,11 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           const state = await r(`/api/projects/${f.project}/studio`);
           expect(state.successfulBuildId).toBe(actual.buildId);
           expect(state.needsRebuild).toBe(false);
+          mark(mode + ':' + phase + ':metadata-confirmed');
           await browserExpect(
             page.getByRole('button', { name: '退役旧组并建立第二组', exact: true }),
           ).toBeEnabled({ timeout: 15000 });
+          mark(mode + ':' + phase + ':select-build');
           await row.getByRole('button', { name: '查看这次实际构建', exact: true }).click();
           await browserExpect(page.locator('canvas[aria-label="交付拼接预览"]')).toHaveAttribute(
             'data-build-id',
@@ -1530,6 +1543,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           await browserExpect(
             page.getByText('画布已就绪 · 实际导出图集', { exact: false }),
           ).toBeVisible();
+          mark(mode + ':' + phase + ':canvas-ready');
           const img = await step(mode + ':' + phase + ':processed-image', image),
             zip = await step(mode + ':' + phase + ':download', () =>
               fetch(`${url}/api/projects/${f.project}/builds/${actual.buildId}/download`),
@@ -1544,6 +1558,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             manifest = JSON.parse(files['manifest.json']!.toString()) as Awaited<
               ReturnType<typeof verifyExportFiles>
             >['manifest'];
+          mark(mode + ':' + phase + ':zip-body-and-directory');
           expect(zip.headers.get('x-content-sha256')).toBe(zipSHA);
           expect(hashBytes(files['manifest.json']!)).toBe(exported.manifestSha);
           expect(zip.headers.get('x-export-manifest-sha256')).toBe(exported.manifestSha);
@@ -1555,6 +1570,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             expect(hashBytes(files[name]!)).toBe(meta.sha256);
             expect(files[name]!.length).toBe(meta.bytes);
           }
+          mark(mode + ':' + phase + ':zip-verified');
           for (const name of ['A1.png', 'A2.png', 'manifest.json']) {
             const resourceURL = new URL(
                 `/api/projects/${f.project}/builds/${actual.buildId}/files/${name}`,
@@ -1571,6 +1587,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             ).toBeDefined();
             expect(actualResponse!.bytes).toEqual(files[name]);
           }
+          mark(mode + ':' + phase + ':actual-browser-files-matched');
           const selectedScene = await page.getByLabel('检查场景').inputValue();
           await browserExpect
             .poll(() => bodies.preview(actual.buildId!, selectedScene)?.sha)
@@ -1585,6 +1602,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           expect(descriptor.manifestSha).toBe(exported.manifestSha);
           expect(descriptor.scene).toBe(selectedScene);
           await page.screenshot({ path: resolve(root, `r4-${mode}-${phase}.png`), fullPage: true });
+          mark(mode + ':' + phase + ':descriptor-and-screenshot-complete');
           results.push({
             mode,
             phase,
@@ -1634,34 +1652,42 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
         expect(response.status()).toBe(202);
         const accepted = (await response.json()) as { id: string },
           old = await step(mode + ':history:prepared', () => prepared),
-          snapshot = await external.projectSnapshot(f.project),
-          adopted = await external.adopt(
-            f.project,
-            snapshot.revision,
-            RefSchema.array().parse(snapshot.adoption),
+          snapshot = await step(mode + ':history:snapshot', () =>
+            external.projectSnapshot(f.project),
+          ),
+          adopted = await step(mode + ':history:adopt', () =>
+            external.adopt(
+              f.project,
+              snapshot.revision,
+              RefSchema.array().parse(snapshot.adoption),
+            ),
           ),
           ops = JSON.parse(new TextDecoder().decode(old.files['bundle.json']!)) as Parameters<
             typeof assembleExport
           >[1];
-        const current = await external.prepareBuild(
-            f.project,
-            old.packId,
-            adopted.id,
-            ops.snapshot.slots
-              .filter((s) => s.state === 'ACTIVE' && s.binding)
-              .map((s) => ({
-                operation: 'put',
-                logicalId: s.binding!.logicalId,
-                revision: s.binding!.revision,
-                fragmentHash: s.binding!.fragment.contentHash,
-                groundId: s.binding!.groundId,
-              })),
-            resources.context,
+        const current = await step(mode + ':history:current-prepare', () =>
+            external.prepareBuild(
+              f.project,
+              old.packId,
+              adopted.id,
+              ops.snapshot.slots
+                .filter((s) => s.state === 'ACTIVE' && s.binding)
+                .map((s) => ({
+                  operation: 'put',
+                  logicalId: s.binding!.logicalId,
+                  revision: s.binding!.revision,
+                  fragmentHash: s.binding!.fragment.contentHash,
+                  groundId: s.binding!.groundId,
+                })),
+              resources.context,
+            ),
           ),
           bundle = JSON.parse(
             new TextDecoder().decode(current.files['bundle.json']!),
           ) as Parameters<typeof assembleExport>[1],
-          exported = await assembleExport(resources.profile, bundle, resources.context);
+          exported = await step(mode + ':history:assemble', () =>
+            assembleExport(resources.profile, bundle, resources.context),
+          );
         await step(mode + ':history:publish', () => external.publish(current, exported.files));
         release();
         const job = await step(mode + ':history:terminal', () =>
@@ -1713,6 +1739,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
     await record('r4-ui-consistent-publication', { sourceContext: resources.context, results });
   } finally {
     await record('r4-ui-timing', {
+      checkpoints,
       sourceContext: resources.context,
       pending,
       elapsedMs: Math.round(performance.now() - started),

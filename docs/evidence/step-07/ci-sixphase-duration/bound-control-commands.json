@@ -1,0 +1,124 @@
+{
+  "commands": [
+    {
+      "label": "bound-clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-duration-bound-control-62713bd72fdd4fa8be070ea0003e4aed"
+      ],
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c plus ignored transparent instrumentation",
+      "cwd": ".",
+      "exitCode": 0,
+      "seconds": 3.187,
+      "rawPath": ".local/step07-ci-sixphase-duration/bound-clone.log",
+      "rawSHA256": "f1c29e2ce0836b33516815fa8faaa6a3c895be4919b5ef888c923bce8a8f0f2c",
+      "rawBytes": 758
+    },
+    {
+      "label": "bound-checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c"
+      ],
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-duration-bound-control-62713bd72fdd4fa8be070ea0003e4aed",
+      "exitCode": 0,
+      "seconds": 1.08,
+      "rawPath": ".local/step07-ci-sixphase-duration/bound-checkout.log",
+      "rawSHA256": "15c27e5c38d17b7492542f81a41a60eeda9d84ba04036c729b5c19dc7b7cb67d",
+      "rawBytes": 81
+    },
+    {
+      "label": "bound-install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-duration-bound-control-62713bd72fdd4fa8be070ea0003e4aed",
+      "exitCode": 0,
+      "seconds": 2.527,
+      "rawPath": ".local/step07-ci-sixphase-duration/bound-install.log",
+      "rawSHA256": "7aba8ea7f549ee026a96b1082ccae6bf16c1774c11f70e518acc3c0f44ddbc13",
+      "rawBytes": 1170
+    },
+    {
+      "label": "bound-create-new-db",
+      "argv": [
+        "/opt/homebrew/opt/postgresql@14/bin/psql",
+        "-X",
+        "-v",
+        "ON_ERROR_STOP=1",
+        "-c",
+        "CREATE DATABASE \"[REDACTED_OWN_TEST_DB]\""
+      ],
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c plus ignored transparent instrumentation",
+      "cwd": ".",
+      "exitCode": 0,
+      "seconds": 0.148,
+      "rawPath": ".local/step07-ci-sixphase-duration/bound-create-new-db.log",
+      "rawSHA256": "691e4b64d448c6cffd680247056c2f445e4fbf2dcbc9be821934064e906d1ce7",
+      "rawBytes": 16
+    },
+    {
+      "label": "bound-generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-duration-bound-control-62713bd72fdd4fa8be070ea0003e4aed",
+      "exitCode": 0,
+      "seconds": 1.646,
+      "rawPath": ".local/step07-ci-sixphase-duration/bound-generate.log",
+      "rawSHA256": "10b2a9302eeb575e118de7e6b26a4723ec351d8f182647b88d6c8a15b85aca90",
+      "rawBytes": 833
+    },
+    {
+      "label": "bound-build",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-duration-bound-control-62713bd72fdd4fa8be070ea0003e4aed",
+      "exitCode": 0,
+      "seconds": 25.17,
+      "rawPath": ".local/step07-ci-sixphase-duration/bound-build.log",
+      "rawSHA256": "efa1978bc041ec44d8fcd8d3229f0b69c88cc8c4362bf69599fbb6a0c555d89a",
+      "rawBytes": 5023
+    },
+    {
+      "label": "bound-sixphase",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "--testNamePattern",
+        "R4 real COMMIT"
+      ],
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-duration-bound-control-62713bd72fdd4fa8be070ea0003e4aed",
+      "exitCode": 0,
+      "seconds": 124.771,
+      "rawPath": ".local/step07-ci-sixphase-duration/bound-sixphase.log",
+      "rawSHA256": "3141fac8d5b003a1d76746ce6f1688c2cc433befba0cc107e9aa1406aca9c794",
+      "rawBytes": 10650
+    }
+  ]
+}

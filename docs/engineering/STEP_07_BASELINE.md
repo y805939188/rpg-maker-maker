@@ -118,3 +118,21 @@ Persistence existing/new发布分支统一在短TX内核对/登记标准Export�
 最新check266、HTTP/PG16、06真实新空库/root23、API3/privacy5、prod/dev18各自绑定594；两客户端真正跨COMMIT首个/替换/history-only、旧06writer重复/rollback/丢回执/恢复、24scene/12+12clock/12实际ZIP、干净restoreStudio、旧56payload16PNG/JS78/8nativeCPU执行。六个source/tests路径，工程206、非文档196、历史保护2951逐SHA未变。PNG/HTTP/native/路径/close-release、四/八文件、Profile/Compiler/槽位/动画/通行、独立bytes/pixels/公共restore无新承诺。
 
 本树PG55476/PID51121与91个自有tileset_库/资产/备份/旧失败保留；production API PID22456/4376保留、5276无listener。Node22.21.1仅进程PATH、.env0600。原缺陷synthetic库只备份并隔离restore后保护转换，原库不改，不批量修复。JS heap128MiB仍非OS/nativeRSS硬cap。Main/Reviewer环境不写、CI/Review/Release由Main；新artifact MZ/用户艺术/Host/Map003/OS hidden及08–10未执行/未开始。
+
+## 2026-10-14 CI6：同一Studio Job的有界重放
+
+Source `0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c` 的必要整改见
+[CI六阶段耗时Coding报告](../reviews/step-07-ci-sixphase-duration-coding.md)。
+现有 `@tileset/persistence` 的 `ReplaySession` 经包root及production export检查登记；
+不新增包或依赖方向。每个Studio Job在自己的实际write lease中创建一个session，
+上限仍128条/32MiB，以完全相同的canonical archive及PNG内容指纹复用已经实际
+验证生成的owned source/IR/Compiler。`loadArchives` 与 `readBuild`/`prepareBuild`
+每次仍读取实际文件、验证SHA/路径/持久metadata；prepare显式拒绝不同signal
+生命周期，warm hits仍检查abort。没有全局、跨Job或Export成功缓存。
+
+Studio精确recipe从实际MZ archive记录按持久逻辑ID/revision/contentHash选取，
+不再额外serialize/redecode同一recipe走generic IR恢复。generic domain Built、
+公开JSON restore、内部四文件与标准八文件、布局/槽位/Profile/动画/通行不变；
+公共readExport及发布验真、父gate、CAS/短TX/Job完成状态仍全保留。
+实际旧/新PNG与ZIP字节等价、旧180s受控失败、新Source同预算通过及PG23/HTTP16/
+两模式18证据均在本轮ledger，不能代替下一独立R14或Linux候选CI。

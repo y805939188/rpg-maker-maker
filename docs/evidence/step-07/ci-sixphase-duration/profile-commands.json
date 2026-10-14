@@ -1,0 +1,124 @@
+{
+  "commands": [
+    {
+      "label": "profile-clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60"
+      ],
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470 plus ignored transparent instrumentation",
+      "cwd": ".",
+      "exitCode": 0,
+      "seconds": 2.902,
+      "rawPath": ".local/step07-ci-sixphase-duration/profile-clone.log",
+      "rawSHA256": "55c2c319c50b02228a1f744bde7f0b696bea27ac642b358919b2efb8c6c8e4eb",
+      "rawBytes": 151
+    },
+    {
+      "label": "profile-checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "1be820a5adfbb3c41c532fbc778958774ed1c470"
+      ],
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470 plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60",
+      "exitCode": 0,
+      "seconds": 0.1,
+      "rawPath": ".local/step07-ci-sixphase-duration/profile-checkout.log",
+      "rawSHA256": "89a5f714dc3c34fbf83614e93879c3be95ae3314442348b55a45aebf8f461b10",
+      "rawBytes": 96
+    },
+    {
+      "label": "profile-install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470 plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60",
+      "exitCode": 0,
+      "seconds": 2.597,
+      "rawPath": ".local/step07-ci-sixphase-duration/profile-install.log",
+      "rawSHA256": "e44d94da747c1cd1725871fe0f29e8678908091fb96faf6ce068d9a1903df3cc",
+      "rawBytes": 1170
+    },
+    {
+      "label": "profile-create-new-db",
+      "argv": [
+        "/opt/homebrew/opt/postgresql@14/bin/psql",
+        "-X",
+        "-v",
+        "ON_ERROR_STOP=1",
+        "-c",
+        "CREATE DATABASE \"[REDACTED_OWN_TEST_DB]\""
+      ],
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470 plus ignored transparent instrumentation",
+      "cwd": ".",
+      "exitCode": 0,
+      "seconds": 0.186,
+      "rawPath": ".local/step07-ci-sixphase-duration/profile-create-new-db.log",
+      "rawSHA256": "691e4b64d448c6cffd680247056c2f445e4fbf2dcbc9be821934064e906d1ce7",
+      "rawBytes": 16
+    },
+    {
+      "label": "profile-generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470 plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60",
+      "exitCode": 0,
+      "seconds": 1.709,
+      "rawPath": ".local/step07-ci-sixphase-duration/profile-generate.log",
+      "rawSHA256": "e47b81cfd2a1f44dac7d4dd300f0decd4aae60168255fa1ae67d0e319077dee3",
+      "rawBytes": 863
+    },
+    {
+      "label": "profile-build",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470 plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60",
+      "exitCode": 0,
+      "seconds": 24.701,
+      "rawPath": ".local/step07-ci-sixphase-duration/profile-build.log",
+      "rawSHA256": "541e8d75cab5eb16011693de9488dfd7c84478d58082c2e40d2f32b2b01cbfb9",
+      "rawBytes": 4933
+    },
+    {
+      "label": "profile-sixphase",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "--testNamePattern",
+        "R4 real COMMIT"
+      ],
+      "source": "1be820a5adfbb3c41c532fbc778958774ed1c470 plus ignored transparent instrumentation",
+      "cwd": "artifacts/.step07-sixphase-profile-01c3df6fb29f42e0b3bd417fda9c3a60",
+      "exitCode": 0,
+      "seconds": 134.896,
+      "rawPath": ".local/step07-ci-sixphase-duration/profile-sixphase.log",
+      "rawSHA256": "306e868c6ef113b1eff93a230df66bbabaef89a38368a8a7bb02642e8fa35be6",
+      "rawBytes": 6034
+    }
+  ]
+}

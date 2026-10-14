@@ -1,0 +1,55 @@
+{
+  "commands": [
+    {
+      "label": "old-redundant-job-domain-delay9s",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "--testNamePattern",
+        "R4 real COMMIT"
+      ],
+      "source": "UNFROZEN_CONTROL_ON_1be old/new exact diffs in control-sources.json",
+      "exitCode": 1,
+      "expectedExit": 1,
+      "seconds": 182.849,
+      "rawPath": ".local/step07-ci-sixphase-duration/old-redundant-job-domain-delay9s.log",
+      "rawSHA256": "10b31cf671a1bb7a8322361775779dd28ca865383d03d98ab420d64b5bfa6d36",
+      "rawBytes": 5100
+    },
+    {
+      "label": "new-prefreeze-build",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "source": "UNFROZEN_CONTROL_ON_1be old/new exact diffs in control-sources.json",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 19.665,
+      "rawPath": ".local/step07-ci-sixphase-duration/new-prefreeze-build.log",
+      "rawSHA256": "f50a4af79f50fd5e0f94185cc43a5ed39078f9946f9d65631d9b774f17b67649",
+      "rawBytes": 4933
+    },
+    {
+      "label": "new-prefreeze-replay-tests",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "packages/persistence/tests/replay.test.ts"
+      ],
+      "source": "UNFROZEN_CONTROL_ON_1be old/new exact diffs in control-sources.json",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 8.054,
+      "rawPath": ".local/step07-ci-sixphase-duration/new-prefreeze-replay-tests.log",
+      "rawSHA256": "82ba0686c4c3f5fb3e4c777a23841371e3878493951af9de4ec4b161ef9d31c1",
+      "rawBytes": 317
+    }
+  ]
+}

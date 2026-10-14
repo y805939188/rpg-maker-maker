@@ -4,6 +4,7 @@ export { AssetStorage, noFault } from './storage.js';
 export type { FileRef, FaultHook } from './storage.js';
 export {
   replayArchives,
+  ReplaySession,
   replayBundle,
   prepareBundle,
   bundleFiles,

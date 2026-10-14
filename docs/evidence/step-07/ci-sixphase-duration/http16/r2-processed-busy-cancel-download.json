@@ -1,0 +1,24 @@
+{
+  "project": "6a0f1f97-4883-42bd-9d57-6b13b07ea384",
+  "recipe": "e9e558a9fd204b896390a8881ad27f1255f7c35d4ccd7dabe9a34467a34bc20d",
+  "buildId": "d2e918ad0f6ebf8629d5d9dfa024d98c9614157497583fcbb79ed41a65fdc420",
+  "busy": {
+    "status": 429,
+    "body": {
+      "error": {
+        "code": "BUSY",
+        "message": "素材处理槽正在使用。",
+        "diagnostic": {
+          "code": "BUSY",
+          "message": "素材处理槽正在使用。",
+          "location": "本地处理",
+          "recovery": "等待当前操作结束后重试；最多一个预览读取等待槽。"
+        }
+      }
+    }
+  },
+  "zipSha": "f2220abcdda07980ce9e535aa883042bd35485e5034228ba36f0ce8ceca90c7f",
+  "pngSha": "9a8c4c09f1ed0bdab87dc6e55bae41ae22ee8d15e9bb97819a49e09e3d802a72",
+  "budget": "one processing slot plus one waiting; no queue expansion",
+  "testHeldWork": "cooperative server exclusive barrier; no production hook or native budget change"
+}

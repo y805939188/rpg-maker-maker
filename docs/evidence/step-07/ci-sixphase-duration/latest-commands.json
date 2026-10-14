@@ -1,0 +1,387 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1"
+      ],
+      "cwd": ".",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 3.017,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/clone.log",
+      "rawBytes": 158,
+      "rawSHA256": "ec5c83d6ec2e5ffcc7be80bf01edfb7456f42bac90926149b48c10a19ade7dc3",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.147,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/checkout.log",
+      "rawBytes": 81,
+      "rawSHA256": "15c27e5c38d17b7492542f81a41a60eeda9d84ba04036c729b5c19dc7b7cb67d",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.597,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/install.log",
+      "rawBytes": 1170,
+      "rawSHA256": "7e19c4e7898397601bdbafa0aabb5f52704ee05b4981f082bdf2b369aaa54354",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.729,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/generate.log",
+      "rawBytes": 877,
+      "rawSHA256": "9bb8c925db601e4bde9655921d4188725db1ef8db4ee878d1cf088953a475d9e",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "check",
+      "argv": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 77.459,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/check.log",
+      "rawBytes": 14406,
+      "rawSHA256": "9889ff36f98ae318a88ac84e0c6a26b6b4b0a9afdc43a56816a0bd3024660dbd",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/regression/assets"
+      }
+    },
+    {
+      "label": "latest-response-browser-controls",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "apps/api/tests/studio/received-resources.test.ts"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 3.785,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/latest-response-browser-controls.log",
+      "rawBytes": 323,
+      "rawSHA256": "2743cb0369e31b153d3276694651f8687e84a2f283e57e65ac300581a322137f",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/regression/assets"
+      }
+    },
+    {
+      "label": "regression-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.768,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/regression-migrate.log",
+      "rawBytes": 2245,
+      "rawSHA256": "c0ccda8937d71a957110c740f85d95a8dfd0fc3f0ce8e698ca4f62f840c7b370",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/regression/assets"
+      }
+    },
+    {
+      "label": "api3",
+      "argv": [
+        "pnpm",
+        "test:integration"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 11.226,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/api3.log",
+      "rawBytes": 3452,
+      "rawSHA256": "e699c07687ca4fcdb77f6d275e7cad24307bfe69a3c3f306f7a11682058dc603",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/regression/assets"
+      }
+    },
+    {
+      "label": "privacy5",
+      "argv": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.826,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/privacy5.log",
+      "rawBytes": 3447,
+      "rawSHA256": "0d2c04c78d39f67dcae5d1da517fd1327b6449d374f645dd8aa85520939eef25",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/regression/assets"
+      }
+    },
+    {
+      "label": "pg06-full23",
+      "argv": [
+        "pnpm",
+        "test:step06"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 207.059,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/pg06-full23.log",
+      "rawBytes": 3663,
+      "rawSHA256": "e5b647b862445d53f6bfd077ed8232d6cb4572d4a19dfd2db0ed0d66392a2b1c",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/regression/assets"
+      }
+    },
+    {
+      "label": "http16",
+      "argv": [
+        "pnpm",
+        "test:step07"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 460.12,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/http16.log",
+      "rawBytes": 15908,
+      "rawSHA256": "899b6c4f5e576f68befc7edc3fb272cdade276a73997aeba5bb624999e0572ba",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/regression/assets"
+      }
+    },
+    {
+      "label": "production-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.237,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/production-migrate.log",
+      "rawBytes": 1377,
+      "rawSHA256": "e4347ed3b716ddef5778a48565f5ec1e901486a8182ef52de1a5f67ef229f491",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/production/assets"
+      }
+    },
+    {
+      "label": "production18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 415.673,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/production18-noenv.log",
+      "rawBytes": 3776,
+      "rawSHA256": "b34c99bc099c1fcf82041dad5651775021e3f57de580a9032ee4147ca5673c16",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/production/assets"
+      }
+    },
+    {
+      "label": "development-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.276,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/development-migrate.log",
+      "rawBytes": 1378,
+      "rawSHA256": "3f7fd03ab25343884b8a8961cfd1ac42b4fb8b7c24467cf99b425e2642f0ba1f",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/development/assets"
+      }
+    },
+    {
+      "label": "development18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 439.315,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/development18-noenv.log",
+      "rawBytes": 7159,
+      "rawSHA256": "a5c3df0ecdedca477e0f6d82e6ae943e21dc9864a284c57d800f982ba8cb4f11",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": "dev",
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/development/assets"
+      }
+    },
+    {
+      "label": "engineering",
+      "argv": [
+        "pnpm",
+        "build:step07"
+      ],
+      "cwd": "artifacts/.step07-sixphase-duration-final-c9ef9bcf03d04492bb6cb93551e011b1",
+      "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 20.041,
+      "rawPath": ".local/step07-ci-sixphase-duration/final/engineering.log",
+      "rawBytes": 28242,
+      "rawSHA256": "bdac534291d15596485b35ab28c7c8de595c9fdca9ee909f23b2ff392019cf98",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/ci-sixphase-duration/development/assets"
+      }
+    }
+  ]
+}

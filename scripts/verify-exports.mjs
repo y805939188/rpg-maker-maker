@@ -6,7 +6,7 @@ const checks = [
   ],
   [
     'packages/persistence',
-    "import {Persistence,AssetStorage} from '@tileset/persistence'; if(typeof Persistence !== 'function' || typeof AssetStorage !== 'function') throw Error('persistence export');",
+    "import {Persistence,AssetStorage,ReplaySession} from '@tileset/persistence'; if(typeof Persistence !== 'function' || typeof AssetStorage !== 'function' || typeof ReplaySession !== 'function') throw Error('persistence export');",
   ],
   [
     'packages/local-executor',
