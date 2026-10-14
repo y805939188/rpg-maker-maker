@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT_REVIEW_ROUND12",
+  "phase": "STEP07_A8F_CANDIDATE_CI_PREPARATION",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -434,7 +434,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT_REVIEW",
+    "status": "REVIEW_PASS_PENDING_NEW_CANDIDATE_CI",
     "reviewRounds": 12,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -455,7 +455,7 @@
       "unchangedFullParentFlows": "R11samecodeindactualHTTP16/prod18dev18 notrerunbyCIonlyCoder"
     },
     "candidateSha": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
-    "candidateState": "A8F_CI_EARLIEST_BROWSER_INSTALL_FROZEN_UNDER_INDEPENDENT_REVIEW12",
+    "candidateState": "A8F_INDEPENDENT_REVIEW12_PASS_FROZEN",
     "reviewEnvironment": {
       "atUtc": "2026-10-14T08:21:04.750388+00:00",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round12/rpg-maker-maker",
@@ -475,7 +475,7 @@
       "step09": "NOT_STARTED",
       "step10": "NOT_STARTED",
       "candidateState": "WAIT_NEW_COLD_BROWSER_ORDER_FULL_HANDOFF",
-      "status": "ACTIVATED_FORMAL_REVIEW12_OF_STEP07",
+      "status": "REVIEW12_PASS_OWN_SERVICES_STOPPED_PRIVATE_DATA_RETAINED",
       "formalReviewStarted": true,
       "databaseMigration": "NOT_EXECUTED",
       "preparedBy": "MAIN_ORCHESTRATOR",
@@ -1412,7 +1412,7 @@
         "round": 12,
         "candidate": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
         "docsHead": "428d981925bc265527b32409f51f9cc5cc149c8c",
-        "status": "IN_PROGRESS",
+        "status": "PASS_WHOLE_CANDIDATE",
         "threadId": "01a1398c-03a4-71f3-a1de-97dbc0ea7031",
         "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round12/rpg-maker-maker",
         "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review-round12-client.json",
@@ -1422,10 +1422,49 @@
         "scope": "wholelatestCIonlyoneinstallmove withactualearliestconsumer/newemptybrowserinstall→check3495realtests andappropriate unchangedparent runtimeindproof +latestSourceBuildbinding",
         "step08": "NOT_STARTED",
         "step09": "NOT_STARTED",
-        "step10": "NOT_STARTED"
+        "step10": "NOT_STARTED",
+        "initialScopeVerification": "exactdetachedcleanSourceA8F onlyCIuniqueinstallstepmovevsR11",
+        "executedProgress": {
+          "actualNewEmptyCacheOriginalBrowserInstall": "EXIT0_REAL_CHROMIUM_HEADLESS1248_FFMPEG_DOWNLOAD",
+          "actualInstallSeconds": 54.491,
+          "latestFullCheck": "349_OF349_EXECUTED_0SKIP_PASS_SAME_NEW_INSTALLED_CACHE",
+          "linuxCi": "NOT_EXECUTED_BY_REVIEWER",
+          "wholeConclusion": "PASS_WHOLE_CANDIDATE_ORIGINAL_SEALED_VERIFIED",
+          "latestCheckSeconds": 74.218,
+          "cleanBuildProductionExports": 11,
+          "directLifecycle5": "5_OF5_PASS_INDEPENDENT_OVERLAP349",
+          "workflowSemanticAudit": "uniqueoldinstallaheadactualearliestconsumercheck/HTTP16/bothE2E only,otherfieldsunchanged",
+          "reviewerR11FixSupport": "independentcoldInstallThenFull349Proof_FIX_SUPPORTED_PENDINGWHOLE_SEAL",
+          "actualDefaultBrowserExecutable": "ownfreshinstalledcache headless1248 defaultlaunch no channel/executableoverride",
+          "authorCommittedPayloadHashes": 43,
+          "authorOriginalPointerHashes": 43,
+          "priorR4ThroughR11Ledgers": "eachfile SHAbytesverified",
+          "engineeringActualPayloadHashes": 206,
+          "compiledParentR5Comparison": "205same;studio.jsoncommitonly",
+          "unchangedRuntimeScopes": "HTTP16/two18/budgetZIPrealIO executablebytesparentR11exact with sourceScope proof notrerun",
+          "originalCiLogs": "all4SHAverified originalfailuresretained specificCI4requestUNKNOWN_NO_TRACE",
+          "remaining": "originalwholeReportLedgerSeal/nativeexit",
+          "endingTrackedShaBytesSame": 4454,
+          "endingHead": "exacta8fdetachedGitclean",
+          "ownApiWebInstallBrowser": "API4403/Web5303andownedprocesses ended",
+          "ownPg": "55503emptyprimary/cache/.env600retainedMainsafeStop"
+        },
+        "report": "docs/evidence/step-07/independent-round12/report.md",
+        "reportSha256": "d16099de484b782d786372a66d3f6f2c6b3e99c394210a3312d55511daa39307",
+        "ledger": "docs/evidence/step-07/independent-round12/evidence/ledger.json",
+        "ledgerSha256": "8880fb91dad5087a8848c089d087e1d33e28d204a1052b932337f054189f48bd",
+        "payloadsVerified": 51,
+        "nativeExitCode": 0,
+        "sourceProtectionFiles": 4454,
+        "blockingP0": 0,
+        "blockingP1": 0,
+        "blockingP2": 0,
+        "closedFindings": [
+          "STEP07-R11-001"
+        ]
       }
     ],
-    "latestIndependentReview": "REQUIRES_REVISION_REVIEW11_DC61_NEW_ORDER_UNREVIEWED",
+    "latestIndependentReview": "PASS_REVIEW12_SOURCEA8F",
     "codingFix": {
       "round": 4,
       "status": "FROZEN_SELF_TESTED_HANDOFF_COMPLETE",
@@ -1530,20 +1569,20 @@
     "validationEnvironment": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "status": "LOCALDC61_DOCSBE6_EXACT_EXECUTION_REVIEW11_IN_PROGRESS_NOT_PUSHED",
+      "status": "LOCALA8F_DOCS428_EXACT_EXECUTION_REVIEW12_IN_PROGRESS_NOT_PUSHED",
       "executableDiffZero": true,
       "database": "OWNED_POSTGRES55481_NEW_EMPTY",
       "preparation": "FROZEN_INSTALL_GENERATE_BUILD_FIVE_MIGRATIONS_SUCCESS_NOT_POSTMERGE_TESTS",
-      "candidateExecutableSource": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
-      "validationHead": "821134bb0b8462768c53a4abe86a71587a492532",
-      "postSourcePaths": 3160,
+      "candidateExecutableSource": "a8f23ef5ad218278447cca2d22c7014adb16ca02",
+      "validationHead": "b2a2b3a41268f0738741d864c1e72efc4bfbf5df",
+      "postSourcePaths": 3234,
       "remotePushed": false,
-      "authorDocs": "be6f40e9f551cdc1484293d46ab5884db1c0cc41",
+      "authorDocs": "428d981925bc265527b32409f51f9cc5cc149c8c",
       "previousReviewBasis": {
         "source": "5d926ad7ad6a68bfaff7ea2a51d4d3859c95d7c0",
         "review": "REQUIRES_REVISION_ROUND3"
       },
-      "latestReview": "REVIEW11_IN_PROGRESS_PARENT_R10_PASS_ONLY",
+      "latestReview": "REVIEW12_IN_PROGRESS_PARENT_R11_REQUIRES_REVISION",
       "reviewedSource": null
     },
     "pendingCandidate": {
@@ -1851,7 +1890,7 @@
       "scope": "README_DOCS_ONLY",
       "executionImpact": "NONE_MAIN_REVIEWED_MD_REPORT_MAPPING_AND_SANITIZED_EVIDENCE_ONLY"
     },
-    "activeIndependentReviewRound": 12,
+    "activeIndependentReviewRound": null,
     "historicalReviewEnvironments": [
       {
         "operationId": "c1221cc5-c6a2-40ad-b482-96d76e071afc",
@@ -2405,7 +2444,7 @@
       "codingNativeExitCode": 0
     },
     "firstBrowserConsumerFixReview11": {
-      "status": "LATEST_A8F_COLD_INSTALL_CHECK349_SOURCE_DOCS_BUILD_HANDOFF_VERIFIED_UNDER_REVIEW12",
+      "status": "FIXED_CLOSED_INDEPENDENT_REVIEW12_LATESTA8F",
       "finding": "STEP07-R11-001",
       "severity": "P2_BLOCKING",
       "oldCandidate": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
@@ -2700,12 +2739,13 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "OWN_PG_STARTED_EMPTY_API_WEB_NOT_STARTED_PREP_ONLY",
-      "credentials": "FRESH_OWN_ENV600_NO_COPY"
+      "serviceStatus": "OWNED_POSTGRES_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "credentials": "FRESH_OWN_ENV600_NO_COPY",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round12-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "SameCoderexit0a8f/docs428cleanonlyCIinstallonelinemove4453same; actualemptycacheoriginalinstall436.836success/fullcold349noSkip/direct5pass. Main43committed/report660/ledgeref5/45docpurposes+206physicalBuildfad verified. FreshnativeR12ultra/defaultCID01a1398c...PID46422 ownPG55503/API4403/Web5303 started.R11-001openuntilindclosure.NoMain07merge.",
-  "nextSafeAction": "Wait latesta8fReview12wholeind coldinstall/checkrealbrowser/order gate closure, preserveoriginals/stopownservices; ifPASS normalVALsource/docs/review+newfullcandidateCI.ALLSUCCESS beforepreAuth/Mainfetchguard/normalMerge/actualpostmerge/push/readback/mainCI/finaldocsSTOP07.",
+  "lastSuccessfulCheckpoint": "Review12nativeexit0wholePASSa8f/docs428,51originalSHA+ownsecretScanverifiedreportd160/ledger8880,4454source+206filesunchangedR11-001closed. Actualcoldinstall54.491→3490skip+5passed withminimalCI move.OneownPG55503stopownedemptyDB/cacheprivate retained.APIWeboff.NoMain07merge/newcandidateCIyet.",
+  "nextSafeAction": "Normalintegrate originalReview12/doc/state intoVALwithsourceprojection==a8f,pushlatestcandidate fullCI ALLSUCCESS required;thenpreAuth/Mainfetchliveguard/normalMerge/actualpostmerge/push/readback/mainCI/formalpublicationSTOP07.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -2739,7 +2779,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T08:35:28.092371+00:00",
+  "updatedAtUtc": "2026-10-14T09:03:58.555676+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -2795,20 +2835,22 @@
       "report": "docs/evidence/step-07/independent-round9/report.md",
       "closedBy": "docs/evidence/step-07/independent-round10/report.md",
       "candidate": "39daa13188eb401c2048a24e0606c1a91192e04a"
-    }
-  ],
-  "blockers": [
+    },
     {
       "gate": "STEP07_TECHNICAL_RELEASE",
       "id": "STEP07-R11-001",
       "severity": "P2",
-      "status": "OPEN",
+      "status": "CLOSED_INDEPENDENT_REVIEW12",
       "reason": "latestChromiumtests earliestconsumer ischeck beforeinstall; coldfullcheck344pass5notrun commandfailure",
-      "report": "docs/evidence/step-07/independent-round11/report.md"
-    },
+      "report": "docs/evidence/step-07/independent-round11/report.md",
+      "closedBy": "docs/evidence/step-07/independent-round12/report.md",
+      "candidate": "a8f23ef5ad218278447cca2d22c7014adb16ca02"
+    }
+  ],
+  "blockers": [
     {
       "gate": "STEP07_REQUIRED_CANDIDATE_CI",
-      "id": "LATEST_CANDIDATE_CI_NOT_PASS",
+      "id": "LATEST_A8F_CANDIDATE_CI_PENDING",
       "status": "OPEN",
       "lastFailureRun": 38517441385
     }
