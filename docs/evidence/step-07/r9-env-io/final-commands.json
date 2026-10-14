@@ -1,0 +1,364 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-studio",
+        "file:///Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9"
+      ],
+      "cwd": ".",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 11.317,
+      "rawPath": ".local/step07-r9-env-io/final/clone.log",
+      "rawBytes": 1114,
+      "rawSHA256": "065b04dfc1c5741bf0dad5e0f8939314dc2fe1ef360b408189bacab75c52cb25",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "39daa13188eb401c2048a24e0606c1a91192e04a"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.384,
+      "rawPath": ".local/step07-r9-env-io/final/checkout.log",
+      "rawBytes": 101,
+      "rawSHA256": "786dde65ea70a32c3a121681eb79ede45d3da065058a58b28ed3ef7e81880109",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-ci-history/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.507,
+      "rawPath": ".local/step07-r9-env-io/final/install.log",
+      "rawBytes": 1170,
+      "rawSHA256": "acf087f6db4dac21d410a0cec8a196cbc1e8bc300e610de99ada6b06a4779787",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.749,
+      "rawPath": ".local/step07-r9-env-io/final/generate.log",
+      "rawBytes": 866,
+      "rawSHA256": "99163c7d51120cb1df790b70b997a3ecee2227ef5313bdd3ac664b1d3fe13215",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null
+      }
+    },
+    {
+      "label": "check",
+      "argv": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 73.831,
+      "rawPath": ".local/step07-r9-env-io/final/check.log",
+      "rawBytes": 14038,
+      "rawSHA256": "60f95a1d30386fe8a647027947e29459f9e4157adf5fd162761dec7a9302d6da",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/regression/assets"
+      }
+    },
+    {
+      "label": "latest-real-guard-entry",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "apps/api/tests/e2e-environment-startup.test.ts"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 3.209,
+      "rawPath": ".local/step07-r9-env-io/final/latest-real-guard-entry.log",
+      "rawBytes": 314,
+      "rawSHA256": "ee300d0d8f93e06537cb4e9d6584f090ea67935bdcb0ad55a95e0523721c4951",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/regression/assets"
+      }
+    },
+    {
+      "label": "regression-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.819,
+      "rawPath": ".local/step07-r9-env-io/final/regression-migrate.log",
+      "rawBytes": 2225,
+      "rawSHA256": "f9a04087fde63ffaf70f6b27689a7699255ce0be930df42892f64c0ce4be05d9",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/regression/assets"
+      }
+    },
+    {
+      "label": "api3",
+      "argv": [
+        "pnpm",
+        "test:integration"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.565,
+      "rawPath": ".local/step07-r9-env-io/final/api3.log",
+      "rawBytes": 3348,
+      "rawSHA256": "a74a57605a4d91edb2ef39dd9435ddc671bf4aab0bb293c4ba17ea1e36b92b4e",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/regression/assets"
+      }
+    },
+    {
+      "label": "privacy5",
+      "argv": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.275,
+      "rawPath": ".local/step07-r9-env-io/final/privacy5.log",
+      "rawBytes": 3343,
+      "rawSHA256": "8e9abb82cfb5935544717267d2e196cc24862a32fb23471d1b656023f7e11ccb",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/regression/assets"
+      }
+    },
+    {
+      "label": "http16",
+      "argv": [
+        "pnpm",
+        "test:step07"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 520.676,
+      "rawPath": ".local/step07-r9-env-io/final/http16.log",
+      "rawBytes": 11171,
+      "rawSHA256": "e2b588ee3c8875a8b72af9f9fd47142da521a19380dbd0b9eddbbef98f4d86c2",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/regression/assets"
+      }
+    },
+    {
+      "label": "production-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.273,
+      "rawPath": ".local/step07-r9-env-io/final/production-migrate.log",
+      "rawBytes": 1357,
+      "rawSHA256": "effa1c35bcd73497cd21674925d87ce4c7e0a24dcb94eadbb651719042aed2d2",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/production/assets"
+      }
+    },
+    {
+      "label": "production18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 458.467,
+      "rawPath": ".local/step07-r9-env-io/final/production18-noenv.log",
+      "rawBytes": 3767,
+      "rawSHA256": "cc4c5dc263a832363f864bac08c78612395dbb824979427dfc27344e7c40a53b",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/production/assets"
+      }
+    },
+    {
+      "label": "development-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.257,
+      "rawPath": ".local/step07-r9-env-io/final/development-migrate.log",
+      "rawBytes": 1358,
+      "rawSHA256": "4bacb4bb72c9fe499c0418b1d559d7c17b02a5e649819cca69724fa96555ad2a",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/development/assets"
+      }
+    },
+    {
+      "label": "development18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 478.717,
+      "rawPath": ".local/step07-r9-env-io/final/development18-noenv.log",
+      "rawBytes": 7151,
+      "rawSHA256": "7fd8f42ab1b4df21f57f431c7169b0cf70e4029ab6c4e9c040c7e137f214d3bf",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": "dev",
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/development/assets"
+      }
+    },
+    {
+      "label": "engineering",
+      "argv": [
+        "pnpm",
+        "build:step07"
+      ],
+      "cwd": "artifacts/.step07-r9-env-io-final-1ad0228add11482fa1058db6ed7fd5f9",
+      "source": "39daa13188eb401c2048a24e0606c1a91192e04a",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 20.509,
+      "rawPath": ".local/step07-r9-env-io/final/engineering.log",
+      "rawBytes": 28114,
+      "rawSHA256": "721843c719e080e5ec9ac883358431fbc405d05ca6aaf43d826c466cb02a2469",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4398",
+        "WEB_PORT": "5298",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/r9-env-io/development/assets"
+      }
+    }
+  ]
+}
