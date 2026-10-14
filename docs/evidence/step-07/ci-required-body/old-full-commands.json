@@ -1,0 +1,46 @@
+{
+  "commands": [
+    {
+      "label": "old-full-generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "exitCode": 0,
+      "seconds": 1.798,
+      "sha256": "c3230084e1d9d2ddde26e00a2c0686e50e66a001090cf2afa785fc08900ce47e",
+      "bytes": 835,
+      "source": "EXPERIMENTAL old a8 capture compatibility adapter; frozen1be fullcase asserts/control; parent a8 production"
+    },
+    {
+      "label": "old-full-build",
+      "argv": [
+        "pnpm",
+        "build"
+      ],
+      "exitCode": 0,
+      "seconds": 23.342,
+      "sha256": "1d4acd2c020ead226360b2487462c121bc34d6bff061b1f7c89d4b3a613f1850",
+      "bytes": 5038,
+      "source": "EXPERIMENTAL old a8 capture compatibility adapter; frozen1be fullcase asserts/control; parent a8 production"
+    },
+    {
+      "label": "old-full-negative",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "--config",
+        "vitest.step07.config.ts",
+        "--testNamePattern",
+        "R4 real COMMIT"
+      ],
+      "exitCode": 1,
+      "seconds": 13.55,
+      "sha256": "51f05989259a0b658942ed3ee9f764705cb019cb814bad737156d29082066022",
+      "bytes": 3760,
+      "source": "EXPERIMENTAL old a8 capture compatibility adapter; frozen1be fullcase asserts/control; parent a8 production"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "reads": 3,
+  "records": [
+    {
+      "id": 1,
+      "document": 1,
+      "url": "http://127.0.0.1:60412/api/projects/owned/recipes/recipe/processed?frame=0",
+      "method": "GET",
+      "status": 200,
+      "contentType": "image/png",
+      "transport": "finished",
+      "state": "received",
+      "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+      "currentDocument": false
+    },
+    {
+      "id": 2,
+      "document": 1,
+      "url": "http://127.0.0.1:60412/api/projects/owned/recipes/recipe/processed?frame=0",
+      "method": "GET",
+      "status": 200,
+      "contentType": "image/png",
+      "transport": "failed",
+      "state": "unavailable",
+      "transportFailure": "net::ERR_ABORTED",
+      "failure": "response.body: Protocol error (Network.getResponseBody): No data found for resource with given identifier\nResponse body is not available for a response that was navigated away from. Read response.body() before triggering any navigation.",
+      "currentDocument": false
+    },
+    {
+      "id": 3,
+      "document": 2,
+      "url": "http://127.0.0.1:60412/api/projects/owned/recipes/recipe/processed?frame=0",
+      "method": "GET",
+      "status": 200,
+      "contentType": "image/png",
+      "transport": "finished",
+      "state": "received",
+      "sha": "5d6146e7f4ed28e53c3186fa1aa3a032176b4013f8a71b5f256b71dd29db111b",
+      "currentDocument": true
+    }
+  ]
+}

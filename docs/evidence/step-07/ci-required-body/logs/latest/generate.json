@@ -1,0 +1,26 @@
+{
+  "receipt": {
+    "label": "generate",
+    "argv": [
+      "pnpm",
+      "db:generate"
+    ],
+    "cwd": "artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1",
+    "source": "1be820a5adfbb3c41c532fbc778958774ed1c470",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 1.615,
+    "rawPath": ".local/step07-ci-required-body/final/generate.log",
+    "rawBytes": 875,
+    "rawSHA256": "cfca3882b3a482936cefa9e1f1eeb04a84c1b4feef5e4a5ac05bb5f043cdf5f3",
+    "noRootDotEnv": true,
+    "safeEnvironment": {
+      "API_HOST": "127.0.0.1",
+      "API_PORT": "4398",
+      "WEB_PORT": "5298",
+      "E2E_MODE": null,
+      "TILESET_ASSET_ROOT": null
+    }
+  },
+  "text": "\n> @tileset/prototype@0.0.2 db:generate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1\n> pnpm --filter @tileset/api db:generate\n\n\n> @tileset/api@0.0.2 db:generate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-required-body-final-83766ea69ddb4594953515ca22b8f6b1/apps/api\n> prisma generate --schema prisma/schema.prisma\n\nPrisma schema loaded from prisma/schema.prisma\n\n✔ Generated Prisma Client (v6.19.3) to ./../../node_modules/.pnpm/@prisma+client@6.19.3_prisma@6.19.3_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 100ms\n\nStart by importing your Prisma Client (See: https://pris.ly/d/importing-client)\n\nTip: Need your database queries to be 1000x faster? Accelerate offers you that and more: https://pris.ly/tip-2-accelerate\n\n"
+}
