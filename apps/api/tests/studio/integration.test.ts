@@ -1354,6 +1354,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
         network: { url: string; method: string; status: number }[] = [],
         errors: string[] = [];
       const bodies = new ReceivedResources(page, mode === 'production' ? url : dev, f.project);
+      await bodies.observeDocuments();
       receivedTraces.push({ mode, capture: bodies });
       page.on('response', (r) => {
         if (r.url().includes('/api/'))
@@ -1387,12 +1388,32 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
           ).href,
           renderedSHA = await element.getAttribute('data-png-sha256');
         expect(renderedSHA).toMatch(/^[a-f0-9]{64}$/);
-        await browserExpect
-          .poll(() => bodies.find(receivedURL, renderedSHA!)?.sha, {
-            message:
-              'current rendered PNG requires a completed actual browser body: ' + receivedURL,
-          })
-          .toBe(renderedSHA);
+        try {
+          await browserExpect
+            .poll(() => bodies.find(receivedURL, renderedSHA!)?.sha, {
+              message:
+                'current rendered PNG requires a completed actual browser body: ' + receivedURL,
+            })
+            .toBe(renderedSHA);
+        } catch (error) {
+          const current = await element.evaluate((i) => ({
+            project: i.getAttribute('data-project-id'),
+            recipe: i.getAttribute('data-recipe-id'),
+            frame: i.getAttribute('data-source-frame'),
+            sha: i.getAttribute('data-png-sha256'),
+            decoded: [(i as HTMLImageElement).naturalWidth, (i as HTMLImageElement).naturalHeight],
+          }));
+          const diagnostic = {
+            mode,
+            stage: pending,
+            required: { project: f.project, recipe: recipeId, frame, sha: renderedSHA },
+            current,
+            capture: bodies.diagnostic(receivedURL, renderedSHA!),
+          };
+          process.stderr.write('R4_REQUIRED_BODY ' + JSON.stringify(diagnostic) + '\n');
+          await record('r4-required-body-failure-' + mode, diagnostic);
+          throw error;
+        }
         const received = bodies.find(receivedURL, renderedSHA!);
         expect(
           received,
@@ -1413,6 +1434,14 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
         expect(Buffer.from(actual)).toEqual(expected);
         return { project: f.project, recipeId, frame, sha: hashBytes(bytes), decoded: [96, 144] };
       }
+      // Keep the already received image across a real same-document transition.
+      // This adds no PNG read; full reloads still require new actual response evidence.
+      await browserExpect(page.getByAltText('当前配方处理水面')).toHaveAttribute(
+        'data-png-sha256',
+        /^[a-f0-9]{64}$/,
+        { timeout: 15000 },
+      );
+      await page.evaluate(() => history.replaceState({}, '', '#received-document-control'));
       await step(mode + ':processed-image', image);
       await browserExpect(
         page.getByRole('button', { name: '构建当前配套', exact: true }),
