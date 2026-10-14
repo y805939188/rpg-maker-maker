@@ -1,0 +1,65 @@
+{
+  "status": "COMPLETE",
+  "round": 11,
+  "source": "dc61fe03f64e644b7ac63057b3f7d7d26df547f8",
+  "reviewerRequested": {
+    "role": "step_reviewer",
+    "model": "gpt-6.1-sol",
+    "effort": "ultra",
+    "tier": "default(Standard)"
+  },
+  "serverFinalModel": "UNVERIFIED_NOT_EXPOSED",
+  "serverFinalEffort": "UNVERIFIED_NOT_EXPOSED",
+  "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
+  "cwd": "/Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker",
+  "productionMutations": false,
+  "finding": "STEP07-R11-001",
+  "severity": "P2_BLOCKING",
+  "latestWholeCandidate": "REQUIRES_REVISION",
+  "reason": "new Chromium tests consumed in check before workflow browser install",
+  "actualOwnRuns": {
+    "checkWarm": 349,
+    "lifecycle5": 5,
+    "HTTP16": 16,
+    "API3": 3,
+    "privacy5": 5,
+    "coldCheck": {
+      "exit": 1,
+      "passed": 344,
+      "skipped": 5
+    },
+    "independentResponseControls": 9,
+    "production18": 18,
+    "development18": 18
+  },
+  "evidenceFinalizing": false,
+  "result": "REQUIRES_REVISION",
+  "blocking": {
+    "P0": 0,
+    "P1": 0,
+    "hardContractP2": 1
+  },
+  "open": ["STEP07-R11-001"],
+  "maintainedClosed": [
+    "STEP07-R4-001",
+    "STEP07-R4-002",
+    "STEP07-R4-003",
+    "STEP07-R7-001",
+    "STEP07-R9-001",
+    "R1-R3 original scope"
+  ],
+  "latestResponseObserver": "FIXED_INDEPENDENTLY_SUPPORTED_FOR_CURRENT_SCOPE",
+  "reviewerApproved": false,
+  "commitMergePushPublication": false,
+  "stop": "STOP_REVIEWER",
+  "step06": "PUBLISHED",
+  "steps08_09_10": "NOT_STARTED",
+  "retainedResources": {
+    "PG": 55501,
+    "DBs": 7,
+    "API4401": false,
+    "Web5301": false,
+    "ownDataRetained": true
+  },
+  "finishedUtc": "2026-10-14T07:56:45.345082+00:00"
+}

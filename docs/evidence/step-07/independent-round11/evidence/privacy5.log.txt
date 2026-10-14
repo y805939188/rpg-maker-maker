@@ -1,0 +1,57 @@
+
+> @tileset/prototype@0.0.2 test:dev-privacy /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker
+> pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/packages/local-executor
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  15:36:39
+   Duration  1.22s (transform 27ms, setup 0ms, import 46ms, tests 1.08s, environment 0ms)
+

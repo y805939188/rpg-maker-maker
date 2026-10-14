@@ -1,0 +1,33 @@
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker
+
+ ❯ apps/api/tests/studio/received-resources.test.ts (5 tests | 5 skipped) 14ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  apps/api/tests/studio/received-resources.test.ts [ apps/api/tests/studio/received-resources.test.ts ]
+Error: browserType.launch: Executable doesn't exist at /Users/dingshinn/.codex/worktrees/step-07-review-round11/rpg-maker-maker/.local/step07-review/independent-round11/private/empty-chromium-cache/chromium_headless_shell-1248/chrome-headless-shell-mac-arm64/chrome-headless-shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     pnpm exec playwright install                           ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+ ❯ apps/api/tests/studio/received-resources.test.ts:59:28
+     57|   await new Promise<void>((done) => server.listen(0, '127.0.0.1', done…
+     58|   origin = 'http://127.0.0.1:' + (server.address() as { port: number }…
+     59|   browser = await chromium.launch();
+       |                            ^
+     60| });
+     61| afterAll(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  5 skipped (5)
+   Start at  15:22:49
+   Duration  353ms (transform 34ms, setup 0ms, import 254ms, tests 14ms, environment 0ms)
+
