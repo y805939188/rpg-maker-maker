@@ -1,5 +1,6 @@
 import { pathToFileURL } from 'node:url';
 import { readStoredStandardZip } from './stored-zip.js';
+import { ReceivedResources } from './received-resources.js';
 import ts from 'typescript';
 import { decodeSource } from '@tileset/image-adapter';
 import { runIsolated } from '../../../../packages/image-adapter/src/isolation.js';
@@ -1323,6 +1324,7 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
     });
   }
   const results: unknown[] = [];
+  const receivedTraces: { mode: string; capture: ReceivedResources }[] = [];
   try {
     for (const mode of ['production', 'development'] as const) {
       if (mode === 'development') {
@@ -1350,16 +1352,12 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
       context.setDefaultTimeout(15000);
       const page = await context.newPage(),
         network: { url: string; method: string; status: number }[] = [],
-        errors: string[] = [],
-        bodies = new Map<string, Promise<Buffer>>();
+        errors: string[] = [];
+      const bodies = new ReceivedResources(page, mode === 'production' ? url : dev, f.project);
+      receivedTraces.push({ mode, capture: bodies });
       page.on('response', (r) => {
         if (r.url().includes('/api/'))
           network.push({ url: r.url(), method: r.request().method(), status: r.status() });
-        if (r.status() === 200 && /\/(recipes|builds)\//.test(new URL(r.url()).pathname)) {
-          const body = r.body();
-          void body.catch(() => undefined);
-          bodies.set(r.url(), body);
-        }
       });
       page.on('pageerror', (e) => errors.push(e.message));
       await step(mode + ':page', () => page.goto(mode === 'production' ? url : dev));
@@ -1379,19 +1377,29 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             ]),
           )
           .toEqual([96, 144]);
-        const recipeId = await element.getAttribute('data-recipe-id'),
-          frame = await element.getAttribute('data-source-frame'),
-          received = bodies.get(
-            new URL(
-              `/api/projects/${f.project}/recipes/${recipeId}/processed?frame=${frame}`,
-              page.url(),
-            ).href,
-          );
+        const recipeId = await page.getByLabel('精确配方 revision', { exact: true }).inputValue(),
+          frame = await page.getByLabel('创作源水面状态', { exact: true }).inputValue();
+        await browserExpect(element).toHaveAttribute('data-recipe-id', recipeId);
+        await browserExpect(element).toHaveAttribute('data-source-frame', frame);
+        const receivedURL = new URL(
+            `/api/projects/${f.project}/recipes/${recipeId}/processed?frame=${frame}`,
+            page.url(),
+          ).href,
+          renderedSHA = await element.getAttribute('data-png-sha256');
+        expect(renderedSHA).toMatch(/^[a-f0-9]{64}$/);
+        await browserExpect
+          .poll(() => bodies.find(receivedURL, renderedSHA!)?.sha, {
+            message:
+              'current rendered PNG requires a completed actual browser body: ' + receivedURL,
+          })
+          .toBe(renderedSHA);
+        const received = bodies.find(receivedURL, renderedSHA!);
         expect(
           received,
           'actual rendered recipe/frame PNG response must be captured',
         ).toBeDefined();
-        const bytes = new Uint8Array(await received!);
+        expect(received!.contentType.split(';')[0]).toBe('image/png');
+        const bytes = new Uint8Array(received!.bytes!);
         expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes));
         const expected = await sharp(bytes).ensureAlpha().raw().toBuffer(),
           actual = await element.evaluate((i) => {
@@ -1519,30 +1527,34 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
             expect(files[name]!.length).toBe(meta.bytes);
           }
           for (const name of ['A1.png', 'A2.png', 'manifest.json']) {
-            const actualResponse = bodies.get(
-              new URL(
+            const resourceURL = new URL(
                 `/api/projects/${f.project}/builds/${actual.buildId}/files/${name}`,
                 page.url(),
               ).href,
-            );
+              requiredSHA = hashBytes(files[name]!);
+            await browserExpect
+              .poll(() => bodies.find(resourceURL, requiredSHA)?.sha)
+              .toBe(requiredSHA);
+            const actualResponse = bodies.find(resourceURL, requiredSHA);
             expect(
               actualResponse,
               'selected delivery resource must have been received by browser',
             ).toBeDefined();
-            expect(await actualResponse!).toEqual(files[name]);
+            expect(actualResponse!.bytes).toEqual(files[name]);
           }
-          const descriptorEntry = [...bodies.entries()].find(
-            ([key]) =>
-              new URL(key).pathname ===
-              `/api/projects/${f.project}/builds/${actual.buildId}/preview`,
-          );
+          const selectedScene = await page.getByLabel('检查场景', { exact: true }).inputValue();
+          await browserExpect
+            .poll(() => bodies.preview(actual.buildId!, selectedScene)?.sha)
+            .toBeTruthy();
+          const descriptorEntry = bodies.preview(actual.buildId!, selectedScene);
           expect(descriptorEntry).toBeDefined();
           const descriptor = BuildDetailSchema.parse(
-            JSON.parse((await descriptorEntry![1]).toString()),
+            JSON.parse(descriptorEntry!.bytes!.toString()),
           ).descriptor;
           expect(descriptor.buildId).toBe(actual.buildId);
           expect(descriptor.exportBuildId).toBe(manifest.buildId);
           expect(descriptor.manifestSha).toBe(exported.manifestSha);
+          expect(descriptor.scene).toBe(selectedScene);
           await page.screenshot({ path: resolve(root, `r4-${mode}-${phase}.png`), fullPage: true });
           results.push({
             mode,
@@ -1661,7 +1673,12 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
         await external.close();
       }
       expect(errors).toEqual([]);
-      await record('r4-ui-network-' + mode, { sourceContext: resources.context, network, errors });
+      await record('r4-ui-network-' + mode, {
+        sourceContext: resources.context,
+        network,
+        errors,
+        received: bodies.snapshot(),
+      });
       await context.close();
     }
     await record('r4-ui-consistent-publication', { sourceContext: resources.context, results });
@@ -1674,6 +1691,13 @@ it('R4 real COMMIT first/update/history snapshots keep production and dev browse
     });
     for (const context of contexts) await context.close();
     await browser.close();
+    for (const { mode, capture } of receivedTraces) {
+      capture.dispose();
+      await record('r4-received-resources-' + mode, {
+        sourceContext: resources.context,
+        records: capture.snapshot(),
+      });
+    }
     vite.kill('SIGTERM');
     await new Promise<void>((r) => vite.once('exit', () => r()));
     await writeFile(resolve(root, 'r4-vite.log'), viteLog.join(''));
