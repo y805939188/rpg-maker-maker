@@ -1,0 +1,38 @@
+[
+  {
+    "label": "api3",
+    "exit": 0,
+    "expect": 0,
+    "actualCommand": [
+      "pnpm",
+      "test:integration"
+    ],
+    "E2E_MODE": "production"
+  },
+  {
+    "label": "list-production",
+    "exit": 0,
+    "expect": 0,
+    "actualCommand": [
+      "pnpm",
+      "exec",
+      "playwright",
+      "test",
+      "e2e/studio-project-list.test.ts"
+    ],
+    "E2E_MODE": "production"
+  },
+  {
+    "label": "list-development",
+    "exit": 0,
+    "expect": 0,
+    "actualCommand": [
+      "pnpm",
+      "exec",
+      "playwright",
+      "test",
+      "e2e/studio-project-list.test.ts"
+    ],
+    "E2E_MODE": "dev"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "case": "local-crc",
+    "stdlibFullReadAccepted": true,
+    "stdlibTestzipReturn": null,
+    "error": null,
+    "independentFullParserRejects": true,
+    "candidateStrictReaderRejects": true
+  },
+  {
+    "case": "eocd-count",
+    "stdlibFullReadAccepted": true,
+    "stdlibTestzipReturn": null,
+    "error": null,
+    "independentFullParserRejects": true,
+    "candidateStrictReaderRejects": true
+  },
+  {
+    "case": "central-crc",
+    "stdlibFullReadAccepted": false,
+    "stdlibTestzipReturn": "A1.png",
+    "error": "Bad CRC-32 for file 'A1.png'",
+    "independentFullParserRejects": true,
+    "candidateStrictReaderRejects": true
+  }
+]

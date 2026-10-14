@@ -1,0 +1,26 @@
+{
+  "parentSource": "f5740c1fd0e9e22a4f4676de51b7fd2555bc05a5",
+  "latestSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+  "onlyCaseChange": "ZIP consumer function name",
+  "parentCaseSha256": "2294d7dc156ca54124d0dff99b9576c87924d2161e87f0dc92ee41e58f1944f8",
+  "newCaseSha256": "85c680f9ef92aa9827d9ceb9f9c180d343e4c6f02fc43686a8bafb2749db504b",
+  "sameNormalizedCase": true,
+  "budgets": {
+    "case": 180000,
+    "page": 15000,
+    "PNGExpect": 5000,
+    "readImage": 15000,
+    "barrier": 60000,
+    "terminal": 30000
+  },
+  "sameAllExpectSites": true,
+  "phases": [
+    "production:first",
+    "production:replacement",
+    "production:true-history-only",
+    "development:first",
+    "development:replacement",
+    "development:true-history-only"
+  ],
+  "actualCapture": "status200 full origin/project/recipe/frame URL; natural96x144/bodySHA/SharpRGBA vs actual image canvas; selected A1/A2/Manifest/BuildDetail same download; page closes after all assertions"
+}

@@ -1,0 +1,465 @@
+{
+  "old": [
+    {
+      "line": 1262,
+      "text": "expect .poll( async () => { try { return (await fetch(dev)).status; } catch { return 0; } }, { timeout: 15000, interval: 100 }, ) .toBe(200)"
+    },
+    {
+      "line": 1315,
+      "text": "browserExpect(element).toHaveAttribute('data-project-id', f.project, { timeout: 15000, })"
+    },
+    {
+      "line": 1318,
+      "text": "browserExpect .poll(() => element.evaluate((i) => [ (i as HTMLImageElement).naturalWidth, (i as HTMLImageElement).naturalHeight, ]), ) .toEqual([96, 144])"
+    },
+    {
+      "line": 1331,
+      "text": "expect(response.status).toBe(200)"
+    },
+    {
+      "line": 1333,
+      "text": "expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes))"
+    },
+    {
+      "line": 1343,
+      "text": "expect(Buffer.from(actual)).toEqual(expected)"
+    },
+    {
+      "line": 1347,
+      "text": "browserExpect( page.getByRole('button', { name: '\u6784\u5efa\u5f53\u524d\u914d\u5957', exact: true }), ).toBeEnabled()"
+    },
+    {
+      "line": 1360,
+      "text": "expect((await upload).status()).toBe(201)"
+    },
+    {
+      "line": 1361,
+      "text": "browserExpect(page.locator('.notice')).toContainText('\u65b0 revision')"
+    },
+    {
+      "line": 1363,
+      "text": "browserExpect(page.locator('.notice')).toContainText('\u56fa\u5b9a\u5cb8\u7ebf\u914d\u65b9')"
+    },
+    {
+      "line": 1404,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1410,
+      "text": "expect(actual.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1416,
+      "text": "browserExpect(row).toContainText('\u5b8c\u6210')"
+    },
+    {
+      "line": 1418,
+      "text": "expect(state.successfulBuildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1419,
+      "text": "expect(state.needsRebuild).toBe(false)"
+    },
+    {
+      "line": 1420,
+      "text": "browserExpect( page.getByRole('button', { name: '\u9000\u5f79\u65e7\u7ec4\u5e76\u5efa\u7acb\u7b2c\u4e8c\u7ec4', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1424,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"\u4ea4\u4ed8\u62fc\u63a5\u9884\u89c8\"]')).toHaveAttribute( 'data-build-id', actual.buildId!, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1429,
+      "text": "browserExpect( page.getByText('\u753b\u5e03\u5df2\u5c31\u7eea \u00b7 \u5b9e\u9645\u5bfc\u51fa\u56fe\u96c6', { exact: false }), ).toBeVisible()"
+    },
+    {
+      "line": 1435,
+      "text": "expect(zip.status).toBe(200)"
+    },
+    {
+      "line": 1437,
+      "text": "expect(zip.headers.get('x-content-sha256')).toBe(zipSHA)"
+    },
+    {
+      "line": 1485,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1519,
+      "text": "expect(job.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1521,
+      "text": "expect(state.successfulBuildId).toBe(current.id)"
+    },
+    {
+      "line": 1522,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).current).toBe(false)"
+    },
+    {
+      "line": 1523,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).publication).toBe( 'HISTORICAL', )"
+    },
+    {
+      "line": 1530,
+      "text": "browserExpect(row).toContainText('\u5b8c\u6210')"
+    },
+    {
+      "line": 1532,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"\u4ea4\u4ed8\u62fc\u63a5\u9884\u89c8\"]')).toHaveAttribute( 'data-build-id', current.id, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1537,
+      "text": "browserExpect( page.getByRole('button', { name: '\u9000\u5f79\u65e7\u7ec4\u5e76\u5efa\u7acb\u7b2c\u4e8c\u7ec4', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1553,
+      "text": "expect(errors).toEqual([])"
+    }
+  ],
+  "current": [
+    {
+      "line": 1264,
+      "text": "expect .poll( async () => { try { return (await fetch(dev)).status; } catch { return 0; } }, { timeout: 15000, interval: 100 }, ) .toBe(200)"
+    },
+    {
+      "line": 1371,
+      "text": "browserExpect(element).toHaveAttribute('data-project-id', f.project, { timeout: 15000, })"
+    },
+    {
+      "line": 1374,
+      "text": "browserExpect .poll(() => element.evaluate((i) => [ (i as HTMLImageElement).naturalWidth, (i as HTMLImageElement).naturalHeight, ]), ) .toEqual([96, 144])"
+    },
+    {
+      "line": 1390,
+      "text": "expect( received, 'actual rendered recipe/frame PNG response must be captured', ).toBeDefined()"
+    },
+    {
+      "line": 1395,
+      "text": "expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes))"
+    },
+    {
+      "line": 1405,
+      "text": "expect(Buffer.from(actual)).toEqual(expected)"
+    },
+    {
+      "line": 1409,
+      "text": "browserExpect( page.getByRole('button', { name: '\u6784\u5efa\u5f53\u524d\u914d\u5957', exact: true }), ).toBeEnabled()"
+    },
+    {
+      "line": 1422,
+      "text": "expect((await upload).status()).toBe(201)"
+    },
+    {
+      "line": 1423,
+      "text": "browserExpect(page.locator('.notice')).toContainText('\u65b0 revision')"
+    },
+    {
+      "line": 1425,
+      "text": "browserExpect(page.locator('.notice')).toContainText('\u56fa\u5b9a\u5cb8\u7ebf\u914d\u65b9')"
+    },
+    {
+      "line": 1466,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1474,
+      "text": "expect(actual.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1480,
+      "text": "browserExpect(row).toContainText('\u5b8c\u6210')"
+    },
+    {
+      "line": 1482,
+      "text": "expect(state.successfulBuildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1483,
+      "text": "expect(state.needsRebuild).toBe(false)"
+    },
+    {
+      "line": 1484,
+      "text": "browserExpect( page.getByRole('button', { name: '\u9000\u5f79\u65e7\u7ec4\u5e76\u5efa\u7acb\u7b2c\u4e8c\u7ec4', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1488,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"\u4ea4\u4ed8\u62fc\u63a5\u9884\u89c8\"]')).toHaveAttribute( 'data-build-id', actual.buildId!, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1493,
+      "text": "browserExpect( page.getByText('\u753b\u5e03\u5df2\u5c31\u7eea \u00b7 \u5b9e\u9645\u5bfc\u51fa\u56fe\u96c6', { exact: false }), ).toBeVisible()"
+    },
+    {
+      "line": 1500,
+      "text": "expect(zip.status).toBe(200)"
+    },
+    {
+      "line": 1510,
+      "text": "expect(zip.headers.get('x-content-sha256')).toBe(zipSHA)"
+    },
+    {
+      "line": 1511,
+      "text": "expect(hashBytes(files['manifest.json']!)).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1512,
+      "text": "expect(zip.headers.get('x-export-manifest-sha256')).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1513,
+      "text": "expect(manifest.identity.context.commit).toBe(resources.context.commit)"
+    },
+    {
+      "line": 1514,
+      "text": "expect(fingerprint(manifest.identity.profile)).toBe( '48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793', )"
+    },
+    {
+      "line": 1518,
+      "text": "expect(hashBytes(files[name]!)).toBe(meta.sha256)"
+    },
+    {
+      "line": 1519,
+      "text": "expect(files[name]!.length).toBe(meta.bytes)"
+    },
+    {
+      "line": 1528,
+      "text": "expect( actualResponse, 'selected delivery resource must have been received by browser', ).toBeDefined()"
+    },
+    {
+      "line": 1532,
+      "text": "expect(await actualResponse!).toEqual(files[name])"
+    },
+    {
+      "line": 1539,
+      "text": "expect(descriptorEntry).toBeDefined()"
+    },
+    {
+      "line": 1543,
+      "text": "expect(descriptor.buildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1544,
+      "text": "expect(descriptor.exportBuildId).toBe(manifest.buildId)"
+    },
+    {
+      "line": 1545,
+      "text": "expect(descriptor.manifestSha).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1593,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1629,
+      "text": "expect(job.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1631,
+      "text": "expect(state.successfulBuildId).toBe(current.id)"
+    },
+    {
+      "line": 1632,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).current).toBe(false)"
+    },
+    {
+      "line": 1633,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).publication).toBe( 'HISTORICAL', )"
+    },
+    {
+      "line": 1640,
+      "text": "browserExpect(row).toContainText('\u5b8c\u6210')"
+    },
+    {
+      "line": 1642,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"\u4ea4\u4ed8\u62fc\u63a5\u9884\u89c8\"]')).toHaveAttribute( 'data-build-id', current.id, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1647,
+      "text": "browserExpect( page.getByRole('button', { name: '\u9000\u5f79\u65e7\u7ec4\u5e76\u5efa\u7acb\u7b2c\u4e8c\u7ec4', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1663,
+      "text": "expect(errors).toEqual([])"
+    }
+  ],
+  "unchanged": [
+    {
+      "line": 1262,
+      "text": "expect .poll( async () => { try { return (await fetch(dev)).status; } catch { return 0; } }, { timeout: 15000, interval: 100 }, ) .toBe(200)"
+    },
+    {
+      "line": 1315,
+      "text": "browserExpect(element).toHaveAttribute('data-project-id', f.project, { timeout: 15000, })"
+    },
+    {
+      "line": 1318,
+      "text": "browserExpect .poll(() => element.evaluate((i) => [ (i as HTMLImageElement).naturalWidth, (i as HTMLImageElement).naturalHeight, ]), ) .toEqual([96, 144])"
+    },
+    {
+      "line": 1333,
+      "text": "expect(await element.getAttribute('data-png-sha256')).toBe(hashBytes(bytes))"
+    },
+    {
+      "line": 1343,
+      "text": "expect(Buffer.from(actual)).toEqual(expected)"
+    },
+    {
+      "line": 1347,
+      "text": "browserExpect( page.getByRole('button', { name: '\u6784\u5efa\u5f53\u524d\u914d\u5957', exact: true }), ).toBeEnabled()"
+    },
+    {
+      "line": 1360,
+      "text": "expect((await upload).status()).toBe(201)"
+    },
+    {
+      "line": 1361,
+      "text": "browserExpect(page.locator('.notice')).toContainText('\u65b0 revision')"
+    },
+    {
+      "line": 1363,
+      "text": "browserExpect(page.locator('.notice')).toContainText('\u56fa\u5b9a\u5cb8\u7ebf\u914d\u65b9')"
+    },
+    {
+      "line": 1404,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1410,
+      "text": "expect(actual.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1416,
+      "text": "browserExpect(row).toContainText('\u5b8c\u6210')"
+    },
+    {
+      "line": 1418,
+      "text": "expect(state.successfulBuildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1419,
+      "text": "expect(state.needsRebuild).toBe(false)"
+    },
+    {
+      "line": 1420,
+      "text": "browserExpect( page.getByRole('button', { name: '\u9000\u5f79\u65e7\u7ec4\u5e76\u5efa\u7acb\u7b2c\u4e8c\u7ec4', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1424,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"\u4ea4\u4ed8\u62fc\u63a5\u9884\u89c8\"]')).toHaveAttribute( 'data-build-id', actual.buildId!, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1429,
+      "text": "browserExpect( page.getByText('\u753b\u5e03\u5df2\u5c31\u7eea \u00b7 \u5b9e\u9645\u5bfc\u51fa\u56fe\u96c6', { exact: false }), ).toBeVisible()"
+    },
+    {
+      "line": 1435,
+      "text": "expect(zip.status).toBe(200)"
+    },
+    {
+      "line": 1437,
+      "text": "expect(zip.headers.get('x-content-sha256')).toBe(zipSHA)"
+    },
+    {
+      "line": 1485,
+      "text": "expect(response.status()).toBe(202)"
+    },
+    {
+      "line": 1519,
+      "text": "expect(job.state).toBe('COMPLETED')"
+    },
+    {
+      "line": 1521,
+      "text": "expect(state.successfulBuildId).toBe(current.id)"
+    },
+    {
+      "line": 1522,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).current).toBe(false)"
+    },
+    {
+      "line": 1523,
+      "text": "expect(state.builds.find((b: { id: string }) => b.id === old.id).publication).toBe( 'HISTORICAL', )"
+    },
+    {
+      "line": 1530,
+      "text": "browserExpect(row).toContainText('\u5b8c\u6210')"
+    },
+    {
+      "line": 1532,
+      "text": "browserExpect(page.locator('canvas[aria-label=\"\u4ea4\u4ed8\u62fc\u63a5\u9884\u89c8\"]')).toHaveAttribute( 'data-build-id', current.id, { timeout: 15000 }, )"
+    },
+    {
+      "line": 1537,
+      "text": "browserExpect( page.getByRole('button', { name: '\u9000\u5f79\u65e7\u7ec4\u5e76\u5efa\u7acb\u7b2c\u4e8c\u7ec4', exact: true }), ).toBeEnabled({ timeout: 15000 })"
+    },
+    {
+      "line": 1553,
+      "text": "expect(errors).toEqual([])"
+    }
+  ],
+  "removed": [
+    {
+      "line": 1331,
+      "text": "expect(response.status).toBe(200)"
+    }
+  ],
+  "added": [
+    {
+      "line": 1390,
+      "text": "expect( received, 'actual rendered recipe/frame PNG response must be captured', ).toBeDefined()"
+    },
+    {
+      "line": 1511,
+      "text": "expect(hashBytes(files['manifest.json']!)).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1512,
+      "text": "expect(zip.headers.get('x-export-manifest-sha256')).toBe(exported.manifestSha)"
+    },
+    {
+      "line": 1513,
+      "text": "expect(manifest.identity.context.commit).toBe(resources.context.commit)"
+    },
+    {
+      "line": 1514,
+      "text": "expect(fingerprint(manifest.identity.profile)).toBe( '48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793', )"
+    },
+    {
+      "line": 1518,
+      "text": "expect(hashBytes(files[name]!)).toBe(meta.sha256)"
+    },
+    {
+      "line": 1519,
+      "text": "expect(files[name]!.length).toBe(meta.bytes)"
+    },
+    {
+      "line": 1528,
+      "text": "expect( actualResponse, 'selected delivery resource must have been received by browser', ).toBeDefined()"
+    },
+    {
+      "line": 1532,
+      "text": "expect(await actualResponse!).toEqual(files[name])"
+    },
+    {
+      "line": 1539,
+      "text": "expect(descriptorEntry).toBeDefined()"
+    },
+    {
+      "line": 1543,
+      "text": "expect(descriptor.buildId).toBe(actual.buildId)"
+    },
+    {
+      "line": 1544,
+      "text": "expect(descriptor.exportBuildId).toBe(manifest.buildId)"
+    },
+    {
+      "line": 1545,
+      "text": "expect(descriptor.manifestSha).toBe(exported.manifestSha)"
+    }
+  ],
+  "oldSource": "87e13a8a99db3058dce8680d3ae985969b8a9bac",
+  "currentSource": "c8d41a680df42fe565882d93d3f85a04f7a10b22",
+  "remainingSemanticReplacement": "old redundant test GET response.status200 replaced by actual successful browser200 capture keyed full origin/project/recipe/frame URL plus required body promise; natural96x144, bodySHA, actual canvasRGBA equal Sharp unchanged",
+  "separateZIPHelperStrengthened": "full EOCD+central+local consistency/CRC/safety beyond original case assertion AST",
+  "countsNotCoverage": true
+}

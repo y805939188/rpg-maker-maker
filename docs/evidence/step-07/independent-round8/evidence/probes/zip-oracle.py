@@ -1,0 +1,59 @@
+import pathlib,struct,zlib,json,hashlib,io,zipfile
+from PIL import Image
+NAMES={'A1.png','A2.png','INSTALL.md','history.json','layout.json','manifest.json','pack.json','sources.json'}
+def sha(b):return hashlib.sha256(b).hexdigest()
+def need(v,msg):
+ if not v:raise ValueError(msg)
+def parse(b):
+ # Independent local-first parser: walk complete local stream; then separately
+ # walk directory stream; compare the two maps before interpreting payloads.
+ need(len(b)>=22,'short archive')
+ e=struct.unpack('<4s4H2IH',b[-22:]);need(e[0]==b'PK\x05\x06','EOCD at EOF');need(e[1:5]==(0,0,8,8),'EOCD disk/count');need(e[-1]==0,'EOCD comment');size,start=e[5:7];need(start+size==len(b)-22,'directory bounds')
+ locals={};at=0
+ while at<start:
+  need(at+30<=start,'local bounds');v=struct.unpack_from('<4s5H3I2H',b,at);sig,ver,flags,method,time,date,crc,cs,us,n,x=v
+  need(sig==b'PK\x03\x04' and ver==20,'local format/version');need((flags,method,time,date,x)==(0,0,0,0,0),'local unsupported metadata');need(cs==us,'local lengths');next=at+30+n+cs;need(next<=start,'local payload bounds');raw=b[at+30:at+30+n];name=raw.decode('ascii');need(name in NAMES and name not in locals,'local safe unique name');body=b[at+30+n:next];need(zlib.crc32(body)==crc,'local actual CRC');locals[name]=(at,crc,cs,raw,body);at=next
+ need(at==start and set(locals)==NAMES,'local completeness')
+ central={};at=start
+ while at<len(b)-22:
+  need(at+46<=len(b)-22,'central bounds');v=struct.unpack_from('<4s6H3I5H2I',b,at);sig,made,ver,flags,method,time,date,crc,cs,us,n,x,c,disk,inside,outside,offset=v
+  need(sig==b'PK\x01\x02' and (made,ver)==(20,20),'central format/version');need((flags,method,time,date,x,c,disk,inside,outside)==(0,0,0,0,0,0,0,0,0),'central unsupported metadata');need(cs==us,'central lengths');next=at+46+n;need(next<=len(b)-22,'central name bounds');raw=b[at+46:next];name=raw.decode('ascii');need(name in NAMES and name not in central,'central safe unique name');need(name in locals,'no corresponding local');local=locals[name];need((offset,crc,cs,raw)==local[:4],'directory identity mismatch');central[name]=local[4];at=next
+ need(at==len(b)-22 and set(central)==NAMES and len(central)==8,'central completeness')
+ with zipfile.ZipFile(io.BytesIO(b)) as z:
+  need(z.testzip() is None,'stdlib CRC');need(set(z.namelist())==NAMES and len(z.namelist())==8,'stdlib exact members')
+  for n in NAMES:need(z.read(n)==central[n],'stdlib payload comparison')
+ return central
+
+def artifact(b):
+ files=parse(b);m=json.loads(files['manifest.json']);identity=m['identity'];need(set(identity['files'])==NAMES-{'manifest.json'},'manifest exact payload keys')
+ for name,meta in identity['files'].items():need(meta['bytes']==len(files[name]) and meta['sha256']==sha(files[name]),'payload manifest bytes/SHA')
+ profile=sha(json.dumps(identity['profile'],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode());need(profile=='48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793','profile hash')
+ pixels=[]
+ for name in ['A1.png','A2.png']:
+  im=Image.open(io.BytesIO(files[name]));need(im.format=='PNG' and im.size==(768,576) and im.mode=='RGBA','actual atlas format');rgba=im.tobytes();need(sha(rgba)==identity['atlases'][name]['pixelHash'],'atlas RGBA identity')
+  pixels.append({'name':name,'size':im.size,'RGBAsha256':sha(rgba)})
+ return {'source':identity['context']['commit'],'exportBuildId':m['buildId'],'manifestSHA256':sha(files['manifest.json']),'profileSHA256':profile,'members':{n:{'bytes':len(v),'sha256':sha(v)} for n,v in files.items()},'PNG':pixels}
+if __name__=='__main__':
+ import sys
+ r=pathlib.Path('.local/step07-review');base=pathlib.Path('/Users/dingshinn/Desktop/rpg-maker-maker/docs/evidence/step-07/independent-round7/evidence/zip-full-case');out=r/'evidence/zip-controls';out.mkdir(exist_ok=True);rows=[]
+ for i in range(4):
+  b=(base/f'{i}-diagnostic-download-{i}-original.zip').read_bytes();d=struct.unpack_from('<I',b,len(b)-6)[0];end=len(b)-22
+  variants={'normal':b,'r7-original-bad':(base/f'{i}-diagnostic-download-{i}-central-crc.zip').read_bytes()}
+  for name,offset,data in [('central-crc',d+16,bytes([b[d+16]^1])),('central-name',d+46,b'../bad'),('eocd-count',end+8,struct.pack('<HH',9,9)),('local-crc',14,bytes([b[14]^1])),('payload',36,bytes([b[36]^1]))]:
+   v=bytearray(b);v[offset:offset+len(data)]=data;variants[name]=bytes(v)
+  if i==0:
+   fields={'central-made':(d+4,21,2),'central-needed':(d+6,45,2),'central-flags':(d+8,8,2),'central-method':(d+10,8,2),'central-time':(d+12,1,2),'central-date':(d+14,1,2),'central-uncompressed':(d+24,1,4),'central-name-length':(d+28,65535,2),'central-extra':(d+30,1,2),'central-comment':(d+32,1,2),'central-disk':(d+34,1,2),'central-internalattr':(d+36,1,2),'central-externalattr':(d+38,0xa0000000,4),'central-offset':(d+42,d,4),'local-ver':(4,45,2),'local-flags':(6,1,2),'local-method':(8,8,2),'local-date':(12,1,2),'local-size':(18,1,4),'local-usize':(22,1,4),'local-extra':(28,1,2),'eocd-disk':(end+4,1,2),'eocd-centraldisk':(end+6,1,2),'eocd-countdisagree':(end+10,7,2),'eocd-size':(end+12,1,4),'eocd-offset':(end+16,0xffffffff,4),'eocd-comment':(end+20,1,2),'zip64-count':(end+8,0xffff,2)}
+   for name,(off,val,size) in fields.items():
+    v=bytearray(b);v[off:off+size]=val.to_bytes(size,'little');variants[name]=bytes(v)
+   second=d+46+6
+   for name,off,data in [('duplicate-central-name',second+46,b'A1.png'),('duplicate-offset',second+42,b'\0'*4),('safe-mismatched-central-name',d+46,b'A2.png')]:
+    v=bytearray(b);v[off:off+len(data)]=data;variants[name]=bytes(v)
+   variants|={'empty':b'','truncated':b[:-1],'truncated-before-directory':b[:d],'trailing':b+b'0','prefix':b'0'+b,'zip64-locator':b[:-22]+b'PK\x06\x07'+bytes(16)+b[-22:]}
+   gap=b[:d]+b'0'+b[d:];v=bytearray(gap);v[len(v)-6:len(v)-2]=(d+1).to_bytes(4,'little');variants['gap-consistent-directory']=bytes(v)
+  for name,v in variants.items():
+   p=out/f'{i}-{name}.zip';p.write_bytes(v);expected=name=='normal';error=None;details=None
+   try:details=artifact(v) if expected else parse(v);accepted=True
+   except Exception as e:accepted=False;error=str(e)
+   need(accepted==expected,'oracle expectation '+name)
+   rows.append({'file':str(p.relative_to(r)),'pair':i,'case':name,'expectedAccepted':expected,'pythonAccepted':accepted,'error':error,'sha256':sha(v),'bytes':len(v),'artifact':details if expected else None})
+ (r/'evidence/python-zip-controls.json').write_text(json.dumps(rows,indent=2)+'\n');print({'controls':len(rows),'acceptedNormals':sum(x['pythonAccepted'] for x in rows),'badRejected':sum(not x['pythonAccepted'] for x in rows)})
