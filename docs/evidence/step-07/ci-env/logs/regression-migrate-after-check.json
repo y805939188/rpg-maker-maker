@@ -1,0 +1,19 @@
+{
+  "receipt": {
+    "label": "regression-migrate-after-check",
+    "args": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97",
+    "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+    "exitCode": 0,
+    "expectedExit": 0,
+    "durationSeconds": 1.777,
+    "log": ".local/step07-ci-env/final/regression-migrate-after-check.log",
+    "logBytes": 2223,
+    "logSHA256": "e6669cf7debd4058fe465051a541440e2d09872a990da691bb259304dc0891df",
+    "noDotEnv": true
+  },
+  "sanitizedText": "\n> @tileset/prototype@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97\n> pnpm --filter @tileset/api db:migrate\n\n\n> @tileset/api@0.0.2 db:migrate /Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/artifacts/.step07-ci-env-final-9f394e589f9f449ab7ccfe1d561c8c97/apps/api\n> node scripts/migrate.mjs\n\nPrisma schema loaded from prisma/schema.prisma\nDatasource \"db\": PostgreSQL database \"[REDACTED_OWN_TEST_DB]\", schema \"public\" at \"127.0.0.1:55476\"\n\n5 migrations found in prisma/migrations\n\nApplying migration `202610120001_step02_project`\nApplying migration `202610130001_step06_persistence`\nApplying migration `202610130002_step06_task_references`\nApplying migration `202610130003_step06_processing_stages`\nApplying migration `202610130004_step07_studio`\n\n┌─────────────────────────────────────────────────────────┐\n│  Update available 6.19.3 -> 8.0.0-rc.22                 │\n│                                                         │\n│  This is a major update - please follow the guide at    │\n│  https://pris.ly/d/major-version-upgrade                │\n│                                                         │\n│  Run the following to update                            │\n│    npm i --save-dev prisma@latest                       │\n│    npm i @prisma/client@latest                          │\n└─────────────────────────────────────────────────────────┘\nThe following migration(s) have been applied:\n\nmigrations/\n  └─ 202610120001_step02_project/\n    └─ migration.sql\n  └─ 202610130001_step06_persistence/\n    └─ migration.sql\n  └─ 202610130002_step06_task_references/\n    └─ migration.sql\n  └─ 202610130003_step06_processing_stages/\n    └─ migration.sql\n  └─ 202610130004_step07_studio/\n    └─ migration.sql\n      \nAll migrations have been successfully applied.\n"
+}

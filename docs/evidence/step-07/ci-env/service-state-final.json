@@ -1,0 +1,60 @@
+{
+  "source": "50fd6d84197b8c6d222f139a142ab24c918db0db",
+  "rootExistingAPI4376PID": 22456,
+  "rootPG55476PID": 51121,
+  "rootLifecycleChanged": false,
+  "rootDistPreserved": true,
+  "rootEnvMode": "0o600",
+  "testsNoDefaultEnv": true,
+  "ownFreshDBRootsKept": true,
+  "otherTreesUntouched": true,
+  "lsofPerPort": [
+    {
+      "port": 4376,
+      "argv": [
+        "lsof",
+        "-nP",
+        "-iTCP:4376",
+        "-sTCP:LISTEN"
+      ],
+      "exitCode": 0,
+      "stdout": "COMMAND   PID      USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME\nnode    22456 dingshinn   20u  IPv4 0x1b61d7139293f085      0t0  TCP 127.0.0.1:4376 (LISTEN)\n",
+      "interpretation": "listener on this port only"
+    },
+    {
+      "port": 4398,
+      "argv": [
+        "lsof",
+        "-nP",
+        "-iTCP:4398",
+        "-sTCP:LISTEN"
+      ],
+      "exitCode": 1,
+      "stdout": "",
+      "interpretation": "no listener observed on this port only"
+    },
+    {
+      "port": 5298,
+      "argv": [
+        "lsof",
+        "-nP",
+        "-iTCP:5298",
+        "-sTCP:LISTEN"
+      ],
+      "exitCode": 1,
+      "stdout": "",
+      "interpretation": "no listener observed on this port only"
+    }
+  ],
+  "PGStatus": {
+    "argv": [
+      "/opt/homebrew/opt/postgresql@14/bin/pg_ctl",
+      "-D",
+      "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/postgres/data",
+      "status"
+    ],
+    "exitCode": 0,
+    "stdout": "pg_ctl: server is running (PID: 51121)\n/opt/homebrew/Cellar/postgresql@14/14.20/bin/postgres \"-D\" \"/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/postgres/data\"\n"
+  },
+  "testServices": "normal close; no unknown processes killed"
+}
