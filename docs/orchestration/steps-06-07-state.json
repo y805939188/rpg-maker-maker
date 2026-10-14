@@ -2938,6 +2938,39 @@
           "seconds": 449.64,
           "startedAtUtc": "2026-10-14T14:45:03.181343+00:00",
           "log": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker/.local/release-verification/postmerge/321bbb307ec2/attempt-1/step07.log"
+        },
+        {
+          "label": "step06",
+          "command": [
+            "pnpm",
+            "test:step06"
+          ],
+          "exitCode": 0,
+          "seconds": 198.07,
+          "startedAtUtc": "2026-10-14T14:52:32.816782+00:00",
+          "log": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker/.local/release-verification/postmerge/321bbb307ec2/attempt-1/step06.log"
+        },
+        {
+          "label": "api",
+          "command": [
+            "pnpm",
+            "test:integration"
+          ],
+          "exitCode": 0,
+          "seconds": 9.91,
+          "startedAtUtc": "2026-10-14T14:55:50.886669+00:00",
+          "log": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker/.local/release-verification/postmerge/321bbb307ec2/attempt-1/api.log"
+        },
+        {
+          "label": "privacy",
+          "command": [
+            "pnpm",
+            "test:dev-privacy"
+          ],
+          "exitCode": 0,
+          "seconds": 11.18,
+          "startedAtUtc": "2026-10-14T14:56:00.800206+00:00",
+          "log": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker/.local/release-verification/postmerge/321bbb307ec2/attempt-1/privacy.log"
         }
       ]
     }
@@ -3244,7 +3277,7 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Actualmerged321 Source0cdd execdiffzero fullcheckPASS70.03s andHTTP16PASS449.64s(6phasefinal112724ms). Fullpostmerge PG23/API/privacy/prod18 stillrunning/pending; noMainpush/PUBLISHEDyet.",
+  "lastSuccessfulCheckpoint": "Actualmerged321 check/HTTP16/PG23/API3/privacy5 allPASS; productionbrowser16/18throughlateactions, whole18finalnotyet. NoMainpush/PUBLISHEDyet; releaseData/env/sourcefrozenpreserved.",
   "nextSafeAction": "Await everyactualmerged321 fullpostmerge check/HTTP16/PG23/API/privacy/prod18 PASS; preserveevidence withpureDocdiff checkthen normalpushmain/readback/mainCI. Failureactualfixsourceorownedsetup, nopublishingfailed.",
   "cleanup": [
     {
@@ -3279,7 +3312,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T14:53:32.176102+00:00",
+  "updatedAtUtc": "2026-10-14T15:02:01.909068+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
