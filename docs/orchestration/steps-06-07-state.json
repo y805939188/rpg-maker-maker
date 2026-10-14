@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "IN_PROGRESS",
   "currentStep": 7,
-  "phase": "STEP07_ACTUAL_MAIN_MERGE_POSTMERGE_REGRESSION_RUNNING",
+  "phase": "STEP07_NORMAL_MAIN_PUSH_NEXT_AFTER_POSTMERGE_PASS",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "MERGED_LOCAL_REQUIRED_POSTMERGE_REGRESSION_RUNNING",
+    "status": "MERGED_POSTMERGE_PASS_READY_NORMAL_MAIN_PUSH",
     "reviewRounds": 14,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-studio",
@@ -2901,7 +2901,7 @@
       "atUtc": "2026-10-14T14:43:52.985009+00:00"
     },
     "postmergeVerification": {
-      "status": "RUNNING",
+      "status": "PASS",
       "head": "321bbb307ec2f33dcd78d1e66e8b721d2a771ea1",
       "source": "0cdd9ad6a61a881bbf3a9ebd7d231e927f97bb2c",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
@@ -2972,7 +2972,95 @@
           "startedAtUtc": "2026-10-14T14:56:00.800206+00:00",
           "log": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker/.local/release-verification/postmerge/321bbb307ec2/attempt-1/privacy.log"
         }
-      ]
+      ],
+      "commands": [
+        {
+          "label": "check",
+          "command": [
+            "pnpm",
+            "check"
+          ],
+          "exitCode": 0,
+          "seconds": 70.03,
+          "startedAtUtc": "2026-10-14T14:43:53.146130+00:00",
+          "log": "PRIVATE .local/release-verification/postmerge/321bbb307ec2/attempt-1/check.log",
+          "logSHA256": "5f462df4a599f7eb71063751f7a274b79debe87f7c1209b3816f9c7fa7026a47",
+          "logBytes": 11002,
+          "passed": 354
+        },
+        {
+          "label": "step07",
+          "command": [
+            "pnpm",
+            "test:step07"
+          ],
+          "exitCode": 0,
+          "seconds": 449.64,
+          "startedAtUtc": "2026-10-14T14:45:03.181343+00:00",
+          "log": "PRIVATE .local/release-verification/postmerge/321bbb307ec2/attempt-1/step07.log",
+          "logSHA256": "4f941ab0cdf908b91556a9794ffa06b35d8414d6b338c379e6596e3da61ac79d",
+          "logBytes": 14653,
+          "passed": 16
+        },
+        {
+          "label": "step06",
+          "command": [
+            "pnpm",
+            "test:step06"
+          ],
+          "exitCode": 0,
+          "seconds": 198.07,
+          "startedAtUtc": "2026-10-14T14:52:32.816782+00:00",
+          "log": "PRIVATE .local/release-verification/postmerge/321bbb307ec2/attempt-1/step06.log",
+          "logSHA256": "981d8e2cf31863aed1062ed6c1c4eb2d69585ed85e66955158554766b9412caf",
+          "logBytes": 2627,
+          "passed": 23
+        },
+        {
+          "label": "api",
+          "command": [
+            "pnpm",
+            "test:integration"
+          ],
+          "exitCode": 0,
+          "seconds": 9.91,
+          "startedAtUtc": "2026-10-14T14:55:50.886669+00:00",
+          "log": "PRIVATE .local/release-verification/postmerge/321bbb307ec2/attempt-1/api.log",
+          "logSHA256": "efdf85be84dcb9759c5e6516efb613a2604e698ea16c0c6852c8c6df2d1eac0a",
+          "logBytes": 2490,
+          "passed": 3
+        },
+        {
+          "label": "privacy",
+          "command": [
+            "pnpm",
+            "test:dev-privacy"
+          ],
+          "exitCode": 0,
+          "seconds": 11.18,
+          "startedAtUtc": "2026-10-14T14:56:00.800206+00:00",
+          "log": "PRIVATE .local/release-verification/postmerge/321bbb307ec2/attempt-1/privacy.log",
+          "logSHA256": "43db7439be2b3116fd959dc574f18a0482f236bcfff84779e4cc14e706a813b6",
+          "logBytes": 2485,
+          "passed": 5
+        },
+        {
+          "label": "browser-production",
+          "command": [
+            "pnpm",
+            "test:e2e"
+          ],
+          "exitCode": 0,
+          "seconds": 413.19,
+          "startedAtUtc": "2026-10-14T14:56:11.980322+00:00",
+          "log": "PRIVATE .local/release-verification/postmerge/321bbb307ec2/attempt-1/browser-production.log",
+          "logSHA256": "9fdb9a891acbdd8c2bb34a0ffca09449372dc2628c67552d160dcf1c54c07ad4",
+          "logBytes": 3702,
+          "passed": 18
+        }
+      ],
+      "evidence": "docs/evidence/orchestration-06-07/step07-postmerge-regression.json",
+      "completedAt": "2026-10-14T15:04:27.887938+00:00"
     }
   },
   "step08": {
@@ -3277,8 +3365,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Actualmerged321 check/HTTP16/PG23/API3/privacy5 allPASS; productionbrowser16/18throughlateactions, whole18finalnotyet. NoMainpush/PUBLISHEDyet; releaseData/env/sourcefrozenpreserved.",
-  "nextSafeAction": "Await everyactualmerged321 fullpostmerge check/HTTP16/PG23/API/privacy/prod18 PASS; preserveevidence withpureDocdiff checkthen normalpushmain/readback/mainCI. Failureactualfixsourceorownedsetup, nopublishingfailed.",
+  "lastSuccessfulCheckpoint": "Actualmerge321 fullpostmerge354/16/23/API3/privacy5/prod18ALLPASS, source0cdd execdiffzero; rawlogsSHA/counts/secret0 archivedprivate receiptspublic. MainPush/readback/mainCI stillpending.",
+  "nextSafeAction": "CommitpureDocpostmergeevidence; fetch/livemain208guard/executiondiffdocs-only thennormalpushmain/readback/currentmainCI. Do notmarkPUBLISHEDbeforeCI.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3312,7 +3400,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T15:02:01.909068+00:00",
+  "updatedAtUtc": "2026-10-14T15:04:27.887938+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
