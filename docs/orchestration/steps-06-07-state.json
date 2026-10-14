@@ -3228,6 +3228,25 @@
       "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
       "clientEvidence": "docs/evidence/orchestration-06-07/step07-r15-fix-client.json",
       "roundAddressed": 15
+    },
+    "userLocalRuntimeResume": {
+      "atUtc": "2026-10-14T18:39:58.868244+00:00",
+      "source": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+      "apiPort": 4376,
+      "apiPid": 76694,
+      "pgPort": 55476,
+      "pgPid": 51121,
+      "health": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      },
+      "existingCountsBefore": "115|947|179|177|184",
+      "envUnchanged": true,
+      "envMode": "0600",
+      "restoredExistingProductionService": true,
+      "noMigrationBuildResetOrDataMutation": true
     }
   },
   "step08": {
@@ -3300,7 +3319,7 @@
       "temporaryRoot": ".local/step07",
       "apiPort": 4376,
       "webPort": 5276,
-      "serviceStatus": "USER_STUDIO_PUSHED_MAIN_BD_RUNNING_DATA_PRESERVED",
+      "serviceStatus": "USER_RUNTIME_API4376_RUNNING_PID76694; PG55476_RUNNING_PID51121",
       "apiPid": 65421,
       "previousApiPid": 22456,
       "source": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
@@ -3559,11 +3578,28 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review",
-      "serviceStatus": "ACTIVE_FRESH_INDEPENDENT15_PG55511_OWN_ENV",
+      "serviceStatus": "STOPPED_AFTER_REQUIRES_REVISION; 9 databases/private data retained",
       "formalReviewStarted": true,
       "privateEnv": "FRESH_0600_NOT_COPIED",
       "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
       "threadId": "01a13b44-1d10-76e0-bd99-fa3b4152cd64"
+    },
+    {
+      "id": "step07_review16",
+      "owner": "independent reviewer round16 (formal not dispatched)",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round16/rpg-maker-maker",
+      "baseSource": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "pgPort": 55513,
+      "apiPort": 4413,
+      "webPort": 5313,
+      "status": "PREPARED_PG_RUNNING_EMPTY_SCHEMA; waiting new frozen candidate",
+      "env": "own new ignored .env, not copied",
+      "assetRoot": ".local/step07-review/assets",
+      "outputRoot": ".local/step07-review/independent-round16",
+      "pgPid": 81665,
+      "database": "tileset_studio",
+      "privateEnv": "OWN_NEW_0600_NOT_COPIED",
+      "formalReviewStarted": false
     }
   ],
   "lastSuccessfulCheckpoint": "R15 original report and all 166 payloads hash-verified and preserved; own reviewer services stopped; independent blocking PNG CRC gap confirmed",
@@ -3601,7 +3637,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T18:39:23.004867+00:00",
+  "updatedAtUtc": "2026-10-14T18:41:27.524173+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
