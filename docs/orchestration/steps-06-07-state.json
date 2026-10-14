@@ -3075,6 +3075,20 @@
         "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38586177993"
       },
       "atUtc": "2026-10-14T15:06:11.032031+00:00"
+    },
+    "localDeployment": {
+      "status": "RUNNING_PUSHED_MAIN_DATA_PRESERVED_BROWSER_SMOKE_PASS",
+      "runtimeSource": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+      "headState": "DETACHED_PUSHED_MAIN",
+      "apiPort": 4376,
+      "pgPort": 55476,
+      "apiPid": 65421,
+      "pgPid": 51121,
+      "apiExecSession": 63519,
+      "url": "http://127.0.0.1:4376",
+      "evidence": "docs/evidence/orchestration-06-07/step07-local-main-deployment.json",
+      "mainCI": "IN_PROGRESS"
     }
   },
   "step08": {
@@ -3139,7 +3153,7 @@
     {
       "owner": "step07_coder",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
-      "branch": "codex/step-07-studio",
+      "branch": null,
       "pgPort": 55476,
       "database": "tileset_studio",
       "postgresRoot": ".local/postgres",
@@ -3147,11 +3161,14 @@
       "temporaryRoot": ".local/step07",
       "apiPort": 4376,
       "webPort": 5276,
-      "serviceStatus": "OWNED_PG55476_AND_PRODUCTION_API4376_RETAINED_SOURCE594_NOT_PUBLISHED",
-      "apiPid": 22456,
-      "previousApiPid": 51670,
-      "source": "59423201ba10ee71c3d1b04cebec69659017b7c7",
-      "apiProcessCwdVerified": true
+      "serviceStatus": "USER_STUDIO_PUSHED_MAIN_BD_RUNNING_DATA_PRESERVED",
+      "apiPid": 65421,
+      "previousApiPid": 22456,
+      "source": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "apiProcessCwdVerified": true,
+      "retainedCodingBranch": "codex/step-07-studio",
+      "currentPurpose": "USER_LOCAL_PRODUCTION_STUDIO",
+      "HEADState": "DETACHED_PUSHED_MAIN"
     },
     {
       "owner": "step07_reviewer_round1",
@@ -3193,11 +3210,12 @@
       "temporaryRoot": ".local/release-verification",
       "apiPort": 4381,
       "webPort": 5281,
-      "serviceStatus": "OWN_PG55481_RUNNING_FROZEN_MERGED321_FULL_REGRESSION_ACTIVE",
+      "serviceStatus": "POSTMERGE_ALLPASS_OWNED_PG_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
       "credentials": "FRESH_PRIVATE_ENV600_NO_COPY",
       "migrationPreparation": "FIVE_MIGRATIONS_SUCCESS_NEW_EMPTY_DB_NO_RESET",
       "pgPid": 76340,
-      "source": "321bbb307ec2f33dcd78d1e66e8b721d2a771ea1"
+      "source": "321bbb307ec2f33dcd78d1e66e8b721d2a771ea1",
+      "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-release-verification-owned-service-stop.json"
     },
     {
       "owner": "step07_reviewer_round3",
@@ -3379,8 +3397,8 @@
       "shutdownReceipt": "docs/evidence/orchestration-06-07/step07-round14-preservation-and-service-stop.json"
     }
   ],
-  "lastSuccessfulCheckpoint": "Mainnormalpushbd9127 andlocal/origin/liveSHAexact; candidate7wholeCI/R14PASS+merged321 fullpostmergeallpassed. ActualmainCI38586177993inprogress; PUBLISHEDformalrecord stillpending.",
-  "nextSafeAction": "VerifyactualmainCIALLSUCCESS; meanwhile safeownedlocalStudio deployment to pushedbd runtime withvalueData/env retained andactualbrowser smoke; noPUBLISHEDuntilCIcomplete.",
+  "lastSuccessfulCheckpoint": "Normalmainpushbd/currentmainCIpending. UserlocalStudio safelydeployedbd(Node22), oldAPI22456 noactiveJobgracefulstop->new65421, originalPG51121/.env/assets unchanged,115projects947rev179build177exports184jobs+successPointers same. RealIAB current/history/retired/processed/Export/playpause/step/refresh/ZIP hashprofilePASS; screenshots actual. OnlyendedReleasePG55481 stoppeddataretained.",
+  "nextSafeAction": "WaitmainCI38586177993 ALLSUCCESS thenformalPUBLISHED/finalreport/requirements currentmapping/STOP07 docs oncecommitpushreadbackCIs. Safeendedbranchcleanup onlyremotecontained/privateData preserved. Source08+notstarted.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3414,7 +3432,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T15:06:11.032031+00:00",
+  "updatedAtUtc": "2026-10-14T15:19:00.241139+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
