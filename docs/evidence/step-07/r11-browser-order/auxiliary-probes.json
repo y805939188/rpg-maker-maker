@@ -1,0 +1,8 @@
+{
+  "originalPath": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07-r11-browser-order/auxiliary-probes.json",
+  "originalSHA256": "eba57d2ec27d703ea6495abb24f1409dbe0c25c2116cea807c2145b0b04ed00d",
+  "originalBytes": 809,
+  "purpose": "Latest frozen Source author validation; documentary wrapper, original retained privately",
+  "redacted": false,
+  "text": "{\n  \"source\": \"a8f23ef5ad218278447cca2d22c7014adb16ca02\",\n  \"events\": [\n    {\n      \"command\": \"first verify-final.py\",\n      \"exitCode\": 1,\n      \"reason\": \"author verifier used insertion-order JSON hash; approved canonical sorted-key profile hash differs\",\n      \"firstScriptSHA256\": \"8d4f35f6a82dd1845792187fcdbe1a7ac324663298d84ab2b7fad5ef6f02e37f\",\n      \"preservedFailure\": \"verify-final-first-failure.json\",\n      \"correction\": \"Use canonical sorted-key JSON identity for existing unchanged Profile; no Profile/manifest changes and no test rerun\"\n    },\n    {\n      \"command\": \"rg included guessed scripts/build-studio-resources.mjs path\",\n      \"exitCode\": 2,\n      \"reason\": \"that guessed script does not exist; source search continued with existing files\",\n      \"productEffect\": \"none\"\n    }\n  ]\n}\n"
+}
