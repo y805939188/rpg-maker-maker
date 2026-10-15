@@ -6,9 +6,9 @@
     7
   ],
   "stopAfter": 7,
-  "workflow": "BLOCKED_AT_STEP07_INDEPENDENT_REVIEW16",
+  "workflow": "STEP07_FOCUSED_CLOSEOUT_ACTIVE",
   "currentStep": 7,
-  "phase": "STEP07_BLOCKED_HUMAN_RESUMED_INDEPENDENT16_PLATFORM",
+  "phase": "STEP07_FOCUSED_CHUNK_TYPE_CODING_ACTIVE",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "BLOCKED_NECESSARY_INDEPENDENT16_REPORT_AND_CHUNK_TYPE_P2",
+    "status": "R16_INTERRUPTED_PARTIAL_NEW_P2_CODING_FIX",
     "reviewRounds": 16,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3450,6 +3450,23 @@
       "deliveryCheckCompleted": "6 ZIP12 PNG16 RawCanvas4 Build/FinalExport/FileObject/Job chains",
       "newFinding": "STEP07-R16-001_P2_BLOCKING_HIGH_BIT_IEND_EXACT_CONSUMER_ACCEPTANCE",
       "review17": "PREPARED_ONLY_NEVER_STARTED; PG55515 stopped/1DB/env/data retained"
+    },
+    "review16Disposition": "INTERRUPTED_PARTIAL_NOT_PASS; no formal report fabricated; concrete independently evidenced defect may be repaired before old report completion under latest focused closeout",
+    "focusedCloseoutAuthorization": "docs/orchestration/step-07-focused-closeout-2026-10-15.md",
+    "focusedCodingDispatch": {
+      "role": "step_coder",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "default",
+      "manifestSha256": "3f7bc1355eaab8ea42e34447ba991c0b1755033853ae0428f86caeaf5ab094db",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-main-ci-recovery/rpg-maker-maker",
+      "startedAtUtc": "2026-10-15T03:28:43.354807+00:00",
+      "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
+      "thread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "actualNativeModel": "gpt-6.1-sol",
+      "actualNativeEffort": "xhigh",
+      "actualNativeCwdVerified": true,
+      "scope": "only concrete raw PNG chunk-type validation defect and necessary regression; no expanded research"
     }
   },
   "step08": {
@@ -3825,7 +3842,7 @@
     }
   ],
   "lastSuccessfulCheckpoint": "Human-requested same-context reviewer completed delivery6ZIP12PNG16RawCanvas4DBchains and confirmed newP2; platform again stopped before report/ledger;434privatefilehashes/8750tracked protected;PG55513/55515 normalstopped dataretained; no candidate8CI or release",
-  "nextSafeAction": "Only after platform permits same independent16 report/ledger completion: formal findings then same Standard coder fix newP2 and freeze, independent17 wholePASS, candidate8CI, normal forward merge/postmerge/push/readback/mainCI. No workaround to platform safeguards, no reset/reimplementation/08+",
+  "nextSafeAction": "same Standard coder fixes only known raw chunk type validation, runs meaningful bound regressions; freeze new candidate then independent17; no repeated old16 restart or expanded research",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3859,7 +3876,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-15T02:33:38.303411+00:00",
+  "updatedAtUtc": "2026-10-15T03:29:14.945366+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
