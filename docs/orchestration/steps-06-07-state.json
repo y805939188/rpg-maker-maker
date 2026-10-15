@@ -6,9 +6,9 @@
     7
   ],
   "stopAfter": 7,
-  "workflow": "BLOCKED_AT_STEP07_INDEPENDENT_REVIEW16",
+  "workflow": "STEP07_RESUMED_PENDING_INDEPENDENT16",
   "currentStep": 7,
-  "phase": "STEP07_BLOCKED_REPEATED_PLATFORM_INDEPENDENT_REVIEW16",
+  "phase": "STEP07_USER_RESUMED_INDEPENDENT16_CLOSING",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "BLOCKED_NECESSARY_INDEPENDENT_REVIEW16_PLATFORM",
+    "status": "INDEPENDENT16_USER_REQUESTED_NORMAL_RECOVERY",
     "reviewRounds": 16,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3195,7 +3195,7 @@
         }
       }
     },
-    "activeReview": null,
+    "activeReview": 16,
     "latestReview": {
       "round": 15,
       "result": "REQUIRES_REVISION",
@@ -3413,7 +3413,20 @@
     "finalIndependentPass": "NOT_OBTAINED_PLATFORM_BLOCK",
     "candidate8CI": "NOT_STARTED",
     "forwardMainRelease": "NOT_STARTED",
-    "finalReviewedSource": null
+    "finalReviewedSource": null,
+    "userResumptionAfterPlatformBlock": {
+      "atUtc": "2026-10-15T02:27:30.385867+00:00",
+      "authorization": "docs/orchestration/step-07-resume-after-platform-block-2026-10-14.md",
+      "sameThread": "01a13be2-635b-7d11-a98d-ca81dc9906de",
+      "sameModel": "gpt-6.1-sol",
+      "sameEffort": "ultra",
+      "sameClientTier": "default",
+      "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
+      "attempt": "one normal same-context continuation after explicit human resumption; no bypass",
+      "pgPort": 55513,
+      "pgPid": 1453,
+      "existingDatabases": 9
+    }
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -3758,11 +3771,11 @@
       "pgPort": 55513,
       "apiPort": 4413,
       "webPort": 5313,
-      "status": "STOPPED_BLOCKED;9DBs/privateData retained",
+      "status": "ACTIVE_USER_RESUMED_INDEPENDENT16_CLOSING",
       "env": "own new ignored .env, not copied",
       "assetRoot": ".local/step07-review/assets",
       "outputRoot": ".local/step07-review/independent-round16",
-      "pgPid": 81665,
+      "pgPid": 1453,
       "database": "tileset_studio",
       "privateEnv": "OWN_NEW_0600_NOT_COPIED",
       "formalReviewStarted": true,
@@ -3771,7 +3784,7 @@
     }
   ],
   "lastSuccessfulCheckpoint": "R15 CRC repair author complete; independent16 actual check380/API3/privacy5/HTTP16/prod18/dev18 passed; no complete independent report/PASS due repeated platform security block; source8750 protected and private394 evidence files hash-indexed; isolated PG55509/55513 stopped, user runtime4376/55476 running",
-  "nextSafeAction": "When platform allows necessary independent review, continue frozen round16 same-source remaining download/RawCanvas/DB links and formal report/ledger, no reimplementation or reset; only whole independent PASS permits new candidate8 CI and normal forward publication; do not evade current platform checks",
+  "nextSafeAction": "Same reviewer context completes remaining actual delivery links and formal report; latest wholePASS required before candidate8CI/normal forward release. Persistent platform rejection stops gate.",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3805,7 +3818,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T20:04:28.729947+00:00",
+  "updatedAtUtc": "2026-10-15T02:27:51.153322+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
