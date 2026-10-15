@@ -1,0 +1,45 @@
+{
+  "reads": 2,
+  "records": [
+    {
+      "id": 1,
+      "requestId": "50926.2",
+      "loaderId": "9499CF429B40A16D6DDA269237DB57DF",
+      "frameId": "2B8EAE5350F762C88F5AFFC71B95AD37",
+      "document": 1,
+      "url": "http://127.0.0.1:58567/api/projects/owned/recipes/recipe/processed?frame=0",
+      "method": "GET",
+      "status": 200,
+      "contentType": "image/png",
+      "transport": "failed",
+      "state": "received",
+      "streamReady": true,
+      "wireBytes": 821,
+      "expectedBytes": 821,
+      "transportFailure": "net::ERR_ABORTED",
+      "sha": "30b9ce11c6235a0273c8925105df32e6395d43b1532e3ae8c16405bde096b967",
+      "channel": "protocol-stream",
+      "completion": "content-length",
+      "currentDocument": true
+    },
+    {
+      "id": 2,
+      "requestId": "50926.4",
+      "loaderId": "9499CF429B40A16D6DDA269237DB57DF",
+      "frameId": "2B8EAE5350F762C88F5AFFC71B95AD37",
+      "document": 1,
+      "url": "http://127.0.0.1:58567/api/projects/owned/recipes/recipe/processed?frame=0",
+      "method": "GET",
+      "status": 200,
+      "contentType": "image/png",
+      "transport": "finished",
+      "state": "received",
+      "streamReady": false,
+      "wireBytes": 821,
+      "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+      "channel": "protocol-body",
+      "completion": "loading-finished",
+      "currentDocument": true
+    }
+  ]
+}

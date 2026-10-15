@@ -1,0 +1,118 @@
+
+ RUN  v4.1.11 [CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c
+
+ ❯ packages/image-adapter/tests/png-type.test.ts (36 tests | 32 failed) 391ms
+   × rejects non-ASCII raw 'IHDR' byte +0 despite a matching raw-byte CRC 4ms
+   × rejects non-ASCII raw 'IHDR' byte 1 despite a matching raw-byte CRC 1ms
+   × rejects non-ASCII raw 'IHDR' byte 2 despite a matching raw-byte CRC 1ms
+   × rejects non-ASCII raw 'IHDR' byte 3 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'IDAT' byte +0 despite a matching raw-byte CRC 1ms
+   × rejects non-ASCII raw 'IDAT' byte 1 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'IDAT' byte 2 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'IDAT' byte 3 despite a matching raw-byte CRC 1ms
+   × rejects non-ASCII raw 'IEND' byte +0 despite a matching raw-byte CRC 1ms
+   × rejects non-ASCII raw 'IEND' byte 1 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'IEND' byte 2 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'IEND' byte 3 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'sRGB' byte +0 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'sRGB' byte 1 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'sRGB' byte 2 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'sRGB' byte 3 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'gAMA' byte +0 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'gAMA' byte 1 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'gAMA' byte 2 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'gAMA' byte 3 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'cHRM' byte +0 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'cHRM' byte 1 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'cHRM' byte 2 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'cHRM' byte 3 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'pHYs' byte +0 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'pHYs' byte 1 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'pHYs' byte 2 despite a matching raw-byte CRC 0ms
+   × rejects non-ASCII raw 'pHYs' byte 3 despite a matching raw-byte CRC 1ms
+   × public decode rejects high-bit IEND position0 before native decoding 103ms
+   × public decode rejects high-bit IEND position1 before native decoding 90ms
+   × public decode rejects high-bit IEND position2 before native decoding 91ms
+   × public decode rejects high-bit IEND position3 before native decoding 91ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 32 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IHDR' byte +0 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IHDR' byte 1 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IHDR' byte 2 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IHDR' byte 3 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IDAT' byte +0 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IDAT' byte 1 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IDAT' byte 2 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IDAT' byte 3 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IEND' byte +0 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IEND' byte 1 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IEND' byte 2 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'IEND' byte 3 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'sRGB' byte +0 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'sRGB' byte 1 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'sRGB' byte 2 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'sRGB' byte 3 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'gAMA' byte +0 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'gAMA' byte 1 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'gAMA' byte 2 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'gAMA' byte 3 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'cHRM' byte +0 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'cHRM' byte 1 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'cHRM' byte 2 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'cHRM' byte 3 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'pHYs' byte +0 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'pHYs' byte 1 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'pHYs' byte 2 despite a matching raw-byte CRC
+ FAIL  packages/image-adapter/tests/png-type.test.ts > rejects non-ASCII raw 'pHYs' byte 3 despite a matching raw-byte CRC
+AssertionError: expected [Function] to throw an error
+
+- Expected:
+null
+
++ Received:
+undefined
+
+ ❯ packages/image-adapter/tests/png-type.test.ts:27:35
+     25|   ({ name, position }) => {
+     26|     const bad = withPngTypeByte(valid, name, position, name.charCodeAt…
+     27|     expect(() => inspectPng(bad)).toThrow('Invalid or truncated PNG ch…
+       |                                   ^
+     28|   },
+     29| );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/32]⎯
+
+ FAIL  packages/image-adapter/tests/png-type.test.ts > public decode rejects high-bit IEND position0 before native decoding
+ FAIL  packages/image-adapter/tests/png-type.test.ts > public decode rejects high-bit IEND position1 before native decoding
+ FAIL  packages/image-adapter/tests/png-type.test.ts > public decode rejects high-bit IEND position2 before native decoding
+ FAIL  packages/image-adapter/tests/png-type.test.ts > public decode rejects high-bit IEND position3 before native decoding
+AssertionError: expected { status: 'validated', …(2) } to match object { status: 'rejected', …(1) }
+(10 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "diagnostic": {
+-     "code": "PNG_STRUCTURE",
+-   },
+-   "status": "rejected",
++   "status": "validated",
+  }
+
+ ❯ packages/image-adapter/tests/png-type.test.ts:57:20
+     55|       }),
+     56|     );
+     57|     expect(result).toMatchObject({ status: 'rejected', diagnostic: { c…
+       |                    ^
+     58|   },
+     59| );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/32]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  32 failed | 4 passed (36)
+   Start at  23:32:08
+   Duration  599ms (transform 81ms, setup 0ms, import 104ms, tests 391ms, environment 0ms)

@@ -7,8 +7,17 @@ import { beforeAll, afterAll, it, expect } from 'vitest';
 import { chromium, expect as browserExpect, type Page } from '@playwright/test';
 import sharp from 'sharp';
 import { ReceivedResources } from './received-resources.js';
+import { assertReceivedPng } from './received-png.js';
+import { withPngTypeByte } from '../../../../tests/png-type-samples.js';
 
-type Plan = { body: Buffer; status?: number; hold?: 'headers' | 'body'; response?: ServerResponse };
+type Plan = {
+  body: Buffer;
+  status?: number;
+  hold?: 'headers' | 'body';
+  response?: ServerResponse;
+  length?: number | undefined;
+  encoding?: string;
+};
 const root = resolve('.local/received-resource-tests', randomUUID());
 const path = '/api/projects/owned/recipes/recipe/processed?frame=0';
 const sha = (body: Buffer) => createHash('sha256').update(body).digest('hex');
@@ -20,6 +29,17 @@ let a: Buffer,
   reads = 0;
 let browser: Awaited<ReturnType<typeof chromium.launch>>;
 const html = `<script>
+window.consumeThenCancel=async(path,declared)=>{
+ const controller=new AbortController(),response=await fetch(path,{signal:controller.signal}),reader=response.body.getReader();
+ const expected=declared??Number(response.headers.get('content-length')),parts=[];let length=0;
+ while(length<expected){const next=await reader.read();if(next.done)throw Error('early EOF');parts.push(next.value);length+=next.value.length;}
+ if(length!==expected)throw Error('length mismatch');
+ controller.abort();reader.releaseLock();
+ const bytes=new Uint8Array(length);let at=0;for(const part of parts){bytes.set(part,at);at+=part.length;}
+ const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(x=>x.toString(16).padStart(2,'0')).join('');
+ const image=new Image();image.src=URL.createObjectURL(new Blob([bytes],{type:'image/png'}));await image.decode();
+ image.id='saved';image.dataset.sha=hash;document.getElementById('saved')?.remove();document.body.append(image);return hash;
+};
 window.probe={controllers:[],async load(path,render=true){
  const controller=new AbortController();this.controllers.push(controller);
  const response=await fetch(path,{signal:controller.signal,cache:'no-store'}),body=await response.arrayBuffer();
@@ -43,6 +63,8 @@ const server = createServer((request, response) => {
   response.writeHead(plan.status ?? 200, {
     'content-type': 'image/png',
     'cache-control': 'no-store',
+    ...(plan.length === undefined ? {} : { 'content-length': plan.length }),
+    ...(plan.encoding ? { 'content-encoding': plan.encoding } : {}),
   });
   if (plan.hold === 'body') {
     response.flushHeaders();
@@ -94,6 +116,7 @@ async function rendered(page: Page, capture: ReceivedResources, url = origin + p
   const received = capture.find(url, hash);
   assert.ok(received, 'current required actual body is missing or unavailable');
   assert.equal(received.sha, hash);
+  assertReceivedPng(received.bytes!, { width: 96, height: 144 });
   const decoded = await sharp(received.bytes!)
     .ensureAlpha()
     .raw()
@@ -292,3 +315,192 @@ it('corrupt actual PNG or a mismatched rendered hash is rejected rather than rep
     await expect(rendered(page, capture)).rejects.toThrow();
   });
 });
+
+it('complete current network bytes survive consumer cancellation while the old response.body observer fails', async () => {
+  await fixture('complete-then-cancel', async (page, capture) => {
+    const plan: Plan = { body: a, length: a.length, hold: 'body' };
+    plans.push(plan);
+    let oldBody: Promise<Buffer> | undefined;
+    page.on('response', (response) => {
+      if (response.url() === origin + path) {
+        oldBody = response.body();
+        void oldBody.catch(() => undefined);
+      }
+    });
+    const failed = page.waitForEvent('requestfailed', { timeout: 5000 }),
+      consumer = page.evaluate('window.consumeThenCancel(' + JSON.stringify(path) + ')');
+    await browserExpect.poll(() => capture.snapshot().at(-1)?.streamReady).toBe(true);
+    // Headers/first chunk -> installed protocol stream -> remaining real bytes -> abort.
+    plan.response!.write(a.subarray(8));
+
+    expect(await consumer).toBe(sha(a));
+    await failed;
+    plan.response!.end();
+    await expect(oldBody).rejects.toThrow('No data found for resource');
+    await browserExpect.poll(() => capture.find(origin + path, sha(a))?.sha).toBe(sha(a));
+    const received = await rendered(page, capture);
+    expect(received.transport).toBe('failed');
+    expect(received.transportFailure).toBe('net::ERR_ABORTED');
+    expect(received.channel).toBe('protocol-stream');
+    expect(received.completion).toBe('content-length');
+    expect(received.wireBytes).toBe(a.length);
+    expect(received.expectedBytes).toBe(a.length);
+    expect(received.bytes).toEqual(a);
+    expect(capture.snapshot()).toHaveLength(1);
+    await page.screenshot({ path: resolve(root, 'complete-then-cancel.png') });
+    await page.reload();
+    expect(capture.find(origin + path, sha(a))).toBeUndefined();
+  });
+});
+
+it('abort is not completion: partial, unknown length and encoded bodies never satisfy the current receipt', async () => {
+  await fixture('stream-incomplete', async (page, capture) => {
+    for (const length of [a.length, undefined]) {
+      const plan: Plan = { body: a, length, hold: 'body' };
+      plans.push(plan);
+      const reply = page.waitForResponse(origin + path),
+        failed = page.waitForEvent('requestfailed', { timeout: 5000 });
+      await page.evaluate(
+        'void (window.pending=window.probe.load(' + JSON.stringify(path) + ').catch(e=>e.name))',
+      );
+      await reply;
+      if (length) await browserExpect.poll(() => capture.snapshot().at(-1)?.streamReady).toBe(true);
+      await page.evaluate('window.probe.controllers.at(-1).abort()');
+      await failed;
+      expect(capture.find(origin + path, sha(a))).toBeUndefined();
+      await browserExpect.poll(() => capture.snapshot().at(-1)?.state).toBe('unavailable');
+    }
+    const plan: Plan = { body: a, length: a.length, encoding: 'gzip', hold: 'body' };
+    plans.push(plan);
+    const reply = page.waitForResponse(origin + path);
+    await page.evaluate(
+      'void (window.pending=window.probe.load(' + JSON.stringify(path) + ').catch(e=>e.name))',
+    );
+    await reply;
+    expect(capture.snapshot().at(-1)?.expectedBytes).toBeUndefined();
+    await page.evaluate('window.probe.controllers.at(-1).abort()');
+    expect(capture.find(origin + path, sha(a))).toBeUndefined();
+    expect(capture.snapshot().every((r) => r.state !== 'received')).toBe(true);
+  });
+});
+
+it('an iframe full response cannot supply the main document even with the same owner URL and hash', async () => {
+  await fixture('iframe-wire', async (page, capture) => {
+    await page.evaluate(() => {
+      const i = document.createElement('iframe');
+      i.src = '/child';
+      document.body.append(i);
+    });
+    await browserExpect.poll(() => page.frames().length).toBe(2);
+    plans.push({ body: a, length: a.length });
+    const frame = page.frames().find((f) => f !== page.mainFrame())!;
+    await frame.waitForFunction('typeof window.probe === "object"');
+    expect(await frame.evaluate('window.probe.load(' + JSON.stringify(path) + ')')).toBe(sha(a));
+    expect(capture.find(origin + path, sha(a))).toBeUndefined();
+    expect(capture.snapshot()).toHaveLength(0);
+    await complete(page, capture, a);
+    await rendered(page, capture);
+  });
+});
+
+it('a decoded complete PNG alone is insufficient when HTTP framing cannot prove complete reception', async () => {
+  await fixture('decoded-but-framing-incomplete', async (page, capture) => {
+    for (const length of [undefined, a.length + 1]) {
+      const plan: Plan = { body: a, length, hold: 'body' };
+      plans.push(plan);
+      const failed = page.waitForEvent('requestfailed', { timeout: 5000 }),
+        consumer = page.evaluate(
+          'window.consumeThenCancel(' + JSON.stringify(path) + ',' + a.length + ')',
+        );
+      await browserExpect.poll(() => capture.snapshot().length).toBe(length ? 2 : 1);
+      if (length) await browserExpect.poll(() => capture.snapshot().at(-1)?.streamReady).toBe(true);
+      plan.response!.write(a.subarray(8));
+      expect(await consumer).toBe(sha(a));
+      await failed;
+      plan.response!.end();
+      await browserExpect.poll(() => capture.snapshot().at(-1)?.state).toBe('unavailable');
+      expect(await page.locator('#saved').getAttribute('data-sha')).toBe(sha(a));
+      expect(capture.find(origin + path, sha(a))).toBeUndefined();
+      await expect(rendered(page, capture)).rejects.toThrow(
+        'current required actual body is missing',
+      );
+    }
+  });
+});
+
+it.each(['finished', 'complete-abort'] as const)(
+  'rejects bad PNG CRC on the same actual %s request before pixel equivalence can imply validity',
+  async (channel) => {
+    await fixture('crc-' + channel, async (page, capture) => {
+      const bad = Buffer.from(a);
+      bad[bad.length - 1] = bad[bad.length - 1]! ^ 1;
+      if (channel === 'finished') {
+        await complete(page, capture, bad);
+      } else {
+        const plan: Plan = { body: bad, length: bad.length, hold: 'body' };
+        plans.push(plan);
+        const failed = page.waitForEvent('requestfailed', { timeout: 5000 }),
+          consumer = page.evaluate('window.consumeThenCancel(' + JSON.stringify(path) + ')');
+        await browserExpect.poll(() => capture.snapshot().at(-1)?.streamReady).toBe(true);
+        plan.response!.write(bad.subarray(8));
+        expect(await consumer).toBe(sha(bad));
+        await failed;
+        plan.response!.end();
+        await browserExpect.poll(() => capture.find(origin + path, sha(bad))?.sha).toBe(sha(bad));
+      }
+      const receipt = capture.find(origin + path, sha(bad));
+      expect(receipt?.bytes).toEqual(bad);
+      expect(receipt?.completion).toBe(
+        channel === 'finished' ? 'loading-finished' : 'content-length',
+      );
+      expect(await page.locator('#saved').getAttribute('data-sha')).toBe(sha(bad));
+      // Both real decoders still accept these bytes. CRC validity is a separate mandatory check.
+      const original = await sharp(a).ensureAlpha().raw().toBuffer(),
+        decodedBad = await sharp(receipt!.bytes!).ensureAlpha().raw().toBuffer();
+      expect(decodedBad).toEqual(original);
+      await expect(rendered(page, capture)).rejects.toMatchObject({ code: 'PNG_CRC' });
+      await writeFile(resolve(root, 'crc-' + channel + '-invalid.png'), bad);
+      await page.screenshot({ path: resolve(root, 'crc-' + channel + '-decoded.png') });
+      await complete(page, capture, a);
+      await rendered(page, capture);
+    });
+  },
+);
+
+it.each(['finished', 'complete-abort'] as const)(
+  'rejects non-ASCII raw PNG type with valid CRC on the same actual %s request before pixel equivalence can imply validity',
+  async (channel) => {
+    await fixture('chunk-type-' + channel, async (page, capture) => {
+      const bad = withPngTypeByte(a, 'IEND', 0, 'I'.charCodeAt(0) | 0x80);
+      if (channel === 'finished') {
+        await complete(page, capture, bad);
+      } else {
+        const plan: Plan = { body: bad, length: bad.length, hold: 'body' };
+        plans.push(plan);
+        const failed = page.waitForEvent('requestfailed', { timeout: 5000 }),
+          consumer = page.evaluate('window.consumeThenCancel(' + JSON.stringify(path) + ')');
+        await browserExpect.poll(() => capture.snapshot().at(-1)?.streamReady).toBe(true);
+        plan.response!.write(bad.subarray(8));
+        expect(await consumer).toBe(sha(bad));
+        await failed;
+        plan.response!.end();
+        await browserExpect.poll(() => capture.find(origin + path, sha(bad))?.sha).toBe(sha(bad));
+      }
+      const receipt = capture.find(origin + path, sha(bad));
+      expect(receipt?.bytes).toEqual(bad);
+      expect(receipt?.completion).toBe(
+        channel === 'finished' ? 'loading-finished' : 'content-length',
+      );
+      expect(await page.locator('#saved').getAttribute('data-sha')).toBe(sha(bad));
+      // Both real decoders still accept these bytes. Raw chunk-name validity is a separate mandatory check.
+      const original = await sharp(a).ensureAlpha().raw().toBuffer(),
+        decodedBad = await sharp(receipt!.bytes!).ensureAlpha().raw().toBuffer();
+      expect(decodedBad).toEqual(original);
+      await expect(rendered(page, capture)).rejects.toMatchObject({ code: 'PNG_STRUCTURE' });
+      await writeFile(resolve(root, 'chunk-type-' + channel + '-invalid.png'), bad);
+      await page.screenshot({ path: resolve(root, 'chunk-type-' + channel + '-decoded.png') });
+      await complete(page, capture, a);
+      await rendered(page, capture);
+    });
+  },
+);

@@ -1,0 +1,81 @@
+
+> @tileset/prototype@0.0.2 check [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee
+> pnpm check:boundaries && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm verify:exports
+
+
+> @tileset/prototype@0.0.2 check:boundaries [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee
+> node scripts/check-boundaries.mjs
+
+13 workspace members: dependency directions and exact direct pins verified.
+
+> @tileset/prototype@0.0.2 typecheck [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee
+> pnpm build:contracts && tsc --noEmit && tsc -p tsconfig.tests.json && pnpm -r --filter './apps/*' --filter './packages/*' typecheck
+
+
+> @tileset/prototype@0.0.2 build:contracts [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build [CODING_ROOT]/artifacts/.step07-main-receipt-final-4f793f029a2b4b3297d01929691727ee/packages/local-executor
+> tsc -p tsconfig.json
+
+apps/api/tests/studio/received-resources.test.ts(356,13): error TS2375: Type '{ body: Buffer<ArrayBufferLike>; length: number | undefined; hold: "body"; }' is not assignable to type 'Plan' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'length' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+apps/api/tests/studio/received-resources.test.ts(406,13): error TS2375: Type '{ body: Buffer<ArrayBufferLike>; length: number | undefined; hold: "body"; }' is not assignable to type 'Plan' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the types of the target's properties.
+  Types of property 'length' are incompatible.
+    Type 'number | undefined' is not assignable to type 'number'.
+      Type 'undefined' is not assignable to type 'number'.
+apps/api/tests/studio/received-resources.ts(54,13): error TS2769: No overload matches this call.
+  Overload 1 of 3, '(event: "close", listener: (cdpSession: CDPSession) => any): CDPSession', gave the following error.
+    Argument of type '"Network.requestWillBeSent"' is not assignable to parameter of type '"close"'.
+  Overload 2 of 3, '(event: "event", listener: (data: { method: string; params?: Object; }) => any): CDPSession', gave the following error.
+    Argument of type '"Network.requestWillBeSent"' is not assignable to parameter of type '"event"'.
+  Overload 3 of 3, '(event: "Network.requestWillBeSent", listener: (payload: requestWillBeSentPayload) => void): CDPSession', gave the following error.
+    Argument of type '(event: { requestId: string; frameId: string; loaderId: string; request: { url: string; method: string; }; redirectResponse?: unknown; }) => void' is not assignable to parameter of type '(payload: requestWillBeSentPayload) => void'.
+      Types of parameters 'event' and 'payload' are incompatible.
+        Type 'requestWillBeSentPayload' is not assignable to type '{ requestId: string; frameId: string; loaderId: string; request: { url: string; method: string; }; redirectResponse?: unknown; }'.
+          Property 'frameId' is optional in type 'requestWillBeSentPayload' but required in type '{ requestId: string; frameId: string; loaderId: string; request: { url: string; method: string; }; redirectResponse?: unknown; }'.
+apps/api/tests/studio/received-resources.ts(196,5): error TS2412: Type '"protocol-body" | "protocol-stream" | undefined' is not assignable to type '"protocol-body" | "protocol-stream"' with 'exactOptionalPropertyTypes: true'. Consider adding 'undefined' to the type of the target.
+  Type 'undefined' is not assignable to type '"protocol-body" | "protocol-stream"'.
+apps/api/tests/studio/received-resources.ts(224,13): error TS2367: This comparison appears to be unintentional because the types '"pending" | "unavailable"' and '"received"' have no overlap.
+apps/api/tests/studio/received-resources.ts(299,27): error TS2551: Property 'removeAllListeners' does not exist on type 'CDPSession'. Did you mean 'removeListener'?
+ ELIFECYCLE  Command failed with exit code 2.
+ ELIFECYCLE  Command failed with exit code 2.

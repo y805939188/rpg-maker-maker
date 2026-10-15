@@ -1,0 +1,53 @@
+[
+  {
+    "kind": "EARLY_TYPE_FAILURE",
+    "source": "251f1c0cf763663fc0972f24fb44497d0bd75e95",
+    "original": "final/check.log",
+    "latest": "strict protocol callback/optional properties/explicitoff typed correctly; all original errors preserved",
+    "originalSHA256": "e302a40cf171724044d0fafc261ab4da8664c9206aecdd99a9dcca8b76375d8e",
+    "originalBytes": 7071
+  },
+  {
+    "kind": "ORDERED_PROBE_ORGANIZATION",
+    "original": "extended-controls.log",
+    "details": "two failures: complete-control timeout and cross-session failed-event/state observation ordering; no budgets changed",
+    "originalSHA256": "9e61c918d0b5293e755d3a53665d57f9c9cdf7b666f8a51af4eaf2d578473644",
+    "originalBytes": 2268
+  },
+  {
+    "kind": "ORDERED_PROBE_ORGANIZATION",
+    "original": "extended-controls2.log",
+    "details": "one timeout; oldResponse body unavailable proven, held HTTP response was not ended before reload; corrected own controlled HTTP lifecycle after failure",
+    "originalSHA256": "270261dc4257d73706ff0bb6bd596fce9bc38d977ce2f438f601f3cfb7e78bc0",
+    "originalBytes": 1263
+  },
+  {
+    "kind": "ORDERED_DIAGNOSTIC",
+    "original": "ordered-debug.log",
+    "details": "one original15s timeout; stage logging retained before final correction",
+    "originalSHA256": "649a17894d81d6a213386008a0875160fe4dc7f1f81b39f33077c108f76ebc92",
+    "originalBytes": 2641
+  },
+  {
+    "kind": "NOT_REPRODUCED_GC_CONTROL",
+    "original": "experiment-gc.json",
+    "details": "20 fully decoded controls, no unavailable outcomes; not claimed as GC/main-CI cause proof",
+    "originalSHA256": "55d847b26147b640e3843f1afe71490142db8b31f0570b3b137f4db32121fbcb",
+    "originalBytes": 29499
+  },
+  {
+    "kind": "READ_AUXILIARY_ERROR",
+    "original": "Main native tool events",
+    "details": "R13 ledger missing technicalConclusion key, then ignored R14 log absent from tracked clone; full original ledgers read only from Main validated301+196"
+  },
+  {
+    "kind": "READ_AUXILIARY_ERROR",
+    "original": "Main native tool events",
+    "details": "nonexistent unbundled Playwright path/glob and protocol-reference filename; no mutations"
+  },
+  {
+    "kind": "DOC_FORMAT_ONLY",
+    "original": "private native git diff --cached --check output before335725 docs commit",
+    "details": "10 copied log text files retained extra terminal blank lines and caused EOF whitespace warnings. New pure docs cleanup trims only public trailing blanks; original private logs/SHA/bytes and335725 Git history remain."
+  }
+]

@@ -49,13 +49,16 @@ export function inspectPng(bytes: Uint8Array): { width: number; height: number }
       'PNG chunk budget or structure is invalid.',
     );
     const length = b.readUInt32BE(offset),
-      type = b.toString('ascii', offset + 4, offset + 8),
+      typeBytes = b.subarray(offset + 4, offset + 8),
       end = offset + 12 + length;
     requireRule(
-      /^[A-Za-z]{4}$/.test(type) && (b[offset + 6]! & 32) === 0 && end <= b.length,
+      typeBytes.every((byte) => (byte >= 65 && byte <= 90) || (byte >= 97 && byte <= 122)) &&
+        (b[offset + 6]! & 32) === 0 &&
+        end <= b.length,
       'PNG_STRUCTURE',
       'Invalid or truncated PNG chunk.',
     );
+    const type = typeBytes.toString('ascii');
     requireRule(
       crc(b.subarray(offset + 4, offset + 8 + length)) === b.readUInt32BE(offset + 8 + length),
       'PNG_CRC',
