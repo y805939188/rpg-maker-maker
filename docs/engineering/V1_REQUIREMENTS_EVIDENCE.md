@@ -1,3 +1,28 @@
+# V1要求映射 — 当前06–07收尾状态
+
+2026-10-15（Asia/Shanghai）。正式plans和下面的历史映射原文保留。当前唯一事实入口为 [canonical](../orchestration/steps-06-07-state.json)；步骤06、07均已发布。步骤07获最新独立整合PASS，候选与代码main的完整CI均SUCCESS，正常合并/push/readback完成；08–10未启动。
+
+| 当前要求                                                  | 步骤  | 验证与当前证据                                                                                                                                                                                                  | 边界                                                             |
+| --------------------------------------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| 正式Compiler/Pack最新批准基线                             | 04–05 | 最新05功能ad669a0及独立复审，随后正常整合发布；[05发布](../orchestration/step-05-release.md)与canonical对应Git/CI                                                                                               | 不沿用c090早候选，不重做已批准05全量或MZ手工                     |
+| 项目/revision/依赖/Pack/退休历史、不可变文件＋短事务＋CAS | 06    | c227f8c最终独立3/3PASS/真实PG23/候选与mainCI SUCCESS，[06发布](../orchestration/step-06-release.md)                                                                                                             | 内部四文件载体与标准八文件分层，恢复走公共领域校验               |
+| Mock未知、已知ID重启查询、仅重试归档、取消与冻结快照      | 06    | 原独立第3轮及发布证据；当前07 Source0c3作者/独立17/候选CI均实际PG23回归                                                                                                                                         | 不调用视觉模型，不宣称第三方绝对收费幂等                         |
+| 一致PG＋文件备份，干净环境读回后实际重建                  | 06–07 | 原06及当前独立17 PG23/HTTP16实际执行；运行实例停写备份/2479资产文件验真后更新，部署前后原项目指针不变                                                                                                           | 备份凭据/dump/私有素材不入Git；运行数据保留                      |
+| 人工源→固定配方→任务/构建→实际预览→历史/替换→标准下载     | 07    | Source0c3作者418/PG23/HTTP16/API3/privacy5/两18；独立17同范围全PASS；[候选CI8 SUCCESS](https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144)                                                  | 用户浏览器操作，无DB/内部文件/密钥要求；08–10未启动              |
+| 真A1/A2/Manifest/Profile预览、时钟和交付一致性            | 07    | 独立17实际6ZIP/12PNG/16RawCanvas/4条DB文件任务链；实际播放暂停逐状态/场景/nearest及原逻辑clock断言                                                                                                              | 浏览器技术检查不变为用户艺术确认或新产物MZ实测                   |
+| 上传字节/像素/格式/metadata/CRC/type及HTTP本地边界        | 07    | 最新raw type guard关闭R16-001、CRC消费关闭R15-001，真实HTTP四位置422/native前/无资产登记；原预算/HostOrigin/client/path/Vite回归保持                                                                            | 保持合法输入规范；JS heap不是OS/nativeRSS硬cap                   |
+| FinalExport↔Job↔真实文件、列表迟到、跨COMMIT一致快照      | 07    | R4三项由R5正式关闭并在最新418/PG23/HTTP16/两18/候选CI继续回归；[最新独立17](../reviews/step-07-independent-round-17.md)                                                                                         | P0/P1/硬阻P2零，旧失败/16中断不伪造成PASS                        |
+| 本轮正常整合与GitHub发布                                  | 07    | 候选4cb718a已通过CI8并预授权委托放行；normal noff e6d785e、合并后针对部署链验证通过、normal push04e9796/readback一致；[main CI SUCCESS](https://github.com/y805939188/rpg-maker-maker/actions/runs/38686901060) | 代码发布门禁全部完成；最终会话报告最后证据文档SHA/远端读回及其CI |
+| AI/平台Prompt生产体系、真实Provider、付费与完整V1.0       | 08–10 | NOT_STARTED / NOT_EXECUTED                                                                                                                                                                                      | 后续单独授权；本轮不配/索要视觉模型key、不调用真实模型           |
+
+详细SHA、Build ID/Manifest、17轮历史与当前运行入口见 [交付报告](../orchestration/steps-06-07-final-report.md)；[手工操作清单](STEP_07_MANUAL_TESTING.md)不预填任何用户艺术/MZ确认。
+
+---
+
+## 历史映射与各轮检查点（保留原文）
+
+下面旧表中的“NOT_EXECUTED/未授权/未发布”和早期候选属于当时记录；上述当前证据与canonical为当前结论，不追改旧批准或Manifest。
+
 # V1 产品要求 → 步骤 → 验证 → 证据
 
 正式要求来自保留的 V0.5 产品方案与十步计划。步骤 02 开始维护；每个候选的正式 coding/review 报告与 evidence 绑定 commit/hash。下表不把未来能力或历史部分实机结果当成完成。

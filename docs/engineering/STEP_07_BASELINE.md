@@ -1,3 +1,23 @@
+# 步骤07当前工程交付基线
+
+2026-10-15（Asia/Shanghai）。本节更新当前版本与已实施修复，原工程说明和各轮记录保留在下方；正式plans、已批准Profile/素材范围/兼容承诺不改写。
+
+当前功能Source `0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de`，作者docs `fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67`；[独立第17轮整合PASS](../reviews/step-07-independent-round-17.md)，P0/P1/硬阻P2及开放非阻断均0。候选CI8与正常代码main04e9796的完整CI38686901060均已SUCCESS，正常合并/回归/push/readback完成；步骤07=PUBLISHED。唯一状态见[canonical](../orchestration/steps-06-07-state.json)。
+
+当前PNG容器政策在解释chunk名字符串前检查4个原始字节均为ASCII字母，并保留reserved-bit、每chunk CRC、边界/顺序/metadata/byte/pixel预算。公用inspect/decode、真实上传和实际网络PNG消费者一致执行；IEND高位与CRC原问题已由独立17关闭。这是既有严格验真要求的修复，不改变合法素材、编码器、Compiler/Profile/槽位/时钟、Schema或HTTP接口预算。
+
+工程Build `step07-0c3dc30b0ebb-63b9289040076990`，Manifest `7f42de70aef9d6e4be0cb3644a18c4fec561c98330af9619f4dd30d1325069e1`，实际208文件（新增合成测试fixture构建JS/dts两项，未删文件凑旧206）。正式标准交付仍是8文件，完整Profile嵌入Manifest；内部持久化四文件仍分层。
+
+作者/独立17/候选CI均实际通过418、PG23、HTTP16、API3/privacy5与生产18/开发18；实际6ZIP/12PNG/16RawCanvas/4DB文件任务链一致。旧16保留INTERRUPTED/PARTIAL，未伪造其正式报告或PASS。原MZ/用户艺术/OriginalHost/Map003延期和JS heap非OS/nativeRSS硬cap说明保持。
+
+本地已配置入口 **http://127.0.0.1:4376**，最新受审候选运行在`step-07-studio/rpg-maker-maker`，原DB/资产已一致备份和保留；[手工清单](STEP_07_MANUAL_TESTING.md)与[实际交付报告](../orchestration/steps-06-07-final-report.md)为运行入口。用户正常操作不需要DB/内部文件/密钥。06保持PUBLISHED；08–10 NOT_STARTED，没有视觉模型/SDK/key或正式Prompt生产体系。
+
+---
+
+## 原工程说明与各轮历史检查点
+
+下文保留各阶段原文，旧“当前候选/尚未授权/待复审”等字样只代表对应历史；当前状态以上方与canonical为准。
+
 # 步骤07 人工素材 Studio / 实际导出预览
 
 本轮依据 [06–07授权](../orchestration/steps-06-07-authorization.md) 从已发布步骤06开始。当前是作者候选，最多 READY_FOR_REVIEW；Main 独立 Review、CI、批准及发布仍是剩余门禁。旧 plans、Profile、失败报告和阶段验收保留。步骤08–10未启动，AI显示尚未开放。

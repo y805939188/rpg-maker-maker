@@ -1,59 +1,69 @@
-# 步骤06–07 最新收尾检查点（2026-10-14 America/New_York）
+# AI Tileset Studio 步骤06–07交付报告
 
-用户再次要求继续后，原第16轮独立会话以相同sol/ultra/default配置正常恢复。已实际完成两模式6ZIP、12PNG、16RawCanvas和4条Build/FinalExport/FileObject/Job数据库引用链核对；结束工程206项仍匹配，8750 tracked起止一致。**平台再次以possible cybersecurity risk中断，native exit1，没有正式report/ledger/wholePASS。** 原平台记录保留，新中断见[原始提示收据](../evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json)。
+2026-10-15（Asia/Shanghai）。**步骤06=PUBLISHED；步骤07=PUBLISHED；08/09/10=NOT_STARTED；WORKFLOW=STOPPED_AFTER_STEP_07。** 最新功能已独立通过、候选与代码main完整CI均SUCCESS，正常合并/合并后回归/push/readback完成，本地可手工测试。唯一调度入口为 [canonical](steps-06-07-state.json)。旧阻断版本和所有失败在Git历史及独立证据中保留。
 
-Reviewer已依据更强同请求证据将STEP07-R16-001从原partialP3升级为**P2阻断**：高位字节IEND名能被当前精确rendered消费者在普通完成与完整后取消两通道接受，尺寸和DOM RGBA相同。CRC修复原独立证据保持；当前候选不能放行。由于第16轮正式报告仍缺失，尚未启动该发现的Coding整改或第17轮正式Review。不能将测试绿色、Main保全或Reviewer部分记录替正式PASS。
+## 步骤06保持已发布
 
-[最新部分保全收据](../evidence/orchestration-06-07/step07-review16-human-resume-preservation.json)仅为Main保全434私有文件SHA/bytes，不是Reviewer正式ledger。第16轮PG55513/9库、预备第17轮PG55515/1库已正常停止，所有.env0600/数据库/资产/缓存/失败证据保留；第17轮从未正式启动。[停止收据](../evidence/orchestration-06-07/step07-human-resume-owned-service-stop.json)。未新推候选CI或main，远端仍bd9127beada7dc01b3cb8f8b326174c48fde1101。06=PUBLISHED；07=BLOCKED；08–10=NOT_STARTED。唯一状态仍为[canonical](steps-06-07-state.json)。
+[正式发布记录](step-06-release.md)：功能 `c227f8c6ecfe85895937013e4687deb40247a6ee`，作者docs `89f15cbb3d560584043128235014e230f982c2c8`，第三轮独立PASS；Build `step06-c227f8c6ecfe-2408d70aa6a8d040`，Manifest `f69ca0afbb95a5bf78d7bdeeada7af798f9e3f6352b339532646bc152a2cde1c`。候选CI38326156800和正常main `10de5624b82d8ada843d4c377d3e155c55610bcb` 的CI38328263937均SUCCESS，本次不重新开发或重复发布06。
 
-下一安全动作是平台允许后完成第16轮正式报告，再由原Standard Coding修复新P2并取得新候选独立复审PASS，最后完成完整CI及正常前向发布；不得绕平台、降标准或跳过审查。**下文保留此前检查点，其P3暂定/交付核对待完等状态已由本节更新，不作为当前结论。**
+PostgreSQL保存项目采用版本、不可变素材revision/精确依赖、处理结果、Pack/槽位/历史、项目/构建快照、任务/attempt/externalID/归档与验收引用。文件先暂存校验、哈希固化，随后短事务登记并CAS更新当前成功指针；文件或DB失败保留上一成功，迟到只入历史。恢复通过公共领域/像素/Fragment/Pack构造与重放校验，不以JSON状态断言伪造拥有对象，退休依赖和旧快照不变。
 
----
+Mock覆盖先存提交意图、同externalID重启查询、SUBMISSION_UNKNOWN不重购、远端成功仅重试归档、重复完成、取消语义与冻结输入。原完整备份/干净恢复后重建证据有效；当前07作者、独立17和候选CI又各实际运行PG完整23回归。内部四文件持久化载体与标准八文件交付分层。
 
-# 步骤06–07 当前交付报告：步骤07独立审查受平台阻断
+## 步骤07实际功能与最新技术门禁
 
-2026-10-14（America/New_York）。**STEP06=PUBLISHED；STEP07=BLOCKED_NECESSARY_INDEPENDENT_REVIEW16_PLATFORM；08/09/10=NOT_STARTED。未完成步骤07正式发布，不套用完成模板。** 唯一状态见 [canonical](steps-06-07-state.json)。
+工作台可创建/选择并刷新恢复项目，导入六个合格PNG或原创样例，选择风格/精确revision，验证并采用固定草地—水面岸线配方，构建、查看任务/错误/恢复提示，替换组件重建、选择当前/历史并下载标准包。无需手工改DB、JSON、最终排列、内部路径或填写模型密钥。AI明确尚未开放。
 
-## 已发布步骤06
+创作预览读取实际源、遮罩、岸线与处理素材；交付预览使用所选真实Export的A1/A2、Manifest和完整Profile。播放/暂停/逐状态、孤立格/边角/孔洞/窄通道/池塘/大片铺设、nearest整数缩放均验证。逻辑60update/s、Profile每30次推进、源序列0→1→2→1；暂停/隐藏冻结、恢复不追赶。结构硬校验、有限视觉风险、用户美术确认和具体产物MZ记录分开。
 
-保持原 [发布记录](step-06-release.md)：功能 `c227f8c6ecfe85895937013e4687deb40247a6ee`、第三轮独立PASS，Build `step06-c227f8c6ecfe-2408d70aa6a8d040` / Manifest `f69ca0afbb95a5bf78d7bdeeada7af798f9e3f6352b339532646bc152a2cde1c`；正常main `10de5624b82d8ada843d4c377d3e155c55610bcb`、CI38328263937 SUCCESS。PostgreSQL不可变revision/依赖、文件固化＋短事务＋CAS/历史、Mock未知/重启/归档/取消、干净备份恢复再建均原证据有效。本次只修测试消费校验，没有重新开发或发布步骤06。
+新HTTP入口执行真实RGBA8/sRGB PNG、4MiB/4096chunks/5s、metadata/type/逐chunkCRC/解码像素/密度及96×144源要求；JSON8KiB、admission16/read12/download2/heavy1+wait1/native1/5s/close后释放、Host/Origin/写请求client保护、opaque ID/路径/Vite私有根边界保持。不提供任意本地路径或远程URL下载。JS heap128MiB仍非OS/native RSS硬cap。
 
-## 第四轮与后续真实进展
+| 最新冻结交付 | 绑定 |
+| --- | --- |
+| 功能Source | `0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de` |
+| 作者纯资料HEAD | `fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67` |
+| 作者报告 / ledger | [Coding](../reviews/step-07-chunk-type-coding.md)，SHA `3d39d1350116e9197782abb0c51310be08129c2f173a0ea150d7df077404b57d`；ledger `06815c6ef2daf6325fd60f7bd98ef66e886359fb933e354ffb7044106d319661`，222 payload |
+| 工程Build / Manifest | `step07-0c3dc30b0ebb-63b9289040076990` / `7f42de70aef9d6e4be0cb3644a18c4fec561c98330af9619f4dd30d1325069e1` |
+| 工程文件 | 实际208，203同父版本；PNG政策JS/map、Source绑定元数据变化；新增测试fixture JS/dts两项，未删文件凑旧206 |
+| Profile | 完整SHA `48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793` |
+| 最终完整独立Review | [第17轮PASS](../reviews/step-07-independent-round-17.md)，P0/P1/硬阻P2及开放非阻断均0 |
+| 原正式报告 / ledger | [report](../evidence/step-07/independent-round17/report.md) SHA `98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23`；[ledger](../evidence/step-07/independent-round17/evidence/ledger.json) SHA `1285e8e6e3fe3f1c19b5d8c406c601647b31a76a028889f2c26a6d186dfc6189`，203原payload已由Main验真保存 |
 
-R4完整三项P2：已有Build重复发布遗漏FinalExport仍完成Job→实际交付409；共享action generation丢弃唯一有效列表响应→侧栏空；不同DB读取跨COMMIT造成Project指针与Build/Export/Job混合快照。R5 source `59423201ba10ee71c3d1b04cebec69659017b7c7` 已独立关闭：标准Export登记与需交付Job完成同短事务、列表自己的请求世代、短有界RepeatableRead元数据快照且耗时文件像素在事务外。后续原失败、整改、独立报告、下载/当前历史/退休/失败保护回归全部保留。
+正式Review实际共17轮，未清零。R4完整三项为：重复existing发布缺FinalExport仍完成Job导致409；无关action使唯一列表响应失效导致空侧栏；多次DB读跨COMMIT混合指针/Build/Export/Job。R5通过Export与需交付Job同短事务、列表独立generation、有界只读RepeatableRead元数据快照修复，后续最新回归保持关闭。
 
-人工Studio已实现：项目持久化、六源真实PNG导入/诊断、固定岸线/风格/精确版本、采用/构建/任务错误/恢复、组件替换、current/history与标准八文件下载；创作PNG/组件与实际Export A1/A2/Manifest/Profile的Pixi预览、逻辑60update/30步/0→1→2→1、播放暂停逐状态/六场景/nearest采样；QA分层与上传Host/Origin/写请求/字节像素metadataCRC/并发超时清理/受控资源边界。用户无需内部文件、模型或密钥。
+R15发现必需PNG消费者漏CRC；R16又确认raw type先ASCII解码丢高位，IEND可被完整消费者接受。当前source复用严格PNG消费检查，并在解释字符串前校验原始4字节，保留reserved-bit/CRC/order/metadata/预算。旧32拒绝断言失败与合法控制、新inspect/decode/真实HTTP422/native前/双网络通道拒绝、合法正控都有证据，独立17正式关闭R15-001和R16-001。**R16保留INTERRUPTED/PARTIAL，没有伪造其report/ledger/PASS。** 原平台提示保留，本轮新修复候选正常独立17无平台拒绝。
 
-R14 wholePASS和candidate7 CI38576897358 SUCCESS 后曾正常merge `321bbb307ec2f33dcd78d1e66e8b721d2a771ea1`，实际postmerge354/HTTP16/PG23/API3/privacy5/prod18通过；纯资料后正常pushmain `bd9127beada7dc01b3cb8f8b326174c48fde1101`。但首次 [main CI38586177993](https://github.com/y805939188/rpg-maker-maker/actions/runs/38586177993) FAILURE：HTTP一项必要真实body证明失败，双E2E未执行。历史保留，不能回退强推；步骤07尚未正式PUBLISHED，需要正常前向修复发布。
+| 验证范围 | 作者 / 独立17 / 候选CI8 | 合并后本地 |
+| --- | --- | --- |
+| check（类型/方向/lint/format/cleanbuild/11exports） | 418 / 418 / 418 | 418 |
+| 真实PG持久化/Mock/故障/备份恢复 | 23 / 23 / 23 | 复用相同执行代码的三次完整证据，未假报再次跑23；mainCI仍全套 |
+| HTTP07完整发布/恢复/跨COMMIT | 16 / 16 / 16 | 选2项：真实上传容器/预算＋双模式first/update/history发布；14项未选，不称完整16 |
+| API / 隐私 | 3+5 / 3+5 / 3+5 | 3+5 |
+| 生产 / 开发浏览器 | 18+18 / 18+18 / 18+18，均零skip/retry | 选1项完整生产人工工作流；其余17未选，不称完整18 |
+| 独立交付连接 | 6ZIP、12PNG、16RawCanvas、4条DB文件任务引用链 | 合并后工作流再次核对实际预览/历史/ZIP |
 
-R15完整 [REQUIRES_REVISION](../evidence/step-07/independent-round15/report.md)，report SHA83207c1ab20234ab0c3027f5ad11e6f2cb2b211935b26a0f8b667d2bf50881c1、166 payload。新增唯一阻断 STEP07-R15-001：PNG byte/SHA/decode/RGBA一致仍漏逐chunk CRC。真实badIEND单bit且同像素被原六阶段接受10次；这是反例，不是PASS。
+所有必要断言和预算保留，未禁用CI或删除测试。合并后首次浏览器选择命令因锚点匹配完整标题而No tests found、0测试执行；原exit1/log保留，只修选择并证明确选1项后补跑PASS，源码/预算不变且已通过检查未重跑。[合并后真实范围收据](../evidence/orchestration-06-07/step07-final-postmerge-verification.json)。
 
-## 当前冻结修复和第十六轮
+Coding为sol/xhigh/default，独立17为sol/ultra/default，实际native model/effort/cwd核对；未暴露的server final字段UNVERIFIED_NOT_EXPOSED。未使用Fast/Priority/Ultrafast接口承担正式工作。原批准与失败不追改，结构/有限风险/技术截图不变为USER_ART或新artifactMZ PASS。
 
-功能 `abd035ac20e6c4de5d19609d932935b99851b2b0`，作者资料 `e1c247aa36a8aad6120a27c0b115731bb4e8c73c`。只四个测试路径复用已有公开inspectPng，实际processed/ZIP A1A2/同browser图集在解码前验证signature/chunkbounds/everyCRC/IEND/既定容器政策；原传输/取消/document/URL/完整framing/SHA/RGBA与所有预算保留。Build `step07-abd035ac20e6-84593cfe8bf38f0d`，Manifest `4f1ce51a6df70eb4bf6325654c6dd03726f513f8a499db6c1e019dde85075e67`，206实际文件205同parent只sourcecontext变。
+## 正常Git发布与当前运行
 
-作者 [报告](/Users/dingshinn/.codex/worktrees/step-07-main-ci-recovery/rpg-maker-maker/docs/reviews/step-07-r15-png-crc-coding.md) SHA7a6149fae8ae422b02e06b05a615007f823d49b513f57d66e2690360cc4f7d2c；ledger SHA3b4c08134c11f13b10623d749fee5c4dfb79127a952d5e8be8c0a62a8d813e18/193payload，Main实际提交读回验真。作者check380（34消费者控制包含其中）、HTTP16/API3/privacy5/prod18dev18/6ZIP12PNG实际通过，wholebadCRC首次PNG_CRC预期拒绝约7.53s。
+候选 `4cb718aceabcd772b234d86e9d2c0d9f74eda2be` 在[CI38683352144](https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144)全SUCCESS后，按用户预授权记录 **APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR**，不是用户逐轮亲自重审。fetch/liveMain guard后normal no-ff合并 `e6d785e1d34afeceac05522f6176592d522762e0`，0冲突/执行差异，实际合并后回归通过；随后3条纯资料差异，normal push `04e979612cfc82c7c2b5687fbb83509c995213b7`，local/origin/live当次读回一致，未force/rewind。[正常merge](../evidence/orchestration-06-07/step07-forward-main-merge.json)、[push/readback](../evidence/orchestration-06-07/step07-forward-main-push-and-readback.json)。
 
-独立第16轮 CID `01a13be2-635b-7d11-a98d-ca81dc9906de`，冻结source/detached独占环境，客户端sol/ultra/default，实际native model/effort/cwd符合；server final tier字段UNVERIFIED_NOT_EXPOSED。已真实check380/API3/privacy5/HTTP16/prod18dev18通过；真loading-finished与complete-length+ERR_ABORTED同request旧函数badCRC假通过、新函数PNG_CRC拒绝、valid控制成立，wholebadCRC首图拒绝。原partial finding记R15 CRC independently verified；**尚未完成whole报告与正式PASS，Main不能代写**。PG23专门只按相同production scope引用R14 NOT_RERUN_THIS_ROUND，本轮HTTP恢复/版本/失败实际执行。
+**完整main CI38686901060已真实SUCCESS。** [对应main CI](https://github.com/y805939188/rpg-maker-maker/actions/runs/38686901060)。旧main CI38586177993 FAILURE是旧Source BD的真实历史，未改成PASS。[正式发布收据](../evidence/orchestration-06-07/step07-publication.json)绑定实际主分支CI、原日志SHA/bytes和全部门禁。最后一条纯证据文档提交的SHA、远端读回及其CI在最终会话实测核对，避免把文件自己的SHA反复写回自己；本文件不预写未来push/CI成功。
 
-保存的partial P3 `STEP07-R16-001`：公共png-policy.ts:50的ASCII读取会掩掉chunk名高位；inspect接受，但实际消费者被Sharp拒绝，未形成当前whole假PASS。严重级/范围来自Reviewer部分记录，完整报告未生成；不擅自降级或宣布全步放行。辅控端口/reader提前释放等原失败均保留。
+本地手工入口：**http://127.0.0.1:4376**，[操作清单](../engineering/STEP_07_MANUAL_TESTING.md)。运行树 `/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker`，软件/构建Source为受审候选祖先 `4cb718aceabcd772b234d86e9d2c0d9f74eda2be`，已经包含于main04e且执行代码相同，编译Source值如实保留。API PID46324、专属PG55476（数据`.local/postgres/data`），资产`.local/assets`、私有`.env`0600均保留。服务当前运行；不承诺Desktop关闭后自动后台持续。
 
-平台在2026-10-14T19:58:11Z以“possible cybersecurity risk”中断，native1；原角色原会话一次正常恢复在20:00:39Z再次相同中断，native1。没有最终report/ledger。见 [首次](../evidence/orchestration-06-07/step07-review16-platform-interruption.json) 与 [重复阻断](../evidence/orchestration-06-07/step07-review16-platform-repeated-block.json)。不另起会话/换模型/加速/改任务绕过。停止当前发布门禁。
+部署时先确认无运行Job，正常停自己的API，取得PG custom dump与2479个资产文件一致视图并逐SHA验证、pg_restore --list验证；再更新/构建/启动，未执行schema迁移/reset。部署前后115 Project/947 AssetRevision/179 Build/177 FinalExport/184 StudioJob、Project完整行摘要及env字节一致。之后用户手工创建/更新属于正常数据变化，不把该部署快照当永远不变计数。[部署收据](../evidence/orchestration-06-07/step07-local-reviewed-candidate-deployment.json)。
 
-[Main部分证据指针收据](../evidence/orchestration-06-07/step07-review16-partial-preservation.json)保存394个私有文件SHA/bytes，仅是Main保全，不是Reviewerledger/PASS。8750 tracked起止一致、Gitclean；尚需完整两模式下载/RawCanvas/数据库引用连接收尾、finding总表与正式whole报告/ledger，再取得最新候选PASS。不能用作者或Main代替。
+完整私有备份另存主仓库 `.local/runtime-backups/runtime-backup-20261015T050237Z-9e1333b9`，避免仅依赖临时工作树；dump/资产/manifest私有，不上传，不复制env/凭据。运行树已Git worktree lock防Git误清理（不声称防任意OS删除）。[备份保全](../evidence/orchestration-06-07/step07-runtime-backup-retention.json)。此运行备份仅声称一致保存/字节及可读性验证；干净恢复实际重建的技术证据为上面的PG23，不伪称已恢复过这份用户备份。
 
-## Git、运行与安全保留
+服务停止后，在运行树使用已有Node22.21.1 PATH；先核归属，已停止的专属PG可 `pnpm db:local start`，然后 `pnpm start`。已运行不重复启动；既有.env/数据库不可init/reset，不复制别树私有配置，正常工作流不需要第三方视觉模型密钥。
 
-当前远端main与origin/main `bd9127beada7dc01b3cb8f8b326174c48fde1101`；本地main另有纯文档检查点，最终local SHA在会话读回（不制造报告自引用循环）。验证分支本地 `4c550b63fd8ea333c2156c5d43d5d96d8a297103` 正常整合候选、资料，source后379路径全docs、无冲突；**尚未push candidate8/运行candidate8CI/forwardmainMerge或mainPush**，远端validation仍candidate7 `1d5ad26d05eba12b56994310b191754fa73a654e`。
+## 资源保留与边界
 
-用户本地Studio **http://127.0.0.1:4376**，tree `/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker` detachedBD，API PID76694、PG55476 PID51121仍运行；.env0600原值保留不输出，资产`.local/assets`，PG`.local/postgres/data`。恢复前115Project/947AssetRevision/179Build/177FinalExport/184StudioJob未改。已有网页真实交付/播放暂停逐状态/刷新/download ZIP技术证据见 [部署](../evidence/orchestration-06-07/step07-local-main-deployment.json) 与 [服务恢复](../evidence/orchestration-06-07/step07-user-studio-service-resume.json)。可用实例不等于步骤07最终发布。
+本轮Code PG55509/31库、Review17 PG55515/13库、fresh Release PG55517/2库均已正常停止，API/Web/browser辅助关闭，env/DB/资产/备份/cache/失败保留，用户Studio4376/PG55476继续运行。未删除含独有数据的工作树；冻结分支codex/step-07-validation与codex/step-07-main-ci-recovery完整tip已包含远端main，暂留作手工反馈和CI/Review定位，未提前记删除；工作区保留独有ignored数据，未强制archive。[保留核对](../evidence/orchestration-06-07/step07-closeout-resource-retention.json)。
 
-已停止时可在该专属目录使用已有Node22.21.1 PATH，先按所有权核对正常 `pnpm db:local start`（已运行不重复start），再 `pnpm start`；当前服务运行无需重复启动。已有私有配置/数据库不得init/reset/copy，启动不需要第三方视觉密钥。Desktop关闭后的后台持续不作承诺。
+旧发布验证路径`step-07-release/rpg-maker-maker`在准备整合前实际已不存在，Git分支保留、app登记为旧条目；原因UNKNOWN，本轮没有删除该路径，也不假称旧私有DB已恢复。采用新的`step-07-release-final/rpg-maker-maker`隔离环境，未重建/覆盖旧目录。原历史收据保留。[观察记录](../evidence/orchestration-06-07/step07-old-release-directory-observation.json)。
 
-CodingPG55509/18DB、Review16PG55513/9DB已正常停止；APIWeb/browser均关闭，全部.env/数据库/资产/backup/cache/坏PNG/failed输出保留。R15PG55511/9DB已停；ReleasePG55481原数据已停保留。见 [资源关闭](../evidence/orchestration-06-07/step07-blocked-owned-services-stop.json)。所有未合并分支/worktree保留供安全恢复，没有删除。步骤06此前已安全归档的工作区不重复清理。
-
-## 停点与边界
-
-恢复入口canonical＋当前作者source/docs＋独立Review16私有root。平台允许必要审查后，只继续未完的第16轮收尾；如果候选有实质变化须重新冻结/独立验证，不能旧结论套新代码。只有最新wholePASS/P0P1硬阻P2零、必要候选CI、正常forwardMerge/实际postmerge/normalPush/readback/mainCI全成功才能记录APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR并PUBLISHED。
-
-Original Native Host、Map003原补证、新具体artifact MZ及用户艺术确认仍延期/NOT_EXECUTED；本轮不改变Compiler/Profile/布局/槽位/动画/通行。JS heap128MiB仍非OS/nativeRSS硬cap。06有效，08/09/10均未启动，未安装真实ProviderSDK、配置/索要key、真实视觉调用或收费；正式Prompt体系与AI创作留以后单独授权。
+原装Native Host、Map003补证、新具体产物MZ/用户艺术等原延期或NOT_EXECUTED保留；03–05兼容规格/Compiler/Profile/布局/槽位/动画/通行未改变，本轮不机械重做MZ手工。普通构建、CI、测试没有真实视觉调用；08–10 NOT_STARTED，正式Provider/主Prompt体系/预算与密钥留以后单独授权。本轮仅完成人工素材工作台与持久化基础，不宣称AI创作或完整V1.0完成。

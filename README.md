@@ -1,3 +1,26 @@
+# AI Tileset Studio — 人工素材工作台
+
+当前提供项目持久化、人工PNG素材导入、固定草地—水面岸线配方、实际构建、网页拼接/动画预览、版本历史与标准MZ素材包下载。AI功能尚未开放，步骤08–10未启动。
+
+**步骤06、07均已发布。** 步骤07最新功能候选获第17轮独立整合PASS，候选与代码main的完整CI全部成功；正常合并、合并后回归、push和远端读回完成。 唯一状态见 [调度状态](docs/orchestration/steps-06-07-state.json)，最终发布与未执行范围见 [交付报告](docs/orchestration/steps-06-07-final-report.md)。
+
+- 已配置的本地入口：**http://127.0.0.1:4376**。当前运行已独立通过的候选，原项目、资产和历史已备份保留。
+- [手工测试清单](docs/engineering/STEP_07_MANUAL_TESTING.md)：新建验收项目 → 导入原创美术样例或六个合格PNG → 验证并采用固定配方 → 构建 → 选择实际结果 → 播放/暂停/逐状态 → 切换历史 → 下载ZIP。
+- 六源为草地、水面源帧0/1/2、固定岸线遮罩、岸线颜色组件；既有规范为96×144、RGBA8/sRGB PNG、实际密度1或2。页面提供输入诊断与明确错误，不要求修改数据库或内部文件。
+- 创作预览显示实际组件；交付预览与ZIP引用同一Build的真实A1/A2、Manifest和完整TargetProfile。原生水面逻辑序列0→1→2→1，播放、暂停及逐状态均可检查。
+- 标准ZIP八文件：A1.png、A2.png、pack.json、history.json、layout.json、sources.json、INSTALL.md、manifest.json。完整TargetProfile嵌在Manifest中。
+- 本地运行树：`/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker`，专属PostgreSQL55476/资产`.local/assets`/私有`.env`已配置。服务运行时直接用浏览器；已停止时按交付报告正常启动，勿重复init/reset数据库，不复制其他工作树凭据。
+
+最新受审Source `0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de` / 作者docs `fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67`，[独立第17轮](docs/reviews/step-07-independent-round-17.md)；[候选CI38683352144 SUCCESS](https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144)。正常代码main发布提交 `04e979612cfc82c7c2b5687fbb83509c995213b7`，[main CI38686901060 SUCCESS](https://github.com/y805939188/rpg-maker-maker/actions/runs/38686901060)。运行实例使用其已合入main的候选祖先4cb718a，功能代码与受审Source一致。
+
+步骤07证明人工素材工作流和持久化基础。结构校验、基础视觉风险、用户美术确认及具体产物MZ实测分别记录；原装Native Host、Map003等延期与新产物MZ/用户艺术未执行状态保留。正式 [产品方案](docs/plans/01_PRODUCT_TECH_SPEC_V0.5.md)、[十步计划](docs/plans/02_V1_IMPLEMENTATION_PLAN.md) 与历史批准记录不改写。
+
+---
+
+## 历史工程入口与各轮检查点
+
+以下保留原文，旧候选、当时授权和未发布状态属于对应历史阶段；当前状态以上方入口和canonical为准。
+
 # 步骤07 R4整改当前作者候选
 
 功能source `59423201ba10ee71c3d1b04cebec69659017b7c7`，**SELF_TESTED_READY_FOR_REVIEW_ROUND5**。标准Export幂等完成事务、项目列表独立请求归属、Studio一致元数据快照已整改自测。正式已用4轮、待第5轮；2026-10-14用户取消机械五轮上限，原历史和门禁保留。作者不独立关闭问题、不批准/合并/推送、不开始08–10。

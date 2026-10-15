@@ -1,0 +1,132 @@
+{
+  "atUtc": "2026-10-15T06:08:57.734197+00:00",
+  "status": "PUBLISHED",
+  "scope": "STEP07_MANUAL_STUDIO_AND_PERSISTENCE_INTEGRATION; NOT_COMPLETE_AI_V1",
+  "approval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+  "reviewedSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+  "authorDocs": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+  "independentReview": {
+    "round": 17,
+    "status": "PASS_WHOLE_CANDIDATE",
+    "report": "docs/evidence/step-07/independent-round17/report.md",
+    "reportSha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
+    "ledgerSha256": "1285e8e6e3fe3f1c19b5d8c406c601647b31a76a028889f2c26a6d186dfc6189",
+    "payloads": 203,
+    "P0": 0,
+    "P1": 0,
+    "blockingP2": 0,
+    "openNonblocking": 0
+  },
+  "build": {
+    "id": "step07-0c3dc30b0ebb-63b9289040076990",
+    "manifestSha256": "7f42de70aef9d6e4be0cb3644a18c4fec561c98330af9619f4dd30d1325069e1",
+    "files": 208
+  },
+  "candidate": {
+    "sha": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+    "ciRun": 38683352144,
+    "conclusion": "success"
+  },
+  "normalMerge": "e6d785e1d34afeceac05522f6176592d522762e0",
+  "postmerge": "PASS_REQUIRED_SOURCE_EQUAL_SCOPE; original browser-selection error retained, corrected selectedtest pass, no source/budgetchange",
+  "codeMainPublicationCommit": "04e979612cfc82c7c2b5687fbb83509c995213b7",
+  "localMainAtCodePublication": "04e979612cfc82c7c2b5687fbb83509c995213b7",
+  "originMainAtCodePublication": "04e979612cfc82c7c2b5687fbb83509c995213b7",
+  "liveMainAtCodePublication": "04e979612cfc82c7c2b5687fbb83509c995213b7",
+  "mainCI": {
+    "run": 38686901060,
+    "job": 116263722783,
+    "head": "04e979612cfc82c7c2b5687fbb83509c995213b7",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38686901060",
+    "actualSummaries": [
+      "      Tests  418 passed (418)",
+      "      Tests  5 passed (5)",
+      "      Tests  3 passed (3)",
+      "      Tests  23 passed (23)",
+      "      Tests  16 passed (16)",
+      "  18 passed (9.3m)",
+      "  18 passed (10.1m)"
+    ],
+    "decodedPrivateLog": ".local/orchestration-06-07/step07-main-forward-complete.log.txt",
+    "savedBytes": 148894,
+    "savedSha256": "41c46e9ca9fc59cc3a9a764a4b078270e1b221749779a95f6e4573d32fecc900",
+    "requiredSteps": [
+      "Set up job",
+      "Initialize containers",
+      "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+      "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+      "Run pnpm install --frozen-lockfile",
+      "Run pnpm db:generate",
+      "Run pnpm exec playwright install --with-deps chromium",
+      "Run pnpm check",
+      "Run pnpm test:dev-privacy",
+      "Run pnpm db:migrate",
+      "Run pnpm test:integration",
+      "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+      "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+      "Run pnpm test:e2e",
+      "Run E2E_MODE=dev pnpm test:e2e",
+      "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+      "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+      "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+      "Stop containers",
+      "Complete job"
+    ]
+  },
+  "runtime": {
+    "atUtc": "2026-10-15T05:03:52.146772+00:00",
+    "status": "RUNNING_PUBLISHED_SOURCE_ANCESTOR_READY_FOR_USER_MANUAL_TEST",
+    "url": "http://127.0.0.1:4376",
+    "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+    "runtimeCommit": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+    "reviewedFunctionSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+    "independentReview": 17,
+    "apiPid": 46324,
+    "pgPort": 55476,
+    "health": {
+      "status": "ok",
+      "database": "connected",
+      "stage": "02"
+    },
+    "beforeCounts": {
+      "Project": 115,
+      "AssetRevision": 947,
+      "Build": 179,
+      "FinalExport": 177,
+      "StudioJob": 184
+    },
+    "afterCounts": {
+      "Project": 115,
+      "AssetRevision": 947,
+      "Build": 179,
+      "FinalExport": 177,
+      "StudioJob": 184
+    },
+    "projectRowsSha256Unchanged": true,
+    "envShaBytesUnchanged": true,
+    "envMode": "0600",
+    "schemaMigration": "NOT_NEEDED; schema/lock/package dependency byte-equal",
+    "backupRoot": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07/runtime-backup-20261015T050237Z-9e1333b9",
+    "backupManifestSha256": "a40059b25f0ef936cdb7dba8e9ec3abdb40db773f4402ac2e540b8d23d88f30b",
+    "backupFiles": 2479,
+    "backupAssetBytes": 44598859,
+    "databaseDumpVerified": "pg_dump success, pg_restore --list success; private only",
+    "noRealModelCalls": true,
+    "deploymentRecord": "docs/evidence/orchestration-06-07/step07-local-reviewed-candidate-deployment.json",
+    "codePublicationCommit": "04e979612cfc82c7c2b5687fbb83509c995213b7",
+    "sourceRelation": "runtime4cb is ancestor of publishedmain04e, identicalexecutables to reviewed0c3; later differences onlymerge/docs",
+    "countsScope": "before/after deployment snapshot only; subsequent user manualdata changes expected",
+    "healthAtFinalCodePublication": {
+      "status": "ok",
+      "database": "connected",
+      "stage": "02"
+    }
+  },
+  "resourceRetention": "docs/evidence/orchestration-06-07/step07-closeout-resource-retention.json",
+  "oldFailure": "mainCI38586177993 preserved as failure; superseded by actual forward source and current successful CI, not rewritten",
+  "finalEvidenceOnlyCommit": "its SHA/readback/CI verified in final conversation, intentionally not self-referenced here; no future push or CI result pre-recorded",
+  "steps08to10": "NOT_STARTED"
+}
