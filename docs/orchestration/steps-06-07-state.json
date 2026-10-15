@@ -6,9 +6,9 @@
     7
   ],
   "stopAfter": 7,
-  "workflow": "IN_PROGRESS",
+  "workflow": "STEP07_FOCUSED_CLOSEOUT_ACTIVE",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT16_DISPATCH",
+  "phase": "STEP07_INDEPENDENT17_DISPATCH",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,8 +441,8 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT16_RUNNING",
-    "reviewRounds": 16,
+    "status": "INDEPENDENT17_RUNNING",
+    "reviewRounds": 17,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-07-main-ci-recovery/rpg-maker-maker",
@@ -461,17 +461,18 @@
       "engineeringPayloads": 206,
       "unchangedFullParentFlows": "R11samecodeindactualHTTP16/prod18dev18 notrerunbyCIonlyCoder"
     },
-    "candidateSha": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+    "candidateSha": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
     "candidateState": "SOURCE39EC_DOC2320_FROZEN_UNDER_INDEPENDENT15",
     "reviewEnvironment": {
-      "round": 16,
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round16/rpg-maker-maker",
-      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
-      "pgPort": 55513,
-      "apiPort": 4413,
-      "webPort": 5313,
-      "output": ".local/step07-review/independent-round16",
-      "threadId": "01a13be2-635b-7d11-a98d-ca81dc9906de"
+      "round": 17,
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker",
+      "pgPort": 55515,
+      "apiPort": 4415,
+      "webPort": 5315,
+      "output": ".local/step07-review/independent-round17",
+      "threadId": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958",
+      "clientEvidence": "docs/evidence/orchestration-06-07/step07-review17-client.json"
     },
     "supersededCodingCandidates": [
       {
@@ -3195,7 +3196,7 @@
         }
       }
     },
-    "activeReview": 16,
+    "activeReview": 17,
     "latestReview": {
       "round": 15,
       "result": "REQUIRES_REVISION",
@@ -3285,7 +3286,7 @@
       },
       "development18": "RUNNING_NO_ROOT_ENV_SEPARATE_NEW_DATABASE"
     },
-    "authorSourceInVerification": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+    "authorSourceInVerification": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
     "crcRepairCandidate": {
       "atUtc": "2026-10-14T19:27:34.507034+00:00",
       "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
@@ -3306,7 +3307,263 @@
       "nativeCoderExit": 0,
       "independentClosure": "NOT_EXECUTED"
     },
-    "candidateDocsHead": "e1c247aa36a8aad6120a27c0b115731bb4e8c73c"
+    "candidateDocsHead": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+    "forwardValidationPreparation": {
+      "branch": "codex/step-07-validation",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
+      "head": "4c550b63fd8ea333c2156c5d43d5d96d8a297103",
+      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+      "normalAuthorMerge": "0e798bbd31d65b7c3f3d41db45cf56bad196442e",
+      "postSourcePaths": 379,
+      "postSourceExecutionDiff": 0,
+      "conflicts": 0,
+      "pushed": false,
+      "candidateCI": "NOT_STARTED_PENDING_LATEST_INDEPENDENT_PASS",
+      "mainMerge": "NOT_STARTED_FORWARD_REPAIR"
+    },
+    "independent16Progress": {
+      "status": "RUNNING_NO_FINAL_VERDICT",
+      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+      "check": 380,
+      "api": 3,
+      "privacy": 5,
+      "http": {
+        "tests": 16,
+        "seconds": 460.594,
+        "status": "INDEPENDENT_PASS"
+      },
+      "crc": "independent actual old/new both true transport channels reject bad CRC on new, valid positive passes; whole sixphase negative rejects first bad image",
+      "production18": {
+        "tests": 18,
+        "skip": 0,
+        "retry": 0,
+        "seconds": 421.182,
+        "pageErrors": 0,
+        "status": "INDEPENDENT_PASS"
+      },
+      "development18": {
+        "tests": 18,
+        "skip": 0,
+        "unexpected": 0,
+        "flaky": 0,
+        "status": "ACTUAL_RUN_PASS_ORIGINAL_REPORTER; no final whole review verdict"
+      },
+      "additionalFinding": "PNG high-bit chunk name normalization; exact consumer rejected by Sharp; report severity/scope pending",
+      "remoteMainReadback": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "remoteValidation": "1d5ad26d05eba12b56994310b191754fa73a654e",
+      "candidate8Pushed": false,
+      "downloadAndRawCanvas": "INDEPENDENT_READING"
+    },
+    "platformInterruption16": {
+      "atUtc": "2026-10-14T19:59:02.252757+00:00",
+      "round": 16,
+      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+      "thread": "01a13be2-635b-7d11-a98d-ca81dc9906de",
+      "nativeExit": 1,
+      "finalReport": "NOT_PRODUCED",
+      "platformEvents": [
+        {
+          "type": "error",
+          "message": "This content was flagged for possible cybersecurity risk. If this seems wrong, try rephrasing your request. If you’re doing authorized security work that requires more cyber permissive safeguards, apply for Daybreak access via https://platform.openai.com/settings/organization/status-and-access before retrying."
+        },
+        {
+          "type": "turn.failed",
+          "error": {
+            "message": "This content was flagged for possible cybersecurity risk. If this seems wrong, try rephrasing your request. If you’re doing authorized security work that requires more cyber permissive safeguards, apply for Daybreak access via https://platform.openai.com/settings/organization/status-and-access before retrying."
+          }
+        }
+      ],
+      "rawEventsSha256": "abaa0039676304c859e9cda72de2566177ae6a451d585cd292827a6b9651c80f",
+      "rawEventsPath": ".local/orchestration-06-07/step07-review-round16/events.jsonl",
+      "reviewVerdict": "INTERRUPTED_NOT_PASS",
+      "normalRecoveryAttempt": 1,
+      "strategy": "same thread same model ultra default, resume unfinished authorized review; no task disguise or security bypass"
+    },
+    "review16RepeatedPlatformBlock": {
+      "atUtc": "2026-10-14T20:01:29.948467+00:00",
+      "round": 16,
+      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+      "thread": "01a13be2-635b-7d11-a98d-ca81dc9906de",
+      "normalRecoveryAttempt": 1,
+      "nativeExit": 1,
+      "events": [
+        {
+          "type": "error",
+          "message": "This content was flagged for possible cybersecurity risk. If this seems wrong, try rephrasing your request. If you’re doing authorized security work that requires more cyber permissive safeguards, apply for Daybreak access via https://platform.openai.com/settings/organization/status-and-access before retrying."
+        },
+        {
+          "type": "turn.failed",
+          "error": {
+            "message": "This content was flagged for possible cybersecurity risk. If this seems wrong, try rephrasing your request. If you’re doing authorized security work that requires more cyber permissive safeguards, apply for Daybreak access via https://platform.openai.com/settings/organization/status-and-access before retrying."
+          }
+        }
+      ],
+      "rawEventsSha256": "a3c4558328586096fb35c0e5d5f24a5a2ea22ef62b81c04507bbf56563e0573d",
+      "rawEventsPath": ".local/orchestration-06-07/step07-review-round16-resume1/events.jsonl",
+      "status": "REPEATED_PLATFORM_BLOCK; NO_FURTHER_RETRY; NO_INDEPENDENT_PASS",
+      "report": "NOT_PRODUCED",
+      "ledger": "NOT_PRODUCED",
+      "mainRelease": "STOPPED_BEFORE_CANDIDATE8_PUSH"
+    },
+    "review16PartialPreservation": "docs/evidence/orchestration-06-07/step07-review16-partial-preservation.json",
+    "latestCompleteReview": {
+      "round": 15,
+      "result": "REQUIRES_REVISION",
+      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd"
+    },
+    "finalIndependentPass": "NOT_OBTAINED_PLATFORM_BLOCK",
+    "candidate8CI": "NOT_STARTED",
+    "forwardMainRelease": "NOT_STARTED",
+    "finalReviewedSource": null,
+    "userResumptionAfterPlatformBlock": {
+      "atUtc": "2026-10-15T02:27:30.385867+00:00",
+      "authorization": "docs/orchestration/step-07-resume-after-platform-block-2026-10-14.md",
+      "sameThread": "01a13be2-635b-7d11-a98d-ca81dc9906de",
+      "sameModel": "gpt-6.1-sol",
+      "sameEffort": "ultra",
+      "sameClientTier": "default",
+      "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
+      "attempt": "one normal same-context continuation after explicit human resumption; no bypass",
+      "pgPort": 55513,
+      "pgPid": 1453,
+      "existingDatabases": 9
+    },
+    "independent16UserResumeProgress": {
+      "status": "ACTIVE_NORMAL_RESUME; no platform failure this attempt",
+      "finding": "STEP07-R16-001",
+      "severity": "P2",
+      "blocking": true,
+      "reason": "Reviewer actual saved evidence: high-bit IEND type accepted by exact rendered consumer on ordinary finished and complete-length abort, dimensions/DOM RGBA identical",
+      "priorP3": "superseded by stronger exact-consumer evidence; not downgraded to release",
+      "R15CRC": "independently fixed; report pending",
+      "next": "formal REQUIRES_REVISION report then same coder repair; no release"
+    },
+    "humanResumptionResult": {
+      "atUtc": "2026-10-15T02:33:38.303411+00:00",
+      "nativeExit": 1,
+      "platformEvidence": "docs/evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json",
+      "partialPreservation": "docs/evidence/orchestration-06-07/step07-review16-human-resume-preservation.json",
+      "privateEvidenceFiles": 434,
+      "sourceProtection": 8750,
+      "normalPGStop": "docs/evidence/orchestration-06-07/step07-human-resume-owned-service-stop.json",
+      "formalReport": "NOT_PRODUCED",
+      "formalLedger": "NOT_PRODUCED",
+      "deliveryCheckCompleted": "6 ZIP12 PNG16 RawCanvas4 Build/FinalExport/FileObject/Job chains",
+      "newFinding": "STEP07-R16-001_P2_BLOCKING_HIGH_BIT_IEND_EXACT_CONSUMER_ACCEPTANCE",
+      "review17": "PREPARED_ONLY_NEVER_STARTED; PG55515 stopped/1DB/env/data retained"
+    },
+    "review16Disposition": "INTERRUPTED_PARTIAL_NOT_PASS; no formal report fabricated; concrete independently evidenced defect may be repaired before old report completion under latest focused closeout",
+    "focusedCloseoutAuthorization": "docs/orchestration/step-07-focused-closeout-2026-10-15.md",
+    "focusedCodingDispatch": {
+      "role": "step_coder",
+      "model": "gpt-6.1-sol",
+      "reasoningEffort": "xhigh",
+      "serviceTier": "default",
+      "manifestSha256": "3f7bc1355eaab8ea42e34447ba991c0b1755033853ae0428f86caeaf5ab094db",
+      "cwd": "/Users/dingshinn/.codex/worktrees/step-07-main-ci-recovery/rpg-maker-maker",
+      "startedAtUtc": "2026-10-15T03:28:43.354807+00:00",
+      "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
+      "thread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
+      "actualNativeModel": "gpt-6.1-sol",
+      "actualNativeEffort": "xhigh",
+      "actualNativeCwdVerified": true,
+      "scope": "only concrete raw PNG chunk-type validation defect and necessary regression; no expanded research"
+    },
+    "focusedCodingProgress": {
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "status": "AUTHOR_TESTS_COMPLETE_HANDOFF_SEALING",
+      "before": {
+        "newRejectionAssertionsFailOnOld": 32,
+        "positiveReservedControlsPassOnOld": 4
+      },
+      "productionScope": "7-line raw type validation change; other4paths tests",
+      "independent17": "NOT_STARTED",
+      "check": 418,
+      "directedControls": 72,
+      "counting": "72 included in418; dedicated repeat not additional unique tests",
+      "api": 3,
+      "pg06": {
+        "tests": 23,
+        "seconds": 210.862,
+        "status": "AUTHOR_PASS_BOUND_SOURCE"
+      },
+      "scope": "same5paths frozen; no expanded implementation",
+      "privacy": 5,
+      "http16": {
+        "tests": 16,
+        "seconds": 479.994,
+        "status": "AUTHOR_PASS_BOUND_SOURCE"
+      },
+      "manualGuide": "docs/engineering/STEP_07_MANUAL_TESTING.md",
+      "production18": {
+        "tests": 18,
+        "seconds": 450.844,
+        "status": "AUTHOR_PASS_BOUND_SOURCE"
+      },
+      "development18": {
+        "tests": 18,
+        "seconds": 458.71,
+        "status": "AUTHOR_PASS_BOUND_SOURCE"
+      },
+      "engineering": {
+        "exitCode": 0,
+        "seconds": 21.164,
+        "binding": "await exact report/manifest handoff"
+      }
+    },
+    "focusedCandidate": {
+      "atUtc": "2026-10-15T04:11:21.859176+00:00",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "docsHead": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+      "report": "docs/reviews/step-07-chunk-type-coding.md",
+      "reportSha256": "3d39d1350116e9197782abb0c51310be08129c2f173a0ea150d7df077404b57d",
+      "reportBytes": 11999,
+      "ledger": "docs/evidence/step-07/chunk-type-fix/ledger.json",
+      "ledgerSha256": "06815c6ef2daf6325fd60f7bd98ef66e886359fb933e354ffb7044106d319661",
+      "ledgerBytes": 45422,
+      "committedPayloadsVerified": 222,
+      "postSourcePaths": 223,
+      "postSourceExecutionChanges": 0,
+      "secretMatches": 0,
+      "buildId": "step07-0c3dc30b0ebb-63b9289040076990",
+      "manifestSha256": "7f42de70aef9d6e4be0cb3644a18c4fec561c98330af9619f4dd30d1325069e1",
+      "engineeringFiles": 208,
+      "coderExit": 0,
+      "independentStatus": "PENDING_ROUND17"
+    },
+    "oldReleaseDirectoryObservation": {
+      "atUtc": "2026-10-15T04:13:20.429882+00:00",
+      "oldReleaseRoot": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
+      "rootExists": false,
+      "parentExists": true,
+      "gitBranchRetained": "codex/step-07-validation",
+      "retainedBranchTip": "4c550b63fd8ea333c2156c5d43d5d96d8a297103",
+      "gitWorktreeRegistered": false,
+      "appAttachment": "stale worktree entry still present; not marked archived",
+      "cause": "UNKNOWN_NO_DELETION_EXECUTED_BY_THIS_ORCHESTRATOR_TURN",
+      "firstMergeAttempt": "read-only cwd existence failed before mutation; preserved native error",
+      "oldPrivateEnvironment": "NOT_PRESENT_AT_EXPECTED_ROOT; cannot claim preserved or recovered",
+      "action": "create new uniquely named isolated release-final environment from retained branch; no old path recreation, data reset or unknown cleanup",
+      "userStudio": "separate step-07-studio root exists; not modified"
+    },
+    "releaseEnvironment": {
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker",
+      "pgPort": 55517,
+      "apiPort": 4381,
+      "webPort": 5281,
+      "newOwnEnv": true,
+      "oldDataNotReinitialized": true
+    },
+    "independent17Progress": {
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "status": "RUNNING_NO_VERDICT",
+      "check": 418,
+      "api": 3,
+      "privacy": 5,
+      "PG06": "RUNNING_FULL23",
+      "authorPayloadsVerified": 222,
+      "auxiliaryFailure": "own independent script initially used wrong provenance field; retained and corrected; candidate unchanged"
+    }
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -3427,7 +3684,7 @@
       "temporaryRoot": ".local/release-verification",
       "apiPort": 4381,
       "webPort": 5281,
-      "serviceStatus": "POSTMERGE_ALLPASS_OWNED_PG_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "serviceStatus": "OLD_DIRECTORY_NOT_PRESENT; original historical records retained; cause unknown; no deletion by this turn",
       "credentials": "FRESH_PRIVATE_ENV600_NO_COPY",
       "migrationPreparation": "FIVE_MIGRATIONS_SUCCESS_NEW_EMPTY_DB_NO_RESET",
       "pgPid": 76340,
@@ -3624,7 +3881,7 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/main-ci-recovery/assets",
       "temporaryRoot": ".local/main-ci-recovery",
-      "serviceStatus": "OWN_NEW_PG55509_STARTED_EMPTY_CODE_RECOVERY_ACTIVE_API_WEB_NOT_STARTED",
+      "serviceStatus": "STOPPED_AFTER_CODE_HANDOFF;18DBs/privateData retained",
       "privateEnv": "FRESH_0600_NOT_COPIED"
     },
     {
@@ -3651,20 +3908,55 @@
       "pgPort": 55513,
       "apiPort": 4413,
       "webPort": 5313,
-      "status": "ACTIVE_INDEPENDENT16",
+      "status": "STOPPED_AFTER_HUMAN_RESUMPTION_PLATFORM_BLOCK;9DBs/privateData retained",
       "env": "own new ignored .env, not copied",
       "assetRoot": ".local/step07-review/assets",
       "outputRoot": ".local/step07-review/independent-round16",
-      "pgPid": 81665,
+      "pgPid": 1453,
       "database": "tileset_studio",
       "privateEnv": "OWN_NEW_0600_NOT_COPIED",
       "formalReviewStarted": true,
       "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
-      "threadId": "01a13be2-635b-7d11-a98d-ca81dc9906de"
+      "threadId": "01a13be2-635b-7d11-a98d-ca81dc9906de",
+      "serviceStatus": "STOPPED"
+    },
+    {
+      "owner": "step07_reviewer_round17",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "pgPort": 55515,
+      "pgPid": 86022,
+      "apiPort": 4415,
+      "webPort": 5315,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review/independent-round17",
+      "serviceStatus": "ACTIVE_INDEPENDENT17",
+      "formalReviewStarted": true,
+      "privateEnv": "NEW_0600_NOT_COPIED",
+      "browserCache": "own .local/step07-review/browser-cache installed by Main before check; independent launch still required",
+      "threadId": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958"
+    },
+    {
+      "owner": "main_step07_release_final",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker",
+      "branch": "codex/step-07-validation",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "pgPort": 55517,
+      "pgPid": 28375,
+      "apiPort": 4381,
+      "webPort": 5281,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/release-verification/assets",
+      "temporaryRoot": ".local/release-verification",
+      "privateEnv": "NEW_0600_NOT_COPIED",
+      "serviceStatus": "PREPARED_FRESH_RELEASE_ENV_NO_TESTS_YET"
     }
   ],
-  "lastSuccessfulCheckpoint": "R15 report preserved, owned review PG stopped; Standard coder resumed and original CRC counterexample audited; user Studio restored with unchanged data; R16 environment prepared only",
-  "nextSafeAction": "Resume same Standard step_coder in main-ci-recovery isolated tree; meaningful actual PNG CRC regression; freeze new candidate then formal independent round16; no Step08",
+  "lastSuccessfulCheckpoint": "Human-requested same-context reviewer completed delivery6ZIP12PNG16RawCanvas4DBchains and confirmed newP2; platform again stopped before report/ledger;434privatefilehashes/8750tracked protected;PG55513/55515 normalstopped dataretained; no candidate8CI or release",
+  "nextSafeAction": "same Standard coder fixes only known raw chunk type validation, runs meaningful bound regressions; freeze new candidate then independent17; no repeated old16 restart or expanded research",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3698,7 +3990,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-14T19:27:46.771032+00:00",
+  "updatedAtUtc": "2026-10-15T04:16:35.489597+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -3785,12 +4077,31 @@
     {
       "gate": "STEP07_LATEST_INDEPENDENT_REVIEW",
       "id": "STEP07-R15-001",
-      "status": "OPEN",
+      "status": "PARTIAL_INDEPENDENT_FIXED_FULL_REVIEW_REPORT_PENDING",
       "severity": "P2",
       "reason": "currentmandatoryrenderedPNG test validator acceptsbadIENDCRC evenfullactual6phaseconsumer",
       "evidence": "Reviewer15privatecounterexample finalpublicreportpending",
       "blocking": true,
-      "report": "docs/evidence/step-07/independent-round15/report.md"
+      "report": "docs/evidence/step-07/independent-round15/report.md",
+      "note": "Reviewer partial original finding confirms CRC fixed; wholePASS absent, not release gate closed"
+    },
+    {
+      "id": "STEP07-INDEPENDENT16-PLATFORM",
+      "status": "OPEN",
+      "blocking": true,
+      "reason": "Original16, first normal recovery and latest human-requested same-context continuation all terminated with platform possible cybersecurity risk; report/ledger missing",
+      "evidence": "docs/evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json",
+      "safeNext": "complete necessary independent review only when platform permits; no bypass/new task disguise"
+    },
+    {
+      "id": "STEP07-R16-001",
+      "severity": "P2",
+      "status": "OPEN_PENDING_FORMAL_REPORT",
+      "blocking": true,
+      "reason": "Reviewer stronger exact-consumer evidence: raw high-bit IEND names accepted in both real transport channels; prior partialP3 superseded",
+      "evidence": "docs/evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json",
+      "next": "Complete independent16 formalreport first, then same Standard coder minimal raw PNG type validation fix and new independent17; no release"
     }
-  ]
+  ],
+  "finalReport": "docs/orchestration/steps-06-07-final-report.md"
 }
