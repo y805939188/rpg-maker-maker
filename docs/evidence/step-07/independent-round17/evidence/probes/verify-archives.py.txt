@@ -1,0 +1,67 @@
+from pathlib import Path
+import struct,zlib,zipfile,json,hashlib,io
+from PIL import Image
+R=Path.cwd();Q=R/'.local/step07-review/independent-round17';E=R/'.local/step07-review/independent-round17/evidence';expected={'A1.png','A2.png','INSTALL.md','history.json','layout.json','manifest.json','pack.json','sources.json'}
+def sha(b):return hashlib.sha256(b).hexdigest()
+def canonical(v):return json.dumps(v,sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()
+def strict(b):
+ def u16(o):return struct.unpack_from('<H',b,o)[0]
+ def u32(o):return struct.unpack_from('<I',b,o)[0]
+ local={};at=0
+ while at+4<=len(b) and u32(at)==0x04034b50:
+  assert at+30<=len(b);v,f,m,t,d,crc,cs,us,n,e=struct.unpack_from('<HHHHHIIIHH',b,at+4);assert (v,f,m,t,d,e)==(20,0,0,0,0,0);assert cs==us
+  start=at+30+n+e;end=start+cs;assert end<=len(b);nb=b[at+30:at+30+n];name=nb.decode('ascii');assert name in expected and name not in local;payload=b[start:end];assert zlib.crc32(payload)&0xffffffff==crc
+  local[name]={'offset':at,'crc':crc,'size':cs,'data':payload};at=end
+ directory=at;seen=set()
+ while at+4<=len(b) and u32(at)==0x02014b50:
+  assert at+46<=len(b);assert (u16(at+4),u16(at+6),u16(at+8),u16(at+10),u32(at+12))==(20,20,0,0,0)
+  crc,cs,us=u32(at+16),u32(at+20),u32(at+24);n,e,c,disk,attr=struct.unpack_from('<HHHHH',b,at+28);assert (e,c,disk,attr,u32(at+38))==(0,0,0,0,0)
+  name=b[at+46:at+46+n].decode('ascii');assert name not in seen and name in local;seen.add(name);l=local[name];assert (crc,cs,us,u32(at+42))==(l['crc'],l['size'],l['size'],l['offset']);at+=46+n
+ assert seen==expected and set(local)==expected and len(b)==at+22;assert u32(at)==0x06054b50;assert (u16(at+4),u16(at+6),u16(at+8),u16(at+10),u16(at+20))==(0,0,8,8,0);assert u32(at+12)==at-directory and u32(at+16)==directory
+ return {n:v['data'] for n,v in local.items()},directory,at
+
+def png(b):
+ assert b[:8]==b'\x89PNG\r\n\x1a\n';at=8;chunks=[]
+ while at<len(b):
+  length=struct.unpack_from('>I',b,at)[0];end=at+12+length;assert end<=len(b);typ=b[at+4:at+8];assert len(typ)==4 and all(65<=v<=90 or 97<=v<=122 for v in typ) and not (typ[2]&32);assert zlib.crc32(b[at+4:at+8+length])&0xffffffff==struct.unpack_from('>I',b,at+8+length)[0];chunks.append(typ.decode());at=end
+  if typ==b'IEND':assert length==0;break
+ assert at==len(b) and chunks[-1]=='IEND';im=Image.open(io.BytesIO(b));im.load();rgba=im.convert('RGBA');return {'width':im.width,'height':im.height,'rgbaSHA256':sha(rgba.tobytes()),'chunkCount':len(chunks)}
+rows=[];negative=[]
+for mode in ['production','dev']:
+ base=R/'.local/step07/browser'/mode;first=(base/'first-export.zip').read_bytes();assert (base/'history-export.zip').read_bytes()==first
+ for name in ['first-export.zip','second-export.zip','history-export.zip']:
+  p=base/name;b=p.read_bytes();members,central,eocd=strict(b)
+  with zipfile.ZipFile(io.BytesIO(b)) as z:
+   assert z.testzip() is None and set(z.namelist())==expected
+   for n,v in members.items():assert z.read(n)==v
+  m=json.loads(members['manifest.json']);i=m['identity'];assert i['schema']=='mz-pack-build-v1';assert i['context']['commit']=='0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de';assert sha(canonical(i['profile']))==i['profileHash']=='48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793';assert m['buildId']=='step05-pack-'+i['context']['commit'][:12]+'-'+sha(canonical(i))[:16]
+  fs={}
+  for n,v in members.items():
+   fs[n]={'sha256':sha(v),'bytes':len(v)}
+   if n!='manifest.json':assert fs[n]==i['files'][n]
+  imgs={}
+  for n in ['A1.png','A2.png']:
+   imgs[n]=png(members[n]);assert (imgs[n]['width'],imgs[n]['height'])==(768,576);assert imgs[n]['rgbaSHA256']==i['atlases'][n]['pixelHash']
+  rows.append({'mode':mode,'download':name,'zipSHA256':sha(b),'zipBytes':len(b),'buildId':m['buildId'],'manifestSHA256':sha(members['manifest.json']),'profileHash':i['profileHash'],'files':fs,'atlases':imgs,'strictDualDirectoryCRC':True,'stdlibIndependentRead':True,'historyEqualsFirst':True})
+  for kind,offset in [('local-crc',14),('central-crc',central+16),('eocd-count',eocd+10)]:
+   bad=bytearray(b);bad[offset]^=1
+   try:strict(bad)
+   except (AssertionError,struct.error,UnicodeError):pass
+   else:raise AssertionError('bad archive accepted '+kind)
+   negative.append({'mode':mode,'download':name,'fault':kind,'originalZIP':sha(b),'mutatedZIP':sha(bad),'rejected':True,'scope':'LOCAL_CONSUMER_ONLY; not full sixphase injected route'})
+# These actual raw hashes are computed by original unmodified tests through canvas.toDataURL, independently check full expected planes.
+shapes={0:[18,17,14,13],16:[16,17,12,13],20:[10,9,14,13],24:[18,19,14,15],28:[18,17,22,21],34:[8,9,12,13],36:[10,11,14,15],38:[18,19,22,23],40:[16,17,20,21],46:[8,11,20,23]}
+canvases=[];canvasDir=E/'canvas';canvasDir.mkdir(exist_ok=True)
+for mode in ['production','dev']:
+ base=R/'.local/step07/browser'/mode;e=json.loads((base/'evidence.json').read_text());assert e['errors']==[] and not [m for m in e['consoleMessages'] if m['type']=='error' and '422' not in m['text']]
+ for c in e['pixelChecks']:
+  scene,frame,state=c['scene'],c['sourceFrame'],c['state'];grid=[[None]*7,[None,None,None,46,None,None,None],[None]*7] if scene=='isolated' else [[None]*7,[None,34,20,20,20,36,None],[None,16,0,0,0,24,None],[None,40,28,28,28,38,None],[None]*7]
+  g=Image.open(R/'tests/fixtures/art-ground.png').convert('RGBA');w=Image.open(R/f'tests/fixtures/art-water-{frame}.png').convert('RGBA');im=Image.new('RGBA',(336,48*len(grid)))
+  for y,row in enumerate(grid):
+   for x,shape in enumerate(row):
+    source=g if shape is None else w
+    for j,q in enumerate(shapes[shape or 0]):
+     sx=(q%4)*24;sy=(q//4)*24;im.paste(source.crop((sx,sy,sx+24,sy+24)),(48*x+(j%2)*24,48*y+(j//2)*24))
+  h=sha(im.tobytes());assert h==c['actualSha']==c['independentReferenceSha'];formalRef=Image.open(base/f'reference-{scene}-{state}.png').convert('RGBA');assert formalRef.tobytes()==im.tobytes();im.save(canvasDir/f'{mode}-independent-{scene}-{state}.png');canvases.append({'mode':mode,'scene':scene,'state':state,'sourceFrame':frame,'size':list(im.size),'actualRawCanvasSHA256':c['actualSha'],'independentPillowSHA256':h,'fullPlaneEqual':True,'actualOrigin':'unmodified formal test canvasPixels -> canvas.toDataURL -> Sharp RGBA hash; locator screenshot is separate CSS image'})
+assert len(rows)==6 and len(canvases)==16 and len(negative)==18
+(E/'current-archive-verification.json').write_text(json.dumps({'downloads':6,'pngDecodeOperations':12,'distinctContentExportBuildIDs':len(set(r['buildId'] for r in rows)),'rows':rows},indent=2)+'\n');(E/'current-zip-negatives.json').write_text(json.dumps({'normalAccepted':6,'mutationsRejected':18,'rows':negative},indent=2)+'\n');(E/'independent-canvas-verification.json').write_text(json.dumps({'actualSamples':16,'independentFullPlaneEqual':True,'rows':canvases},indent=2)+'\n');print(json.dumps({'actualDownloads':6,'pngDecodes':12,'negativesRejected':18,'rawCanvasSamples':16,'allPass':True}))

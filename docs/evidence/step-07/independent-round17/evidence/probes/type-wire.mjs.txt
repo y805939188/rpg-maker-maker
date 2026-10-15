@@ -1,0 +1,69 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir,stat} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {resolve} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {createHash} from 'node:crypto';
+import {createServer} from 'node:http';
+import {crc32,deflateSync} from 'node:zlib';
+import ts from 'typescript';
+import sharp from 'sharp';
+import {chromium,expect as browserExpect} from '@playwright/test';
+import {RawSource} from '@tileset/asset-core';
+import {inspectPng,decodeSource} from '@tileset/image-adapter';
+const base=resolve('.local/step07-review/independent-round17'),out=base+'/evidence/type-wire';await mkdir(out,{recursive:true});
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const git=(...a)=>execFileSync('git',a,{encoding:'utf8'});
+const oldSource='abd035ac20e6c4de5d19609d932935b99851b2b0';
+const compile=s=>ts.transpileModule(s,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ESNext}}).outputText;
+const oldPolicy=git('show',oldSource+':packages/image-adapter/src/png-policy.ts');
+await writeFile(base+'/old-policy.mjs',compile(oldPolicy));
+const old=await import(pathToFileURL(base+'/old-policy.mjs').href);
+const oldIsolation=git('show',oldSource+':packages/image-adapter/src/isolation.ts').replaceAll("'./png-policy.js'","'./old-policy.mjs'").replaceAll("'../dist/codec-worker.js'","'./old-worker.mjs'");
+const oldWorker=git('show',oldSource+':packages/image-adapter/src/codec-worker.ts').replaceAll("'./png-policy.js'","'./old-policy.mjs'");
+await writeFile(base+'/old-isolation.mjs',compile(oldIsolation));await writeFile(base+'/old-worker.mjs',compile(oldWorker));
+const index=git('show',oldSource+':packages/image-adapter/src/index.ts').replaceAll("'./png-policy.js'","'./old-policy.mjs'").replaceAll("'./isolation.js'","'./old-isolation.mjs'");
+await writeFile(base+'/old-index.mjs',compile(index));const oldDecoder=await import(pathToFileURL(base+'/old-index.mjs').href);
+const observer=await readFile('apps/api/tests/studio/received-resources.ts','utf8');await writeFile(base+'/observer.mjs',compile(observer));const {ReceivedResources}=await import(pathToFileURL(base+'/observer.mjs').href);
+const testSource=await readFile('apps/api/tests/studio/received-resources.test.ts','utf8'),ast=ts.createSourceFile('candidate.ts',testSource,ts.ScriptTarget.Latest,true);
+const rendered=ast.statements.find(s=>ts.isFunctionDeclaration(s)&&s.name?.text==='rendered');assert.ok(rendered);
+const body=compile(rendered.getText(ast));await writeFile(out+'/exact-rendered.ts.txt',rendered.getText(ast));
+const makeRendered=inspect=>new Function('assert','sharp','assertReceivedPng',body+';return rendered;')(assert,sharp,(bytes,expected)=>assert.deepEqual(inspect(bytes),expected));
+const before=makeRendered(old.inspectPng),after=makeRendered(inspectPng);
+const originalRoot='/Users/dingshinn/.codex/worktrees/step-07-review-round16/rpg-maker-maker/.local/step07-review/independent-round16/evidence/wire-type-counterexample';
+const good=await readFile(originalRoot+'/good.png'),bad=await readFile(originalRoot+'/bad-iend-type.png');
+const p={origin:'manual',author:'Independent literal fixture',license:'CC0-1.0',toolVersion:'hand-selected-pixels-v1',parents:[]};
+const policy=[];
+for(const [label,bytes] of [['valid',good],['saved-r16-invalid-IEND',bad]]){
+ let a,b;try{a=old.inspectPng(bytes)}catch(e){a={error:e.code??e.message}}try{b=inspectPng(bytes)}catch(e){b={error:e.code??e.message}}
+ const raw=new RawSource({id:'r17-probe',revision:1,role:'water',density:1,encoding:'png',bytes,provenance:p});
+ const oldDecode=await oldDecoder.decodeSource(raw),currentDecode=await decodeSource(raw);
+ policy.push({label,bytes:bytes.length,sha256:sha(bytes),oldInspect:a,currentInspect:b,oldDecode:oldDecode.status,currentDecode:currentDecode.status,currentCode:currentDecode.diagnostic?.code});
+ if(label==='valid'){assert.equal(oldDecode.status,'validated');assert.equal(currentDecode.status,'validated')}else{assert.equal(oldDecode.status,'validated');assert.equal(currentDecode.diagnostic.code,'PNG_STRUCTURE')}
+ await writeFile(out+'/'+label+'.png',bytes);
+}
+function chunk(name,data){const c=Buffer.alloc(12+data.length);c.writeUInt32BE(data.length);c.write(name,4,'ascii');data.copy(c,8);c.writeUInt32BE(crc32(c.subarray(4,-4)),c.length-4);return c}
+const h=Buffer.alloc(13);h.writeUInt32BE(1);h.writeUInt32BE(1,4);h[8]=8;h[9]=6;const gamma=Buffer.alloc(4);gamma.writeUInt32BE(45455);const chroma=Buffer.alloc(32);[31270,32900,64000,33000,30000,60000,15000,6000].forEach((v,i)=>chroma.writeUInt32BE(v,i*4));
+const legal=Buffer.concat([good.subarray(0,8),chunk('IHDR',h),chunk('sRGB',Buffer.from([0])),chunk('gAMA',gamma),chunk('cHRM',chroma),chunk('pHYs',Buffer.alloc(9)),chunk('IDAT',deflateSync(Buffer.from([0,10,20,30,255]))),chunk('IEND',Buffer.alloc(0))]);
+function mutate(bytes,name,pos,value){const b=Buffer.from(bytes);for(let at=8;at<b.length;){const len=b.readUInt32BE(at);if(b.subarray(at+4,at+8).equals(Buffer.from(name))){b[at+4+pos]=value;b.writeUInt32BE(crc32(b.subarray(at+4,at+8+len)),at+8+len);return b}at+=12+len}throw Error('missing type')}
+const matrix=[];for(const name of ['IHDR','IDAT','IEND','sRGB','gAMA','cHRM','pHYs'])for(let pos=0;pos<4;pos++){const b=mutate(legal,name,pos,name.charCodeAt(pos)|128);assert.deepEqual(old.inspectPng(b),{width:1,height:1});assert.throws(()=>inspectPng(b),e=>e.code==='PNG_STRUCTURE');matrix.push({name,position:pos,old:'ACCEPTS_COUNTEREXAMPLE',current:'PNG_STRUCTURE',sha256:sha(b)})}
+assert.deepEqual(inspectPng(legal),{width:1,height:1});for(const name of ['IHDR','IEND','sRGB']){const b=mutate(legal,name,2,name.charCodeAt(2)|32);assert.throws(()=>old.inspectPng(b));assert.throws(()=>inspectPng(b));}
+const plans=[];let reads=0,origin;
+const html=`<script>window.consume=async(abort)=>{let c=new AbortController(),r=await fetch('/api/projects/owned/recipes/recipe/processed?frame=0',{signal:c.signal,cache:'no-store'}),b;if(abort){let a=[],n=0,rd=r.body.getReader(),len=Number(r.headers.get('content-length'));while(n<len){let v=await rd.read();if(v.done)throw Error('EOF');a.push(v.value);n+=v.value.length;}if(n!==len)throw Error('length');c.abort();rd.releaseLock();b=new Uint8Array(n);let p=0;for(let x of a){b.set(x,p);p+=x.length}}else b=new Uint8Array(await r.arrayBuffer());let hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',b))].map(x=>x.toString(16).padStart(2,'0')).join(''),i=new Image();i.src=URL.createObjectURL(new Blob([b],{type:'image/png'}));await i.decode();i.id='saved';i.dataset.sha=hash;document.getElementById('saved')?.remove();document.body.append(i);return hash}</script>`;
+const server=createServer((q,r)=>{if(!q.url.startsWith('/api/')){r.end(html);return}reads++;const plan=plans.shift();assert.ok(plan);plan.response=r;r.writeHead(200,{'content-type':'image/png','cache-control':'no-store','content-length':plan.bytes.length});if(plan.hold){r.flushHeaders();r.write(plan.bytes.subarray(0,8))}else r.end(plan.bytes)});
+await new Promise(r=>server.listen(0,'127.0.0.1',r));origin='http://127.0.0.1:'+server.address().port;
+let browser;const wires=[];try{
+ browser=await chromium.launch();const executable=chromium.executablePath(),exeBytes=await readFile(executable);await writeFile(out+'/browser-identity.json',JSON.stringify({browserName:'chromium',version:browser.version(),defaultLaunch:true,executable,sha256:sha(exeBytes),bytes:exeBytes.length,cache:process.env.PLAYWRIGHT_BROWSERS_PATH},null,2)+'\n');
+ for(const channel of ['finished','complete-abort'])for(const [label,bytes]of [['valid',good],['bad-IEND',bad]]){
+ const page=await browser.newPage(),capture=new ReceivedResources(page,origin,'owned');let records;try{
+ await capture.observeDocuments();await page.goto(origin);const plan={bytes,hold:channel==='complete-abort'};plans.push(plan);const start=reads,failed=channel==='complete-abort'?page.waitForEvent('requestfailed',{timeout:5000}):null,pending=page.evaluate(abort=>window.consume(abort),plan.hold);
+ if(plan.hold){await browserExpect.poll(()=>capture.snapshot().at(-1)?.streamReady).toBe(true);plan.response.write(bytes.subarray(8))}assert.equal(await pending,sha(bytes));if(failed){await failed;plan.response.end()}
+ await browserExpect.poll(()=>capture.find(origin+'/api/projects/owned/recipes/recipe/processed?frame=0',sha(bytes))?.sha).toBe(sha(bytes));
+ const receipt=capture.find(origin+'/api/projects/owned/recipes/recipe/processed?frame=0',sha(bytes));assert.deepEqual(receipt.bytes,bytes);assert.equal(reads-start,1);assert.equal(receipt.completion,channel==='finished'?'loading-finished':'content-length');
+ await before(page,capture,receipt.url);let current;
+ if(label==='valid'){await after(page,capture,receipt.url);current='ACCEPTED_VALID'}else{await assert.rejects(()=>after(page,capture,receipt.url),e=>e.code==='PNG_STRUCTURE');current='PNG_STRUCTURE'}
+ await page.screenshot({path:out+'/'+channel+'-'+label+'.png'});records=capture.snapshot();wires.push({channel,label,requests:reads-start,sha256:sha(bytes),old:label==='valid'?'ACCEPTED_VALID':'ACCEPTED_COUNTEREXAMPLE',current,receipt:{...receipt,bytes:undefined},domAndNativeRgbaComparedByExactRendered:true});
+ }finally{capture.dispose();await page.close()}}
+}finally{await browser?.close();server.closeAllConnections();await new Promise(r=>server.close(r))}
+await writeFile(out+'/result.json',JSON.stringify({oldSource,currentSource:git('rev-parse','HEAD').trim(),originals:{root:originalRoot,goodSha:sha(good),badSha:sha(bad)},exactRenderedSha:sha(Buffer.from(rendered.getText(ast))),observerSourceSha:sha(Buffer.from(observer)),policy,matrix,legalPositive:true,reservedControls:3,wires},null,2)+'\n');
+console.log(JSON.stringify({old:'COUNTEREXAMPLE_REPRODUCED',current:'RAW_TYPE_REJECTED',matrix:matrix.length,reserved:3,wires:wires.length,requests:reads,closed:true}));

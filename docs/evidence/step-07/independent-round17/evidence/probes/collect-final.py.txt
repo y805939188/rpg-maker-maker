@@ -1,0 +1,27 @@
+from pathlib import Path
+import json,hashlib,subprocess
+r=Path('.local/step07-review/independent-round17');e=r/'evidence';sha=lambda b:hashlib.sha256(b).hexdigest();copies=[];consoles=[]
+keep={'02-edges-delivery.png','05-failed-build-keeps-success.png','06-current-reloaded.png','actual-canvas-edges-0.png'}
+for mode in ['production','dev']:
+ src=Path('.local/step07/browser')/mode;dest=e/'browser'/mode/'studio';dest.mkdir(exist_ok=True)
+ for p in src.rglob('*'):
+  if not p.is_file() or (p.suffix not in ['.json','.zip'] and p.name not in keep):continue
+  b=p.read_bytes();target=dest/p.relative_to(src);target.parent.mkdir(exist_ok=True,parents=True);target.write_bytes(b);copies.append({'source':str(p),'copy':str(target.relative_to(r)),'sha256':sha(b),'bytes':len(b)})
+ s=json.loads((src/'evidence.json').read_text());assert s['sourceCommit']=='0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de';assert s['errors']==[];assert not [m for m in s['consoleMessages'] if m['type']=='error' and '422' not in m['text']];consoles.append({'mode':mode,'source':s['sourceCommit'],'pageerrors':s['errors'],'consoleMessages':s['consoleMessages'],'pixelSamples':len(s['pixelChecks']),'nativeCore':s['native']})
+(e/'browser-evidence-provenance.json').write_text(json.dumps({'currentFormal18Each':True,'copies':copies},indent=2)+'\n');(e/'console-pageerror-review.json').write_text(json.dumps({'reviewedBothActualLogs':True,'modes':consoles},indent=2)+'\n')
+viewed=json.loads((e/'screenshots-viewed.json').read_text())
+for path in ['evidence/browser/production/studio/02-edges-delivery.png','evidence/browser/production/studio/05-failed-build-keeps-success.png','evidence/browser/dev/studio/02-edges-delivery.png','evidence/browser/dev/studio/06-current-reloaded.png','evidence/canvas/dev-independent-edges-0.png','evidence/browser/dev/studio/actual-canvas-edges-0.png']:
+ b=(r/path).read_bytes();viewed.append({'path':path,'sha256':sha(b),'bytes':len(b),'inspection':'view_image actually viewed; technical preview/failure/restore and literal reference inspection only; no user art or MZ claim'})
+(e/'screenshots-viewed.json').write_text(json.dumps(viewed,indent=2)+'\n')
+# Full per-file start and end are private; public summary gives reproducible inputs/hash.
+start=json.loads((r/'private-tracked-start.json').read_text());changed=[];end=[]
+for v in start['files']:
+ b=Path(v['path']).read_bytes();entry={'path':v['path'],'bytes':len(b),'sha256':sha(b)};end.append(entry)
+ if entry!=v:changed.append(entry)
+source=subprocess.check_output(['git','rev-parse','HEAD']).decode().strip();status=subprocess.check_output(['git','status','--porcelain','--untracked-files=all']).decode();detached=subprocess.run(['git','symbolic-ref','-q','HEAD'],stdout=subprocess.PIPE).returncode!=0
+assert not changed and source==start['source'] and not status and detached
+endBytes=(json.dumps({'source':source,'status':status,'files':end},indent=2)+'\n').encode();(r/'private-tracked-final.json').write_bytes(endBytes)
+(e/'tracked-protection.json').write_text(json.dumps({'source':source,'detached':detached,'gitClean':not status,'trackedFiles':len(end),'allTrackedBytesAndShaUnchanged':not changed,'changes':changed,'startPrivatePointer':'private-tracked-start.json','startSHA256':sha((r/'private-tracked-start.json').read_bytes()),'endPrivatePointer':'private-tracked-final.json','endSHA256':sha(endBytes),'method':'read every git-ls-files tracked path start/end; SHA256 and byte length; ignore only own generated/untracked artifacts'},indent=2)+'\n')
+# Keep a final exact canonical read pointer; never write canonical or infer external author.
+p=Path('/Users/dingshinn/Desktop/rpg-maker-maker/docs/orchestration/steps-06-07-state.json');b=p.read_bytes();(e/'canonical-final-readonly.json').write_text(json.dumps({'path':str(p),'sha256':sha(b),'bytes':len(b),'operation':'READ_ONLY','notAClaimCanonicalWasConstant':True},indent=2)+'\n')
+print(json.dumps({'e2eCopies':len(copies),'screenshotsActuallyViewed':len(viewed),'tracked':len(end),'gitClean':not status}))

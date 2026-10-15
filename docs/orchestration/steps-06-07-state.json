@@ -6,9 +6,9 @@
     7
   ],
   "stopAfter": 7,
-  "workflow": "STEP07_FOCUSED_CLOSEOUT_ACTIVE",
+  "workflow": "STEP07_RELEASE_GATES_ACTIVE",
   "currentStep": 7,
-  "phase": "STEP07_INDEPENDENT17_DISPATCH",
+  "phase": "STEP07_LATEST_INDEPENDENT_PASS_CANDIDATE8_PREPARATION",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT17_RUNNING",
+    "status": "INDEPENDENT17_PASS_PENDING_CANDIDATE8_CI",
     "reviewRounds": 17,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3196,28 +3196,46 @@
         }
       }
     },
-    "activeReview": 17,
+    "activeReview": null,
     "latestReview": {
-      "round": 15,
-      "result": "REQUIRES_REVISION",
-      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
-      "docsHead": "2320e9e9fbfea2ad8e60ab29dafdeef91f0075eb",
-      "report": "docs/evidence/step-07/independent-round15/report.md",
-      "reportSha256": "83207c1ab20234ab0c3027f5ad11e6f2cb2b211935b26a0f8b667d2bf50881c1",
-      "ledger": "docs/evidence/step-07/independent-round15/evidence/ledger.json",
-      "ledgerSha256": "6d2b15f29531b340e3f99a24948bc334f1fd0130d32ed27d34f1fb1e9d172dc3",
-      "payloads": 166,
-      "blockingP2": [
+      "round": 17,
+      "result": "PASS_WHOLE_CANDIDATE",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "docsHead": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+      "report": "docs/evidence/step-07/independent-round17/report.md",
+      "reportSha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
+      "reportBytes": 16434,
+      "ledger": "docs/evidence/step-07/independent-round17/evidence/ledger.json",
+      "ledgerSha256": "1285e8e6e3fe3f1c19b5d8c406c601647b31a76a028889f2c26a6d186dfc6189",
+      "ledgerBytes": 35023,
+      "payloadsVerifiedByMain": 203,
+      "P0": 0,
+      "P1": 0,
+      "blockingP2": 0,
+      "openNonblocking": 0,
+      "nativeExit": 0,
+      "thread": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958",
+      "tests": {
+        "check": 418,
+        "PG06": 23,
+        "HTTP": 16,
+        "api": 3,
+        "privacy": 5,
+        "production": 18,
+        "development": 18
+      },
+      "delivery": {
+        "engineering": 208,
+        "ZIPs": 6,
+        "PNGDecodes": 12,
+        "RawCanvas": 16,
+        "dbFileJobChains": 4
+      },
+      "closed": [
+        "STEP07-R16-001",
         "STEP07-R15-001"
       ],
-      "executed": {
-        "check": 358,
-        "http": 16,
-        "productionBrowser": 18,
-        "developmentBrowser": 18
-      },
-      "crcCounterexample": "COUNTEREXAMPLE_CAPTURED; full real six-phase consumer accepted 10 bad IEND CRC PNG; not candidate PASS",
-      "reviewServices": "STOPPED; 9 owned databases/private data retained"
+      "review16": "INTERRUPTED_PARTIAL_NOT_RETROACTIVELY_PASS"
     },
     "codingResume": {
       "thread": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
@@ -3309,17 +3327,22 @@
     },
     "candidateDocsHead": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
     "forwardValidationPreparation": {
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
-      "head": "4c550b63fd8ea333c2156c5d43d5d96d8a297103",
-      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
-      "normalAuthorMerge": "0e798bbd31d65b7c3f3d41db45cf56bad196442e",
-      "postSourcePaths": 379,
+      "head": "36d8b83e8fb518482c044b0367aeba31f9222b8b",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "postSourcePaths": 426,
       "postSourceExecutionDiff": 0,
-      "conflicts": 0,
       "pushed": false,
-      "candidateCI": "NOT_STARTED_PENDING_LATEST_INDEPENDENT_PASS",
-      "mainMerge": "NOT_STARTED_FORWARD_REPAIR"
+      "freshReleaseBuild": {
+        "exitCode": 0,
+        "log": ".local/release-verification/prepared-build.log"
+      },
+      "freshReleaseMigrate": {
+        "exitCode": 0,
+        "log": ".local/release-verification/prepared-migrate.log"
+      },
+      "candidate8CI": "NOT_STARTED_PENDING_INDEPENDENT17_PASS"
     },
     "independent16Progress": {
       "status": "RUNNING_NO_FINAL_VERDICT",
@@ -3407,11 +3430,85 @@
     },
     "review16PartialPreservation": "docs/evidence/orchestration-06-07/step07-review16-partial-preservation.json",
     "latestCompleteReview": {
-      "round": 15,
-      "result": "REQUIRES_REVISION",
-      "source": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd"
+      "round": 17,
+      "result": "PASS_WHOLE_CANDIDATE",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "docsHead": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+      "report": "docs/evidence/step-07/independent-round17/report.md",
+      "reportSha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
+      "reportBytes": 16434,
+      "ledger": "docs/evidence/step-07/independent-round17/evidence/ledger.json",
+      "ledgerSha256": "1285e8e6e3fe3f1c19b5d8c406c601647b31a76a028889f2c26a6d186dfc6189",
+      "ledgerBytes": 35023,
+      "payloadsVerifiedByMain": 203,
+      "P0": 0,
+      "P1": 0,
+      "blockingP2": 0,
+      "openNonblocking": 0,
+      "nativeExit": 0,
+      "thread": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958",
+      "tests": {
+        "check": 418,
+        "PG06": 23,
+        "HTTP": 16,
+        "api": 3,
+        "privacy": 5,
+        "production": 18,
+        "development": 18
+      },
+      "delivery": {
+        "engineering": 208,
+        "ZIPs": 6,
+        "PNGDecodes": 12,
+        "RawCanvas": 16,
+        "dbFileJobChains": 4
+      },
+      "closed": [
+        "STEP07-R16-001",
+        "STEP07-R15-001"
+      ],
+      "review16": "INTERRUPTED_PARTIAL_NOT_RETROACTIVELY_PASS"
     },
-    "finalIndependentPass": "NOT_OBTAINED_PLATFORM_BLOCK",
+    "finalIndependentPass": {
+      "round": 17,
+      "result": "PASS_WHOLE_CANDIDATE",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "docsHead": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+      "report": "docs/evidence/step-07/independent-round17/report.md",
+      "reportSha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
+      "reportBytes": 16434,
+      "ledger": "docs/evidence/step-07/independent-round17/evidence/ledger.json",
+      "ledgerSha256": "1285e8e6e3fe3f1c19b5d8c406c601647b31a76a028889f2c26a6d186dfc6189",
+      "ledgerBytes": 35023,
+      "payloadsVerifiedByMain": 203,
+      "P0": 0,
+      "P1": 0,
+      "blockingP2": 0,
+      "openNonblocking": 0,
+      "nativeExit": 0,
+      "thread": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958",
+      "tests": {
+        "check": 418,
+        "PG06": 23,
+        "HTTP": 16,
+        "api": 3,
+        "privacy": 5,
+        "production": 18,
+        "development": 18
+      },
+      "delivery": {
+        "engineering": 208,
+        "ZIPs": 6,
+        "PNGDecodes": 12,
+        "RawCanvas": 16,
+        "dbFileJobChains": 4
+      },
+      "closed": [
+        "STEP07-R16-001",
+        "STEP07-R15-001"
+      ],
+      "review16": "INTERRUPTED_PARTIAL_NOT_RETROACTIVELY_PASS"
+    },
     "candidate8CI": "NOT_STARTED",
     "forwardMainRelease": "NOT_STARTED",
     "finalReviewedSource": null,
@@ -3556,13 +3653,48 @@
     },
     "independent17Progress": {
       "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
-      "status": "RUNNING_NO_VERDICT",
+      "status": "COMPLETE_PASS_WHOLE_CANDIDATE",
       "check": 418,
       "api": 3,
       "privacy": 5,
-      "PG06": "RUNNING_FULL23",
+      "PG06": {
+        "tests": 23,
+        "status": "INDEPENDENT_PASS_CURRENT_SOURCE"
+      },
       "authorPayloadsVerified": 222,
-      "auxiliaryFailure": "own independent script initially used wrong provenance field; retained and corrected; candidate unchanged"
+      "auxiliaryFailure": "own independent script initially used wrong provenance field; retained and corrected; candidate unchanged",
+      "engineering": {
+        "files": 208,
+        "status": "INDEPENDENT_BYTE_EQUAL_RECOMPUTED_IDENTITY"
+      },
+      "knownTypeDefect": "old reproduced; new inspect/decode/both actual network consumers reject, valid controls pass; final closure pending report",
+      "HTTP16": {
+        "tests": 16,
+        "seconds": 474.05,
+        "status": "INDEPENDENT_PASS_CURRENT_SOURCE"
+      },
+      "production18": {
+        "tests": 18,
+        "skip": 0,
+        "retry": 0,
+        "pageErrors": 0,
+        "status": "INDEPENDENT_PASS_CURRENT_SOURCE"
+      },
+      "development18": {
+        "tests": 18,
+        "skip": 0,
+        "retry": 0,
+        "status": "INDEPENDENT_PASS_CURRENT_SOURCE"
+      },
+      "processedWire": "10 actualGET currentdocument/fullrequest/framing/SHA independently checked",
+      "screenshots": "actual production delivery and failed-build-retains-success viewed by reviewer",
+      "delivery": {
+        "actualZIPs": 6,
+        "PNGDecodes": 12,
+        "RawCanvasPlanes": 16,
+        "BuildExportFileJobChains": 4,
+        "status": "INDEPENDENT_MATCH"
+      }
     }
   },
   "step08": {
@@ -3881,7 +4013,7 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/main-ci-recovery/assets",
       "temporaryRoot": ".local/main-ci-recovery",
-      "serviceStatus": "STOPPED_AFTER_CODE_HANDOFF;18DBs/privateData retained",
+      "serviceStatus": "STOPPED_AFTER_HANDOFF;31DB/env/assets/evidence retained",
       "privateEnv": "FRESH_0600_NOT_COPIED"
     },
     {
@@ -3932,7 +4064,7 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review/independent-round17",
-      "serviceStatus": "ACTIVE_INDEPENDENT17",
+      "serviceStatus": "STOPPED_AFTER_PASS;13DB/env/assets/evidence retained",
       "formalReviewStarted": true,
       "privateEnv": "NEW_0600_NOT_COPIED",
       "browserCache": "own .local/step07-review/browser-cache installed by Main before check; independent launch still required",
@@ -3955,8 +4087,8 @@
       "serviceStatus": "PREPARED_FRESH_RELEASE_ENV_NO_TESTS_YET"
     }
   ],
-  "lastSuccessfulCheckpoint": "Human-requested same-context reviewer completed delivery6ZIP12PNG16RawCanvas4DBchains and confirmed newP2; platform again stopped before report/ledger;434privatefilehashes/8750tracked protected;PG55513/55515 normalstopped dataretained; no candidate8CI or release",
-  "nextSafeAction": "same Standard coder fixes only known raw chunk type validation, runs meaningful bound regressions; freeze new candidate then independent17; no repeated old16 restart or expanded research",
+  "lastSuccessfulCheckpoint": "Latest source0c3/docsfa7 independent17 wholePASS;203 originalpayloads preserved/hashverified;alllocalnecessarygates pass;candidate8CI pending",
+  "nextSafeAction": "commit pure review evidence/docs, integrate into validation branch, verify executable equality to reviewed source, normal candidate8 push and fullCI; only CIpass then delegated approval/normalforwardMainMerge/postmerge/push/readback/mainCI",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3990,7 +4122,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-15T04:16:35.489597+00:00",
+  "updatedAtUtc": "2026-10-15T04:46:45.787825+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -4064,6 +4196,36 @@
       "reason": "single sixphase case original180000ms timeout; lastdevreplacement processed completed at152526+442ms; earlierallactualbody assertions completed, no missingreceipt diagnostic",
       "evidence": "docs/evidence/orchestration-06-07/step07-candidate-ci-sixth-failure.json",
       "closedBy": "docs/evidence/orchestration-06-07/step07-candidate-seven-ci-and-approval.json"
+    },
+    {
+      "gate": "STEP07_LATEST_INDEPENDENT_REVIEW",
+      "id": "STEP07-R15-001",
+      "status": "FIXED_CLOSED_BY_INDEPENDENT17",
+      "severity": "P2",
+      "reason": "currentmandatoryrenderedPNG test validator acceptsbadIENDCRC evenfullactual6phaseconsumer",
+      "evidence": "docs/evidence/step-07/independent-round17/report.md",
+      "blocking": false,
+      "report": "docs/evidence/step-07/independent-round15/report.md",
+      "note": "Reviewer partial original finding confirms CRC fixed; wholePASS absent, not release gate closed",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de"
+    },
+    {
+      "id": "STEP07-INDEPENDENT16-PLATFORM",
+      "status": "HISTORICAL_INTERRUPTION_PRESERVED; CURRENT_CANDIDATE_REVIEW17_PASS",
+      "blocking": false,
+      "reason": "Original16, first normal recovery and latest human-requested same-context continuation all terminated with platform possible cybersecurity risk; report/ledger missing",
+      "evidence": "docs/evidence/step-07/independent-round17/report.md",
+      "safeNext": "complete necessary independent review only when platform permits; no bypass/new task disguise"
+    },
+    {
+      "id": "STEP07-R16-001",
+      "severity": "P2",
+      "status": "FIXED_CLOSED_BY_INDEPENDENT17",
+      "blocking": false,
+      "reason": "Reviewer stronger exact-consumer evidence: raw high-bit IEND names accepted in both real transport channels; prior partialP3 superseded",
+      "evidence": "docs/evidence/step-07/independent-round17/report.md",
+      "next": "Complete independent16 formalreport first, then same Standard coder minimal raw PNG type validation fix and new independent17; no release",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de"
     }
   ],
   "blockers": [
@@ -4073,34 +4235,6 @@
       "status": "OPEN",
       "reason": "currentdocument1 actualDOM96x144 SHA correct; onlyrecordGET200 currentdoc buttransportfailed ERR_ABORTED, responsebodyunavailable protocolNoData; original5000ms requiredreceipt fails",
       "evidence": "docs/evidence/orchestration-06-07/step07-first-main-ci-failure.json"
-    },
-    {
-      "gate": "STEP07_LATEST_INDEPENDENT_REVIEW",
-      "id": "STEP07-R15-001",
-      "status": "PARTIAL_INDEPENDENT_FIXED_FULL_REVIEW_REPORT_PENDING",
-      "severity": "P2",
-      "reason": "currentmandatoryrenderedPNG test validator acceptsbadIENDCRC evenfullactual6phaseconsumer",
-      "evidence": "Reviewer15privatecounterexample finalpublicreportpending",
-      "blocking": true,
-      "report": "docs/evidence/step-07/independent-round15/report.md",
-      "note": "Reviewer partial original finding confirms CRC fixed; wholePASS absent, not release gate closed"
-    },
-    {
-      "id": "STEP07-INDEPENDENT16-PLATFORM",
-      "status": "OPEN",
-      "blocking": true,
-      "reason": "Original16, first normal recovery and latest human-requested same-context continuation all terminated with platform possible cybersecurity risk; report/ledger missing",
-      "evidence": "docs/evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json",
-      "safeNext": "complete necessary independent review only when platform permits; no bypass/new task disguise"
-    },
-    {
-      "id": "STEP07-R16-001",
-      "severity": "P2",
-      "status": "OPEN_PENDING_FORMAL_REPORT",
-      "blocking": true,
-      "reason": "Reviewer stronger exact-consumer evidence: raw high-bit IEND names accepted in both real transport channels; prior partialP3 superseded",
-      "evidence": "docs/evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json",
-      "next": "Complete independent16 formalreport first, then same Standard coder minimal raw PNG type validation fix and new independent17; no release"
     }
   ],
   "finalReport": "docs/orchestration/steps-06-07-final-report.md"

@@ -1,0 +1,30 @@
+from pathlib import Path
+import subprocess,json,hashlib
+root=Path.cwd();out=root/'.local/step07-review/independent-round17/evidence'
+main=Path('/Users/dingshinn/Desktop/rpg-maker-maker');author=Path('/Users/dingshinn/.codex/worktrees/step-07-main-ci-recovery/rpg-maker-maker')
+def sha(b):return hashlib.sha256(b).hexdigest()
+def info(p):
+ b=p.read_bytes();return {'path':str(p),'sha256':sha(b),'bytes':len(b)}
+def git(*a):return subprocess.check_output(['git',*a])
+source='0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de';docs='fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67'
+report='docs/reviews/step-07-chunk-type-coding.md';lp='docs/evidence/step-07/chunk-type-fix/ledger.json'
+audit={'source':source,'docs':docs,'authorReport':info(author/report),'authorLedger':info(author/lp),'authorOnlyNotReviewerTests':True}
+assert audit['authorReport']['sha256']=='3d39d1350116e9197782abb0c51310be08129c2f173a0ea150d7df077404b57d';assert audit['authorLedger']['sha256']=='06815c6ef2daf6325fd60f7bd98ef66e886359fb933e354ffb7044106d319661'
+l=json.loads((author/lp).read_text());items=[]
+for path,v in l['files'].items():
+ b=(author/path).read_bytes();assert len(b)==v['bytes'] and sha(b)==v['sha256'];assert git('show',docs+':'+path)==b;items.append({'path':path,**v})
+audit['authorPayloadsReadAndGitBound']=len(items);audit['payloads']=items
+paths=git('diff','--name-only',source,docs).decode().splitlines();assert all(x.startswith('docs/') for x in paths);audit['sourceToDocsPaths']=paths
+changes=git('diff','--name-only','abd035a',source).decode().splitlines();audit['parentChanges']=changes
+assert git('diff','abd035a',source,'--','apps/api/tests/studio/received-resources.ts','apps/api/tests/studio/received-png.ts')==b''
+audit['observerAndPngConsumerUnchangedFromR16']=True
+prior=[]
+for n in [4,5,14,15]:
+ base=main/f'docs/evidence/step-07/independent-round{n}';entry={'round':n,'report':info(base/'report.md'),'ledger':info(base/'evidence/ledger.json'),'scope':'PREVIOUS_SOURCE_ONLY'};prior.append(entry)
+audit['priorPreciseReportReferences']=prior
+reading=['AGENTS.md','docs/plans/01_PRODUCT_TECH_SPEC_V0.5.md','docs/plans/02_V1_IMPLEMENTATION_PLAN.md','docs/engineering/MZ_RUNTIME_ENVIRONMENT.md','docs/engineering/STEP_06_BASELINE.md','docs/engineering/STEP_07_BASELINE.md','docs/engineering/V1_REQUIREMENTS_EVIDENCE.md']
+audit['requiredReading']=[info(root/x) for x in reading]
+audit['mainReferences']=[info(main/x) for x in ['docs/orchestration/steps-06-07-state.json','docs/orchestration/step-07-focused-closeout-2026-10-15.md','docs/reviews/step-07-independent-round-16-interruption.md','docs/evidence/orchestration-06-07/step07-review17-client.json']]
+audit['clientRequested']={'role':'step_reviewer','model':'gpt-6.1-sol','effort':'ultra','tier':'default','serverFinal':'UNVERIFIED_NOT_EXPOSED','globalSettingsModified':False,'collaborationUsed':False}
+(out/'baseline-audit.json').write_text(json.dumps(audit,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({'payloads':len(items),'postSourceDocs':len(paths),'parentChanges':changes,'priorReferences':prior},ensure_ascii=False))

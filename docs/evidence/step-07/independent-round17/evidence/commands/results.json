@@ -1,0 +1,146 @@
+[
+  {
+    "label": "check",
+    "command": [
+      "pnpm",
+      "check"
+    ],
+    "started": "2026-10-15T04:12:28.955Z",
+    "ended": "2026-10-15T04:13:47.179Z",
+    "seconds": 78.224,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/check.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "engineering",
+    "command": [
+      "node",
+      "scripts/build-engineering.mjs",
+      "step07"
+    ],
+    "started": "2026-10-15T04:14:08.297Z",
+    "ended": "2026-10-15T04:14:08.539Z",
+    "seconds": 0.242,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/engineering.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "migration",
+    "command": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "started": "2026-10-15T04:14:08.574Z",
+    "ended": "2026-10-15T04:14:10.572Z",
+    "seconds": 1.998,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/migration.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "api3",
+    "command": [
+      "pnpm",
+      "test:integration"
+    ],
+    "started": "2026-10-15T04:14:10.605Z",
+    "ended": "2026-10-15T04:14:21.724Z",
+    "seconds": 11.119,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/api3.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "privacy5",
+    "command": [
+      "pnpm",
+      "test:dev-privacy"
+    ],
+    "started": "2026-10-15T04:14:21.725Z",
+    "ended": "2026-10-15T04:14:32.630Z",
+    "seconds": 10.905,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/privacy5.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "PG06-full23",
+    "command": [
+      "pnpm",
+      "test:step06"
+    ],
+    "started": "2026-10-15T04:14:32.631Z",
+    "ended": "2026-10-15T04:18:00.080Z",
+    "seconds": 207.449,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/PG06-full23.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "HTTP07-full16",
+    "command": [
+      "pnpm",
+      "test:step07"
+    ],
+    "started": "2026-10-15T04:18:00.081Z",
+    "ended": "2026-10-15T04:25:54.131Z",
+    "seconds": 474.05,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/HTTP07-full16.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "production-migration",
+    "command": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "started": "2026-10-15T04:26:20.152Z",
+    "ended": "2026-10-15T04:26:21.560Z",
+    "seconds": 1.408,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/production-migration.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "production18-noenv",
+    "command": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "started": "2026-10-15T04:26:21.560Z",
+    "ended": "2026-10-15T04:33:27.941Z",
+    "seconds": 426.381,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/production18-noenv.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "dev-migration",
+    "command": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "started": "2026-10-15T04:33:28.102Z",
+    "ended": "2026-10-15T04:33:29.535Z",
+    "seconds": 1.433,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/dev-migration.log.txt",
+    "noProxyLoopback": true
+  },
+  {
+    "label": "dev18-noenv",
+    "command": [
+      "pnpm",
+      "test:e2e"
+    ],
+    "started": "2026-10-15T04:33:29.538Z",
+    "ended": "2026-10-15T04:40:55.994Z",
+    "seconds": 446.456,
+    "exit": 0,
+    "log": ".local/step07-review/independent-round17/evidence/commands/dev18-noenv.log.txt",
+    "noProxyLoopback": true
+  }
+]

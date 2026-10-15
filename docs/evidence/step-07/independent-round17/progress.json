@@ -1,0 +1,147 @@
+{
+  "schema": "step07-independent-review17-progress-v1",
+  "formalRound": 17,
+  "status": "STOP_REVIEWER",
+  "technicalConclusion": "PASS_WHOLE_CANDIDATE",
+  "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+  "authorDocs": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+  "roleRequested": "step_reviewer/gpt-6.1-sol/ultra/default(Standard)",
+  "serverFinalModelEffortTier": "UNVERIFIED_NOT_EXPOSED",
+  "nativeSession": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958",
+  "build": {
+    "id": "step07-0c3dc30b0ebb-63b9289040076990",
+    "manifestSHA256": "7f42de70aef9d6e4be0cb3644a18c4fec561c98330af9619f4dd30d1325069e1",
+    "payloads": 208,
+    "fullProfileCanonicalSHA256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793"
+  },
+  "independentlyExecuted": {
+    "check": {
+      "passed": 418,
+      "exit": 0,
+      "seconds": 78.224,
+      "skip": 0,
+      "retry": 0
+    },
+    "api3": {
+      "passed": 3,
+      "exit": 0,
+      "seconds": 11.119,
+      "skip": 0,
+      "retry": 0
+    },
+    "privacy5": {
+      "passed": 5,
+      "exit": 0,
+      "seconds": 10.905,
+      "skip": 0,
+      "retry": 0
+    },
+    "PG06-full23": {
+      "passed": 23,
+      "exit": 0,
+      "seconds": 207.449,
+      "skip": 0,
+      "retry": 0
+    },
+    "HTTP07-full16": {
+      "passed": 16,
+      "exit": 0,
+      "seconds": 474.05,
+      "skip": 0,
+      "retry": 0
+    },
+    "production18-noenv": {
+      "passed": 18,
+      "exit": 0,
+      "seconds": 426.381,
+      "skip": 0,
+      "retry": 0
+    },
+    "dev18-noenv": {
+      "passed": 18,
+      "exit": 0,
+      "seconds": 446.456,
+      "skip": 0,
+      "retry": 0
+    }
+  },
+  "independentAdditional": {
+    "oldNewRawTypeInspectMatrix": 28,
+    "reservedControls": 3,
+    "sameRequestValidAndInvalidWireRequests": 4,
+    "actualZIPs": 6,
+    "PNGdecodes": 12,
+    "fullRawCanvasSamples": 16,
+    "DBReferenceChains": 4,
+    "localZIPNegativeControls": 18
+  },
+  "findings": {
+    "P0": 0,
+    "P1": 0,
+    "blockingP2": 0,
+    "newOpenNonblocking": 0,
+    "fixedThisRound": [
+      "STEP07-R16-001",
+      "STEP07-R15-001"
+    ],
+    "retainedFixed": [
+      "STEP07-R4-001",
+      "STEP07-R4-002",
+      "STEP07-R4-003",
+      "R1-R3",
+      "R7",
+      "R9",
+      "R11"
+    ]
+  },
+  "review16": "INTERRUPTED_PARTIAL_NO_REPORT_NO_LEDGER_NO_PASS",
+  "report": {
+    "path": "report.md",
+    "sha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
+    "bytes": 16434
+  },
+  "authorEvidenceOnly": {
+    "payloadsVerified": 222,
+    "postSourceDocsPaths": 223,
+    "reportSha256": "3d39d1350116e9197782abb0c51310be08129c2f173a0ea150d7df077404b57d",
+    "ledgerSha256": "06815c6ef2daf6325fd60f7bd98ef66e886359fb933e354ffb7044106d319661"
+  },
+  "preservation": {
+    "trackedFiles": 8946,
+    "allSHABytesUnchanged": true,
+    "gitClean": true,
+    "detached": true,
+    "PG": 55515,
+    "postgresPid": 86022,
+    "databases": 13,
+    "PGLeftForMain": true,
+    "apiWebBrowserNativeClosed": true,
+    "envRestored0600": true,
+    "allAssetsBackupsCachesFailuresPreserved": true
+  },
+  "steps": {
+    "06": "PUBLISHED_UNCHANGED",
+    "07": "INDEPENDENT_TECHNICAL_PASS_NOT_PUBLISHED",
+    "08": "NOT_STARTED",
+    "09": "NOT_STARTED",
+    "10": "NOT_STARTED"
+  },
+  "notExecutedByReviewer": [
+    "candidate8CI",
+    "approval",
+    "normalForwardMerge",
+    "postmerge",
+    "pushReadback",
+    "mainCISuccess",
+    "publication",
+    "newArtifactMZ",
+    "userArt"
+  ],
+  "oldMainCI38586177993": "FAILURE_PRESERVED",
+  "productionOrFormalTestsModified": false,
+  "commitApproveMergePush": false,
+  "collaborationOrFastPriorityUltrafast": false,
+  "platformRejectionThisRound": false,
+  "ledger": "evidence/ledger.json",
+  "ledgerSelfExcluded": true
+}

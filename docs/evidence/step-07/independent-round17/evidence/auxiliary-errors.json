@@ -1,0 +1,54 @@
+{
+  "errors": [
+    {
+      "kind": "OWN_PROBE_DESCRIPTOR_FIELD",
+      "attempt": 1,
+      "actual": "TypeError provenance undefined; saved log",
+      "fix": "Use explicit valid synthetic provenance from retained fixture; no product edit",
+      "candidateFinding": false
+    },
+    {
+      "kind": "OWN_PROBE_REVISION_ID",
+      "attempt": 2,
+      "actual": "REVISION_ID because uppercase label joined into source id",
+      "fix": "Use valid stable r17-probe id",
+      "candidateFinding": false
+    },
+    {
+      "kind": "OWN_PROBE_MIXED_OLD_NATIVE_POLICY",
+      "attempt": 3,
+      "actual": "Old parent decode parent used old inspect but current native worker correctly rejected high-bit IEND",
+      "fix": "Extract unchanged old worker/isolation/index closure from exact old Git source, adapt only module locations",
+      "candidateFinding": false
+    },
+    {
+      "kind": "CDP_DIAGNOSTIC_UNAVAILABLE",
+      "actual": "Protocol error (Browser.getBrowserCommandLine): Command line not returned because --enable-automation not set.",
+      "fix": "Read actual browser child executable through OS pid/ppid, owned root and SHA; preserve default launch, no extra flags",
+      "candidateFinding": false
+    },
+    {
+      "kind": "READ_PATH_GUESS",
+      "actual": "png-crc.test.ts and first focused-closeout docs/reviews path did not exist",
+      "fix": "Read exact files listed by rg and Main canonical pointer",
+      "candidateFinding": false
+    },
+    {
+      "kind": "OWN_PROFILE_HASH_LABEL",
+      "actual": "Initial evidence calculated JSON insertion-order hash be7aa930 instead of canonical full-profile fingerprint",
+      "fix": "Keep named serialization hash and separately independent sorted canonical hash 48844001; no source or Manifest change",
+      "candidateFinding": false
+    }
+  ],
+  "retainedOriginals": [
+    "type-wire-first.mjs",
+    "type-wire-second.mjs",
+    "type-wire-third.mjs",
+    "browser-identity-first.mjs",
+    "evidence/commands/independent-type-wire-first-failure.log.txt",
+    "evidence/commands/independent-type-wire-second-failure.log.txt",
+    "evidence/commands/independent-type-wire-third-failure.log.txt"
+  ],
+  "formalNecessarySuiteFailuresSoFar": 0,
+  "noPlatformRejectionThisRound": true
+}
