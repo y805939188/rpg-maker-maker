@@ -3530,6 +3530,39 @@
       "engineeringFiles": 208,
       "coderExit": 0,
       "independentStatus": "PENDING_ROUND17"
+    },
+    "oldReleaseDirectoryObservation": {
+      "atUtc": "2026-10-15T04:13:20.429882+00:00",
+      "oldReleaseRoot": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
+      "rootExists": false,
+      "parentExists": true,
+      "gitBranchRetained": "codex/step-07-validation",
+      "retainedBranchTip": "4c550b63fd8ea333c2156c5d43d5d96d8a297103",
+      "gitWorktreeRegistered": false,
+      "appAttachment": "stale worktree entry still present; not marked archived",
+      "cause": "UNKNOWN_NO_DELETION_EXECUTED_BY_THIS_ORCHESTRATOR_TURN",
+      "firstMergeAttempt": "read-only cwd existence failed before mutation; preserved native error",
+      "oldPrivateEnvironment": "NOT_PRESENT_AT_EXPECTED_ROOT; cannot claim preserved or recovered",
+      "action": "create new uniquely named isolated release-final environment from retained branch; no old path recreation, data reset or unknown cleanup",
+      "userStudio": "separate step-07-studio root exists; not modified"
+    },
+    "releaseEnvironment": {
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker",
+      "pgPort": 55517,
+      "apiPort": 4381,
+      "webPort": 5281,
+      "newOwnEnv": true,
+      "oldDataNotReinitialized": true
+    },
+    "independent17Progress": {
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "status": "RUNNING_NO_VERDICT",
+      "check": 418,
+      "api": 3,
+      "privacy": 5,
+      "PG06": "RUNNING_FULL23",
+      "authorPayloadsVerified": 222,
+      "auxiliaryFailure": "own independent script initially used wrong provenance field; retained and corrected; candidate unchanged"
     }
   },
   "step08": {
@@ -3651,7 +3684,7 @@
       "temporaryRoot": ".local/release-verification",
       "apiPort": 4381,
       "webPort": 5281,
-      "serviceStatus": "POSTMERGE_ALLPASS_OWNED_PG_API_WEB_STOPPED_PRIVATE_DATA_RETAINED",
+      "serviceStatus": "OLD_DIRECTORY_NOT_PRESENT; original historical records retained; cause unknown; no deletion by this turn",
       "credentials": "FRESH_PRIVATE_ENV600_NO_COPY",
       "migrationPreparation": "FIVE_MIGRATIONS_SUCCESS_NEW_EMPTY_DB_NO_RESET",
       "pgPid": 76340,
@@ -3904,6 +3937,22 @@
       "privateEnv": "NEW_0600_NOT_COPIED",
       "browserCache": "own .local/step07-review/browser-cache installed by Main before check; independent launch still required",
       "threadId": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958"
+    },
+    {
+      "owner": "main_step07_release_final",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker",
+      "branch": "codex/step-07-validation",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "pgPort": 55517,
+      "pgPid": 28375,
+      "apiPort": 4381,
+      "webPort": 5281,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/release-verification/assets",
+      "temporaryRoot": ".local/release-verification",
+      "privateEnv": "NEW_0600_NOT_COPIED",
+      "serviceStatus": "PREPARED_FRESH_RELEASE_ENV_NO_TESTS_YET"
     }
   ],
   "lastSuccessfulCheckpoint": "Human-requested same-context reviewer completed delivery6ZIP12PNG16RawCanvas4DBchains and confirmed newP2; platform again stopped before report/ledger;434privatefilehashes/8750tracked protected;PG55513/55515 normalstopped dataretained; no candidate8CI or release",
@@ -3941,7 +3990,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-15T04:11:45.090798+00:00",
+  "updatedAtUtc": "2026-10-15T04:16:35.489597+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
