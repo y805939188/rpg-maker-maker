@@ -1,0 +1,38 @@
+{
+  "base": "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f",
+  "source": "d0a6f162a2b57634f7f10d0f5c49eab2168bb6a8",
+  "remoteCI": {
+    "run": 38690964177,
+    "job": 116276522135,
+    "originalSHA256": "62c5f7eeae7f8f23b7ce7ae8ee0a50cda7a05f47cd5f40c2ce5eaf9f8c43379e",
+    "originalBytes": 146082,
+    "observed": "17pass/1fail; delivery ready marker missing at30000ms after list recovery",
+    "trace": "NOT_AVAILABLE_NOT_UPLOADED",
+    "exactRemoteCause": "UNVERIFIED"
+  },
+  "deterministicLocalCause": {
+    "setup": "List GET503; real initial Studio200 held until clock installation; real preview descriptor200 held; no fake source/PNG/response body",
+    "oldOrder": [
+      "actual-studio-200",
+      "actual-descriptor-held",
+      "request-failed",
+      "after-81000"
+    ],
+    "oldCurrentReadyOriginalBudget": 30000,
+    "oldAssertionExit": 1,
+    "oldDescriptorAbort": "net::ERR_ABORTED",
+    "oldUIResourceDeadline": "60-second total resource deadline expired due to81000 fakeclock advance",
+    "backend": "successfulBuildId and COMPLETED Job persist; no data publication failure observed",
+    "newOrder": [
+      "currentReady-barrier",
+      "actual-studio-200",
+      "actual-descriptor-held",
+      "after-81000"
+    ],
+    "newExit": 0,
+    "newCanvasReadyBeforeAndAfter81000": true,
+    "sameOldAssertions": "503/read-only recovery/no automatic list retries/noPOST/currentReady/unmount cancellation preserved",
+    "scope": "Controls use same production bytes; additional initial currentReady is only executable change. One extra read-only Studio diagnostic per control, no extra material GET/rebuild."
+  },
+  "limits": "This ordered local counterexample proves the old fixture can consume an unrelated resource deadline. The missing CI trace does not establish the exact remote ordering; no claimed product or server data defect."
+}

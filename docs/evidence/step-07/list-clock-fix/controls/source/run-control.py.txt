@@ -1,0 +1,48 @@
+from pathlib import Path
+import os,subprocess,json,time,hashlib,sys
+r=Path.cwd();t=r/'.local/main-ci-recovery/list-clock-fix';w=r/json.loads((t/'workspace.json').read_text())['workspace'];label=sys.argv[1];d=t/label;d.mkdir();original=(r/'e2e/studio-project-list.test.ts').read_text();code=original.replace('async function currentReady(page: Page) {','let settleControlResources = () => {};\nasync function currentReady(page: Page) {\n  settleControlResources();')
+at=code.index("test('project list failure has bounded")
+a,b=code[:at],code[at:];b=b.replace("  await page.goto('/');",'''  let releaseStudio!: () => void, releaseDescriptor!: () => void, descriptorEntered!: () => void;
+  const studioGate = new Promise<void>((r) => { releaseStudio = r; });
+  const descriptorGate = new Promise<void>((r) => { releaseDescriptor = r; });
+  const descriptorReady = new Promise<void>((r) => { descriptorEntered = r; });
+  const controlEvents: unknown[] = [];
+  settleControlResources = () => { controlEvents.push({ phase: 'currentReady-barrier' }); releaseStudio(); releaseDescriptor(); };
+  await page.route('**/api/projects/*/studio', async (route) => {
+    const response = await route.fetch();
+    controlEvents.push({ phase: 'actual-studio-200', status: response.status() });
+    await studioGate;
+    await route.fulfill({ response }).catch(() => {});
+  });
+  await page.route('**/api/projects/*/builds/*/preview?**', async (route) => {
+    const response = await route.fetch();
+    controlEvents.push({ phase: 'actual-descriptor-held', status: response.status() });
+    descriptorEntered();
+    await descriptorGate;
+    await route.fulfill({ response }).catch(() => {});
+  });
+  page.on('requestfailed', (request) => controlEvents.push({ phase: 'request-failed', url: request.url(), failure: request.failure() }));
+  page.on('close', () => { releaseStudio(); releaseDescriptor(); });
+  test.info().attach('control-order', { body: JSON.stringify(controlEvents), contentType: 'application/json' });
+  await page.goto('/');''',1)
+b=b.replace('  await page.clock.install();','  await page.clock.install();\n  releaseStudio();\n  await descriptorReady;',1)
+b=b.replace('  await page.clock.fastForward(81000);','''  await page.clock.fastForward(81000);
+  controlEvents.push({ phase: 'after-81000', bodyText: await page.locator('body').innerText() });
+  releaseDescriptor();
+  await writeFile(resolve(out, 'controlled-order.json'), JSON.stringify(controlEvents, null, 2) + '\\n');''',1)
+code=a+b
+code+='''\ntest.afterEach(async ({ page }, info) => {
+  if (!info.title.startsWith('project list failure')) return;
+  await writeFile(resolve(out, 'controlled-final.json'), JSON.stringify({ status: info.status, body: await page.locator('body').innerText(), descriptor: await page.locator('canvas[aria-label="交付拼接预览"]').count(), backend: await state() }, null, 2) + '\\n').catch(() => {});
+  await page.screenshot({ path: resolve(out, 'controlled-final.png') }).catch(() => {});
+});\n'''
+p=w/'e2e/studio-project-list.test.ts';p.write_text(code);(d/'instrumented-test.ts.txt').write_text(code)
+env={**os.environ,'PATH':'/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+os.environ['PATH'],'API_HOST':'127.0.0.1','API_PORT':'4409','WEB_PORT':'5309','PLAYWRIGHT_BROWSERS_PATH':str(r/'.local/main-ci-recovery/receipt/browser-cache'),'NO_PROXY':'localhost,127.0.0.1,::1','no_proxy':'localhost,127.0.0.1,::1'};env.pop('E2E_MODE',None);env.update(json.loads((t/('new-control-env-private.json' if label=='new-controlled' else 'control-env-private.json')).read_text()));st=time.time()
+with(d/'control.log').open('w')as f: ret=subprocess.run(['pnpm','exec','playwright','test','e2e/studio-project-list.test.ts','--grep','project list failure'],cwd=w,env=env,stdout=f,stderr=subprocess.STDOUT)
+import shutil
+for name in ['controlled-order.json','controlled-final.json','controlled-final.png','failure-cancel.json']:
+ q=w/'.local/step07/browser/production/r4-project-list'/name
+ if q.exists():shutil.copyfile(q,d/name)
+if(w/'test-results').exists():shutil.copytree(w/'test-results',d/'test-results')
+subprocess.run(['git','checkout','--','e2e/studio-project-list.test.ts'],cwd=w,check=True,stdout=subprocess.DEVNULL)
+b=(d/'control.log').read_bytes();row={'label':label,'base':json.loads((t/'workspace.json').read_text())['source'],'candidateTestSHA256':hashlib.sha256(original.encode()).hexdigest(),'exitCode':ret.returncode,'seconds':round(time.time()-st,3),'expected':'old expected assertion failure; new normal full original case with same barrier control passes','rawBytes':len(b),'rawSHA256':hashlib.sha256(b).hexdigest(),'clockMs':81000,'testBudget':90000,'currentReadyBudget':30000,'newServiceGets':0};(d/'receipt.json').write_text(json.dumps(row,indent=2)+'\n');print(json.dumps(row))

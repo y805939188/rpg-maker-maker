@@ -1,0 +1,28 @@
+{
+  "source": "d0a6f162a2b57634f7f10d0f5c49eab2168bb6a8",
+  "rows": [
+    {
+      "path": ".local/main-ci-recovery/list-clock-fix/old-controlled/controlled-final.png",
+      "sha256": "6fbe1e169ae1eb760073f212841a058a0525bc1450b4b6bd5449d12f4cb82d41",
+      "bytes": 119189,
+      "method": "tools.view_image actually inspected",
+      "kind": "old controlled expected failure"
+    },
+    {
+      "path": "artifacts/.step07-list-clock-final-77df84a024444562bf63f81f41b3bcd7/.local/step07/browser/production/r4-project-list/initial-upload.png",
+      "sha256": "9ebe3a1a8146638eec5efc2c94fda1a024c791d1e2745993385390608c622040",
+      "bytes": 363955,
+      "method": "tools.view_image actually inspected",
+      "kind": "latest candidate actual deployed browser"
+    },
+    {
+      "path": "artifacts/.step07-list-clock-final-77df84a024444562bf63f81f41b3bcd7/.local/step07/browser/dev/r4-project-list/initial-upload.png",
+      "sha256": "01a0aeb959cf3c4ffe789db5c6954b74a16e4ab8f73cc74ba67d17094f4206bd",
+      "bytes": 363336,
+      "method": "tools.view_image actually inspected",
+      "kind": "latest candidate actual deployed browser"
+    }
+  ],
+  "observations": "Old local controlled screenshot shows resource60s deadline error. Production/development current images show real source components, decoded processed image and delivery pond canvas, actual build/export metadata and AI unavailable.",
+  "limits": "Technical inspection only; no user art approval or new artifact nativeMZ confirmation."
+}

@@ -1,0 +1,20 @@
+from pathlib import Path
+import os,subprocess,json,hashlib,time,uuid,urllib.parse,socket,datetime
+r=Path.cwd();t=r/'.local/main-ci-recovery/list-clock-fix';s=t/'prepare';s.mkdir();source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();assert source=='2157489dd739a8f8a02aa2c9cf47ad7319e14c7f';assert not subprocess.check_output(['git','status','--porcelain']);w=r/'artifacts'/('.step07-list-clock-'+uuid.uuid4().hex);rows=[]
+env={**os.environ,'PATH':'/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+os.environ['PATH'],'GIT_CONFIG_GLOBAL':'/dev/null','GIT_CONFIG_NOSYSTEM':'1','NO_PROXY':'localhost,127.0.0.1,::1','no_proxy':'localhost,127.0.0.1,::1','API_HOST':'127.0.0.1','API_PORT':'4409','WEB_PORT':'5309','PLAYWRIGHT_BROWSERS_PATH':str(r/'.local/main-ci-recovery/receipt/browser-cache')}
+for k in ['DATABASE_URL','MZ_CORE_PATH','E2E_MODE','TILESET_ASSET_ROOT']:env.pop(k,None)
+for port in [4409,5309]:
+ q=socket.socket();assert q.connect_ex(('127.0.0.1',port))!=0,'occupied; no kill';q.close()
+conf=dict(x.split('=',1)for x in(r/'.env').read_text().splitlines()if'='in x);u=urllib.parse.urlparse(conf['DATABASE_URL']);assert u.hostname=='127.0.0.1'and u.port==55509 and u.path.startswith('/tileset_');assert(r/'.env').stat().st_mode&0o777==0o600
+name='tileset_[owned-db]'+uuid.uuid4().hex;admin={**env,'PGHOST':'127.0.0.1','PGPORT':'55509','PGUSER':urllib.parse.unquote(u.username),'PGPASSWORD':urllib.parse.unquote(u.password or ''),'PGDATABASE':'postgres'}
+def run(label,args,cwd):
+ st=time.time();p=s/(label+'.log')
+ with p.open('w')as f: ret=subprocess.run(args,cwd=cwd,env=env,stdout=f,stderr=subprocess.STDOUT)
+ b=p.read_bytes();rows.append({'label':label,'argv':args,'cwd':str(cwd.relative_to(r)),'source':source,'exitCode':ret.returncode,'seconds':round(time.time()-st,3),'path':str(p.relative_to(r)),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()});(s/'commands.json').write_text(json.dumps(rows,indent=2)+'\n');print(json.dumps({k:rows[-1][k]for k in ['label','exitCode','seconds']}),flush=True);assert ret.returncode==0,label
+run('clone',['git','clone','--no-hardlinks','--single-branch','--branch','codex/step-07-main-ci-recovery',r.as_uri(),str(w)],r);run('checkout',['git','checkout','--detach',source],w)
+(t/'workspace.json').write_text(json.dumps({'source':source,'workspace':str(w.relative_to(r)),'PG':55509,'API':4409,'Web':5309,'noEnvCopy':True},indent=2)+'\n')
+run('install',['pnpm','install','--offline','--frozen-lockfile','--store-dir',str(r/'.local/main-ci-recovery/receipt/pnpm-store')],w);run('generate',['pnpm','db:generate'],w);run('build',['pnpm','build'],w)
+p=subprocess.run(['/opt/homebrew/opt/postgresql@14/bin/psql','-X','-v','ON_ERROR_STOP=1','-c','CREATE DATABASE "'+name+'"'],env=admin,stdout=subprocess.PIPE,stderr=subprocess.STDOUT);(s/'create-db.log').write_bytes(p.stdout);assert p.returncode==0
+env.update(DATABASE_URL=u._replace(path='/'+name).geturl(),TILESET_ASSET_ROOT='.local/list-clock/control/assets');run('migrate',['pnpm','db:migrate'],w)
+p=t/'control-env-private.json';p.write_text(json.dumps({'DATABASE_URL':env['DATABASE_URL'],'TILESET_ASSET_ROOT':env['TILESET_ASSET_ROOT']},indent=2)+'\n');p.chmod(0o600)
+print('PREPARED',flush=True)

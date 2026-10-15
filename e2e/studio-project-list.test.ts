@@ -290,6 +290,8 @@ test('project list failure has bounded explicit read-only recovery and unmount c
   });
   await page.goto('/');
   await expect(page.getByText('项目列表读取失败', { exact: false })).toBeVisible();
+  // Advance only the list observation window, after independent delivery reads settle.
+  await currentReady(page);
   const initial = reads;
   await page.clock.install();
   await page.clock.fastForward(81000);

@@ -1,0 +1,25 @@
+from pathlib import Path
+import os,subprocess,json,hashlib,time,uuid,urllib.parse,socket,shutil,datetime
+r=Path.cwd();s=r/'.local/main-ci-recovery/list-clock-fix/final';s.mkdir();source=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();assert source=='d0a6f162a2b57634f7f10d0f5c49eab2168bb6a8';assert not subprocess.check_output(['git','status','--porcelain']);w=r/'artifacts'/('.step07-list-clock-final-'+uuid.uuid4().hex);rows=[];env={**os.environ,'PATH':'/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+os.environ['PATH'],'GIT_CONFIG_GLOBAL':'/dev/null','GIT_CONFIG_NOSYSTEM':'1'}
+conf=dict(x.split('=',1)for x in(r/'.env').read_text().splitlines()if'='in x);u=urllib.parse.urlparse(conf['DATABASE_URL']);assert u.hostname=='127.0.0.1'and u.port==55509 and u.path.startswith('/tileset_');assert (r/'.env').stat().st_mode&0o777==0o600;env.update(API_HOST='127.0.0.1',API_PORT='4409',WEB_PORT='5309',STEP07_TEST_API_PORT='4409',INTEGRATION_API_PORT='4409',TILESET_PG_BIN='/opt/homebrew/opt/postgresql@14/bin');env.update(NO_PROXY='localhost,127.0.0.1,::1',no_proxy='localhost,127.0.0.1,::1');env.pop('MZ_CORE_PATH',None);env.pop('E2E_MODE',None);env['PLAYWRIGHT_BROWSERS_PATH']=str(r/'.local/main-ci-recovery/receipt/browser-cache')
+for port in [4409,5309]:
+ a=socket.socket();assert a.connect_ex(('127.0.0.1',port))!=0,'occupied; no kill';a.close()
+admin={**env,'PGHOST':'127.0.0.1','PGPORT':'55509','PGUSER':urllib.parse.unquote(u.username),'PGPASSWORD':urllib.parse.unquote(u.password or ''),'PGDATABASE':'postgres'};owners=[]
+def progress(phase):
+ p=r/'.local/step07/coding-progress.json';d=json.loads(p.read_text());d.update(phase=phase,candidateSource=source,lastUpdatedUtc=datetime.datetime.now(datetime.timezone.utc).isoformat());p.write_text(json.dumps(d,indent=2)+'\n');(r/'.local/main-ci-recovery/list-clock-fix/progress.json').write_text(json.dumps(d,indent=2)+'\n')
+def run(label,args,cwd,expected=0):
+ progress('BOUND_'+label.upper());t=time.time();p=s/(label+'.log')
+ with p.open('w')as f:ret=subprocess.run(args,cwd=cwd,env=env,stdout=f,stderr=subprocess.STDOUT)
+ b=p.read_bytes();o={'label':label,'argv':args,'cwd':str(cwd.relative_to(r)),'source':source,'exitCode':ret.returncode,'expectedExit':expected,'seconds':round(time.time()-t,3),'rawPath':str(p.relative_to(r)),'rawBytes':len(b),'rawSHA256':hashlib.sha256(b).hexdigest(),'noRootDotEnv':not(w/'.env').exists(),'safeEnvironment':{k:env.get(k)for k in ['API_HOST','API_PORT','WEB_PORT','E2E_MODE','TILESET_ASSET_ROOT','PLAYWRIGHT_BROWSERS_PATH']}};rows.append(o);(s/'commands.json').write_text(json.dumps({'commands':rows},indent=2)+'\n');print(json.dumps({k:o[k]for k in ['label','exitCode','seconds']}),flush=True);assert ret.returncode==expected,label
+
+def newdb(label,migrate=True):
+ name='tileset_[owned-db]'+label+'_'+uuid.uuid4().hex;p=subprocess.run(['/opt/homebrew/opt/postgresql@14/bin/psql','-X','-v','ON_ERROR_STOP=1','-c','CREATE DATABASE "'+name+'"'],env=admin,stdout=subprocess.PIPE,stderr=subprocess.STDOUT);(s/(label+'-create-db.log')).write_bytes(p.stdout);assert p.returncode==0;asset='.local/list-clock-fix/'+label+'/assets';assert not(w/asset).exists();env.update(DATABASE_URL=u._replace(path='/'+name).geturl(),TILESET_ASSET_ROOT=asset);owners.append({'purpose':label,'database':name,'assetRoot':str(w/asset),'owner':'step07 coder fresh own DB/root','PG':55509});p=s/'resources-private.json';p.write_text(json.dumps(owners,indent=2)+'\n');p.chmod(0o600)
+ if migrate:run(label+'-migrate',['pnpm','db:migrate'],w)
+run('clone',['git','clone','--no-hardlinks','--single-branch','--branch','codex/step-07-main-ci-recovery',r.as_uri(),str(w)],r);run('checkout',['git','checkout','--detach',source],w);(s/'workspace.json').write_text(json.dumps({'source':source,'workspace':str(w.relative_to(r)),'PG':55509,'API':4409,'Web':5309,'physicalRootNotLocalAncestor':True,'rootEnvCopied':False},indent=2)+'\n');run('install',['pnpm','install','--offline','--frozen-lockfile','--store-dir',str(r/'.local/main-ci-recovery/receipt/pnpm-store')],w);run('generate',['pnpm','db:generate'],w);newdb('regression',False)
+run('check',['pnpm','check'],w)
+for mode in ['production','development']:
+ newdb(mode);env.pop('E2E_MODE',None)
+ if mode=='development':env['E2E_MODE']='dev'
+ assert not(w/'.env').exists();run(mode+'18-noenv',['pnpm','test:e2e'],w)
+ if(w/'test-results').exists():shutil.copytree(w/'test-results',s/(mode+'-test-results'))
+env.pop('E2E_MODE',None);run('engineering',['pnpm','build:step07'],w);assert subprocess.check_output(['git','status','--porcelain'],cwd=w)==b'';progress('BOUND_ALL_REQUIRED_COMMANDS_COMPLETE');print('LATEST_FROZEN_LIST_CLOCK_VALIDATION_COMPLETE',flush=True)
