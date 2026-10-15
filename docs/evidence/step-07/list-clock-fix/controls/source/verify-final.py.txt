@@ -1,0 +1,47 @@
+from pathlib import Path
+import json,hashlib,subprocess,re,io,importlib.util,zipfile,struct,zlib
+from PIL import Image
+r=Path.cwd();t=r/'.local/main-ci-recovery/list-clock-fix';f=t/'final';ws=json.loads((f/'workspace.json').read_text());w=r/ws['workspace'];source=ws['source'];assert source=='d0a6f162a2b57634f7f10d0f5c49eab2168bb6a8';commands=json.loads((f/'commands.json').read_text())['commands'];assert all(x['source']==source for x in commands); assert all(x['exitCode']==0 for x in commands);assert commands[-1]['label']=='engineering';assert not subprocess.check_output(['git','status','--porcelain'],cwd=w)
+expected={'check':418}
+for label,n in expected.items():
+ raw=(f/(label+'.log')).read_text();assert re.search(r'Tests\s+'+str(n)+r' passed',raw),label
+for mode in ['production','dev']:
+ d=json.loads((w/'.local/e2e'/(mode+'.json')).read_text());assert d['stats']['expected']==18 and d['stats']['unexpected']==0 and d['stats']['skipped']==0
+mp=next((w/'artifacts').glob('step07-*/manifest.json'));m=json.loads(mp.read_text());assert m['commit']==source;assert len(m['files'])==208;rows=[]
+old=r/'artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/artifacts/step07-0c3dc30b0ebb-63b9289040076990';om=json.loads((old/'manifest.json').read_text());changed=[]
+for n,h in m['files'].items():
+ b=(mp.parent/n).read_bytes();assert b==(w/n).read_bytes()and hashlib.sha256(b).hexdigest()==h;rows.append({'path':n,'sha256':h,'bytes':len(b)})
+ if n not in om['files']:changed.append(n);continue
+ ob=(old/n).read_bytes();assert hashlib.sha256(ob).hexdigest()==om['files'][n]
+ if b!=ob:changed.append(n)
+assert changed==['apps/api/dist/resources/studio.json'],changed
+nm=json.loads((mp.parent/changed[0]).read_text());oldmeta=json.loads((old/changed[0]).read_text());assert nm['context']['commit']==source;nm['context']['commit']=oldmeta['context']['commit'];assert nm==oldmeta
+profile=hashlib.sha256(json.dumps(m['profile'],sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest();assert profile=='48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793'
+(t/'engineering-verification.json').write_text(json.dumps({'source':source,'buildId':m['buildId'],'manifestPath':str(mp.relative_to(r)),'manifestSHA256':hashlib.sha256(mp.read_bytes()).hexdigest(),'manifestBytes':mp.stat().st_size,'payloads':len(rows),'sameVsIndependent17Source':len(rows)-len(changed),'changedVsIndependent17Source':changed,'allLiveImmutableSHARecomputed':True,'profileSHA256':profile,'files':rows},indent=2)+'\n')
+sp=importlib.util.spec_from_file_location('independent_oracle',t/'independent-r7-zip-oracle.py');mod=importlib.util.module_from_spec(sp);sp.loader.exec_module(mod);downloads=[]
+for mode in ['production','dev']:
+ base=w/'.local/step07/browser'/mode;assert (base/'first-export.zip').read_bytes()==(base/'history-export.zip').read_bytes()
+ for p in sorted(base.glob('*.zip')):
+  actual=mod.verify(p);assert actual['source']==source;actual['file']=str(p.relative_to(r));pngs={}
+  with zipfile.ZipFile(p)as z:
+   for n in ['A1.png','A2.png']:
+    encoded=z.read(n); assert encoded[:8]==b'\x89PNG\r\n\x1a\n'; at=8; names=[]
+    while at<len(encoded):
+     assert at+12<=len(encoded); length=struct.unpack_from('>I',encoded,at)[0]; end=at+12+length; assert end<=len(encoded); rawType=encoded[at+4:at+8]; assert all(65<=x<=90 or 97<=x<=122 for x in rawType); name=rawType.decode('ascii'); assert zlib.crc32(encoded[at+4:at+8+length])==struct.unpack_from('>I',encoded,at+8+length)[0]; names.append(name); at=end
+    assert names[0]=='IHDR' and names[-1]=='IEND' and at==len(encoded)
+    i=Image.open(io.BytesIO(encoded));i.load();assert i.mode=='RGBA'and i.size==(768,576);pngs[n]={'width':768,'height':576,'mode':i.mode,'pixelSHA256':hashlib.sha256(i.tobytes()).hexdigest()}
+  downloads.append({'origin':str(p.relative_to(r)),'actual':actual,'independentPillow':pngs})
+assert len(downloads)==6
+parentW=r/'artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539'; compar=[]
+for mode in ['production','dev']:
+ for filename in ['first-export.zip','second-export.zip','history-export.zip']:
+  current=w/'.local/step07/browser'/mode/filename; before=parentW/'.local/step07/browser'/mode/filename
+  with zipfile.ZipFile(current)as a,zipfile.ZipFile(before)as b:
+   members={n:{'sameBytes':a.read(n)==b.read(n),'currentSHA256':hashlib.sha256(a.read(n)).hexdigest(),'parentSHA256':hashlib.sha256(b.read(n)).hexdigest()}for n in a.namelist()if n!='manifest.json'}
+   assert all(v['sameBytes']for v in members.values())
+  compar.append({'mode':mode,'filename':filename,'members':members,'manifestSourceBindingIsIntentionallyDifferent':True})
+(t/'legal-parent-export-comparison.json').write_text(json.dumps({'source':source,'parentSource':'0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de','actualSixDownloads':compar,'legalPayloadBytesUnchanged':True},indent=2)+'\n')
+
+(t/'downloads-independent.json').write_text(json.dumps({'source':source,'actualBrowserZIPs':6,'decodedPNGs':12,'historyByteSameFirst':True,'independentOracleSource':'R7 original readonly oracle copied byte-identically into owned task root','oracleSHA256':hashlib.sha256((t/'independent-r7-zip-oracle.py').read_bytes()).hexdigest(),'rows':downloads},indent=2)+'\n')
+(t/'latest-result-summary.json').write_text(json.dumps({'source':source,'commands':expected,'browser':{'production':18,'development':18,'skipped':0,'retries':0},'PG23HTTP16API3privacy5':'NOT_RERUN_THIS_ROUND: byte-identical implementation; precise parent independent17/candidateCI38683352144/mainCI38686901060 only','productionSchemaLockProfileCompilerClock':'UNCHANGED'},indent=2)+'\n')
+print(json.dumps({'source':source,'buildId':m['buildId'],'manifestSHA256':hashlib.sha256(mp.read_bytes()).hexdigest(),'payloads':len(rows),'sameVsIndependent17Source':len(rows)-len(changed),'actualBrowserZIPs':6,'decodedPNGs':12}))

@@ -1,0 +1,1589 @@
+﻿2026-10-15T06:11:41.8312377Z Current runner version: '2.337.0'
+2026-10-15T06:11:41.8338555Z ##[group]Runner Image Provisioner
+2026-10-15T06:11:41.8339544Z Hosted Compute Agent
+2026-10-15T06:11:41.8340128Z Version: 20261012.601
+2026-10-15T06:11:41.8340700Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-15T06:11:41.8341407Z Build Date: 2026-10-12T17:48:21Z
+2026-10-15T06:11:41.8342029Z Worker ID: {0a45e047-5a86-412f-8582-99e7a1bf3b0a}
+2026-10-15T06:11:41.8342783Z Region: westus3
+2026-10-15T06:11:41.8343290Z Cloud: Azure
+2026-10-15T06:11:41.8343963Z ##[endgroup]
+2026-10-15T06:11:41.8346036Z ##[group]Operating System
+2026-10-15T06:11:41.8346609Z Ubuntu
+2026-10-15T06:11:41.8347086Z 24.04.5
+2026-10-15T06:11:41.8347582Z LTS
+2026-10-15T06:11:41.8348052Z ##[endgroup]
+2026-10-15T06:11:41.8348546Z ##[group]Runner Image
+2026-10-15T06:11:41.8349091Z Image: ubuntu-24.04
+2026-10-15T06:11:41.8349640Z Version: 20261012.334.1
+2026-10-15T06:11:41.8350817Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-15T06:11:41.8352180Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+2026-10-15T06:11:41.8353193Z ##[endgroup]
+2026-10-15T06:11:41.8354657Z ##[group]GITHUB_TOKEN Permissions
+2026-10-15T06:11:41.8356944Z Contents: read
+2026-10-15T06:11:41.8357454Z Metadata: read
+2026-10-15T06:11:41.8358032Z ##[endgroup]
+2026-10-15T06:11:41.8360252Z Secret source: Actions
+2026-10-15T06:11:41.8361174Z Cache mode: write
+2026-10-15T06:11:41.8361804Z Prepare workflow directory
+2026-10-15T06:11:41.8820474Z Prepare all required actions
+2026-10-15T06:11:41.8875092Z Getting action download info
+2026-10-15T06:11:42.2048234Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-10-15T06:11:42.3003983Z Download action repository 'pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa' (SHA:f40ffcd9367d9f12939873eb1018b921a783ffaa)
+2026-10-15T06:11:43.0922141Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-10-15T06:11:43.2732114Z Complete job name: baseline
+2026-10-15T06:11:43.3408822Z ##[group]Checking docker version
+2026-10-15T06:11:43.3423395Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+2026-10-15T06:11:43.4396929Z '1.48'
+2026-10-15T06:11:43.4415354Z Docker daemon API version: '1.48'
+2026-10-15T06:11:43.4416280Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+2026-10-15T06:11:43.4591587Z '1.48'
+2026-10-15T06:11:43.4601766Z Docker client API version: '1.48'
+2026-10-15T06:11:43.4608147Z ##[endgroup]
+2026-10-15T06:11:43.4610837Z ##[group]Clean up resources from previous jobs
+2026-10-15T06:11:43.4616417Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=b10812"
+2026-10-15T06:11:43.4767012Z ##[command]/usr/bin/docker network prune --force --filter "label=b10812"
+2026-10-15T06:11:43.4912634Z ##[endgroup]
+2026-10-15T06:11:43.4913369Z ##[group]Create local container network
+2026-10-15T06:11:43.4924534Z ##[command]/usr/bin/docker network create --label b10812 github_network_289b70ebb58240fe9462f2d34d145e58
+2026-10-15T06:11:43.5374617Z ed12206d9eb8dc560420e77e906cc3572f8b222b7ce5d40203a42097d5a7ad09
+2026-10-15T06:11:43.5388030Z ##[endgroup]
+2026-10-15T06:11:43.5416106Z ##[group]Starting postgres service container
+2026-10-15T06:11:43.5437968Z ##[command]/usr/bin/docker pull postgres:14.20
+2026-10-15T06:11:44.9978537Z 14.20: Pulling from library/postgres
+2026-10-15T06:11:45.2391480Z 0c8d55a45c0d: Pulling fs layer
+2026-10-15T06:11:45.2392042Z 9c193dd4b59f: Pulling fs layer
+2026-10-15T06:11:45.2392397Z d395188e817c: Pulling fs layer
+2026-10-15T06:11:45.2392726Z cd1ecdff464a: Pulling fs layer
+2026-10-15T06:11:45.2393121Z 9ed2f6c0dc03: Pulling fs layer
+2026-10-15T06:11:45.2393443Z 5cbace69940d: Pulling fs layer
+2026-10-15T06:11:45.2393962Z b65448029533: Pulling fs layer
+2026-10-15T06:11:45.2394275Z ff6eb65115e7: Pulling fs layer
+2026-10-15T06:11:45.2395079Z 3150133347a9: Pulling fs layer
+2026-10-15T06:11:45.2395402Z 089c502730ca: Pulling fs layer
+2026-10-15T06:11:45.2395697Z 1f25e9a1a183: Pulling fs layer
+2026-10-15T06:11:45.2396013Z a7ebb813adab: Pulling fs layer
+2026-10-15T06:11:45.2396336Z 79c2debf7288: Pulling fs layer
+2026-10-15T06:11:45.2396694Z b473cca5f8f4: Pulling fs layer
+2026-10-15T06:11:45.2397037Z b65448029533: Waiting
+2026-10-15T06:11:45.2397309Z ff6eb65115e7: Waiting
+2026-10-15T06:11:45.2397606Z 3150133347a9: Waiting
+2026-10-15T06:11:45.2397879Z 089c502730ca: Waiting
+2026-10-15T06:11:45.2398140Z 1f25e9a1a183: Waiting
+2026-10-15T06:11:45.2398419Z a7ebb813adab: Waiting
+2026-10-15T06:11:45.2398694Z 79c2debf7288: Waiting
+2026-10-15T06:11:45.2398966Z cd1ecdff464a: Waiting
+2026-10-15T06:11:45.2399223Z b473cca5f8f4: Waiting
+2026-10-15T06:11:45.2399478Z 9ed2f6c0dc03: Waiting
+2026-10-15T06:11:45.2399754Z 5cbace69940d: Waiting
+2026-10-15T06:11:45.4468879Z 9c193dd4b59f: Download complete
+2026-10-15T06:11:45.5457085Z d395188e817c: Verifying Checksum
+2026-10-15T06:11:45.5457579Z d395188e817c: Download complete
+2026-10-15T06:11:45.6037027Z 0c8d55a45c0d: Verifying Checksum
+2026-10-15T06:11:45.6045251Z 0c8d55a45c0d: Download complete
+2026-10-15T06:11:45.7209749Z cd1ecdff464a: Verifying Checksum
+2026-10-15T06:11:45.7210335Z cd1ecdff464a: Download complete
+2026-10-15T06:11:45.8535931Z 9ed2f6c0dc03: Download complete
+2026-10-15T06:11:45.8665303Z 5cbace69940d: Verifying Checksum
+2026-10-15T06:11:45.8665904Z 5cbace69940d: Download complete
+2026-10-15T06:11:45.9301539Z b65448029533: Download complete
+2026-10-15T06:11:46.0461763Z ff6eb65115e7: Verifying Checksum
+2026-10-15T06:11:46.0462353Z ff6eb65115e7: Download complete
+2026-10-15T06:11:46.1221889Z 089c502730ca: Verifying Checksum
+2026-10-15T06:11:46.1228360Z 089c502730ca: Download complete
+2026-10-15T06:11:46.2407656Z 1f25e9a1a183: Download complete
+2026-10-15T06:11:46.3119365Z a7ebb813adab: Verifying Checksum
+2026-10-15T06:11:46.3119985Z a7ebb813adab: Download complete
+2026-10-15T06:11:46.4364245Z 79c2debf7288: Verifying Checksum
+2026-10-15T06:11:46.4364793Z 79c2debf7288: Download complete
+2026-10-15T06:11:46.5048762Z b473cca5f8f4: Verifying Checksum
+2026-10-15T06:11:46.5052377Z b473cca5f8f4: Download complete
+2026-10-15T06:11:46.5073224Z 0c8d55a45c0d: Pull complete
+2026-10-15T06:11:46.5204926Z 3150133347a9: Verifying Checksum
+2026-10-15T06:11:46.5205657Z 3150133347a9: Download complete
+2026-10-15T06:11:47.3430291Z 9c193dd4b59f: Pull complete
+2026-10-15T06:11:47.4992056Z d395188e817c: Pull complete
+2026-10-15T06:11:47.5329510Z cd1ecdff464a: Pull complete
+2026-10-15T06:11:47.7945198Z 9ed2f6c0dc03: Pull complete
+2026-10-15T06:11:47.8653297Z 5cbace69940d: Pull complete
+2026-10-15T06:11:47.8722163Z b65448029533: Pull complete
+2026-10-15T06:11:47.8800926Z ff6eb65115e7: Pull complete
+2026-10-15T06:11:50.4928591Z 3150133347a9: Pull complete
+2026-10-15T06:11:50.5056954Z 089c502730ca: Pull complete
+2026-10-15T06:11:50.5129170Z 1f25e9a1a183: Pull complete
+2026-10-15T06:11:50.5197274Z a7ebb813adab: Pull complete
+2026-10-15T06:11:50.5265991Z 79c2debf7288: Pull complete
+2026-10-15T06:11:50.5340226Z b473cca5f8f4: Pull complete
+2026-10-15T06:11:50.5377204Z Digest: sha256:062b02051873a101837543675b5b4601cba06b1972d22f4b7969adbde5a280e4
+2026-10-15T06:11:50.5385735Z Status: Downloaded newer image for postgres:14.20
+2026-10-15T06:11:50.5395349Z docker.io/library/postgres:14.20
+2026-10-15T06:11:50.5464762Z ##[command]/usr/bin/docker create --name 256a32ad244b4303b921072f940e0600_postgres1420_2491fe --label b10812 --network github_network_289b70ebb58240fe9462f2d34d145e58 --network-alias postgres -p 127.0.0.1:55432:5432 --health-cmd "pg_isready -U tileset -d tileset_[owned-db]" --health-interval 5s --health-timeout 5s --health-retries 10 -e "POSTGRES_USER=tileset" -e "POSTGRES_DB=tileset_[owned-db]" -e "POSTGRES_HOST_AUTH_METHOD=trust" -e GITHUB_ACTIONS=true -e CI=true postgres:14.20
+2026-10-15T06:11:50.5688724Z 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:11:50.5707148Z ##[command]/usr/bin/docker start 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:11:50.7581652Z 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:11:50.7598820Z ##[command]/usr/bin/docker ps --all --filter id=2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+2026-10-15T06:11:50.7730646Z 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be Up Less than a second (health: starting)
+2026-10-15T06:11:50.7749317Z ##[command]/usr/bin/docker port 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:11:50.7894015Z 5432/tcp -> 127.0.0.1:55432
+2026-10-15T06:11:50.7929616Z ##[endgroup]
+2026-10-15T06:11:50.7938462Z ##[group]Waiting for all services to be ready
+2026-10-15T06:11:50.7951922Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:11:50.8090132Z starting
+2026-10-15T06:11:50.8114923Z postgres service is starting, waiting 2 seconds before checking again.
+2026-10-15T06:11:52.8125954Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:11:52.8255554Z starting
+2026-10-15T06:11:52.8263620Z postgres service is starting, waiting 4 seconds before checking again.
+2026-10-15T06:11:57.0738869Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:11:57.0870378Z healthy
+2026-10-15T06:11:57.0884106Z postgres service is healthy.
+2026-10-15T06:11:57.0884762Z ##[endgroup]
+2026-10-15T06:11:57.1186812Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-10-15T06:11:57.1187444Z with:
+2026-10-15T06:11:57.1187661Z   fetch-depth: 0
+2026-10-15T06:11:57.1187909Z   repository: y805939188/rpg-maker-maker
+2026-10-15T06:11:57.1190448Z   token: ***
+2026-10-15T06:11:57.1190669Z   ssh-strict: true
+2026-10-15T06:11:57.1190880Z   ssh-user: git
+2026-10-15T06:11:57.1191110Z   persist-credentials: true
+2026-10-15T06:11:57.1191354Z   clean: true
+2026-10-15T06:11:57.1191579Z   sparse-checkout-cone-mode: true
+2026-10-15T06:11:57.1191845Z   fetch-tags: false
+2026-10-15T06:11:57.1192066Z   show-progress: true
+2026-10-15T06:11:57.1192279Z   lfs: false
+2026-10-15T06:11:57.1192475Z   submodules: false
+2026-10-15T06:11:57.1192693Z   set-safe-directory: true
+2026-10-15T06:11:57.1192942Z   allow-unsafe-pr-checkout: false
+2026-10-15T06:11:57.1193830Z env:
+2026-10-15T06:11:57.1194164Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:11:57.1194590Z ##[endgroup]
+2026-10-15T06:11:57.2252607Z Syncing repository: y805939188/rpg-maker-maker
+2026-10-15T06:11:57.2254850Z ##[group]Getting Git version info
+2026-10-15T06:11:57.2255579Z Working directory is '/home/runner/work/rpg-maker-maker/rpg-maker-maker'
+2026-10-15T06:11:57.2256853Z [command]/usr/bin/git version
+2026-10-15T06:11:57.2335500Z git version 2.55.0
+2026-10-15T06:11:57.2356270Z ##[endgroup]
+2026-10-15T06:11:57.2371023Z Temporarily overriding HOME='/home/runner/work/_temp/ade706c1-d007-4dd6-969d-8b4eedb8c8bb' before making global git config changes
+2026-10-15T06:11:57.2372153Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-15T06:11:57.2377206Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:11:57.2442636Z Deleting the contents of '/home/runner/work/rpg-maker-maker/rpg-maker-maker'
+2026-10-15T06:11:57.2445328Z ##[group]Initializing the repository
+2026-10-15T06:11:57.2449946Z [command]/usr/bin/git init /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:11:57.2548482Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-15T06:11:57.2549345Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-15T06:11:57.2550215Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-15T06:11:57.2550828Z hint: call:
+2026-10-15T06:11:57.2551067Z hint:
+2026-10-15T06:11:57.2551525Z hint: 	git config --global init.defaultBranch <name>
+2026-10-15T06:11:57.2551837Z hint:
+2026-10-15T06:11:57.2552154Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-15T06:11:57.2552737Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-15T06:11:57.2553180Z hint:
+2026-10-15T06:11:57.2553422Z hint: 	git branch -m <name>
+2026-10-15T06:11:57.2553958Z hint:
+2026-10-15T06:11:57.2554515Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-15T06:11:57.2555716Z Initialized empty Git repository in /home/runner/work/rpg-maker-maker/rpg-maker-maker/.git/
+2026-10-15T06:11:57.2568888Z [command]/usr/bin/git remote add origin https://github.com/y805939188/rpg-maker-maker
+2026-10-15T06:11:57.2625246Z ##[endgroup]
+2026-10-15T06:11:57.2626074Z ##[group]Disabling automatic garbage collection
+2026-10-15T06:11:57.2628960Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-15T06:11:57.2660619Z ##[endgroup]
+2026-10-15T06:11:57.2661381Z ##[group]Setting up auth
+2026-10-15T06:11:57.2667780Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-15T06:11:57.2698803Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-15T06:11:57.3047294Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-15T06:11:57.3081874Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-15T06:11:57.3298233Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-15T06:11:57.3332338Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-15T06:11:57.3527483Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-15T06:11:57.3565725Z ##[endgroup]
+2026-10-15T06:11:57.3566232Z ##[group]Fetching the repository
+2026-10-15T06:11:57.3576089Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-10-15T06:12:04.5096421Z From https://github.com/y805939188/rpg-maker-maker
+2026-10-15T06:12:04.5097339Z  * [new branch]      codex/orchestration-02-03 -> origin/codex/orchestration-02-03
+2026-10-15T06:12:04.5098158Z  * [new branch]      codex/release-step04-05 -> origin/codex/release-step04-05
+2026-10-15T06:12:04.5098653Z  * [new branch]      codex/step-07-validation -> origin/codex/step-07-validation
+2026-10-15T06:12:04.5099350Z  * [new branch]      main                    -> origin/main
+2026-10-15T06:12:04.5108197Z [command]/usr/bin/git branch --list --remote origin/main
+2026-10-15T06:12:04.5132918Z   origin/main
+2026-10-15T06:12:04.5141061Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-10-15T06:12:04.5163610Z 2157489dd739a8f8a02aa2c9cf47ad7319e14c7f
+2026-10-15T06:12:04.5166961Z ##[endgroup]
+2026-10-15T06:12:04.5167340Z ##[group]Determining the checkout info
+2026-10-15T06:12:04.5168358Z ##[endgroup]
+2026-10-15T06:12:04.5181945Z [command]/usr/bin/git sparse-checkout disable
+2026-10-15T06:12:04.5223582Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-15T06:12:04.5251845Z ##[group]Checking out the ref
+2026-10-15T06:12:04.5256131Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-15T06:12:05.3108777Z Switched to a new branch 'main'
+2026-10-15T06:12:05.3111553Z branch 'main' set up to track 'origin/main'.
+2026-10-15T06:12:05.3178083Z ##[endgroup]
+2026-10-15T06:12:05.3231784Z [command]/usr/bin/git log -1 --format=%H
+2026-10-15T06:12:05.3258870Z 2157489dd739a8f8a02aa2c9cf47ad7319e14c7f
+2026-10-15T06:12:05.3446061Z ##[group]Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
+2026-10-15T06:12:05.3446434Z with:
+2026-10-15T06:12:05.3446630Z   version: 10.20.0
+2026-10-15T06:12:05.3446837Z   dest: ~/setup-pnpm
+2026-10-15T06:12:05.3447045Z   run_install: null
+2026-10-15T06:12:05.3447243Z   cache: false
+2026-10-15T06:12:05.3447468Z   cache_dependency_path: pnpm-lock.yaml
+2026-10-15T06:12:05.3447747Z   package_json_file: package.json
+2026-10-15T06:12:05.3447999Z   standalone: false
+2026-10-15T06:12:05.3448200Z env:
+2026-10-15T06:12:05.3448486Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:12:05.3448829Z ##[endgroup]
+2026-10-15T06:12:05.4840167Z ##[group]Running self-installer...
+2026-10-15T06:12:05.9141383Z (node:2670) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-15T06:12:05.9143822Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-15T06:12:06.1666053Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-15T06:12:06.1758400Z Packages: +1
+2026-10-15T06:12:06.1759164Z +
+2026-10-15T06:12:06.5419432Z Progress: resolved 1, reused 0, downloaded 1, added 1, done
+2026-10-15T06:12:06.5678640Z
+2026-10-15T06:12:06.5679233Z dependencies:
+2026-10-15T06:12:06.5679830Z + pnpm 10.20.0 (12.11.2 is available)
+2026-10-15T06:12:06.5680311Z
+2026-10-15T06:12:06.5703964Z Done in 879ms
+2026-10-15T06:12:06.5840912Z ##[endgroup]
+2026-10-15T06:12:06.5841193Z Installation Completed!
+2026-10-15T06:12:06.5982361Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-10-15T06:12:06.5982750Z with:
+2026-10-15T06:12:06.5982954Z   node-version: 22.21.1
+2026-10-15T06:12:06.5983197Z   cache: pnpm
+2026-10-15T06:12:06.5983407Z   always-auth: false
+2026-10-15T06:12:06.5983625Z   check-latest: false
+2026-10-15T06:12:06.5986265Z   token: ***
+2026-10-15T06:12:06.5986461Z env:
+2026-10-15T06:12:06.5986743Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:12:06.5987152Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:12:06.5987462Z ##[endgroup]
+2026-10-15T06:12:06.7434186Z Attempting to download 22.21.1...
+2026-10-15T06:12:06.7541747Z (node:2705) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-15T06:12:06.7542458Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-15T06:12:07.8112005Z Acquiring 22.21.1 - x64 from https://github.com/actions/node-versions/releases/download/22.21.1-18894912842/node-22.21.1-linux-x64.tar.gz
+2026-10-15T06:12:08.4272944Z Extracting ...
+2026-10-15T06:12:08.4384753Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/bbec9731-8920-49e2-bd01-9b481d5b86e0 -f /home/runner/work/_temp/4a3623ce-c19e-477b-a65f-e2a16c06b262
+2026-10-15T06:12:09.5997220Z Adding to the cache ...
+2026-10-15T06:12:11.0685362Z ##[group]Environment details
+2026-10-15T06:12:11.2866500Z node: v22.21.1
+2026-10-15T06:12:11.2866789Z npm: 10.9.4
+2026-10-15T06:12:11.2866990Z yarn: 1.22.22
+2026-10-15T06:12:11.2867459Z ##[endgroup]
+2026-10-15T06:12:11.2886792Z [command]/home/runner/setup-pnpm/node_modules/.bin/pnpm store path --silent
+2026-10-15T06:12:11.6306360Z /home/runner/setup-pnpm/node_modules/.bin/store/v10
+2026-10-15T06:12:11.8454035Z Cache hit for: node-cache-Linux-x64-pnpm-0c1e70f04f1d04d6a516a4cdae7d282a0c2d1afc42705f94723aef6e9a41b835
+2026-10-15T06:12:11.8583829Z (node:2705) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-15T06:12:13.0767702Z Received 33554432 of 141861103 (23.7%), 32.0 MBs/sec
+2026-10-15T06:12:13.8531125Z Received 141861103 of 141861103 (100.0%), 76.1 MBs/sec
+2026-10-15T06:12:13.8531991Z Cache Size: ~135 MB (141861103 B)
+2026-10-15T06:12:13.8664798Z [command]/usr/bin/tar -xf /home/runner/work/_temp/7f01263a-a0c7-4b2c-8c40-fb7245dfc43f/cache.tzst -P -C /home/runner/work/rpg-maker-maker/rpg-maker-maker --use-compress-program unzstd
+2026-10-15T06:12:14.6948555Z Cache restored successfully
+2026-10-15T06:12:14.7008634Z Cache restored from key: node-cache-Linux-x64-pnpm-0c1e70f04f1d04d6a516a4cdae7d282a0c2d1afc42705f94723aef6e9a41b835
+2026-10-15T06:12:14.7518850Z ##[group]Run pnpm install --frozen-lockfile
+2026-10-15T06:12:14.7519337Z [36;1mpnpm install --frozen-lockfile[0m
+2026-10-15T06:12:14.7665047Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:12:14.7665352Z env:
+2026-10-15T06:12:14.7665683Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:12:14.7666090Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:12:14.7666419Z ##[endgroup]
+2026-10-15T06:12:15.0421492Z Scope: all 13 workspace projects
+2026-10-15T06:12:15.1035318Z Lockfile is up to date, resolution step is skipped
+2026-10-15T06:12:15.1372221Z Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-10-15T06:12:15.2018315Z Packages: +375
+2026-10-15T06:12:15.2019342Z ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-10-15T06:12:15.7973095Z Progress: resolved 375, reused 375, downloaded 0, added 375, done
+2026-10-15T06:12:16.3793014Z
+2026-10-15T06:12:16.3793981Z dependencies:
+2026-10-15T06:12:16.3794608Z + sharp 0.35.5
+2026-10-15T06:12:16.3794811Z
+2026-10-15T06:12:16.3795004Z devDependencies:
+2026-10-15T06:12:16.3795444Z + @eslint/js 10.0.1
+2026-10-15T06:12:16.3795887Z + @playwright/test 1.64.0
+2026-10-15T06:12:16.3796493Z + @tileset/ai-gateway 0.0.2 <- packages/ai-gateway
+2026-10-15T06:12:16.3797194Z + @tileset/asset-core 0.0.3 <- packages/asset-core
+2026-10-15T06:12:16.3797942Z + @tileset/image-adapter 0.0.3 <- packages/image-adapter
+2026-10-15T06:12:16.3798497Z + @tileset/local-executor 0.0.6 <- packages/local-executor
+2026-10-15T06:12:16.3798992Z + @tileset/material-processing 0.0.3 <- packages/material-processing
+2026-10-15T06:12:16.3799482Z + @tileset/mz-compiler 0.0.4 <- packages/mz-compiler
+2026-10-15T06:12:16.3799950Z + @tileset/pack-assembly 0.0.5 <- packages/pack-assembly
+2026-10-15T06:12:16.3800603Z + @tileset/pack-export 0.0.7 <- packages/pack-export
+2026-10-15T06:12:16.3801022Z + @tileset/persistence 0.0.6 <- packages/persistence
+2026-10-15T06:12:16.3801362Z + @types/node 22.19.0
+2026-10-15T06:12:16.3801607Z + eslint 10.12.0
+2026-10-15T06:12:16.3801848Z + prettier 3.9.10
+2026-10-15T06:12:16.3802097Z + typescript 5.9.3
+2026-10-15T06:12:16.3802349Z + typescript-eslint 8.71.1
+2026-10-15T06:12:16.3802603Z + vitest 4.1.11
+2026-10-15T06:12:16.3802737Z
+2026-10-15T06:12:16.4228288Z . preinstall$ node scripts/toolchain.mjs
+2026-10-15T06:12:16.4509342Z . preinstall: Done
+2026-10-15T06:12:16.4627725Z Done in 1.6s using pnpm v10.20.0
+2026-10-15T06:12:16.4751147Z ##[group]Run pnpm db:generate
+2026-10-15T06:12:16.4751468Z [36;1mpnpm db:generate[0m
+2026-10-15T06:12:16.4788202Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:12:16.4788472Z env:
+2026-10-15T06:12:16.4788776Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:12:16.4789189Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:12:16.4789502Z ##[endgroup]
+2026-10-15T06:12:16.7343301Z
+2026-10-15T06:12:16.7344763Z > @tileset/prototype@0.0.2 db:generate /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:12:16.7345501Z > pnpm --filter @tileset/api db:generate
+2026-10-15T06:12:16.7345739Z
+2026-10-15T06:12:17.0202730Z
+2026-10-15T06:12:17.7156672Z > @tileset/api@0.0.2 db:generate /home/runner/work/rpg-maker-maker/rpg-maker-maker/apps/api
+2026-10-15T06:12:17.7157601Z > prisma generate --schema prisma/schema.prisma
+2026-10-15T06:12:17.7157987Z
+2026-10-15T06:12:17.7158632Z Prisma schema loaded from prisma/schema.prisma
+2026-10-15T06:12:18.3419408Z
+2026-10-15T06:12:18.3421763Z ✔ Generated Prisma Client (v6.19.3) to ./../../node_modules/.pnpm/@prisma+client@6.19.3_prisma@6.19.3_typescript@5.9.3__typescript@5.9.3/node_modules/@prisma/client in 150ms
+2026-10-15T06:12:18.3422656Z
+2026-10-15T06:12:18.3423207Z Start by importing your Prisma Client (See: https://pris.ly/d/importing-client)
+2026-10-15T06:12:18.3423973Z
+2026-10-15T06:12:18.3424453Z Tip: Want to turn off tips and other hints? https://pris.ly/tip-4-nohints
+2026-10-15T06:12:18.3424894Z
+2026-10-15T06:12:18.3807522Z ##[group]Run pnpm exec playwright install --with-deps chromium
+2026-10-15T06:12:18.3808019Z [36;1mpnpm exec playwright install --with-deps chromium[0m
+2026-10-15T06:12:18.3845401Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:12:18.3845689Z env:
+2026-10-15T06:12:18.3846034Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:12:18.3846454Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:12:18.3846800Z ##[endgroup]
+2026-10-15T06:12:19.1220915Z Installing dependencies...
+2026-10-15T06:12:19.1278424Z Switching to root user to install dependencies...
+2026-10-15T06:12:19.2015192Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-15T06:12:19.2478446Z Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-10-15T06:12:19.2505558Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-10-15T06:12:19.2525309Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+2026-10-15T06:12:19.2580266Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+2026-10-15T06:12:19.2602485Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+2026-10-15T06:12:19.3621727Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [581 kB]
+2026-10-15T06:12:19.3785780Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [523 kB]
+2026-10-15T06:12:19.3855792Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.4 kB]
+2026-10-15T06:12:19.4067695Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1397 kB]
+2026-10-15T06:12:19.4165940Z Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [308 kB]
+2026-10-15T06:12:19.4187629Z Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1702 kB]
+2026-10-15T06:12:19.4267938Z Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1805 kB]
+2026-10-15T06:12:19.4353533Z Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [411 kB]
+2026-10-15T06:12:19.4939317Z Get:15 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1144 kB]
+2026-10-15T06:12:19.5000756Z Get:16 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [231 kB]
+2026-10-15T06:12:19.5018225Z Get:17 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1221 kB]
+2026-10-15T06:12:19.5079350Z Get:18 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [246 kB]
+2026-10-15T06:12:19.5097269Z Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1713 kB]
+2026-10-15T06:12:19.5656166Z Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [392 kB]
+2026-10-15T06:12:24.1612062Z Fetched 12.1 MB in 1s (9591 kB/s)
+2026-10-15T06:12:25.1296837Z Reading package lists...
+2026-10-15T06:12:25.1565952Z Reading package lists...
+2026-10-15T06:12:25.3793305Z Building dependency tree...
+2026-10-15T06:12:25.3800492Z Reading state information...
+2026-10-15T06:12:25.5781145Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+2026-10-15T06:12:25.5781933Z libasound2t64 set to manually installed.
+2026-10-15T06:12:25.5782689Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-15T06:12:25.5784117Z libatk-bridge2.0-0t64 set to manually installed.
+2026-10-15T06:12:25.5784836Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-15T06:12:25.5785476Z libatk1.0-0t64 set to manually installed.
+2026-10-15T06:12:25.5786177Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-10-15T06:12:25.5786924Z libatspi2.0-0t64 set to manually installed.
+2026-10-15T06:12:25.5787677Z libcairo2 is already the newest version (1.18.0-3build1).
+2026-10-15T06:12:25.5788401Z libcairo2 set to manually installed.
+2026-10-15T06:12:25.5789518Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+2026-10-15T06:12:25.5790262Z libcups2t64 set to manually installed.
+2026-10-15T06:12:25.5790986Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+2026-10-15T06:12:25.5791665Z libdbus-1-3 set to manually installed.
+2026-10-15T06:12:25.5792412Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+2026-10-15T06:12:25.5793145Z libdrm2 set to manually installed.
+2026-10-15T06:12:25.5793991Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-10-15T06:12:25.5794894Z libgbm1 set to manually installed.
+2026-10-15T06:12:25.5795660Z libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.9).
+2026-10-15T06:12:25.5796461Z libglib2.0-0t64 set to manually installed.
+2026-10-15T06:12:25.5797298Z libnspr4 is already the newest version (2:4.35-1.1build1).
+2026-10-15T06:12:25.5798008Z libnspr4 set to manually installed.
+2026-10-15T06:12:25.5798692Z libnss3 is already the newest version (2:3.98-1ubuntu0.2).
+2026-10-15T06:12:25.5799496Z libnss3 set to manually installed.
+2026-10-15T06:12:25.5800187Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+2026-10-15T06:12:25.5800947Z libpango-1.0-0 set to manually installed.
+2026-10-15T06:12:25.5801637Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+2026-10-15T06:12:25.5802236Z libx11-6 set to manually installed.
+2026-10-15T06:12:25.5802810Z libxcb1 is already the newest version (1.15-1ubuntu2).
+2026-10-15T06:12:25.5803549Z libxcb1 set to manually installed.
+2026-10-15T06:12:25.5804357Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+2026-10-15T06:12:25.5804996Z libxcomposite1 set to manually installed.
+2026-10-15T06:12:25.5805744Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+2026-10-15T06:12:25.5806586Z libxdamage1 set to manually installed.
+2026-10-15T06:12:25.5807111Z libxext6 is already the newest version (2:1.3.4-1build2).
+2026-10-15T06:12:25.5807492Z libxext6 set to manually installed.
+2026-10-15T06:12:25.5807910Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+2026-10-15T06:12:25.5808304Z libxfixes3 set to manually installed.
+2026-10-15T06:12:25.5808712Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+2026-10-15T06:12:25.5809115Z libxkbcommon0 set to manually installed.
+2026-10-15T06:12:25.5809518Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+2026-10-15T06:12:25.5809907Z libxrandr2 set to manually installed.
+2026-10-15T06:12:25.5810309Z xvfb is already the newest version (2:21.1.12-1ubuntu1.8).
+2026-10-15T06:12:25.5810842Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-10-15T06:12:25.5811405Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+2026-10-15T06:12:25.5811824Z libfontconfig1 set to manually installed.
+2026-10-15T06:12:25.5812271Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+2026-10-15T06:12:25.5812700Z libfreetype6 set to manually installed.
+2026-10-15T06:12:25.5813118Z fonts-liberation is already the newest version (1:2.1.5-3).
+2026-10-15T06:12:25.5813526Z fonts-liberation set to manually installed.
+2026-10-15T06:12:25.5814221Z The following additional packages will be installed:
+2026-10-15T06:12:25.5814596Z   xfonts-encodings xfonts-utils
+2026-10-15T06:12:25.5814915Z Recommended packages:
+2026-10-15T06:12:25.5815228Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-10-15T06:12:25.5990186Z The following NEW packages will be installed:
+2026-10-15T06:12:25.5991213Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-10-15T06:12:25.6004769Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-10-15T06:12:25.6005367Z   xfonts-utils
+2026-10-15T06:12:25.6187749Z 0 upgraded, 9 newly installed, 0 to remove and 43 not upgraded.
+2026-10-15T06:12:25.6188203Z Need to get 21.1 MB of archives.
+2026-10-15T06:12:25.6188649Z After this operation, 79.5 MB of additional disk space will be used.
+2026-10-15T06:12:25.6189150Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-10-15T06:12:25.6994167Z Get:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+2026-10-15T06:12:25.9427032Z Get:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+2026-10-15T06:12:26.1196491Z Get:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+2026-10-15T06:12:26.1862880Z Get:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+2026-10-15T06:12:26.3062860Z Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+2026-10-15T06:12:26.5207220Z Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+2026-10-15T06:12:26.5948426Z Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+2026-10-15T06:12:26.6591428Z Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+2026-10-15T06:12:26.7295762Z Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+2026-10-15T06:12:27.0143162Z Fetched 21.1 MB in 1s (18.7 MB/s)
+2026-10-15T06:12:27.0385703Z Selecting previously unselected package fonts-ipafont-gothic.
+2026-10-15T06:12:27.0601409Z (Reading database ...
+2026-10-15T06:12:27.0601921Z (Reading database ... 5%
+2026-10-15T06:12:27.0602333Z (Reading database ... 10%
+2026-10-15T06:12:27.0602707Z (Reading database ... 15%
+2026-10-15T06:12:27.0603089Z (Reading database ... 20%
+2026-10-15T06:12:27.0603428Z (Reading database ... 25%
+2026-10-15T06:12:27.0603991Z (Reading database ... 30%
+2026-10-15T06:12:27.0604555Z (Reading database ... 35%
+2026-10-15T06:12:27.0604982Z (Reading database ... 40%
+2026-10-15T06:12:27.0605330Z (Reading database ... 45%
+2026-10-15T06:12:27.0605584Z (Reading database ... 50%
+2026-10-15T06:12:27.0646229Z (Reading database ... 55%
+2026-10-15T06:12:27.1880619Z (Reading database ... 60%
+2026-10-15T06:12:27.3955266Z (Reading database ... 65%
+2026-10-15T06:12:27.5989406Z (Reading database ... 70%
+2026-10-15T06:12:27.7861921Z (Reading database ... 75%
+2026-10-15T06:12:27.9492960Z (Reading database ... 80%
+2026-10-15T06:12:28.0937558Z (Reading database ... 85%
+2026-10-15T06:12:28.2739906Z (Reading database ... 90%
+2026-10-15T06:12:28.4626660Z (Reading database ... 95%
+2026-10-15T06:12:28.4627123Z (Reading database ... 100%
+2026-10-15T06:12:28.4627650Z (Reading database ... 203540 files and directories currently installed.)
+2026-10-15T06:12:28.4671914Z Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+2026-10-15T06:12:28.4756726Z Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-15T06:12:28.7072177Z Selecting previously unselected package fonts-freefont-ttf.
+2026-10-15T06:12:28.7183279Z Preparing to unpack .../1-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+2026-10-15T06:12:28.7193582Z Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-10-15T06:12:28.8015996Z Selecting previously unselected package fonts-tlwg-loma-otf.
+2026-10-15T06:12:28.8142094Z Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+2026-10-15T06:12:28.8147997Z Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-15T06:12:28.8318461Z Selecting previously unselected package fonts-unifont.
+2026-10-15T06:12:28.8432608Z Preparing to unpack .../3-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+2026-10-15T06:12:28.8441702Z Unpacking fonts-unifont (1:15.1.01-1build1) ...
+2026-10-15T06:12:28.9399957Z Selecting previously unselected package fonts-wqy-zenhei.
+2026-10-15T06:12:28.9515226Z Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+2026-10-15T06:12:28.9611932Z Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-15T06:12:29.4380839Z Selecting previously unselected package xfonts-encodings.
+2026-10-15T06:12:29.4497551Z Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+2026-10-15T06:12:29.4505919Z Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-15T06:12:29.4729818Z Selecting previously unselected package xfonts-utils.
+2026-10-15T06:12:29.4846726Z Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+2026-10-15T06:12:29.4858005Z Unpacking xfonts-utils (1:7.7+6build3) ...
+2026-10-15T06:12:29.5149678Z Selecting previously unselected package xfonts-cyrillic.
+2026-10-15T06:12:29.5265824Z Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+2026-10-15T06:12:29.5274340Z Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-10-15T06:12:29.5525247Z Selecting previously unselected package xfonts-scalable.
+2026-10-15T06:12:29.5640929Z Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+2026-10-15T06:12:29.5647844Z Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+2026-10-15T06:12:29.6010097Z Setting up fonts-wqy-zenhei (0.9.45-8) ...
+2026-10-15T06:12:29.6109761Z Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+2026-10-15T06:12:29.6124092Z Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+2026-10-15T06:12:29.6136802Z Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+2026-10-15T06:12:29.6149287Z Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+2026-10-15T06:12:29.6203007Z update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+2026-10-15T06:12:29.6215683Z Setting up fonts-unifont (1:15.1.01-1build1) ...
+2026-10-15T06:12:29.6232798Z Setting up xfonts-utils (1:7.7+6build3) ...
+2026-10-15T06:12:29.6267609Z Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+2026-10-15T06:12:29.6519371Z Setting up xfonts-scalable (1:1.0.3-1.3) ...
+2026-10-15T06:12:29.6744820Z Processing triggers for man-db (2.12.0-4build2) ...
+2026-10-15T06:12:29.6764178Z Not building database; man-db/auto-update is not 'true'.
+2026-10-15T06:12:29.6776420Z Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+2026-10-15T06:12:30.3095772Z
+2026-10-15T06:12:30.3096647Z Running kernel seems to be up-to-date.
+2026-10-15T06:12:30.3097138Z
+2026-10-15T06:12:30.3097455Z No services need to be restarted.
+2026-10-15T06:12:30.3097833Z
+2026-10-15T06:12:30.3098133Z No containers need to be restarted.
+2026-10-15T06:12:30.3098512Z
+2026-10-15T06:12:30.3098817Z No user sessions are running outdated binaries.
+2026-10-15T06:12:30.3099071Z
+2026-10-15T06:12:30.3099412Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-10-15T06:12:31.3707277Z Downloading Chrome for Testing 156.0.8078.4 (playwright chromium v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-linux64.zip
+2026-10-15T06:12:31.7883369Z |                                                                                |   0% of 191.1 MiB
+2026-10-15T06:12:31.9385520Z |■■■■■■■■                                                                        |  10% of 191.1 MiB
+2026-10-15T06:12:32.0253422Z |■■■■■■■■■■■■■■■■                                                                |  20% of 191.1 MiB
+2026-10-15T06:12:32.0807433Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 191.1 MiB
+2026-10-15T06:12:32.1350615Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 191.1 MiB
+2026-10-15T06:12:32.1868543Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 191.1 MiB
+2026-10-15T06:12:32.2362804Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 191.1 MiB
+2026-10-15T06:12:32.2862942Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 191.1 MiB
+2026-10-15T06:12:32.3357532Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 191.1 MiB
+2026-10-15T06:12:32.3783958Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 191.1 MiB
+2026-10-15T06:12:32.4350272Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 191.1 MiB
+2026-10-15T06:12:35.0632013Z Chrome for Testing 156.0.8078.4 (playwright chromium v1248) downloaded to /home/runner/.cache/ms-playwright/chromium-1248
+2026-10-15T06:12:35.0635673Z Downloading FFmpeg (playwright ffmpeg v1013) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-linux.zip
+2026-10-15T06:12:35.4244999Z |                                                                                |   0% of 2.2 MiB
+2026-10-15T06:12:35.4306681Z |■■■■■■■■                                                                        |  10% of 2.2 MiB
+2026-10-15T06:12:35.4328689Z |■■■■■■■■■■■■■■■■                                                                |  20% of 2.2 MiB
+2026-10-15T06:12:35.4349516Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.2 MiB
+2026-10-15T06:12:35.4361979Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.2 MiB
+2026-10-15T06:12:35.4379182Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.2 MiB
+2026-10-15T06:12:35.4394204Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.2 MiB
+2026-10-15T06:12:35.4402936Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.2 MiB
+2026-10-15T06:12:35.4415604Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.2 MiB
+2026-10-15T06:12:35.4425245Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.2 MiB
+2026-10-15T06:12:35.4432876Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.2 MiB
+2026-10-15T06:12:35.5042482Z FFmpeg (playwright ffmpeg v1013) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1013
+2026-10-15T06:12:35.5048229Z Downloading Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) from https://cdn.playwright.dev/builds/cft/156.0.8078.4/linux64/chrome-headless-shell-linux64.zip
+2026-10-15T06:12:35.9145066Z |                                                                                |   0% of 120 MiB
+2026-10-15T06:12:36.0884952Z |■■■■■■■■                                                                        |  10% of 120 MiB
+2026-10-15T06:12:36.1747505Z |■■■■■■■■■■■■■■■■                                                                |  20% of 120 MiB
+2026-10-15T06:12:36.2403376Z |■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 120 MiB
+2026-10-15T06:12:36.2829776Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 120 MiB
+2026-10-15T06:12:36.3236784Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 120 MiB
+2026-10-15T06:12:36.3602158Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 120 MiB
+2026-10-15T06:12:36.3934084Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 120 MiB
+2026-10-15T06:12:36.4247420Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 120 MiB
+2026-10-15T06:12:36.4559550Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 120 MiB
+2026-10-15T06:12:36.4947968Z |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 120 MiB
+2026-10-15T06:12:38.3727656Z Chrome Headless Shell 156.0.8078.4 (playwright chromium-headless-shell v1248) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1248
+2026-10-15T06:12:38.3882754Z ##[group]Run pnpm check
+2026-10-15T06:12:38.3883039Z [36;1mpnpm check[0m
+2026-10-15T06:12:38.3919753Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:12:38.3920025Z env:
+2026-10-15T06:12:38.3920331Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:12:38.3920757Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:12:38.3921069Z ##[endgroup]
+2026-10-15T06:12:38.6413627Z
+2026-10-15T06:12:38.6415260Z > @tileset/prototype@0.0.2 check /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:12:38.6416736Z > pnpm check:boundaries && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm build && pnpm verify:exports
+2026-10-15T06:12:38.6417525Z
+2026-10-15T06:12:38.9109565Z
+2026-10-15T06:12:38.9110672Z > @tileset/prototype@0.0.2 check:boundaries /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:12:38.9111672Z > node scripts/check-boundaries.mjs
+2026-10-15T06:12:38.9112012Z
+2026-10-15T06:12:38.9642788Z 13 workspace members: dependency directions and exact direct pins verified.
+2026-10-15T06:12:39.2410520Z
+2026-10-15T06:12:39.2411572Z > @tileset/prototype@0.0.2 typecheck /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:12:39.2413128Z > pnpm build:contracts && tsc --noEmit && tsc -p tsconfig.tests.json && pnpm -r --filter './apps/*' --filter './packages/*' typecheck
+2026-10-15T06:12:39.2414118Z
+2026-10-15T06:12:39.5101302Z
+2026-10-15T06:12:39.7889788Z > @tileset/prototype@0.0.2 build:contracts /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:12:39.7892527Z > pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+2026-10-15T06:12:39.7894484Z
+2026-10-15T06:12:39.7894492Z
+2026-10-15T06:12:39.7894913Z > @tileset/contracts@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/contracts
+2026-10-15T06:12:39.7895421Z > tsc -p tsconfig.json
+2026-10-15T06:12:39.7895571Z
+2026-10-15T06:12:42.2278569Z
+2026-10-15T06:12:42.2280288Z > @tileset/ai-gateway@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/ai-gateway
+2026-10-15T06:12:42.2281352Z > tsc -p tsconfig.json
+2026-10-15T06:12:42.2281645Z
+2026-10-15T06:12:44.0515011Z
+2026-10-15T06:12:44.0516339Z > @tileset/asset-core@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/asset-core
+2026-10-15T06:12:44.0517407Z > tsc -p tsconfig.json
+2026-10-15T06:12:44.0517691Z
+2026-10-15T06:12:45.4723459Z
+2026-10-15T06:12:45.4724918Z > @tileset/material-processing@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/material-processing
+2026-10-15T06:12:45.4725650Z > tsc -p tsconfig.json
+2026-10-15T06:12:45.4725821Z
+2026-10-15T06:12:46.7332855Z
+2026-10-15T06:12:46.7335756Z > @tileset/image-adapter@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/image-adapter
+2026-10-15T06:12:46.7336329Z > tsc -p tsconfig.json
+2026-10-15T06:12:46.7336496Z
+2026-10-15T06:12:48.1083142Z
+2026-10-15T06:12:48.1084657Z > @tileset/mz-compiler@0.0.4 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/mz-compiler
+2026-10-15T06:12:48.1085241Z > tsc -p tsconfig.json
+2026-10-15T06:12:48.1085400Z
+2026-10-15T06:12:49.3841997Z
+2026-10-15T06:12:49.3843155Z > @tileset/pack-assembly@0.0.5 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-assembly
+2026-10-15T06:12:49.3843935Z > tsc -p tsconfig.json
+2026-10-15T06:12:49.3844172Z
+2026-10-15T06:12:50.6585652Z
+2026-10-15T06:12:50.6587290Z > @tileset/pack-export@0.0.7 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-export
+2026-10-15T06:12:50.6588265Z > tsc -p tsconfig.json
+2026-10-15T06:12:50.6588535Z
+2026-10-15T06:12:51.9886854Z
+2026-10-15T06:12:51.9887711Z > @tileset/persistence@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/persistence
+2026-10-15T06:12:51.9888272Z > tsc -p tsconfig.json
+2026-10-15T06:12:51.9888438Z
+2026-10-15T06:12:55.9986286Z
+2026-10-15T06:12:55.9987552Z > @tileset/local-executor@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/local-executor
+2026-10-15T06:12:55.9988544Z > tsc -p tsconfig.json
+2026-10-15T06:12:55.9988800Z
+2026-10-15T06:13:05.7023042Z Scope: 12 of 13 workspace projects
+2026-10-15T06:13:05.7107128Z packages/ai-gateway typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:05.7113185Z packages/asset-core typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:05.7117418Z packages/contracts typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:07.9134380Z packages/asset-core typecheck: Done
+2026-10-15T06:13:08.4008945Z packages/ai-gateway typecheck: Done
+2026-10-15T06:13:08.7816968Z packages/contracts typecheck: Done
+2026-10-15T06:13:08.7827036Z apps/web typecheck$ tsc --noEmit
+2026-10-15T06:13:08.7831447Z packages/image-adapter typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:08.7836293Z packages/material-processing typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:08.7839604Z packages/mz-compiler typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:11.3455222Z packages/material-processing typecheck: Done
+2026-10-15T06:13:11.4674941Z packages/mz-compiler typecheck: Done
+2026-10-15T06:13:11.5159547Z packages/image-adapter typecheck: Done
+2026-10-15T06:13:13.0114630Z apps/web typecheck: Done
+2026-10-15T06:13:13.0119669Z packages/pack-assembly typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:13.9470353Z packages/pack-assembly typecheck: Done
+2026-10-15T06:13:13.9474963Z packages/pack-export typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:14.9114643Z packages/pack-export typecheck: Done
+2026-10-15T06:13:14.9122405Z packages/persistence typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:18.3600977Z packages/persistence typecheck: Done
+2026-10-15T06:13:18.3605965Z apps/api typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:18.3607664Z packages/local-executor typecheck$ tsc -p tsconfig.json --noEmit
+2026-10-15T06:13:20.1708547Z packages/local-executor typecheck: Done
+2026-10-15T06:13:21.5358809Z apps/api typecheck: Done
+2026-10-15T06:13:21.8101839Z
+2026-10-15T06:13:21.8102847Z > @tileset/prototype@0.0.2 lint /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:13:21.8103912Z > eslint src scripts tests apps packages *.ts *.mjs
+2026-10-15T06:13:21.8104318Z
+2026-10-15T06:13:25.6638087Z
+2026-10-15T06:13:25.7443303Z > @tileset/prototype@0.0.2 format:check /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:13:25.7444388Z > prettier --check .
+2026-10-15T06:13:25.7444692Z
+2026-10-15T06:13:25.7444904Z Checking formatting...
+2026-10-15T06:13:30.7835145Z All matched files use Prettier code style!
+2026-10-15T06:13:31.0727003Z
+2026-10-15T06:13:31.0728102Z > @tileset/prototype@0.0.2 test /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:13:31.0728998Z > pnpm build:prototype && vitest run
+2026-10-15T06:13:31.0729345Z
+2026-10-15T06:13:31.3487311Z
+2026-10-15T06:13:31.3488439Z > @tileset/prototype@0.0.2 build:prototype /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:13:31.3488989Z > pnpm build:contracts && tsc
+2026-10-15T06:13:31.3489170Z
+2026-10-15T06:13:31.6217150Z
+2026-10-15T06:13:31.6218625Z > @tileset/prototype@0.0.2 build:contracts /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:13:31.6223281Z > pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+2026-10-15T06:13:31.6226498Z
+2026-10-15T06:13:31.9071702Z
+2026-10-15T06:13:31.9072827Z > @tileset/contracts@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/contracts
+2026-10-15T06:13:31.9073881Z > tsc -p tsconfig.json
+2026-10-15T06:13:31.9074114Z
+2026-10-15T06:13:34.0468862Z
+2026-10-15T06:13:34.0520252Z > @tileset/ai-gateway@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/ai-gateway
+2026-10-15T06:13:34.0521315Z > tsc -p tsconfig.json
+2026-10-15T06:13:34.0524264Z
+2026-10-15T06:13:35.6171383Z
+2026-10-15T06:13:35.6194793Z > @tileset/asset-core@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/asset-core
+2026-10-15T06:13:36.9616638Z > tsc -p tsconfig.json
+2026-10-15T06:13:36.9616966Z
+2026-10-15T06:13:36.9616978Z
+2026-10-15T06:13:36.9617932Z > @tileset/material-processing@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/material-processing
+2026-10-15T06:13:36.9618937Z > tsc -p tsconfig.json
+2026-10-15T06:13:36.9619212Z
+2026-10-15T06:13:38.2343984Z
+2026-10-15T06:13:38.2345051Z > @tileset/image-adapter@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/image-adapter
+2026-10-15T06:13:38.2345615Z > tsc -p tsconfig.json
+2026-10-15T06:13:38.2345775Z
+2026-10-15T06:13:39.6094005Z
+2026-10-15T06:13:39.6095219Z > @tileset/mz-compiler@0.0.4 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/mz-compiler
+2026-10-15T06:13:39.6096173Z > tsc -p tsconfig.json
+2026-10-15T06:13:39.6096445Z
+2026-10-15T06:13:40.8553438Z
+2026-10-15T06:13:40.8554587Z > @tileset/pack-assembly@0.0.5 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-assembly
+2026-10-15T06:13:40.8555432Z > tsc -p tsconfig.json
+2026-10-15T06:13:40.8555659Z
+2026-10-15T06:13:42.1643600Z
+2026-10-15T06:13:42.1645089Z > @tileset/pack-export@0.0.7 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-export
+2026-10-15T06:13:42.1645666Z > tsc -p tsconfig.json
+2026-10-15T06:13:42.1645830Z
+2026-10-15T06:13:43.5214950Z
+2026-10-15T06:13:43.5216117Z > @tileset/persistence@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/persistence
+2026-10-15T06:13:43.5216771Z > tsc -p tsconfig.json
+2026-10-15T06:13:43.5216969Z
+2026-10-15T06:13:47.5543378Z
+2026-10-15T06:13:47.5544605Z > @tileset/local-executor@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/local-executor
+2026-10-15T06:13:47.5545190Z > tsc -p tsconfig.json
+2026-10-15T06:13:47.5545375Z
+2026-10-15T06:13:51.2138591Z
+2026-10-15T06:13:51.2154265Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/runner/work/rpg-maker-maker/rpg-maker-maker[39m
+2026-10-15T06:13:51.2154705Z
+2026-10-15T06:14:05.9723894Z  [32m✓[39m apps/api/tests/studio/received-resources.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 13825[2mms[22m[39m
+2026-10-15T06:14:05.9725984Z    [33m[2m✓[22m[39m real cancelled sameURL response reproduces old false failure while current actual image remains verifiable [33m 1915[2mms[22m[39m
+2026-10-15T06:14:05.9727028Z    [33m[2m✓[22m[39m navigation retires old sameURL bodies and requires a new actual body in the new document [33m 774[2mms[22m[39m
+2026-10-15T06:14:05.9727968Z    [33m[2m✓[22m[39m a late older sameURL response cannot overwrite the newer displayed actual PNG [33m 817[2mms[22m[39m
+2026-10-15T06:14:05.9729195Z    [33m[2m✓[22m[39m same-document URL changes retain the current actual PNG without another network read [33m 1417[2mms[22m[39m
+2026-10-15T06:14:05.9730876Z    [33m[2m✓[22m[39m a failed navigation preserves the actual document but a committed sameURL reload retires it [33m 1604[2mms[22m[39m
+2026-10-15T06:14:05.9732708Z    [33m[2m✓[22m[39m bounded diagnostics expose missing current evidence without leaking bodies or accepting an image alone [33m 636[2mms[22m[39m
+2026-10-15T06:14:05.9735141Z    [33m[2m✓[22m[39m missing, wrong owner/origin/frame/hash and non200 bodies cannot satisfy current image identity [33m 537[2mms[22m[39m
+2026-10-15T06:14:05.9737017Z    [33m[2m✓[22m[39m corrupt actual PNG or a mismatched rendered hash is rejected rather than replaced by a valid old body [33m 416[2mms[22m[39m
+2026-10-15T06:14:05.9738803Z    [33m[2m✓[22m[39m complete current network bytes survive consumer cancellation while the old response.body observer fails [33m 826[2mms[22m[39m
+2026-10-15T06:14:05.9740384Z    [33m[2m✓[22m[39m abort is not completion: partial, unknown length and encoded bodies never satisfy the current receipt [33m 421[2mms[22m[39m
+2026-10-15T06:14:05.9741962Z    [33m[2m✓[22m[39m an iframe full response cannot supply the main document even with the same owner URL and hash [33m 678[2mms[22m[39m
+2026-10-15T06:14:05.9744017Z    [33m[2m✓[22m[39m a decoded complete PNG alone is insufficient when HTTP framing cannot prove complete reception [33m 379[2mms[22m[39m
+2026-10-15T06:14:05.9745540Z    [33m[2m✓[22m[39m rejects bad PNG CRC on the same actual finished request before pixel equivalence can imply validity [33m 928[2mms[22m[39m
+2026-10-15T06:14:05.9747099Z    [33m[2m✓[22m[39m rejects bad PNG CRC on the same actual complete-abort request before pixel equivalence can imply validity [33m 843[2mms[22m[39m
+2026-10-15T06:14:05.9748939Z    [33m[2m✓[22m[39m rejects non-ASCII raw PNG type with valid CRC on the same actual finished request before pixel equivalence can imply validity [33m 558[2mms[22m[39m
+2026-10-15T06:14:05.9751214Z    [33m[2m✓[22m[39m rejects non-ASCII raw PNG type with valid CRC on the same actual complete-abort request before pixel equivalence can imply validity [33m 693[2mms[22m[39m
+2026-10-15T06:14:08.3157756Z  [32m✓[39m apps/web/tests/dev-privacy.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 2177[2mms[22m[39m
+2026-10-15T06:14:08.3159844Z      [33m[2m✓[22m[39m blocks complete private trees, key/env/git fixtures and allowed-tree symlinks for raw/import variants [33m 1019[2mms[22m[39m
+2026-10-15T06:14:08.3162530Z      [33m[2m✓[22m[39m rejects effective module wrappers for both file and directory aliases across methods and encodings [33m 396[2mms[22m[39m
+2026-10-15T06:14:09.4917371Z  [32m✓[39m packages/image-adapter/tests/adapter.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 17804[2mms[22m[39m
+2026-10-15T06:14:09.4919479Z      [33m[2m✓[22m[39m decodes independent PNG wire bytes and deterministically encodes owned RGBA without metadata drift [33m 911[2mms[22m[39m
+2026-10-15T06:14:09.4921469Z      [33m[2m✓[22m[39m feeds actual PNG Source→Validated→Compilable Tile IR and matches independent pixels [33m 989[2mms[22m[39m
+2026-10-15T06:14:09.4923295Z      [33m[2m✓[22m[39m preserves transparent edges and partial alpha in PNG roundtrips [33m 445[2mms[22m[39m
+2026-10-15T06:14:09.4925651Z      [33m[2m✓[22m[39m measures the largest allowed normal plane in the actual child [33m 9131[2mms[22m[39m
+2026-10-15T06:14:09.4927564Z      [33m[2m✓[22m[39m rejects a concurrent read and times out a stalled producer without losing the slot [33m 5002[2mms[22m[39m
+2026-10-15T06:14:10.2329583Z  [32m✓[39m tests/publication-ownership.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 1725[2mms[22m[39m
+2026-10-15T06:14:11.1784649Z  [32m✓[39m tests/prototype.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 608[2mms[22m[39m
+2026-10-15T06:14:12.9329114Z  [32m✓[39m packages/persistence/tests/storage.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 1224[2mms[22m[39m
+2026-10-15T06:14:13.1715087Z  [32m✓[39m packages/material-processing/tests/recipe.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 65[2mms[22m[39m
+2026-10-15T06:14:13.4553873Z  [32m✓[39m packages/material-processing/tests/review-round1.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 65[2mms[22m[39m
+2026-10-15T06:14:13.7790288Z  [32m✓[39m apps/api/tests/e2e-environment.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 66[2mms[22m[39m
+2026-10-15T06:14:14.1036599Z  [32m✓[39m packages/material-processing/tests/global-review.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 111[2mms[22m[39m
+2026-10-15T06:14:14.3125902Z  [32m✓[39m packages/asset-core/tests/domain.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+2026-10-15T06:14:14.5695085Z  [32m✓[39m apps/api/tests/studio/stored-zip.test.ts [2m([22m[2m47 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+2026-10-15T06:14:14.8706150Z  [32m✓[39m apps/web/tests/reads.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+2026-10-15T06:14:15.7630198Z  [32m✓[39m tests/prepare-mz.test.ts [2m([22m[2m24 tests[22m[2m)[22m[33m 593[2mms[22m[39m
+2026-10-15T06:14:18.9186091Z  [32m✓[39m packages/mz-compiler/tests/compiler.test.ts [2m([22m[2m44 tests[22m[2m)[22m[33m 27175[2mms[22m[39m
+2026-10-15T06:14:18.9225981Z      [33m[2m✓[22m[39m maps explicitly shuffled semantic quarters to the exact independent art master [33m 1042[2mms[22m[39m
+2026-10-15T06:14:18.9269622Z      [33m[2m✓[22m[39m does not retain mutable metadata, arrays, source Buffer views or output getters [33m 646[2mms[22m[39m
+2026-10-15T06:14:18.9271327Z      [33m[2m✓[22m[39m snapshots distinct views of one mutable Buffer at the step03 boundary [33m 352[2mms[22m[39m
+2026-10-15T06:14:18.9278828Z      [33m[2m✓[22m[39m renders all 47 connecting shapes and representative 47 with full bytes / art [33m 6921[2mms[22m[39m
+2026-10-15T06:14:18.9280352Z      [33m[2m✓[22m[39m renders all 47 connecting shapes and representative 47 with full bytes / diagnostic [33m 8616[2mms[22m[39m
+2026-10-15T06:14:22.2155832Z  [32m✓[39m packages/pack-assembly/tests/pack.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 12476[2mms[22m[39m
+2026-10-15T06:14:22.2206521Z      [33m[2m✓[22m[39m allocates independently specified coordinates, types and pixels, leaving reserves transparent [33m 1535[2mms[22m[39m
+2026-10-15T06:14:22.2209340Z      [33m[2m✓[22m[39m adds B, keeps omitted A and its pixels, updates A in place, and freezes retirement across JSON reload [33m 796[2mms[22m[39m
+2026-10-15T06:14:31.0306823Z  [32m✓[39m apps/api/tests/e2e-environment-startup.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 8585[2mms[22m[39m
+2026-10-15T06:14:31.0311364Z    [33m[2m✓[22m[39m collects the actual 18 tests for genuinely absent optional env with valid CI configuration [33m 2638[2mms[22m[39m
+2026-10-15T06:14:31.0313879Z    [33m[2m✓[22m[39m collects the actual config with a normal local file and explicit process values taking precedence [33m 1389[2mms[22m[39m
+2026-10-15T06:14:31.0353201Z    [33m[2m✓[22m[39m rejects a real existing mode000 env in the actual Playwright config before discovery or effects [33m 1129[2mms[22m[39m
+2026-10-15T06:14:31.0355231Z    [33m[2m✓[22m[39m rejects an actual directory env at the real config entry [33m 1079[2mms[22m[39m
+2026-10-15T06:14:31.0357048Z    [33m[2m✓[22m[39m rejects missing and invalid required configuration at the real entry without effects [33m 2224[2mms[22m[39m
+2026-10-15T06:14:32.7178465Z  [32m✓[39m packages/persistence/tests/replay.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 16620[2mms[22m[39m
+2026-10-15T06:14:32.7202953Z      [33m[2m✓[22m[39m one bounded replay session reuses only identical validated archives and independently owned bytes [33m 1144[2mms[22m[39m
+2026-10-15T06:14:32.7207453Z      [33m[2m✓[22m[39m a warmed session still rejects changed validation metadata and an ended lifetime [33m 1348[2mms[22m[39m
+2026-10-15T06:14:32.7209510Z      [33m[2m✓[22m[39m actually recreates owned source, IR and Compiler; caller bytes cannot mutate recovered history [33m 1171[2mms[22m[39m
+2026-10-15T06:14:32.7211457Z      [33m[2m✓[22m[39m rejects source/recipe corruption and fake validation states [33m 1588[2mms[22m[39m
+2026-10-15T06:14:32.7213240Z      [33m[2m✓[22m[39m snapshot before asynchronous decoding defeats caller mutation races [33m 1164[2mms[22m[39m
+2026-10-15T06:14:32.7215755Z      [33m[2m✓[22m[39m validates actual full file content against source/history replay, rejecting missing and modified files [33m 6978[2mms[22m[39m
+2026-10-15T06:14:33.5527897Z  [32m✓[39m apps/api/tests/boundary.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+2026-10-15T06:14:33.7842961Z  [32m✓[39m packages/material-processing/tests/pixels.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+2026-10-15T06:14:34.0207587Z  [32m✓[39m packages/ai-gateway/tests/contracts.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+2026-10-15T06:14:34.3075998Z  [32m✓[39m apps/api/tests/studio/received-png.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+2026-10-15T06:14:34.5601844Z  [32m✓[39m apps/api/tests/studio-units.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-15T06:14:34.7996123Z  [32m✓[39m packages/image-adapter/tests/png-type.test.ts [2m([22m[2m36 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+2026-10-15T06:14:35.0917349Z  [32m✓[39m tests/copy-rect.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+2026-10-15T06:14:35.2655934Z  [32m✓[39m packages/asset-core/tests/review-round1.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+2026-10-15T06:14:35.6680415Z  [32m✓[39m packages/contracts/tests/http.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 112[2mms[22m[39m
+2026-10-15T06:14:35.9976009Z  [32m✓[39m packages/persistence/tests/config.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 17[2mms[22m[39m
+2026-10-15T06:14:36.2090116Z  [32m✓[39m apps/web/tests/clock.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+2026-10-15T06:14:36.4840305Z  [32m✓[39m tests/mz-plugin-file.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+2026-10-15T06:14:39.1634684Z  [32m✓[39m tests/pack-export.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 20023[2mms[22m[39m
+2026-10-15T06:14:39.1637200Z      [33m[2m✓[22m[39m owns source/request metadata before asynchronous decoding, including caller edits while pending [33m 2132[2mms[22m[39m
+2026-10-15T06:14:39.1639361Z      [33m[2m✓[22m[39m exports real Compiler/Assembly PNGs with exact manifest, source refs and instructions [33m 3618[2mms[22m[39m
+2026-10-15T06:14:39.1641467Z      [33m[2m✓[22m[39m repeats deterministic bytes; packaging commit identity changes independently of pixels [33m 4488[2mms[22m[39m
+2026-10-15T06:14:39.1643881Z      [33m[2m✓[22m[39m rejects bad atlas and a rehashed manifest/layout/source mismatch before publication; old success survives [33m 3279[2mms[22m[39m
+2026-10-15T06:14:39.1646022Z      [33m[2m✓[22m[39m rejects missing history and source JSON fields/holes instead of believing successful status [33m 754[2mms[22m[39m
+2026-10-15T06:14:39.2702133Z  [32m✓[39m tests/codec-runtime.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 7928[2mms[22m[39m
+2026-10-15T06:14:39.2703644Z      [33m[2m✓[22m[39m validates a self-consistent supplied build containing harmless metadata using the patched decoder [33m 7638[2mms[22m[39m
+2026-10-15T06:14:39.2777156Z
+2026-10-15T06:14:39.2783545Z [2m Test Files [22m [1m[32m32 passed[39m[22m[90m (32)[39m
+2026-10-15T06:14:39.2785924Z [2m      Tests [22m [1m[32m418 passed[39m[22m[90m (418)[39m
+2026-10-15T06:14:39.2786656Z [2m   Start at [22m 06:13:51
+2026-10-15T06:14:39.2805148Z [2m   Duration [22m 48.05s[2m (transform 1.28s, setup 0ms, import 4.31s, tests 131.60s, environment 4ms)[22m
+2026-10-15T06:14:39.2805832Z
+2026-10-15T06:14:39.6057431Z
+2026-10-15T06:14:39.6058348Z > @tileset/prototype@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:14:39.6059846Z > node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && node dist/scripts/studio-resources.js && pnpm --filter @tileset/web build
+2026-10-15T06:14:39.6060613Z
+2026-10-15T06:14:39.9096900Z
+2026-10-15T06:14:39.9098137Z > @tileset/prototype@0.0.2 build:prototype /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:14:39.9098683Z > pnpm build:contracts && tsc
+2026-10-15T06:14:39.9098862Z
+2026-10-15T06:14:40.1823897Z
+2026-10-15T06:14:40.1824738Z > @tileset/prototype@0.0.2 build:contracts /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:14:40.1826871Z > pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+2026-10-15T06:14:40.1828273Z
+2026-10-15T06:14:40.4605404Z
+2026-10-15T06:14:40.4606355Z > @tileset/contracts@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/contracts
+2026-10-15T06:14:40.4606939Z > tsc -p tsconfig.json
+2026-10-15T06:14:40.4607095Z
+2026-10-15T06:14:42.6000242Z
+2026-10-15T06:14:42.6001301Z > @tileset/ai-gateway@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/ai-gateway
+2026-10-15T06:14:42.6001863Z > tsc -p tsconfig.json
+2026-10-15T06:14:42.6002026Z
+2026-10-15T06:14:44.1965059Z
+2026-10-15T06:14:44.1966357Z > @tileset/asset-core@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/asset-core
+2026-10-15T06:14:44.1967303Z > tsc -p tsconfig.json
+2026-10-15T06:14:44.1967563Z
+2026-10-15T06:14:45.5602678Z
+2026-10-15T06:14:45.5604217Z > @tileset/material-processing@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/material-processing
+2026-10-15T06:14:45.5605295Z > tsc -p tsconfig.json
+2026-10-15T06:14:45.5605547Z
+2026-10-15T06:14:46.8216809Z
+2026-10-15T06:14:46.8217690Z > @tileset/image-adapter@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/image-adapter
+2026-10-15T06:14:46.8218647Z > tsc -p tsconfig.json
+2026-10-15T06:14:46.8218806Z
+2026-10-15T06:14:48.2036110Z
+2026-10-15T06:14:48.2037204Z > @tileset/mz-compiler@0.0.4 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/mz-compiler
+2026-10-15T06:14:48.2038059Z > tsc -p tsconfig.json
+2026-10-15T06:14:48.2038279Z
+2026-10-15T06:14:49.5006465Z
+2026-10-15T06:14:49.5009409Z > @tileset/pack-assembly@0.0.5 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-assembly
+2026-10-15T06:14:49.5010102Z > tsc -p tsconfig.json
+2026-10-15T06:14:49.5010294Z
+2026-10-15T06:14:50.7910989Z
+2026-10-15T06:14:50.7912117Z > @tileset/pack-export@0.0.7 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-export
+2026-10-15T06:14:50.7913124Z > tsc -p tsconfig.json
+2026-10-15T06:14:50.7913377Z
+2026-10-15T06:14:52.1267801Z
+2026-10-15T06:14:52.1269127Z > @tileset/persistence@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/persistence
+2026-10-15T06:14:52.1270144Z > tsc -p tsconfig.json
+2026-10-15T06:14:52.1270404Z
+2026-10-15T06:14:56.2303881Z
+2026-10-15T06:14:56.2305307Z > @tileset/local-executor@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/local-executor
+2026-10-15T06:14:56.2306030Z > tsc -p tsconfig.json
+2026-10-15T06:15:00.0008169Z
+2026-10-15T06:15:00.0008191Z
+2026-10-15T06:15:00.0009561Z > @tileset/api@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/apps/api
+2026-10-15T06:15:00.0010398Z > tsc -p tsconfig.json
+2026-10-15T06:15:00.0010667Z
+2026-10-15T06:15:07.2959115Z
+2026-10-15T06:15:07.2960469Z > @tileset/web@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/apps/web
+2026-10-15T06:15:07.2960996Z > tsc --noEmit && vite build
+2026-10-15T06:15:07.2961167Z
+2026-10-15T06:15:10.0484942Z [36mvite v7.3.5 [32mbuilding client environment for production...[36m[39m
+2026-10-15T06:15:10.1219779Z transforming...
+2026-10-15T06:15:14.8091752Z [32m✓[39m 779 modules transformed.
+2026-10-15T06:15:14.9962084Z rendering chunks...
+2026-10-15T06:15:15.1823196Z computing gzip size...
+2026-10-15T06:15:15.2331724Z [2mdist/[22m[32mindex.html                                   [39m[1m[2m  0.41 kB[22m[1m[22m[2m │ gzip:   0.28 kB[22m
+2026-10-15T06:15:15.2355568Z [2mdist/[22m[2massets/[22m[35mindex-CsM4c782.css                    [39m[1m[2m  3.12 kB[22m[1m[22m[2m │ gzip:   1.22 kB[22m
+2026-10-15T06:15:15.2385725Z [2mdist/[22m[2massets/[22m[36mgetTextureBatchBindGroup-D-53rPlt.js  [39m[1m[2m  0.39 kB[22m[1m[22m[2m │ gzip:   0.29 kB[22m
+2026-10-15T06:15:15.2415323Z [2mdist/[22m[2massets/[22m[36mgetTexelRangeRects-DfZBalEY.js        [39m[1m[2m  3.62 kB[22m[1m[22m[2m │ gzip:   1.24 kB[22m
+2026-10-15T06:15:15.2445181Z [2mdist/[22m[2massets/[22m[36mcanvasUtils-DY-Cvxjp.js               [39m[1m[2m  5.71 kB[22m[1m[22m[2m │ gzip:   1.81 kB[22m
+2026-10-15T06:15:15.2475202Z [2mdist/[22m[2massets/[22m[36mwebworkerAll-B8KgPBJa.js              [39m[1m[2m 15.46 kB[22m[1m[22m[2m │ gzip:   4.87 kB[22m
+2026-10-15T06:15:15.2505216Z [2mdist/[22m[2massets/[22m[36mCanvasPool-CWsteclb.js                [39m[1m[2m 16.93 kB[22m[1m[22m[2m │ gzip:   5.97 kB[22m
+2026-10-15T06:15:15.2535102Z [2mdist/[22m[2massets/[22m[36mbrowserAll-DVdHwz8S.js                [39m[1m[2m 43.97 kB[22m[1m[22m[2m │ gzip:  11.41 kB[22m
+2026-10-15T06:15:15.2565202Z [2mdist/[22m[2massets/[22m[36mWebGPURenderer-CEOq4plQ.js            [39m[1m[2m 53.80 kB[22m[1m[22m[2m │ gzip:  15.37 kB[22m
+2026-10-15T06:15:15.2589717Z [2mdist/[22m[2massets/[22m[36mWebGLRenderer-C-4G6VH1.js             [39m[1m[2m 56.77 kB[22m[1m[22m[2m │ gzip:  15.66 kB[22m
+2026-10-15T06:15:15.2591864Z [2mdist/[22m[2massets/[22m[36mRenderTargetSystem-CaSqe-W4.js        [39m[1m[2m 72.33 kB[22m[1m[22m[2m │ gzip:  20.30 kB[22m
+2026-10-15T06:15:15.2593099Z [2mdist/[22m[2massets/[22m[36mCanvasRenderer-CuHZ-s_P.js            [39m[1m[2m 90.26 kB[22m[1m[22m[2m │ gzip:  28.57 kB[22m
+2026-10-15T06:15:15.2594662Z [2mdist/[22m[2massets/[22m[36mindex-CylqNgkq.js                     [39m[1m[2m461.13 kB[22m[1m[22m[2m │ gzip: 137.26 kB[22m
+2026-10-15T06:15:15.2595227Z [32m✓ built in 5.16s[39m
+2026-10-15T06:15:15.6061896Z
+2026-10-15T06:15:15.6063051Z > @tileset/prototype@0.0.2 verify:exports /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:15.6064223Z > node scripts/verify-exports.mjs
+2026-10-15T06:15:15.6064627Z
+2026-10-15T06:15:16.3415467Z Production Node ESM imports through all 11 package export maps passed.
+2026-10-15T06:15:16.3596491Z ##[group]Run pnpm test:dev-privacy
+2026-10-15T06:15:16.3596832Z [36;1mpnpm test:dev-privacy[0m
+2026-10-15T06:15:16.3633636Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:15:16.3634107Z env:
+2026-10-15T06:15:16.3634431Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:15:16.3634855Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:15:16.3635199Z ##[endgroup]
+2026-10-15T06:15:16.6192810Z
+2026-10-15T06:15:16.6194013Z > @tileset/prototype@0.0.2 test:dev-privacy /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:16.6194722Z > pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts
+2026-10-15T06:15:16.6195016Z
+2026-10-15T06:15:16.8959302Z
+2026-10-15T06:15:16.8960433Z > @tileset/prototype@0.0.2 build:contracts /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:16.8964663Z > pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+2026-10-15T06:15:16.8967343Z
+2026-10-15T06:15:17.1837736Z
+2026-10-15T06:15:17.1839080Z > @tileset/contracts@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/contracts
+2026-10-15T06:15:17.1840048Z > tsc -p tsconfig.json
+2026-10-15T06:15:17.1840306Z
+2026-10-15T06:15:19.3478879Z
+2026-10-15T06:15:19.3480160Z > @tileset/ai-gateway@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/ai-gateway
+2026-10-15T06:15:19.3480717Z > tsc -p tsconfig.json
+2026-10-15T06:15:19.3480868Z
+2026-10-15T06:15:20.9158768Z
+2026-10-15T06:15:20.9159738Z > @tileset/asset-core@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/asset-core
+2026-10-15T06:15:20.9160426Z > tsc -p tsconfig.json
+2026-10-15T06:15:20.9160618Z
+2026-10-15T06:15:22.2662918Z
+2026-10-15T06:15:22.2664174Z > @tileset/material-processing@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/material-processing
+2026-10-15T06:15:22.2664810Z > tsc -p tsconfig.json
+2026-10-15T06:15:22.2664966Z
+2026-10-15T06:15:23.5132191Z
+2026-10-15T06:15:23.5133466Z > @tileset/image-adapter@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/image-adapter
+2026-10-15T06:15:23.5134370Z > tsc -p tsconfig.json
+2026-10-15T06:15:23.5134536Z
+2026-10-15T06:15:24.9354214Z
+2026-10-15T06:15:24.9355864Z > @tileset/mz-compiler@0.0.4 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/mz-compiler
+2026-10-15T06:15:24.9357226Z > tsc -p tsconfig.json
+2026-10-15T06:15:24.9357719Z
+2026-10-15T06:15:26.2291808Z
+2026-10-15T06:15:26.2293072Z > @tileset/pack-assembly@0.0.5 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-assembly
+2026-10-15T06:15:26.2294254Z > tsc -p tsconfig.json
+2026-10-15T06:15:26.2294530Z
+2026-10-15T06:15:27.5387851Z
+2026-10-15T06:15:27.5389079Z > @tileset/pack-export@0.0.7 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-export
+2026-10-15T06:15:27.5389672Z > tsc -p tsconfig.json
+2026-10-15T06:15:27.5389829Z
+2026-10-15T06:15:28.8786184Z
+2026-10-15T06:15:28.8787606Z > @tileset/persistence@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/persistence
+2026-10-15T06:15:28.8788986Z > tsc -p tsconfig.json
+2026-10-15T06:15:28.8789223Z
+2026-10-15T06:15:32.9179959Z
+2026-10-15T06:15:32.9181277Z > @tileset/local-executor@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/local-executor
+2026-10-15T06:15:32.9181990Z > tsc -p tsconfig.json
+2026-10-15T06:15:32.9182189Z
+2026-10-15T06:15:34.5117085Z
+2026-10-15T06:15:34.5118952Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/runner/work/rpg-maker-maker/rpg-maker-maker[39m
+2026-10-15T06:15:34.5119834Z
+2026-10-15T06:15:36.2590021Z  [32m✓[39m apps/web/tests/dev-privacy.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 1510[2mms[22m[39m
+2026-10-15T06:15:36.2591089Z      [33m[2m✓[22m[39m blocks complete private trees, key/env/git fixtures and allowed-tree symlinks for raw/import variants [33m 699[2mms[22m[39m
+2026-10-15T06:15:36.2611587Z
+2026-10-15T06:15:36.2616546Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-15T06:15:36.2617277Z [2m      Tests [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+2026-10-15T06:15:36.2617717Z [2m   Start at [22m 06:15:34
+2026-10-15T06:15:36.2618944Z [2m   Duration [22m 1.74s[2m (transform 58ms, setup 0ms, import 91ms, tests 1.51s, environment 0ms)[22m
+2026-10-15T06:15:36.2620346Z
+2026-10-15T06:15:36.2869751Z ##[group]Run pnpm db:migrate
+2026-10-15T06:15:36.2870063Z [36;1mpnpm db:migrate[0m
+2026-10-15T06:15:36.2906558Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:15:36.2906844Z env:
+2026-10-15T06:15:36.2907173Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:15:36.2907582Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:15:36.2907891Z ##[endgroup]
+2026-10-15T06:15:36.5512047Z
+2026-10-15T06:15:36.5513125Z > @tileset/prototype@0.0.2 db:migrate /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:36.5514236Z > pnpm --filter @tileset/api db:migrate
+2026-10-15T06:15:36.5514618Z
+2026-10-15T06:15:36.8337598Z
+2026-10-15T06:15:36.8338717Z > @tileset/api@0.0.2 db:migrate /home/runner/work/rpg-maker-maker/rpg-maker-maker/apps/api
+2026-10-15T06:15:36.8339580Z > node scripts/migrate.mjs
+2026-10-15T06:15:36.8339855Z
+2026-10-15T06:15:37.9343075Z Prisma schema loaded from prisma/schema.prisma
+2026-10-15T06:15:37.9403408Z Datasource "db": PostgreSQL database "tileset_[owned-db]", schema "public" at "127.0.0.1:55432"
+2026-10-15T06:15:37.9966483Z
+2026-10-15T06:15:37.9967196Z 5 migrations found in prisma/migrations
+2026-10-15T06:15:37.9967582Z
+2026-10-15T06:15:38.0570576Z Applying migration `202610120001_step02_project`
+2026-10-15T06:15:38.0609078Z Applying migration `202610130001_step06_persistence`
+2026-10-15T06:15:38.1061027Z Applying migration `202610130002_step06_task_references`
+2026-10-15T06:15:38.1102684Z Applying migration `202610130003_step06_processing_stages`
+2026-10-15T06:15:38.1140135Z Applying migration `202610130004_step07_studio`
+2026-10-15T06:15:38.1232427Z
+2026-10-15T06:15:38.1250811Z ┌─────────────────────────────────────────────────────────┐
+2026-10-15T06:15:38.1251818Z │  Update available 6.19.3 -> 8.0.0-rc.22                 │
+2026-10-15T06:15:38.1252547Z │                                                         │
+2026-10-15T06:15:38.1253308Z │  This is a major update - please follow the guide at    │
+2026-10-15T06:15:38.1254365Z │  https://pris.ly/d/major-version-upgrade                │
+2026-10-15T06:15:38.1285274Z │                                                         │
+2026-10-15T06:15:38.1286573Z │  Run the following to update                            │
+2026-10-15T06:15:38.1287453Z │    npm i --save-dev prisma@latest                       │
+2026-10-15T06:15:38.1288305Z │    npm i @prisma/client@latest                          │
+2026-10-15T06:15:38.1289206Z └─────────────────────────────────────────────────────────┘
+2026-10-15T06:15:38.1289894Z The following migration(s) have been applied:
+2026-10-15T06:15:38.1290265Z
+2026-10-15T06:15:38.1290447Z migrations/
+2026-10-15T06:15:38.1291444Z   └─ 202610120001_step02_project/
+2026-10-15T06:15:38.1291974Z     └─ migration.sql
+2026-10-15T06:15:38.1292527Z   └─ 202610130001_step06_persistence/
+2026-10-15T06:15:38.1293102Z     └─ migration.sql
+2026-10-15T06:15:38.1293654Z   └─ 202610130002_step06_task_references/
+2026-10-15T06:15:38.1294336Z     └─ migration.sql
+2026-10-15T06:15:38.1294919Z   └─ 202610130003_step06_processing_stages/
+2026-10-15T06:15:38.1295472Z     └─ migration.sql
+2026-10-15T06:15:38.1296004Z   └─ 202610130004_step07_studio/
+2026-10-15T06:15:38.1296507Z     └─ migration.sql
+2026-10-15T06:15:38.1296900Z
+2026-10-15T06:15:38.1297415Z All migrations have been successfully applied.
+2026-10-15T06:15:38.1629830Z ##[group]Run pnpm test:integration
+2026-10-15T06:15:38.1630164Z [36;1mpnpm test:integration[0m
+2026-10-15T06:15:38.1668122Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:15:38.1668413Z env:
+2026-10-15T06:15:38.1668728Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:15:38.1669178Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:15:38.1669504Z ##[endgroup]
+2026-10-15T06:15:38.4247385Z
+2026-10-15T06:15:38.4248749Z > @tileset/prototype@0.0.2 test:integration /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:38.4249971Z > pnpm build:contracts && vitest run --config vitest.integration.config.ts
+2026-10-15T06:15:38.4250522Z
+2026-10-15T06:15:38.6929049Z
+2026-10-15T06:15:38.6930087Z > @tileset/prototype@0.0.2 build:contracts /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:38.6932337Z > pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+2026-10-15T06:15:38.6933919Z
+2026-10-15T06:15:38.9735327Z
+2026-10-15T06:15:38.9736405Z > @tileset/contracts@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/contracts
+2026-10-15T06:15:38.9737057Z > tsc -p tsconfig.json
+2026-10-15T06:15:38.9737209Z
+2026-10-15T06:15:41.1188108Z
+2026-10-15T06:15:41.1189173Z > @tileset/ai-gateway@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/ai-gateway
+2026-10-15T06:15:41.1189720Z > tsc -p tsconfig.json
+2026-10-15T06:15:41.1189878Z
+2026-10-15T06:15:42.6781619Z
+2026-10-15T06:15:42.6782950Z > @tileset/asset-core@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/asset-core
+2026-10-15T06:15:42.6784129Z > tsc -p tsconfig.json
+2026-10-15T06:15:44.0180798Z
+2026-10-15T06:15:44.0180814Z
+2026-10-15T06:15:44.0182364Z > @tileset/material-processing@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/material-processing
+2026-10-15T06:15:44.0183419Z > tsc -p tsconfig.json
+2026-10-15T06:15:44.0183652Z
+2026-10-15T06:15:45.2946577Z
+2026-10-15T06:15:45.2947421Z > @tileset/image-adapter@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/image-adapter
+2026-10-15T06:15:45.2947985Z > tsc -p tsconfig.json
+2026-10-15T06:15:45.2948149Z
+2026-10-15T06:15:46.6841617Z
+2026-10-15T06:15:46.6842711Z > @tileset/mz-compiler@0.0.4 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/mz-compiler
+2026-10-15T06:15:46.6843345Z > tsc -p tsconfig.json
+2026-10-15T06:15:46.6843521Z
+2026-10-15T06:15:47.9602349Z
+2026-10-15T06:15:47.9603443Z > @tileset/pack-assembly@0.0.5 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-assembly
+2026-10-15T06:15:47.9604511Z > tsc -p tsconfig.json
+2026-10-15T06:15:47.9604864Z
+2026-10-15T06:15:49.2738827Z
+2026-10-15T06:15:49.2740007Z > @tileset/pack-export@0.0.7 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-export
+2026-10-15T06:15:49.2740995Z > tsc -p tsconfig.json
+2026-10-15T06:15:49.2741258Z
+2026-10-15T06:15:50.6232466Z
+2026-10-15T06:15:50.6233961Z > @tileset/persistence@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/persistence
+2026-10-15T06:15:50.6234665Z > tsc -p tsconfig.json
+2026-10-15T06:15:50.6234851Z
+2026-10-15T06:15:54.6630142Z
+2026-10-15T06:15:54.6631091Z > @tileset/local-executor@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/local-executor
+2026-10-15T06:15:54.6631673Z > tsc -p tsconfig.json
+2026-10-15T06:15:54.6631841Z
+2026-10-15T06:15:56.2787968Z
+2026-10-15T06:15:56.2790219Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/runner/work/rpg-maker-maker/rpg-maker-maker[39m
+2026-10-15T06:15:56.2791082Z
+2026-10-15T06:15:57.5256693Z  [32m✓[39m apps/api/tests/integration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 363[2mms[22m[39m
+2026-10-15T06:15:57.5284965Z
+2026-10-15T06:15:57.5315482Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-15T06:15:57.5316577Z [2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+2026-10-15T06:15:57.5317437Z [2m   Start at [22m 06:15:56
+2026-10-15T06:15:57.5331675Z [2m   Duration [22m 1.24s[2m (transform 364ms, setup 0ms, import 753ms, tests 363ms, environment 0ms)[22m
+2026-10-15T06:15:57.5334318Z
+2026-10-15T06:15:57.5628407Z ##[group]Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06
+2026-10-15T06:15:57.5628915Z [36;1mTILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06[0m
+2026-10-15T06:15:57.5665914Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:15:57.5666187Z env:
+2026-10-15T06:15:57.5666495Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:15:57.5666898Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:15:57.5667209Z ##[endgroup]
+2026-10-15T06:15:57.8212650Z
+2026-10-15T06:15:57.8213866Z > @tileset/prototype@0.0.2 test:step06 /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:57.8214876Z > pnpm build:prototype && vitest run --config vitest.step06.config.ts
+2026-10-15T06:15:57.8215215Z
+2026-10-15T06:15:58.0945129Z
+2026-10-15T06:15:58.0946266Z > @tileset/prototype@0.0.2 build:prototype /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:58.0947165Z > pnpm build:contracts && tsc
+2026-10-15T06:15:58.0947528Z
+2026-10-15T06:15:58.3636405Z
+2026-10-15T06:15:58.3637533Z > @tileset/prototype@0.0.2 build:contracts /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:15:58.3641513Z > pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+2026-10-15T06:15:58.3644444Z
+2026-10-15T06:15:58.6488941Z
+2026-10-15T06:15:58.6489955Z > @tileset/contracts@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/contracts
+2026-10-15T06:15:58.6490909Z > tsc -p tsconfig.json
+2026-10-15T06:15:58.6491065Z
+2026-10-15T06:16:00.8114233Z
+2026-10-15T06:16:00.8132683Z > @tileset/ai-gateway@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/ai-gateway
+2026-10-15T06:16:00.8133622Z > tsc -p tsconfig.json
+2026-10-15T06:16:00.8134026Z
+2026-10-15T06:16:02.3692235Z
+2026-10-15T06:16:02.3694257Z > @tileset/asset-core@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/asset-core
+2026-10-15T06:16:02.3695554Z > tsc -p tsconfig.json
+2026-10-15T06:16:02.3696025Z
+2026-10-15T06:16:03.7251859Z
+2026-10-15T06:16:03.7253221Z > @tileset/material-processing@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/material-processing
+2026-10-15T06:16:03.7254508Z > tsc -p tsconfig.json
+2026-10-15T06:16:03.7254777Z
+2026-10-15T06:16:04.9942070Z
+2026-10-15T06:16:04.9943335Z > @tileset/image-adapter@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/image-adapter
+2026-10-15T06:16:04.9944090Z > tsc -p tsconfig.json
+2026-10-15T06:16:04.9944259Z
+2026-10-15T06:16:06.3989934Z
+2026-10-15T06:16:06.3991307Z > @tileset/mz-compiler@0.0.4 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/mz-compiler
+2026-10-15T06:16:06.3992006Z > tsc -p tsconfig.json
+2026-10-15T06:16:06.3992210Z
+2026-10-15T06:16:07.6978202Z
+2026-10-15T06:16:07.6979542Z > @tileset/pack-assembly@0.0.5 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-assembly
+2026-10-15T06:16:07.6980527Z > tsc -p tsconfig.json
+2026-10-15T06:16:07.6980709Z
+2026-10-15T06:16:09.0112130Z
+2026-10-15T06:16:09.0113412Z > @tileset/pack-export@0.0.7 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-export
+2026-10-15T06:16:09.0114345Z > tsc -p tsconfig.json
+2026-10-15T06:16:09.0114575Z
+2026-10-15T06:16:10.3684897Z
+2026-10-15T06:16:10.3685963Z > @tileset/persistence@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/persistence
+2026-10-15T06:16:10.3686559Z > tsc -p tsconfig.json
+2026-10-15T06:16:10.3686716Z
+2026-10-15T06:16:14.4352678Z
+2026-10-15T06:16:14.4354307Z > @tileset/local-executor@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/local-executor
+2026-10-15T06:16:14.4354932Z > tsc -p tsconfig.json
+2026-10-15T06:16:14.4355088Z
+2026-10-15T06:16:18.2666139Z
+2026-10-15T06:16:18.2668243Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/runner/work/rpg-maker-maker/rpg-maker-maker[39m
+2026-10-15T06:16:18.2669121Z
+2026-10-15T06:17:46.9210940Z  [32m✓[39m packages/persistence/tests/fix-round1/integration.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 88007[2mms[22m[39m
+2026-10-15T06:17:46.9212887Z      [33m[2m✓[22m[39m lost pack scope stops partial files, immutable rename and DB registration; xact fence drains before maintenance [33m 24149[2mms[22m[39m
+2026-10-15T06:17:46.9215059Z      [33m[2m✓[22m[39m losing the exclusive backup session stops copying/completion and cannot produce a successful backup [33m 19348[2mms[22m[39m
+2026-10-15T06:17:46.9216382Z      [33m[2m✓[22m[39m references use exact persisted integer revisions even for identical bytes, including restore controls [33m 13702[2mms[22m[39m
+2026-10-15T06:17:46.9217566Z      [33m[2m✓[22m[39m real maintenance and Mock CLIs share configured owned root; restore is readable/rebuildable and refuses existing targets [33m 30493[2mms[22m[39m
+2026-10-15T06:19:49.9251429Z  [32m✓[39m packages/persistence/tests/integration.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 122621[2mms[22m[39m
+2026-10-15T06:19:49.9255667Z      [33m[2m✓[22m[39m retains pre-migration minimal Project and enforces immutable revision history [33m 8835[2mms[22m[39m
+2026-10-15T06:19:49.9257394Z      [33m[2m✓[22m[39m file-write and DB-commit failures preserve prior success and leave locatable orphans [33m 28536[2mms[22m[39m
+2026-10-15T06:19:49.9258864Z      [33m[2m✓[22m[39m two reverse completions and same old Pack slot claim use CAS; late output is history [33m 33502[2mms[22m[39m
+2026-10-15T06:19:49.9261269Z      [33m[2m✓[22m[39m actual SIGKILL before/after DB commit is recoverable from fresh production-JS processes [33m 18945[2mms[22m[39m
+2026-10-15T06:19:49.9263301Z      [33m[2m✓[22m[39m retired dependencies, consistent DB+files backup, empty-environment restore and actual rebuild [33m 32800[2mms[22m[39m
+2026-10-15T06:20:06.2805045Z  [32m✓[39m packages/persistence/tests/fix-round2/integration.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 16013[2mms[22m[39m
+2026-10-15T06:20:06.2807504Z      [33m[2m✓[22m[39m parent scope loss reaches active executor children; durable intent and possible submission recover conservatively [33m 308[2mms[22m[39m
+2026-10-15T06:20:06.2809791Z      [33m[2m✓[22m[39m parent loss during file writes stops nested publication and preserves the last successful build [33m 15295[2mms[22m[39m
+2026-10-15T06:20:43.0819294Z  [32m✓[39m packages/local-executor/tests/integration.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 36457[2mms[22m[39m
+2026-10-15T06:20:43.0820522Z      [33m[2m✓[22m[39m intent is durable before submit; frozen defaults/input survive fresh executor and Provider instances [33m 7393[2mms[22m[39m
+2026-10-15T06:20:43.0822044Z      [33m[2m✓[22m[39m SIGKILL after remote creation without local ID produces SUBMISSION_UNKNOWN without resubmission [33m 7436[2mms[22m[39m
+2026-10-15T06:20:43.0823313Z      [33m[2m✓[22m[39m SIGKILL after known ID queries that same remote task after restart [33m 7392[2mms[22m[39m
+2026-10-15T06:20:43.0824599Z      [33m[2m✓[22m[39m remote success + archive failure retries archive only; repeated completion adds no asset or publish [33m 7189[2mms[22m[39m
+2026-10-15T06:20:43.0825832Z      [33m[2m✓[22m[39m local cancellation leaves remote running; late old-snapshot success remains history [33m 7043[2mms[22m[39m
+2026-10-15T06:20:43.0855973Z
+2026-10-15T06:20:43.0860821Z [2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+2026-10-15T06:20:43.0861982Z [2m      Tests [22m [1m[32m23 passed[39m[22m[90m (23)[39m
+2026-10-15T06:20:43.0862782Z [2m   Start at [22m 06:16:18
+2026-10-15T06:20:43.0864594Z [2m   Duration [22m 264.81s[2m (transform 396ms, setup 0ms, import 1.24s, tests 263.10s, environment 0ms)[22m
+2026-10-15T06:20:43.0872597Z
+2026-10-15T06:20:43.1201391Z ##[group]Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07
+2026-10-15T06:20:43.1202266Z [36;1mTILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07[0m
+2026-10-15T06:20:43.1260950Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:20:43.1261407Z env:
+2026-10-15T06:20:43.1261900Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:20:43.1262597Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:20:43.1263200Z ##[endgroup]
+2026-10-15T06:20:43.4126934Z
+2026-10-15T06:20:43.6853438Z > @tileset/prototype@0.0.2 test:step07 /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:20:43.6854848Z > pnpm build && vitest run --config vitest.step07.config.ts
+2026-10-15T06:20:43.6855211Z
+2026-10-15T06:20:43.6855217Z
+2026-10-15T06:20:43.6855584Z > @tileset/prototype@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:20:43.6857181Z > node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && node dist/scripts/studio-resources.js && pnpm --filter @tileset/web build
+2026-10-15T06:20:43.6857945Z
+2026-10-15T06:20:43.9986220Z
+2026-10-15T06:20:43.9987272Z > @tileset/prototype@0.0.2 build:prototype /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:20:43.9988181Z > pnpm build:contracts && tsc
+2026-10-15T06:20:43.9988483Z
+2026-10-15T06:20:44.2756373Z
+2026-10-15T06:20:44.2757669Z > @tileset/prototype@0.0.2 build:contracts /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:20:44.2760438Z > pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+2026-10-15T06:20:44.2762161Z
+2026-10-15T06:20:44.5572147Z
+2026-10-15T06:20:44.5573307Z > @tileset/contracts@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/contracts
+2026-10-15T06:20:44.5574451Z > tsc -p tsconfig.json
+2026-10-15T06:20:44.5574718Z
+2026-10-15T06:20:46.6953986Z
+2026-10-15T06:20:46.6955043Z > @tileset/ai-gateway@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/ai-gateway
+2026-10-15T06:20:46.6955630Z > tsc -p tsconfig.json
+2026-10-15T06:20:46.6955788Z
+2026-10-15T06:20:48.2725335Z
+2026-10-15T06:20:48.2726569Z > @tileset/asset-core@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/asset-core
+2026-10-15T06:20:48.2727525Z > tsc -p tsconfig.json
+2026-10-15T06:20:48.2727790Z
+2026-10-15T06:20:49.6263352Z
+2026-10-15T06:20:49.6264593Z > @tileset/material-processing@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/material-processing
+2026-10-15T06:20:49.6265226Z > tsc -p tsconfig.json
+2026-10-15T06:20:49.6265381Z
+2026-10-15T06:20:50.8757969Z
+2026-10-15T06:20:50.8775835Z > @tileset/image-adapter@0.0.3 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/image-adapter
+2026-10-15T06:20:50.8804871Z > tsc -p tsconfig.json
+2026-10-15T06:20:50.8813032Z
+2026-10-15T06:20:52.2586655Z
+2026-10-15T06:20:52.2588248Z > @tileset/mz-compiler@0.0.4 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/mz-compiler
+2026-10-15T06:20:52.2589469Z > tsc -p tsconfig.json
+2026-10-15T06:20:52.2589931Z
+2026-10-15T06:20:53.5504422Z
+2026-10-15T06:20:53.5505760Z > @tileset/pack-assembly@0.0.5 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-assembly
+2026-10-15T06:20:53.5520250Z > tsc -p tsconfig.json
+2026-10-15T06:20:53.5520500Z
+2026-10-15T06:20:54.8264075Z
+2026-10-15T06:20:54.8265030Z > @tileset/pack-export@0.0.7 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/pack-export
+2026-10-15T06:20:54.8265594Z > tsc -p tsconfig.json
+2026-10-15T06:20:54.8265757Z
+2026-10-15T06:20:56.1651844Z
+2026-10-15T06:20:56.1653520Z > @tileset/persistence@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/persistence
+2026-10-15T06:20:56.1654351Z > tsc -p tsconfig.json
+2026-10-15T06:20:56.1654523Z
+2026-10-15T06:21:00.1700037Z
+2026-10-15T06:21:00.1701326Z > @tileset/local-executor@0.0.6 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/packages/local-executor
+2026-10-15T06:21:00.1702329Z > tsc -p tsconfig.json
+2026-10-15T06:21:00.1702720Z
+2026-10-15T06:21:03.8441607Z
+2026-10-15T06:21:03.8442536Z > @tileset/api@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/apps/api
+2026-10-15T06:21:03.8443061Z > tsc -p tsconfig.json
+2026-10-15T06:21:03.8443242Z
+2026-10-15T06:21:11.0982109Z
+2026-10-15T06:21:11.0983347Z > @tileset/web@0.0.2 build /home/runner/work/rpg-maker-maker/rpg-maker-maker/apps/web
+2026-10-15T06:21:11.0984024Z > tsc --noEmit && vite build
+2026-10-15T06:21:11.0984202Z
+2026-10-15T06:21:13.7944676Z [36mvite v7.3.5 [32mbuilding client environment for production...[36m[39m
+2026-10-15T06:21:13.8565310Z transforming...
+2026-10-15T06:21:18.4178260Z [32m✓[39m 779 modules transformed.
+2026-10-15T06:21:18.6564277Z rendering chunks...
+2026-10-15T06:21:18.8818660Z computing gzip size...
+2026-10-15T06:21:18.8995259Z [2mdist/[22m[32mindex.html                                   [39m[1m[2m  0.41 kB[22m[1m[22m[2m │ gzip:   0.28 kB[22m
+2026-10-15T06:21:18.8996958Z [2mdist/[22m[2massets/[22m[35mindex-CsM4c782.css                    [39m[1m[2m  3.12 kB[22m[1m[22m[2m │ gzip:   1.22 kB[22m
+2026-10-15T06:21:18.8998740Z [2mdist/[22m[2massets/[22m[36mgetTextureBatchBindGroup-D-53rPlt.js  [39m[1m[2m  0.39 kB[22m[1m[22m[2m │ gzip:   0.29 kB[22m
+2026-10-15T06:21:18.9000941Z [2mdist/[22m[2massets/[22m[36mgetTexelRangeRects-DfZBalEY.js        [39m[1m[2m  3.62 kB[22m[1m[22m[2m │ gzip:   1.24 kB[22m
+2026-10-15T06:21:18.9002513Z [2mdist/[22m[2massets/[22m[36mcanvasUtils-DY-Cvxjp.js               [39m[1m[2m  5.71 kB[22m[1m[22m[2m │ gzip:   1.81 kB[22m
+2026-10-15T06:21:18.9004271Z [2mdist/[22m[2massets/[22m[36mwebworkerAll-B8KgPBJa.js              [39m[1m[2m 15.46 kB[22m[1m[22m[2m │ gzip:   4.87 kB[22m
+2026-10-15T06:21:18.9005848Z [2mdist/[22m[2massets/[22m[36mCanvasPool-CWsteclb.js                [39m[1m[2m 16.93 kB[22m[1m[22m[2m │ gzip:   5.97 kB[22m
+2026-10-15T06:21:18.9007284Z [2mdist/[22m[2massets/[22m[36mbrowserAll-DVdHwz8S.js                [39m[1m[2m 43.97 kB[22m[1m[22m[2m │ gzip:  11.41 kB[22m
+2026-10-15T06:21:18.9008754Z [2mdist/[22m[2massets/[22m[36mWebGPURenderer-CEOq4plQ.js            [39m[1m[2m 53.80 kB[22m[1m[22m[2m │ gzip:  15.37 kB[22m
+2026-10-15T06:21:18.9010392Z [2mdist/[22m[2massets/[22m[36mWebGLRenderer-C-4G6VH1.js             [39m[1m[2m 56.77 kB[22m[1m[22m[2m │ gzip:  15.66 kB[22m
+2026-10-15T06:21:18.9011905Z [2mdist/[22m[2massets/[22m[36mRenderTargetSystem-CaSqe-W4.js        [39m[1m[2m 72.33 kB[22m[1m[22m[2m │ gzip:  20.30 kB[22m
+2026-10-15T06:21:18.9013440Z [2mdist/[22m[2massets/[22m[36mCanvasRenderer-CuHZ-s_P.js            [39m[1m[2m 90.26 kB[22m[1m[22m[2m │ gzip:  28.57 kB[22m
+2026-10-15T06:21:18.9015101Z [2mdist/[22m[2massets/[22m[36mindex-CylqNgkq.js                     [39m[1m[2m461.13 kB[22m[1m[22m[2m │ gzip: 137.26 kB[22m
+2026-10-15T06:21:18.9015923Z [32m✓ built in 5.09s[39m
+2026-10-15T06:21:19.2314408Z
+2026-10-15T06:21:19.2316508Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/runner/work/rpg-maker-maker/rpg-maker-maker[39m
+2026-10-15T06:21:19.2317334Z
+2026-10-15T06:29:07.0655343Z R4_STAGE {"stage":"production:fixture","event":"start","elapsedMs":0}
+2026-10-15T06:29:10.7587087Z R4_STAGE {"stage":"production:fixture","event":"end","ms":3697}
+2026-10-15T06:29:10.8094343Z R4_STAGE {"stage":"production:page","event":"start","elapsedMs":3748}
+2026-10-15T06:29:10.8979830Z R4_STAGE {"stage":"production:page","event":"end","ms":89}
+2026-10-15T06:29:12.9446006Z R4_STAGE {"stage":"production:processed-image","event":"start","elapsedMs":5883}
+2026-10-15T06:29:13.4100624Z R4_STAGE {"stage":"production:processed-image","event":"end","ms":465}
+2026-10-15T06:29:13.5150456Z R4_STAGE {"stage":"production:first:commit-ready","event":"start","elapsedMs":6454}
+2026-10-15T06:29:20.8051990Z R4_STAGE {"stage":"production:first:commit-ready","event":"end","ms":7290}
+2026-10-15T06:29:20.8056066Z R4_STAGE {"stage":"production:first:read-held","event":"start","elapsedMs":13745}
+2026-10-15T06:29:21.2502566Z R4_STAGE {"stage":"production:first:read-held","event":"end","ms":445}
+2026-10-15T06:29:21.2507745Z R4_STAGE {"stage":"production:first:terminal","event":"start","elapsedMs":14190}
+2026-10-15T06:29:21.2537122Z R4_STAGE {"stage":"production:first:terminal","event":"end","ms":3}
+2026-10-15T06:29:21.2542597Z R4_CHECKPOINT {"stage":"production:first:ui-terminal-wait","elapsedMs":14193}
+2026-10-15T06:29:22.6147427Z R4_CHECKPOINT {"stage":"production:first:metadata-confirmed","elapsedMs":15553}
+2026-10-15T06:29:26.5492483Z R4_CHECKPOINT {"stage":"production:first:select-build","elapsedMs":19488}
+2026-10-15T06:29:26.5971831Z R4_CHECKPOINT {"stage":"production:first:canvas-ready","elapsedMs":19536}
+2026-10-15T06:29:26.5972750Z R4_STAGE {"stage":"production:first:processed-image","event":"start","elapsedMs":19536}
+2026-10-15T06:29:27.0218300Z R4_STAGE {"stage":"production:first:processed-image","event":"end","ms":425}
+2026-10-15T06:29:27.0285252Z R4_STAGE {"stage":"production:first:download","event":"start","elapsedMs":19965}
+2026-10-15T06:29:29.3459221Z R4_STAGE {"stage":"production:first:download","event":"end","ms":2320}
+2026-10-15T06:29:29.3546833Z R4_CHECKPOINT {"stage":"production:first:zip-body-and-directory","elapsedMs":22293}
+2026-10-15T06:29:29.3556148Z R4_CHECKPOINT {"stage":"production:first:zip-verified","elapsedMs":22295}
+2026-10-15T06:29:29.4155120Z R4_CHECKPOINT {"stage":"production:first:actual-browser-files-matched","elapsedMs":22354}
+2026-10-15T06:29:29.6243681Z R4_CHECKPOINT {"stage":"production:first:descriptor-and-screenshot-complete","elapsedMs":22562}
+2026-10-15T06:29:29.6245100Z R4_STAGE {"stage":"production:replacement:upload","event":"start","elapsedMs":22563}
+2026-10-15T06:29:29.6378595Z R4_STAGE {"stage":"production:replacement:upload","event":"end","ms":14}
+2026-10-15T06:29:29.8801400Z R4_STAGE {"stage":"production:replacement:recipe","event":"start","elapsedMs":22819}
+2026-10-15T06:29:32.3806337Z R4_STAGE {"stage":"production:replacement:recipe","event":"end","ms":2500}
+2026-10-15T06:29:32.3810428Z R4_STAGE {"stage":"production:processed-image","event":"start","elapsedMs":25320}
+2026-10-15T06:29:34.1206464Z R4_STAGE {"stage":"production:processed-image","event":"end","ms":1739}
+2026-10-15T06:29:34.1892119Z R4_STAGE {"stage":"production:replacement:commit-ready","event":"start","elapsedMs":27128}
+2026-10-15T06:29:46.7552482Z R4_STAGE {"stage":"production:replacement:commit-ready","event":"end","ms":12566}
+2026-10-15T06:29:46.7556523Z R4_STAGE {"stage":"production:replacement:read-held","event":"start","elapsedMs":39695}
+2026-10-15T06:29:47.1260607Z R4_STAGE {"stage":"production:replacement:read-held","event":"end","ms":370}
+2026-10-15T06:29:47.1264319Z R4_STAGE {"stage":"production:replacement:terminal","event":"start","elapsedMs":40065}
+2026-10-15T06:29:47.1294853Z R4_STAGE {"stage":"production:replacement:terminal","event":"end","ms":3}
+2026-10-15T06:29:47.1315347Z R4_CHECKPOINT {"stage":"production:replacement:ui-terminal-wait","elapsedMs":40069}
+2026-10-15T06:29:48.4650417Z R4_CHECKPOINT {"stage":"production:replacement:metadata-confirmed","elapsedMs":41404}
+2026-10-15T06:29:48.4731009Z R4_CHECKPOINT {"stage":"production:replacement:select-build","elapsedMs":41412}
+2026-10-15T06:29:52.9154592Z R4_CHECKPOINT {"stage":"production:replacement:canvas-ready","elapsedMs":45854}
+2026-10-15T06:29:52.9155872Z R4_STAGE {"stage":"production:replacement:processed-image","event":"start","elapsedMs":45854}
+2026-10-15T06:29:53.3575520Z R4_STAGE {"stage":"production:replacement:processed-image","event":"end","ms":442}
+2026-10-15T06:29:53.3580727Z R4_STAGE {"stage":"production:replacement:download","event":"start","elapsedMs":46297}
+2026-10-15T06:29:58.4175188Z R4_STAGE {"stage":"production:replacement:download","event":"end","ms":5059}
+2026-10-15T06:29:58.4293599Z R4_CHECKPOINT {"stage":"production:replacement:zip-body-and-directory","elapsedMs":51368}
+2026-10-15T06:29:58.4302901Z R4_CHECKPOINT {"stage":"production:replacement:zip-verified","elapsedMs":51369}
+2026-10-15T06:29:58.4944787Z R4_CHECKPOINT {"stage":"production:replacement:actual-browser-files-matched","elapsedMs":51433}
+2026-10-15T06:29:58.6678428Z R4_CHECKPOINT {"stage":"production:replacement:descriptor-and-screenshot-complete","elapsedMs":51607}
+2026-10-15T06:29:58.7419841Z R4_STAGE {"stage":"production:history:prepared","event":"start","elapsedMs":51680}
+2026-10-15T06:30:01.3989332Z R4_STAGE {"stage":"production:history:prepared","event":"end","ms":2657}
+2026-10-15T06:30:01.4013499Z R4_STAGE {"stage":"production:history:snapshot","event":"start","elapsedMs":54340}
+2026-10-15T06:30:01.4633565Z R4_STAGE {"stage":"production:history:snapshot","event":"end","ms":62}
+2026-10-15T06:30:01.4640153Z R4_STAGE {"stage":"production:history:adopt","event":"start","elapsedMs":54403}
+2026-10-15T06:30:01.4886228Z R4_STAGE {"stage":"production:history:adopt","event":"end","ms":24}
+2026-10-15T06:30:01.4894830Z R4_STAGE {"stage":"production:history:current-prepare","event":"start","elapsedMs":54428}
+2026-10-15T06:30:03.5644973Z R4_STAGE {"stage":"production:history:current-prepare","event":"end","ms":2075}
+2026-10-15T06:30:03.5653152Z R4_STAGE {"stage":"production:history:assemble","event":"start","elapsedMs":56504}
+2026-10-15T06:30:05.7647652Z R4_STAGE {"stage":"production:history:assemble","event":"end","ms":2199}
+2026-10-15T06:30:05.7652056Z R4_STAGE {"stage":"production:history:publish","event":"start","elapsedMs":58704}
+2026-10-15T06:30:12.8518202Z R4_STAGE {"stage":"production:history:publish","event":"end","ms":7086}
+2026-10-15T06:30:12.8522367Z R4_STAGE {"stage":"production:history:terminal","event":"start","elapsedMs":65791}
+2026-10-15T06:30:22.8382603Z R4_STAGE {"stage":"production:history:terminal","event":"end","ms":9986}
+2026-10-15T06:30:29.8755735Z R4_STAGE {"stage":"production:history:processed-image","event":"start","elapsedMs":82814}
+2026-10-15T06:30:30.3460178Z R4_STAGE {"stage":"production:history:processed-image","event":"end","ms":470}
+2026-10-15T06:30:30.4799316Z R4_STAGE {"stage":"development:fixture","event":"start","elapsedMs":83419}
+2026-10-15T06:30:33.7905085Z R4_STAGE {"stage":"development:fixture","event":"end","ms":3311}
+2026-10-15T06:30:33.8294791Z R4_STAGE {"stage":"development:page","event":"start","elapsedMs":86768}
+2026-10-15T06:30:34.0735334Z R4_STAGE {"stage":"development:page","event":"end","ms":243}
+2026-10-15T06:30:36.1932372Z R4_STAGE {"stage":"development:processed-image","event":"start","elapsedMs":89132}
+2026-10-15T06:30:36.6175165Z R4_STAGE {"stage":"development:processed-image","event":"end","ms":424}
+2026-10-15T06:30:36.7128068Z R4_STAGE {"stage":"development:first:commit-ready","event":"start","elapsedMs":89651}
+2026-10-15T06:30:44.1381742Z R4_STAGE {"stage":"development:first:commit-ready","event":"end","ms":7426}
+2026-10-15T06:30:44.1387247Z R4_STAGE {"stage":"development:first:read-held","event":"start","elapsedMs":97078}
+2026-10-15T06:30:44.4903332Z R4_STAGE {"stage":"development:first:read-held","event":"end","ms":352}
+2026-10-15T06:30:44.4909135Z R4_STAGE {"stage":"development:first:terminal","event":"start","elapsedMs":97430}
+2026-10-15T06:30:44.5959513Z R4_STAGE {"stage":"development:first:terminal","event":"end","ms":105}
+2026-10-15T06:30:44.5964669Z R4_CHECKPOINT {"stage":"development:first:ui-terminal-wait","elapsedMs":97535}
+2026-10-15T06:30:45.9326692Z R4_CHECKPOINT {"stage":"development:first:metadata-confirmed","elapsedMs":98871}
+2026-10-15T06:30:49.7507076Z R4_CHECKPOINT {"stage":"development:first:select-build","elapsedMs":102689}
+2026-10-15T06:30:49.8058617Z R4_CHECKPOINT {"stage":"development:first:canvas-ready","elapsedMs":102745}
+2026-10-15T06:30:49.8060147Z R4_STAGE {"stage":"development:first:processed-image","event":"start","elapsedMs":102745}
+2026-10-15T06:30:50.2669918Z R4_STAGE {"stage":"development:first:processed-image","event":"end","ms":461}
+2026-10-15T06:30:50.2676572Z R4_STAGE {"stage":"development:first:download","event":"start","elapsedMs":103207}
+2026-10-15T06:30:52.5640353Z R4_STAGE {"stage":"development:first:download","event":"end","ms":2296}
+2026-10-15T06:30:52.5700327Z R4_CHECKPOINT {"stage":"development:first:zip-body-and-directory","elapsedMs":105509}
+2026-10-15T06:30:52.5708878Z R4_CHECKPOINT {"stage":"development:first:zip-verified","elapsedMs":105510}
+2026-10-15T06:30:52.6272862Z R4_CHECKPOINT {"stage":"development:first:actual-browser-files-matched","elapsedMs":105565}
+2026-10-15T06:30:52.8194134Z R4_CHECKPOINT {"stage":"development:first:descriptor-and-screenshot-complete","elapsedMs":105758}
+2026-10-15T06:30:52.8199416Z R4_STAGE {"stage":"development:replacement:upload","event":"start","elapsedMs":105759}
+2026-10-15T06:30:52.8452932Z R4_STAGE {"stage":"development:replacement:upload","event":"end","ms":25}
+2026-10-15T06:30:53.0956941Z R4_STAGE {"stage":"development:replacement:recipe","event":"start","elapsedMs":106034}
+2026-10-15T06:30:55.6184683Z R4_STAGE {"stage":"development:replacement:recipe","event":"end","ms":2522}
+2026-10-15T06:30:55.6188992Z R4_STAGE {"stage":"development:processed-image","event":"start","elapsedMs":108558}
+2026-10-15T06:30:57.8607715Z R4_STAGE {"stage":"development:processed-image","event":"end","ms":2242}
+2026-10-15T06:30:57.9570551Z R4_STAGE {"stage":"development:replacement:commit-ready","event":"start","elapsedMs":110895}
+2026-10-15T06:31:10.2884553Z R4_STAGE {"stage":"development:replacement:commit-ready","event":"end","ms":12332}
+2026-10-15T06:31:10.2889983Z R4_STAGE {"stage":"development:replacement:read-held","event":"start","elapsedMs":123228}
+2026-10-15T06:31:10.8349169Z R4_STAGE {"stage":"development:replacement:read-held","event":"end","ms":546}
+2026-10-15T06:31:10.8357895Z R4_STAGE {"stage":"development:replacement:terminal","event":"start","elapsedMs":123774}
+2026-10-15T06:31:10.8393406Z R4_STAGE {"stage":"development:replacement:terminal","event":"end","ms":4}
+2026-10-15T06:31:10.8398184Z R4_CHECKPOINT {"stage":"development:replacement:ui-terminal-wait","elapsedMs":123779}
+2026-10-15T06:31:12.1736546Z R4_CHECKPOINT {"stage":"development:replacement:metadata-confirmed","elapsedMs":125112}
+2026-10-15T06:31:12.1783227Z R4_CHECKPOINT {"stage":"development:replacement:select-build","elapsedMs":125117}
+2026-10-15T06:31:16.6769978Z R4_CHECKPOINT {"stage":"development:replacement:canvas-ready","elapsedMs":129615}
+2026-10-15T06:31:16.6804751Z R4_STAGE {"stage":"development:replacement:processed-image","event":"start","elapsedMs":129615}
+2026-10-15T06:31:17.1898547Z R4_STAGE {"stage":"development:replacement:processed-image","event":"end","ms":513}
+2026-10-15T06:31:17.1904290Z R4_STAGE {"stage":"development:replacement:download","event":"start","elapsedMs":130129}
+2026-10-15T06:31:22.1585610Z R4_STAGE {"stage":"development:replacement:download","event":"end","ms":4968}
+2026-10-15T06:31:22.1660726Z R4_CHECKPOINT {"stage":"development:replacement:zip-body-and-directory","elapsedMs":135105}
+2026-10-15T06:31:22.1669578Z R4_CHECKPOINT {"stage":"development:replacement:zip-verified","elapsedMs":135106}
+2026-10-15T06:31:22.2237948Z R4_CHECKPOINT {"stage":"development:replacement:actual-browser-files-matched","elapsedMs":135163}
+2026-10-15T06:31:22.3966873Z R4_CHECKPOINT {"stage":"development:replacement:descriptor-and-screenshot-complete","elapsedMs":135336}
+2026-10-15T06:31:22.4892947Z R4_STAGE {"stage":"development:history:prepared","event":"start","elapsedMs":135428}
+2026-10-15T06:31:25.0829442Z R4_STAGE {"stage":"development:history:prepared","event":"end","ms":2594}
+2026-10-15T06:31:25.0853004Z R4_STAGE {"stage":"development:history:snapshot","event":"start","elapsedMs":138024}
+2026-10-15T06:31:25.1618073Z R4_STAGE {"stage":"development:history:snapshot","event":"end","ms":77}
+2026-10-15T06:31:25.1622550Z R4_STAGE {"stage":"development:history:adopt","event":"start","elapsedMs":138101}
+2026-10-15T06:31:25.1841283Z R4_STAGE {"stage":"development:history:adopt","event":"end","ms":22}
+2026-10-15T06:31:25.1848850Z R4_STAGE {"stage":"development:history:current-prepare","event":"start","elapsedMs":138124}
+2026-10-15T06:31:27.2821319Z R4_STAGE {"stage":"development:history:current-prepare","event":"end","ms":2097}
+2026-10-15T06:31:27.2829615Z R4_STAGE {"stage":"development:history:assemble","event":"start","elapsedMs":140222}
+2026-10-15T06:31:29.4746102Z R4_STAGE {"stage":"development:history:assemble","event":"end","ms":2191}
+2026-10-15T06:31:29.4818445Z R4_STAGE {"stage":"development:history:publish","event":"start","elapsedMs":142418}
+2026-10-15T06:31:36.4436561Z R4_STAGE {"stage":"development:history:publish","event":"end","ms":6965}
+2026-10-15T06:31:36.4440352Z R4_STAGE {"stage":"development:history:terminal","event":"start","elapsedMs":149383}
+2026-10-15T06:31:46.1998156Z R4_STAGE {"stage":"development:history:terminal","event":"end","ms":9756}
+2026-10-15T06:31:53.4283478Z R4_STAGE {"stage":"development:history:processed-image","event":"start","elapsedMs":166367}
+2026-10-15T06:31:53.8444033Z R4_STAGE {"stage":"development:history:processed-image","event":"end","ms":416}
+2026-10-15T06:31:53.9360050Z  [32m✓[39m apps/api/tests/studio/integration.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 633020[2mms[22m[39m
+2026-10-15T06:31:53.9361915Z    [33m[2m✓[22m[39m real HTTP validates container/pixels/density/fields/CSRF/budgets before asset publication [33m 1772[2mms[22m[39m
+2026-10-15T06:31:53.9363620Z    [33m[2m✓[22m[39m real slow/aborted/concurrent/chunked HTTP requests release slots and leave no partial asset [33m 5564[2mms[22m[39m
+2026-10-15T06:31:53.9366204Z    [33m[2m✓[22m[39m actual HTTP codec deadline and cancellation stop owned child work before slot reuse [33m 5935[2mms[22m[39m
+2026-10-15T06:31:53.9368546Z    [33m[2m✓[22m[39m actual Export/history/current, paired updates, retired slots and failed-build protection survive clean backup restore and rebuild [33m 138250[2mms[22m[39m
+2026-10-15T06:31:53.9370255Z    [33m[2m✓[22m[39m equal PNG content across different component IDs does not misclassify an uploaded new revision [33m 2524[2mms[22m[39m
+2026-10-15T06:31:53.9371371Z    [33m[2m✓[22m[39m existing step06 native sources, recipe and four-file Build gain a real standard export without changing history [33m 14840[2mms[22m[39m
+2026-10-15T06:31:53.9372456Z    [33m[2m✓[22m[39m a real deferred PostgreSQL job-completion rejection rolls back Build, Export and current together [33m 41399[2mms[22m[39m
+2026-10-15T06:31:53.9373604Z    [33m[2m✓[22m[39m public source/A1 and standard JSON/ZIP reads reject replaced ancestors and preserve legal history and rebuilds [33m 39560[2mms[22m[39m
+2026-10-15T06:31:53.9375272Z    [33m[2m✓[22m[39m processed BUSY is bounded and cancelling its queued read allows the next real selected-build download [33m 15088[2mms[22m[39m
+2026-10-15T06:31:53.9376432Z    [33m[2m✓[22m[39m R4 duplicate real old06 four-file publication completes only with transactional standard export and actual HTTP delivery [33m 35313[2mms[22m[39m
+2026-10-15T06:31:53.9377621Z    [33m[2m✓[22m[39m R4 first-build HTTP state across real COMMIT is a complete old or new metadata snapshot, never mixed completion [33m 10605[2mms[22m[39m
+2026-10-15T06:31:53.9378772Z    [33m[2m✓[22m[39m R4 real HTTP duplicate finalization existing-standard preserves history and permits verified recovery [33m 38821[2mms[22m[39m
+2026-10-15T06:31:53.9380432Z    [33m[2m✓[22m[39m R4 real HTTP duplicate finalization file-failure preserves history and permits verified recovery [33m 37170[2mms[22m[39m
+2026-10-15T06:31:53.9382298Z    [33m[2m✓[22m[39m R4 real HTTP duplicate finalization db-rollback preserves history and permits verified recovery [33m 40628[2mms[22m[39m
+2026-10-15T06:31:53.9384743Z    [33m[2m✓[22m[39m R4 real HTTP duplicate finalization lost-receipt preserves history and permits verified recovery [33m 36527[2mms[22m[39m
+2026-10-15T06:31:53.9386153Z    [33m[2m✓[22m[39m R4 real COMMIT first/update/history snapshots keep production and dev browser current, preview, ZIP and retirement coherent [33m 167495[2mms[22m[39m
+2026-10-15T06:31:53.9393040Z
+2026-10-15T06:31:53.9397312Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-10-15T06:31:53.9397920Z [2m      Tests [22m [1m[32m16 passed[39m[22m[90m (16)[39m
+2026-10-15T06:31:53.9398338Z [2m   Start at [22m 06:21:19
+2026-10-15T06:31:53.9400278Z [2m   Duration [22m 634.70s[2m (transform 546ms, setup 0ms, import 1.56s, tests 633.02s, environment 0ms)[22m
+2026-10-15T06:31:53.9401968Z
+2026-10-15T06:31:53.9854256Z ##[group]Run pnpm test:e2e
+2026-10-15T06:31:53.9854551Z [36;1mpnpm test:e2e[0m
+2026-10-15T06:31:53.9892231Z shell: /usr/bin/bash -e {0}
+2026-10-15T06:31:53.9892521Z env:
+2026-10-15T06:31:53.9892838Z   DATABASE_URL: [REDACTED_DATABASE_URL]
+2026-10-15T06:31:53.9893255Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+2026-10-15T06:31:53.9893566Z ##[endgroup]
+2026-10-15T06:31:54.2472984Z
+2026-10-15T06:31:54.2474149Z > @tileset/prototype@0.0.2 test:e2e /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:31:54.2474641Z > playwright test
+2026-10-15T06:31:54.2474783Z
+2026-10-15T06:31:57.0116208Z
+2026-10-15T06:31:57.0116881Z Running 18 tests using 1 worker
+2026-10-15T06:31:57.0117265Z
+2026-10-15T06:31:58.4478860Z   ✓   1 e2e/shell.test.ts:3:1 › browser persists a project and restores its selected Studio (710ms)
+2026-10-15T06:32:14.9805036Z   ✓   2 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated upload and preserves persisted selection (5.3s)
+2026-10-15T06:32:19.9876852Z   ✓   3 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated invalid-upload and preserves persisted selection (5.0s)
+2026-10-15T06:32:28.8651436Z   ✓   4 e2e/studio-project-list.test.ts:93:3 › real delayed initial project list survives unrelated adopt and preserves persisted selection (8.9s)
+2026-10-15T06:32:37.9413917Z   ✓   5 e2e/studio-project-list.test.ts:194:1 › created-project replacement list supersedes delayed initial list; selected details and list refresh stay coherent (9.1s)
+2026-10-15T06:33:08.6245702Z   ✘   6 e2e/studio-project-list.test.ts:266:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list (30.6s)
+2026-10-15T06:34:23.4581102Z   ✓   7 e2e/studio-recovery.test.ts:177:1 › 1300ms legal poll responses deliver success and failure, fast controls and late old projects stay correct (59.0s)
+2026-10-15T06:35:13.6190573Z   ✓   8 e2e/studio-recovery.test.ts:284:1 › three ordinary switches cancel unfinished processed work and display real decoded current PNG (50.1s)
+2026-10-15T06:35:31.1665855Z   ✓   9 e2e/studio-recovery.test.ts:328:1 › real bounded BUSY pressure recovers or reports failure, explicit reread and cancelled-frame download stay valid (17.5s)
+2026-10-15T06:35:45.4860679Z   ✓  10 e2e/studio-recovery.test.ts:402:1 › invalid PNG and timed-out reads report errors, preserve last decoded frame and allow bounded explicit recovery (14.3s)
+2026-10-15T06:36:28.2365376Z   ✓  11 e2e/studio-state-ownership.test.ts:206:3 › continuous 503 poll errors stop at five and explicit read recovers the actual completed job (21.1s)
+2026-10-15T06:36:49.3846877Z   ✓  12 e2e/studio-state-ownership.test.ts:206:3 › continuous 429 poll errors stop at five and explicit read recovers the actual completed job (21.1s)
+2026-10-15T06:37:10.6090536Z   ✓  13 e2e/studio-state-ownership.test.ts:206:3 › continuous network poll errors stop at five and explicit read recovers the actual completed job (21.2s)
+2026-10-15T06:37:34.2074443Z   ✓  14 e2e/studio-state-ownership.test.ts:319:1 › late real upload preserves another project and same-project explicit source choice; normal upload still works (23.6s)
+2026-10-15T06:38:01.0339447Z   ✓  15 e2e/studio-state-ownership.test.ts:384:1 › late adoption preserves target recipe and same-project historical recipe selection (26.8s)
+2026-10-15T06:39:23.8114315Z   ✓  16 e2e/studio-state-ownership.test.ts:431:1 › late error, accepted build, visual repair record and created project cannot write another project UI (1.4m)
+2026-10-15T06:41:11.7472019Z   ✓  17 e2e/studio.test.ts:131:1 › deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP (1.8m)
+2026-10-15T06:41:56.9299351Z   ✓  18 e2e/studio.test.ts:391:1 › project switches keep real build/recipe identities coherent while data is delayed and legacy export is converted (45.2s)
+2026-10-15T06:41:57.0194802Z
+2026-10-15T06:41:57.0195146Z
+2026-10-15T06:41:57.0214883Z   1) e2e/studio-project-list.test.ts:266:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list
+2026-10-15T06:41:57.0216598Z
+2026-10-15T06:41:57.0217536Z     Error: expect(locator).toBeVisible() failed
+2026-10-15T06:41:57.0218095Z
+2026-10-15T06:41:57.0218689Z     Locator: getByText('画布已就绪 · 实际导出图集')
+2026-10-15T06:41:57.0219400Z     Expected: visible
+2026-10-15T06:41:57.0219876Z     Timeout: 30000ms
+2026-10-15T06:41:57.0220370Z     Error: element(s) not found
+2026-10-15T06:41:57.0220733Z
+2026-10-15T06:41:57.0220980Z     Call log:
+2026-10-15T06:41:57.0221941Z       - Expect "toBeVisible" getByText('画布已就绪 · 实际导出图集') with timeout 30000ms
+2026-10-15T06:41:57.0223019Z       - waiting for getByText('画布已就绪 · 实际导出图集')
+2026-10-15T06:41:57.0223656Z
+2026-10-15T06:41:57.0223996Z
+2026-10-15T06:41:57.0224413Z       37 | }
+2026-10-15T06:41:57.0224812Z       38 | async function currentReady(page: Page) {
+2026-10-15T06:41:57.0225820Z     > 39 |   await expect(page.getByText('画布已就绪 · 实际导出图集', { exact: false })).toBeVisible({
+2026-10-15T06:41:57.0226315Z          |                                                                    ^
+2026-10-15T06:41:57.0226668Z       40 |     timeout: 30000,
+2026-10-15T06:41:57.0226922Z       41 |   });
+2026-10-15T06:41:57.0227288Z       42 |   const image = page.getByAltText('当前配方处理水面');
+2026-10-15T06:41:57.0227902Z         at currentReady (/home/runner/work/rpg-maker-maker/rpg-maker-maker/e2e/studio-project-list.test.ts:39:68)
+2026-10-15T06:41:57.0228637Z         at /home/runner/work/rpg-maker-maker/rpg-maker-maker/e2e/studio-project-list.test.ts:302:9
+2026-10-15T06:41:57.0229001Z
+2026-10-15T06:41:57.0229409Z     Error Context: test-results/studio-project-list-projec-580ce-nmount-cancels-pending-list/error-context.md
+2026-10-15T06:41:57.0229858Z
+2026-10-15T06:41:57.0230257Z     attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-10-15T06:41:57.0230932Z     test-results/studio-project-list-projec-580ce-nmount-cancels-pending-list/trace.zip
+2026-10-15T06:41:57.0231395Z     Usage:
+2026-10-15T06:41:57.0231510Z
+2026-10-15T06:41:57.0231965Z         pnpm exec playwright show-trace test-results/studio-project-list-projec-580ce-nmount-cancels-pending-list/trace.zip
+2026-10-15T06:41:57.0232453Z
+2026-10-15T06:41:57.0232796Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-15T06:41:57.0233077Z
+2026-10-15T06:41:57.0233174Z   1 failed
+2026-10-15T06:41:57.0234479Z     e2e/studio-project-list.test.ts:266:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list
+2026-10-15T06:41:57.0235075Z   17 passed (10.0m)
+2026-10-15T06:41:57.0500207Z  ELIFECYCLE  Command failed with exit code 1.
+2026-10-15T06:41:57.0664204Z ##[error]Process completed with exit code 1.
+2026-10-15T06:41:57.0757627Z Post job cleanup.
+2026-10-15T06:41:57.2186940Z Pruning is unnecessary.
+2026-10-15T06:41:57.2303602Z Post job cleanup.
+2026-10-15T06:41:57.3242888Z [command]/usr/bin/git version
+2026-10-15T06:41:57.3284114Z git version 2.55.0
+2026-10-15T06:41:57.3323109Z Temporarily overriding HOME='/home/runner/work/_temp/2537ba6f-9a35-4ba4-837c-e268cd2aed6b' before making global git config changes
+2026-10-15T06:41:57.3324948Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-15T06:41:57.3330317Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rpg-maker-maker/rpg-maker-maker
+2026-10-15T06:41:57.3369456Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-15T06:41:57.3406298Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-15T06:41:57.3632850Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-15T06:41:57.3670390Z http.https://github.com/.extraheader
+2026-10-15T06:41:57.3691906Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-15T06:41:57.3723667Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-15T06:41:57.3955496Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-15T06:41:57.3981866Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-15T06:41:57.4351293Z Print service container logs: 256a32ad244b4303b921072f940e0600_postgres1420_2491fe
+2026-10-15T06:41:57.4356698Z ##[command]/usr/bin/docker logs --details 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:41:57.4488733Z  ********************************************************************************
+2026-10-15T06:41:57.4489994Z  The files belonging to this database system will be owned by user "postgres".
+2026-10-15T06:41:57.4491092Z  WARNING: POSTGRES_HOST_AUTH_METHOD has been set to "trust". This will allow
+2026-10-15T06:41:57.4492015Z           anyone with access to the Postgres port to access your database without
+2026-10-15T06:41:57.4492715Z           a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
+2026-10-15T06:41:57.4493291Z           documentation about "trust":
+2026-10-15T06:41:57.4494035Z           https://www.postgresql.org/docs/current/auth-trust.html
+2026-10-15T06:41:57.4494786Z           In Docker's default configuration, this is effectively any other
+2026-10-15T06:41:57.4495413Z           container on the same system.
+2026-10-15T06:41:57.4495811Z
+2026-10-15T06:41:57.4496323Z           It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
+2026-10-15T06:41:57.4497092Z           it with "-e POSTGRES_PASSWORD=password" instead to set a password in
+2026-10-15T06:41:57.4497618Z           "docker run".
+2026-10-15T06:41:57.4497977Z  ********************************************************************************
+2026-10-15T06:41:57.4498531Z  initdb: warning: enabling "trust" authentication for local connections
+2026-10-15T06:41:57.4499166Z  You can change this by editing pg_hba.conf or using the option -A, or
+2026-10-15T06:41:57.4499763Z  --auth-local and --auth-host, the next time you run initdb.
+2026-10-15T06:41:57.4500721Z  2026-10-15 06:11:51.609 UTC [1] LOG:  starting PostgreSQL 14.20 (Debian 14.20-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-10-15T06:41:57.4501967Z  2026-10-15 06:11:51.609 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-10-15T06:41:57.4502702Z  2026-10-15 06:11:51.609 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-10-15T06:41:57.4503883Z  2026-10-15 06:11:51.610 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-15T06:41:57.4504562Z  2026-10-15 06:11:51.611 UTC [64] LOG:  database system was shut down at 2026-10-15 06:11:51 UTC
+2026-10-15T06:41:57.4505069Z  2026-10-15 06:11:51.615 UTC [1] LOG:  database system is ready to accept connections
+2026-10-15T06:41:57.4505576Z  2026-10-15 06:16:19.049 UTC [502] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4506107Z  2026-10-15 06:16:19.199 UTC [510] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4506635Z  2026-10-15 06:16:34.328 UTC [544] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4507169Z  2026-10-15 06:16:36.216 UTC [545] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4507676Z  2026-10-15 06:16:38.561 UTC [554] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4508194Z  2026-10-15 06:16:40.958 UTC [555] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4508712Z  2026-10-15 06:16:58.092 UTC [599] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4509229Z  2026-10-15 06:17:00.294 UTC [601] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4509750Z  2026-10-15 06:17:02.715 UTC [611] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4510193Z  2026-10-15 06:17:54.585 UTC [753] ERROR:  immutable history
+2026-10-15T06:41:57.4510640Z  2026-10-15 06:17:54.585 UTC [753] CONTEXT:  PL/pgSQL function tileset_[owned-db]() line 2 at RAISE
+2026-10-15T06:41:57.4512518Z  2026-10-15 06:17:54.585 UTC [753] STATEMENT:  UPDATE "public"."AssetRevision" SET "contentHash" = $1 WHERE ("public"."AssetRevision"."id" = $2 AND 1=1) RETURNING "public"."AssetRevision"."id", "public"."AssetRevision"."projectId", "public"."AssetRevision"."kind", "public"."AssetRevision"."logicalId", "public"."AssetRevision"."revision", "public"."AssetRevision"."contentHash", "public"."AssetRevision"."value", "public"."AssetRevision"."assetId", "public"."AssetRevision"."sourceSha"
+2026-10-15T06:41:57.4514398Z  2026-10-15 06:18:19.900 UTC [777] ERROR:  STEP06_DEFERRED_COMMIT_REJECTION
+2026-10-15T06:41:57.4514989Z  2026-10-15 06:18:19.900 UTC [777] CONTEXT:  PL/pgSQL function step06_reject_a188dd2161eb41d0916950685aabae41() line 1 at RAISE
+2026-10-15T06:41:57.4515564Z  2026-10-15 06:18:19.900 UTC [777] STATEMENT:  COMMIT
+2026-10-15T06:41:57.4515971Z  2026-10-15 06:18:19.900 UTC [777] WARNING:  there is no transaction in progress
+2026-10-15T06:41:57.4516514Z  2026-10-15 06:19:50.413 UTC [1037] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4517174Z  2026-10-15 06:19:50.527 UTC [1044] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4517710Z  2026-10-15 06:19:50.588 UTC [1049] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4518258Z  2026-10-15 06:19:50.839 UTC [1063] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4518798Z  2026-10-15 06:19:50.960 UTC [1067] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4519320Z  2026-10-15 06:20:06.254 UTC [1103] FATAL:  terminating connection due to administrator command
+2026-10-15T06:41:57.4519819Z  2026-10-15 06:24:29.270 UTC [1300] ERROR:  STEP07_DEFERRED_COMPLETION_REJECTED
+2026-10-15T06:41:57.4520340Z  2026-10-15 06:24:29.270 UTC [1300] CONTEXT:  PL/pgSQL function step07_reject_completion() line 1 at RAISE
+2026-10-15T06:41:57.4520816Z  2026-10-15 06:24:29.270 UTC [1300] STATEMENT:  COMMIT
+2026-10-15T06:41:57.4521239Z  2026-10-15 06:24:29.271 UTC [1300] WARNING:  there is no transaction in progress
+2026-10-15T06:41:57.4521680Z  This user must also own the server process.
+2026-10-15T06:41:57.4521973Z
+2026-10-15T06:41:57.4522264Z  The database cluster will be initialized with locale "en_US.utf8".
+2026-10-15T06:41:57.4522705Z  The default database encoding has accordingly been set to "UTF8".
+2026-10-15T06:41:57.4523134Z  The default text search configuration will be set to "english".
+2026-10-15T06:41:57.4523486Z
+2026-10-15T06:41:57.4523805Z  Data page checksums are disabled.
+2026-10-15T06:41:57.4524150Z
+2026-10-15T06:41:57.4524447Z  fixing permissions on existing directory /var/lib/postgresql/data ... ok
+2026-10-15T06:41:57.4524837Z  creating subdirectories ... ok
+2026-10-15T06:41:57.4525159Z  selecting dynamic shared memory implementation ... posix
+2026-10-15T06:41:57.4525521Z  selecting default max_connections ... 100
+2026-10-15T06:41:57.4525830Z  selecting default shared_buffers ... 128MB
+2026-10-15T06:41:57.4526124Z  selecting default time zone ... Etc/UTC
+2026-10-15T06:41:57.4526426Z  creating configuration files ... ok
+2026-10-15T06:41:57.4526710Z  running bootstrap script ... ok
+2026-10-15T06:41:57.4527012Z  performing post-bootstrap initialization ... ok
+2026-10-15T06:41:57.4527335Z  syncing data to disk ... ok
+2026-10-15T06:41:57.4527578Z
+2026-10-15T06:41:57.4527756Z
+2026-10-15T06:41:57.4527997Z  Success. You can now start the database server using:
+2026-10-15T06:41:57.4528325Z
+2026-10-15T06:41:57.4528579Z      pg_ctl -D /var/lib/postgresql/data -l logfile start
+2026-10-15T06:41:57.4528876Z
+2026-10-15T06:41:57.4529507Z  waiting for server to start....2026-10-15 06:11:51.330 UTC [49] LOG:  starting PostgreSQL 14.20 (Debian 14.20-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-10-15T06:41:57.4530343Z  2026-10-15 06:11:51.330 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-15T06:41:57.4530891Z  2026-10-15 06:11:51.332 UTC [50] LOG:  database system was shut down at 2026-10-15 06:11:51 UTC
+2026-10-15T06:41:57.4531551Z  2026-10-15 06:11:51.335 UTC [49] LOG:  database system is ready to accept connections
+2026-10-15T06:41:57.4531937Z   done
+2026-10-15T06:41:57.4532141Z  server started
+2026-10-15T06:41:57.4532380Z  CREATE DATABASE
+2026-10-15T06:41:57.4532591Z
+2026-10-15T06:41:57.4532779Z
+2026-10-15T06:41:57.4533103Z  /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+2026-10-15T06:41:57.4533577Z
+2026-10-15T06:41:57.4534200Z  waiting for server to shut down...2026-10-15 06:11:51.492 UTC [49] LOG:  received fast shutdown request
+2026-10-15T06:41:57.4534780Z  .2026-10-15 06:11:51.492 UTC [49] LOG:  aborting any active transactions
+2026-10-15T06:41:57.4535334Z  2026-10-15 06:11:51.494 UTC [49] LOG:  background worker "logical replication launcher" (PID 56) exited with exit code 1
+2026-10-15T06:41:57.4535845Z  2026-10-15 06:11:51.495 UTC [51] LOG:  shutting down
+2026-10-15T06:41:57.4536200Z  2026-10-15 06:11:51.500 UTC [49] LOG:  database system is shut down
+2026-10-15T06:41:57.4536523Z   done
+2026-10-15T06:41:57.4536718Z  server stopped
+2026-10-15T06:41:57.4536919Z
+2026-10-15T06:41:57.4537159Z  PostgreSQL init process complete; ready for start up.
+2026-10-15T06:41:57.4537468Z
+2026-10-15T06:41:57.4544245Z Stop and remove container: 256a32ad244b4303b921072f940e0600_postgres1420_2491fe
+2026-10-15T06:41:57.4549177Z ##[command]/usr/bin/docker rm --force 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:41:57.5863609Z 2c26f121e5bca9f17c90f6457d65a263b27ae9c5ab8648271d3f14472d2e47be
+2026-10-15T06:41:57.5891143Z Remove container network: github_network_289b70ebb58240fe9462f2d34d145e58
+2026-10-15T06:41:57.5898702Z ##[command]/usr/bin/docker network rm github_network_289b70ebb58240fe9462f2d34d145e58
+2026-10-15T06:41:57.6877848Z github_network_289b70ebb58240fe9462f2d34d145e58
+2026-10-15T06:41:57.6959324Z Cleaning up orphan processes
+2026-10-15T06:41:57.7278520Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020, pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

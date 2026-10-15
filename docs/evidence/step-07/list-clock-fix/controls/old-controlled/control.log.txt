@@ -1,0 +1,50 @@
+[WebServer] (node:7760) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:7816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:7838) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 e2e/studio-project-list.test.ts:268:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list (32.2s)
+
+
+  1) e2e/studio-project-list.test.ts:268:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('画布已就绪 · 实际导出图集')
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('画布已就绪 · 实际导出图集') with timeout 30000ms
+      - waiting for getByText('画布已就绪 · 实际导出图集')
+
+
+      39 | async function currentReady(page: Page) {
+      40 |   settleControlResources();
+    > 41 |   await expect(page.getByText('画布已就绪 · 实际导出图集', { exact: false })).toBeVisible({
+         |                                                                    ^
+      42 |     timeout: 30000,
+      43 |   });
+      44 |   const image = page.getByAltText('当前配方处理水面');
+        at currentReady ([CODING_ROOT]/artifacts/.step07-list-clock-852d0f6a63c64e6294e5d958fb6775af/e2e/studio-project-list.test.ts:41:68)
+        at [CODING_ROOT]/artifacts/.step07-list-clock-852d0f6a63c64e6294e5d958fb6775af/e2e/studio-project-list.test.ts:331:9
+
+    Error Context: test-results/studio-project-list-projec-580ce-nmount-cancels-pending-list/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/studio-project-list-projec-580ce-nmount-cancels-pending-list/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace test-results/studio-project-list-projec-580ce-nmount-cancels-pending-list/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    e2e/studio-project-list.test.ts:268:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list

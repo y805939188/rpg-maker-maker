@@ -1,0 +1,357 @@
+import { test, expect, type Page } from '@playwright/test';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { randomUUID, createHash } from 'node:crypto';
+import { resolve } from 'node:path';
+import { StudioSchema } from '../packages/contracts/dist/index.js';
+const mode = process.env['E2E_MODE'] === 'dev' ? 'dev' : 'production',
+  out = resolve('.local/step07/browser', mode, 'r4-project-list'),
+  api = `http://127.0.0.1:${process.env['API_PORT'] ?? 4310}`;
+let fixture: { id: string; name: string; build: string }, png: Buffer;
+async function post(path: string, body: unknown) {
+  const r = await fetch(api + path, {
+    method: 'POST',
+    headers: { Origin: api, 'X-Tileset-Client': 'local-v1', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  expect(r.ok).toBe(true);
+  return r.json();
+}
+async function state() {
+  const r = await fetch(api + `/api/projects/${fixture.id}/studio`);
+  expect(r.status).toBe(200);
+  return StudioSchema.parse(await r.json());
+}
+function capture(page: Page) {
+  const log = {
+    network: [] as { url: string; method: string; status: number }[],
+    errors: [] as string[],
+    console: [] as { type: string; text: string }[],
+  };
+  page.on('response', (r) => {
+    if (r.url().includes('/api/'))
+      log.network.push({ url: r.url(), method: r.request().method(), status: r.status() });
+  });
+  page.on('pageerror', (e) => log.errors.push(e.message));
+  page.on('console', (m) => log.console.push({ type: m.type(), text: m.text() }));
+  return log;
+}
+let settleControlResources = () => {};
+async function currentReady(page: Page) {
+  settleControlResources();
+  await expect(page.getByText('画布已就绪 · 实际导出图集', { exact: false })).toBeVisible({
+    timeout: 30000,
+  });
+  const image = page.getByAltText('当前配方处理水面');
+  await expect(image).toHaveAttribute('data-project-id', fixture.id, { timeout: 15000 });
+  await expect
+    .poll(() =>
+      image.evaluate((i) => [
+        (i as HTMLImageElement).naturalWidth,
+        (i as HTMLImageElement).naturalHeight,
+      ]),
+    )
+    .toEqual([96, 144]);
+}
+test.beforeAll(async () => {
+  await mkdir(out, { recursive: true });
+  png = await readFile('tests/fixtures/art-ground.png');
+  const p = await post('/api/projects', { name: 'R4项目列表-' + randomUUID() });
+  await post(`/api/projects/${p.id}/preset`, { family: 'art' });
+  let s = StudioSchema.parse(await (await fetch(api + `/api/projects/${p.id}/studio`)).json());
+  await post(`/api/projects/${p.id}/recipe`, {
+    expectedRevision: s.revision,
+    sources: Object.fromEntries(
+      ['grass', 'water-0', 'water-1', 'water-2', 'mask', 'overlay'].map((c) => [
+        c,
+        s.sources.find((a) => a.component === c)!.id,
+      ]),
+    ),
+    style: 'component-palette',
+  });
+  s = StudioSchema.parse(await (await fetch(api + `/api/projects/${p.id}/studio`)).json());
+  const job = await post(`/api/projects/${p.id}/builds`, {
+    expectedRevision: s.revision,
+    recipeId: s.recipes.find((r) => r.current)!.id,
+    mode: 'update',
+  });
+  let build = '';
+  await expect
+    .poll(
+      async () => {
+        const st = StudioSchema.parse(
+          await (await fetch(api + `/api/projects/${p.id}/studio`)).json(),
+        );
+        const j = st.jobs.find((x) => x.id === job.id)!;
+        build = j.buildId ?? '';
+        return j.state;
+      },
+      { timeout: 30000, intervals: [100] },
+    )
+    .toBe('COMPLETED');
+  fixture = { id: p.id, name: p.name, build };
+  await writeFile(resolve(out, 'fixture.json'), JSON.stringify(fixture, null, 2) + '\n');
+});
+for (const operation of ['upload', 'invalid-upload', 'adopt'] as const) {
+  test(`real delayed initial project list survives unrelated ${operation} and preserves persisted selection`, async ({
+    page,
+  }) => {
+    test.setTimeout(90000);
+    const log = capture(page);
+    await page.addInitScript((id) => {
+      if (location.protocol === 'http:' || location.protocol === 'https:')
+        localStorage.setItem('studio-project', id);
+    }, fixture.id);
+    let release!: () => void,
+      arrived!: () => void,
+      count = 0,
+      hash = '';
+    const ready = new Promise<void>((r) => {
+        arrived = r;
+      }),
+      gate = new Promise<void>((r) => {
+        release = r;
+      });
+    await page.route('**/api/projects', async (route) => {
+      if (route.request().method() !== 'GET') {
+        await route.continue();
+        return;
+      }
+      const response = await route.fetch();
+      expect(response.status()).toBe(200);
+      const bytes = await response.body(),
+        body = JSON.parse(bytes.toString()) as { projects: { id: string }[] };
+      expect(body.projects.some((p) => p.id === fixture.id)).toBe(true);
+      count = body.projects.length;
+      hash = createHash('sha256').update(bytes).digest('hex');
+      arrived();
+      await gate;
+      await route.fulfill({ response }).catch(() => {});
+    });
+    try {
+      await page.goto('/');
+      await ready;
+      await currentReady(page);
+      const before = await state();
+      const mutation = page.waitForResponse(
+        (r) =>
+          r.request().method() === 'POST' &&
+          r.url().includes(operation === 'adopt' ? '/recipe' : '/sources/grass/upload'),
+      );
+      if (operation === 'adopt')
+        await page.getByRole('button', { name: '验证并采用固定岸线配方', exact: true }).click();
+      else
+        await page.getByLabel('上传草地', { exact: true }).setInputFiles({
+          name: 'manual.png',
+          mimeType: 'image/png',
+          buffer: operation === 'upload' ? png : Buffer.from('bad PNG'),
+        });
+      expect((await mutation).status()).toBe(operation === 'invalid-upload' ? 422 : 201);
+      if (operation === 'invalid-upload')
+        await expect(page.locator('.studio-content > .alert')).toContainText('PNG');
+      else
+        await expect(page.locator('.notice')).toContainText(
+          operation === 'adopt' ? '固定岸线配方' : '草地新 revision',
+        );
+      release();
+      const buttons = page.getByRole('list', { name: '已保存项目' }).getByRole('button');
+      await expect(
+        buttons,
+        'valid real200 initial list must not be invalidated by unrelated act',
+      ).toHaveCount(count);
+      await expect(
+        page.getByRole('heading', { name: fixture.name + ' · 创作素材', exact: true }),
+      ).toBeVisible();
+      const after = await state();
+      expect(after.successfulBuildId).toBe(before.successfulBuildId);
+      expect(
+        await page.locator('canvas[aria-label="交付拼接预览"]').getAttribute('data-build-id'),
+      ).toBe(fixture.build);
+      await currentReady(page);
+      await page.screenshot({ path: resolve(out, `initial-${operation}.png`), fullPage: true });
+      await writeFile(
+        resolve(out, `initial-${operation}.json`),
+        JSON.stringify(
+          {
+            ...log,
+            operation,
+            realListCount: count,
+            listBodySHA256: hash,
+            sidebarCount: await buttons.count(),
+            project: fixture.id,
+            actualBefore: before,
+            actualAfter: after,
+          },
+          null,
+          2,
+        ) + '\n',
+      );
+      expect(log.errors).toEqual([]);
+    } finally {
+      release?.();
+      await page.unrouteAll({ behavior: 'ignoreErrors' });
+    }
+  });
+}
+
+test('created-project replacement list supersedes delayed initial list; selected details and list refresh stay coherent', async ({
+  page,
+}) => {
+  test.setTimeout(90000);
+  const log = capture(page);
+  await page.addInitScript((id) => {
+    if (location.protocol === 'http:' || location.protocol === 'https:')
+      localStorage.setItem('studio-project', id);
+  }, fixture.id);
+  let release!: () => void,
+    initialArrived!: () => void,
+    creating = false,
+    oldCount = 0;
+  const initial = new Promise<void>((r) => {
+      initialArrived = r;
+    }),
+    gate = new Promise<void>((r) => {
+      release = r;
+    });
+  await page.route('**/api/projects', async (route) => {
+    if (route.request().method() !== 'GET' || creating) {
+      await route.continue();
+      return;
+    }
+    const response = await route.fetch();
+    oldCount = (await response.json()).projects.length;
+    initialArrived();
+    await gate;
+    await route.fulfill({ response }).catch(() => {});
+  });
+  try {
+    await page.goto('/');
+    await initial;
+    await currentReady(page);
+    creating = true;
+    const name = 'R4列表替代-' + randomUUID(),
+      reply = page.waitForResponse(
+        (r) => r.request().method() === 'POST' && new URL(r.url()).pathname === '/api/projects',
+      );
+    await page.getByLabel('项目名称', { exact: true }).fill(name);
+    await page.getByRole('button', { name: '创建项目', exact: true }).click();
+    const created = (await (await reply).json()) as { id: string };
+    await expect(page.getByRole('button', { name, exact: true })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: name + ' · 创作素材', exact: true }),
+    ).toBeVisible();
+    release();
+    await expect(page.getByRole('button', { name, exact: true })).toBeVisible();
+    await page.getByRole('button', { name: '重读项目列表', exact: true }).click();
+    await expect(page.getByRole('button', { name, exact: true })).toBeVisible();
+    await page.getByRole('button', { name: fixture.name, exact: true }).click();
+    await currentReady(page);
+    await writeFile(
+      resolve(out, 'replacement-list.json'),
+      JSON.stringify(
+        {
+          ...log,
+          oldCount,
+          created,
+          selectedProject: await page.evaluate(() => localStorage.getItem('studio-project')),
+        },
+        null,
+        2,
+      ) + '\n',
+    );
+    expect(log.errors).toEqual([]);
+  } finally {
+    release?.();
+    await page.unrouteAll({ behavior: 'ignoreErrors' });
+  }
+});
+
+test('project list failure has bounded explicit read-only recovery and unmount cancels pending list', async ({
+  page,
+}) => {
+  test.setTimeout(90000);
+  const log = capture(page);
+  await page.addInitScript((id) => {
+    if (location.protocol === 'http:' || location.protocol === 'https:')
+      localStorage.setItem('studio-project', id);
+  }, fixture.id);
+  let failing = true,
+    reads = 0;
+  await page.route('**/api/projects', async (route) => {
+    if (route.request().method() !== 'GET') {
+      await route.continue();
+      return;
+    }
+    reads++;
+    if (failing)
+      await route.fulfill({
+        status: 503,
+        contentType: 'application/json',
+        body: JSON.stringify({ error: { code: 'SERVICE_UNAVAILABLE', message: '受控列表失败' } }),
+      });
+    else await route.continue();
+  });
+  let releaseStudio!: () => void, releaseDescriptor!: () => void, descriptorEntered!: () => void;
+  const studioGate = new Promise<void>((r) => { releaseStudio = r; });
+  const descriptorGate = new Promise<void>((r) => { releaseDescriptor = r; });
+  const descriptorReady = new Promise<void>((r) => { descriptorEntered = r; });
+  const controlEvents: unknown[] = [];
+  settleControlResources = () => { controlEvents.push({ phase: 'currentReady-barrier' }); releaseStudio(); releaseDescriptor(); };
+  await page.route('**/api/projects/*/studio', async (route) => {
+    const response = await route.fetch();
+    controlEvents.push({ phase: 'actual-studio-200', status: response.status() });
+    await studioGate;
+    await route.fulfill({ response }).catch(() => {});
+  });
+  await page.route('**/api/projects/*/builds/*/preview?**', async (route) => {
+    const response = await route.fetch();
+    controlEvents.push({ phase: 'actual-descriptor-held', status: response.status() });
+    descriptorEntered();
+    await descriptorGate;
+    await route.fulfill({ response }).catch(() => {});
+  });
+  page.on('requestfailed', (request) => controlEvents.push({ phase: 'request-failed', url: request.url(), failure: request.failure() }));
+  page.on('close', () => { releaseStudio(); releaseDescriptor(); });
+  test.info().attach('control-order', { body: JSON.stringify(controlEvents), contentType: 'application/json' });
+  await page.goto('/');
+  await expect(page.getByText('项目列表读取失败', { exact: false })).toBeVisible();
+  const initial = reads;
+  await page.clock.install();
+  releaseStudio();
+  await descriptorReady;
+  await page.clock.fastForward(81000);
+  controlEvents.push({ phase: 'after-81000', bodyText: await page.locator('body').innerText() });
+  releaseDescriptor();
+  await writeFile(resolve(out, 'controlled-order.json'), JSON.stringify(controlEvents, null, 2) + '\n');
+  expect(reads).toBe(initial);
+  failing = false;
+  const posts = log.network.filter((r) => r.method === 'POST').length;
+  await page.getByRole('button', { name: '重读项目列表', exact: true }).click();
+  await expect(page.getByRole('button', { name: fixture.name, exact: true })).toBeVisible();
+  expect(log.network.filter((r) => r.method === 'POST').length).toBe(posts);
+  await currentReady(page);
+  await page.unrouteAll();
+  let entered!: () => void;
+  const requested = new Promise<void>((r) => {
+    entered = r;
+  });
+  await page.route('**/api/projects', async (route) => {
+    entered();
+    await new Promise<void>((r) => setTimeout(r, 1300));
+    await route.continue().catch(() => {});
+  });
+  await page.getByRole('button', { name: '重读项目列表', exact: true }).click();
+  await requested;
+  await page.goto('about:blank');
+  await page.unrouteAll({ behavior: 'ignoreErrors' });
+  await writeFile(
+    resolve(out, 'failure-cancel.json'),
+    JSON.stringify({ ...log, reads, automaticRetries: 0, unmounted: true }, null, 2) + '\n',
+  );
+  expect(log.errors).toEqual([]);
+});
+
+test.afterEach(async ({ page }, info) => {
+  if (!info.title.startsWith('project list failure')) return;
+  await writeFile(resolve(out, 'controlled-final.json'), JSON.stringify({ status: info.status, body: await page.locator('body').innerText(), descriptor: await page.locator('canvas[aria-label="交付拼接预览"]').count(), backend: await state() }, null, 2) + '\n').catch(() => {});
+  await page.screenshot({ path: resolve(out, 'controlled-final.png') }).catch(() => {});
+});

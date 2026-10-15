@@ -1,0 +1,98 @@
+[
+  {
+    "label": "clone",
+    "argv": [
+      "git",
+      "clone",
+      "--no-hardlinks",
+      "--single-branch",
+      "--branch",
+      "codex/step-07-main-ci-recovery",
+      "file://[CODING_ROOT]",
+      "[CODING_ROOT]/artifacts/.step07-list-clock-852d0f6a63c64e6294e5d958fb6775af"
+    ],
+    "cwd": ".",
+    "source": "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f",
+    "exitCode": 0,
+    "seconds": 8.448,
+    "path": ".local/main-ci-recovery/list-clock-fix/prepare/clone.log",
+    "bytes": 2043,
+    "sha256": "8444ffce51ca47a7f972c9102ee9b67ccdfa89df42617af76987b1e574960349"
+  },
+  {
+    "label": "checkout",
+    "argv": [
+      "git",
+      "checkout",
+      "--detach",
+      "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f"
+    ],
+    "cwd": "artifacts/.step07-list-clock-852d0f6a63c64e6294e5d958fb6775af",
+    "source": "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f",
+    "exitCode": 0,
+    "seconds": 0.927,
+    "path": ".local/main-ci-recovery/list-clock-fix/prepare/checkout.log",
+    "bytes": 94,
+    "sha256": "1aa7fb51d10bbac915ada810e605213a103b6892fbdfaadb7bae16e1db3b6930"
+  },
+  {
+    "label": "install",
+    "argv": [
+      "pnpm",
+      "install",
+      "--offline",
+      "--frozen-lockfile",
+      "--store-dir",
+      "[CODING_ROOT]/.local/main-ci-recovery/receipt/pnpm-store"
+    ],
+    "cwd": "artifacts/.step07-list-clock-852d0f6a63c64e6294e5d958fb6775af",
+    "source": "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f",
+    "exitCode": 0,
+    "seconds": 2.605,
+    "path": ".local/main-ci-recovery/list-clock-fix/prepare/install.log",
+    "bytes": 1170,
+    "sha256": "92c97b8d61a4ac35bc68d724a33bcbc8687edab897519424e5c09d38317b1a72"
+  },
+  {
+    "label": "generate",
+    "argv": [
+      "pnpm",
+      "db:generate"
+    ],
+    "cwd": "artifacts/.step07-list-clock-852d0f6a63c64e6294e5d958fb6775af",
+    "source": "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f",
+    "exitCode": 0,
+    "seconds": 1.716,
+    "path": ".local/main-ci-recovery/list-clock-fix/prepare/generate.log",
+    "bytes": 871,
+    "sha256": "2b4722e6b376bd169aa6fd1dd1e9b34b6a104c4a495bf31b7a8d1091c4a0eded"
+  },
+  {
+    "label": "build",
+    "argv": [
+      "pnpm",
+      "build"
+    ],
+    "cwd": "artifacts/.step07-list-clock-852d0f6a63c64e6294e5d958fb6775af",
+    "source": "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f",
+    "exitCode": 0,
+    "seconds": 24.767,
+    "path": ".local/main-ci-recovery/list-clock-fix/prepare/build.log",
+    "bytes": 4993,
+    "sha256": "502d985667a2a7d363acb9fb6efcf37352cb7044dc34151cc5e4086af100e9cd"
+  },
+  {
+    "label": "migrate",
+    "argv": [
+      "pnpm",
+      "db:migrate"
+    ],
+    "cwd": "artifacts/.step07-list-clock-852d0f6a63c64e6294e5d958fb6775af",
+    "source": "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f",
+    "exitCode": 0,
+    "seconds": 1.655,
+    "path": ".local/main-ci-recovery/list-clock-fix/prepare/migrate.log",
+    "bytes": 2232,
+    "sha256": "7bbcfbdded3f23f5dd30d77cb9664164aaf39f6e8a3edc3ad4baea44cbf6f499"
+  }
+]
