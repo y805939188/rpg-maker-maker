@@ -1,0 +1,24 @@
+async function rendered(page: Page, capture: ReceivedResources, url = origin + path) {
+  const image = page.locator('#saved'),
+    hash = await image.getAttribute('data-sha');
+  assert.ok(hash);
+  const received = capture.find(url, hash);
+  assert.ok(received, 'current required actual body is missing or unavailable');
+  assert.equal(received.sha, hash);
+  assertReceivedPng(received.bytes!, { width: 96, height: 144 });
+  const decoded = await sharp(received.bytes!)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  assert.deepEqual([decoded.info.width, decoded.info.height], [96, 144]);
+  const pixels = await image.evaluate((i) => {
+    const c = document.createElement('canvas');
+    c.width = 96;
+    c.height = 144;
+    const ctx = c.getContext('2d')!;
+    ctx.drawImage(i as HTMLImageElement, 0, 0);
+    return [...ctx.getImageData(0, 0, 96, 144).data];
+  });
+  assert.deepEqual(Buffer.from(pixels), decoded.data);
+  return received;
+}

@@ -1,0 +1,52 @@
+import { readFileSync, writeFileSync, mkdirSync, existsSync, renameSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { createHash, randomUUID } from 'node:crypto';
+import { execFileSync, spawn } from 'node:child_process';
+const root=process.cwd(), out=resolve('.local/step07-review/independent-round17');
+const sha=b=>createHash('sha256').update(b).digest('hex');
+process.loadEnvFile(resolve('.env'));
+const db=new URL(process.env.DATABASE_URL);
+if(db.hostname!=='127.0.0.1'||db.port!=='55515') throw Error('Not owned review PostgreSQL');
+const secret=[process.env.DATABASE_URL, decodeURIComponent(db.password)].filter(Boolean);
+const redact=s=>secret.reduce((t,v)=>t.replaceAll(v,'[REDACTED_OWN_DATABASE]'),s);
+const env={...process.env,PATH:'/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:'+process.env.PATH,NO_PROXY:'127.0.0.1,localhost',no_proxy:'127.0.0.1,localhost',API_PORT:'4415',WEB_PORT:'5315',STEP07_TEST_API_PORT:'4415',INTEGRATION_API_PORT:'4415',PLAYWRIGHT_BROWSERS_PATH:resolve('.local/step07-review/browser-cache'),TILESET_PG_BIN:'/opt/homebrew/opt/postgresql@14/bin',TILESET_ASSET_ROOT:resolve('.local/step07-review/assets')};
+const results=existsSync(out+'/evidence/commands/results.json')?JSON.parse(readFileSync(out+'/evidence/commands/results.json','utf8')):[];
+async function run(label,command,args,extra={}){
+ const start=new Date(), log=out+'/evidence/commands/'+label+'.log.txt'; let content='';
+ const child=spawn(command,args,{env:{...env,...extra},stdio:['ignore','pipe','pipe']});
+ const save=x=>{content+=redact(x.toString());writeFileSync(log,content)};child.stdout.on('data',save); child.stderr.on('data',save);
+ const code=await new Promise((r,j)=>{child.on('error',j);child.on('close',r)});
+ const result={label,command:[command,...args],started:start.toISOString(),ended:new Date().toISOString(),seconds:(Date.now()-start)/1000,exit:code,log:log.slice(root.length+1),noProxyLoopback:true};
+ results.push(result);writeFileSync(out+'/evidence/commands/results.json',JSON.stringify(results,null,2)+'\n'); console.log(JSON.stringify(result));if(code!==0)process.exitCode=1; return code;
+}
+const mode=process.argv[2];
+if(mode==='baseline'){
+ const files=execFileSync('git',['ls-files','-z']).toString().split('\0').filter(Boolean).map(path=>{const b=readFileSync(path);return{path,bytes:b.length,sha256:sha(b)}});
+ writeFileSync(out+'/evidence/tracked-start.json',JSON.stringify({source:execFileSync('git',['rev-parse','HEAD']).toString().trim(),status:execFileSync('git',['status','--porcelain']).toString(),files},null,2)+'\n');
+ console.log(JSON.stringify({tracked:files.length,envMode:(await import('node:fs')).statSync('.env').mode&511,dbPort:db.port,node:process.versions.node}));
+}else if(mode==='check') await run('check','pnpm',['check']);
+else if(mode==='engineering') await run('engineering','node',['scripts/build-engineering.mjs','step07']);
+else if(mode==='database') await run('migration','pnpm',['db:migrate']);
+else if(mode==='regressions'){
+ for(const [label,args] of [['api3',['test:integration']],['privacy5',['test:dev-privacy']],['PG06-full23',['test:step06']],['HTTP07-full16',['test:step07']]]) if(await run(label,'pnpm',args)!==0) break;
+}else if(mode==='browser'){
+ const {PrismaClient}=await import(resolve('apps/api/node_modules/@prisma/client/default.js'));
+ const admin=new PrismaClient({datasources:{db:{url:process.env.DATABASE_URL}}});
+ const saved=out+'/private-own-env-preserved';
+ const envBefore=readFileSync('.env');
+ writeFileSync(out+'/evidence/browser-env-start.json',JSON.stringify({bytes:envBefore.length,sha256:sha(envBefore),mode:(await import('node:fs')).statSync('.env').mode&511,ports:{pg:55515,api:4415,web:5315}}));
+ const databases=[];
+ renameSync('.env',saved);
+ try{for(const mode of ['production','dev']){
+ const name='tileset_review17_'+mode+'_'+randomUUID().replaceAll('-','');
+ await admin.$executeRawUnsafe(`CREATE DATABASE "${name}"`); const u=new URL(db);u.pathname='/'+name;
+ const extra={DATABASE_URL:u.href,TILESET_ASSET_ROOT:resolve('.local/step07-review/assets',mode),E2E_MODE:mode};
+ databases.push({mode,name,assetRoot:extra.TILESET_ASSET_ROOT,envAbsent:!existsSync('.env'),pgPort:55515,apiPort:4415,webPort:5315});
+ writeFileSync(out+'/evidence/browser-databases.json',JSON.stringify(databases,null,2)+'\n');
+ secret.push(u.href);
+ if(await run(mode+'-migration','pnpm',['db:migrate'],extra)!==0)break;
+ if(await run(mode+'18-noenv','pnpm',['test:e2e'],extra)!==0)break;
+ mkdirSync(out+'/evidence/browser/'+mode,{recursive:true});
+ const {cpSync}=await import('node:fs');cpSync('.local/e2e',out+'/evidence/browser/'+mode,{recursive:true});
+ }}finally{renameSync(saved,'.env');writeFileSync(out+'/evidence/browser-env-final.json',JSON.stringify({restoredByteIdentical:readFileSync('.env').equals(envBefore),sha256:sha(readFileSync('.env')),mode:(await import('node:fs')).statSync('.env').mode&511}));await admin.$disconnect();}
+}else throw Error('Unknown runner mode');

@@ -1,0 +1,220 @@
+
+> @tileset/prototype@0.0.2 test:step07 /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker
+> pnpm build && vitest run --config vitest.step07.config.ts
+
+
+> @tileset/prototype@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker
+> node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && node dist/scripts/studio-resources.js && pnpm --filter @tileset/web build
+
+
+> @tileset/prototype@0.0.2 build:prototype /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker
+> pnpm build:contracts && tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/packages/local-executor
+> tsc -p tsconfig.json
+
+
+> @tileset/api@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/apps/api
+> tsc -p tsconfig.json
+
+
+> @tileset/web@0.0.2 build /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker/apps/web
+> tsc --noEmit && vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 779 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.41 kB │ gzip:   0.28 kB
+dist/assets/index-CsM4c782.css                      3.12 kB │ gzip:   1.22 kB
+dist/assets/getTextureBatchBindGroup-D-53rPlt.js    0.39 kB │ gzip:   0.29 kB
+dist/assets/getTexelRangeRects-DfZBalEY.js          3.62 kB │ gzip:   1.24 kB
+dist/assets/canvasUtils-DY-Cvxjp.js                 5.71 kB │ gzip:   1.81 kB
+dist/assets/webworkerAll-B8KgPBJa.js               15.46 kB │ gzip:   4.87 kB
+dist/assets/CanvasPool-CWsteclb.js                 16.93 kB │ gzip:   5.97 kB
+dist/assets/browserAll-DVdHwz8S.js                 43.97 kB │ gzip:  11.41 kB
+dist/assets/WebGPURenderer-CEOq4plQ.js             53.80 kB │ gzip:  15.37 kB
+dist/assets/WebGLRenderer-C-4G6VH1.js              56.77 kB │ gzip:  15.66 kB
+dist/assets/RenderTargetSystem-CaSqe-W4.js         72.33 kB │ gzip:  20.30 kB
+dist/assets/CanvasRenderer-CuHZ-s_P.js             90.26 kB │ gzip:  28.57 kB
+dist/assets/index-CylqNgkq.js                     461.13 kB │ gzip: 137.26 kB
+✓ built in 2.58s
+
+ RUN  v4.1.11 /Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker
+
+R4_STAGE {"stage":"production:fixture","event":"start","elapsedMs":0}
+R4_STAGE {"stage":"production:fixture","event":"end","ms":2444}
+R4_STAGE {"stage":"production:page","event":"start","elapsedMs":2498}
+R4_STAGE {"stage":"production:page","event":"end","ms":67}
+R4_STAGE {"stage":"production:processed-image","event":"start","elapsedMs":4247}
+R4_STAGE {"stage":"production:processed-image","event":"end","ms":278}
+R4_STAGE {"stage":"production:first:commit-ready","event":"start","elapsedMs":4590}
+R4_STAGE {"stage":"production:first:commit-ready","event":"end","ms":5372}
+R4_STAGE {"stage":"production:first:read-held","event":"start","elapsedMs":9962}
+R4_STAGE {"stage":"production:first:read-held","event":"end","ms":419}
+R4_STAGE {"stage":"production:first:terminal","event":"start","elapsedMs":10381}
+R4_STAGE {"stage":"production:first:terminal","event":"end","ms":104}
+R4_CHECKPOINT {"stage":"production:first:ui-terminal-wait","elapsedMs":10486}
+R4_CHECKPOINT {"stage":"production:first:metadata-confirmed","elapsedMs":11801}
+R4_CHECKPOINT {"stage":"production:first:select-build","elapsedMs":14310}
+R4_CHECKPOINT {"stage":"production:first:canvas-ready","elapsedMs":14348}
+R4_STAGE {"stage":"production:first:processed-image","event":"start","elapsedMs":14348}
+R4_STAGE {"stage":"production:first:processed-image","event":"end","ms":245}
+R4_STAGE {"stage":"production:first:download","event":"start","elapsedMs":14594}
+R4_STAGE {"stage":"production:first:download","event":"end","ms":1704}
+R4_CHECKPOINT {"stage":"production:first:zip-body-and-directory","elapsedMs":16304}
+R4_CHECKPOINT {"stage":"production:first:zip-verified","elapsedMs":16304}
+R4_CHECKPOINT {"stage":"production:first:actual-browser-files-matched","elapsedMs":16331}
+R4_CHECKPOINT {"stage":"production:first:descriptor-and-screenshot-complete","elapsedMs":16455}
+R4_STAGE {"stage":"production:replacement:upload","event":"start","elapsedMs":16456}
+R4_STAGE {"stage":"production:replacement:upload","event":"end","ms":7}
+R4_STAGE {"stage":"production:replacement:recipe","event":"start","elapsedMs":16635}
+R4_STAGE {"stage":"production:replacement:recipe","event":"end","ms":2070}
+R4_STAGE {"stage":"production:processed-image","event":"start","elapsedMs":18705}
+R4_STAGE {"stage":"production:processed-image","event":"end","ms":1015}
+R4_STAGE {"stage":"production:replacement:commit-ready","event":"start","elapsedMs":19781}
+R4_STAGE {"stage":"production:replacement:commit-ready","event":"end","ms":8672}
+R4_STAGE {"stage":"production:replacement:read-held","event":"start","elapsedMs":28454}
+R4_STAGE {"stage":"production:replacement:read-held","event":"end","ms":486}
+R4_STAGE {"stage":"production:replacement:terminal","event":"start","elapsedMs":28940}
+R4_STAGE {"stage":"production:replacement:terminal","event":"end","ms":105}
+R4_CHECKPOINT {"stage":"production:replacement:ui-terminal-wait","elapsedMs":29046}
+R4_CHECKPOINT {"stage":"production:replacement:metadata-confirmed","elapsedMs":30369}
+R4_CHECKPOINT {"stage":"production:replacement:select-build","elapsedMs":30372}
+R4_CHECKPOINT {"stage":"production:replacement:canvas-ready","elapsedMs":33738}
+R4_STAGE {"stage":"production:replacement:processed-image","event":"start","elapsedMs":33738}
+R4_STAGE {"stage":"production:replacement:processed-image","event":"end","ms":235}
+R4_STAGE {"stage":"production:replacement:download","event":"start","elapsedMs":33973}
+R4_STAGE {"stage":"production:replacement:download","event":"end","ms":3470}
+R4_CHECKPOINT {"stage":"production:replacement:zip-body-and-directory","elapsedMs":37449}
+R4_CHECKPOINT {"stage":"production:replacement:zip-verified","elapsedMs":37450}
+R4_CHECKPOINT {"stage":"production:replacement:actual-browser-files-matched","elapsedMs":37475}
+R4_CHECKPOINT {"stage":"production:replacement:descriptor-and-screenshot-complete","elapsedMs":37612}
+R4_STAGE {"stage":"production:history:prepared","event":"start","elapsedMs":37682}
+R4_STAGE {"stage":"production:history:prepared","event":"end","ms":1777}
+R4_STAGE {"stage":"production:history:snapshot","event":"start","elapsedMs":39460}
+R4_STAGE {"stage":"production:history:snapshot","event":"end","ms":22}
+R4_STAGE {"stage":"production:history:adopt","event":"start","elapsedMs":39483}
+R4_STAGE {"stage":"production:history:adopt","event":"end","ms":15}
+R4_STAGE {"stage":"production:history:current-prepare","event":"start","elapsedMs":39499}
+R4_STAGE {"stage":"production:history:current-prepare","event":"end","ms":1467}
+R4_STAGE {"stage":"production:history:assemble","event":"start","elapsedMs":40966}
+R4_STAGE {"stage":"production:history:assemble","event":"end","ms":1558}
+R4_STAGE {"stage":"production:history:publish","event":"start","elapsedMs":42525}
+R4_STAGE {"stage":"production:history:publish","event":"end","ms":4999}
+R4_STAGE {"stage":"production:history:terminal","event":"start","elapsedMs":47525}
+R4_STAGE {"stage":"production:history:terminal","event":"end","ms":7077}
+R4_STAGE {"stage":"production:history:processed-image","event":"start","elapsedMs":59728}
+R4_STAGE {"stage":"production:history:processed-image","event":"end","ms":242}
+R4_STAGE {"stage":"development:fixture","event":"start","elapsedMs":60019}
+R4_STAGE {"stage":"development:fixture","event":"end","ms":2348}
+R4_STAGE {"stage":"development:page","event":"start","elapsedMs":62418}
+R4_STAGE {"stage":"development:page","event":"end","ms":111}
+R4_STAGE {"stage":"development:processed-image","event":"start","elapsedMs":64149}
+R4_STAGE {"stage":"development:processed-image","event":"end","ms":209}
+R4_STAGE {"stage":"development:first:commit-ready","event":"start","elapsedMs":64434}
+R4_STAGE {"stage":"development:first:commit-ready","event":"end","ms":5647}
+R4_STAGE {"stage":"development:first:read-held","event":"start","elapsedMs":70082}
+R4_STAGE {"stage":"development:first:read-held","event":"end","ms":221}
+R4_STAGE {"stage":"development:first:terminal","event":"start","elapsedMs":70304}
+R4_STAGE {"stage":"development:first:terminal","event":"end","ms":3}
+R4_CHECKPOINT {"stage":"development:first:ui-terminal-wait","elapsedMs":70307}
+R4_CHECKPOINT {"stage":"development:first:metadata-confirmed","elapsedMs":71622}
+R4_CHECKPOINT {"stage":"development:first:select-build","elapsedMs":74110}
+R4_CHECKPOINT {"stage":"development:first:canvas-ready","elapsedMs":74160}
+R4_STAGE {"stage":"development:first:processed-image","event":"start","elapsedMs":74160}
+R4_STAGE {"stage":"development:first:processed-image","event":"end","ms":229}
+R4_STAGE {"stage":"development:first:download","event":"start","elapsedMs":74390}
+R4_STAGE {"stage":"development:first:download","event":"end","ms":1717}
+R4_CHECKPOINT {"stage":"development:first:zip-body-and-directory","elapsedMs":76112}
+R4_CHECKPOINT {"stage":"development:first:zip-verified","elapsedMs":76112}
+R4_CHECKPOINT {"stage":"development:first:actual-browser-files-matched","elapsedMs":76136}
+R4_CHECKPOINT {"stage":"development:first:descriptor-and-screenshot-complete","elapsedMs":76262}
+R4_STAGE {"stage":"development:replacement:upload","event":"start","elapsedMs":76263}
+R4_STAGE {"stage":"development:replacement:upload","event":"end","ms":15}
+R4_STAGE {"stage":"development:replacement:recipe","event":"start","elapsedMs":76444}
+R4_STAGE {"stage":"development:replacement:recipe","event":"end","ms":2078}
+R4_STAGE {"stage":"development:processed-image","event":"start","elapsedMs":78523}
+R4_STAGE {"stage":"development:processed-image","event":"end","ms":1006}
+R4_STAGE {"stage":"development:replacement:commit-ready","event":"start","elapsedMs":79596}
+R4_STAGE {"stage":"development:replacement:commit-ready","event":"end","ms":8590}
+R4_STAGE {"stage":"development:replacement:read-held","event":"start","elapsedMs":88186}
+R4_STAGE {"stage":"development:replacement:read-held","event":"end","ms":569}
+R4_STAGE {"stage":"development:replacement:terminal","event":"start","elapsedMs":88756}
+R4_STAGE {"stage":"development:replacement:terminal","event":"end","ms":106}
+R4_CHECKPOINT {"stage":"development:replacement:ui-terminal-wait","elapsedMs":88862}
+R4_CHECKPOINT {"stage":"development:replacement:metadata-confirmed","elapsedMs":90179}
+R4_CHECKPOINT {"stage":"development:replacement:select-build","elapsedMs":90182}
+R4_CHECKPOINT {"stage":"development:replacement:canvas-ready","elapsedMs":93256}
+R4_STAGE {"stage":"development:replacement:processed-image","event":"start","elapsedMs":93256}
+R4_STAGE {"stage":"development:replacement:processed-image","event":"end","ms":234}
+R4_STAGE {"stage":"development:replacement:download","event":"start","elapsedMs":93491}
+R4_STAGE {"stage":"development:replacement:download","event":"end","ms":3704}
+R4_CHECKPOINT {"stage":"development:replacement:zip-body-and-directory","elapsedMs":97201}
+R4_CHECKPOINT {"stage":"development:replacement:zip-verified","elapsedMs":97201}
+R4_CHECKPOINT {"stage":"development:replacement:actual-browser-files-matched","elapsedMs":97225}
+R4_CHECKPOINT {"stage":"development:replacement:descriptor-and-screenshot-complete","elapsedMs":97347}
+R4_STAGE {"stage":"development:history:prepared","event":"start","elapsedMs":97416}
+R4_STAGE {"stage":"development:history:prepared","event":"end","ms":1805}
+R4_STAGE {"stage":"development:history:snapshot","event":"start","elapsedMs":99223}
+R4_STAGE {"stage":"development:history:snapshot","event":"end","ms":22}
+R4_STAGE {"stage":"development:history:adopt","event":"start","elapsedMs":99245}
+R4_STAGE {"stage":"development:history:adopt","event":"end","ms":15}
+R4_STAGE {"stage":"development:history:current-prepare","event":"start","elapsedMs":99261}
+R4_STAGE {"stage":"development:history:current-prepare","event":"end","ms":1530}
+R4_STAGE {"stage":"development:history:assemble","event":"start","elapsedMs":100792}
+R4_STAGE {"stage":"development:history:assemble","event":"end","ms":1593}
+R4_STAGE {"stage":"development:history:publish","event":"start","elapsedMs":102386}
+R4_STAGE {"stage":"development:history:publish","event":"end","ms":5179}
+R4_STAGE {"stage":"development:history:terminal","event":"start","elapsedMs":107565}
+R4_STAGE {"stage":"development:history:terminal","event":"end","ms":7156}
+R4_STAGE {"stage":"development:history:processed-image","event":"start","elapsedMs":119181}
+R4_STAGE {"stage":"development:history:processed-image","event":"end","ms":236}
+
+ Test Files  1 passed (1)
+      Tests  16 passed (16)
+   Start at  00:18:20
+   Duration  453.96s (transform 321ms, setup 0ms, import 1.04s, tests 452.83s, environment 0ms)
+

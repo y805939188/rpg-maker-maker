@@ -1,0 +1,90 @@
+{
+  "currentProbes": [
+    {
+      "source": "runner.mjs",
+      "sha256": "f923af44a50cc6fd45807cb7c3e63125f0eaaabd5515a6b51d76ab3261b4f676",
+      "bytes": 4986,
+      "evidence": "evidence/probes/runner.mjs.txt"
+    },
+    {
+      "source": "audit-baseline.py",
+      "sha256": "eecccb7c3ac1fc3fe952a423b75c16b9e874acf7b0fb62f28176fa7cb4062d42",
+      "bytes": 3076,
+      "evidence": "evidence/probes/audit-baseline.py.txt"
+    },
+    {
+      "source": "engineering-audit.mjs",
+      "sha256": "b31639c89722a3208d2bc454fd543a96bb8f3e32fbda3bc99a740b5144521ee6",
+      "bytes": 3100,
+      "evidence": "evidence/probes/engineering-audit.mjs.txt"
+    },
+    {
+      "source": "type-wire.mjs",
+      "sha256": "97c4adefefbb94d7dbaf67e65968469dc9f0a778e6531938924481c8807b7905",
+      "bytes": 9904,
+      "evidence": "evidence/probes/type-wire.mjs.txt"
+    },
+    {
+      "source": "browser-identity.mjs",
+      "sha256": "94db48f5158af051f400722f81b277c3d08c4d918bcb309fade43e6c2e893c3b",
+      "bytes": 1934,
+      "evidence": "evidence/probes/browser-identity.mjs.txt"
+    },
+    {
+      "source": "runtime-ownership.mjs",
+      "sha256": "9df5d95795a7848491cc5db0c71565e59bd57ab94f679d74afe9dfab655277e4",
+      "bytes": 1348,
+      "evidence": "evidence/probes/runtime-ownership.mjs.txt"
+    },
+    {
+      "source": "resources.mjs",
+      "sha256": "a1b128f4d7a0590a2c02e5b24c44d13be9ea79ff3ccb0dfba7ecd96bd4468a59",
+      "bytes": 2881,
+      "evidence": "evidence/probes/resources.mjs.txt"
+    },
+    {
+      "source": "verify-archives.py",
+      "sha256": "160a3e0a544ccd75ae375080582b1e26715a7a2f472661269fb4ea8d38180fea",
+      "bytes": 6969,
+      "evidence": "evidence/probes/verify-archives.py.txt"
+    },
+    {
+      "source": "verify-db-and-reader.mjs",
+      "sha256": "353e0dbdb746002710a9e555f4cf0e9b1562de0fa6e58e4a5703276aec601086",
+      "bytes": 4501,
+      "evidence": "evidence/probes/verify-db-and-reader.mjs.txt"
+    },
+    {
+      "source": "write-report.py",
+      "sha256": "2de2336e27f13a5a9d6cf451572a51d42026c8fe2533a8fdee16cbdd589a458f",
+      "bytes": 17741,
+      "evidence": "evidence/probes/write-report.py.txt"
+    },
+    {
+      "source": "collect-final.py",
+      "sha256": "6cd5e683fcf76e049f3ef1668f99ec24a7062a61e62737ef2dde6cd3fd4543be",
+      "bytes": 4026,
+      "evidence": "evidence/probes/collect-final.py.txt"
+    },
+    {
+      "source": "scan.mjs",
+      "sha256": "38a9f67d958fd0f6d2d405a93f62e019e6eac5c1f47fc6469cd4a4f6a9e5a8e5",
+      "bytes": 1571,
+      "evidence": "evidence/probes/scan.mjs.txt"
+    }
+  ],
+  "previousIndependentReference": [
+    {
+      "path": "/Users/dingshinn/.codex/worktrees/step-07-review-round15/rpg-maker-maker/.local/step07-review/round15/verify-archives.py",
+      "sha256": "ca5239f247a3589347a1d6d081f78739a0c2d67a34e996e65ee947479da2807f",
+      "bytes": 6852,
+      "scope": "Previous independent reader/oracle only; adapted current paths/source/DB and PNG raw type check; not previous PASS reclassification"
+    },
+    {
+      "path": "/Users/dingshinn/.codex/worktrees/step-07-review-round15/rpg-maker-maker/.local/step07-review/round15/verify-db-and-reader.mjs",
+      "sha256": "17b24330de27f780a5e73eeb8a221a9195c089748f81daf518a8c858772c96f2",
+      "bytes": 4578,
+      "scope": "Previous independent reader/oracle only; adapted current paths/source/DB and PNG raw type check; not previous PASS reclassification"
+    }
+  ]
+}
