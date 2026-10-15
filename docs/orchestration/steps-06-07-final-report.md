@@ -1,5 +1,7 @@
 # AI Tileset Studio 步骤06–07交付报告
 
+> 最新收尾检查点：代码main04e的完整CI成功记录保持有效，但最终纯文档HEAD215的CI38690964177出现1项生产浏览器列表恢复用例超时（17通过，开发未执行）。当前已进入定向诊断，尚未完成最后收尾；不将该最新CI写成成功。当前状态以canonical为准，原失败保留。
+
 2026-10-15（Asia/Shanghai）。**步骤06=PUBLISHED；步骤07=PUBLISHED；08/09/10=NOT_STARTED；WORKFLOW=STOPPED_AFTER_STEP_07。** 最新功能已独立通过、候选与代码main完整CI均SUCCESS，正常合并/合并后回归/push/readback完成，本地可手工测试。唯一调度入口为 [canonical](steps-06-07-state.json)。旧阻断版本和所有失败在Git历史及独立证据中保留。
 
 ## 步骤06保持已发布

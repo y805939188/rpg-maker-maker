@@ -1,5 +1,7 @@
 # 步骤07当前工程交付基线
 
+> 最新收尾检查点：代码main04e的完整CI成功记录保持有效，但最终纯文档HEAD215的CI38690964177出现1项生产浏览器列表恢复用例超时（17通过，开发未执行）。当前已进入定向诊断，尚未完成最后收尾；不将该最新CI写成成功。当前状态以canonical为准，原失败保留。
+
 2026-10-15（Asia/Shanghai）。本节更新当前版本与已实施修复，原工程说明和各轮记录保留在下方；正式plans、已批准Profile/素材范围/兼容承诺不改写。
 
 当前功能Source `0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de`，作者docs `fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67`；[独立第17轮整合PASS](../reviews/step-07-independent-round-17.md)，P0/P1/硬阻P2及开放非阻断均0。候选CI8与正常代码main04e9796的完整CI38686901060均已SUCCESS，正常合并/回归/push/readback完成；步骤07=PUBLISHED。唯一状态见[canonical](../orchestration/steps-06-07-state.json)。
