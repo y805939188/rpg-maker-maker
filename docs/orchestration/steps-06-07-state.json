@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "STEP07_RELEASE_GATES_ACTIVE",
   "currentStep": 7,
-  "phase": "STEP07_LATEST_INDEPENDENT_PASS_CANDIDATE8_PREPARATION",
+  "phase": "STEP07_CANDIDATE8_CI_RUNNING",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT17_PASS_PENDING_CANDIDATE8_CI",
+    "status": "INDEPENDENT17_PASS_CANDIDATE8_CI_RUNNING",
     "reviewRounds": 17,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3256,23 +3256,44 @@
       }
     },
     "userLocalRuntimeResume": {
-      "atUtc": "2026-10-14T18:39:58.868244+00:00",
-      "source": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "atUtc": "2026-10-15T05:03:52.146772+00:00",
+      "status": "LOCAL_REVIEWED_CANDIDATE_READY_FOR_MANUAL_TEST; GITHUB_RELEASE_PENDING_CI",
+      "url": "http://127.0.0.1:4376",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
-      "apiPort": 4376,
-      "apiPid": 76694,
+      "runtimeCommit": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "reviewedFunctionSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "independentReview": 17,
+      "apiPid": 46324,
       "pgPort": 55476,
-      "pgPid": 51121,
       "health": {
         "status": "ok",
         "database": "connected",
         "stage": "02"
       },
-      "existingCountsBefore": "115|947|179|177|184",
-      "envUnchanged": true,
+      "beforeCounts": {
+        "Project": 115,
+        "AssetRevision": 947,
+        "Build": 179,
+        "FinalExport": 177,
+        "StudioJob": 184
+      },
+      "afterCounts": {
+        "Project": 115,
+        "AssetRevision": 947,
+        "Build": 179,
+        "FinalExport": 177,
+        "StudioJob": 184
+      },
+      "projectRowsSha256Unchanged": true,
+      "envShaBytesUnchanged": true,
       "envMode": "0600",
-      "restoredExistingProductionService": true,
-      "noMigrationBuildResetOrDataMutation": true
+      "schemaMigration": "NOT_NEEDED; schema/lock/package dependency byte-equal",
+      "backupRoot": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07/runtime-backup-20261015T050237Z-9e1333b9",
+      "backupManifestSha256": "a40059b25f0ef936cdb7dba8e9ec3abdb40db773f4402ac2e540b8d23d88f30b",
+      "backupFiles": 2479,
+      "backupAssetBytes": 44598859,
+      "databaseDumpVerified": "pg_dump success, pg_restore --list success; private only",
+      "noRealModelCalls": true
     },
     "crcFixAuthorProgress": {
       "status": "AUTHOR_CONTROL_PROGRESS_NOT_INDEPENDENT_CLOSE",
@@ -3329,11 +3350,11 @@
     "forwardValidationPreparation": {
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker",
       "branch": "codex/step-07-validation",
-      "head": "36d8b83e8fb518482c044b0367aeba31f9222b8b",
+      "head": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
       "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
       "postSourcePaths": 426,
       "postSourceExecutionDiff": 0,
-      "pushed": false,
+      "pushed": true,
       "freshReleaseBuild": {
         "exitCode": 0,
         "log": ".local/release-verification/prepared-build.log"
@@ -3342,7 +3363,7 @@
         "exitCode": 0,
         "log": ".local/release-verification/prepared-migrate.log"
       },
-      "candidate8CI": "NOT_STARTED_PENDING_INDEPENDENT17_PASS"
+      "candidate8CI": 38683352144
     },
     "independent16Progress": {
       "status": "RUNNING_NO_FINAL_VERDICT",
@@ -3509,7 +3530,28 @@
       ],
       "review16": "INTERRUPTED_PARTIAL_NOT_RETROACTIVELY_PASS"
     },
-    "candidate8CI": "NOT_STARTED",
+    "candidate8CI": {
+      "atUtc": "2026-10-15T04:50:09.028126+00:00",
+      "attempt": 8,
+      "candidate": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "reviewedSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "authorDocs": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+      "independentRound": 17,
+      "independentReportSha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
+      "afterSourceScope": "README/docs only,632paths; no execution change",
+      "push": "SUCCESS_NORMAL",
+      "remoteReadback": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "remoteMain": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "ciRunId": 38683352144,
+      "ciUrl": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144",
+      "ciStatus": "in_progress",
+      "ciConclusion": null,
+      "ciJobId": 116252590398,
+      "approval": "PENDING_NECESSARY_CANDIDATE_CI",
+      "mainForwardMerge": "NOT_EXECUTED",
+      "postmerge": "NOT_EXECUTED",
+      "mainPush": "NOT_EXECUTED"
+    },
     "forwardMainRelease": "NOT_STARTED",
     "finalReviewedSource": null,
     "userResumptionAfterPlatformBlock": {
@@ -3695,7 +3737,70 @@
         "BuildExportFileJobChains": 4,
         "status": "INDEPENDENT_MATCH"
       }
-    }
+    },
+    "candidateEight": {
+      "atUtc": "2026-10-15T04:50:09.028126+00:00",
+      "attempt": 8,
+      "candidate": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "reviewedSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "authorDocs": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+      "independentRound": 17,
+      "independentReportSha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
+      "afterSourceScope": "README/docs only,632paths; no execution change",
+      "push": "SUCCESS_NORMAL",
+      "remoteReadback": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "remoteMain": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "ciRunId": 38683352144,
+      "ciUrl": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144",
+      "ciStatus": "in_progress",
+      "ciConclusion": null,
+      "ciJobId": 116252590398,
+      "approval": "PENDING_NECESSARY_CANDIDATE_CI",
+      "mainForwardMerge": "NOT_EXECUTED",
+      "postmerge": "NOT_EXECUTED",
+      "mainPush": "NOT_EXECUTED"
+    },
+    "manualTestingInstance": {
+      "atUtc": "2026-10-15T05:03:52.146772+00:00",
+      "status": "LOCAL_REVIEWED_CANDIDATE_READY_FOR_MANUAL_TEST; GITHUB_RELEASE_PENDING_CI",
+      "url": "http://127.0.0.1:4376",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
+      "runtimeCommit": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "reviewedFunctionSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "independentReview": 17,
+      "apiPid": 46324,
+      "pgPort": 55476,
+      "health": {
+        "status": "ok",
+        "database": "connected",
+        "stage": "02"
+      },
+      "beforeCounts": {
+        "Project": 115,
+        "AssetRevision": 947,
+        "Build": 179,
+        "FinalExport": 177,
+        "StudioJob": 184
+      },
+      "afterCounts": {
+        "Project": 115,
+        "AssetRevision": 947,
+        "Build": 179,
+        "FinalExport": 177,
+        "StudioJob": 184
+      },
+      "projectRowsSha256Unchanged": true,
+      "envShaBytesUnchanged": true,
+      "envMode": "0600",
+      "schemaMigration": "NOT_NEEDED; schema/lock/package dependency byte-equal",
+      "backupRoot": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker/.local/step07/runtime-backup-20261015T050237Z-9e1333b9",
+      "backupManifestSha256": "a40059b25f0ef936cdb7dba8e9ec3abdb40db773f4402ac2e540b8d23d88f30b",
+      "backupFiles": 2479,
+      "backupAssetBytes": 44598859,
+      "databaseDumpVerified": "pg_dump success, pg_restore --list success; private only",
+      "noRealModelCalls": true
+    },
+    "localRuntimeStatus": "REVIEWED_CANDIDATE_RUNNING_READY_MANUAL_TEST; FINAL_GITHUB_RELEASE_PENDING"
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -3757,7 +3862,7 @@
       "serviceStatus": "OWNED_POSTGRES_STOPPED_DATA_RETAINED"
     },
     {
-      "owner": "step07_coder",
+      "owner": "user_manual_studio_runtime",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-studio/rpg-maker-maker",
       "branch": null,
       "pgPort": 55476,
@@ -3767,10 +3872,10 @@
       "temporaryRoot": ".local/step07",
       "apiPort": 4376,
       "webPort": 5276,
-      "serviceStatus": "USER_RUNTIME_API4376_RUNNING_PID76694; PG55476_RUNNING_PID51121",
-      "apiPid": 65421,
+      "serviceStatus": "RUNNING_REVIEWED_CANDIDATE_API4376_PG55476;DATA_BACKED_UP_AND_UNCHANGED",
+      "apiPid": 46324,
       "previousApiPid": 22456,
-      "source": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "source": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
       "apiProcessCwdVerified": true,
       "retainedCodingBranch": "codex/step-07-studio",
       "currentPurpose": "USER_LOCAL_PRODUCTION_STUDIO",
@@ -4087,8 +4192,8 @@
       "serviceStatus": "PREPARED_FRESH_RELEASE_ENV_NO_TESTS_YET"
     }
   ],
-  "lastSuccessfulCheckpoint": "Latest source0c3/docsfa7 independent17 wholePASS;203 originalpayloads preserved/hashverified;alllocalnecessarygates pass;candidate8CI pending",
-  "nextSafeAction": "commit pure review evidence/docs, integrate into validation branch, verify executable equality to reviewed source, normal candidate8 push and fullCI; only CIpass then delegated approval/normalforwardMainMerge/postmerge/push/readback/mainCI",
+  "lastSuccessfulCheckpoint": "independent17 PASS, candidate8 normalpushed/fullCIrunning; local reviewedcandidate4cb deployed after consistentPG+2479assetfile backup;115/947/179/177/184 data andProjectRows/env unchanged, manualentry4376ready",
+  "nextSafeAction": "wait specific candidate8 CI run38683352144; only fullsuccess then preauthorized delegated approval, fetch/liveMain guard, normalforwardmerge/postmerge/push/mainCI; no08+",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -4122,7 +4227,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-15T04:46:45.787825+00:00",
+  "updatedAtUtc": "2026-10-15T05:04:30.456261+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
