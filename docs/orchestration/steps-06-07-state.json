@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "STEP07_RELEASE_GATES_ACTIVE",
   "currentStep": 7,
-  "phase": "STEP07_CANDIDATE8_CI_RUNNING",
+  "phase": "STEP07_CANDIDATE8_CI_SUCCESS_PREAUTHORIZED_APPROVED_FORWARD_MERGE_READY",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT17_PASS_CANDIDATE8_CI_RUNNING",
+    "status": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR_PENDING_MAIN_RELEASE",
     "reviewRounds": 17,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3531,26 +3531,53 @@
       "review16": "INTERRUPTED_PARTIAL_NOT_RETROACTIVELY_PASS"
     },
     "candidate8CI": {
-      "atUtc": "2026-10-15T04:50:09.028126+00:00",
-      "attempt": 8,
-      "candidate": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
-      "reviewedSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
-      "authorDocs": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
-      "independentRound": 17,
-      "independentReportSha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
-      "afterSourceScope": "README/docs only,632paths; no execution change",
-      "push": "SUCCESS_NORMAL",
-      "remoteReadback": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
-      "remoteMain": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
-      "ciRunId": 38683352144,
-      "ciUrl": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144",
-      "ciStatus": "in_progress",
-      "ciConclusion": null,
-      "ciJobId": 116252590398,
-      "approval": "PENDING_NECESSARY_CANDIDATE_CI",
-      "mainForwardMerge": "NOT_EXECUTED",
-      "postmerge": "NOT_EXECUTED",
-      "mainPush": "NOT_EXECUTED"
+      "run": 38683352144,
+      "job": 116252590398,
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144",
+      "head": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "status": "completed",
+      "conclusion": "success",
+      "decodedPrivateLog": ".local/orchestration-06-07/step07-candidate8-complete.log.txt",
+      "savedBytes": 146742,
+      "savedSha256": "b4eb7a85edb9cd3b60eb0be5eb887104962dcdd3602d16d59695996e46b6da21",
+      "actualSummaries": [
+        " Test Files  32 passed (32)",
+        "      Tests  418 passed (418)",
+        " Test Files  1 passed (1)",
+        "      Tests  5 passed (5)",
+        " Test Files  1 passed (1)",
+        "      Tests  3 passed (3)",
+        " Test Files  4 passed (4)",
+        "      Tests  23 passed (23)",
+        " Test Files  1 passed (1)",
+        "      Tests  16 passed (16)",
+        "  18 passed (6.3m)",
+        "  18 passed (6.6m)"
+      ],
+      "summaryParser": "strip ANSI terminal colors then count; initial unstripped parser failed before approval/commit, not a CI failure",
+      "necessarySteps": [
+        "Set up job",
+        "Initialize containers",
+        "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+        "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+        "Run pnpm install --frozen-lockfile",
+        "Run pnpm db:generate",
+        "Run pnpm exec playwright install --with-deps chromium",
+        "Run pnpm check",
+        "Run pnpm test:dev-privacy",
+        "Run pnpm db:migrate",
+        "Run pnpm test:integration",
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+        "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+        "Run pnpm test:e2e",
+        "Run E2E_MODE=dev pnpm test:e2e",
+        "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+        "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+        "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+        "Stop containers",
+        "Complete job"
+      ]
     },
     "forwardMainRelease": "NOT_STARTED",
     "finalReviewedSource": null,
@@ -3752,13 +3779,21 @@
       "remoteMain": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
       "ciRunId": 38683352144,
       "ciUrl": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144",
-      "ciStatus": "in_progress",
-      "ciConclusion": null,
+      "ciStatus": "completed",
+      "ciConclusion": "success",
       "ciJobId": 116252590398,
-      "approval": "PENDING_NECESSARY_CANDIDATE_CI",
+      "approval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
       "mainForwardMerge": "NOT_EXECUTED",
       "postmerge": "NOT_EXECUTED",
-      "mainPush": "NOT_EXECUTED"
+      "mainPush": "NOT_EXECUTED",
+      "ciLatest": {
+        "run": 38683352144,
+        "head": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+        "status": "in_progress",
+        "passed": "check/privacy/migrate/API/PG06/HTTP07/productionE2E",
+        "active": "developmentE2E",
+        "conclusion": null
+      }
     },
     "manualTestingInstance": {
       "atUtc": "2026-10-15T05:03:52.146772+00:00",
@@ -3800,7 +3835,81 @@
       "databaseDumpVerified": "pg_dump success, pg_restore --list success; private only",
       "noRealModelCalls": true
     },
-    "localRuntimeStatus": "REVIEWED_CANDIDATE_RUNNING_READY_MANUAL_TEST; FINAL_GITHUB_RELEASE_PENDING"
+    "localRuntimeStatus": "REVIEWED_CANDIDATE_RUNNING_READY_MANUAL_TEST; FINAL_GITHUB_RELEASE_PENDING",
+    "runtimeBackupRetention": "docs/evidence/orchestration-06-07/step07-runtime-backup-retention.json",
+    "delegatedAcceptance": {
+      "atUtc": "2026-10-15T05:16:54.528726+00:00",
+      "status": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+      "meaning": "user delegated technical acceptance in advance; no claim user personally re-reviewed every round",
+      "reviewedSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "authorDocs": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+      "candidate": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "independentReview": {
+        "round": 17,
+        "result": "PASS_WHOLE_CANDIDATE",
+        "reportSha256": "98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23",
+        "P0": 0,
+        "P1": 0,
+        "blockingP2": 0
+      },
+      "buildId": "step07-0c3dc30b0ebb-63b9289040076990",
+      "manifestSha256": "7f42de70aef9d6e4be0cb3644a18c4fec561c98330af9619f4dd30d1325069e1",
+      "ci": {
+        "run": 38683352144,
+        "job": 116252590398,
+        "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/38683352144",
+        "head": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+        "status": "completed",
+        "conclusion": "success",
+        "decodedPrivateLog": ".local/orchestration-06-07/step07-candidate8-complete.log.txt",
+        "savedBytes": 146742,
+        "savedSha256": "b4eb7a85edb9cd3b60eb0be5eb887104962dcdd3602d16d59695996e46b6da21",
+        "actualSummaries": [
+          " Test Files  32 passed (32)",
+          "      Tests  418 passed (418)",
+          " Test Files  1 passed (1)",
+          "      Tests  5 passed (5)",
+          " Test Files  1 passed (1)",
+          "      Tests  3 passed (3)",
+          " Test Files  4 passed (4)",
+          "      Tests  23 passed (23)",
+          " Test Files  1 passed (1)",
+          "      Tests  16 passed (16)",
+          "  18 passed (6.3m)",
+          "  18 passed (6.6m)"
+        ],
+        "summaryParser": "strip ANSI terminal colors then count; initial unstripped parser failed before approval/commit, not a CI failure",
+        "necessarySteps": [
+          "Set up job",
+          "Initialize containers",
+          "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+          "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "Run pnpm install --frozen-lockfile",
+          "Run pnpm db:generate",
+          "Run pnpm exec playwright install --with-deps chromium",
+          "Run pnpm check",
+          "Run pnpm test:dev-privacy",
+          "Run pnpm db:migrate",
+          "Run pnpm test:integration",
+          "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06",
+          "Run TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07",
+          "Run pnpm test:e2e",
+          "Run E2E_MODE=dev pnpm test:e2e",
+          "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "Post Run pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa",
+          "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "Stop containers",
+          "Complete job"
+        ]
+      },
+      "functionDiffAfterReview": "ZERO; candidate onlyaddsREADME/docs to reviewedsource",
+      "mainMerge": "NOT_EXECUTED",
+      "mainPush": "NOT_EXECUTED",
+      "mainCI": "NOT_EXECUTED",
+      "step06": "PUBLISHED_UNCHANGED",
+      "steps08to10": "NOT_STARTED"
+    }
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -4192,8 +4301,8 @@
       "serviceStatus": "PREPARED_FRESH_RELEASE_ENV_NO_TESTS_YET"
     }
   ],
-  "lastSuccessfulCheckpoint": "independent17 PASS, candidate8 normalpushed/fullCIrunning; local reviewedcandidate4cb deployed after consistentPG+2479assetfile backup;115/947/179/177/184 data andProjectRows/env unchanged, manualentry4376ready",
-  "nextSafeAction": "wait specific candidate8 CI run38683352144; only fullsuccess then preauthorized delegated approval, fetch/liveMain guard, normalforwardmerge/postmerge/push/mainCI; no08+",
+  "lastSuccessfulCheckpoint": "source0c3 independent17 wholePASS plus candidate4cb CI38683352144 fullSUCCESS; preauthorized delegated acceptance recorded; localmanualcandidateavailable",
+  "nextSafeAction": "fetch/readliveMain, normal noff merge approvedcandidate with docs, exactexecutablediff check, focused postmerge deployment tests, normalmainpush/readback and fullmainCI",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -4227,7 +4336,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-15T05:04:30.456261+00:00",
+  "updatedAtUtc": "2026-10-15T05:16:54.528726+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
