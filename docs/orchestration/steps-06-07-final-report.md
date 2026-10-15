@@ -1,3 +1,15 @@
+# 步骤06–07 最新收尾检查点（2026-10-14 America/New_York）
+
+用户再次要求继续后，原第16轮独立会话以相同sol/ultra/default配置正常恢复。已实际完成两模式6ZIP、12PNG、16RawCanvas和4条Build/FinalExport/FileObject/Job数据库引用链核对；结束工程206项仍匹配，8750 tracked起止一致。**平台再次以possible cybersecurity risk中断，native exit1，没有正式report/ledger/wholePASS。** 原平台记录保留，新中断见[原始提示收据](../evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json)。
+
+Reviewer已依据更强同请求证据将STEP07-R16-001从原partialP3升级为**P2阻断**：高位字节IEND名能被当前精确rendered消费者在普通完成与完整后取消两通道接受，尺寸和DOM RGBA相同。CRC修复原独立证据保持；当前候选不能放行。由于第16轮正式报告仍缺失，尚未启动该发现的Coding整改或第17轮正式Review。不能将测试绿色、Main保全或Reviewer部分记录替正式PASS。
+
+[最新部分保全收据](../evidence/orchestration-06-07/step07-review16-human-resume-preservation.json)仅为Main保全434私有文件SHA/bytes，不是Reviewer正式ledger。第16轮PG55513/9库、预备第17轮PG55515/1库已正常停止，所有.env0600/数据库/资产/缓存/失败证据保留；第17轮从未正式启动。[停止收据](../evidence/orchestration-06-07/step07-human-resume-owned-service-stop.json)。未新推候选CI或main，远端仍bd9127beada7dc01b3cb8f8b326174c48fde1101。06=PUBLISHED；07=BLOCKED；08–10=NOT_STARTED。唯一状态仍为[canonical](steps-06-07-state.json)。
+
+下一安全动作是平台允许后完成第16轮正式报告，再由原Standard Coding修复新P2并取得新候选独立复审PASS，最后完成完整CI及正常前向发布；不得绕平台、降标准或跳过审查。**下文保留此前检查点，其P3暂定/交付核对待完等状态已由本节更新，不作为当前结论。**
+
+---
+
 # 步骤06–07 当前交付报告：步骤07独立审查受平台阻断
 
 2026-10-14（America/New_York）。**STEP06=PUBLISHED；STEP07=BLOCKED_NECESSARY_INDEPENDENT_REVIEW16_PLATFORM；08/09/10=NOT_STARTED。未完成步骤07正式发布，不套用完成模板。** 唯一状态见 [canonical](steps-06-07-state.json)。

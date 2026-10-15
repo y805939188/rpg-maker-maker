@@ -6,9 +6,9 @@
     7
   ],
   "stopAfter": 7,
-  "workflow": "STEP07_RESUMED_PENDING_INDEPENDENT16",
+  "workflow": "BLOCKED_AT_STEP07_INDEPENDENT_REVIEW16",
   "currentStep": 7,
-  "phase": "STEP07_USER_RESUMED_INDEPENDENT16_CLOSING",
+  "phase": "STEP07_BLOCKED_HUMAN_RESUMED_INDEPENDENT16_PLATFORM",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "INDEPENDENT16_USER_REQUESTED_NORMAL_RECOVERY",
+    "status": "BLOCKED_NECESSARY_INDEPENDENT16_REPORT_AND_CHUNK_TYPE_P2",
     "reviewRounds": 16,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3195,7 +3195,7 @@
         }
       }
     },
-    "activeReview": 16,
+    "activeReview": null,
     "latestReview": {
       "round": 15,
       "result": "REQUIRES_REVISION",
@@ -3426,6 +3426,30 @@
       "pgPort": 55513,
       "pgPid": 1453,
       "existingDatabases": 9
+    },
+    "independent16UserResumeProgress": {
+      "status": "ACTIVE_NORMAL_RESUME; no platform failure this attempt",
+      "finding": "STEP07-R16-001",
+      "severity": "P2",
+      "blocking": true,
+      "reason": "Reviewer actual saved evidence: high-bit IEND type accepted by exact rendered consumer on ordinary finished and complete-length abort, dimensions/DOM RGBA identical",
+      "priorP3": "superseded by stronger exact-consumer evidence; not downgraded to release",
+      "R15CRC": "independently fixed; report pending",
+      "next": "formal REQUIRES_REVISION report then same coder repair; no release"
+    },
+    "humanResumptionResult": {
+      "atUtc": "2026-10-15T02:33:38.303411+00:00",
+      "nativeExit": 1,
+      "platformEvidence": "docs/evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json",
+      "partialPreservation": "docs/evidence/orchestration-06-07/step07-review16-human-resume-preservation.json",
+      "privateEvidenceFiles": 434,
+      "sourceProtection": 8750,
+      "normalPGStop": "docs/evidence/orchestration-06-07/step07-human-resume-owned-service-stop.json",
+      "formalReport": "NOT_PRODUCED",
+      "formalLedger": "NOT_PRODUCED",
+      "deliveryCheckCompleted": "6 ZIP12 PNG16 RawCanvas4 Build/FinalExport/FileObject/Job chains",
+      "newFinding": "STEP07-R16-001_P2_BLOCKING_HIGH_BIT_IEND_EXACT_CONSUMER_ACCEPTANCE",
+      "review17": "PREPARED_ONLY_NEVER_STARTED; PG55515 stopped/1DB/env/data retained"
     }
   },
   "step08": {
@@ -3771,7 +3795,7 @@
       "pgPort": 55513,
       "apiPort": 4413,
       "webPort": 5313,
-      "status": "ACTIVE_USER_RESUMED_INDEPENDENT16_CLOSING",
+      "status": "STOPPED_AFTER_HUMAN_RESUMPTION_PLATFORM_BLOCK;9DBs/privateData retained",
       "env": "own new ignored .env, not copied",
       "assetRoot": ".local/step07-review/assets",
       "outputRoot": ".local/step07-review/independent-round16",
@@ -3780,11 +3804,28 @@
       "privateEnv": "OWN_NEW_0600_NOT_COPIED",
       "formalReviewStarted": true,
       "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
-      "threadId": "01a13be2-635b-7d11-a98d-ca81dc9906de"
+      "threadId": "01a13be2-635b-7d11-a98d-ca81dc9906de",
+      "serviceStatus": "STOPPED"
+    },
+    {
+      "owner": "step07_reviewer_round17_prepared",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker",
+      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+      "pgPort": 55515,
+      "pgPid": 13957,
+      "apiPort": 4415,
+      "webPort": 5315,
+      "database": "tileset_studio",
+      "postgresRoot": ".local/postgres",
+      "assetRoot": ".local/step07-review/assets",
+      "temporaryRoot": ".local/step07-review/independent-round17",
+      "serviceStatus": "STOPPED_PREPARED_ONLY;1DB/env/privateData retained",
+      "formalReviewStarted": false,
+      "privateEnv": "NEW_0600_NOT_COPIED"
     }
   ],
-  "lastSuccessfulCheckpoint": "R15 CRC repair author complete; independent16 actual check380/API3/privacy5/HTTP16/prod18/dev18 passed; no complete independent report/PASS due repeated platform security block; source8750 protected and private394 evidence files hash-indexed; isolated PG55509/55513 stopped, user runtime4376/55476 running",
-  "nextSafeAction": "Same reviewer context completes remaining actual delivery links and formal report; latest wholePASS required before candidate8CI/normal forward release. Persistent platform rejection stops gate.",
+  "lastSuccessfulCheckpoint": "Human-requested same-context reviewer completed delivery6ZIP12PNG16RawCanvas4DBchains and confirmed newP2; platform again stopped before report/ledger;434privatefilehashes/8750tracked protected;PG55513/55515 normalstopped dataretained; no candidate8CI or release",
+  "nextSafeAction": "Only after platform permits same independent16 report/ledger completion: formal findings then same Standard coder fix newP2 and freeze, independent17 wholePASS, candidate8CI, normal forward merge/postmerge/push/readback/mainCI. No workaround to platform safeguards, no reset/reimplementation/08+",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -3818,7 +3859,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-15T02:27:51.153322+00:00",
+  "updatedAtUtc": "2026-10-15T02:33:38.303411+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
@@ -3917,9 +3958,18 @@
       "id": "STEP07-INDEPENDENT16-PLATFORM",
       "status": "OPEN",
       "blocking": true,
-      "reason": "Two same-role same-context native attempts failed with platform possible cybersecurity risk; formal report/ledger not produced; no whole independent PASS",
-      "evidence": "docs/evidence/orchestration-06-07/step07-review16-platform-repeated-block.json",
+      "reason": "Original16, first normal recovery and latest human-requested same-context continuation all terminated with platform possible cybersecurity risk; report/ledger missing",
+      "evidence": "docs/evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json",
       "safeNext": "complete necessary independent review only when platform permits; no bypass/new task disguise"
+    },
+    {
+      "id": "STEP07-R16-001",
+      "severity": "P2",
+      "status": "OPEN_PENDING_FORMAL_REPORT",
+      "blocking": true,
+      "reason": "Reviewer stronger exact-consumer evidence: raw high-bit IEND names accepted in both real transport channels; prior partialP3 superseded",
+      "evidence": "docs/evidence/orchestration-06-07/step07-review16-human-resume-platform-block.json",
+      "next": "Complete independent16 formalreport first, then same Standard coder minimal raw PNG type validation fix and new independent17; no release"
     }
   ],
   "finalReport": "docs/orchestration/steps-06-07-final-report.md"
