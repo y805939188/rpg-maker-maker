@@ -2,6 +2,7 @@ import { pathToFileURL } from 'node:url';
 import { readStoredStandardZip } from './stored-zip.js';
 import { ReceivedResources } from './received-resources.js';
 import { assertReceivedPng } from './received-png.js';
+import { withPngTypeByte } from '../../../../tests/png-type-samples.js';
 import ts from 'typescript';
 import { decodeSource } from '@tileset/image-adapter';
 import { runIsolated } from '../../../../packages/image-adapter/src/isolation.js';
@@ -260,6 +261,23 @@ it('real HTTP validates container/pixels/density/fields/CSRF/budgets before asse
     expect(result.status).toBe(422);
     expect((await result.json()).error.diagnostic.code).toBeTruthy();
   }
+  const typeRejections: unknown[] = [];
+  for (const position of [0, 1, 2, 3]) {
+    const measurement = service.lastDecodedMeasurement,
+      bytes = withPngTypeByte(source, 'IEND', position, 'IEND'.charCodeAt(position) | 0x80),
+      response = await upload(bytes);
+    expect(response.status).toBe(422);
+    expect((await response.json()).error.diagnostic.code).toBe('PNG_STRUCTURE');
+    expect(service.lastDecodedMeasurement).toBe(measurement);
+    expect(await service.store.db.assetRevision.count()).toBe(before);
+    typeRejections.push({
+      position,
+      status: response.status,
+      diagnostic: 'PNG_STRUCTURE',
+      assetCountUnchanged: true,
+    });
+  }
+  await record('raw-chunk-type-http-rejections', typeRejections);
   const large = pngWire(768, 576);
   expect((await upload(large, 'grass', '', 1)).status).toBe(422);
   expect(service.lastDecodedMeasurement?.rssBytes).toBeGreaterThan(0);

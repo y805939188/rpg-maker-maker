@@ -1,0 +1,101 @@
+[
+  {
+    "label": "before-clone",
+    "args": [
+      "git",
+      "clone",
+      "--no-hardlinks",
+      "--single-branch",
+      "--branch",
+      "codex/step-07-main-ci-recovery",
+      "file://[CODING_ROOT]",
+      "[CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 7.999,
+    "original": ".local/main-ci-recovery/chunk-type-fix/before-clone.log",
+    "sha256": "41823e6bd8aafc05e74150c4cc4f7382ad84751f5b445b41b9472bda08a4fe0f",
+    "bytes": 2215,
+    "scope": "BEFORE_OLD_POLICY_ABD_NO_PRODUCT_FIX"
+  },
+  {
+    "label": "before-checkout",
+    "args": [
+      "git",
+      "checkout",
+      "--detach",
+      "abd035ac20e6c4de5d19609d932935b99851b2b0"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 0.301,
+    "original": ".local/main-ci-recovery/chunk-type-fix/before-checkout.log",
+    "sha256": "bcafab4e318b59906cc5f3b346bc6c22a761263980023bb2478cf1e59d97484d",
+    "bytes": 88,
+    "scope": "BEFORE_OLD_POLICY_ABD_NO_PRODUCT_FIX"
+  },
+  {
+    "label": "before-install",
+    "args": [
+      "pnpm",
+      "install",
+      "--offline",
+      "--frozen-lockfile",
+      "--store-dir",
+      "[CODING_ROOT]/.local/main-ci-recovery/receipt/pnpm-store"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 3.567,
+    "original": ".local/main-ci-recovery/chunk-type-fix/before-install.log",
+    "sha256": "e6738cb9c2ae7f08db5e102292732b899174290190a1b091d8fed82ab6fb52c7",
+    "bytes": 1230,
+    "scope": "BEFORE_OLD_POLICY_ABD_NO_PRODUCT_FIX"
+  },
+  {
+    "label": "before-generate",
+    "args": [
+      "pnpm",
+      "db:generate"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 1.846,
+    "original": ".local/main-ci-recovery/chunk-type-fix/before-generate.log",
+    "sha256": "797ba918f1800aaec1ff17a4132e92267c13e5fa5c2807a270890ad6a6efbc4f",
+    "bytes": 886,
+    "scope": "BEFORE_OLD_POLICY_ABD_NO_PRODUCT_FIX"
+  },
+  {
+    "label": "before-build",
+    "args": [
+      "pnpm",
+      "build"
+    ],
+    "exitCode": 0,
+    "expectedExit": 0,
+    "seconds": 25.698,
+    "original": ".local/main-ci-recovery/chunk-type-fix/before-build.log",
+    "sha256": "1a14fc0481af77610ed4575f68610f0f5057bf04c904fc81edb4678b6a32c756",
+    "bytes": 5098,
+    "scope": "BEFORE_OLD_POLICY_ABD_NO_PRODUCT_FIX"
+  },
+  {
+    "label": "before-new-assertions",
+    "args": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/image-adapter/tests/png-type.test.ts"
+    ],
+    "exitCode": 1,
+    "expectedExit": 1,
+    "seconds": 1.839,
+    "original": ".local/main-ci-recovery/chunk-type-fix/before-new-assertions.log",
+    "sha256": "0a51a8c43b9aaf0cf94b21de5963b52afd381704768573ec18726e156c687a87",
+    "bytes": 8051,
+    "scope": "BEFORE_OLD_POLICY_ABD_NO_PRODUCT_FIX"
+  }
+]

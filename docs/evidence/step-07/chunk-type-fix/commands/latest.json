@@ -1,0 +1,405 @@
+{
+  "commands": [
+    {
+      "label": "clone",
+      "argv": [
+        "git",
+        "clone",
+        "--no-hardlinks",
+        "--single-branch",
+        "--branch",
+        "codex/step-07-main-ci-recovery",
+        "file://[CODING_ROOT]",
+        "[CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539"
+      ],
+      "cwd": ".",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 7.93,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/clone.log",
+      "rawBytes": 2181,
+      "rawSHA256": "4ed75d328a8d6bd257ffcb3f16f51ea0163913f408422bd4e6afbe8074a9f10d",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 0.949,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/checkout.log",
+      "rawBytes": 99,
+      "rawSHA256": "0edf7b74c380ddad1ade44e1e743b714b1db839a4f4b868f73cc31711817fe5d",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "install",
+      "argv": [
+        "pnpm",
+        "install",
+        "--offline",
+        "--frozen-lockfile",
+        "--store-dir",
+        "[CODING_ROOT]/.local/main-ci-recovery/receipt/pnpm-store"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.643,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/install.log",
+      "rawBytes": 1230,
+      "rawSHA256": "a8030712563e810612df29d592ee25db474bf6b7f6f4cc748b3c9d97a0a2eced",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "generate",
+      "argv": [
+        "pnpm",
+        "db:generate"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.874,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/generate.log",
+      "rawBytes": 841,
+      "rawSHA256": "4b1ef29c092ac404e8d6c61c4201e82121adefd84ad340d479ed4249ff2bf351",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": null,
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "check",
+      "argv": [
+        "pnpm",
+        "check"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 79.352,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/check.log",
+      "rawBytes": 14544,
+      "rawSHA256": "8a146abb1bb52bf40c7aba131bc13026060564e8b537f9bdec6a5de3ab746fe1",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "latest-response-browser-controls",
+      "argv": [
+        "pnpm",
+        "exec",
+        "vitest",
+        "run",
+        "apps/api/tests/studio/received-resources.test.ts",
+        "apps/api/tests/studio/received-png.test.ts",
+        "packages/image-adapter/tests/png-type.test.ts"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 6.43,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/latest-response-browser-controls.log",
+      "rawBytes": 329,
+      "rawSHA256": "5e84453f51a6e6ad5d3c5885ece259ab7ca8354c5beea8c68c911a0c5e7b4d03",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "regression-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 2.062,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/regression-migrate.log",
+      "rawBytes": 2248,
+      "rawSHA256": "ca627ab36d13e6319b1e8b1f723d8414ca009dc4acf6ddd20e9dc346680100c1",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "api3",
+      "argv": [
+        "pnpm",
+        "test:integration"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 13.724,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/api3.log",
+      "rawBytes": 3491,
+      "rawSHA256": "79efa6f72305072cd6e67a08d3beb71da617e0a6fc69ccf889474ec0e7e672d3",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "privacy5",
+      "argv": [
+        "pnpm",
+        "test:dev-privacy"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 10.716,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/privacy5.log",
+      "rawBytes": 3486,
+      "rawSHA256": "2cb0870fc4fa408639ca7d027cf386b7e6b2116693dc00853715dbbb2960de0b",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "PG06-full23",
+      "argv": [
+        "pnpm",
+        "test:step06"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 210.862,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/PG06-full23.log",
+      "rawBytes": 3705,
+      "rawSHA256": "18eba35d9ddc7870eb08f70ebddd8695a21c2c8cc7a2ce3840d8442284967145",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "http16",
+      "argv": [
+        "pnpm",
+        "test:step07"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 479.994,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/http16.log",
+      "rawBytes": 15978,
+      "rawSHA256": "89a5b2fb285b1f4489d741c44cd407566d7e07c664a22d1ba25e4f30d5cd76e3",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/regression/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "production-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.269,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/production-migrate.log",
+      "rawBytes": 1380,
+      "rawSHA256": "ed9d23f3d57fdc17607a1f49c45139a4bd93b7ece8e1eab60d9e3659f877ef5c",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/production/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "production18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 450.844,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/production18-noenv.log",
+      "rawBytes": 3778,
+      "rawSHA256": "0cfb3f7d52e608210e7088d62684353966b64858104339f9ab77fdfc108ac531",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/production/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "development-migrate",
+      "argv": [
+        "pnpm",
+        "db:migrate"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 1.418,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/development-migrate.log",
+      "rawBytes": 1381,
+      "rawSHA256": "26c623f8645a30331f34bb5fc3725be27000ee7156b9a814da8f40f7c5e6e0ee",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/development/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "development18-noenv",
+      "argv": [
+        "pnpm",
+        "test:e2e"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 458.71,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/development18-noenv.log",
+      "rawBytes": 7161,
+      "rawSHA256": "813ecacaac145290b6df2fa6299c6ce7252f89e35d7cc98de6b568e7bbd26e8d",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": "dev",
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/development/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    },
+    {
+      "label": "engineering",
+      "argv": [
+        "pnpm",
+        "build:step07"
+      ],
+      "cwd": "artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "exitCode": 0,
+      "expectedExit": 0,
+      "seconds": 21.164,
+      "rawPath": ".local/main-ci-recovery/chunk-type-fix/final/engineering.log",
+      "rawBytes": 28504,
+      "rawSHA256": "52d6fec877c18dae7e3a7dc2a1c293b3f4949db1aa4a5da0d6cc497210e6961f",
+      "noRootDotEnv": true,
+      "safeEnvironment": {
+        "API_HOST": "127.0.0.1",
+        "API_PORT": "4409",
+        "WEB_PORT": "5309",
+        "E2E_MODE": null,
+        "TILESET_ASSET_ROOT": ".local/chunk-type-fix/development/assets",
+        "PLAYWRIGHT_BROWSERS_PATH": "[CODING_ROOT]/.local/main-ci-recovery/receipt/browser-cache"
+      }
+    }
+  ]
+}

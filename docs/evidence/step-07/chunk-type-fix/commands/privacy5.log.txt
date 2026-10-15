@@ -1,0 +1,56 @@
+
+> @tileset/prototype@0.0.2 test:dev-privacy [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539
+> pnpm build:contracts && vitest run apps/web/tests/dev-privacy.test.ts
+
+
+> @tileset/prototype@0.0.2 build:contracts [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539/packages/local-executor
+> tsc -p tsconfig.json
+
+
+ RUN  v4.1.11 [CODING_ROOT]/artifacts/.step07-chunk-type-final-65bdecf9e47a4b4b9ca22f4529b1b539
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  23:37:52
+   Duration  1.13s (transform 30ms, setup 0ms, import 48ms, tests 991ms, environment 0ms)
