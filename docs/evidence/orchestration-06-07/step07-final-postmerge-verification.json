@@ -1,0 +1,92 @@
+{
+  "atUtc": "2026-10-15T05:27:15.258158+00:00",
+  "status": "PASS_REQUIRED_POSTMERGE_SCOPE",
+  "testedMerge": "e6d785e1d34afeceac05522f6176592d522762e0",
+  "reviewedSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+  "candidate": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+  "candidateFullCI": 38683352144,
+  "independentReview": 17,
+  "executionDiffToReviewedSource": 0,
+  "tests": {
+    "check": 418,
+    "api": 3,
+    "privacy": 5,
+    "selectedHTTP": {
+      "passed": 2,
+      "notSelected": 14,
+      "scope": "real upload container/pixels/CSRF/budgets plus realCOMMIT first/update/history both browsermodes"
+    },
+    "selectedProductionBrowser": {
+      "passed": 1,
+      "notSelected": 17,
+      "scope": "complete deployed manual Studio source/revision/build/canvas/clock/history/ZIP"
+    }
+  },
+  "fullSuiteEvidence": "same executable source already full independent17 and full candidate8CI; full mainCI still mandatory",
+  "firstBrowserAuxiliaryFailure": {
+    "label": "browser-production-merged-manual-workflow",
+    "command": [
+      "pnpm",
+      "exec",
+      "playwright",
+      "test",
+      "--grep",
+      "^deployed manual Studio uses real sources, revisions, exports, canvas pixels, clock, history and ZIP$"
+    ],
+    "exitCode": 1,
+    "seconds": 2.64,
+    "startedAtUtc": "2026-10-15T05:22:05.866489+00:00",
+    "log": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker/.local/release-verification/postmerge/e6d785e1d34a/attempt-1/browser-production-merged-manual-workflow.log"
+  },
+  "browserCorrection": {
+    "atUtc": "2026-10-15T05:25:22.466779+00:00",
+    "merge": "e6d785e1d34afeceac05522f6176592d522762e0",
+    "reviewedSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+    "candidateFullCI": 38683352144,
+    "originalFailure": "No tests found: anchored regex did not match Playwright full title; no actual test ran; original exit1/log retained",
+    "correction": "unique literal grep without anchors; list proved exactly1test; only this pending verification rerun",
+    "sourceChanged": false,
+    "productionChanged": false,
+    "budgetsChanged": false,
+    "priorChecksRepeated": false,
+    "exitCode": 0,
+    "seconds": 81.47,
+    "log": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker/.local/release-verification/postmerge/e6d785e1d34a/attempt-1/browser-selection-recovery/browser.log",
+    "scope": "1selected fullmanualworkflow; not18fullsuite claim"
+  },
+  "priorPassingChecksNotRepeated": true,
+  "sourceAndBudgetsUnchanged": true,
+  "initialResultsPrivate": ".local/release-verification/postmerge/e6d785e1d34a/attempt-1/results.json",
+  "logsPrivateShaBytes": {
+    ".local/release-verification/postmerge/e6d785e1d34a/attempt-1/check.log": {
+      "sha256": "84e81e001f1f5a644845550f10e21170abb91ebece6ea78e782551916db92398",
+      "bytes": 11278
+    },
+    ".local/release-verification/postmerge/e6d785e1d34a/attempt-1/api.log": {
+      "sha256": "007808e07ef110d640accfb4b2e0b2db8f3fbe33d854558d3327202790c9e101",
+      "bytes": 2568
+    },
+    ".local/release-verification/postmerge/e6d785e1d34a/attempt-1/privacy.log": {
+      "sha256": "988482e50ca380c64d0051fa0c7635822737292379659f0abe0cff02901d6356",
+      "bytes": 2563
+    },
+    ".local/release-verification/postmerge/e6d785e1d34a/attempt-1/step07-merged-upload-and-real-publication.log": {
+      "sha256": "b231af2e3e82451063c0802d4edaecae5ec57fd90a258738460afbb4243c9d9f",
+      "bytes": 10578
+    },
+    ".local/release-verification/postmerge/e6d785e1d34a/attempt-1/browser-production-merged-manual-workflow.log": {
+      "sha256": "32c371c0827113ccd27a6448219ba8da6f6970cbbe12b0be148d781257281ffa",
+      "bytes": 587
+    },
+    ".local/release-verification/postmerge/e6d785e1d34a/attempt-1/browser-selection-recovery/browser.log": {
+      "sha256": "02da1e0daba386f1836c30f9cecfa5f2dc1e9b6c30a88d0db9ae6ca2f7e4c23f",
+      "bytes": 924
+    },
+    ".local/release-verification/postmerge/e6d785e1d34a/attempt-1/browser-selection-recovery/list.log": {
+      "sha256": "5800700ee0122109c533b5a4a10858672650f646179098eb7616d572f69f7914",
+      "bytes": 166
+    }
+  },
+  "mainPush": "NOT_EXECUTED",
+  "mainCI": "NOT_EXECUTED"
+}
