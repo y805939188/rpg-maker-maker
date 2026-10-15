@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "STEP07_FOCUSED_CLOSEOUT_ACTIVE",
   "currentStep": 7,
-  "phase": "STEP07_FOCUSED_CHUNK_TYPE_CODING_ACTIVE",
+  "phase": "STEP07_INDEPENDENT17_DISPATCH",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,8 +441,8 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "R16_INTERRUPTED_PARTIAL_NEW_P2_CODING_FIX",
-    "reviewRounds": 16,
+    "status": "INDEPENDENT17_RUNNING",
+    "reviewRounds": 17,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
     "worktree": "/Users/dingshinn/.codex/worktrees/step-07-main-ci-recovery/rpg-maker-maker",
@@ -461,17 +461,18 @@
       "engineeringPayloads": 206,
       "unchangedFullParentFlows": "R11samecodeindactualHTTP16/prod18dev18 notrerunbyCIonlyCoder"
     },
-    "candidateSha": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+    "candidateSha": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
     "candidateState": "SOURCE39EC_DOC2320_FROZEN_UNDER_INDEPENDENT15",
     "reviewEnvironment": {
-      "round": 16,
-      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round16/rpg-maker-maker",
-      "source": "abd035ac20e6c4de5d19609d932935b99851b2b0",
-      "pgPort": 55513,
-      "apiPort": 4413,
-      "webPort": 5313,
-      "output": ".local/step07-review/independent-round16",
-      "threadId": "01a13be2-635b-7d11-a98d-ca81dc9906de"
+      "round": 17,
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker",
+      "pgPort": 55515,
+      "apiPort": 4415,
+      "webPort": 5315,
+      "output": ".local/step07-review/independent-round17",
+      "threadId": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958",
+      "clientEvidence": "docs/evidence/orchestration-06-07/step07-review17-client.json"
     },
     "supersededCodingCandidates": [
       {
@@ -3195,7 +3196,7 @@
         }
       }
     },
-    "activeReview": null,
+    "activeReview": 17,
     "latestReview": {
       "round": 15,
       "result": "REQUIRES_REVISION",
@@ -3306,7 +3307,7 @@
       "nativeCoderExit": 0,
       "independentClosure": "NOT_EXECUTED"
     },
-    "candidateDocsHead": "e1c247aa36a8aad6120a27c0b115731bb4e8c73c",
+    "candidateDocsHead": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
     "forwardValidationPreparation": {
       "branch": "codex/step-07-validation",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release/rpg-maker-maker",
@@ -3470,7 +3471,7 @@
     },
     "focusedCodingProgress": {
       "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
-      "status": "CANDIDATE_FROZEN_AUTHOR_BOUND_REGRESSIONS_PENDING",
+      "status": "AUTHOR_TESTS_COMPLETE_HANDOFF_SEALING",
       "before": {
         "newRejectionAssertionsFailOnOld": 32,
         "positiveReservedControlsPassOnOld": 4
@@ -3488,8 +3489,47 @@
       },
       "scope": "same5paths frozen; no expanded implementation",
       "privacy": 5,
-      "http16": "RUNNING",
-      "manualGuide": "docs/engineering/STEP_07_MANUAL_TESTING.md"
+      "http16": {
+        "tests": 16,
+        "seconds": 479.994,
+        "status": "AUTHOR_PASS_BOUND_SOURCE"
+      },
+      "manualGuide": "docs/engineering/STEP_07_MANUAL_TESTING.md",
+      "production18": {
+        "tests": 18,
+        "seconds": 450.844,
+        "status": "AUTHOR_PASS_BOUND_SOURCE"
+      },
+      "development18": {
+        "tests": 18,
+        "seconds": 458.71,
+        "status": "AUTHOR_PASS_BOUND_SOURCE"
+      },
+      "engineering": {
+        "exitCode": 0,
+        "seconds": 21.164,
+        "binding": "await exact report/manifest handoff"
+      }
+    },
+    "focusedCandidate": {
+      "atUtc": "2026-10-15T04:11:21.859176+00:00",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "docsHead": "fa7f562efe58ddd2ee4912b64a3ad6e5cb84de67",
+      "report": "docs/reviews/step-07-chunk-type-coding.md",
+      "reportSha256": "3d39d1350116e9197782abb0c51310be08129c2f173a0ea150d7df077404b57d",
+      "reportBytes": 11999,
+      "ledger": "docs/evidence/step-07/chunk-type-fix/ledger.json",
+      "ledgerSha256": "06815c6ef2daf6325fd60f7bd98ef66e886359fb933e354ffb7044106d319661",
+      "ledgerBytes": 45422,
+      "committedPayloadsVerified": 222,
+      "postSourcePaths": 223,
+      "postSourceExecutionChanges": 0,
+      "secretMatches": 0,
+      "buildId": "step07-0c3dc30b0ebb-63b9289040076990",
+      "manifestSha256": "7f42de70aef9d6e4be0cb3644a18c4fec561c98330af9619f4dd30d1325069e1",
+      "engineeringFiles": 208,
+      "coderExit": 0,
+      "independentStatus": "PENDING_ROUND17"
     }
   },
   "step08": {
@@ -3848,21 +3888,22 @@
       "serviceStatus": "STOPPED"
     },
     {
-      "owner": "step07_reviewer_round17_prepared",
+      "owner": "step07_reviewer_round17",
       "worktree": "/Users/dingshinn/.codex/worktrees/step-07-review-round17/rpg-maker-maker",
       "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
       "pgPort": 55515,
-      "pgPid": 13957,
+      "pgPid": 86022,
       "apiPort": 4415,
       "webPort": 5315,
       "database": "tileset_studio",
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review/independent-round17",
-      "serviceStatus": "FROZEN_SOURCE_PREPARED_WAIT_AUTHOR_HANDOFF;PG_STOPPED",
-      "formalReviewStarted": false,
+      "serviceStatus": "ACTIVE_INDEPENDENT17",
+      "formalReviewStarted": true,
       "privateEnv": "NEW_0600_NOT_COPIED",
-      "browserCache": "own .local/step07-review/browser-cache installed by Main before check; independent launch still required"
+      "browserCache": "own .local/step07-review/browser-cache installed by Main before check; independent launch still required",
+      "threadId": "01a13dc1-eed8-7fa2-b0b1-ad6a2fa55958"
     }
   ],
   "lastSuccessfulCheckpoint": "Human-requested same-context reviewer completed delivery6ZIP12PNG16RawCanvas4DBchains and confirmed newP2; platform again stopped before report/ledger;434privatefilehashes/8750tracked protected;PG55513/55515 normalstopped dataretained; no candidate8CI or release",
@@ -3900,7 +3941,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-15T03:44:11.476225+00:00",
+  "updatedAtUtc": "2026-10-15T04:11:45.090798+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
