@@ -1,0 +1,126 @@
+{
+  "status": "passed",
+  "body": "",
+  "descriptor": 0,
+  "backend": {
+    "projectId": "b666020f-338a-4d84-a1ad-55f39ca0bd77",
+    "animation": {
+      "sequence": [
+        0,
+        1,
+        2,
+        1
+      ],
+      "updatesPerState": 30
+    },
+    "revision": 1,
+    "successfulBuildId": "caa2baf0c9d5f6a60f71911b94f8c4bc8fc153d069205999148d3258f7c215be",
+    "needsRebuild": false,
+    "sources": [
+      {
+        "id": "183829795dab5530badecf95c5e6e27fc5e02be8116ddd766d322967bc8248bd",
+        "component": "grass",
+        "revision": 1,
+        "density": 2,
+        "sha256": "3d467c253bd72b3474a6cc9b7f4d04b0633825a6ffadfc598281c2cf1735ba17",
+        "width": 96,
+        "height": 144,
+        "url": "/api/projects/b666020f-338a-4d84-a1ad-55f39ca0bd77/sources/183829795dab5530badecf95c5e6e27fc5e02be8116ddd766d322967bc8248bd/png",
+        "role": "grass"
+      },
+      {
+        "id": "d01535b96d8ee3c23ed546e6a7f6a19c85db11586134b3156a79b0bccbab50c6",
+        "component": "mask",
+        "revision": 1,
+        "density": 2,
+        "sha256": "baa3079c9e25fdcc2f33c274d7e6253c94c4f6d6243c014e99371ae1652ca47a",
+        "width": 96,
+        "height": 144,
+        "url": "/api/projects/b666020f-338a-4d84-a1ad-55f39ca0bd77/sources/d01535b96d8ee3c23ed546e6a7f6a19c85db11586134b3156a79b0bccbab50c6/png",
+        "role": "static-mask"
+      },
+      {
+        "id": "372fe89e0dc77aeb0a50fa2a8a973529e81759f1d279b3d4305f77d6a3fd510d",
+        "component": "overlay",
+        "revision": 1,
+        "density": 2,
+        "sha256": "2c187819c1a4abfc7c6c93482ba4a4a80ae122212e8ff3cd87252492c1121f10",
+        "width": 96,
+        "height": 144,
+        "url": "/api/projects/b666020f-338a-4d84-a1ad-55f39ca0bd77/sources/372fe89e0dc77aeb0a50fa2a8a973529e81759f1d279b3d4305f77d6a3fd510d/png",
+        "role": "bank-overlay"
+      },
+      {
+        "id": "067f423c349aa43dc92849cba05897d30265cf4c1db8f7e17a3fa8670e44a6c3",
+        "component": "water-0",
+        "revision": 1,
+        "density": 2,
+        "sha256": "31f6032a8c334fa55e93f2d28f803f6eaa428075f4b4ae4d90d0b2125afb1bb5",
+        "width": 96,
+        "height": 144,
+        "url": "/api/projects/b666020f-338a-4d84-a1ad-55f39ca0bd77/sources/067f423c349aa43dc92849cba05897d30265cf4c1db8f7e17a3fa8670e44a6c3/png",
+        "role": "water"
+      },
+      {
+        "id": "698e3dfcf61bfb7bdf74e02b8d2de2b3a2f9c5f90cc0baa8bba33dd248ec0dcf",
+        "component": "water-1",
+        "revision": 1,
+        "density": 2,
+        "sha256": "aa8dcc40511a67710d893bdc44e3aa79e9818eb4535abb8fe16d484354f92c61",
+        "width": 96,
+        "height": 144,
+        "url": "/api/projects/b666020f-338a-4d84-a1ad-55f39ca0bd77/sources/698e3dfcf61bfb7bdf74e02b8d2de2b3a2f9c5f90cc0baa8bba33dd248ec0dcf/png",
+        "role": "water"
+      },
+      {
+        "id": "3125e0e0fba24360abce6c48a556257694e65be5c1d65b51f01e5b406beee071",
+        "component": "water-2",
+        "revision": 1,
+        "density": 2,
+        "sha256": "32aeecc9c4773b48548eb83f25eee9445ef5213045127a9a7deda07b4e2345e4",
+        "width": 96,
+        "height": 144,
+        "url": "/api/projects/b666020f-338a-4d84-a1ad-55f39ca0bd77/sources/3125e0e0fba24360abce6c48a556257694e65be5c1d65b51f01e5b406beee071/png",
+        "role": "water"
+      }
+    ],
+    "recipes": [
+      {
+        "id": "5cc8535fd3043460e6ad0f8710170d6680db0b5d477cbefdf8a9b35904f199cc",
+        "revision": 1,
+        "current": true,
+        "irHash": "9e8140902ab33f8b00b770b2196e4dbee173260cd25d93601f814de384b1be6a",
+        "components": {
+          "grass": "183829795dab5530badecf95c5e6e27fc5e02be8116ddd766d322967bc8248bd",
+          "water-0": "067f423c349aa43dc92849cba05897d30265cf4c1db8f7e17a3fa8670e44a6c3",
+          "water-1": "698e3dfcf61bfb7bdf74e02b8d2de2b3a2f9c5f90cc0baa8bba33dd248ec0dcf",
+          "water-2": "3125e0e0fba24360abce6c48a556257694e65be5c1d65b51f01e5b406beee071",
+          "mask": "d01535b96d8ee3c23ed546e6a7f6a19c85db11586134b3156a79b0bccbab50c6",
+          "overlay": "372fe89e0dc77aeb0a50fa2a8a973529e81759f1d279b3d4305f77d6a3fd510d"
+        },
+        "style": "2653f5d6f35399914ff9bbcd0e3351d17d13a8f82e5234bf973c4da648d00089"
+      }
+    ],
+    "builds": [
+      {
+        "id": "caa2baf0c9d5f6a60f71911b94f8c4bc8fc153d069205999148d3258f7c215be",
+        "version": 1,
+        "projectRevision": 1,
+        "publication": "ADOPTED",
+        "current": true,
+        "exportBuildId": "03e85f82f777ee91652214b99a053e5ea8881366d9d3723bc7c64c7b1c1a2930",
+        "createdAt": "2026-10-15T07:32:48.676Z"
+      }
+    ],
+    "jobs": [
+      {
+        "id": "5d35483d-08ae-46c3-b283-425842ee9b95",
+        "state": "COMPLETED",
+        "buildId": "caa2baf0c9d5f6a60f71911b94f8c4bc8fc153d069205999148d3258f7c215be",
+        "diagnostic": null,
+        "createdAt": "2026-10-15T07:32:43.696Z"
+      }
+    ],
+    "mockTasks": []
+  }
+}

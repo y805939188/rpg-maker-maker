@@ -1,0 +1,5 @@
+import base from "/private/tmp/tileset-independent-r18-dus8la0p/checkout/playwright.config.ts";
+import {resolve} from "node:path";
+const output="/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18";
+const label=process.env.CONTROL_LABEL;
+export default {...base,use:{...base.use,channel:"chromium"},testDir:"/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",testMatch:"control-old.test.ts",outputDir:resolve(output,"private-results",label),reporter:[["list"],["json",{outputFile:resolve(output,"evidence",label,"playwright.json")}]]};

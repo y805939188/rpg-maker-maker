@@ -1,0 +1,58 @@
+[WebServer] (node:29857) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:29883) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:29903) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:29912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 .local/step07-review/independent-round18/evidence/probes/control-old.test.ts:280:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list (3.0m)
+
+
+  1) .local/step07-review/independent-round18/evidence/probes/control-old.test.ts:280:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list 
+
+    Test timeout of 90000ms exceeded.
+
+    Test timeout of 90000ms exceeded while running "afterEach" hook.
+
+      364 | });
+      365 |
+    > 366 | test.afterEach(async ({ page }, info) => {
+          |      ^
+      367 |   if (!info.title.startsWith('project list failure')) return;
+      368 |   await writeFile(resolve(out, 'controlled-final.json'), JSON.stringify({ status: info.status, body: await page.locator('body').innerText(), descriptor: await page.locator('canvas[aria-label="交付拼接预览"]').count(), backend: await state() }, null, 2) + '\n').catch(() => {});
+      369 |   await page.screenshot({ path: resolve(out, 'controlled-final.png') }).catch(() => {});
+        at /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts:366:6
+
+    Error: locator.click: Test ended.
+    Call log:
+      - waiting for getByRole('button', { name: '重读项目列表', exact: true })
+        - locator resolved to <button>重读项目列表</button>
+      - attempting click action
+        - waiting for element to be visible, enabled and stable
+
+
+      339 |   failing = false;
+      340 |   const posts = log.network.filter((r) => r.method === 'POST').length;
+    > 341 |   await page.getByRole('button', { name: '重读项目列表', exact: true }).click();
+          |                                                                   ^
+      342 |   await expect(page.getByRole('button', { name: fixture.name, exact: true })).toBeVisible();
+      343 |   expect(log.network.filter((r) => r.method === 'POST').length).toBe(posts);
+      344 |   await currentReady(page);
+        at /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts:341:67
+
+    Error Context: .local/step07-review/independent-round18/private-results/control-old/control-old-project-list-f-d1928-nmount-cancels-pending-list/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    .local/step07-review/independent-round18/private-results/control-old/control-old-project-list-f-d1928-nmount-cancels-pending-list/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace .local/step07-review/independent-round18/private-results/control-old/control-old-project-list-f-d1928-nmount-cancels-pending-list/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    .local/step07-review/independent-round18/evidence/probes/control-old.test.ts:280:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list 

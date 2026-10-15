@@ -1,0 +1,50 @@
+[WebServer] (node:60771) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:60795) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:60815) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:60821) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 .local/step07-review/independent-round18/evidence/probes/control-old.test.ts:280:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list (32.2s)
+
+
+  1) .local/step07-review/independent-round18/evidence/probes/control-old.test.ts:280:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('画布已就绪 · 实际导出图集')
+    Expected: visible
+    Timeout: 30000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('画布已就绪 · 实际导出图集') with timeout 30000ms
+      - waiting for getByText('画布已就绪 · 实际导出图集')
+
+
+      40 | async function currentReady(page: Page) {
+      41 |   settleControlResources();
+    > 42 |   await expect(page.getByText('画布已就绪 · 实际导出图集', { exact: false })).toBeVisible({
+         |                                                                    ^
+      43 |     timeout: 30000,
+      44 |   });
+      45 |   const image = page.getByAltText('当前配方处理水面');
+        at currentReady (/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts:42:68)
+        at /private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts:344:9
+
+    Error Context: ../../../../Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full-ready/control-old-project-list-f-d1928-nmount-cancels-pending-list/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ../../../../Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full-ready/control-old-project-list-f-d1928-nmount-cancels-pending-list/trace.zip
+    Usage:
+
+        pnpm exec playwright show-trace ../../../../Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full-ready/control-old-project-list-f-d1928-nmount-cancels-pending-list/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    .local/step07-review/independent-round18/evidence/probes/control-old.test.ts:280:1 › project list failure has bounded explicit read-only recovery and unmount cancels pending list 

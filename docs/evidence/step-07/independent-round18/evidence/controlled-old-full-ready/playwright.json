@@ -1,0 +1,199 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "/private/tmp/tileset-independent-r18-dus8la0p/checkout/node_modules/@playwright/test/cli.js",
+      "test",
+      "--config",
+      ".local/step07-review/independent-round18/evidence/probes/control-old.config.ts",
+      "--grep",
+      "project list failure"
+    ],
+    "configFile": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.config.ts",
+    "rootDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full-ready",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "testIgnore": [],
+        "testMatch": [
+          "control-old.test.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full-ready",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "snapshotDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "testIgnore": [],
+        "testMatch": "control-old.test.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4419",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "retain-on-failure",
+          "channel": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/evidence/controlled-old-full-ready/playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm start",
+      "url": "http://127.0.0.1:4419/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "control-old.test.ts",
+      "file": "control-old.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "project list failure has bounded explicit read-only recovery and unmount cancels pending list",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 32198,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('画布已就绪 · 实际导出图集')\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('画布已就绪 · 实际导出图集') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText('画布已就绪 · 实际导出图集')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('画布已就绪 · 实际导出图集')\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('画布已就绪 · 实际导出图集') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText('画布已就绪 · 实际导出图集')\u001b[22m\n\n    at currentReady (/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts:42:68)\n    at /private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts:344:9",
+                    "location": {
+                      "file": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts",
+                      "column": 68,
+                      "line": 42
+                    },
+                    "snippet": "  40 | async function currentReady(page: Page) {\n  41 |   settleControlResources();\n> 42 |   await expect(page.getByText('画布已就绪 · 实际导出图集', { exact: false })).toBeVisible({\n     |                                                                    ^\n  43 |     timeout: 30000,\n  44 |   });\n  45 |   const image = page.getByAltText('当前配方处理水面');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts",
+                        "column": 68,
+                        "line": 42
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('画布已就绪 · 实际导出图集')\nExpected: visible\nTimeout: 30000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('画布已就绪 · 实际导出图集') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for getByText('画布已就绪 · 实际导出图集')\u001b[22m\n\n\n  40 | async function currentReady(page: Page) {\n  41 |   settleControlResources();\n> 42 |   await expect(page.getByText('画布已就绪 · 实际导出图集', { exact: false })).toBeVisible({\n     |                                                                    ^\n  43 |     timeout: 30000,\n  44 |   });\n  45 |   const image = page.getByAltText('当前配方处理水面');\n    at currentReady (/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts:42:68)\n    at /private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts:344:9"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T07:31:32.677Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "control-order",
+                      "contentType": "application/json",
+                      "body": "W10="
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full-ready/control-old-project-list-f-d1928-nmount-cancels-pending-list/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full-ready/control-old-project-list-f-d1928-nmount-cancels-pending-list/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.test.ts",
+                    "column": 68,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "bec50d728f2efd2398c5-4fddbec77c2d8d818282",
+          "file": "control-old.test.ts",
+          "line": 280,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-15T07:31:31.352Z",
+    "duration": 42352.788,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

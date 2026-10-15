@@ -1,0 +1,13 @@
+diff --git a/e2e/studio-project-list.test.ts b/e2e/studio-project-list.test.ts
+index bae7a4b..29332ac 100644
+--- a/e2e/studio-project-list.test.ts
++++ b/e2e/studio-project-list.test.ts
+@@ -290,6 +290,8 @@ test('project list failure has bounded explicit read-only recovery and unmount c
+   });
+   await page.goto('/');
+   await expect(page.getByText('项目列表读取失败', { exact: false })).toBeVisible();
++  // Advance only the list observation window, after independent delivery reads settle.
++  await currentReady(page);
+   const initial = reads;
+   await page.clock.install();
+   await page.clock.fastForward(81000);

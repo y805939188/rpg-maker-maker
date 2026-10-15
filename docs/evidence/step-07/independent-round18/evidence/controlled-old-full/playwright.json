@@ -1,0 +1,115 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "/private/tmp/tileset-independent-r18-dus8la0p/checkout/node_modules/@playwright/test/cli.js",
+      "test",
+      "--config",
+      ".local/step07-review/independent-round18/evidence/probes/control-old.config.ts",
+      "--grep",
+      "project list failure"
+    ],
+    "configFile": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-old.config.ts",
+    "rootDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "",
+        "name": "",
+        "testDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "testIgnore": [],
+        "testMatch": [
+          "control-old.test.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-old-full",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "name": "",
+        "testDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "snapshotDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "testIgnore": [],
+        "testMatch": "control-old.test.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4419",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "retain-on-failure",
+          "channel": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/evidence/controlled-old-full/playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm start",
+      "url": "http://127.0.0.1:4419/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: Process from config.webServer was not able to start. Exit code: 1",
+      "stack": "Error: Process from config.webServer was not able to start. Exit code: 1"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-15T07:29:46.408Z",
+    "duration": 1262.263,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

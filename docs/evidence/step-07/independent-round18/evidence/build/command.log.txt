@@ -1,0 +1,79 @@
+
+> @tileset/prototype@0.0.2 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout
+> node scripts/clean-build.mjs && pnpm build:prototype && pnpm --filter @tileset/api build && node dist/scripts/studio-resources.js && pnpm --filter @tileset/web build
+
+
+> @tileset/prototype@0.0.2 build:prototype /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout
+> pnpm build:contracts && tsc
+
+
+> @tileset/prototype@0.0.2 build:contracts /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout
+> pnpm --filter @tileset/contracts build && pnpm --filter @tileset/ai-gateway build && pnpm --filter @tileset/asset-core build && pnpm --filter @tileset/material-processing build && pnpm --filter @tileset/image-adapter build && pnpm --filter @tileset/mz-compiler build && pnpm --filter @tileset/pack-assembly build && pnpm --filter @tileset/pack-export build && pnpm --filter @tileset/persistence build && pnpm --filter @tileset/local-executor build
+
+
+> @tileset/contracts@0.0.2 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/contracts
+> tsc -p tsconfig.json
+
+
+> @tileset/ai-gateway@0.0.2 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/ai-gateway
+> tsc -p tsconfig.json
+
+
+> @tileset/asset-core@0.0.3 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/asset-core
+> tsc -p tsconfig.json
+
+
+> @tileset/material-processing@0.0.3 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/material-processing
+> tsc -p tsconfig.json
+
+
+> @tileset/image-adapter@0.0.3 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/image-adapter
+> tsc -p tsconfig.json
+
+
+> @tileset/mz-compiler@0.0.4 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/mz-compiler
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-assembly@0.0.5 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/pack-assembly
+> tsc -p tsconfig.json
+
+
+> @tileset/pack-export@0.0.7 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/pack-export
+> tsc -p tsconfig.json
+
+
+> @tileset/persistence@0.0.6 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/persistence
+> tsc -p tsconfig.json
+
+
+> @tileset/local-executor@0.0.6 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/packages/local-executor
+> tsc -p tsconfig.json
+
+
+> @tileset/api@0.0.2 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/apps/api
+> tsc -p tsconfig.json
+
+
+> @tileset/web@0.0.2 build /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/apps/web
+> tsc --noEmit && vite build
+
+vite v7.3.5 building client environment for production...
+transforming...
+✓ 779 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.41 kB │ gzip:   0.28 kB
+dist/assets/index-CsM4c782.css                      3.12 kB │ gzip:   1.22 kB
+dist/assets/getTextureBatchBindGroup-D-53rPlt.js    0.39 kB │ gzip:   0.29 kB
+dist/assets/getTexelRangeRects-DfZBalEY.js          3.62 kB │ gzip:   1.24 kB
+dist/assets/canvasUtils-DY-Cvxjp.js                 5.71 kB │ gzip:   1.81 kB
+dist/assets/webworkerAll-B8KgPBJa.js               15.46 kB │ gzip:   4.87 kB
+dist/assets/CanvasPool-CWsteclb.js                 16.93 kB │ gzip:   5.97 kB
+dist/assets/browserAll-DVdHwz8S.js                 43.97 kB │ gzip:  11.41 kB
+dist/assets/WebGPURenderer-CEOq4plQ.js             53.80 kB │ gzip:  15.37 kB
+dist/assets/WebGLRenderer-C-4G6VH1.js              56.77 kB │ gzip:  15.66 kB
+dist/assets/RenderTargetSystem-CaSqe-W4.js         72.33 kB │ gzip:  20.30 kB
+dist/assets/CanvasRenderer-CuHZ-s_P.js             90.26 kB │ gzip:  28.57 kB
+dist/assets/index-CylqNgkq.js                     461.13 kB │ gzip: 137.26 kB
+✓ built in 2.64s

@@ -1,0 +1,170 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "/private/tmp/tileset-independent-r18-dus8la0p/checkout/node_modules/@playwright/test/cli.js",
+      "test",
+      "--config",
+      ".local/step07-review/independent-round18/evidence/probes/control-new.config.ts",
+      "--grep",
+      "project list failure"
+    ],
+    "configFile": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes/control-new.config.ts",
+    "rootDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-new-full-ready",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "testIgnore": [],
+        "testMatch": [
+          "control-new.test.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-new-full-ready",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "snapshotDir": "/private/tmp/tileset-independent-r18-dus8la0p/checkout/.local/step07-review/independent-round18/evidence/probes",
+        "testIgnore": [],
+        "testMatch": "control-new.test.ts",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:4419",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "on",
+          "channel": "chromium"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/evidence/controlled-new-full-ready/playwright.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm start",
+      "url": "http://127.0.0.1:4419/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "control-new.test.ts",
+      "file": "control-new.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "project list failure has bounded explicit read-only recovery and unmount cancels pending list",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3931,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T07:32:41.293Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "control-order",
+                      "contentType": "application/json",
+                      "body": "W10="
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/controlled-new-full-ready/control-new-project-list-f-88d4b-nmount-cancels-pending-list/trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bf9ffb01854322ed9e91-fbadf31d9f667f66223c",
+          "file": "control-new.test.ts",
+          "line": 280,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-15T07:32:39.994Z",
+    "duration": 13196.890000000001,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

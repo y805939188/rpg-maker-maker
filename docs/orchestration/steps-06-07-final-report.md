@@ -1,8 +1,8 @@
 # AI Tileset Studio 步骤06–07交付报告
 
-> 最新收尾检查点：代码main04e的完整CI成功记录保持有效，但最终纯文档HEAD215的CI38690964177出现1项生产浏览器列表恢复用例超时（17通过，开发未执行）。当前已进入定向诊断，尚未完成最后收尾；不将该最新CI写成成功。当前状态以canonical为准，原失败保留。
+> 最后测试收尾：已发布功能Source0c3、第17轮完整PASS、候选及功能main CI成功继续有效。后续文档HEAD215的CI38690964177失败保留；两行测试修复d0a6f16已作者check418/生产18/开发18通过，并获第18轮限定差异独立PASS（含环境适配说明）。本次最终完整main CI与远端读回尚待执行，实际结果在最终会话交付，不再为回写自身SHA追加文档提交。
 
-2026-10-15（Asia/Shanghai）。**步骤06=PUBLISHED；步骤07=PUBLISHED；08/09/10=NOT_STARTED；WORKFLOW=STOPPED_AFTER_STEP_07。** 最新功能已独立通过、候选与代码main完整CI均SUCCESS，正常合并/合并后回归/push/readback完成，本地可手工测试。唯一调度入口为 [canonical](steps-06-07-state.json)。旧阻断版本和所有失败在Git历史及独立证据中保留。
+2026-10-15（Asia/Shanghai）。**步骤06=PUBLISHED；步骤07功能基线=PUBLISHED；08/09/10=NOT_STARTED；当前测试修复等待最后完整main CI。** 最新功能已独立通过、候选与代码main完整CI均SUCCESS，正常合并/合并后回归/push/readback完成，本地可手工测试。唯一调度入口为 [canonical](steps-06-07-state.json)。旧阻断版本和所有失败在Git历史及独立证据中保留。
 
 ## 步骤06保持已发布
 
@@ -31,7 +31,7 @@ Mock覆盖先存提交意图、同externalID重启查询、SUBMISSION_UNKNOWN不
 | 最终完整独立Review | [第17轮PASS](../reviews/step-07-independent-round-17.md)，P0/P1/硬阻P2及开放非阻断均0 |
 | 原正式报告 / ledger | [report](../evidence/step-07/independent-round17/report.md) SHA `98c93672028cfb3565a0dc27eac0625604f266f886921db17a4e0fab39a09b23`；[ledger](../evidence/step-07/independent-round17/evidence/ledger.json) SHA `1285e8e6e3fe3f1c19b5d8c406c601647b31a76a028889f2c26a6d186dfc6189`，203原payload已由Main验真保存 |
 
-正式Review实际共17轮，未清零。R4完整三项为：重复existing发布缺FinalExport仍完成Job导致409；无关action使唯一列表响应失效导致空侧栏；多次DB读跨COMMIT混合指针/Build/Export/Job。R5通过Export与需交付Job同短事务、列表独立generation、有界只读RepeatableRead元数据快照修复，后续最新回归保持关闭。
+完整功能Review至第17轮；最后测试差异另有第18轮针对性确认，实际共18轮，未清零。R4完整三项为：重复existing发布缺FinalExport仍完成Job导致409；无关action使唯一列表响应失效导致空侧栏；多次DB读跨COMMIT混合指针/Build/Export/Job。R5通过Export与需交付Job同短事务、列表独立generation、有界只读RepeatableRead元数据快照修复，后续最新回归保持关闭。
 
 R15发现必需PNG消费者漏CRC；R16又确认raw type先ASCII解码丢高位，IEND可被完整消费者接受。当前source复用严格PNG消费检查，并在解释字符串前校验原始4字节，保留reserved-bit/CRC/order/metadata/预算。旧32拒绝断言失败与合法控制、新inspect/decode/真实HTTP422/native前/双网络通道拒绝、合法正控都有证据，独立17正式关闭R15-001和R16-001。**R16保留INTERRUPTED/PARTIAL，没有伪造其report/ledger/PASS。** 原平台提示保留，本轮新修复候选正常独立17无平台拒绝。
 
@@ -69,3 +69,16 @@ Coding为sol/xhigh/default，独立17为sol/ultra/default，实际native model/e
 旧发布验证路径`step-07-release/rpg-maker-maker`在准备整合前实际已不存在，Git分支保留、app登记为旧条目；原因UNKNOWN，本轮没有删除该路径，也不假称旧私有DB已恢复。采用新的`step-07-release-final/rpg-maker-maker`隔离环境，未重建/覆盖旧目录。原历史收据保留。[观察记录](../evidence/orchestration-06-07/step07-old-release-directory-observation.json)。
 
 原装Native Host、Map003补证、新具体产物MZ/用户艺术等原延期或NOT_EXECUTED保留；03–05兼容规格/Compiler/Profile/布局/槽位/动画/通行未改变，本轮不机械重做MZ手工。普通构建、CI、测试没有真实视觉调用；08–10 NOT_STARTED，正式Provider/主Prompt体系/预算与密钥留以后单独授权。本轮仅完成人工素材工作台与持久化基础，不宣称AI创作或完整V1.0完成。
+
+## 最后测试修复与一次性收尾
+
+本段按最新用户收敛授权补充，不追改上述功能发布证据。唯一执行差异为`e2e/studio-project-list.test.ts`新增注释及既有`currentReady(page)`调用，在安装假时钟/快进81秒前等待交付与处理资源就绪。原断言、90秒case/30秒ready/81秒窗口、零自动重试、只读恢复与卸载语义不变；生产/API/Schema/锁文件/Compiler/Profile/动画/CI均未改。
+
+- 测试修复Source：`d0a6f162a2b57634f7f10d0f5c49eab2168bb6a8`；作者资料HEAD：`cfb3f6a88b22a4cbfce27304d841d2628e6f5a76`。
+- [作者报告](../reviews/step-07-list-clock-coding.md)，184项committed证据已由Main核验；冻结候选check418、生产18、开发18通过，零跳过重试。Build `step07-d0a6f162a2b5-4d9d8ad25d20a5e7`，Manifest `85fc90888109c287e435d27c1b23da29a742db615709b6e4c3c1c3fc68b57be7`，208项中207同功能基线，仅Source元数据改变。
+- [第18轮限定差异独立PASS](../reviews/step-07-independent-round-18.md)：旧顺序在原30秒ready断言失败，新控制通过；受影响既有用例生产、开发各1/1通过，零跳过重试。P0/P1/硬阻P2均0。原报告与96项ledger保全；第17轮完整功能证据为REUSED_NOT_RERUN。
+- Reviewer初始默认shell渲染异常、`.local`开发入口403、镜像root归属错误全部保留；有独立最小正反控后，使用同版本完整Chromium及专属外部物理镜像验证，未改正式测试/预算/安全规则。不能称为默认shell首次全绿。
+- 远端215失败没有上传trace，其确切时序仍UNVERIFIED；本地受控因果与远端根因证明分开。该旧CI失败不会改写成PASS。
+- 按用户预授权，对当前差异记录APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR。最后正常merge/push/读回与完整main CI仍需实际执行，最终会话报告真实SHA和结果；本文件在该CI之前整理，避免结果自引用再触发CI循环。
+
+用户运行实例4376仍是已发布祖先4cb的相同生产代码，无需为测试修复重部署；数据库、源素材与历史不动。新Code PG55509的36库、Review18 PG55519的2库均已正常停止并保留，Review18物理镜像和全部失败/私有trace保留。旧资源段中的31库/13库等为原发布检查点计数，不能当本次动态清单。当前Coding新tip须待最终正常merge保存后才可清理；本次不删除含独有数据的工作区或分支。最终CI通过即停止，不再寻找额外优化或启动08–10。

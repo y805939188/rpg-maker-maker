@@ -1,0 +1,194 @@
+{
+  "config": {
+    "argv": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/node_modules/@playwright/test/cli.js",
+      "test",
+      "e2e/studio-project-list.test.ts",
+      "--grep",
+      "project list failure",
+      "--output",
+      ".local/step07-review/independent-round18/private-results/formal-dev"
+    ],
+    "configFile": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/playwright.config.ts",
+    "rootDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/formal-dev",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/formal-dev",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e",
+        "snapshotDir": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:5319",
+          "browserName": "chromium",
+          "viewport": {
+            "width": 1200,
+            "height": 900
+          },
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": ".local/e2e/dev.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm dev",
+      "url": "http://127.0.0.1:4419/api/health",
+      "reuseExistingServer": false,
+      "timeout": 30000
+    }
+  },
+  "suites": [
+    {
+      "title": "studio-project-list.test.ts",
+      "file": "studio-project-list.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "project list failure has bounded explicit read-only recovery and unmount cancels pending list",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5106,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('项目列表读取失败')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('项目列表读取失败') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('项目列表读取失败')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('项目列表读取失败')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('项目列表读取失败') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('项目列表读取失败')\u001b[22m\n\n    at /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e/studio-project-list.test.ts:292:62",
+                    "location": {
+                      "file": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e/studio-project-list.test.ts",
+                      "column": 62,
+                      "line": 292
+                    },
+                    "snippet": "  290 |   });\n  291 |   await page.goto('/');\n> 292 |   await expect(page.getByText('项目列表读取失败', { exact: false })).toBeVisible();\n      |                                                              ^\n  293 |   // Advance only the list observation window, after independent delivery reads settle.\n  294 |   await currentReady(page);\n  295 |   const initial = reads;"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e/studio-project-list.test.ts",
+                        "column": 62,
+                        "line": 292
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('项目列表读取失败')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('项目列表读取失败') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('项目列表读取失败')\u001b[22m\n\n\n  290 |   });\n  291 |   await page.goto('/');\n> 292 |   await expect(page.getByText('项目列表读取失败', { exact: false })).toBeVisible();\n      |                                                              ^\n  293 |   // Advance only the list observation window, after independent delivery reads settle.\n  294 |   await currentReady(page);\n  295 |   const initial = reads;\n    at /Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e/studio-project-list.test.ts:292:62"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T07:27:02.159Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/formal-dev/studio-project-list-projec-580ce-nmount-cancels-pending-list/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/.local/step07-review/independent-round18/private-results/formal-dev/studio-project-list-projec-580ce-nmount-cancels-pending-list/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout/e2e/studio-project-list.test.ts",
+                    "column": 62,
+                    "line": 292
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "63a0795d8d16bcd8da70-7470dc58b10bf4ca1a60",
+          "file": "studio-project-list.test.ts",
+          "line": 266,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-15T07:26:44.850Z",
+    "duration": 30416.893,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

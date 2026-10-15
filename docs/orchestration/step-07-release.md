@@ -14,3 +14,7 @@
 本地 **http://127.0.0.1:4376** 已运行相同受审功能的已发布祖先4cb软件，原数据在停写一致备份后更新且部署前后数目/指针/env一致；后续用户手工变更是正常行为。PG55476/资产及备份保持私有，Code31库/Review13库/Release2库服务正常停止但数据不删。[手工清单](../engineering/STEP_07_MANUAL_TESTING.md)、[资源保留](../evidence/orchestration-06-07/step07-closeout-resource-retention.json)。
 
 步骤06保持原PUBLISHED，不重复发布。原装Host/Map003、新具体产物MZ/用户美术等保留原延期/NOT_EXECUTED，技术预览不冒充人工艺术或新引擎PASS。08、09、10均NOT_STARTED，本轮无真实视觉模型、Provider SDK/key、正式Prompt生产体系或AI工作流。**STOPPED_AFTER_STEP_07**。
+
+## 最后测试差异
+
+功能发布以上述第17轮及原CI为准，继续有效。后续215文档HEAD的CI38690964177失败已保留；最后两行测试修复d0a6f16与作者资料cfb3f6a已获[第18轮针对性PASS](../reviews/step-07-independent-round-18.md)，原断言和预算不变，生产代码不变。作者418/18+18、本轮独立旧失败/新通过及生产开发各1/1按范围分别记录。最后正常整合、Push、读回和完整main CI尚待实际执行，最终结果在会话交付，不为记录其自身SHA反复追加提交。原STOPPED_AFTER_STEP_07是功能发布边界，当前最后测试CI完成前以canonical活动状态为准。

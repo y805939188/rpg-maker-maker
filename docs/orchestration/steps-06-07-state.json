@@ -6,9 +6,9 @@
     7
   ],
   "stopAfter": 7,
-  "workflow": "STEP07_CI_RECOVERY_ACTIVE_NO08",
+  "workflow": "STEP07_FINAL_TEST_FIX_RELEASE_PENDING_CI",
   "currentStep": "07",
-  "phase": "STEP07_CURRENT_HEAD_CI_FAILURE_TARGETED_RECOVERY",
+  "phase": "STEP07_TARGETED18_PASS_PREPARING_FINAL_RELEASE",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -49,8 +49,8 @@
       "preflight": "PASS",
       "step": 7,
       "threadId": "01a132c0-f44b-75f0-bea5-7f4e5e77a6ea",
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-main-receipt-coding-client.json",
-      "status": "HANDOFF_COMPLETE_EXIT0_IDLE_NEW_RECOVERY_TREE",
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-list-clock-coding-client.json",
+      "status": "LIST_CLOCK_HANDOFF_COMPLETE_EXIT0_IDLE",
       "nativeProcessPid": 35234,
       "execSessionId": 47997
     },
@@ -61,11 +61,11 @@
       "serviceTier": "default",
       "preflight": "PASS",
       "step": 7,
-      "round": 15,
-      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review15-client.json",
-      "status": "ACTIVE_FRESH_INDEPENDENT15_NATIVE_STANDARD_SESSION",
-      "threadId": "01a13b44-1d10-76e0-bd99-fa3b4152cd64",
-      "nativeProcessPid": 43191,
+      "round": 18,
+      "configurationEvidence": "docs/evidence/orchestration-06-07/step07-review18-client.json",
+      "status": "ROUND18_SCOPED_PASS_EXIT0_IDLE",
+      "threadId": "01a13e6c-0575-7e21-80b5-fb6152fa5830",
+      "nativeProcessPid": 14947,
       "execSessionId": 35866,
       "actualClientModelEffortCwdVerified": true,
       "defaultServiceTierExplicitNativeArgs": true,
@@ -441,8 +441,8 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "CODE_PUBLISHED_CURRENT_HEAD_REQUIRED_CI_FAILED",
-    "reviewRounds": 17,
+    "status": "FUNCTION_PUBLISHED_FINAL_TEST_FIX_REVIEWED_AWAITING_FINAL_MAIN_CI",
+    "reviewRounds": 18,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "main",
     "worktree": "/Users/dingshinn/Desktop/rpg-maker-maker",
@@ -4591,7 +4591,59 @@
       "actualNativeEffort": "xhigh",
       "actualCwdVerified": true,
       "scope": "only observed project-list recovery fakeclock/resource readiness failure; diagnose beforefix"
-    }
+    },
+    "listClockCandidateInValidation": {
+      "source": "d0a6f162a2b57634f7f10d0f5c49eab2168bb6a8",
+      "docsHead": "cfb3f6a88b22a4cbfce27304d841d2628e6f5a76",
+      "buildId": "step07-d0a6f162a2b5-4d9d8ad25d20a5e7",
+      "manifestSha256": "85fc90888109c287e435d27c1b23da29a742db615709b6e4c3c1c3fc68b57be7",
+      "authorCheck": 418,
+      "authorBrowser": {
+        "production": 18,
+        "development": 18,
+        "skip": 0,
+        "retry": 0
+      },
+      "review18": "PASS_CURRENT_DIFF_ENVIRONMENT_ADAPTED",
+      "remoteExactCause": "UNVERIFIED_NO_TRACE",
+      "independentPreliminary": "Superseded by final scoped report; initial failures retained",
+      "independentEnvironmentDiagnosis": {
+        "status": "DIAGNOSED_AND_VALIDATED_WITH_EXPLICIT_ADAPTATION",
+        "report": "docs/evidence/step-07/independent-round18/report.md"
+      },
+      "approval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+      "publication": "PENDING_NORMAL_MERGE_PUSH_AND_FULL_MAIN_CI"
+    },
+    "latestTargetedReview": {
+      "round": 18,
+      "result": "PASS_CURRENT_DIFF_ENVIRONMENT_ADAPTED",
+      "source": "d0a6f162a2b57634f7f10d0f5c49eab2168bb6a8",
+      "docsHead": "cfb3f6a88b22a4cbfce27304d841d2628e6f5a76",
+      "report": "docs/evidence/step-07/independent-round18/report.md",
+      "reportSha256": "0e12f4c54b4c407b8ee362e39a447eda0c63fc2944c10de33052a3009859b4c2",
+      "reportBytes": 12040,
+      "ledger": "docs/evidence/step-07/independent-round18/evidence/ledger.json",
+      "ledgerSha256": "7db7cef2cd7129a10b09e4e64a3eebcd9607693dd0b200393ffaa375b11a33b4",
+      "ledgerBytes": 17491,
+      "payloadsVerifiedByMain": 96,
+      "thread": "01a13e6c-0575-7e21-80b5-fb6152fa5830",
+      "P0": 0,
+      "P1": 0,
+      "blockingP2": 0,
+      "openNonblocking": 0,
+      "nativeExit": 0,
+      "independentExecution": {
+        "controlledOld": "EXPECTED_30S_READY_FAILURE",
+        "controlledNew": "PASS",
+        "productionSelected": 1,
+        "developmentSelected": 1,
+        "skip": 0,
+        "retry": 0
+      },
+      "scope": "CURRENT_2LINE_TEST_DIFF_ONLY;R17_WHOLE_FUNCTION_PASS_REUSED_NOT_RERUN",
+      "environment": "Same installed fullChromium and own external physical mirror; initial shell/Vite failures retained"
+    },
+    "finalCloseoutResultPolicy": "This document is prepared before finalCI. Actual merge/push/remoteSHA/finalCI are recorded in finalconversation and ignored local receipts; no furtherdocs commit solely to selfrecord."
   },
   "step08": {
     "status": "NOT_STARTED"
@@ -4910,7 +4962,7 @@
       "postgresRoot": ".local/postgres",
       "assetRoot": ".local/main-ci-recovery/assets",
       "temporaryRoot": ".local/main-ci-recovery",
-      "serviceStatus": "STOPPED_AFTER_HANDOFF;31DB/env/assets/evidence retained",
+      "serviceStatus": "STOPPED_AFTER_LIST_CLOCK_HANDOFF;36DB/env/assets/evidence retained",
       "privateEnv": "FRESH_0600_NOT_COPIED"
     },
     {
@@ -4985,10 +5037,10 @@
       "dataRetained": true
     },
     {
-      "owner": "step07_reviewer_round18_prepared",
+      "owner": "step07_reviewer_round18",
       "worktree": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/independent-review-step07-round18/checkout",
       "gitEnvironment": "native detached worktree under primaryignored.local, not managed directory cleanup",
-      "source": "2157489dd739a8f8a02aa2c9cf47ad7319e14c7f",
+      "source": "d0a6f162a2b57634f7f10d0f5c49eab2168bb6a8",
       "pgPort": 55519,
       "pgPid": 97223,
       "apiPort": 4419,
@@ -4998,12 +5050,14 @@
       "assetRoot": ".local/step07-review/assets",
       "temporaryRoot": ".local/step07-review/independent-round18",
       "privateEnv": "NEW_0600_NOT_COPIED",
-      "formalReviewStarted": false,
-      "serviceStatus": "PREPARED_EMPTY_SCHEMA_WAIT_FIXED_CANDIDATE"
+      "formalReviewStarted": true,
+      "serviceStatus": "STOPPED_AFTER_SCOPED_PASS;2DB/assets/env/private traces/mirror retained",
+      "threadId": "01a13e6c-0575-7e21-80b5-fb6152fa5830",
+      "executionMirror": "/private/tmp/tileset-independent-r18-dus8la0p/checkout"
     }
   ],
-  "lastSuccessfulCheckpoint": "review17/candidateCI8/codeMainCI386869SUCCESS; finaldocs215CI failed1productionlist-recoverycase; error preserved; code/runtime unchanged",
-  "nextSafeAction": "same Standard coder deterministic targeted diagnosis of listrecovery fakeclock/resource race; preserve allassertions/budgets, no broadresearch; frozen repair then independent18 and normal forwardCI/main release; no blind retry",
+  "lastSuccessfulCheckpoint": "Independent18 currentdiffPASS;96payload SHA/bytes preserved; ownCode/ReviewPG stopped; functionR17 publication remains valid",
+  "nextSafeAction": "Normalmerge testfix and allprepared records; scope parity/format then pushmain once and observe existing fullCI; finalSHA/CI in finalreply without anotherdoccommit",
   "cleanup": {
     "status": "SAFE_SERVICE_CLOSEOUT_COMPLETE_WITH_DATA_RETENTION",
     "record": "docs/evidence/orchestration-06-07/step07-closeout-resource-retention.json",
@@ -5012,13 +5066,18 @@
     "step06Cleanup": "NOT_REPEATED",
     "oldReleaseMissingObservation": "docs/evidence/orchestration-06-07/step07-old-release-directory-observation.json"
   },
-  "updatedAtUtc": "2026-10-15T06:48:47.813840+00:00",
+  "updatedAtUtc": "2026-10-15T07:43:19.820721+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
       "document": "docs/orchestration/step-07-resume-authorization-2026-10-14.md",
       "scope": "Continue only07 to publication;06alreadypublished;08–10notauthorized",
       "step07ReviewRoundLimit": "NO_MECHANICAL_LIMIT_PROGRESS_GATED"
+    },
+    {
+      "date": "2026-10-15",
+      "document": "docs/orchestration/step-07-final-test-closeout-authorization.md",
+      "scope": "Only list-clock fixture and direct impact; preserve R17/functional published success; one final requiredCI; no lastdocloop"
     }
   ],
   "closedBlockers": [
@@ -5132,8 +5191,8 @@
     {
       "id": "STEP07-FINAL-HEAD-CI38690964177",
       "blocking": true,
-      "status": "OPEN_TARGETED_DIAGNOSIS",
-      "reason": "Expected deliverycanvas ready marker visible, element not found after30000ms",
+      "status": "TEST_FIX_INDEPENDENT18_PASS_FINAL_CI_PENDING",
+      "reason": "Local controlled defect corrected and scoped independentPASS; original remoteexact causeUNVERIFIED; requirednewmainCI still pending",
       "evidence": "docs/evidence/orchestration-06-07/step07-final-docs-ci-failure.json"
     }
   ],
