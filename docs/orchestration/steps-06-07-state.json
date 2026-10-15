@@ -8,7 +8,7 @@
   "stopAfter": 7,
   "workflow": "STEP07_RELEASE_GATES_ACTIVE",
   "currentStep": 7,
-  "phase": "STEP07_CANDIDATE8_CI_SUCCESS_PREAUTHORIZED_APPROVED_FORWARD_MERGE_READY",
+  "phase": "STEP07_NORMAL_FORWARD_MAIN_MERGED_POSTMERGE_RUNNING",
   "step05": {
     "functionalCandidate": "ad669a06218b6cf775f32b8333d75d9dd3f9186f",
     "reviewedDocsHead": "430d15ca6091e087caaf32516b28a5799c35e992",
@@ -441,7 +441,7 @@
     "serviceStopReceipt": "docs/evidence/orchestration-06-07/step06-owned-service-stop.json"
   },
   "step07": {
-    "status": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR_PENDING_MAIN_RELEASE",
+    "status": "APPROVED_NORMAL_MAIN_MERGE_POSTMERGE_RUNNING",
     "reviewRounds": 17,
     "baseMain": "b9dd129fac2c65bb01ad1da09800c6a391c01ee5",
     "branch": "codex/step-07-main-ci-recovery",
@@ -3579,7 +3579,23 @@
         "Complete job"
       ]
     },
-    "forwardMainRelease": "NOT_STARTED",
+    "forwardMainRelease": {
+      "atUtc": "2026-10-15T05:17:48.232842+00:00",
+      "method": "NORMAL_NO_FF_MERGE_NO_HISTORY_REWRITE",
+      "remoteMainGuard": "bd9127beada7dc01b3cb8f8b326174c48fde1101",
+      "localBeforeMerge": "731e79f88095d6bf120142d3318757f563061077",
+      "approvedCandidate": "4cb718aceabcd772b234d86e9d2c0d9f74eda2be",
+      "reviewedSource": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "mergeCommit": "e6d785e1d34afeceac05522f6176592d522762e0",
+      "conflicts": 0,
+      "postSourceDocPaths": 636,
+      "postSourceExecutionDiff": 0,
+      "candidateCI": 38683352144,
+      "approval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+      "postmerge": "PENDING",
+      "mainPush": "NOT_EXECUTED",
+      "mainCI": "NOT_EXECUTED"
+    },
     "finalReviewedSource": null,
     "userResumptionAfterPlatformBlock": {
       "atUtc": "2026-10-15T02:27:30.385867+00:00",
@@ -3909,6 +3925,16 @@
       "mainCI": "NOT_EXECUTED",
       "step06": "PUBLISHED_UNCHANGED",
       "steps08to10": "NOT_STARTED"
+    },
+    "postmergeValidation": {
+      "merge": "e6d785e1d34afeceac05522f6176592d522762e0",
+      "source": "0c3dc30b0ebb4f64373fc4b3d32501a6048fe7de",
+      "candidateFullCI": 38683352144,
+      "worktree": "/Users/dingshinn/.codex/worktrees/step-07-release-final/rpg-maker-maker",
+      "script": ".local/orchestration-06-07/step07-focused-postmerge.py",
+      "status": "RUNNING",
+      "scope": "exact executable equality plusfullcheck/API/privacy/2selectedHTTP/1selectedmanualworkflow; fullPG23/HTTP16/prod18dev18 alreadycurrent independent andcandidateCI, fullmainCIstillrequired",
+      "fullSuitesNotRepeatedLocally": "not claimed as another fullPG23/HTTP16/browser18 pass"
     }
   },
   "step08": {
@@ -4301,8 +4327,8 @@
       "serviceStatus": "PREPARED_FRESH_RELEASE_ENV_NO_TESTS_YET"
     }
   ],
-  "lastSuccessfulCheckpoint": "source0c3 independent17 wholePASS plus candidate4cb CI38683352144 fullSUCCESS; preauthorized delegated acceptance recorded; localmanualcandidateavailable",
-  "nextSafeAction": "fetch/readliveMain, normal noff merge approvedcandidate with docs, exactexecutablediff check, focused postmerge deployment tests, normalmainpush/readback and fullmainCI",
+  "lastSuccessfulCheckpoint": "candidateCI8 fullSUCCESS; delegatedtechnicalapproval; normalnoffMainmergee6 conflicts0/executablediff0; postmergeprocesslive, no mainpush",
+  "nextSafeAction": "waitpostmergeprocess65417; ifallpass normal mainpush/readback/fullmainCI, preservemanualruntime4cb and alluserdata; no08+",
   "cleanup": [
     {
       "operation": "ARCHIVED_MANAGED_STEP06_RELEASE_WORKTREE",
@@ -4336,7 +4362,7 @@
       "atUtc": "2026-10-13T09:20:24.122907+00:00"
     }
   ],
-  "updatedAtUtc": "2026-10-15T05:16:54.528726+00:00",
+  "updatedAtUtc": "2026-10-15T05:19:21.236663+00:00",
   "authorizationUpdates": [
     {
       "date": "2026-10-14",
