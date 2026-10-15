@@ -1,0 +1,62 @@
+[
+  {
+    "label": "prefreeze-build",
+    "args": [
+      "pnpm",
+      "build"
+    ],
+    "seconds": 21.077,
+    "exitCode": 0,
+    "original": ".local/main-ci-recovery/chunk-type-fix/prefreeze-build.log",
+    "sha256": "9319a447f76d00cc8f3c2b7928bf61b05f02f86f133789ce04ae7e352336f1d1",
+    "bytes": 5098,
+    "scope": "PREFREEZE_WORKING_POLICY_ONLY"
+  },
+  {
+    "label": "prefreeze-targeted",
+    "args": [
+      "pnpm",
+      "exec",
+      "vitest",
+      "run",
+      "packages/image-adapter/tests/png-type.test.ts",
+      "apps/api/tests/studio/received-resources.test.ts",
+      "apps/api/tests/studio/received-png.test.ts"
+    ],
+    "seconds": 6.602,
+    "exitCode": 0,
+    "original": ".local/main-ci-recovery/chunk-type-fix/prefreeze-targeted.log",
+    "sha256": "d206b43afdc35b45ea177c055f4f6fd4e51276e8f4b65c9b5957fb3f3220742b",
+    "bytes": 330,
+    "scope": "PREFREEZE_WORKING_POLICY_ONLY"
+  },
+  {
+    "label": "prefreeze-type",
+    "args": [
+      "pnpm",
+      "exec",
+      "tsc",
+      "-p",
+      "tsconfig.tests.json"
+    ],
+    "seconds": 3.21,
+    "exitCode": 0,
+    "original": ".local/main-ci-recovery/chunk-type-fix/prefreeze-type.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0,
+    "scope": "PREFREEZE_WORKING_POLICY_ONLY"
+  },
+  {
+    "label": "prefreeze-consumer-wire",
+    "args": [
+      "node",
+      "[CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c/.local/chunk-type-fix/probe/probe-wire.mjs"
+    ],
+    "seconds": 0.86,
+    "exitCode": 1,
+    "original": ".local/main-ci-recovery/chunk-type-fix/prefreeze-consumer-wire.log",
+    "sha256": "30923fb9cffd915b563ccc38c2028e6c5416678bc973cd9344c04c173e60cfca",
+    "bytes": 1430,
+    "scope": "PREFREEZE_WORKING_POLICY_ONLY"
+  }
+]

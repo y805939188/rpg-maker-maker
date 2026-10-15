@@ -1,0 +1,14 @@
+file://[CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c/packages/asset-core/dist/index.js:16
+        throw new AssetError(code, message);
+              ^
+
+AssetError: Invalid or truncated PNG chunk.
+    at requireRule (file://[CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c/packages/asset-core/dist/index.js:16:15)
+    at inspectPng (file://[CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c/packages/image-adapter/dist/png-policy.js:34:9)
+    at assertReceivedPng (file://[CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c/.local/chunk-type-fix/probe/received-png.mjs:5:22)
+    at rendered (file://[CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c/.local/chunk-type-fix/probe/old-rendered.mjs:11:5)
+    at async file://[CODING_ROOT]/artifacts/.step07-chunk-type-before-af6d77897efc4ab886a5fda81759789c/.local/chunk-type-fix/probe/probe-wire.mjs:3:894 {
+  code: 'PNG_STRUCTURE'
+}
+
+Node.js v22.21.1

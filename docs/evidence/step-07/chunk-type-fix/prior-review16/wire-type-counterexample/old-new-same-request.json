@@ -1,0 +1,212 @@
+{
+  "classification": "COUNTEREXAMPLE_CAPTURED_CURRENT_CONSUMER_ACCEPTS_INVALID_IEND_TYPE_NOT_CANDIDATE_PASS",
+  "reads": 4,
+  "provenance": [
+    {
+      "label": "old",
+      "sourceSHA": "39ec791c4b79c20f2afb3ac88ed5bc06dfb71bfd",
+      "fileSHA": "05d3cb337d29fb17f18555f6a6d4d0b36516d887eb0ed2514ded4215f79824a8",
+      "exactFunctionSHA": "22c0b2e0345f8c8f10dc53acfd67a62152cea796757c7a2a78894b386b38d224",
+      "transform": "exact AST function, add export and same imports, TS transpile; formal file unchanged"
+    },
+    {
+      "label": "new",
+      "sourceSHA": "abd035ac20e6c4de5d19609d932935b99851b2b0",
+      "fileSHA": "2e9f9aadce281e8126f181056a94927782268aaf7c41a0c00baf371421be7a72",
+      "exactFunctionSHA": "b197973404ed7bdf9e5e8d8f5bd8c77f820c8f943c4cec1ce1fdb7e2cb79d631",
+      "transform": "exact AST function, add export and same imports, TS transpile; formal file unchanged"
+    }
+  ],
+  "rows": [
+    {
+      "channel": "finished",
+      "kind": "valid",
+      "fullURL": "http://127.0.0.1:57452/api/projects/owned/recipes/recipe/processed?frame=0&channel=finished&kind=valid",
+      "project": "owned",
+      "recipe": "recipe",
+      "frame": 0,
+      "dom": {
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "natural": [
+          96,
+          144
+        ],
+        "receivedLength": 821,
+        "declaredLength": 821
+      },
+      "byteLength": 821,
+      "sha256": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+      "actualDOM_RGBA_SHA": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "decodedDimensions": [
+        96,
+        144
+      ],
+      "oldConsumer": "RETURNED_SUCCESS",
+      "newConsumer": "VALID_ACCEPTED",
+      "receipt": {
+        "id": 1,
+        "requestId": "59001.2",
+        "loaderId": "D9EABC413D519E8735C8828156893432",
+        "frameId": "6F4450417177F2262A4046DF9747A379",
+        "document": 1,
+        "url": "http://127.0.0.1:57452/api/projects/owned/recipes/recipe/processed?frame=0&channel=finished&kind=valid",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "finished",
+        "state": "received",
+        "streamReady": false,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "failure": "cdpSession.send: Protocol error (Network.streamResourceContent): Request with the provided ID has already finished loading",
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "channel": "protocol-body",
+        "completion": "loading-finished",
+        "currentDocument": true
+      }
+    },
+    {
+      "channel": "finished",
+      "kind": "badType",
+      "fullURL": "http://127.0.0.1:57452/api/projects/owned/recipes/recipe/processed?frame=0&channel=finished&kind=badType",
+      "project": "owned",
+      "recipe": "recipe",
+      "frame": 0,
+      "dom": {
+        "sha": "30b9ce11c6235a0273c8925105df32e6395d43b1532e3ae8c16405bde096b967",
+        "natural": [
+          96,
+          144
+        ],
+        "receivedLength": 821,
+        "declaredLength": 821
+      },
+      "byteLength": 821,
+      "sha256": "30b9ce11c6235a0273c8925105df32e6395d43b1532e3ae8c16405bde096b967",
+      "actualDOM_RGBA_SHA": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "decodedDimensions": [
+        96,
+        144
+      ],
+      "oldConsumer": "RETURNED_SUCCESS",
+      "oldRejectAssertion": "FAILED_AS_EXPECTED",
+      "newConsumer": "RETURNED_SUCCESS_FOR_INVALID_IEND_TYPE",
+      "receipt": {
+        "id": 1,
+        "requestId": "59004.2",
+        "loaderId": "3965B56C57B90147D82D570D4EB279F4",
+        "frameId": "AA8660AD2AD82F85430F5384A29D71B5",
+        "document": 1,
+        "url": "http://127.0.0.1:57452/api/projects/owned/recipes/recipe/processed?frame=0&channel=finished&kind=badType",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "finished",
+        "state": "received",
+        "streamReady": false,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "failure": "cdpSession.send: Protocol error (Network.streamResourceContent): Request with the provided ID has already finished loading",
+        "sha": "30b9ce11c6235a0273c8925105df32e6395d43b1532e3ae8c16405bde096b967",
+        "channel": "protocol-body",
+        "completion": "loading-finished",
+        "currentDocument": true
+      }
+    },
+    {
+      "channel": "complete-abort",
+      "kind": "valid",
+      "fullURL": "http://127.0.0.1:57452/api/projects/owned/recipes/recipe/processed?frame=0&channel=complete-abort&kind=valid",
+      "project": "owned",
+      "recipe": "recipe",
+      "frame": 0,
+      "dom": {
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "natural": [
+          96,
+          144
+        ],
+        "receivedLength": 821,
+        "declaredLength": 821
+      },
+      "byteLength": 821,
+      "sha256": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+      "actualDOM_RGBA_SHA": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "decodedDimensions": [
+        96,
+        144
+      ],
+      "oldConsumer": "RETURNED_SUCCESS",
+      "newConsumer": "VALID_ACCEPTED",
+      "receipt": {
+        "id": 1,
+        "requestId": "59007.2",
+        "loaderId": "A06199FBE5E9DA938BE2E6DD5F1EE99D",
+        "frameId": "8BBDCD2AE319E1B4AE68BCDC0C72D1EC",
+        "document": 1,
+        "url": "http://127.0.0.1:57452/api/projects/owned/recipes/recipe/processed?frame=0&channel=complete-abort&kind=valid",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "dbb316b178f559492256f39c492dd6dac8ad5641220dac7edbbdce8dafe1c003",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      }
+    },
+    {
+      "channel": "complete-abort",
+      "kind": "badType",
+      "fullURL": "http://127.0.0.1:57452/api/projects/owned/recipes/recipe/processed?frame=0&channel=complete-abort&kind=badType",
+      "project": "owned",
+      "recipe": "recipe",
+      "frame": 0,
+      "dom": {
+        "sha": "30b9ce11c6235a0273c8925105df32e6395d43b1532e3ae8c16405bde096b967",
+        "natural": [
+          96,
+          144
+        ],
+        "receivedLength": 821,
+        "declaredLength": 821
+      },
+      "byteLength": 821,
+      "sha256": "30b9ce11c6235a0273c8925105df32e6395d43b1532e3ae8c16405bde096b967",
+      "actualDOM_RGBA_SHA": "2e07e523fc02423d51fd0be15ec4c30900ab2b5c0b45044c47ac4f91bf746b14",
+      "decodedDimensions": [
+        96,
+        144
+      ],
+      "oldConsumer": "RETURNED_SUCCESS",
+      "oldRejectAssertion": "FAILED_AS_EXPECTED",
+      "newConsumer": "RETURNED_SUCCESS_FOR_INVALID_IEND_TYPE",
+      "receipt": {
+        "id": 1,
+        "requestId": "59011.2",
+        "loaderId": "3EB8F72CB7C1FC3E71EF847386D9F17F",
+        "frameId": "383F6613126FB0E27D597A2B821EEDEB",
+        "document": 1,
+        "url": "http://127.0.0.1:57452/api/projects/owned/recipes/recipe/processed?frame=0&channel=complete-abort&kind=badType",
+        "method": "GET",
+        "status": 200,
+        "contentType": "image/png",
+        "transport": "failed",
+        "state": "received",
+        "streamReady": true,
+        "wireBytes": 821,
+        "expectedBytes": 821,
+        "transportFailure": "net::ERR_ABORTED",
+        "sha": "30b9ce11c6235a0273c8925105df32e6395d43b1532e3ae8c16405bde096b967",
+        "channel": "protocol-stream",
+        "completion": "content-length",
+        "currentDocument": true
+      }
+    }
+  ]
+}
