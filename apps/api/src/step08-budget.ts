@@ -11,10 +11,13 @@ const entrySchema = z
   .strict()
   .refine((entry) => entry.quotedUsd <= entry.reservedUsd);
 export type RecordEntry = z.infer<typeof entrySchema>;
+export type Step08SubmissionKind = 'generate' | 'edit' | 'edit-size-fix';
+export const STEP08_SUBMISSION_KINDS = ['generate', 'edit', 'edit-size-fix'] as const;
 export async function readStep08Reservation(
   root: string,
-  kind: 'generate' | 'edit',
+  kind: Step08SubmissionKind,
 ): Promise<RecordEntry | null> {
+  if (!STEP08_SUBMISSION_KINDS.includes(kind)) throw Error('LIVE_SUBMISSION_KIND');
   try {
     return entrySchema.parse(
       JSON.parse(await readFile(resolve(root, `${kind}-reservation.json`), 'utf8')),
@@ -28,16 +31,17 @@ export async function readStep08Reservation(
 /** Caller holds the single process/file run lock. Reservations are never refunded/reused. */
 export async function reserveStep08Submission(
   root: string,
-  kind: 'generate' | 'edit',
+  kind: Step08SubmissionKind,
   taskId: string,
   model: string,
   quotedUsd: number,
   budgetUsd: number,
 ): Promise<RecordEntry> {
+  if (!STEP08_SUBMISSION_KINDS.includes(kind)) throw Error('LIVE_SUBMISSION_KIND');
   const ceiling =
     model === 'wavespeed-ai/flux-schnell' ? 0.003 : model === 'wavespeed-ai/flux-dev' ? 0.012 : NaN;
   if (
-    (kind === 'edit' && model !== 'wavespeed-ai/flux-dev') ||
+    (kind !== 'generate' && model !== 'wavespeed-ai/flux-dev') ||
     !Number.isFinite(ceiling) ||
     !Number.isFinite(quotedUsd) ||
     quotedUsd < 0 ||
@@ -47,9 +51,12 @@ export async function reserveStep08Submission(
   )
     throw Error('PRICE_OR_BUDGET_BLOCKED');
   const records = await Promise.all(
-    (['generate', 'edit'] as const).map((name) => readStep08Reservation(root, name)),
+    STEP08_SUBMISSION_KINDS.map((name) => readStep08Reservation(root, name)),
   );
-  if (records[kind === 'generate' ? 0 : 1]) throw Error('PAID_SUBMISSION_ALREADY_RESERVED');
+  if (records[STEP08_SUBMISSION_KINDS.indexOf(kind)])
+    throw Error('PAID_SUBMISSION_ALREADY_RESERVED');
+  if (kind === 'edit-size-fix' && (!records[0] || !records[1]))
+    throw Error('ADDITIONAL_EDIT_REQUIRES_PRIOR_RECORDS');
   if (
     records.reduce((total, record) => total + (record?.reservedUsd ?? 0), 0) + ceiling >
     budgetUsd

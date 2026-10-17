@@ -1,4 +1,7 @@
-import { composeTaskSnapshot } from '@tileset/ai-gateway';
+import { composeTaskSnapshot, DEFAULT_MODELS } from '@tileset/ai-gateway';
+import { RawSource, fingerprint } from '@tileset/asset-core';
+import { resizeNearest } from '@tileset/material-processing';
+import { encodePng, decodeSource } from '@tileset/image-adapter';
 import type { PromptRequest, TaskSnapshot, DefaultModelConfiguration } from '@tileset/ai-gateway';
 import type { Persistence } from '@tileset/persistence';
 /** Application owns controlled asset IDs and durable task creation. No URL/path input. */
@@ -23,6 +26,47 @@ export class AiTaskService {
         revision: String(row.revision),
         sha256: row.sourceSha,
       });
+      if (
+        request.operation === 'IMAGE_EDIT' &&
+        (this.defaults ?? DEFAULT_MODELS).imageEditReferencePreparation
+      ) {
+        const preparation = (this.defaults ?? DEFAULT_MODELS).imageEditReferencePreparation!;
+        const pixels = resizeNearest(source.image, {
+          width: 256,
+          height: 256,
+          method: 'nearest-explicit',
+        });
+        const bytes = await encodePng(pixels);
+        const prepared = await decodeSource(
+          new RawSource({
+            id: `r${fingerprint({ original: source.ref, preparation, width: 256, height: 256 }).slice(0, 63)}`,
+            revision: 1,
+            role: source.raw.role,
+            density: 1,
+            encoding: 'png',
+            bytes,
+            provenance: {
+              origin: 'deterministic',
+              author: 'AI Tileset Studio reference preparation',
+              license: source.raw.provenance.license,
+              toolVersion: preparation,
+              parents: [source.ref],
+            },
+          }),
+        );
+        if (prepared.status !== 'validated') throw Error('REFERENCE_PREPARATION_INVALID');
+        const preparedId = await this.store.saveSource(projectId, prepared.source);
+        const preparedRow = await this.store.db.assetRevision.findUniqueOrThrow({
+          where: { id: preparedId },
+        });
+        if (!preparedRow.assetId || !preparedRow.sourceSha)
+          throw Error('REFERENCE_PREPARATION_INVALID');
+        references.push({
+          assetId: preparedRow.assetId,
+          revision: String(preparedRow.revision),
+          sha256: preparedRow.sourceSha,
+        });
+      }
     }
     await this.store.projectSnapshot(projectId);
     return this.store.createTask(

@@ -161,6 +161,7 @@ export interface DefaultModelConfiguration {
   readonly configurationVersion: string;
   readonly imageGenerate: ModelRevision;
   readonly imageEdit: ModelRevision;
+  readonly imageEditReferencePreparation?: 'match-output-nearest-explicit-v1';
 }
 export type PromptTemplateRevision = TaskSnapshot['prompts']['main'];
 export type RecoveryDirective =

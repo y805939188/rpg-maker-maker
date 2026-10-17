@@ -61,10 +61,16 @@ export function frozenWaveSpeedInput(snapshot: TaskSnapshot): Record<string, unk
     throw Error('FROZEN_MODEL_UNSUPPORTED');
   if (
     (s.taskKind === 'IMAGE_EDIT' &&
-      (s.references.length !== 1 || s.model.modelId !== 'wavespeed-ai/flux-dev')) ||
+      (s.references.length !== (s.structuredParameters['referencePreparation'] ? 2 : 1) ||
+        s.model.modelId !== 'wavespeed-ai/flux-dev')) ||
     (s.taskKind === 'IMAGE_GENERATE' && s.references.length)
   )
     throw Error('REFERENCE_INPUT');
+  if (
+    s.structuredParameters['referencePreparation'] !== undefined &&
+    s.structuredParameters['referencePreparation'] !== 'match-output-nearest-explicit-v1'
+  )
+    throw Error('REFERENCE_PREPARATION_UNSUPPORTED');
   return { ...inputsSchema.parse(s.model.parameters), prompt: renderFrozenPrompt(s) };
 }
 const envelope = z.object({ code: z.literal(200), data: z.record(z.unknown()) });
@@ -117,10 +123,13 @@ export class WaveSpeedAdapter implements ProviderAdapter {
   async uploadReference(
     reference: TaskSnapshot['references'][number],
     signal: AbortSignal,
+    requireOutputSize = false,
   ): Promise<string> {
     signal.throwIfAborted();
     const bytes = await this.references(reference, signal);
-    inspectPng(bytes);
+    const dimensions = inspectPng(bytes);
+    if (requireOutputSize && (dimensions.width !== 256 || dimensions.height !== 256))
+      throw Error('REFERENCE_PREPARATION_DIMENSIONS');
     if (hashBytes(bytes) !== reference.sha256) throw Error('REFERENCE_HASH');
     // SDK only accepts paths. This private file is created from a controlled asset ID, never from a caller path.
     const directory = await mkdtemp(join(this.uploadRoot, 'upload-'));
@@ -193,13 +202,28 @@ export class WaveSpeedAdapter implements ProviderAdapter {
   async submit(snapshot: TaskSnapshot, signal: AbortSignal): Promise<Submission> {
     let input: Record<string, unknown>;
     try {
-      input = frozenWaveSpeedInput(snapshot);
-      if (snapshot.taskKind === 'IMAGE_EDIT')
-        input['image'] = await this.uploadReference(snapshot.references[0]!, signal);
+      input = await this.prepareInput(snapshot, signal);
     } catch {
       return { outcome: 'REJECTED', code: 'PROVIDER_INPUT_OR_UPLOAD' };
     }
     return this.submitPrepared(snapshot, input, signal);
+  }
+  async prepareInput(
+    snapshot: TaskSnapshot,
+    signal: AbortSignal,
+  ): Promise<Record<string, unknown>> {
+    const input = frozenWaveSpeedInput(snapshot);
+    if (snapshot.taskKind === 'IMAGE_EDIT') {
+      const prepared =
+        snapshot.structuredParameters['referencePreparation'] ===
+        'match-output-nearest-explicit-v1';
+      input['image'] = await this.uploadReference(
+        snapshot.references[prepared ? 1 : 0]!,
+        signal,
+        prepared,
+      );
+    }
+    return input;
   }
   async query(predictionId: string, signal: AbortSignal): Promise<RemoteResult> {
     idSchema.parse(predictionId);

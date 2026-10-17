@@ -10,14 +10,13 @@ import { decodeSource } from '@tileset/image-adapter';
 import { loadEnvironment, parseConfig } from './config.js';
 import { readProviderConfiguration } from './ai-provider-config.js';
 import { AiTaskService } from './ai-task-service.js';
-import {
-  WaveSpeedAdapter,
-  waveSpeedSdk,
-  frozenWaveSpeedInput,
-  RESULT_HOSTS,
-} from './wavespeed-adapter.js';
+import { WaveSpeedAdapter, waveSpeedSdk, RESULT_HOSTS } from './wavespeed-adapter.js';
 
-import { readStep08Reservation, reserveStep08Submission } from './step08-budget.js';
+import {
+  readStep08Reservation,
+  reserveStep08Submission,
+  STEP08_SUBMISSION_KINDS,
+} from './step08-budget.js';
 /** Only this explicitly invoked runner opens the provider file. No automatic paid resubmission. */
 export async function runStep08Real(
   providerPath: string,
@@ -39,7 +38,7 @@ export async function runStep08Real(
     store = new Persistence(server.DATABASE_URL, await resolveAssetRoot(process.env), profile);
     const service = new AiTaskService(store, profile);
     const records = await Promise.all(
-      (['generate', 'edit'] as const).map((kind) => readStep08Reservation(root, kind)),
+      STEP08_SUBMISSION_KINDS.map((kind) => readStep08Reservation(root, kind)),
     );
     for (const record of records)
       if (record) {
@@ -134,9 +133,7 @@ export async function runStep08Real(
           if (old || (await readStep08Reservation(root, kind)))
             return { outcome: 'UNKNOWN', reason: 'AMBIGUOUS_RESPONSE' };
           try {
-            const input = frozenWaveSpeedInput(snapshot);
-            if (snapshot.taskKind === 'IMAGE_EDIT')
-              input['image'] = await adapter.uploadReference(snapshot.references[0]!, signal);
+            const input = await adapter.prepareInput(snapshot, signal);
             price = await adapter.quote(snapshot, input, signal);
             const reservation = await reserveStep08Submission(
               root,

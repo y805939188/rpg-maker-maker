@@ -4,6 +4,8 @@ import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { composeTaskSnapshot } from '@tileset/ai-gateway';
 import { hashBytes } from '@tileset/asset-core';
+import { RgbaImage } from '@tileset/asset-core';
+import { encodePng } from '@tileset/image-adapter';
 import { WaveSpeedAdapter, frozenWaveSpeedInput, RESULT_HOSTS } from '../src/wavespeed-adapter.js';
 import { HttpsResultReader } from '@tileset/local-executor';
 import { readProviderConfiguration } from '../src/ai-provider-config.js';
@@ -108,7 +110,9 @@ describe('WaveSpeed protocol adapter (offline, injected transport only)', () => 
   });
   it('uploads only verified controlled bytes via SDK, cleans its own temp file and sends the returned reference', async () => {
     const root = await mkdtemp(resolve(tmpdir(), 'step08-sdk-'));
-    const png = new Uint8Array(await readFile('tests/fixtures/art-ground.png'));
+    const png = await encodePng(
+      new RgbaImage({ width: 256, height: 256, data: new Uint8Array(256 * 256 * 4) }),
+    );
     const reference = {
       assetId: '9ead7c5f-ea94-49d6-9b82-a1930e740c7b',
       revision: '1',
@@ -129,6 +133,7 @@ describe('WaveSpeed protocol adapter (offline, injected transport only)', () => 
     const adapter = new WaveSpeedAdapter(secret, sdk, root, async () => png, transport);
     const snapshot = composeTaskSnapshot({ component: 'grass', operation: 'IMAGE_EDIT' }, target, [
       reference,
+      { ...reference, assetId: '2db41d81-ddb2-4cf3-90a0-f86effb1c165' },
     ]);
     expect(await adapter.submit(snapshot, signal())).toEqual({
       outcome: 'KNOWN',
@@ -147,6 +152,20 @@ describe('WaveSpeed protocol adapter (offline, injected transport only)', () => 
       outcome: 'REJECTED',
       code: 'PROVIDER_INPUT_OR_UPLOAD',
     });
+    expect(transport).toHaveBeenCalledTimes(1);
+    const wrongSize = new Uint8Array(await readFile('tests/fixtures/art-ground.png'));
+    const wrongRef = {
+      ...reference,
+      assetId: '2db41d81-ddb2-4cf3-90a0-f86effb1c165',
+      sha256: hashBytes(wrongSize),
+    };
+    const wrongTask = composeTaskSnapshot({ component: 'grass', operation: 'IMAGE_EDIT' }, target, [
+      reference,
+      wrongRef,
+    ]);
+    const mismatched = new WaveSpeedAdapter(secret, sdk, root, async () => wrongSize, transport);
+    expect((await mismatched.submit(wrongTask, signal())).outcome).toBe('REJECTED');
+    expect(sdk.upload).toHaveBeenCalledTimes(1);
     expect(transport).toHaveBeenCalledTimes(1);
   });
   it('loads only the explicit private file as data; no eval, process env mutation or secret echo', async () => {

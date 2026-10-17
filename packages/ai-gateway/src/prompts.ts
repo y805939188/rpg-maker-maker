@@ -45,7 +45,8 @@ const parameters = {
 };
 // Operator-owned, versioned defaults. Changes affect new snapshots only; no user model selector.
 export const DEFAULT_MODELS: DefaultModelConfiguration = Object.freeze({
-  configurationVersion: 'terrain-models-20261017-v1',
+  configurationVersion: 'terrain-models-20261017-v2',
+  imageEditReferencePreparation: 'match-output-nearest-explicit-v1',
   imageGenerate: Object.freeze({
     provider: 'wavespeed' as const,
     modelId: 'wavespeed-ai/flux-schnell',
@@ -90,10 +91,11 @@ export function composeTaskSnapshot(
   )
     throw Error('PROMPT_CONFLICT: supplemental preferences cannot change platform constraints');
   if (
-    (input.operation === 'IMAGE_EDIT' && references.length !== 1) ||
+    (input.operation === 'IMAGE_EDIT' &&
+      references.length !== (defaults.imageEditReferencePreparation ? 2 : 1)) ||
     (input.operation === 'IMAGE_GENERATE' && references.length !== 0)
   )
-    throw Error('REFERENCE_COUNT: generate uses no reference; edit requires one immutable source');
+    throw Error('REFERENCE_COUNT: edit requires frozen references for its configuration');
   const component = PROMPT_REGISTRY[input.component];
   return freezeTaskSnapshot({
     contractVersion: 'task-snapshot-v1',
@@ -130,6 +132,9 @@ export function composeTaskSnapshot(
       width: 256,
       height: 256,
       normalization: 'opaque-rgb-to-rgba8-v1',
+      ...(input.operation === 'IMAGE_EDIT' && defaults.imageEditReferencePreparation
+        ? { referencePreparation: defaults.imageEditReferencePreparation }
+        : {}),
     },
     references,
   });

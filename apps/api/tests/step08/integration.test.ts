@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { mkdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { RgbaImage } from '@tileset/asset-core';
-import { encodePng } from '@tileset/image-adapter';
+import { encodePng, inspectPng } from '@tileset/image-adapter';
 import { Executor, Archiver } from '@tileset/local-executor';
 import { Persistence } from '@tileset/persistence';
 import { AiTaskService } from '../../src/ai-task-service.js';
@@ -81,6 +81,19 @@ describe('real-provider contract through the existing PostgreSQL executor (netwo
         { operation: 'IMAGE_EDIT', component: 'water', supplemental: '更柔和的水波' },
         source.id,
       );
+      const frozenEdit = (await s.store.task(edited.id))!.snapshot;
+      expect(frozenEdit.configurationVersion).toBe('terrain-models-20261017-v2');
+      expect(frozenEdit.references).toHaveLength(2);
+      expect(frozenEdit.structuredParameters['referencePreparation']).toBe(
+        'match-output-nearest-explicit-v1',
+      );
+      const preparedBytes = await service.referenceBytes(
+        s.project.id,
+        frozenEdit.references[1]!,
+        new AbortController().signal,
+      );
+      expect(inspectPng(preparedBytes)).toEqual({ width: 256, height: 256 });
+      expect((await s.store.readSource(source.id)).raw.encodedHash).toBe(source.sourceSha);
       expect((await s.store.task(edited.id))!.snapshot.references[0]!.sha256).toBe(
         source.sourceSha,
       );

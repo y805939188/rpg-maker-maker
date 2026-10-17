@@ -45,6 +45,7 @@ describe('versioned platform prompts', () => {
     const defaults = structuredClone(DEFAULT_MODELS);
     const references = [
       { assetId: '9ead7c5f-ea94-49d6-9b82-a1930e740c7b', revision: '2', sha256: 'a'.repeat(64) },
+      { assetId: '2db41d81-ddb2-4cf3-90a0-f86effb1c165', revision: '1', sha256: 'b'.repeat(64) },
     ];
     const old = composeTaskSnapshot(
       { component: 'grass', operation: 'IMAGE_EDIT', supplemental: '浅绿色' },
@@ -67,6 +68,9 @@ describe('versioned platform prompts', () => {
     expect(old.model.parameters['seed']).toBe(4808);
     expect(newer.model.modelId).toBe('future-edit-model');
     expect(old.model.modelId).toBe('wavespeed-ai/flux-dev');
+    expect(old.structuredParameters['referencePreparation']).toBe(
+      'match-output-nearest-explicit-v1',
+    );
     expect(old.references[0]!.revision).toBe('2');
     expect(renderFrozenPrompt(old)).toBe(prompt);
     expect(Object.isFrozen(old.model.parameters)).toBe(true);
@@ -76,5 +80,17 @@ describe('versioned platform prompts', () => {
     expect(() =>
       composeTaskSnapshot({ component: 'grass', operation: 'IMAGE_GENERATE' }, target, references),
     ).toThrow('REFERENCE_COUNT');
+  });
+  it('legacy defaults still compose the original one-reference snapshot without reinterpreting it', () => {
+    const { imageEditReferencePreparation: _preparation, ...models } = DEFAULT_MODELS;
+    const legacy = composeTaskSnapshot(
+      { operation: 'IMAGE_EDIT', component: 'grass' },
+      target,
+      [{ assetId: '9ead7c5f-ea94-49d6-9b82-a1930e740c7b', revision: '1', sha256: 'a'.repeat(64) }],
+      { ...models, configurationVersion: 'terrain-models-20261017-v1' },
+    );
+    expect(legacy.references).toHaveLength(1);
+    expect(legacy.structuredParameters['referencePreparation']).toBeUndefined();
+    expect(legacy.configurationVersion).toBe('terrain-models-20261017-v1');
   });
 });

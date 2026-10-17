@@ -86,7 +86,8 @@ const identity = {
   ...(step === 'step08'
     ? {
         promptRegistry: 'terrain-source-main@1',
-        modelConfiguration: 'terrain-models-20261017-v1',
+        modelConfiguration: 'terrain-models-20261017-v2',
+        editReferencePreparation: 'match-output-nearest-explicit-v1',
         wavespeedSdk: '0.3.4',
         providerAdapter: 'wavespeed-adapter-v1',
       }
