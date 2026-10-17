@@ -1,5 +1,9 @@
 # V1要求映射 — 当前06–07收尾状态
 
+## 2026-10-17 步骤08当前分支补充
+
+本轮从已发布main75c6557实施08 Coding，候选`ea7925ae8b4589af79e0053feef06249764624c9`。Prompt/模型冻结、官方SDK与既有任务恢复/归档接入已实现，check427、08 PG2及尺寸阻断选定1、06 PG23/整改后Executor5、API3/HTTP16、两模式浏览器18各通过。真实Generate已归档；真实Edit返回168×256不符冻结256×256，保持未归档，**整体BLOCKED**。两次模型提交已用完，报价$0.015，实扣UNVERIFIED。详见[08 Coding报告](../reviews/step-08-coding.md)及[精简证据](../evidence/step-08/coding-summary.json)。未启动独立Review/合并/推送或09/10，不修改Main Orchestrator状态；下文08尚未启动等文字保留为06/07历史检查点，06/07既有发布与最终CI继续有效。
+
 > 最后测试收尾：已发布功能Source0c3、第17轮完整PASS、候选及功能main CI成功继续有效。后续文档HEAD215的CI38690964177失败保留；两行测试修复d0a6f16已作者check418/生产18/开发18通过，并获第18轮限定差异独立PASS（含环境适配说明）。本次最终完整main CI与远端读回尚待执行，实际结果在最终会话交付，不再为回写自身SHA追加文档提交。
 
 2026-10-15（Asia/Shanghai）。正式plans和下面的历史映射原文保留。当前唯一事实入口为 [canonical](../orchestration/steps-06-07-state.json)；步骤06、07均已发布。步骤07获最新独立整合PASS，候选与代码main的完整CI均SUCCESS，正常合并/push/readback完成；08–10未启动。

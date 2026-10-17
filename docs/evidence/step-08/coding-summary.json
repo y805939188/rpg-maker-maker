@@ -1,0 +1,244 @@
+{
+  "kind": "STEP08_CODING_HANDOFF",
+  "recordedAtUtc": "2026-10-17T15:52:12.557502+00:00",
+  "status": "BLOCKED",
+  "baselineCommit": "75c65571a592a389853b30531ef6cea3d46c5402",
+  "candidateCommit": "ea7925ae8b4589af79e0053feef06249764624c9",
+  "functionalCommit": "5179002d20cd50cdbc77adb77ca203d4d1e99605",
+  "branch": "codex/step-08-ai-gateway",
+  "worktree": "/Users/dingshinn/.codex/worktrees/step-08-ai-gateway/rpg-maker-maker",
+  "configuration": {
+    "role": "step_coder",
+    "roleBasis": "USER_ASSIGNED_CURRENT_CHAT",
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "xhigh",
+    "clientConfiguredServiceTier": "default",
+    "effectiveModelEffortBasis": "current-session turn_context",
+    "serverFinalServiceTier": "UNVERIFIED_NOT_EXPOSED",
+    "serverAgentRole": "UNVERIFIED_NOT_EXPOSED",
+    "configSha256": "8787cf01eeb8637aaf7c2f933586da69d471fbf77e5a3daa64998edc1377738e"
+  },
+  "build": {
+    "id": "step08-ea7925ae8b45-bc6dd7ba816981d3",
+    "manifestSha256": "0131d9d56399f335aa959bebef0b635851aed1cb075445668d3be6b935a9c691",
+    "fileCount": 231,
+    "lockSha256": "d533bbb2ae9cf77a1c91b18f9fc395af500fc55a27f7529a045a7eab6d85ce7b",
+    "criticalFiles": {
+      "apps/api/dist/wavespeed-adapter.js": "2da21123140c96fbe78058496f4f54cad551208389b25175cb293ec484ebe41e",
+      "apps/api/dist/step08-real.js": "281cbb94906b299271e313067b13d1b400e217dffd5dcf128b8f0dc8646d4293",
+      "packages/ai-gateway/dist/prompts.js": "3ec1abfde8d7935ae06eec7abeadd89237f40203971a47dd7a7f8e0484fabfec",
+      "packages/image-adapter/dist/png-policy.js": "ee3e8b94a9e062aeee36fa403dc5c952a5e6fc345c2ca60faece21ecdbbbb416",
+      "packages/image-adapter/dist/codec-worker.js": "a4178a1d927639c6a84eccba655478277e13300bc7da5c7bf0f6b22f420883c4",
+      "packages/local-executor/dist/executor.js": "afe99d1656df1769335803fd7a9cc4f9e5a0e11bb6e06456bf08b6ab0f9c015b",
+      "packages/persistence/dist/store.js": "d925351a4f9502264e05fe30929abeb391597747a11af890d51954f80e8985be"
+    },
+    "profileSha256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
+    "sourceBindingRefresh": "Regenerated Studio resource identity after candidate freeze; no functional source change or repeated full suite for SHA alone."
+  },
+  "tests": {
+    "check": {
+      "command": "pnpm check",
+      "passed": 427,
+      "status": "PASS",
+      "functionalCode": "5179002; candidate adds only the geometry regression"
+    },
+    "step06": {
+      "command": "pnpm exec vitest run --config vitest.step06.config.ts",
+      "passed": 23,
+      "scope": "Before explicit text-repair addition; unchanged default recovery/backup path. After addition reran affected generic executor 5 and step08 archive cases."
+    },
+    "api": {
+      "command": "INTEGRATION_API_PORT=4388 pnpm exec vitest run --config vitest.integration.config.ts",
+      "passed": 3
+    },
+    "step07": {
+      "command": "pnpm exec vitest run --config vitest.step07.config.ts",
+      "passed": 16,
+      "scope": "Original Studio HTTP path; explicit repair remains opt-in and full candidate browser regressions follow."
+    },
+    "step08": {
+      "command": "pnpm exec vitest run --config vitest.step08.config.ts",
+      "passed": 2,
+      "scope": "Explicit repair, persistent snapshots, Generate/Edit, known-ID recovery, unknown/rejection, archive-only/idempotency/late protection"
+    },
+    "executorAfterRepair": {
+      "passed": 5,
+      "command": "pnpm exec vitest run --config vitest.step06.config.ts packages/local-executor/tests/integration.test.ts"
+    },
+    "editDimensions": {
+      "command": "pnpm exec vitest run --config vitest.step08.config.ts -t \"wrong geometry\"",
+      "selectedPassed": 1,
+      "notSelected": 2,
+      "scope": "Two existing cases already passed; intentionally did not rerun them solely for added regression SHA."
+    },
+    "productionBrowser": {
+      "startTime": "2026-10-17T15:35:15.628Z",
+      "duration": 404850.212,
+      "expected": 18,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "developmentBrowser": {
+      "startTime": "2026-10-17T15:42:01.062Z",
+      "duration": 433731.309,
+      "expected": 18,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "keyBoundary": {
+      "filesScanned": 78,
+      "taskRecordsScanned": 2,
+      "actualKeyMatches": 0,
+      "userProviderFileUnchanged": true,
+      "keyAddedToProcessEnvironment": false
+    }
+  },
+  "live": {
+    "budgetUsd": 5,
+    "modelSubmissions": 2,
+    "modelSubmissionLimit": 2,
+    "concurrency": 1,
+    "quotedTotalUsd": 0.015,
+    "reservedUsd": 0.015,
+    "actualChargedUsd": "UNVERIFIED",
+    "mainPrompt": "terrain-source-main@1",
+    "configurationVersion": "terrain-models-20261017-v1",
+    "adapter": "wavespeed-adapter-v1",
+    "sdk": "wavespeed@0.3.4",
+    "calls": [
+      {
+        "kind": "generate",
+        "taskId": "5034770c-5bc8-40f0-8cb3-c184c990cafa",
+        "predictionId": "c1d1de1d1659408c9269c9b42a9cc6ae",
+        "state": "COMPLETED",
+        "archiveState": "DURABLE",
+        "errorCode": "ARCHIVE_FAILED",
+        "snapshotHash": "7759351892efe3b1ed6ffbf30128e57522853892d97db5dd8fa91da879b19845",
+        "model": "wavespeed-ai/flux-schnell",
+        "promptRevision": "terrain-source-main@1",
+        "quotedUsd": 0.003,
+        "reservedUsd": 0.003,
+        "actualChargedUsd": "UNVERIFIED_NOT_RETURNED",
+        "artifacts": [
+          {
+            "sha256": "5f0e2c54e4181311a667b0e4222fd1e077d9d24728e2298249918414117813c8",
+            "sourceRef": {
+              "id": "wavespeed-5034770c-5bc8-40f0-8cb3-c184c990cafa-0",
+              "kind": "source",
+              "revision": 1,
+              "contentHash": "ea106e179ea8856ba53070f7d3e74f828c21560f8e0eb15cf70d93e006f12668",
+              "normalization": "opaque-rgb-to-rgba8-v1",
+              "metadataRepair": "png-text-drop-v1",
+              "originalDownload": {
+                "key": "objects/8942ba6e5058649d66d155f05232c636d7fb2152a11f51298ee104105cf63a5c",
+                "bytes": 125489,
+                "sha256": "8942ba6e5058649d66d155f05232c636d7fb2152a11f51298ee104105cf63a5c"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "edit",
+        "taskId": "57d9102f-16b1-4d67-8ea1-cc08e93b20ae",
+        "predictionId": "a101208d47d5444c9bc46d39f8b31c6e",
+        "state": "FETCHING_RESULT",
+        "archiveState": "RETRY_REQUIRED",
+        "errorCode": "ARCHIVE_FAILED",
+        "snapshotHash": "d086b9b239449800c83fe6691f80d902051d01779bd6c87933333b5610dc76f3",
+        "model": "wavespeed-ai/flux-dev",
+        "promptRevision": "terrain-source-main@1",
+        "quotedUsd": 0.012,
+        "reservedUsd": 0.012,
+        "actualChargedUsd": "UNVERIFIED_NOT_RETURNED",
+        "artifacts": []
+      }
+    ],
+    "editDownload": {
+      "sha256": "7746fe31c3c6f11a377c32ba8bce22eb3ed515912937ad6082050b8cf51b5e59",
+      "bytes": 59828,
+      "width": 168,
+      "height": 256,
+      "diagnostic": "RESULT_DIMENSIONS",
+      "expectedWidth": 256,
+      "expectedHeight": 256
+    },
+    "blocker": "STEP08-LIVE-EDIT-DIMENSIONS: actual168x256 does not match frozen256x256; no resizing, threshold relaxation, snapshot rewrite or third model submission.",
+    "privateRecords": ".local/step08/live/records-final.json"
+  },
+  "logs": {
+    ".local/step08/check-final.log": {
+      "sha256": "9161543d9069e620d05043872d333852c2349e964d4b1fef9389e11b79f2677f",
+      "bytes": 11140
+    },
+    ".local/step08/pg06.log": {
+      "sha256": "f1c02ee8509fe3c7843de5a5bc986166269189611641dcac0fe1c1e51d0e0868",
+      "bytes": 259
+    },
+    ".local/step08/api.log": {
+      "sha256": "bf298c2de84db626018026b2d8022c49d930697573217b8df3cbb2002788ba57",
+      "bytes": 253
+    },
+    ".local/step08/http07.log": {
+      "sha256": "b31d15f1b0349d80472db0412d2336da0774a71644894c6c2ba7e256abc32792",
+      "bytes": 10568
+    },
+    ".local/step08/pg08-final.log": {
+      "sha256": "d28e266280d9e62b818f7f1906dc0a4a6b01126fbd289136a30a10d50a888d41",
+      "bytes": 255
+    },
+    ".local/step08/executor-final.log": {
+      "sha256": "ca3ed59ce39dcc1d29e6c3cb89d5f2919f53e97ba5b191b1ce946483f5c57832",
+      "bytes": 255
+    },
+    ".local/step08/edit-dimensions-regression.log": {
+      "sha256": "3a16e2c9af8873917d1389c1c337df310d037f933f83fe2dacb5b1d61e8b99b3",
+      "bytes": 265
+    },
+    ".local/step08/e2e-production.log": {
+      "sha256": "8be2a28bf526a68d3f6da3590748f021dd66a174cf8cce1096eed431bf439828",
+      "bytes": 3705
+    },
+    ".local/step08/e2e-development.log": {
+      "sha256": "62391464c94ac35358d2cefc2655e0b2b16f2837611f4a0883454773309f905a",
+      "bytes": 7089
+    },
+    ".local/step08/pg08-first-failure.log": {
+      "sha256": "74fa99fedc48ebe2e8c9eb68cd20f82c3c95ed25fa619f99132008cca0eb0e3c",
+      "bytes": 3893
+    },
+    ".local/step08/real-first-archive-failure.log": {
+      "sha256": "263a27740c8c7f11afb633fd6bcb40e58840be20b970c8e3a278bb60d18a3e6b",
+      "bytes": 609
+    },
+    ".local/step08/real-second-archive-failure.log": {
+      "sha256": "cbaee321ea6952927c8ec5e775fa8ddd65fb322fdba3b74666069a18ca28c23b",
+      "bytes": 466
+    },
+    ".local/step08/real-edit-first-archive-failure.log": {
+      "sha256": "49e5c91e1c7ac0f98466a4141ac7994b72019980641467819cd38dd61da622f2",
+      "bytes": 766
+    },
+    ".local/step08/real-final.log": {
+      "sha256": "49e5c91e1c7ac0f98466a4141ac7994b72019980641467819cd38dd61da622f2",
+      "bytes": 766
+    }
+  },
+  "resources": {
+    "pgPort": 55528,
+    "apiPort": 4388,
+    "webPort": 5288,
+    "services": "STOPPED_DATA_RETAINED",
+    "listenerProbe": "lsof exit1 means no matching listeners; pg_ctl reported clean stop.",
+    "mainHeadUnchanged": "75c65571a592a389853b30531ef6cea3d46c5402",
+    "mainWorkingTree": "CLEAN"
+  },
+  "independentReview": "NOT_EXECUTED_BY_DESIGN",
+  "mergePush": "NOT_EXECUTED",
+  "step09": "NOT_STARTED",
+  "step10": "NOT_STARTED",
+  "newAiArtifactMZ": "NOT_EXECUTED",
+  "qualityAndProviderWeightRevision": "UNVERIFIED_OUT_OF_STEP08_SCOPE"
+}
