@@ -4,7 +4,8 @@ import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { composeTaskSnapshot } from '@tileset/ai-gateway';
 import { hashBytes } from '@tileset/asset-core';
-import { WaveSpeedAdapter, frozenWaveSpeedInput } from '../src/wavespeed-adapter.js';
+import { WaveSpeedAdapter, frozenWaveSpeedInput, RESULT_HOSTS } from '../src/wavespeed-adapter.js';
+import { HttpsResultReader } from '@tileset/local-executor';
 import { readProviderConfiguration } from '../src/ai-provider-config.js';
 const secret = 'test-secret-never-persist-4808';
 const target = { id: 'native-mz', version: '1' };
@@ -49,6 +50,17 @@ describe('WaveSpeed protocol adapter (offline, injected transport only)', () => 
     });
     expect(calls[1]!.url).toBe('https://api.wavespeed.ai/api/v3/predictions/prediction_1/result');
     expect(JSON.stringify(calls.map((call) => call.body))).not.toContain(secret);
+    const objectFetch = vi.fn(
+      async () => new Response(new Uint8Array([1]), { headers: { 'content-type': 'image/png' } }),
+    );
+    const download = new HttpsResultReader(RESULT_HOSTS, objectFetch);
+    expect(
+      await download.bytes('https://d2h7xmz5gqybh9.cloudfront.net/output/test.png', signal()),
+    ).toEqual(new Uint8Array([1]));
+    await expect(
+      download.bytes('https://d2h7xmz5gqybh9.cloudfront.net.evil.test/output/test.png', signal()),
+    ).rejects.toThrow('RESULT_SOURCE_DENIED');
+    expect(objectFetch).toHaveBeenCalledTimes(1);
   });
   it('does not retry unknown submission or trust malformed output, IDs or supplier error bodies', async () => {
     const snapshot = composeTaskSnapshot(

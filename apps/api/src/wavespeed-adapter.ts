@@ -17,6 +17,7 @@ export const RESULT_HOSTS = Object.freeze([
   'wavespeed-output.oss-accelerate.aliyuncs.com',
   'cdn.wavespeed.ai',
   'd2g64w682n9w0w.cloudfront.net',
+  'd2h7xmz5gqybh9.cloudfront.net',
 ]);
 const idSchema = z.string().regex(/^[A-Za-z0-9_-]{1,256}$/);
 const inputsSchema = z
