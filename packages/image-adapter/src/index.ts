@@ -10,6 +10,7 @@ import { PNG_POLICY, RepairRequired, inspectPng, inspectConvertiblePng } from '.
 import { runIsolated } from './isolation.js';
 export { inspectPng } from './png-policy.js';
 export { PNG_POLICY } from './png-policy.js';
+export { stripPngTextMetadata } from './png-policy.js';
 
 /** Explicit new-revision RGB→RGBA8 conversion. No resize, metadata repair or color conversion. */
 export async function normalizeOpaqueRgbPng(

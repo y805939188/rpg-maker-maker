@@ -1,11 +1,15 @@
 import { runStep08Real } from '../apps/api/dist/step08-real.js';
 import { PROFILE } from '../dist/src/profile.js';
-if (process.argv.length !== 4 || process.argv[2] !== '--provider-env') {
+if (
+  ![4, 5].includes(process.argv.length) ||
+  process.argv[2] !== '--provider-env' ||
+  (process.argv.length === 5 && process.argv[4] !== '--repair-png-text-metadata')
+) {
   console.error('Use pnpm test:step08:real --provider-env /absolute/private/provider.env');
   process.exitCode = 1;
 } else {
   try {
-    await runStep08Real(process.argv[3], PROFILE);
+    await runStep08Real(process.argv[3], PROFILE, process.argv[4] === '--repair-png-text-metadata');
   } catch (error) {
     // Never print SDK exceptions, response bodies or private values.
     const code =

@@ -1,7 +1,13 @@
 import { it, expect } from 'vitest';
 import sharp from 'sharp';
 import { RawSource } from '@tileset/asset-core';
-import { inspectPng, normalizeOpaqueRgbPng, decodeSource } from '../src/index.js';
+import {
+  inspectPng,
+  normalizeOpaqueRgbPng,
+  decodeSource,
+  stripPngTextMetadata,
+} from '../src/index.js';
+import { withTextChunk } from '../../../tests/png-text-fixture.js';
 it('explicit AI conversion adds only opaque alpha, keeps RGB pixels/size and still passes the strict source boundary', async () => {
   const pixels = Buffer.from([12, 34, 56, 98, 76, 54]);
   const original = new Uint8Array(
@@ -11,6 +17,14 @@ it('explicit AI conversion adds only opaque alpha, keeps RGB pixels/size and sti
   );
   expect(() => inspectPng(original)).toThrow('RGBA8');
   const normalized = await normalizeOpaqueRgbPng(original, new AbortController().signal);
+  const withText = withTextChunk(normalized);
+  expect(() => inspectPng(withText)).toThrow('metadata');
+  await expect(normalizeOpaqueRgbPng(withText, new AbortController().signal)).rejects.toThrow(
+    'metadata',
+  );
+  expect(stripPngTextMetadata(withText)).toEqual(normalized);
+  expect(() => inspectPng(withText)).toThrow('metadata');
+  expect(() => stripPngTextMetadata(withTextChunk(normalized, 'iCCP'))).toThrow('ICC');
   expect(inspectPng(normalized)).toEqual({ width: 2, height: 1 });
   const source = await decodeSource(
     new RawSource({

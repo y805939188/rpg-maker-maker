@@ -38,7 +38,7 @@ const checks = [
   ],
   [
     'packages/image-adapter',
-    "import {codecRuntime,PNG_POLICY,normalizeOpaqueRgbPng} from '@tileset/image-adapter'; if ((await codecRuntime()).sharp !== '0.35.5' || PNG_POLICY.concurrency !== 1 || typeof normalizeOpaqueRgbPng !== 'function') throw Error('adapter export');",
+    "import {codecRuntime,PNG_POLICY,normalizeOpaqueRgbPng,stripPngTextMetadata} from '@tileset/image-adapter'; if ((await codecRuntime()).sharp !== '0.35.5' || PNG_POLICY.concurrency !== 1 || typeof normalizeOpaqueRgbPng !== 'function' || typeof stripPngTextMetadata !== 'function') throw Error('adapter export');",
   ],
   [
     'packages/ai-gateway',

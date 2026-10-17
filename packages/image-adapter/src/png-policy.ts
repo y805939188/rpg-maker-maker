@@ -27,7 +27,11 @@ export function inspectPng(bytes: Uint8Array): { width: number; height: number }
 export function inspectConvertiblePng(bytes: Uint8Array): { width: number; height: number } {
   return inspect(bytes, true);
 }
-function inspect(bytes: Uint8Array, allowOpaqueRgb: boolean): { width: number; height: number } {
+function inspect(
+  bytes: Uint8Array,
+  allowOpaqueRgb: boolean,
+  allowTextRepair = false,
+): { width: number; height: number } {
   requireRule(
     bytes.length <= PNG_POLICY.encodedBytes,
     'ENCODED_LIMIT',
@@ -91,7 +95,7 @@ function inspect(bytes: Uint8Array, allowOpaqueRgb: boolean): { width: number; h
       );
     if (['acTL', 'fcTL', 'fdAT'].includes(type))
       throw new AssetError('ANIMATED_PNG', 'PNG must contain exactly one image.');
-    if (!allowed.includes(type)) {
+    if (!allowed.includes(type) && !(allowTextRepair && type === 'tEXt')) {
       if (type[0] === type[0]!.toUpperCase())
         throw new AssetError('PNG_CRITICAL_CHUNK', 'Unknown critical PNG chunk.');
       throw new RepairRequired(
@@ -165,4 +169,21 @@ function inspect(bytes: Uint8Array, allowOpaqueRgb: boolean): { width: number; h
   }
   requireRule(ended, 'PNG_STRUCTURE', 'Missing PNG end.');
   return { width, height };
+}
+
+/** Explicit repair only: validate every original CRC/budget, then remove bounded uncompressed text. */
+export function stripPngTextMetadata(input: Uint8Array): Uint8Array {
+  const bytes = new Uint8Array(input);
+  inspect(bytes, true, true);
+  const buffer = Buffer.from(bytes.buffer),
+    parts = [buffer.subarray(0, 8)];
+  for (let offset = 8; offset < buffer.length;) {
+    const end = offset + 12 + buffer.readUInt32BE(offset);
+    if (buffer.toString('ascii', offset + 4, offset + 8) !== 'tEXt')
+      parts.push(buffer.subarray(offset, end));
+    offset = end;
+  }
+  const repaired = new Uint8Array(Buffer.concat(parts));
+  inspectConvertiblePng(repaired);
+  return repaired;
 }

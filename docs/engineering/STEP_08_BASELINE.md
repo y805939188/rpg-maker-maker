@@ -8,7 +8,7 @@
 
 SDK的公开`run`/`runNoThrow`要等轮询结束才交回ID，因此Adapter用官方REST单次Submit及已知ID查询，用SDK上传受控源字节产生的临时私有文件；该文件由应用创建并在上传结束清理，不接受用户本地路径。Provider错误只保留受控代码。提交意图先落库，UNKNOWN不重提，已知ID恢复查询，已成功远端只重归档；候选始终历史，不自动采用或发布。SDK明确关闭replacement/query自动重试，应用轮询有界。
 
-下载仅允许Adapter配置中精确官方对象域名的HTTPS、禁止重定向/认证/自定义端口；5秒、4MiB、4096块。图片仍执行原CRC/chunk/metadata/像素/透明/密度与隔离codec预算。新增显式`opaque-rgb-to-rgba8-v1`只允许原政策中的8bit RGB/RGBA单帧sRGB PNG，添加opaque alpha并重编码为新文件，不缩放、剥metadata或改变色彩策略。原始供应商文件单独固化，事务登记FileObject，并在不可变TaskArtifact.sourceRef.originalDownload保存原文件引用及转换版本；验证后的文件独立持有。普通上传/inspect/decode仍拒绝RGB，原失败用例不降级。
+下载仅允许Adapter配置中精确官方对象域名的HTTPS、禁止重定向/认证/自定义端口；5秒、4MiB、4096块。图片仍执行原CRC/chunk/metadata/像素/透明/密度与隔离codec预算。新增显式`opaque-rgb-to-rgba8-v1`只允许原政策中的8bit RGB/RGBA单帧sRGB PNG，添加opaque alpha并重编码为新文件，不缩放或改变色彩策略。默认仍拒绝不支持的metadata。真实供应商返回39字节tEXt触发METADATA_REPAIR后，新增显式操作参数`--repair-png-text-metadata`：先对原文件执行相同CRC/结构/64KiB metadata/byte/pixel预算，仅剔除未压缩tEXt生成独立副本，随后才执行RGB转换和原严格RGBA8校验；iCCP/EXIF/HDR/压缩text/其他metadata不因此接受。TaskArtifact单独记录`metadataRepair: png-text-drop-v1`，旧任务创建快照不改写。原始供应商文件单独固化，事务登记FileObject，并在不可变TaskArtifact.sourceRef.originalDownload保存原文件引用及转换版本；验证后的文件独立持有。普通上传/inspect/decode仍拒绝RGB，原失败用例不降级。
 
 本树独立`.env`、PG55528、API4388/Web5288、`.local/assets`及`.local/step08`；不复制其他数据库或凭据。首次准备依次 `pnpm install --frozen-lockfile`、`pnpm db:generate`、独立`db:local init`、`pnpm build`、`pnpm db:migrate`。日常启动不加载用户provider文件，不会自动提交AI任务。
 
@@ -16,7 +16,7 @@ SDK的公开`run`/`runNoThrow`要等轮询结束才交回ID，因此Adapter用�
 export PATH=/Users/dingshinn/.nvm/versions/node/v22.21.1/bin:$PATH
 pnpm check
 pnpm test:step08                 # 真实独立PG + 注入供应商网络，零付费
-pnpm test:step08:real --provider-env /Users/dingshinn/Desktop/rpg-maker-maker/.local/step08/provider.env
+pnpm test:step08:real --provider-env /Users/dingshinn/Desktop/rpg-maker-maker/.local/step08/provider.env --repair-png-text-metadata
 ```
 
 只有最后一条显式命令读用户指定文件；通过dotenv.parse作为数据读取，不source/eval，不修改用户文件或process.env。密钥只传给后端SDK/REST，不进快照、日志或前端。文本/参考图会传给WaveSpeed。联调固定Generate一次、Edit一次、并发1；持久化run锁与不可复用的reservation，先查完整输入价格，按固定单图全价上限$0.003/$0.012保守预留，累计不得超用户文件预算。价格错误/上涨、预算不足或UNKNOWN停止新付费；不是供应商计费硬额度或跨工作树共享账本。禁止删除本次ledger来重复购买；重跑只恢复同任务。供应商实际费用未返回时写UNVERIFIED，与估算分开。

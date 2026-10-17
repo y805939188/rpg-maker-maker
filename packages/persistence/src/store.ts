@@ -1140,6 +1140,7 @@ export class Persistence {
       source: import('@tileset/asset-core').ValidatedSource;
       file: FileRef;
       original?: FileRef;
+      metadataRepair?: 'png-text-drop-v1';
     }[],
   ) {
     assert.ok(sources.length > 0 && sources.length <= 8);
@@ -1157,7 +1158,7 @@ export class Persistence {
       });
       assert.equal(task.version, expectedVersion);
       assert.equal(task.localCancelled, false);
-      for (const [ordinal, { source, file, original }] of sources.entries()) {
+      for (const [ordinal, { source, file, original, metadataRepair }] of sources.entries()) {
         await tx.fileObject.upsert({ where: { sha256: file.sha256 }, create: file, update: {} });
         if (original)
           await tx.fileObject.upsert({
@@ -1200,6 +1201,7 @@ export class Persistence {
               ...(original
                 ? { originalDownload: original, normalization: 'opaque-rgb-to-rgba8-v1' }
                 : {}),
+              ...(metadataRepair ? { metadataRepair } : {}),
             }),
           },
         });

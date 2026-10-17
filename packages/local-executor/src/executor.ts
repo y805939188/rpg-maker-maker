@@ -1,6 +1,6 @@
 import { strict as assert } from 'node:assert';
 import { RawSource } from '@tileset/asset-core';
-import { decodeSource, normalizeOpaqueRgbPng } from '@tileset/image-adapter';
+import { decodeSource, normalizeOpaqueRgbPng, stripPngTextMetadata } from '@tileset/image-adapter';
 import type {
   LocalTaskExecutor,
   TaskRecord,
@@ -21,6 +21,7 @@ export class Archiver implements ResultArchiver {
     readonly store: Persistence,
     readonly reader: ResultReader,
     readonly fault: FaultHook = noFault,
+    readonly repairPngText = false,
   ) {}
   async archive(
     task: TaskRecord,
@@ -34,7 +35,12 @@ export class Archiver implements ResultArchiver {
       const downloaded = await this.reader.bytes(output.url, signal);
       const normalize =
         task.snapshot.structuredParameters['normalization'] === 'opaque-rgb-to-rgba8-v1';
-      const bytes = normalize ? await normalizeOpaqueRgbPng(downloaded, signal) : downloaded;
+      assert.ok(
+        !this.repairPngText || normalize,
+        'Text repair requires the explicit AI normalization path',
+      );
+      const prepared = this.repairPngText ? stripPngTextMetadata(downloaded) : downloaded;
+      const bytes = normalize ? await normalizeOpaqueRgbPng(prepared, signal) : prepared;
       await this.fault('archive-download');
       signal.throwIfAborted();
       const source = await decodeSource(
@@ -76,7 +82,12 @@ export class Archiver implements ResultArchiver {
         throw Error('RESULT_DIMENSIONS');
       const file = await this.store.storage.put(source.source.raw.bytes());
       const original = normalize ? await this.store.storage.put(downloaded) : undefined;
-      sources.push({ source: source.source, file, ...(original ? { original } : {}) });
+      sources.push({
+        source: source.source,
+        file,
+        ...(original ? { original } : {}),
+        ...(this.repairPngText ? { metadataRepair: 'png-text-drop-v1' as const } : {}),
+      });
     }
     await this.fault('archive-files-durable');
     signal.throwIfAborted();

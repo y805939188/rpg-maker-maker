@@ -8,6 +8,7 @@ import { Persistence } from '@tileset/persistence';
 import { AiTaskService } from '../../src/ai-task-service.js';
 import { WaveSpeedAdapter } from '../../src/wavespeed-adapter.js';
 import { setup, PROFILE, databaseUrl } from '../../../../packages/persistence/tests/helpers.js';
+import { withTextChunk } from '../../../../tests/png-text-fixture.js';
 const reply = (data: unknown) => new Response(JSON.stringify({ code: 200, data }));
 describe('real-provider contract through the existing PostgreSQL executor (network mocked)', () => {
   it('Generate/Edit freeze controlled references, recover known IDs, archive only on retry, complete once and leave newer adoption intact', async () => {
@@ -33,7 +34,9 @@ describe('real-provider contract through the existing PostgreSQL executor (netwo
       const pixels = new Uint8Array(256 * 256 * 4);
       for (let offset = 0; offset < pixels.length; offset += 4)
         pixels.set([20, 60, 30, 255], offset);
-      const png = await encodePng(new RgbaImage({ width: 256, height: 256, data: pixels }));
+      const png = withTextChunk(
+        await encodePng(new RgbaImage({ width: 256, height: 256, data: pixels })),
+      );
       let submits = 0,
         queries = 0,
         complete = false,
@@ -84,7 +87,7 @@ describe('real-provider contract through the existing PostgreSQL executor (netwo
       const fresh = new Executor(
         restarted,
         { adapterFor: () => adapter },
-        new Archiver(restarted, reader),
+        new Archiver(restarted, reader, undefined, true),
       );
       await fresh.resume(generated.id, 'RETRY_ARCHIVE_ONLY');
       expect(queries).toBe(beforeQueries);
@@ -98,6 +101,7 @@ describe('real-provider contract through the existing PostgreSQL executor (netwo
         expect(detail.artifacts).toHaveLength(1);
         expect(JSON.stringify(detail)).not.toContain('offline-test-secret');
         expect(detail.artifacts[0]!.sourceRef).toHaveProperty('originalDownload');
+        expect(detail.artifacts[0]!.sourceRef).toHaveProperty('metadataRepair', 'png-text-drop-v1');
       }
       const project = await s.store.db.project.findUniqueOrThrow({ where: { id: s.project.id } });
       expect(project.revision).toBe(2);

@@ -22,6 +22,7 @@ import { readStep08Reservation, reserveStep08Submission } from './step08-budget.
 export async function runStep08Real(
   providerPath: string,
   profile: { id: string; version: string },
+  repairPngText = false,
 ): Promise<void> {
   const config = await readProviderConfiguration(providerPath);
   loadEnvironment();
@@ -161,7 +162,7 @@ export async function runStep08Real(
       const executor = new Executor(
         store,
         { adapterFor: () => guarded },
-        new Archiver(store, new HttpsResultReader(RESULT_HOSTS)),
+        new Archiver(store, new HttpsResultReader(RESULT_HOSTS), undefined, repairPngText),
       );
       // One operation at a time, bounded polling; no timer or normal server startup runs this command.
       const deadline = performance.now() + 180000;
@@ -208,6 +209,7 @@ export async function runStep08Real(
             reservedUsd: reserved,
             paidSubmissionLimit: 2,
             concurrency: 1,
+            metadataRepair: repairPngText ? 'png-text-drop-v1' : 'NOT_REQUESTED',
             providerFile: 'USER_PRIVATE_FILE_NOT_COPIED',
             referenceSha256: hashBytes((await store.readSource(referenceId)).raw.bytes()),
             results,
