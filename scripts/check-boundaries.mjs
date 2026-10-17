@@ -108,9 +108,11 @@ const rules = [
       '@tileset/image-adapter',
       '@tileset/mz-compiler',
       '@tileset/pack-assembly',
+      '@tileset/ai-gateway',
+      '@tileset/local-executor',
     ],
     sources: ['src'],
-    forbidden: /react|pixi\.js|sharp|wavespeed/,
+    forbidden: /react|pixi\.js|sharp/,
   },
   {
     path: 'apps/web',

@@ -12,30 +12,33 @@
     "db:migrate": "node scripts/migrate.mjs"
   },
   "dependencies": {
-    "@tileset/contracts": "workspace:*",
     "@nestjs/common": "11.2.7",
     "@nestjs/core": "11.2.7",
     "@nestjs/platform-express": "11.2.7",
     "@prisma/client": "6.19.3",
+    "@tileset/ai-gateway": "workspace:*",
+    "@tileset/asset-core": "workspace:*",
+    "@tileset/contracts": "workspace:*",
+    "@tileset/image-adapter": "workspace:*",
+    "@tileset/local-executor": "workspace:*",
+    "@tileset/material-processing": "workspace:*",
+    "@tileset/mz-compiler": "workspace:*",
+    "@tileset/pack-assembly": "workspace:*",
+    "@tileset/pack-export": "workspace:*",
+    "@tileset/persistence": "workspace:*",
+    "dotenv": "17.2.3",
     "express": "5.3.0",
+    "helmet": "8.1.0",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2",
-    "dotenv": "17.2.3",
-    "helmet": "8.1.0",
-    "zod": "3.25.76",
-    "@tileset/persistence": "workspace:*",
-    "@tileset/pack-export": "workspace:*",
-    "@tileset/asset-core": "workspace:*",
-    "@tileset/material-processing": "workspace:*",
-    "@tileset/image-adapter": "workspace:*",
-    "@tileset/mz-compiler": "workspace:*",
-    "@tileset/pack-assembly": "workspace:*"
+    "wavespeed": "0.3.4",
+    "zod": "3.25.76"
   },
   "devDependencies": {
-    "prisma": "6.19.3",
     "@types/express": "5.0.5",
     "@types/node": "22.19.0",
-    "typescript": "5.9.3",
-    "tsx": "4.20.6"
+    "prisma": "6.19.3",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
   }
 }

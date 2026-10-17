@@ -931,7 +931,6 @@ export class Persistence {
   }
   async createTask(projectId: string, input: unknown) {
     const snapshot = freezeTaskSnapshot(freezeJson(input));
-    assert.equal(snapshot.model.provider, 'mock', 'Only Mock is authorized');
     return this.gate.write(async () => {
       for (const reference of snapshot.references) {
         assert.match(
@@ -1096,7 +1095,9 @@ export class Persistence {
     attemptId: string,
     outcome: 'KNOWN' | 'UNKNOWN' | 'REJECTED',
     predictionId?: string,
+    errorCode?: string,
   ) {
+    assert.ok(errorCode === undefined || /^[A-Z0-9_]{1,100}$/.test(errorCode));
     await this.transaction(async (tx) => {
       const changed = await tx.logicalTask.updateMany({
         where: { id, version: expectedVersion, state: 'SUBMITTING' },
@@ -1109,6 +1110,7 @@ export class Persistence {
                 : 'FAILED',
           version: { increment: 1 },
           ...(predictionId ? { predictionId } : {}),
+          ...(errorCode ? { errorCode } : {}),
         },
       });
       assert.equal(changed.count, 1);
@@ -1134,13 +1136,18 @@ export class Persistence {
   async archived(
     id: string,
     expectedVersion: number,
-    sources: readonly { source: import('@tileset/asset-core').ValidatedSource; file: FileRef }[],
+    sources: readonly {
+      source: import('@tileset/asset-core').ValidatedSource;
+      file: FileRef;
+      original?: FileRef;
+    }[],
   ) {
     assert.ok(sources.length > 0 && sources.length <= 8);
     for (const item of sources) {
       assert.ok(isValidatedSource(item.source));
       assert.equal(hashBytes(item.source.raw.bytes()), item.file.sha256);
       await this.storage.read(item.file);
+      if (item.original) await this.storage.read(item.original);
     }
 
     await this.transaction(async (tx) => {
@@ -1150,8 +1157,14 @@ export class Persistence {
       });
       assert.equal(task.version, expectedVersion);
       assert.equal(task.localCancelled, false);
-      for (const [ordinal, { source, file }] of sources.entries()) {
+      for (const [ordinal, { source, file, original }] of sources.entries()) {
         await tx.fileObject.upsert({ where: { sha256: file.sha256 }, create: file, update: {} });
+        if (original)
+          await tx.fileObject.upsert({
+            where: { sha256: original.sha256 },
+            create: original,
+            update: {},
+          });
         const asset = await tx.originalAsset.upsert({
           where: { projectId_logicalId: { projectId: task.projectId, logicalId: source.ref.id } },
           create: { projectId: task.projectId, logicalId: source.ref.id },
@@ -1182,7 +1195,12 @@ export class Persistence {
             assetId: asset.id,
             revision: String(source.ref.revision),
             sha256: file.sha256,
-            sourceRef: dbJson(source.ref),
+            sourceRef: dbJson({
+              ...source.ref,
+              ...(original
+                ? { originalDownload: original, normalization: 'opaque-rgb-to-rgba8-v1' }
+                : {}),
+            }),
           },
         });
       }

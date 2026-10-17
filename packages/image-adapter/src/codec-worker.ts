@@ -7,7 +7,7 @@ import {
   requireRule,
 } from '@tileset/asset-core';
 import type { CodecRequest, CodecResult } from './isolation.js';
-import { inspectPng } from './png-policy.js';
+import { inspectPng, inspectConvertiblePng } from './png-policy.js';
 
 // Each job owns one child and one libvips worker; native cache is disabled.
 sharp.cache(false);
@@ -16,7 +16,7 @@ process.once('message', (request: CodecRequest) => {
   void (async () => {
     const start = performance.now();
     let result: Partial<CodecResult> = {};
-    if (request.operation === 'decode') {
+    if (request.operation === 'decode' || request.operation === 'normalize-opaque-rgb') {
       requireRule(
         typeof request.bytes === 'string' &&
           request.bytes.length <= Math.ceil(MAX_ENCODED_BYTES / 3) * 4,
@@ -24,7 +24,8 @@ process.once('message', (request: CodecRequest) => {
         'Encoded budget exceeded.',
       );
       const bytes = Buffer.from(request.bytes, 'base64');
-      const expected = inspectPng(bytes);
+      const normalize = request.operation === 'normalize-opaque-rgb';
+      const expected = normalize ? inspectConvertiblePng(bytes) : inspectPng(bytes);
       const codec = sharp(bytes, {
         limitInputPixels: MAX_PIXELS,
         failOn: 'warning',
@@ -33,7 +34,7 @@ process.once('message', (request: CodecRequest) => {
       const metadata = await codec.metadata();
       requireRule(
         metadata.format === 'png' &&
-          metadata.channels === 4 &&
+          (metadata.channels === 4 || (normalize && metadata.channels === 3)) &&
           metadata.depth === 'uchar' &&
           metadata.space === 'srgb' &&
           !metadata.icc &&
@@ -42,14 +43,24 @@ process.once('message', (request: CodecRequest) => {
         'CODEC_FORMAT',
         'Decoded representation must match the container policy.',
       );
-      const { data, info } = await codec.raw().toBuffer({ resolveWithObject: true });
+      const { data, info } = await (normalize ? codec.ensureAlpha() : codec)
+        .raw()
+        .toBuffer({ resolveWithObject: true });
       requireRule(
         info.width === expected.width && info.height === expected.height && info.channels === 4,
         'CODEC_DIMENSIONS',
         'Decoder dimensions changed.',
       );
       new RgbaImage({ width: info.width, height: info.height, data });
-      result = { bytes: data.toString('base64'), width: info.width, height: info.height };
+      if (normalize) {
+        const encoded = await sharp(data, {
+          raw: { width: info.width, height: info.height, channels: 4 },
+        })
+          .png({ compressionLevel: 9, adaptiveFiltering: false, palette: false })
+          .toBuffer();
+        inspectPng(encoded);
+        result = { bytes: encoded.toString('base64'), width: info.width, height: info.height };
+      } else result = { bytes: data.toString('base64'), width: info.width, height: info.height };
     } else if (request.operation === 'encode') {
       requireRule(
         typeof request.bytes === 'string' &&

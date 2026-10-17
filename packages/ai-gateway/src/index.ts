@@ -22,7 +22,7 @@ export const TaskStateSchema = z.enum([
 ]);
 export type TaskState = z.infer<typeof TaskStateSchema>;
 
-// Data contract only. No credentials, live registry lookup, network call or task runner.
+// Snapshot boundary: no credentials, network call or task runner.
 export const TaskSnapshotSchema = z
   .object({
     contractVersion: z.literal('task-snapshot-v1'),
@@ -182,3 +182,12 @@ export interface LocalTaskExecutor {
   resume(taskId: string, directive: RecoveryDirective): Promise<void>;
   requestLocalCancellation(taskId: string): Promise<void>;
 }
+export {
+  MAIN_PROMPT,
+  PROMPT_REGISTRY,
+  DEFAULT_MODELS,
+  WAVESPEED_ADAPTER_VERSION,
+  composeTaskSnapshot,
+  renderFrozenPrompt,
+} from './prompts.js';
+export type { PromptRequest } from './prompts.js';

@@ -1,6 +1,6 @@
 import { strict as assert } from 'node:assert';
 import { RawSource } from '@tileset/asset-core';
-import { decodeSource } from '@tileset/image-adapter';
+import { decodeSource, normalizeOpaqueRgbPng } from '@tileset/image-adapter';
 import type {
   LocalTaskExecutor,
   TaskRecord,
@@ -31,30 +31,52 @@ export class Archiver implements ResultArchiver {
     const sources = [];
     for (const [ordinal, output] of result.outputs.entries()) {
       signal.throwIfAborted();
-      const bytes = await this.reader.bytes(output.url, signal);
+      const downloaded = await this.reader.bytes(output.url, signal);
+      const normalize =
+        task.snapshot.structuredParameters['normalization'] === 'opaque-rgb-to-rgba8-v1';
+      const bytes = normalize ? await normalizeOpaqueRgbPng(downloaded, signal) : downloaded;
       await this.fault('archive-download');
       signal.throwIfAborted();
       const source = await decodeSource(
         new RawSource({
-          id: `mock-${task.id}-${ordinal}`,
+          id: `${task.snapshot.model.provider}-${task.id}-${ordinal}`,
           revision: 1,
-          role: 'grass',
+          role:
+            task.snapshot.structuredParameters['component'] === 'water'
+              ? 'water'
+              : task.snapshot.structuredParameters['component'] === 'shoreline'
+                ? 'bank-overlay'
+                : 'grass',
           density: 1,
           encoding: 'png',
           bytes,
           provenance: {
             origin: 'ai',
-            author: 'Synthetic Mock Provider',
-            license: 'CC0-1.0',
+            author:
+              task.snapshot.model.provider === 'mock'
+                ? 'Synthetic Mock Provider'
+                : 'WaveSpeed AI candidate',
+            license:
+              task.snapshot.model.provider === 'mock'
+                ? 'CC0-1.0'
+                : 'UNVERIFIED_PROVIDER_MODEL_TERMS',
             toolVersion: task.snapshot.model.adapterVersion,
             parents: [],
           },
         }),
+        signal,
       );
       signal.throwIfAborted();
       if (source.status !== 'validated') throw Error(source.diagnostic.code);
+      if (
+        normalize &&
+        (source.source.image.width !== task.snapshot.structuredParameters['width'] ||
+          source.source.image.height !== task.snapshot.structuredParameters['height'])
+      )
+        throw Error('RESULT_DIMENSIONS');
       const file = await this.store.storage.put(source.source.raw.bytes());
-      sources.push({ source: source.source, file });
+      const original = normalize ? await this.store.storage.put(downloaded) : undefined;
+      sources.push({ source: source.source, file, ...(original ? { original } : {}) });
     }
     await this.fault('archive-files-durable');
     signal.throwIfAborted();
@@ -97,7 +119,7 @@ export class Executor implements LocalTaskExecutor {
         return;
       }
       const adapter = this.gateway.adapterFor(task.snapshot);
-      assert.equal(adapter.provider, 'mock');
+      assert.equal(adapter.provider, task.snapshot.model.provider);
       assert.equal(adapter.adapterVersion, task.snapshot.model.adapterVersion);
       const signal = lease.signal;
       if (task.state === 'QUEUED' || task.state === 'CREATED') {
@@ -124,7 +146,16 @@ export class Executor implements LocalTaskExecutor {
             await this.fault('external-id-durable');
             signal.throwIfAborted();
           } else
-            await this.store.submissionOutcome(id, task.version, attempt.id, submitted.outcome);
+            await this.store.submissionOutcome(
+              id,
+              task.version,
+              attempt.id,
+              submitted.outcome,
+              undefined,
+              submitted.outcome === 'REJECTED' && /^[A-Z0-9_]{1,100}$/.test(submitted.code)
+                ? submitted.code
+                : undefined,
+            );
         } catch {
           signal.throwIfAborted();
           const latest = await this.store.task(id);

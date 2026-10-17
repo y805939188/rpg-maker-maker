@@ -6,7 +6,7 @@ import { PROFILE } from '../dist/src/profile.js';
 
 const root = process.cwd();
 const step = process.argv[2] ?? 'step02';
-if (!['step02', 'step03', 'step04', 'step05', 'step06', 'step07'].includes(step))
+if (!['step02', 'step03', 'step04', 'step05', 'step06', 'step07', 'step08'].includes(step))
   throw new Error('Unsupported engineering step.');
 const git = (...args) => execFileSync('git', args, { encoding: 'utf8' }).trim();
 const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
@@ -29,16 +29,18 @@ for (const directory of [
   'packages/material-processing/dist',
   'packages/image-adapter/dist',
   'packages/mz-compiler/dist',
-  ...(['step05', 'step06', 'step07'].includes(step) ? ['packages/pack-assembly/dist'] : []),
-  ...(['step06', 'step07'].includes(step)
+  ...(['step05', 'step06', 'step07', 'step08'].includes(step)
+    ? ['packages/pack-assembly/dist']
+    : []),
+  ...(['step06', 'step07', 'step08'].includes(step)
     ? ['packages/persistence/dist', 'packages/local-executor/dist']
     : []),
-  ...(step === 'step07' ? ['packages/pack-export/dist'] : []),
+  ...(['step07', 'step08'].includes(step) ? ['packages/pack-export/dist'] : []),
   'apps/api/dist',
   'apps/web/dist',
 ])
   await collect(resolve(root, directory));
-if (['step06', 'step07'].includes(step)) {
+if (['step06', 'step07', 'step08'].includes(step)) {
   files['apps/api/prisma/schema.prisma'] = await readFile('apps/api/prisma/schema.prisma');
   await collect(resolve(root, 'apps/api/prisma/migrations'));
 }
@@ -60,25 +62,33 @@ const identity = {
         processing: 'fixed-shoreline-v1',
       }
     : {}),
-  ...(['step04', 'step05', 'step06', 'step07'].includes(step)
+  ...(['step04', 'step05', 'step06', 'step07', 'step08'].includes(step)
     ? { fragmentContract: 'mz-compiled-fragment-v1', compiler: 'mz-single-material-v1' }
     : {}),
-  ...(['step05', 'step06', 'step07'].includes(step)
+  ...(['step05', 'step06', 'step07', 'step08'].includes(step)
     ? { packContract: 'mz-pack-v1', layoutContract: 'mz-layout-v1', assembly: 'stable-slots-v1' }
     : {}),
-  ...(['step06', 'step07'].includes(step)
+  ...(['step06', 'step07', 'step08'].includes(step)
     ? {
         persistence: 'durable-store-v1',
         executor: 'local-executor-v1',
         schemaSha256: sha(await readFile('apps/api/prisma/schema.prisma')),
       }
     : {}),
-  ...(step === 'step07'
+  ...(['step07', 'step08'].includes(step)
     ? {
         studio: 'manual-studio-v1',
         standardExport: 'mz-pack-build-v1',
         pngHttpIngress: 'studio-png-http-v1',
         previewClock: 'fixed-logical-updates-v1',
+      }
+    : {}),
+  ...(step === 'step08'
+    ? {
+        promptRegistry: 'terrain-source-main@1',
+        modelConfiguration: 'terrain-models-20261017-v1',
+        wavespeedSdk: '0.3.4',
+        providerAdapter: 'wavespeed-adapter-v1',
       }
     : {}),
   node: process.versions.node,
@@ -118,7 +128,7 @@ try {
       userApproval: 'NOT_EXECUTED',
       nativeMZHost: 'NOT_EXECUTED',
     },
-    note: `${step} engineering baseline. MZ compatibility remains the step01 candidate and separate evidence. Requires pinned dependencies and generated Prisma client; ${step === 'step07' ? 'Manual PNG Studio, paired builds, actual standard exports, Pixi previews and QA; conservative Mock recovery; no real provider or AI workflow.' : step === 'step06' ? 'PostgreSQL/files publication, conservative Mock recovery and consistent backup; no real provider or Studio.' : step === 'step05' ? 'Compiler and stable Pack/Atlas; no database publication or provider runner.' : step === 'step04' ? 'single-material Compiler only; no production Pack or provider runner.' : 'no provider runner or formal target compiler/pack.'}`,
+    note: `${step} engineering baseline. MZ compatibility remains the step01 candidate and separate evidence. Requires pinned dependencies and generated Prisma client; ${['step07', 'step08'].includes(step) ? 'Manual PNG Studio, paired builds, actual standard exports, Pixi previews and QA; conservative Mock recovery; no real provider or AI workflow.' : step === 'step06' ? 'PostgreSQL/files publication, conservative Mock recovery and consistent backup; no real provider or Studio.' : step === 'step05' ? 'Compiler and stable Pack/Atlas; no database publication or provider runner.' : step === 'step04' ? 'single-material Compiler only; no production Pack or provider runner.' : 'no provider runner or formal target compiler/pack.'}`,
   };
   await writeFile(resolve(stage, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n', {
     flag: 'wx',

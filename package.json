@@ -59,7 +59,10 @@
     "restore:local": "node --env-file=.env dist/scripts/step06-maintenance.js restore",
     "tasks:mock": "node --env-file=.env dist/scripts/run-mock-executor.js",
     "build:step07": "pnpm build && node scripts/build-engineering.mjs step07",
-    "test:step07": "pnpm build && vitest run --config vitest.step07.config.ts"
+    "test:step07": "pnpm build && vitest run --config vitest.step07.config.ts",
+    "test:step08": "pnpm build && vitest run --config vitest.step08.config.ts",
+    "test:step08:real": "node scripts/step08-real.mjs",
+    "build:step08": "pnpm build && node scripts/build-engineering.mjs step08"
   },
   "dependencies": {
     "sharp": "0.35.5"

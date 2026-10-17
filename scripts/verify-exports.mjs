@@ -10,7 +10,7 @@ const checks = [
   ],
   [
     'packages/local-executor',
-    "import {Executor,MockProvider} from '@tileset/local-executor'; if(typeof Executor !== 'function' || typeof MockProvider !== 'function') throw Error('executor export');",
+    "import {Executor,MockProvider,HttpsResultReader} from '@tileset/local-executor'; if(typeof Executor !== 'function' || typeof MockProvider !== 'function' || typeof HttpsResultReader !== 'function') throw Error('executor export');",
   ],
   [
     'packages/pack-assembly',
@@ -38,11 +38,11 @@ const checks = [
   ],
   [
     'packages/image-adapter',
-    "import {codecRuntime,PNG_POLICY} from '@tileset/image-adapter'; if ((await codecRuntime()).sharp !== '0.35.5' || PNG_POLICY.concurrency !== 1) throw Error('adapter export');",
+    "import {codecRuntime,PNG_POLICY,normalizeOpaqueRgbPng} from '@tileset/image-adapter'; if ((await codecRuntime()).sharp !== '0.35.5' || PNG_POLICY.concurrency !== 1 || typeof normalizeOpaqueRgbPng !== 'function') throw Error('adapter export');",
   ],
   [
     'packages/ai-gateway',
-    "import { freezeTaskSnapshot, TaskStateSchema } from '@tileset/ai-gateway'; if (typeof freezeTaskSnapshot !== 'function' || TaskStateSchema.parse('SUBMISSION_UNKNOWN') !== 'SUBMISSION_UNKNOWN') throw Error('gateway export');",
+    "import { freezeTaskSnapshot, TaskStateSchema, composeTaskSnapshot } from '@tileset/ai-gateway'; if (typeof freezeTaskSnapshot !== 'function' || typeof composeTaskSnapshot !== 'function' || TaskStateSchema.parse('SUBMISSION_UNKNOWN') !== 'SUBMISSION_UNKNOWN') throw Error('gateway export');",
   ],
 ];
 for (const [cwd, source] of checks)

@@ -21,6 +21,13 @@ function crc(bytes: Uint8Array): number {
 }
 /** Container validation happens before any native codec or metadata parser. */
 export function inspectPng(bytes: Uint8Array): { width: number; height: number } {
+  return inspect(bytes, false);
+}
+/** Only the explicit AI RGB conversion uses this; ordinary ingress remains RGBA8-only. */
+export function inspectConvertiblePng(bytes: Uint8Array): { width: number; height: number } {
+  return inspect(bytes, true);
+}
+function inspect(bytes: Uint8Array, allowOpaqueRgb: boolean): { width: number; height: number } {
   requireRule(
     bytes.length <= PNG_POLICY.encodedBytes,
     'ENCODED_LIMIT',
@@ -101,7 +108,7 @@ export function inspectPng(bytes: Uint8Array): { width: number; height: number }
         'PIXEL_LIMIT',
         'Decoded pixel budget exceeded before allocation.',
       );
-      if (data[8] !== 8 || data[9] !== 6)
+      if (data[8] !== 8 || (data[9] !== 6 && !(allowOpaqueRgb && data[9] === 2)))
         throw new RepairRequired(
           'RGBA8_REQUIRED',
           'Source requires explicit conversion to nonpalette RGBA8.',

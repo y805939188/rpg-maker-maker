@@ -6,10 +6,34 @@ import {
   validatedDecodedSource,
 } from '@tileset/asset-core';
 import type { ValidatedSource } from '@tileset/asset-core';
-import { PNG_POLICY, RepairRequired, inspectPng } from './png-policy.js';
+import { PNG_POLICY, RepairRequired, inspectPng, inspectConvertiblePng } from './png-policy.js';
 import { runIsolated } from './isolation.js';
 export { inspectPng } from './png-policy.js';
 export { PNG_POLICY } from './png-policy.js';
+
+/** Explicit new-revision RGB→RGBA8 conversion. No resize, metadata repair or color conversion. */
+export async function normalizeOpaqueRgbPng(
+  bytes: Uint8Array,
+  signal: AbortSignal,
+): Promise<Uint8Array> {
+  const owned = new Uint8Array(bytes);
+  inspectConvertiblePng(owned);
+  const result = await runIsolated(
+    { operation: 'normalize-opaque-rgb', bytes: Buffer.from(owned).toString('base64') },
+    undefined,
+    undefined,
+    signal,
+  );
+  requireRule(
+    typeof result.bytes === 'string' &&
+      result.bytes.length <= Math.ceil(PNG_POLICY.encodedBytes / 3) * 4,
+    'ENCODED_LIMIT',
+    'Normalized PNG exceeds budget.',
+  );
+  const output = new Uint8Array(Buffer.from(result.bytes, 'base64'));
+  inspectPng(output);
+  return output;
+}
 
 export interface Diagnostic {
   readonly code: string;

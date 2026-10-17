@@ -81,6 +81,9 @@ importers:
       '@prisma/client':
         specifier: 6.19.3
         version: 6.19.3(prisma@6.19.3(typescript@5.9.3))(typescript@5.9.3)
+      '@tileset/ai-gateway':
+        specifier: workspace:*
+        version: link:../../packages/ai-gateway
       '@tileset/asset-core':
         specifier: workspace:*
         version: link:../../packages/asset-core
@@ -90,6 +93,9 @@ importers:
       '@tileset/image-adapter':
         specifier: workspace:*
         version: link:../../packages/image-adapter
+      '@tileset/local-executor':
+        specifier: workspace:*
+        version: link:../../packages/local-executor
       '@tileset/material-processing':
         specifier: workspace:*
         version: link:../../packages/material-processing
@@ -120,6 +126,9 @@ importers:
       rxjs:
         specifier: 7.8.2
         version: 7.8.2
+      wavespeed:
+        specifier: 0.3.4
+        version: 0.3.4
       zod:
         specifier: 3.25.76
         version: 3.25.76
@@ -2451,6 +2460,9 @@ packages:
       jsdom:
         optional: true
 
+  wavespeed@0.3.4:
+    resolution: {integrity: sha512-RnnBnQLLd90Lwyb3szqEMvcv+6moyI/or/Xasce4UJwvQstbbBvGYSUKm4+fMNSoKc3/f+D/qEFeogzIeQqRJw==}
+
   which@2.0.2:
     resolution: {integrity: sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==}
     engines: {node: '>= 8'}
@@ -4509,6 +4521,8 @@ snapshots:
       '@types/node': 22.19.0
     transitivePeerDependencies:
       - msw
+
+  wavespeed@0.3.4: {}
 
   which@2.0.2:
     dependencies:

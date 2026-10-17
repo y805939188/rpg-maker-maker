@@ -3,7 +3,7 @@ import { AssetError, requireRule } from '@tileset/asset-core';
 import { PNG_POLICY } from './png-policy.js';
 
 export interface CodecRequest {
-  readonly operation: 'decode' | 'encode' | 'runtime';
+  readonly operation: 'decode' | 'encode' | 'runtime' | 'normalize-opaque-rgb';
   readonly bytes?: string;
   readonly width?: number;
   readonly height?: number;
