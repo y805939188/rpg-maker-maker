@@ -11,6 +11,59 @@ import { setup, PROFILE, databaseUrl } from '../../../../packages/persistence/te
 import { withTextChunk } from '../../../../tests/png-text-fixture.js';
 const reply = (data: unknown) => new Response(JSON.stringify({ code: 200, data }));
 describe('real-provider contract through the existing PostgreSQL executor (network mocked)', () => {
+  it('wrong geometry remains blocked at the frozen size and archive retry never repurchases Edit', async () => {
+    const s = await setup();
+    try {
+      const service = new AiTaskService(s.store, PROFILE);
+      const reference = await s.store.db.assetRevision.findFirstOrThrow({
+        where: { projectId: s.project.id, kind: 'source', sourceSha: { not: null } },
+      });
+      const task = await service.create(
+        s.project.id,
+        { operation: 'IMAGE_EDIT', component: 'grass' },
+        reference.id,
+      );
+      const snapshot = await s.store.task(task.id);
+      const data = new Uint8Array(168 * 256 * 4);
+      for (let offset = 0; offset < data.length; offset += 4) data.set([12, 34, 56, 255], offset);
+      const bytes = withTextChunk(
+        await encodePng(new RgbaImage({ width: 168, height: 256, data })),
+      );
+      const submit = vi.fn(async () => ({
+        outcome: 'KNOWN' as const,
+        predictionId: 'wrong_geometry_edit',
+      }));
+      const query = vi.fn(async () => ({
+        status: 'SUCCEEDED' as const,
+        outputs: [{ url: 'https://cdn.wavespeed.ai/result.png', expiresAt: null }],
+      }));
+      const executor = new Executor(
+        s.store,
+        {
+          adapterFor: () => ({
+            provider: 'wavespeed',
+            adapterVersion: snapshot!.snapshot.model.adapterVersion,
+            submit,
+            query,
+          }),
+        },
+        new Archiver(s.store, { bytes: async () => bytes }, undefined, true),
+      );
+      await executor.resume(task.id, 'WAIT');
+      await executor.resume(task.id, 'RETRY_ARCHIVE_ONLY');
+      const detail = await s.store.taskDetail(task.id);
+      expect(detail.state).toBe('FETCHING_RESULT');
+      expect(detail.archiveState).toBe('RETRY_REQUIRED');
+      expect(detail.artifacts).toHaveLength(0);
+      expect(detail.predictionId).toBe('wrong_geometry_edit');
+      expect((await s.store.task(task.id))!.snapshot).toEqual(snapshot!.snapshot);
+      expect(snapshot!.snapshot.model.parameters['size']).toBe('256*256');
+      expect(submit).toHaveBeenCalledTimes(1);
+      expect(query).toHaveBeenCalledTimes(1);
+    } finally {
+      await s.store.close();
+    }
+  });
   it('Generate/Edit freeze controlled references, recover known IDs, archive only on retry, complete once and leave newer adoption intact', async () => {
     const s = await setup();
     let restarted: Persistence | undefined;
