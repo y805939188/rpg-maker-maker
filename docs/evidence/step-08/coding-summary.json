@@ -1,10 +1,10 @@
 {
   "kind": "STEP08_CODING_HANDOFF",
-  "recordedAtUtc": "2026-10-17T15:52:12.557502+00:00",
-  "status": "BLOCKED",
+  "recordedAtUtc": "2026-10-17T16:11:17.388247+00:00",
+  "status": "READY_FOR_REVIEW",
   "baselineCommit": "75c65571a592a389853b30531ef6cea3d46c5402",
-  "candidateCommit": "ea7925ae8b4589af79e0053feef06249764624c9",
-  "functionalCommit": "5179002d20cd50cdbc77adb77ca203d4d1e99605",
+  "candidateCommit": "06ec3d92e1e5579dbc8cdad3de13c2c997fb1ab1",
+  "functionalCommit": "06ec3d92e1e5579dbc8cdad3de13c2c997fb1ab1",
   "branch": "codex/step-08-ai-gateway",
   "worktree": "/Users/dingshinn/.codex/worktrees/step-08-ai-gateway/rpg-maker-maker",
   "configuration": {
@@ -16,31 +16,36 @@
     "effectiveModelEffortBasis": "current-session turn_context",
     "serverFinalServiceTier": "UNVERIFIED_NOT_EXPOSED",
     "serverAgentRole": "UNVERIFIED_NOT_EXPOSED",
-    "configSha256": "8787cf01eeb8637aaf7c2f933586da69d471fbf77e5a3daa64998edc1377738e"
+    "configSha256": "8787cf01eeb8637aaf7c2f933586da69d471fbf77e5a3daa64998edc1377738e",
+    "continuationReadback": {
+      "model": "gpt-6.1-sol",
+      "effort": "xhigh",
+      "clientConfiguredServiceTier": "default",
+      "serverFinalTier": "UNVERIFIED_NOT_EXPOSED",
+      "serverAgentRole": "UNVERIFIED_NOT_EXPOSED"
+    }
   },
   "build": {
-    "id": "step08-ea7925ae8b45-bc6dd7ba816981d3",
-    "manifestSha256": "0131d9d56399f335aa959bebef0b635851aed1cb075445668d3be6b935a9c691",
-    "fileCount": 231,
+    "id": "step08-06ec3d92e1e5-b8d043b4452ec9e8",
+    "manifestSha256": "de6a155258bba1a5adc381c4f6afdafdd4bf8c99d73382c82e9446a5eae84946",
+    "fileCount": 234,
     "lockSha256": "d533bbb2ae9cf77a1c91b18f9fc395af500fc55a27f7529a045a7eab6d85ce7b",
     "criticalFiles": {
-      "apps/api/dist/wavespeed-adapter.js": "2da21123140c96fbe78058496f4f54cad551208389b25175cb293ec484ebe41e",
-      "apps/api/dist/step08-real.js": "281cbb94906b299271e313067b13d1b400e217dffd5dcf128b8f0dc8646d4293",
-      "packages/ai-gateway/dist/prompts.js": "3ec1abfde8d7935ae06eec7abeadd89237f40203971a47dd7a7f8e0484fabfec",
-      "packages/image-adapter/dist/png-policy.js": "ee3e8b94a9e062aeee36fa403dc5c952a5e6fc345c2ca60faece21ecdbbbb416",
-      "packages/image-adapter/dist/codec-worker.js": "a4178a1d927639c6a84eccba655478277e13300bc7da5c7bf0f6b22f420883c4",
+      "apps/api/dist/ai-task-service.js": "0668c61cc1545a65639231afca2cd7da821a98bf61aff0767f6272df4686b6de",
+      "apps/api/dist/wavespeed-adapter.js": "3f53e95e0221e1e141bfb3fc565605581fc37f09d01f2bdcdf169c1886dad70f",
+      "apps/api/dist/step08-additional-edit.js": "eeaa485587604971b66675d61a807b06fa832d6b448e0d4a6f9fdaa518f87541",
+      "apps/api/dist/step08-budget.js": "96909edd85c067ccc6e6abf884da9cb709fe98a5ac42699835730fe9f56dc782",
+      "packages/ai-gateway/dist/prompts.js": "dbfb7e180a6f286143799b37c2376e36ba9e9963593ea7702ce71f71320bfefe",
       "packages/local-executor/dist/executor.js": "afe99d1656df1769335803fd7a9cc4f9e5a0e11bb6e06456bf08b6ab0f9c015b",
-      "packages/persistence/dist/store.js": "d925351a4f9502264e05fe30929abeb391597747a11af890d51954f80e8985be"
+      "packages/image-adapter/dist/png-policy.js": "ee3e8b94a9e062aeee36fa403dc5c952a5e6fc345c2ca60faece21ecdbbbb416"
     },
-    "profileSha256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793",
-    "sourceBindingRefresh": "Regenerated Studio resource identity after candidate freeze; no functional source change or repeated full suite for SHA alone."
+    "profileSha256": "48844001eea07a8cf0da4baf9abb1653b01c38a9405413ed3123df189cf48793"
   },
   "tests": {
     "check": {
       "command": "pnpm check",
-      "passed": 427,
-      "status": "PASS",
-      "functionalCode": "5179002; candidate adds only the geometry regression"
+      "passed": 429,
+      "status": "PASS"
     },
     "step06": {
       "command": "pnpm exec vitest run --config vitest.step06.config.ts",
@@ -58,8 +63,9 @@
     },
     "step08": {
       "command": "pnpm exec vitest run --config vitest.step08.config.ts",
-      "passed": 2,
-      "scope": "Explicit repair, persistent snapshots, Generate/Edit, known-ID recovery, unknown/rejection, archive-only/idempotency/late protection"
+      "passed": 3,
+      "status": "PASS",
+      "isolatedEnvironment": ".local/step08/edit-fix-regression-environment.json"
     },
     "executorAfterRepair": {
       "passed": 5,
@@ -88,23 +94,52 @@
       "flaky": 0
     },
     "keyBoundary": {
-      "filesScanned": 78,
-      "taskRecordsScanned": 2,
+      "filesScanned": 59,
+      "taskRecordsScanned": 3,
       "actualKeyMatches": 0,
       "userProviderFileUnchanged": true,
       "keyAddedToProcessEnvironment": false
+    },
+    "previousScopeNote": "Earlier PG23/API3/HTTP16/browser18+18 remain prior-scope evidence, not newly rerun. No current change to Web/HTTP ingress/Compiler/Profile/codec/recovery/archiver.",
+    "editSizeFix": {
+      "check": {
+        "command": "pnpm check",
+        "passed": 429,
+        "status": "PASS"
+      },
+      "postgres": {
+        "command": "pnpm exec vitest run --config vitest.step08.config.ts",
+        "passed": 3,
+        "status": "PASS",
+        "isolatedEnvironment": ".local/step08/edit-fix-regression-environment.json"
+      },
+      "focused": {
+        "command": "pnpm exec vitest run packages/ai-gateway/tests/prompts.test.ts apps/api/tests/wavespeed.test.ts apps/api/tests/step08-budget.test.ts",
+        "passed": 9
+      },
+      "finalBudget": {
+        "command": "pnpm exec vitest run apps/api/tests/step08-budget.test.ts",
+        "passed": 2
+      },
+      "keyBoundary": {
+        "filesScanned": 59,
+        "taskRecordsScanned": 3,
+        "actualKeyMatches": 0,
+        "userProviderFileUnchanged": true,
+        "keyAddedToProcessEnvironment": false
+      }
     }
   },
   "live": {
     "budgetUsd": 5,
-    "modelSubmissions": 2,
-    "modelSubmissionLimit": 2,
+    "modelSubmissions": 3,
+    "modelSubmissionLimit": 3,
     "concurrency": 1,
-    "quotedTotalUsd": 0.015,
-    "reservedUsd": 0.015,
+    "quotedTotalUsd": 0.027,
+    "reservedUsd": 0.027,
     "actualChargedUsd": "UNVERIFIED",
     "mainPrompt": "terrain-source-main@1",
-    "configurationVersion": "terrain-models-20261017-v1",
+    "configurationVersion": "terrain-models-20261017-v2",
     "adapter": "wavespeed-adapter-v1",
     "sdk": "wavespeed@0.3.4",
     "calls": [
@@ -165,8 +200,164 @@
       "expectedWidth": 256,
       "expectedHeight": 256
     },
-    "blocker": "STEP08-LIVE-EDIT-DIMENSIONS: actual168x256 does not match frozen256x256; no resizing, threshold relaxation, snapshot rewrite or third model submission.",
-    "privateRecords": ".local/step08/live/records-final.json"
+    "blocker": "RESOLVED_FOR_NEW_EDIT_TASK; old failed task and its snapshot remain unchanged.",
+    "privateRecords": ".local/step08/live/records-final.json",
+    "previousModelSubmissionLimit": 2,
+    "currentBlockers": [],
+    "additionalEdit": {
+      "authorization": "USER_20261017_ONE_ADDITIONAL_EDIT",
+      "sourceCommit": "06ec3d92e1e5579dbc8cdad3de13c2c997fb1ab1",
+      "taskId": "54ca5748-31d6-47ee-9beb-826cf9828d65",
+      "predictionId": "b2792999b3d740a09999ea5a7519dfb0",
+      "state": "COMPLETED",
+      "archiveState": "DURABLE",
+      "snapshotHash": "a75d2734938752e9ae56595897c695d104d84cbbc966f6de835f08abc6dfdd16",
+      "quotedUsd": 0.012,
+      "actualChargedUsd": "UNVERIFIED",
+      "artifacts": [
+        {
+          "taskId": "54ca5748-31d6-47ee-9beb-826cf9828d65",
+          "ordinal": 0,
+          "assetId": "8cdc5dee-70b3-4a62-b31b-e9b451297957",
+          "revision": "1",
+          "sha256": "af63fe02ffbf430b0f715f315e9d73c9e14919d36117f5abce8edad10d05c956",
+          "sourceRef": {
+            "id": "wavespeed-54ca5748-31d6-47ee-9beb-826cf9828d65-0",
+            "kind": "source",
+            "revision": 1,
+            "contentHash": "3ab146e5ca1c949990503980555355b46c6ec4c471de5eced608e1a5923e9ecc",
+            "normalization": "opaque-rgb-to-rgba8-v1",
+            "metadataRepair": "png-text-drop-v1",
+            "originalDownload": {
+              "key": "objects/bb9898fd722266c8a64433ae117abff9822f48bdf1a2b1b907945780e372e497",
+              "bytes": 96445,
+              "sha256": "bb9898fd722266c8a64433ae117abff9822f48bdf1a2b1b907945780e372e497"
+            }
+          }
+        }
+      ],
+      "priorTasksUnchanged": true,
+      "before": [
+        {
+          "taskId": "5034770c-5bc8-40f0-8cb3-c184c990cafa",
+          "snapshotHash": "7759351892efe3b1ed6ffbf30128e57522853892d97db5dd8fa91da879b19845",
+          "detailSha256": "9ef818955fec8e1ff12caac6e26895f0c4e3a64f605e2a72666f2d2ccf2b1e72"
+        },
+        {
+          "taskId": "57d9102f-16b1-4d67-8ea1-cc08e93b20ae",
+          "snapshotHash": "d086b9b239449800c83fe6691f80d902051d01779bd6c87933333b5610dc76f3",
+          "detailSha256": "7a7a95e7f6789964cff3774f197005f7acdeac5a2bf2612c1f038d2597f70900"
+        }
+      ],
+      "verification": {
+        "output": {
+          "width": 256,
+          "height": 256,
+          "canonicalSha256": "af63fe02ffbf430b0f715f315e9d73c9e14919d36117f5abce8edad10d05c956",
+          "originalSha256": "bb9898fd722266c8a64433ae117abff9822f48bdf1a2b1b907945780e372e497",
+          "originalBytes": 96445,
+          "originalWidth": 256,
+          "originalHeight": 256,
+          "taskSnapshotHash": "a75d2734938752e9ae56595897c695d104d84cbbc966f6de835f08abc6dfdd16",
+          "attempts": 1
+        },
+        "references": [
+          {
+            "assetId": "03dc319c-1426-44f7-b9a3-03b4bf2774eb",
+            "revision": "1",
+            "sha256": "1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd",
+            "width": 96,
+            "height": 144,
+            "provenance": {
+              "author": "AI Tileset Studio original fixture",
+              "license": "CC0-1.0",
+              "origin": "manual",
+              "parents": [],
+              "toolVersion": "step08-reference-v1"
+            }
+          },
+          {
+            "assetId": "72357cba-22d4-4770-bed9-bfc12d87ede7",
+            "revision": "1",
+            "sha256": "8d939eb27c7a0682721772c5befda77f279ce41c7cb72a1eca80f726bb18e234",
+            "width": 256,
+            "height": 256,
+            "provenance": {
+              "author": "AI Tileset Studio reference preparation",
+              "license": "CC0-1.0",
+              "origin": "deterministic",
+              "parents": [
+                {
+                  "contentHash": "f4aca7f7a8fc7c66d87221825eb5a09ca9a0b07e827d7528bdc379da82ba97ef",
+                  "id": "step08-reference",
+                  "kind": "source",
+                  "revision": 1
+                }
+              ],
+              "toolVersion": "match-output-nearest-explicit-v1"
+            }
+          }
+        ],
+        "checks": {
+          "filesScanned": 59,
+          "taskRecordsScanned": 3,
+          "actualKeyMatches": 0,
+          "userProviderFileUnchanged": true,
+          "keyAddedToProcessEnvironment": false
+        }
+      },
+      "requestSha256": "3b9728a862031fc1fc0134d8abad614302643c252036ef2ff5dd9f4888635b2d",
+      "newSnapshot": {
+        "configurationVersion": "terrain-models-20261017-v2",
+        "model": {
+          "provider": "wavespeed",
+          "modelId": "wavespeed-ai/flux-dev",
+          "modelVersion": "endpoint-20261017",
+          "adapterVersion": "wavespeed-adapter-v1",
+          "parameters": {
+            "seed": 4808,
+            "size": "256*256",
+            "strength": 0.55,
+            "num_images": 1,
+            "output_format": "png",
+            "guidance_scale": 3.5,
+            "enable_sync_mode": false,
+            "num_inference_steps": 28,
+            "enable_base64_output": false
+          }
+        },
+        "structuredParameters": {
+          "width": 256,
+          "height": 256,
+          "density": 1,
+          "component": "grass",
+          "normalization": "opaque-rgb-to-rgba8-v1",
+          "referencePreparation": "match-output-nearest-explicit-v1"
+        },
+        "references": [
+          {
+            "assetId": "03dc319c-1426-44f7-b9a3-03b4bf2774eb",
+            "revision": "1",
+            "sha256": "1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd"
+          },
+          {
+            "assetId": "72357cba-22d4-4770-bed9-bfc12d87ede7",
+            "revision": "1",
+            "sha256": "8d939eb27c7a0682721772c5befda77f279ce41c7cb72a1eca80f726bb18e234"
+          }
+        ],
+        "promptRevisions": {
+          "main": {
+            "id": "terrain-source-main",
+            "revision": "1"
+          },
+          "task": {
+            "id": "terrain-reference-edit",
+            "revision": "1"
+          }
+        }
+      }
+    }
   },
   "logs": {
     ".local/step08/check-final.log": {
@@ -224,14 +415,38 @@
     ".local/step08/real-final.log": {
       "sha256": "49e5c91e1c7ac0f98466a4141ac7994b72019980641467819cd38dd61da622f2",
       "bytes": 766
+    },
+    ".local/step08/edit-fix-check.log": {
+      "sha256": "d2ee3d03fa344b09ec5ade977d68a6880a15ca216e32e0c7de25f7dca4838cb3",
+      "bytes": 11140
+    },
+    ".local/step08/edit-fix-unit.log": {
+      "sha256": "75faa99d12bdc06c50a4593a1489f6a048774f4a4eb81a6f44cb080cbdf0dd73",
+      "bytes": 253
+    },
+    ".local/step08/edit-fix-pg.log": {
+      "sha256": "a2c9dedd2df1146378783cc465314f53a97ef2cacc75abbbee59421a4a93c020",
+      "bytes": 255
+    },
+    ".local/step08/edit-fix-budget-final.log": {
+      "sha256": "8a99ae9c6c00ac167f9d9f1fd5d7852017772aaeb7ab252fcff28e3235c16a5c",
+      "bytes": 250
+    },
+    ".local/step08/edit-fix-pg-initial-failure.log": {
+      "sha256": "d40341a095df253967f276ebb6b77a858c06ae7fed6cce5a2427f4487461d468",
+      "bytes": 3544
+    },
+    ".local/step08/edit-fix-real.log": {
+      "sha256": "4f8707f3b6e773a4c96cabf97a142819d8b9413b4ce9bd70de0c8a4bdad220b5",
+      "bytes": 870
     }
   },
   "resources": {
     "pgPort": 55528,
     "apiPort": 4388,
     "webPort": 5288,
-    "services": "STOPPED_DATA_RETAINED",
-    "listenerProbe": "lsof exit1 means no matching listeners; pg_ctl reported clean stop.",
+    "services": "STOPPED_DATA_RETAINED_AFTER_ADDITIONAL_EDIT",
+    "listenerProbe": "API/Web were not started in this continuation; pg_ctl reported a clean stop of the owned cluster on55528.",
     "mainHeadUnchanged": "75c65571a592a389853b30531ef6cea3d46c5402",
     "mainWorkingTree": "CLEAN"
   },
@@ -240,5 +455,40 @@
   "step09": "NOT_STARTED",
   "step10": "NOT_STARTED",
   "newAiArtifactMZ": "NOT_EXECUTED",
-  "qualityAndProviderWeightRevision": "UNVERIFIED_OUT_OF_STEP08_SCOPE"
+  "qualityAndProviderWeightRevision": "UNVERIFIED_OUT_OF_STEP08_SCOPE",
+  "previousHandoff": {
+    "candidateCommit": "ea7925ae8b4589af79e0053feef06249764624c9",
+    "functionalCommit": "5179002d20cd50cdbc77adb77ca203d4d1e99605",
+    "status": "BLOCKED",
+    "build": {
+      "id": "step08-ea7925ae8b45-bc6dd7ba816981d3",
+      "manifestSha256": "0131d9d56399f335aa959bebef0b635851aed1cb075445668d3be6b935a9c691",
+      "fileCount": 231
+    },
+    "reportCommit": "e3bd9c8645be6a0b17178d078db6172976a6fb4c",
+    "blocker": "Old Edit168x256 rejected by frozen256x256 contract; preserved unchanged."
+  },
+  "documentationVerification": {
+    "urls": [
+      "https://wavespeed.ai/docs/docs-api/wavespeed-ai/flux-dev",
+      "https://wavespeed.ai/docs/list-models",
+      "https://wavespeed.ai/docs/pricing-api"
+    ],
+    "liveCatalogFilteredSha256": "593abbdeb7a32b41f78908f2c462531ca04d54a62c778abf5bb9db451b65916d",
+    "actualFields": [
+      "enable_base64_output",
+      "enable_sync_mode",
+      "guidance_scale",
+      "image",
+      "mask_image",
+      "num_images",
+      "num_inference_steps",
+      "output_format",
+      "prompt",
+      "seed",
+      "size",
+      "strength"
+    ],
+    "finding": "Overview width/height conflicts with actual additionalProperties:false schema. Actual parameter is size; old size was correctly frozen. Reference-aspect influence inferred from observed96x144→168x256; no unsupported width/height fields added. New version explicitly prepares input256x256 before upload, never resizes output."
+  }
 }

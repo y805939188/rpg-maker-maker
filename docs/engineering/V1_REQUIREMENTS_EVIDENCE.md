@@ -1,5 +1,9 @@
 # V1要求映射 — 当前06–07收尾状态
 
+## 2026-10-17 步骤08 Edit尺寸补修当前状态
+
+当前候选`06ec3d92e1e5579dbc8cdad3de13c2c997fb1ab1` **READY_FOR_REVIEW**。按用户补充授权只追加一次Edit，采用版本化256×256输入准备，严格输出校验不变；SDK上传/编辑/下载/校验/归档真实完成。Generate和旧失败Edit完整记录摘要未变，旧快照不改写。累计3次模型提交、报价预留$0.027/$5，实扣UNVERIFIED。本轮check429、定向9/预算补证2、PG08集成3通过；未改路径复用旧回归，未启动独立Review/合并/推送或09/10。详见[更新的08 Coding报告](../reviews/step-08-coding.md)及[精简证据](../evidence/step-08/coding-summary.json)。下方BLOCKED属于旧候选历史，失败本身仍保留。
+
 ## 2026-10-17 步骤08当前分支补充
 
 本轮从已发布main75c6557实施08 Coding，候选`ea7925ae8b4589af79e0053feef06249764624c9`。Prompt/模型冻结、官方SDK与既有任务恢复/归档接入已实现，check427、08 PG2及尺寸阻断选定1、06 PG23/整改后Executor5、API3/HTTP16、两模式浏览器18各通过。真实Generate已归档；真实Edit返回168×256不符冻结256×256，保持未归档，**整体BLOCKED**。两次模型提交已用完，报价$0.015，实扣UNVERIFIED。详见[08 Coding报告](../reviews/step-08-coding.md)及[精简证据](../evidence/step-08/coding-summary.json)。未启动独立Review/合并/推送或09/10，不修改Main Orchestrator状态；下文08尚未启动等文字保留为06/07历史检查点，06/07既有发布与最终CI继续有效。
