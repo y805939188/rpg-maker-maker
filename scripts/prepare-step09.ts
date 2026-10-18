@@ -6,6 +6,7 @@ import { connectedShape } from '@tileset/mz-compiler';
 import { hashBytes } from '@tileset/asset-core';
 import { loadNativeOracle } from './mz-oracle.js';
 import { validateNativeEmptyPlugins } from './prototype-input.js';
+import { prepareStep09System } from './step09-mz-data.js';
 const [templateArg,packArg,destinationArg]=process.argv.slice(2);
 if(!templateArg||!packArg||!destinationArg)throw Error('Usage: prepare:step09 <licensed native newdata> <actual standard Pack directory> <new independent project>');
 const template=resolve(templateArg),destination=resolve(destinationArg),pack=await readPackExport(packArg);
@@ -13,6 +14,8 @@ assert.ok(destination!==template&&!destination.startsWith(template+'/'),'Indepen
 try{await lstat(destination);throw Error('Destination already exists');}catch(e){if((e as NodeJS.ErrnoException).code!=='ENOENT')throw e;}
 const nativePlugins=await readFile(resolve(template,'js/plugins.js'));validateNativeEmptyPlugins(nativePlugins);
 await loadNativeOracle(resolve(template,'js/rmmz_core.js'));
+const templateSystem=await readFile(resolve(template,'data/System.json'));
+const {system,normalizations}=prepareStep09System(JSON.parse(templateSystem.toString('utf8')),pack.manifest.identity.profile.engineVersion);
 const stage=destination+'.stage';await mkdir(resolve(destination,'..'),{recursive:true});await mkdir(stage);
 await cp(template,stage,{recursive:true,errorOnExist:true,force:false});
 const profile=pack.manifest.identity.profile;
@@ -29,11 +32,10 @@ for(let y=0;y<height;y++)for(let x=0;x<width;x++)data[y*width+x]=wet(x,y)?water.
 const base=JSON.parse(await readFile(resolve(template,'data/Map001.json'),'utf8')) as Record<string,unknown>;
 await writeFile(resolve(stage,'data/Map001.json'),jsonBytes({...base,width,height,tilesetId:1,data,events:[null],encounterList:[],autoplayBgm:false,autoplayBgs:false,parallaxName:'',note:'Script-prepared scene, never claimed editor handdrawing.'}));
 await writeFile(resolve(stage,'data/MapInfos.json'),jsonBytes([null,{id:1,name:'Step09 Pack art/animation acceptance',parentId:0,order:1,expanded:false,scrollX:0,scrollY:0}]));
-const system=JSON.parse(await readFile(resolve(template,'data/System.json'),'utf8')) as Record<string,unknown>;
 Object.assign(system,{gameTitle:`Step09 ${pack.manifest.buildId}`,startMapId:1,startX:1,startY:1,title1Name:'',title2Name:'',hasEncryptedImages:false,hasEncryptedAudio:false});
 (system['advanced'] as Record<string,unknown>)['tileSize']=48;
 await writeFile(resolve(stage,'data/System.json'),jsonBytes(system));
 await writeFile(resolve(stage,'game.rmmzproject'),`RPGMZ ${profile.engineVersion}`);
 await writeFile(resolve(stage,'package.json'),jsonBytes({name:'step09-native-acceptance',main:'index.html','chromium-args':'--force-color-profile=srgb',window:{title:'Step09 actual Pack acceptance',width:816,height:624}}));
-await writeFile(resolve(stage,'step09-build-reference.json'),jsonBytes({buildId:pack.manifest.buildId,manifestSha256:pack.manifestSha256,atlasHashes:{A1:hashBytes(pack.files['A1.png']!),A2:hashBytes(pack.files['A2.png']!)},profileHash:hashBytes(jsonBytes(profile)),editorDrawing:'NOT_EXECUTED',gameRuntime:'NOT_EXECUTED',art:'PENDING_USER_ACCEPTANCE',originalHost:'NOT_VERIFIED',note:'Prepared project and CPU shape mapping do not prove MZ or art PASS.'}),{flag:'wx'});
+await writeFile(resolve(stage,'step09-build-reference.json'),jsonBytes({preparationVersion:'step09-native-project-v2',buildId:pack.manifest.buildId,manifestSha256:pack.manifestSha256,atlasHashes:{A1:hashBytes(pack.files['A1.png']!),A2:hashBytes(pack.files['A2.png']!)},profileHash:pack.manifest.identity.profileHash,templateSystemSha256:hashBytes(templateSystem),preparedSystemSha256:hashBytes(jsonBytes(system)),normalizations,editorDrawing:'NOT_EXECUTED',gameRuntime:'NOT_EXECUTED',art:'PENDING_USER_ACCEPTANCE',originalHost:'NOT_VERIFIED',note:'Prepared project and CPU shape mapping do not prove MZ or art PASS.'}),{flag:'wx'});
 await rename(stage,destination);console.log(JSON.stringify({project:destination,buildId:pack.manifest.buildId,acceptance:'PENDING_USER_ACCEPTANCE'}));

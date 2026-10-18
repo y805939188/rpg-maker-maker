@@ -217,7 +217,14 @@ describe('bounded PNG ingress with actual isolated patched runtime', () => {
         new URL('./fixtures/stalled-worker.mjs', import.meta.url),
         100,
       ),
-    ).rejects.toMatchObject({ code: 'CODEC_TIMEOUT' });
+    ).rejects.toMatchObject({
+      code: 'CODEC_TIMEOUT',
+      cause: {
+        phase: 'startup',
+        operation: 'runtime',
+        elapsedMs: expect.any(Number),
+      },
+    });
     expect((await codecRuntime())['sharp']).toBe('0.35.5');
   });
 });

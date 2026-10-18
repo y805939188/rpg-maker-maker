@@ -29,6 +29,8 @@ export async function runIsolated(
   active = true;
   try {
     return await new Promise<CodecResult>((resolve, reject) => {
+      const started = performance.now();
+      let ready = false;
       const child = fork(worker, [], {
         execArgv: [`--max-old-space-size=${PNG_POLICY.childJsHeapMiB}`],
         stdio: ['ignore', 'ignore', 'ignore', 'ipc'],
@@ -49,11 +51,18 @@ export async function runIsolated(
       };
       const abort = () => finish(new AssetError('CODEC_CANCELLED', 'Image codec was cancelled.'));
       signal?.addEventListener('abort', abort, { once: true });
-      const timer = setTimeout(
-        () =>
-          finish(new AssetError('CODEC_TIMEOUT', 'Image codec exceeded its isolated deadline.')),
-        deadline,
-      );
+      const timer = setTimeout(() => {
+        const error = new AssetError(
+          'CODEC_TIMEOUT',
+          'Image codec exceeded its isolated deadline.',
+        );
+        error.cause = Object.freeze({
+          phase: ready ? 'operation' : 'startup',
+          operation: request.operation,
+          elapsedMs: performance.now() - started,
+        });
+        finish(error);
+      }, deadline);
       child.once('error', () =>
         finish(new AssetError('CODEC_FAILURE', 'Image codec process could not start.')),
       );
@@ -65,7 +74,16 @@ export async function runIsolated(
           reject(new AssetError('CODEC_FAILURE', 'Image codec exited without a valid result.'));
         }
       });
-      child.once('message', (message: unknown) => {
+      child.on('message', (message: unknown) => {
+        if (
+          message &&
+          typeof message === 'object' &&
+          'ready' in message &&
+          message.ready === true
+        ) {
+          ready = true;
+          return;
+        }
         if (
           !message ||
           typeof message !== 'object' ||

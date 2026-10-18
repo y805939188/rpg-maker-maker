@@ -97,3 +97,6 @@ process.once('message', (request: CodecRequest) => {
     process.send?.({ ok: false, code: error instanceof AssetError ? error.code : 'CODEC_FAILURE' }),
   );
 });
+// A bounded diagnostic handshake distinguishes module startup from native work.
+// It does not reset or extend the parent's existing wall-clock deadline.
+process.send?.({ ready: true });

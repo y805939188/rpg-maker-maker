@@ -8,13 +8,19 @@ import { chromium, expect as browserExpect } from '@playwright/test';
 import { hashBytes } from '@tileset/asset-core';
 import { AiStateSchema, StudioSchema } from '@tileset/contracts';
 import { loadEnvironment, parseConfig } from '../../src/config.js';
-import { StudioService, type Resources } from '../../src/studio-service.js';
+import {
+  StudioService,
+  type Resources,
+  type BuildFailureObservation,
+} from '../../src/studio-service.js';
 import { createApplication } from '../../src/app.js';
 import { readStoredStandardZip } from '../studio/stored-zip.js';
 loadEnvironment();
 const root = resolve('.local/step09/integration', randomUUID());
 let running: Awaited<ReturnType<typeof createApplication>>, url: string, admin: PrismaClient;
 const evidence: unknown[] = [];
+const buildFailures: BuildFailureObservation[] = [];
+let failBeforePublish = false;
 async function request(path: string, body?: unknown) {
   const r = await fetch(
     url + path,
@@ -55,6 +61,8 @@ async function waitBuild(p: string) {
   for (let i = 0; i < 80; i++) {
     const s = await studio(p);
     if (!s.jobs.some((j) => ['QUEUED', 'RUNNING'].includes(j.state))) {
+      if (s.jobs[0]?.state === 'FAILED')
+        evidence.push({ failedProject: p, job: s.jobs[0], buildFailures });
       expect(s.jobs[0]?.state).toBe('COMPLETED');
       return s;
     }
@@ -97,12 +105,23 @@ beforeAll(async () => {
   const resources = JSON.parse(
     await readFile(resolve('apps/api/dist/resources/studio.json'), 'utf8'),
   ) as Resources;
-  const service = new StudioService(config, resources, resolve(root, 'assets'));
+  const service = new StudioService(
+    config,
+    resources,
+    resolve(root, 'assets'),
+    async (point) => {
+      if (failBeforePublish && point === 'before-db-commit')
+        throw Error('SYNTHETIC_PRIVATE_PAYLOAD_MUST_NOT_APPEAR_IN_DIAGNOSTICS');
+    },
+    undefined,
+    (observation) => buildFailures.push(observation),
+  );
   running = await createApplication(config, service);
   await running.app.listen(4409, '127.0.0.1');
   url = 'http://127.0.0.1:4409';
 });
 afterAll(async () => {
+  evidence.push({ buildFailures });
   await writeFile(resolve(root, 'summary.json'), JSON.stringify(evidence, null, 2));
   await running?.close();
   await admin?.$disconnect();
@@ -418,4 +437,51 @@ it('invalid reference/model overrides, UNKNOWN, cancellation and hard-invalid co
     ],
     paidSubmissions: 0,
   });
+});
+
+it('failed publication preserves the successful build and exposes only a bounded safe backend stage observation', async () => {
+  const project = await fresh('step09-publication-diagnostic');
+  await request(`/api/projects/${project.id}/preset`, { family: 'art' });
+  let s = await studio(project.id);
+  await request(`/api/projects/${project.id}/recipe`, {
+    expectedRevision: s.revision,
+    sources: Object.fromEntries(s.sources.map((source) => [source.component, source.id])),
+    style: 'component-palette',
+  });
+  s = await studio(project.id);
+  const recipeId = s.recipes.find((recipe) => recipe.current)!.id;
+  await request(`/api/projects/${project.id}/builds`, {
+    expectedRevision: s.revision,
+    recipeId,
+    mode: 'update',
+  });
+  s = await waitBuild(project.id);
+  const successfulBuild = s.successfulBuildId;
+  failBeforePublish = true;
+  try {
+    const job = (await request(`/api/projects/${project.id}/builds`, {
+      expectedRevision: s.revision,
+      recipeId,
+      mode: 'update',
+    })) as { id: string };
+    for (let i = 0; i < 80; i++) {
+      s = await studio(project.id);
+      if (s.jobs.find((j) => j.id === job.id)?.state === 'FAILED') break;
+      await new Promise((resolve) => setTimeout(resolve, 300));
+    }
+    expect(s.jobs.find((j) => j.id === job.id)?.state).toBe('FAILED');
+    expect(s.successfulBuildId).toBe(successfulBuild);
+    const observation = buildFailures.find((item) => item.jobId === job.id)!;
+    expect(observation).toMatchObject({
+      stage: 'publish',
+      code: 'BUILD_FAILED',
+      exceptionType: 'Error',
+    });
+    expect(JSON.stringify(observation)).not.toContain('SYNTHETIC_PRIVATE_PAYLOAD');
+    expect(JSON.stringify(observation)).not.toContain(process.cwd());
+    expect(JSON.stringify(s)).not.toContain('SYNTHETIC_PRIVATE_PAYLOAD');
+    evidence.push({ failureObservation: observation, preservedSuccessfulBuild: successfulBuild });
+  } finally {
+    failBeforePublish = false;
+  }
 });

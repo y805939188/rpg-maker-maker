@@ -399,7 +399,16 @@ export class AiStudioService {
       adapter = {
         provider: real.provider,
         adapterVersion: real.adapterVersion,
-        query: real.query.bind(real),
+        query: async (predictionId, signal) => {
+          const result = await real.query(predictionId, signal);
+          if (result.status !== 'RUNNING')
+            await recordStep09(
+              this.budgetRoot,
+              id,
+              result.status === 'SUCCEEDED' ? 'REMOTE_SUCCEEDED' : 'REMOTE_FAILED',
+            );
+          return result;
+        },
         submit: async (snapshot, signal) => {
           try {
             const input = await real.prepareInput(snapshot, signal),
@@ -423,7 +432,7 @@ export class AiStudioService {
                 ? 'KNOWN'
                 : result.outcome === 'UNKNOWN'
                   ? 'UNKNOWN'
-                  : 'FAILED',
+                  : 'REJECTED',
             );
             return result;
           } catch {
@@ -438,7 +447,12 @@ export class AiStudioService {
       { adapterFor: () => adapter },
       new Archiver(this.studio.store, reader, undefined, true),
     );
-    const archiveRetry = (await this.studio.store.taskDetail(id)).archiveState === 'RETRY_REQUIRED';
+    const detail = await this.studio.store.taskDetail(id);
+    // A persisted successful remote result also proves terminality after a
+    // restart; archive-only recovery must never purchase another generation.
+    if (detail.result && task.snapshot.model.provider === 'wavespeed')
+      await recordStep09(this.budgetRoot, id, 'REMOTE_SUCCEEDED');
+    const archiveRetry = detail.archiveState === 'RETRY_REQUIRED';
     if (archiveRetry && task.snapshot.model.provider === 'wavespeed')
       await recordStep09(this.budgetRoot, id, 'ARCHIVE_RETRY');
     await executor.resume(id, archiveRetry ? 'RETRY_ARCHIVE_ONLY' : 'WAIT');

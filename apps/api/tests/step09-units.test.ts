@@ -119,6 +119,7 @@ describe('step09 provider configuration and shared human budget', () => {
     ).rejects.toThrow('PRICE');
     await expect(reserveStep09(root, input, 'unapproved-model')).rejects.toThrow('PRICE');
     await reserveStep09(root, input, 'wavespeed-ai/flux-schnell');
+    await recordStep09(root, input.taskId, 'REJECTED');
     await recordStep09(root, input.taskId, 'FAILED');
     await expect(reserveStep09(root, input, 'wavespeed-ai/flux-schnell')).rejects.toThrow(
       'ALREADY_RESERVED',
@@ -184,7 +185,7 @@ it('fixed ten-submit exploration includes failed attempts and exhausts globally 
         await recordStep09(
           root,
           taskId,
-          purpose === 'initial' && component === 'grass' ? 'FAILED' : 'ARCHIVED',
+          purpose === 'initial' && component === 'grass' ? 'REMOTE_FAILED' : 'ARCHIVED',
         );
       }
     }

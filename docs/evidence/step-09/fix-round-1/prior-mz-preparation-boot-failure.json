@@ -1,0 +1,18 @@
+[
+  {
+    "case": "T01",
+    "error": "page.waitForFunction: Timeout 10000ms exceeded.",
+    "pageErrors": [],
+    "state": {
+      "text": "TypeError\nCannot read properties of undefined (reading 'clamp')",
+      "scene": "Scene_Title",
+      "loading": "complete",
+      "caught": [
+        {
+          "message": "Cannot read properties of undefined (reading 'clamp')",
+          "stack": "TypeError: Cannot read properties of undefined (reading 'clamp')\n    at Window_TitleCommand.set (http://127.0.0.1:5429/mz/T01/js/rmmz_core.js:3724:40)\n    at Window_Base.updateBackOpacity (http://127.0.0.1:5429/mz/T01/js/rmmz_windows.js:77:22)\n    at Window_Base.initialize (http://127.0.0.1:5429/mz/T01/js/rmmz_windows.js:23:10)\n    at Window_Scrollable.initialize (http://127.0.0.1:5429/mz/T01/js/rmmz_windows.js:598:38)\n    at Window_Selectable.initialize (http://127.0.0.1:5429/mz/T01/js/rmmz_windows.js:844:44)\n    at Window_Command.initialize (http://127.0.0.1:5429/mz/T01/js/rmmz_windows.js:1455:44)\n    at Window_TitleCommand.initialize (http://127.0.0.1:5429/mz/T01/js/rmmz_windows.js:6404:41)\n    at new Window_TitleCommand (http://127.0.0.1:5429/mz/T01/js/rmmz_windows.js:6397:10)\n    at Scene_Title.createCommandWindow (http://127.0.0.1:5429/mz/T01/js/rmmz_scenes.js:581:27)\n    at Scene_Title.create (http://127.0.0.1:5429/mz/T01/js/rmmz_scenes.js:504:10)"
+        }
+      ]
+    }
+  }
+]

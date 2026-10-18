@@ -64,6 +64,7 @@
     "test:step08:real": "node scripts/step08-real.mjs",
     "build:step08": "pnpm build && node scripts/build-engineering.mjs step08",
     "test:step09": "pnpm build && vitest run --config vitest.step09.config.ts",
+    "verify:step09:mz": "node scripts/verify-step09-project.mjs",
     "build:step09": "pnpm build && node scripts/build-engineering.mjs step09",
     "prepare:step09": "node dist/scripts/prepare-step09.js",
     "report:step09": "node scripts/step09-report.mjs"

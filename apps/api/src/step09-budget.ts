@@ -31,6 +31,9 @@ const eventSchema = z
     state: z.enum([
       'RESERVED',
       'KNOWN',
+      'REMOTE_SUCCEEDED',
+      'REMOTE_FAILED',
+      'REJECTED',
       'FAILED',
       'UNKNOWN',
       'ARCHIVED',
@@ -61,6 +64,16 @@ const ledgerSchema = z
   .object({ version: z.literal(EXPLORATION.version), entries: z.array(entrySchema) })
   .strict();
 export type Step09Entry = z.infer<typeof entrySchema>;
+// Local cancellation, failure, discard and archive decisions do not prove that
+// a provider has stopped. Legacy ARCHIVED entries are durable success proof.
+function remoteTerminal(entry: Step09Entry) {
+  return (
+    entry.state === 'ARCHIVED' ||
+    entry.events.some((event) =>
+      ['REMOTE_SUCCEEDED', 'REMOTE_FAILED', 'REJECTED', 'ARCHIVED'].includes(event.state),
+    )
+  );
+}
 export function sharedStep09BudgetRoot(checkout: string) {
   const common = execFileSync('git', ['rev-parse', '--path-format=absolute', '--git-common-dir'], {
     cwd: checkout,
@@ -139,7 +152,7 @@ export async function reserveStep09(
       throw Error('STEP09_PRICE_BLOCKED');
     if (ledger.entries.some((e) => e.taskId === input.taskId))
       throw Error('STEP09_ALREADY_RESERVED');
-    if (ledger.entries.some((e) => ['UNKNOWN', 'RESERVED'].includes(e.state)))
+    if (ledger.entries.some((e) => e.state === 'UNKNOWN' || !remoteTerminal(e)))
       throw Error('STEP09_UNRESOLVED_SUBMISSION');
     if (
       ledger.entries.length >= approval.maxSubmissions ||
@@ -166,7 +179,9 @@ export async function reserveStep09(
       if (
         prior.length !== 2 ||
         !prior.some((e) =>
-          e.events.some((v) => ['FAILED', 'UNUSABLE', 'DISCARDED'].includes(v.state)),
+          e.events.some((v) =>
+            ['FAILED', 'REMOTE_FAILED', 'REJECTED', 'UNUSABLE', 'DISCARDED'].includes(v.state),
+          ),
         )
       )
         throw Error('STEP09_REPAIR_RETRY_REQUIRES_RECORDED_FAILURE');
@@ -206,7 +221,9 @@ export async function step09Summary(root: string) {
     ),
     submissions: ledger.entries.length,
     counters: {
-      failed: ledger.entries.filter((e) => e.events.some((v) => v.state === 'FAILED')).length,
+      failed: ledger.entries.filter((e) =>
+        e.events.some((v) => ['FAILED', 'REMOTE_FAILED', 'REJECTED'].includes(v.state)),
+      ).length,
       unknown: ledger.entries.filter((e) => e.events.some((v) => v.state === 'UNKNOWN')).length,
       unusable: ledger.entries.filter((e) => e.events.some((v) => v.state === 'UNUSABLE')).length,
       archived: ledger.entries.filter((e) => e.events.some((v) => v.state === 'ARCHIVED')).length,

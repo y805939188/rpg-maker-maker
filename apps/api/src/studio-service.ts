@@ -36,6 +36,74 @@ export type Resources = {
   context: Parameters<typeof assembleExport>[2];
   presets: Record<'art' | 'diagnostic', Parameters<typeof assembleExport>[1]['archives'][number]>;
 };
+export type BuildFailureObservation = {
+  jobId: string;
+  stage: string;
+  code: string;
+  exceptionType: string;
+  frames: string[];
+  codec?: { phase: 'startup' | 'operation'; operation: string; elapsedMs: number };
+};
+function observeFailure(jobId: string, stage: string, cause: unknown): BuildFailureObservation {
+  const types = [
+    'Error',
+    'AssertionError',
+    'AssetError',
+    'CompilationError',
+    'StudioError',
+    'ZodError',
+    'PrismaClientKnownRequestError',
+    'GateLostError',
+  ];
+  const error = cause instanceof Error ? cause : undefined;
+  const diagnosticCode = failure(cause).diagnostic.code;
+  const codes = [
+    'BUILD_FAILED',
+    'BUILD_TIMEOUT',
+    'STORAGE_UNAVAILABLE',
+    'STORAGE_WRITE_FAILED',
+    'ASSET_STORAGE',
+    'NOT_FOUND',
+    'REVISION_CONFLICT',
+    'CAPACITY',
+    'IMMUTABLE_DEPENDENCY',
+    'CODEC_TIMEOUT',
+    'CODEC_FAILURE',
+    'CODEC_CANCELLED',
+    'ADAPTER_BUSY',
+    'STYLE',
+    'PALETTE',
+  ];
+  const modules = ['studio-service', 'store', 'replay', 'gate', 'isolation', 'index', 'export'];
+  const frames = (error?.stack?.split('\n').slice(1) ?? [])
+    .flatMap((line) => {
+      const match = line.match(/\/([a-z-]+)\.(?:ts|js):(\d+):(\d+)\)?$/);
+      return match && modules.includes(match[1]!) ? [`${match[1]}:${match[2]}:${match[3]}`] : [];
+    })
+    .slice(0, 6);
+  // Deliberately omit raw message/body/path/env, including custom Error names.
+  const value = error?.cause;
+  const codec: BuildFailureObservation['codec'] =
+    value &&
+    typeof value === 'object' &&
+    'phase' in value &&
+    (value.phase === 'startup' || value.phase === 'operation') &&
+    'operation' in value &&
+    ['encode', 'decode', 'runtime', 'normalize-opaque-rgb'].includes(String(value.operation)) &&
+    'elapsedMs' in value &&
+    typeof value.elapsedMs === 'number' &&
+    Number.isFinite(value.elapsedMs)
+      ? { phase: value.phase, operation: String(value.operation), elapsedMs: value.elapsedMs }
+      : undefined;
+  return {
+    jobId,
+    stage,
+    code: codes.includes(diagnosticCode) ? diagnosticCode : 'BUILD_FAILED',
+    exceptionType: error && types.includes(error.name) ? error.name : 'UnknownError',
+    frames,
+    ...(codec ? { codec } : {}),
+  };
+}
 export class StudioService {
   readonly store: Persistence;
   lastDecodedMeasurement:
@@ -57,6 +125,7 @@ export class StudioService {
     assetRoot: string,
     fault?: import('@tileset/persistence').FaultHook,
     readonly decode: typeof decodeSource = decodeSource,
+    readonly observeBuildFailure?: (value: BuildFailureObservation) => void,
   ) {
     validateProfile(resources.profile);
     assert.equal(fingerprint(resources.profile), PROFILE_HASH);
@@ -596,6 +665,7 @@ export class StudioService {
     }
   }
   private async execute(id: string) {
+    let stage = 'load-job';
     const controller = new AbortController(),
       timer = setTimeout(
         () =>
@@ -620,9 +690,11 @@ export class StudioService {
           snapshotId: string;
           context: Resources['context'];
         };
+      stage = 'start-job';
       await this.write((tx) => tx.studioJob.update({ where: { id }, data: { state: 'RUNNING' } }));
       await this.store.gate.write(
         async (lease) => {
+          stage = 'load-project-pack';
           const session = new ReplaySession(lease.signal),
             project = await this.project(job.projectId);
           const prior = project.successfulBuildId
@@ -636,6 +708,7 @@ export class StudioService {
           // loadArchives recreates owned source/IR/Compiler objects and verifies
           // their exact durable revision and processing descriptors. Do not also
           // serialize/redecode the same recipe through the generic IR reader.
+          stage = 'load-archives';
           const recipe = await this.store.db.assetRevision.findFirstOrThrow({
               where: { id: input.recipeId, projectId: job.projectId, kind: 'recipe' },
             }),
@@ -647,6 +720,7 @@ export class StudioService {
                 r.recipe.ref.contentHash === recipe.contentHash,
             )!;
           assert.ok(r);
+          stage = 'read-history';
           const last = pack.currentBuildId
             ? await this.store.readBuild(pack.currentBuildId, session)
             : null;
@@ -703,6 +777,7 @@ export class StudioService {
               groundId,
             },
           );
+          stage = 'prepare-build';
           const prepared = await this.store.prepareBuild(
             job.projectId,
             pack.id,
@@ -715,6 +790,7 @@ export class StudioService {
           const bundle = JSON.parse(
             new TextDecoder().decode(prepared.files['bundle.json']!),
           ) as Parameters<typeof assembleExport>[1];
+          stage = 'assemble-export';
           const standard = await assembleExport(
             this.resources.profile,
             bundle,
@@ -722,6 +798,7 @@ export class StudioService {
             lease.signal,
           );
           await lease.checkpoint();
+          stage = 'publish';
           await this.store.publish(prepared, standard.files, id);
         },
         `studio-job:${id}`,
@@ -730,6 +807,11 @@ export class StudioService {
     } catch (cause) {
       if ((await this.store.db.studioJob.findUnique({ where: { id } }))?.state === 'COMPLETED')
         return;
+      try {
+        this.observeBuildFailure?.(observeFailure(id, stage, cause));
+      } catch {
+        /* diagnostics cannot change publication recovery */
+      }
       const diagnostic: Diagnostic = failure(cause, '构建任务').diagnostic;
       await this.write((tx) =>
         tx.studioJob.update({
