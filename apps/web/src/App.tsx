@@ -1,3 +1,4 @@
+import { AiStudioPanel } from './AiStudioPanel.js';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ComponentSchema, type Project, type Studio, type BuildDetail } from '@tileset/contracts';
 import { createProject, listProjects, studio, request, upload, preview } from './api.js';
@@ -331,7 +332,7 @@ export function App() {
           <h1>AI Tileset Studio</h1>
           <p>导入基础纹理，固定草地—水面岸线，预览并下载原生 MZ 素材包。</p>
         </div>
-        <span className="badge">AI 尚未开放</span>
+        <span className="badge">AI 整套创作</span>
       </header>
       <div className="layout">
         <aside>
@@ -413,6 +414,13 @@ export function App() {
           ) : (
             data && (
               <>
+                <AiStudioPanel
+                  key={id}
+                  projectId={id}
+                  revision={data.revision}
+                  blocked={busy || running || previewBusy || processedBusy}
+                  onRefresh={() => refresh(id, true)}
+                />
                 <section>
                   <div className="section-title">
                     <h2>{project?.name ?? '项目'} · 创作素材</h2>

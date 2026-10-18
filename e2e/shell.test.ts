@@ -6,7 +6,7 @@ test('browser persists a project and restores its selected Studio', async ({ pag
   const name = '浏览器链路-' + randomUUID().slice(0, 8);
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'AI Tileset Studio' })).toBeVisible();
-  await expect(page.getByText('AI 尚未开放', { exact: true })).toBeVisible();
+  await expect(page.getByText('AI 整套创作', { exact: true })).toBeVisible();
   await page.getByLabel('项目名称').fill(name);
   const response = page.waitForResponse(
     (r) => r.url().endsWith('/api/projects') && r.request().method() === 'POST',

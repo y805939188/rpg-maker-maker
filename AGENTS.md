@@ -49,3 +49,7 @@ Playtest 或真实兼容性验收时，必须先阅读：
 正式 V1.0 目标仍是原生 MZ。
 不得将 RPGReactor 测试结果当作原生兼容性验收。
 未经授权不得修改全局 MZ / NW.js 环境。
+
+## 步骤09 当前 Coding 候选归属（2026-10-18）
+
+本轮仅授权09实现、自测与本地候选交付；不启动独立Review，不批准/合并/推送或进入10。沿用已发布01–08，不改Compiler/Profile/Pixel Contract。`material-processing`拥有框架无关、显式且版本化的AI像素转换/参考准备；`apps/api`复用既有Task/Executor/Archiver/Studio/QA，拥有候选采用和唯一共享09预算门禁；`contracts`唯一维护新增HTTP/Zod/OpenAPI；Web仅依赖contracts。共享私有Provider文件只供后端，Worktree数据库、端口和资产仍独立。普通测试仅Mock/合成配置，不读用户密钥。任何真实调用须用户本人批准固定探索批次，UNKNOWN禁止自动重提；单图归档与任务COMPLETED不能替代完整Pack/MZ/美术验收。质量建议与预算批准分开，保留10验收集。

@@ -154,3 +154,7 @@ R3/5 REQUIRES_REVISION原报告SHA `c18e713ac7e3ee14b9b342234af5d6d4fe9225a67a54
 | 资源安全/原失败/审查独立性                                                 | 原预算/路径/close-release/PNG真实入口保留，原430R4验真，2951历史保护、客户端default/serverFinalUNVERIFIED；Review/CI/Release NOT_EXECUTED_BY_CODER，artifactMZ/艺术/Host/Map003仍未执行/延期 |
 
 所有新增case由既有CI命令`pnpm test:step07`及两模式`pnpm test:e2e`自动发现；远端CI本人未执行。当前V0.1人工工作台不宣称AI或V1.0完成，08–10 NOT_STARTED。
+
+## 步骤09作者候选（2026-10-18）
+
+本轮仅Coding，不将01–08重新全局审查。文字/参考空辅助完整Pack、正常texture偏好、候选选择与受控转换、共享基础三帧、局部修复保护、实际导出预览/下载、共享人工预算门禁见[09工程基线](STEP_09_BASELINE.md)与[作者报告](../reviews/step-09-coding.md)。自动化与浏览器Mock通过不等于真实AI Pack、MZ或人工美术通过；真实预算与质量阈值未获用户批准时保持NOT_EXECUTED/PENDING，10保留集未用于09调参。正式plans、历史失败和旧manifest不改写。

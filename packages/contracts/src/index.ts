@@ -1,3 +1,4 @@
+import * as aiStudio from './ai-studio.js';
 import * as studio from './studio.js';
 export * from './studio.js';
 import { z } from 'zod';
@@ -142,6 +143,16 @@ export function createOpenApiDocument(): OpenAPIObject {
   });
   const jsonRoutes = [
     ['get', '/api/projects/{id}/studio', undefined, studio.StudioSchema, 200],
+    ['get', '/api/projects/{id}/ai', undefined, aiStudio.AiStateSchema, 200],
+    [
+      'post',
+      '/api/projects/{id}/ai/create',
+      aiStudio.AiCreateSchema,
+      aiStudio.AiCreatedSchema,
+      202,
+    ],
+    ['post', '/api/projects/{id}/ai/apply', aiStudio.AiApplySchema, aiStudio.AiAppliedSchema, 202],
+    ['post', '/api/projects/{id}/ai/action', aiStudio.AiTaskActionSchema, studio.SavedSchema, 200],
     [
       'post',
       '/api/projects/{id}/builds/{build}/export',
@@ -211,6 +222,30 @@ export function createOpenApiDocument(): OpenAPIObject {
       ...errors,
     },
   });
+  registry.registerPath({
+    method: 'post',
+    path: '/api/projects/{id}/ai/reference/upload',
+    description:
+      'Bounded PNG reference bytes; no paths or URLs. Original retained. Preparation is explicit and lossy.',
+    request: {
+      params,
+      headers: writeHeaders,
+      query: studio.EmptyQuerySchema,
+      body: {
+        required: true,
+        content: {
+          'image/png': { schema: z.string().openapi({ type: 'string', format: 'binary' }) },
+        },
+      },
+    },
+    responses: {
+      201: {
+        description: 'Immutable reference',
+        content: { 'application/json': { schema: aiStudio.AiReferenceSchema } },
+      },
+      ...errors,
+    },
+  });
   for (const [path, extra, query, media] of [
     [
       '/api/projects/{id}/sources/{source}/png',
@@ -264,3 +299,5 @@ export function createOpenApiDocument(): OpenAPIObject {
     servers: [{ url: '/' }],
   });
 }
+
+export * from './ai-studio.js';

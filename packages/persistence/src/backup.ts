@@ -42,6 +42,7 @@ const tables = [
   'TaskArtifact',
   'FinalExport',
   'StudioJob',
+  'AiConversion',
 ];
 async function digest(store: Persistence) {
   const data: Record<string, unknown> = {};
@@ -61,6 +62,21 @@ export async function verifyDatabase(store: Persistence) {
   for (const build of await store.db.build.findMany())
     builds.set(build.id, await store.readBuild(build.id, session));
   for (const e of await store.db.finalExport.findMany()) await store.readExport(e.buildId);
+  for (const conversion of await store.db.aiConversion.findMany()) {
+    const task = await store.task(conversion.taskId);
+    assert.equal(task?.projectId, conversion.projectId);
+    assert.equal(
+      (await store.db.assetRevision.findUniqueOrThrow({ where: { id: conversion.sourceId } }))
+        .projectId,
+      conversion.projectId,
+    );
+    await store.readSource(conversion.sourceId);
+    assert.ok(Array.isArray(conversion.outputs));
+    for (const id of conversion.outputs) {
+      assert.equal(typeof id, 'string');
+      await store.readSource(String(id));
+    }
+  }
   const projects = await store.db.project.findMany();
   for (const p of projects) {
     if (

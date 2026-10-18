@@ -214,3 +214,14 @@ model StudioJob {
   diagnostic Json?
   createdAt DateTime @default(now()) @db.Timestamptz(3)
 }
+
+// Immutable application evidence; source revisions and Provider tasks remain their existing owners.
+model AiConversion {
+  id String @id
+  projectId String @db.Uuid
+  taskId String @db.Uuid
+  sourceId String
+  descriptor Json
+  outputs Json
+  createdAt DateTime @default(now()) @db.Timestamptz(3)
+}

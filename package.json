@@ -62,7 +62,11 @@
     "test:step07": "pnpm build && vitest run --config vitest.step07.config.ts",
     "test:step08": "pnpm build && vitest run --config vitest.step08.config.ts",
     "test:step08:real": "node scripts/step08-real.mjs",
-    "build:step08": "pnpm build && node scripts/build-engineering.mjs step08"
+    "build:step08": "pnpm build && node scripts/build-engineering.mjs step08",
+    "test:step09": "pnpm build && vitest run --config vitest.step09.config.ts",
+    "build:step09": "pnpm build && node scripts/build-engineering.mjs step09",
+    "prepare:step09": "node dist/scripts/prepare-step09.js",
+    "report:step09": "node scripts/step09-report.mjs"
   },
   "dependencies": {
     "sharp": "0.35.5"

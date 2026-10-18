@@ -371,3 +371,4 @@ export function processShoreline(input: {
   const ir = immutableTileIR({ ...base, contentHash: tileIRHash(base) });
   return Object.freeze({ state: 'COMPILABLE_RECIPE', ir });
 }
+export { AI_CONVERSION, normalizeAiTerrain, prepareReferenceV2 } from './ai-normalization.js';

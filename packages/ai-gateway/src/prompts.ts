@@ -85,7 +85,7 @@ export function composeTaskSnapshot(
   const input = requestSchema.parse(request);
   if (
     Array.from(input.supplemental).some((c) => c.charCodeAt(0) < 32 || c.charCodeAt(0) === 127) ||
-    /[<>`{}]|ignore|override|instruction|system|prompt|instead|disregard|forget|cancel|atlas|tilesheet|a[1-5]|rpg\s*maker|unity|unreal|perspective|photoreal|3d|text|watermark|忽略|覆盖|指令|系统|提示词|改为|不要遵守|取消|图集|透视|写实|文字|水印/i.test(
+    /[<>`{}]|\b(?:ignore|override|instructions?|system|prompt|instead|disregard|forget|cancel|atlas|tilesheet|a[1-5]|rpg\s*maker|unity|unreal|perspective|photoreal|3d|text|watermark|model|num_images|seed|width|height)\b|忽略|覆盖|指令|系统|提示词|改为|不要遵守|取消|图集|透视|写实|文字|水印|模型|[0-9]+\s*(?:frames?|帧)/i.test(
       input.supplemental,
     )
   )

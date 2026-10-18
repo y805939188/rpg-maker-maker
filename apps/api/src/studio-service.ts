@@ -348,6 +348,14 @@ export class StudioService {
       assert.ok(f, 'Source file missing from metadata snapshot');
       const b = await this.store.storage.read(f),
         dimensions = inspectPng(b);
+      if (
+        dimensions.width !== 96 ||
+        dimensions.height !== 144 ||
+        r.logicalId.startsWith('ai-reference-') ||
+        r.logicalId.startsWith('wavespeed-') ||
+        r.logicalId.startsWith('mock-')
+      )
+        continue;
       sources.push({
         id: r.id,
         component:

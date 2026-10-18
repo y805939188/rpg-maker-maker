@@ -1,6 +1,6 @@
-import { composeTaskSnapshot, DEFAULT_MODELS } from '@tileset/ai-gateway';
+import { composeTaskSnapshot, DEFAULT_MODELS, freezeTaskSnapshot } from '@tileset/ai-gateway';
 import { RawSource, fingerprint } from '@tileset/asset-core';
-import { resizeNearest } from '@tileset/material-processing';
+import { resizeNearest, prepareReferenceV2 } from '@tileset/material-processing';
 import { encodePng, decodeSource } from '@tileset/image-adapter';
 import type { PromptRequest, TaskSnapshot, DefaultModelConfiguration } from '@tileset/ai-gateway';
 import type { Persistence } from '@tileset/persistence';
@@ -11,7 +11,12 @@ export class AiTaskService {
     private readonly target: TaskSnapshot['targetProfile'],
     private readonly defaults?: DefaultModelConfiguration,
   ) {}
-  async create(projectId: string, request: PromptRequest, referenceAssetId?: string) {
+  async create(
+    projectId: string,
+    request: PromptRequest,
+    referenceAssetId?: string,
+    context: Record<string, string> = {},
+  ) {
     const references: TaskSnapshot['references'][number][] = [];
     if (referenceAssetId) {
       const row = await this.store.db.assetRevision.findUniqueOrThrow({
@@ -31,11 +36,14 @@ export class AiTaskService {
         (this.defaults ?? DEFAULT_MODELS).imageEditReferencePreparation
       ) {
         const preparation = (this.defaults ?? DEFAULT_MODELS).imageEditReferencePreparation!;
-        const pixels = resizeNearest(source.image, {
-          width: 256,
-          height: 256,
-          method: 'nearest-explicit',
-        });
+        const pixels =
+          preparation === 'center-crop-square-nearest-v2'
+            ? prepareReferenceV2(source.image)
+            : resizeNearest(source.image, {
+                width: 256,
+                height: 256,
+                method: 'nearest-explicit',
+              });
         const bytes = await encodePng(pixels);
         const prepared = await decodeSource(
           new RawSource({
@@ -69,14 +77,18 @@ export class AiTaskService {
       }
     }
     await this.store.projectSnapshot(projectId);
+    const snapshot = composeTaskSnapshot(
+      request,
+      { id: this.target.id, version: this.target.version },
+      references,
+      this.defaults,
+    );
     return this.store.createTask(
       projectId,
-      composeTaskSnapshot(
-        request,
-        { id: this.target.id, version: this.target.version },
-        references,
-        this.defaults,
-      ),
+      freezeTaskSnapshot({
+        ...snapshot,
+        structuredParameters: { ...snapshot.structuredParameters, ...context },
+      }),
     );
   }
   async referenceBytes(
