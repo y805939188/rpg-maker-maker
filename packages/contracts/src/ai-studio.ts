@@ -9,14 +9,30 @@ export const AiCreateSchema = z
     repair: z.enum(['grass', 'water']).optional(),
   })
   .strict();
+export const AiRegionSchema = z
+  .object({
+    x: z.number().int().nonnegative(),
+    y: z.number().int().nonnegative(),
+    width: z.number().int().min(24).max(4096),
+    height: z.number().int().min(24).max(4096),
+  })
+  .strict()
+  .refine((v) => v.width === v.height, 'Square region required');
 export const AiApplySchema = z
   .object({
     expectedRevision: z.number().int().nonnegative(),
     grassTask: z.string().uuid().optional(),
     waterTask: z.string().uuid().optional(),
+    grassRegion: AiRegionSchema.optional(),
+    waterRegion: AiRegionSchema.optional(),
   })
   .strict()
-  .refine((v) => v.grassTask || v.waterTask);
+  .refine(
+    (v) =>
+      (v.grassTask || v.waterTask) &&
+      (!v.grassRegion || v.grassTask) &&
+      (!v.waterRegion || v.waterTask),
+  );
 export const AiTaskActionSchema = z
   .object({ taskId: z.string().uuid(), action: z.enum(['resume', 'cancel', 'discard']) })
   .strict();
@@ -25,6 +41,7 @@ export const AiCandidateSchema = z
     id: z.string().uuid(),
     component: z.enum(['grass', 'water']),
     batch: z.string().uuid(),
+    configurationVersion: z.string(),
     mode: z.enum(['text', 'reference']),
     purpose: z.enum(['initial', 'retry', 'repair']),
     state: z.string(),
@@ -33,6 +50,8 @@ export const AiCandidateSchema = z
     createdAt: z.string().datetime(),
     sha256: HashSchema.nullable(),
     sourceId: HashSchema.nullable(),
+    width: z.number().int().positive().nullable(),
+    height: z.number().int().positive().nullable(),
     url: z.string().nullable(),
     recovery: z.string(),
     discarded: z.boolean(),

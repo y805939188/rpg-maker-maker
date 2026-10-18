@@ -16,6 +16,27 @@ export const EXPLORATION = Object.freeze({
   manualMinutesPerCase: 15,
   referenceSha256: '1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd',
 });
+export const FUNCTIONAL_REFERENCE_BATCH = Object.freeze({
+  version: 'step09-functional-reference-v2',
+  configurationVersion: 'terrain-models-step09-functional-v2',
+  promptRevision: 'terrain-reference-role-material@2',
+  referenceSha256: EXPLORATION.referenceSha256,
+  totalUsd: 0.2,
+  maxSubmissions: 2,
+});
+const functionalApprovalSchema = z
+  .object({
+    version: z.literal(FUNCTIONAL_REFERENCE_BATCH.version),
+    approvedBy: z.literal('HUMAN_USER'),
+    authorization: z.string().min(10),
+    approvedAt: z.string().datetime(),
+    totalUsd: z.literal(0.2),
+    maxSubmissions: z.literal(2),
+    configurationVersion: z.literal(FUNCTIONAL_REFERENCE_BATCH.configurationVersion),
+    promptRevision: z.literal(FUNCTIONAL_REFERENCE_BATCH.promptRevision),
+    referenceSha256: z.literal(EXPLORATION.referenceSha256),
+  })
+  .strict();
 const approvalSchema = z
   .object({
     version: z.literal(EXPLORATION.version),
@@ -49,6 +70,11 @@ const eventSchema = z
 const entrySchema = z
   .object({
     taskId: z.string().uuid(),
+    scope: z.literal('step09-functional-reference-v2').optional(),
+    snapshotHash: z
+      .string()
+      .regex(/^[a-f0-9]{64}$/)
+      .optional(),
     caseId: z.enum(['T01', 'R01']),
     purpose: z.enum(['initial', 'retry', 'repair']),
     component: z.enum(['grass', 'water']),
@@ -61,7 +87,28 @@ const entrySchema = z
   })
   .strict();
 const ledgerSchema = z
-  .object({ version: z.literal(EXPLORATION.version), entries: z.array(entrySchema) })
+  .object({
+    version: z.literal(EXPLORATION.version),
+    entries: z.array(entrySchema),
+    scopeStops: z
+      .array(
+        z
+          .object({
+            scope: z.literal('step09-functional-reference-v2'),
+            taskId: z.string().uuid(),
+            reason: z.enum([
+              'PREFLIGHT_BLOCKED',
+              'REMOTE_FAILED',
+              'REJECTED',
+              'UNKNOWN',
+              'UNUSABLE',
+            ]),
+            at: z.string().datetime(),
+          })
+          .strict(),
+      )
+      .default([]),
+  })
   .strict();
 export type Step09Entry = z.infer<typeof entrySchema>;
 // Local cancellation, failure, discard and archive decisions do not prove that
@@ -99,7 +146,11 @@ async function readLedger(root: string) {
     return ledgerSchema.parse(JSON.parse(await readFile(resolve(root, 'ledger.json'), 'utf8')));
   } catch (e) {
     if (e && typeof e === 'object' && 'code' in e && e.code === 'ENOENT')
-      return { version: EXPLORATION.version, entries: [] as Step09Entry[] };
+      return {
+        version: EXPLORATION.version,
+        entries: [] as Step09Entry[],
+        scopeStops: [] as z.infer<typeof ledgerSchema>['scopeStops'],
+      };
     throw Error('STEP09_LEDGER_INVALID', { cause: e });
   }
 }
@@ -120,20 +171,33 @@ async function save(root: string, ledger: z.infer<typeof ledgerSchema>) {
     await dir.close();
   }
 }
-export async function assertStep09Approved(root: string) {
+export async function assertStep09Approved(root: string, scope?: 'step09-functional-reference-v2') {
   try {
-    return approvalSchema.parse(JSON.parse(await readFile(resolve(root, 'approval.json'), 'utf8')));
+    const original = approvalSchema.parse(
+      JSON.parse(await readFile(resolve(root, 'approval.json'), 'utf8')),
+    );
+    if (scope) {
+      if ((await readLedger(root)).scopeStops.some((s) => s.scope === scope))
+        throw Error('STEP09_SCOPE_STOPPED');
+      await functionalApprovalSchema.parseAsync(
+        JSON.parse(await readFile(resolve(root, `${scope}-approval.json`), 'utf8')),
+      );
+    }
+    return original;
   } catch {
     throw Error('STEP09_BUDGET_NOT_APPROVED');
   }
 }
 export async function reserveStep09(
   root: string,
-  input: Pick<Step09Entry, 'taskId' | 'caseId' | 'purpose' | 'component' | 'quotedUsd'>,
+  input: Pick<
+    Step09Entry,
+    'taskId' | 'caseId' | 'purpose' | 'component' | 'quotedUsd' | 'scope' | 'snapshotHash'
+  >,
   model: string,
 ) {
   return locked(root, async () => {
-    const approval = await assertStep09Approved(root),
+    const approval = await assertStep09Approved(root, input.scope),
       ledger = await readLedger(root);
     const ceiling =
       model === 'wavespeed-ai/flux-schnell'
@@ -159,8 +223,30 @@ export async function reserveStep09(
       ledger.entries.reduce((n, e) => n + e.reservedUsd, 0) + 0.05 > approval.totalUsd
     )
       throw Error('STEP09_BUDGET_EXHAUSTED');
+    if (input.scope) {
+      const scoped = ledger.entries.filter((e) => e.scope === input.scope);
+      if (
+        input.caseId !== 'R01' ||
+        input.purpose !== 'initial' ||
+        !input.snapshotHash ||
+        scoped.length >= 2 ||
+        scoped.reduce((n, e) => n + e.reservedUsd, 0) + 0.05 >
+          FUNCTIONAL_REFERENCE_BATCH.totalUsd ||
+        scoped.some((e) => e.component === input.component)
+      )
+        throw Error('STEP09_SCOPE_LIMIT');
+      // A failed/unknown first member ends this no-retry pair. Archive-only recovery is still allowed.
+      if (
+        scoped.some((e) =>
+          e.events.some((v) =>
+            ['FAILED', 'REMOTE_FAILED', 'REJECTED', 'UNUSABLE', 'DISCARDED'].includes(v.state),
+          ),
+        )
+      )
+        throw Error('STEP09_SCOPE_STOPPED');
+    }
     const same = ledger.entries.filter(
-      (e) => e.caseId === input.caseId && e.purpose === input.purpose,
+      (e) => e.scope === input.scope && e.caseId === input.caseId && e.purpose === input.purpose,
     );
     if (
       same.length >= (input.purpose === 'repair' ? 1 : 2) ||
@@ -169,12 +255,14 @@ export async function reserveStep09(
       throw Error('STEP09_CASE_LIMIT');
     if (
       input.purpose !== 'initial' &&
-      !ledger.entries.some((e) => e.caseId === input.caseId && e.purpose === 'initial')
+      !ledger.entries.some(
+        (e) => e.scope === input.scope && e.caseId === input.caseId && e.purpose === 'initial',
+      )
     )
       throw Error('STEP09_SEQUENCE');
     if (input.purpose !== 'initial') {
       const prior = ledger.entries.filter(
-        (e) => e.caseId === input.caseId && e.purpose === 'initial',
+        (e) => e.scope === input.scope && e.caseId === input.caseId && e.purpose === 'initial',
       );
       if (
         prior.length !== 2 ||
@@ -199,6 +287,20 @@ export async function reserveStep09(
     return entry;
   });
 }
+export async function stopStep09Scope(root: string, taskId: string) {
+  await locked(root, async () => {
+    const ledger = await readLedger(root);
+    if (!ledger.scopeStops.some((s) => s.scope === 'step09-functional-reference-v2')) {
+      ledger.scopeStops.push({
+        scope: 'step09-functional-reference-v2',
+        taskId,
+        reason: 'PREFLIGHT_BLOCKED',
+        at: new Date().toISOString(),
+      });
+      await save(root, ledger);
+    }
+  });
+}
 export async function recordStep09(root: string, taskId: string, state: Step09Entry['state']) {
   await locked(root, async () => {
     const ledger = await readLedger(root),
@@ -207,6 +309,13 @@ export async function recordStep09(root: string, taskId: string, state: Step09En
     if (entry.state === 'UNKNOWN' && state !== 'UNKNOWN')
       throw Error('STEP09_UNKNOWN_REQUIRES_HUMAN_RECONCILIATION');
     entry.state = state;
+    if (entry.scope && ['REMOTE_FAILED', 'REJECTED', 'UNKNOWN', 'UNUSABLE'].includes(state))
+      ledger.scopeStops.push({
+        scope: entry.scope,
+        taskId,
+        reason: state as 'REMOTE_FAILED' | 'REJECTED' | 'UNKNOWN' | 'UNUSABLE',
+        at: new Date().toISOString(),
+      });
     entry.events.push({ state, at: new Date().toISOString() });
     await save(root, ledger);
   });
@@ -219,6 +328,7 @@ export async function step09Summary(root: string) {
       () => true,
       () => false,
     ),
+    scopeStops: ledger.scopeStops,
     submissions: ledger.entries.length,
     counters: {
       failed: ledger.entries.filter((e) =>

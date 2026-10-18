@@ -94,3 +94,30 @@ describe('versioned platform prompts', () => {
     expect(legacy.configurationVersion).toBe('terrain-models-20261017-v1');
   });
 });
+
+it('role-aware reference v2 rebuilds target material without rewriting the legacy edit snapshot or model defaults', () => {
+  const refs = [
+    { assetId: '9ead7c5f-ea94-49d6-9b82-a1930e740c7b', revision: '1', sha256: 'a'.repeat(64) },
+    { assetId: '2db41d81-ddb2-4cf3-90a0-f86effb1c165', revision: '1', sha256: 'b'.repeat(64) },
+  ];
+  const request = { component: 'water', operation: 'IMAGE_EDIT' } as const;
+  const old = composeTaskSnapshot(request, target, refs),
+    frozen = renderFrozenPrompt(old);
+  const newer = composeTaskSnapshot(request, target, refs, {
+    ...DEFAULT_MODELS,
+    configurationVersion: 'terrain-models-step09-functional-v2',
+    imageEditPrompt: 'reference-role-material-v2',
+    imageEdit: {
+      ...DEFAULT_MODELS.imageEdit,
+      parameters: { ...DEFAULT_MODELS.imageEdit.parameters, strength: 0.9 },
+    },
+  });
+  expect(old.prompts.task.content).toContain('Preserve its top-down material identity');
+  expect(newer.prompts.main).toEqual(old.prompts.main);
+  expect(newer.prompts.task.revision).toBe('2');
+  expect(newer.prompts.task.content).toContain('material role takes priority');
+  expect(newer.prompts.task.content).toContain('WATER');
+  expect(newer.model.parameters['strength']).toBe(0.9);
+  expect(old.model.parameters['strength']).toBe(0.55);
+  expect(renderFrozenPrompt(old)).toBe(frozen);
+});

@@ -252,8 +252,21 @@ it('both empty-supplement workflows produce complete actual Pack; water repair p
 });
 it('real Chromium performs both product paths, optional texture preferences, candidate selection, repair, current/history preview and matching download', async () => {
   const browser = await chromium.launch({ headless: true });
+  const network: unknown[] = [];
+  const context = await browser.newContext();
+  await context.tracing.start({ screenshots: true, snapshots: true, sources: true });
+  const page = await context.newPage();
+  const starts = new Map<string, number>();
+  page.on('request', (r) => starts.set(r.url(), performance.now()));
+  page.on('response', (r) => {
+    if (network.length < 400)
+      network.push({
+        path: new URL(r.url()).pathname,
+        status: r.status(),
+        elapsedMs: performance.now() - (starts.get(r.url()) ?? performance.now()),
+      });
+  });
   try {
-    const page = await browser.newPage();
     const pageErrors: string[] = [];
     page.on('pageerror', (e) => pageErrors.push(e.message));
     for (const reference of [false, true]) {
@@ -279,8 +292,39 @@ it('real Chromium performs both product paths, optional texture preferences, can
       });
       await panel.getByLabel('草地候选').selectOption({ index: 1 });
       await panel.getByLabel('水面候选').selectOption({ index: 1 });
+      // A product user can adjust an original-pixel square without JSON or offline scripts.
+      await panel.getByRole('slider', { name: '草地取样范围' }).fill('128');
+      await panel
+        .getByRole('img', { name: '草地取样图，点击移动选区' })
+        .click({ position: { x: 112, y: 120 } });
+      await panel.getByRole('slider', { name: '水面取样范围' }).fill('128');
+      await panel
+        .getByRole('img', { name: '水面取样图，点击移动选区' })
+        .click({ position: { x: 144, y: 136 } });
       await panel.getByRole('button', { name: '选择候选并构建完整 Pack' }).click();
       await browserExpect(panel.getByText(/完整 Pack 已构建/)).toBeVisible({ timeout: 30000 });
+      const conversions = await running.studio.store.db.aiConversion.findMany({
+        where: { projectId: project.id },
+      });
+      expect(conversions).toHaveLength(2);
+      const descriptors = conversions.map(
+        (c) =>
+          c.descriptor as {
+            version: string;
+            rect: { x: number; y: number; width: number; height: number };
+            paletteInputs: string[];
+            outputPixelHashes: string[];
+          },
+      );
+      for (const d of descriptors) {
+        expect(d.version).toBe('ai-region-adaptive-source-v2');
+        expect(d.paletteInputs).toHaveLength(2);
+        expect(d.rect.width).toBe(128);
+      }
+      expect(descriptors.map((d) => d.rect).sort((a, b) => a.x - b.x)).toEqual([
+        { x: 48, y: 56, width: 128, height: 128 },
+        { x: 80, y: 72, width: 128, height: 128 },
+      ]);
       await panel.getByLabel('补充描述（可选）').fill('soft texture, blue-green colors');
       const repairResponse = page.waitForResponse(
         (r) => r.url().endsWith('/ai/create') && r.request().method() === 'POST',
@@ -327,6 +371,26 @@ it('real Chromium performs both product paths, optional texture preferences, can
     }
     expect(pageErrors).toEqual([]);
   } finally {
+    await writeFile(
+      resolve(root, 'browser-state.txt'),
+      await page
+        .locator('body')
+        .innerText()
+        .catch(() => ''),
+    );
+    await writeFile(
+      resolve(root, 'browser-network.json'),
+      JSON.stringify(
+        {
+          network,
+          occupied: (running.studio as unknown as { occupied: boolean }).occupied,
+          waiting: !!(running.studio as unknown as { waiting: unknown }).waiting,
+        },
+        null,
+        2,
+      ),
+    );
+    await context.tracing.stop({ path: resolve(root, 'browser-trace.zip') });
     await browser.close();
   }
 });

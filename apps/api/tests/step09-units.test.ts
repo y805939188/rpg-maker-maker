@@ -10,6 +10,8 @@ import {
   step09Summary,
   sharedStep09BudgetRoot,
   EXPLORATION,
+  FUNCTIONAL_REFERENCE_BATCH,
+  stopStep09Scope,
 } from '../src/step09-budget.js';
 import { composeTaskSnapshot } from '@tileset/ai-gateway';
 const target = { id: 'native-mz', version: '1' };
@@ -209,4 +211,97 @@ it('fixed ten-submit exploration includes failed attempts and exhausts globally 
       'wavespeed-ai/flux-schnell',
     ),
   ).rejects.toThrow('BUDGET_EXHAUSTED');
+});
+
+it('new reference scope requires an additional explicit approval, retains old ledger entries and stops at two exact components without refunds', async () => {
+  const root = await mkdtemp(resolve(tmpdir(), 'step09-functional-budget-'));
+  const base = {
+    approvedBy: 'HUMAN_USER',
+    authorization: 'SYNTHETIC_TEST_ONLY_NOT_LIVE_APPROVAL',
+    approvedAt: new Date().toISOString(),
+  };
+  await writeFile(
+    resolve(root, 'approval.json'),
+    JSON.stringify({ ...base, version: EXPLORATION.version, totalUsd: 1, maxSubmissions: 10 }),
+  );
+  const old = {
+    taskId: randomUUID(),
+    caseId: 'R01' as const,
+    purpose: 'initial' as const,
+    component: 'grass' as const,
+    quotedUsd: 0.012,
+  };
+  await reserveStep09(root, old, 'wavespeed-ai/flux-dev');
+  await recordStep09(root, old.taskId, 'ARCHIVED');
+  const oldEntry = (await step09Summary(root)).entries[0];
+  const fresh = {
+    ...old,
+    taskId: randomUUID(),
+    scope: 'step09-functional-reference-v2' as const,
+    snapshotHash: 'a'.repeat(64),
+  };
+  await expect(reserveStep09(root, fresh, 'wavespeed-ai/flux-dev')).rejects.toThrow('NOT_APPROVED');
+  await writeFile(
+    resolve(root, 'step09-functional-reference-v2-approval.json'),
+    JSON.stringify({ ...base, ...FUNCTIONAL_REFERENCE_BATCH }),
+  );
+  await reserveStep09(root, fresh, 'wavespeed-ai/flux-dev');
+  await recordStep09(root, fresh.taskId, 'KNOWN');
+  await expect(
+    reserveStep09(
+      root,
+      { ...fresh, taskId: randomUUID(), component: 'water' },
+      'wavespeed-ai/flux-dev',
+    ),
+  ).rejects.toThrow('UNRESOLVED');
+  await recordStep09(root, fresh.taskId, 'REMOTE_SUCCEEDED');
+  await recordStep09(root, fresh.taskId, 'ARCHIVED');
+  const water = { ...fresh, taskId: randomUUID(), component: 'water' as const };
+  await reserveStep09(root, water, 'wavespeed-ai/flux-dev');
+  await recordStep09(root, water.taskId, 'ARCHIVED');
+  await expect(
+    reserveStep09(root, { ...fresh, taskId: randomUUID() }, 'wavespeed-ai/flux-dev'),
+  ).rejects.toThrow('SCOPE_LIMIT');
+  const end = await step09Summary(root);
+  expect(end.entries[0]).toEqual(oldEntry);
+  expect(end.submissions).toBe(3);
+  expect(end.reservedUsd).toBeCloseTo(0.15);
+});
+
+it('a preflight/price rejection durably stops the new pair even before it reserves a model submission', async () => {
+  const root = await mkdtemp(resolve(tmpdir(), 'step09-functional-stop-'));
+  const base = {
+    approvedBy: 'HUMAN_USER',
+    authorization: 'SYNTHETIC_TEST_ONLY_NOT_LIVE_APPROVAL',
+    approvedAt: new Date().toISOString(),
+  };
+  await writeFile(
+    resolve(root, 'approval.json'),
+    JSON.stringify({ ...base, version: EXPLORATION.version, totalUsd: 1, maxSubmissions: 10 }),
+  );
+  await writeFile(
+    resolve(root, 'step09-functional-reference-v2-approval.json'),
+    JSON.stringify({ ...base, ...FUNCTIONAL_REFERENCE_BATCH }),
+  );
+  const taskId = randomUUID();
+  await stopStep09Scope(root, taskId);
+  await expect(
+    reserveStep09(
+      root,
+      {
+        taskId: randomUUID(),
+        caseId: 'R01',
+        purpose: 'initial',
+        component: 'water',
+        quotedUsd: 0.012,
+        scope: 'step09-functional-reference-v2',
+        snapshotHash: 'a'.repeat(64),
+      },
+      'wavespeed-ai/flux-dev',
+    ),
+  ).rejects.toThrow('NOT_APPROVED');
+  const state = await step09Summary(root);
+  expect(state.submissions).toBe(0);
+  expect(state.scopeStops).toHaveLength(1);
+  expect(state.scopeStops[0]?.taskId).toBe(taskId);
 });

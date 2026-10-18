@@ -5,8 +5,15 @@ import { resolve } from 'node:path';
 import { DEFAULT_MODELS } from '@tileset/ai-gateway';
 import type { DefaultModelConfiguration, ProviderAdapter } from '@tileset/ai-gateway';
 import { RawSource, RgbaImage, fingerprint, hashBytes } from '@tileset/asset-core';
-import { decodeSource, encodePng } from '@tileset/image-adapter';
-import { normalizeAiTerrain, blank } from '@tileset/material-processing';
+import { decodeSource, encodePng, inspectPng } from '@tileset/image-adapter';
+import {
+  normalizeAiRegion,
+  sampleRegion,
+  sharedPalette,
+  defaultTerrainRegion,
+  AI_REGION_CONVERSION,
+  blank,
+} from '@tileset/material-processing';
 import { Archiver, Executor, HttpsResultReader, MockProvider } from '@tileset/local-executor';
 import { dbJson } from '@tileset/persistence';
 import { AiStateSchema } from '@tileset/contracts';
@@ -23,12 +30,18 @@ import {
   assertStep09Approved,
   reserveStep09,
   recordStep09,
+  stopStep09Scope,
   EXPLORATION,
 } from './step09-budget.js';
 export const STUDIO_AI_VERSION = 'step09-ai-studio-v1';
 export const STEP09_MODELS: DefaultModelConfiguration = Object.freeze({
   ...DEFAULT_MODELS,
-  configurationVersion: 'terrain-models-step09-v1',
+  configurationVersion: 'terrain-models-step09-functional-v2',
+  imageEditPrompt: 'reference-role-material-v2',
+  imageEdit: {
+    ...DEFAULT_MODELS.imageEdit,
+    parameters: { ...DEFAULT_MODELS.imageEdit.parameters, strength: 0.9 },
+  },
   imageEditReferencePreparation: 'center-crop-square-nearest-v2',
 });
 const mockModel = {
@@ -40,7 +53,7 @@ const mockModel = {
 } as const;
 const MOCK_DEFAULTS: DefaultModelConfiguration = {
   ...STEP09_MODELS,
-  configurationVersion: 'terrain-models-step09-mock-v1',
+  configurationVersion: 'terrain-models-step09-mock-v2',
   imageGenerate: mockModel,
   imageEdit: mockModel,
 };
@@ -90,7 +103,7 @@ export class AiStudioService {
     if (this.mode === 'disabled')
       throw aiError('AI_DISABLED', 'AI 创作尚未启用。', '在后端配置 Mock 或获批的 Provider。');
     if (this.mode === 'wavespeed')
-      await assertStep09Approved(this.budgetRoot).catch(() => {
+      await assertStep09Approved(this.budgetRoot, 'step09-functional-reference-v2').catch(() => {
         throw aiError(
           'BUDGET_NOT_APPROVED',
           '步骤09真实调用预算尚未批准。',
@@ -99,7 +112,12 @@ export class AiStudioService {
         );
       });
     if (this.mode === 'wavespeed') {
-      if (input.supplemental !== '' || input.style !== 'temperate-pixel')
+      if (
+        !input.referenceId ||
+        input.repair ||
+        input.supplemental !== '' ||
+        input.style !== 'temperate-pixel'
+      )
         throw aiError(
           'EXPLORATION_INPUT',
           '本批次未授权该输入；固定探索使用空辅助与默认风格。',
@@ -145,7 +163,10 @@ export class AiStudioService {
         const batch = randomUUID(),
           caseId = input.referenceId ? 'R01' : 'T01';
         const prior = (await this.list(projectId)).candidates.some(
-          (c) => c.mode === (input.referenceId ? 'reference' : 'text'),
+          (c) =>
+            c.mode === (input.referenceId ? 'reference' : 'text') &&
+            c.configurationVersion ===
+              (this.mode === 'mock' ? MOCK_DEFAULTS : STEP09_MODELS).configurationVersion,
         );
         const purpose = input.repair ? 'repair' : prior ? 'retry' : 'initial';
         const context = {
@@ -154,7 +175,8 @@ export class AiStudioService {
           caseId,
           purpose,
           baseComponents: JSON.stringify(input.repair ? current!.components : {}),
-          conversion: 'ai-periodic-source-v1',
+          conversion: AI_REGION_CONVERSION.version,
+          authorizationScope: 'step09-functional-reference-v2',
         };
         const tasks = [];
         for (const component of (input.repair ? [input.repair] : ['grass', 'water']) as (
@@ -255,10 +277,20 @@ export class AiStudioService {
             },
           })
         : null;
+      const dimensions = source?.sourceSha
+        ? inspectPng(
+            await this.studio.store.storage.read(
+              await this.studio.store.db.fileObject.findUniqueOrThrow({
+                where: { sha256: source.sourceSha },
+              }),
+            ),
+          )
+        : null;
       candidates.push({
         id: row.id,
         component: p['component'],
         batch: p['batch'],
+        configurationVersion: task.snapshot.configurationVersion,
         mode: task.snapshot.taskKind === 'IMAGE_EDIT' ? 'reference' : 'text',
         purpose: p['purpose'],
         state: row.state,
@@ -267,6 +299,8 @@ export class AiStudioService {
         createdAt: row.createdAt.toISOString(),
         sha256: a?.sha256 ?? null,
         sourceId: source?.id ?? null,
+        width: dimensions?.width ?? null,
+        height: dimensions?.height ?? null,
         url: source ? `/api/projects/${projectId}/sources/${source.id}/png` : null,
         discarded: row.errorCode === 'CANDIDATE_DISCARDED',
         recovery:
@@ -275,7 +309,7 @@ export class AiStudioService {
             : row.archiveState === 'RETRY_REQUIRED'
               ? '远端已成功；仅恢复归档，不再购买。'
               : row.state === 'FAILED'
-                ? '失败历史保留；可在固定次数与预算内主动重新创作。'
+                ? '失败历史保留；本轮真实补测不重试。预算/批次被阻止时需用户核对，不能自动追加。'
                 : '候选归档不代表Pack成功；选择后转换、编译与QA。',
       });
     }
@@ -362,6 +396,20 @@ export class AiStudioService {
     this.executing = true;
     try {
       await this.executeTask(id);
+    } catch (cause) {
+      if (cause instanceof Error && cause.message === 'STEP09_BUDGET_NOT_APPROVED') {
+        await this.studio.store.gate.write(async (lease) => {
+          await this.studio.store.db.$transaction(async (tx) => {
+            await lease.fence(tx);
+            const task = await this.studio.store.task(id);
+            if (task)
+              await tx.logicalTask.updateMany({
+                where: { id, version: task.version, state: { in: ['CREATED', 'QUEUED'] } },
+                data: { state: 'FAILED', errorCode: 'AI_BATCH_BLOCKED', version: { increment: 1 } },
+              });
+          });
+        });
+      } else throw cause;
     } finally {
       this.executing = false;
     }
@@ -389,7 +437,23 @@ export class AiStudioService {
       };
       reader = mock;
     } else {
-      await assertStep09Approved(this.budgetRoot);
+      await assertStep09Approved(
+        this.budgetRoot,
+        task.snapshot.configurationVersion === STEP09_MODELS.configurationVersion &&
+          ['CREATED', 'QUEUED'].includes(task.state)
+          ? 'step09-functional-reference-v2'
+          : undefined,
+      );
+      if (task.snapshot.configurationVersion === STEP09_MODELS.configurationVersion) {
+        assert.equal(task.snapshot.taskKind, 'IMAGE_EDIT');
+        assert.deepEqual(task.snapshot.model, STEP09_MODELS.imageEdit);
+        assert.equal(task.snapshot.prompts.task.id, 'terrain-reference-role-material');
+        assert.equal(task.snapshot.prompts.task.revision, '2');
+        assert.equal(task.snapshot.references[0]?.sha256, EXPLORATION.referenceSha256);
+        assert.equal(task.snapshot.prompts.supplemental, '');
+        assert.equal(task.snapshot.style.id, 'temperate-pixel');
+        assert.equal(p['authorizationScope'], 'step09-functional-reference-v2');
+      }
       const { key } = await loadProviderCredentials(this.env, repositoryRoot);
       const uploadRoot = resolve(this.studio.store.storage.root, 'provider-upload');
       await mkdir(uploadRoot, { recursive: true, mode: 0o700 });
@@ -421,6 +485,12 @@ export class AiStudioService {
                 purpose: p['purpose'] as 'initial' | 'retry' | 'repair',
                 component: p['component'] as 'grass' | 'water',
                 quotedUsd: price,
+                ...(snapshot.configurationVersion === STEP09_MODELS.configurationVersion
+                  ? {
+                      scope: 'step09-functional-reference-v2' as const,
+                      snapshotHash: fingerprint(snapshot),
+                    }
+                  : {}),
               },
               snapshot.model.modelId,
             );
@@ -436,6 +506,8 @@ export class AiStudioService {
             );
             return result;
           } catch {
+            if (snapshot.configurationVersion === STEP09_MODELS.configurationVersion)
+              await stopStep09Scope(this.budgetRoot, id);
             return { outcome: 'REJECTED', code: 'STEP09_PREFLIGHT_BLOCKED' };
           }
         },
@@ -480,6 +552,7 @@ export class AiStudioService {
             '分别选择两个已归档候选后构建完整Pack。',
           );
         const sources = { ...current?.components } as Record<string, string>;
+        const selected = [];
         for (const [component, id] of [
           ['grass', input.grassTask],
           ['water', input.waterTask],
@@ -503,9 +576,19 @@ export class AiStudioService {
             where: { projectId, assetId: a.assetId, sourceSha: a.sha256, kind: 'source' },
           });
           const original = await this.studio.store.readSource(row.id);
-          let conversion: ReturnType<typeof normalizeAiTerrain>;
+          const rect =
+            (component === 'grass' ? input.grassRegion : input.waterRegion) ??
+            defaultTerrainRegion(original.image);
+          selected.push({ component, id, task, row, original, rect });
+        }
+        // One bounded shared palette for a full pair; repairs affect only selected sources.
+        // Existing exact component colors are collected by component-palette when making the recipe.
+        const palette = sharedPalette(selected.map((s) => sampleRegion(s.original.image, s.rect)));
+        const paletteInputs = selected.map((s) => s.original.image.pixelHash);
+        for (const { component, id, task, row, original, rect } of selected) {
+          let conversion: ReturnType<typeof normalizeAiRegion>;
           try {
-            conversion = normalizeAiTerrain(original.image, component);
+            conversion = normalizeAiRegion(original.image, component, rect, palette, paletteInputs);
           } catch (cause) {
             const lease = this.studio.store.gate.require();
             await this.studio.store.db.$transaction(async (tx) => {
@@ -517,7 +600,7 @@ export class AiStudioService {
                   taskId: id,
                   sourceId: row.id,
                   descriptor: {
-                    version: 'ai-periodic-source-v1',
+                    version: AI_REGION_CONVERSION.version,
                     status: 'REJECTED',
                     inputPixelHash: original.image.pixelHash,
                     reason:
@@ -551,8 +634,8 @@ export class AiStudioService {
                 origin: 'deterministic',
                 author: 'AI Tileset Studio controlled normalization',
                 license: original.raw.provenance.license,
-                toolVersion: 'ai-periodic-source-v1',
-                parents: [original.ref],
+                toolVersion: AI_REGION_CONVERSION.version,
+                parents: selected.map((s) => s.original.ref),
               },
             );
             sources[c] = saved.id;
@@ -590,7 +673,12 @@ export class AiStudioService {
               signal,
             )
           ).id;
-        if (!sources['overlay']) {
+        if (
+          !sources['overlay'] ||
+          (input.grassTask &&
+            input.waterTask &&
+            selected.every((s) => s.task.snapshot.structuredParameters['purpose'] !== 'repair'))
+        ) {
           const grass = await this.studio.store.readSource(sources['grass']!);
           const mask = await this.studio.store.readSource(sources['mask']!);
           const bank = blank(96, 144),

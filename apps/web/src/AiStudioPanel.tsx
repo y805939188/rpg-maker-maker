@@ -11,6 +11,7 @@ import {
 } from '@tileset/contracts';
 import { request, responseError } from './api.js';
 import { pollAfterCompletion } from './poll.js';
+import { CandidateRegion, type Region } from './CandidateRegion.js';
 export function AiStudioPanel({
   projectId,
   revision,
@@ -29,6 +30,7 @@ export function AiStudioPanel({
     [referenceInfo, setReferenceInfo] = useState(''),
     [grass, setGrass] = useState(''),
     [water, setWater] = useState(''),
+    [regions, setRegions] = useState<Record<string, Region>>({}),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(''),
     [notice, setNotice] = useState(''),
@@ -53,6 +55,7 @@ export function AiStudioPanel({
     setReferenceInfo('');
     setGrass('');
     setWater('');
+    setRegions({});
     setError('');
     setNotice('');
     setJob('');
@@ -246,6 +249,21 @@ export function AiStudioPanel({
             ))}
         </select>
       </label>
+      <p>
+        默认取中心最大方形；可先缩小方框，再点击候选中的连续材质区域。草地和水面共同提取最多64色；不会自动识别并删除场景物体。选区、原图及转换版本随新revision保存，旧构建保留。整套采用新的双候选时从新草地捕获岸线颜色；局部修复保留原固定岸线。
+      </p>
+      {(['grass', 'water'] as const).map((component) => {
+        const id = component === 'grass' ? grass : water,
+          candidate = candidates.find((c) => c.id === id);
+        return candidate ? (
+          <CandidateRegion
+            key={id}
+            candidate={candidate}
+            value={regions[id]}
+            onChange={(region) => setRegions((previous) => ({ ...previous, [id]: region }))}
+          />
+        ) : null;
+      })}
       <div className="actions">
         <button
           disabled={busy || blocked || (!grass && !water) || !!job}
@@ -256,6 +274,8 @@ export function AiStudioPanel({
                   expectedRevision: revision,
                   ...(grass ? { grassTask: grass } : {}),
                   ...(water ? { waterTask: water } : {}),
+                  ...(grass && regions[grass] ? { grassRegion: regions[grass] } : {}),
+                  ...(water && regions[water] ? { waterRegion: regions[water] } : {}),
                 }),
               );
               setJob(result.job.id);
