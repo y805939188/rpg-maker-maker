@@ -175,7 +175,7 @@ export function AiStudioPanel({
         <input
           type="file"
           accept="image/png"
-          disabled={busy}
+          disabled={busy || blocked}
           onChange={(e) => {
             const file = e.target.files?.[0];
             if (!file) return;
