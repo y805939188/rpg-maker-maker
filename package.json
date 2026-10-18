@@ -67,7 +67,8 @@
     "verify:step09:mz": "node scripts/verify-step09-project.mjs",
     "build:step09": "pnpm build && node scripts/build-engineering.mjs step09",
     "prepare:step09": "node dist/scripts/prepare-step09.js",
-    "report:step09": "node scripts/step09-report.mjs"
+    "report:step09": "node scripts/step09-report.mjs",
+    "experiment:step09:art": "node dist/scripts/step09-art-offline.js"
   },
   "dependencies": {
     "sharp": "0.35.5"

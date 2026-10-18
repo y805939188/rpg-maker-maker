@@ -1,0 +1,69 @@
+{
+  "version": "step09-art-offline-plan-v1",
+  "stage": "OFFLINE_DIAGNOSIS_AND_STATIC_PROOF_ONLY",
+  "baseCandidate": "f61348049551c13c9eb3e17c81806e00470c2cf5",
+  "productionDefaults": "UNCHANGED",
+  "providerRequests": 0,
+  "maxConfigurationsPerCase": 2,
+  "inputs": "Existing T01/R01 normalized originals only; no substitute source",
+  "roiSelection": "Agent visually selected once, not automatic zero-intervention capability",
+  "rois": {
+    "T01": {
+      "grass": [
+        88,
+        84,
+        64,
+        64
+      ],
+      "water": [
+        184,
+        176,
+        64,
+        64
+      ]
+    },
+    "R01": {
+      "grass": [
+        104,
+        132,
+        48,
+        48
+      ],
+      "water": [
+        104,
+        112,
+        80,
+        80
+      ]
+    }
+  },
+  "roiRationale": {
+    "T01": "Grass interior excludes houses/trees; water right-lower interior avoids bank and strong shallow/deep boundary",
+    "R01": "Central grass region avoids shrubs/roads; alleged-water ROI remains grass and must not be accepted as water"
+  },
+  "configurations": {
+    "A-roi-copy": "ROI -> nearest24 -> shared deterministic median-cut64 -> old one-line edge copy -> density2 / 2x3 source / shared water phases0,1,2",
+    "B-roi-band": "Same ROI and locked palette, only replace edge step with paired 4-logical-pixel band in sRGB-number interpolation, remap to same palette"
+  },
+  "bandDisclosure": "May modify up to55.56% of 24x24 base; actual changes/mean error recorded. Wide smoothing can itself create a border; no assumed quality win.",
+  "palette": "Each case grass+water learns at most64 colors together before edge processing; exact same palette A/B",
+  "fixedGeometry": "Existing exact static mask; derive new bank color from new grass as a new experimental paired recipe. Old revisions never changed.",
+  "scenes": [
+    "pond",
+    "edges",
+    "holes",
+    "channel",
+    "large",
+    "isolated"
+  ],
+  "states": [
+    0,
+    1,
+    2
+  ],
+  "rendering": "Existing hard validation -> shoreline -> Compiler -> Pack -> re-read actual exported A1/A2 -> static maps; same topology/state/scale.",
+  "quantizationDiagnosis": "Same-ROI old2bit versus adaptive64 pointwise error only, not a third Pack configuration.",
+  "reference": "Original96x144 contains grid/striped grass, prepared256 center crop removes1/3 area; no new reference prep variant or fidelity claim.",
+  "promptProposal": "Inactive versioned edit-role wording proposal only, no production switch or model request.",
+  "status": "No human aesthetic score, MZ/editor/animation acceptance NOT_EXECUTED; holdout untouched"
+}
