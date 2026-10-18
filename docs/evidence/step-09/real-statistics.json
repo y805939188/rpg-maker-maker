@@ -1,0 +1,220 @@
+{
+  "version": "step09-statistics-v1",
+  "unit": "complete usable Pack; task COMPLETED and structural checks alone are insufficient",
+  "counts": {
+    "logicalRealTasks": 4,
+    "submissions": 4,
+    "failed": 0,
+    "unknown": 0,
+    "cancelled": 0,
+    "unusable": 0,
+    "archived": 4,
+    "discarded": 0,
+    "retryTasks": 0,
+    "componentRepairTasks": 0,
+    "technicalRealPacks": 2,
+    "usableRealPacks": "UNVERIFIED_PENDING_MZ_AND_ART"
+  },
+  "attemptBatches": [
+    "dd564c97-e838-495c-bd90-4930eec68a0a",
+    "440b966d-0fe7-4cc0-8dbb-599d0c28fa82"
+  ],
+  "successRate": "N/A_PENDING_REAL_AND_HUMAN_ACCEPTANCE",
+  "averageAttemptsPerUsablePack": "N/A (0 accepted)",
+  "costPerUsablePack": "N/A (0 accepted; actual charge UNVERIFIED)",
+  "ledger": {
+    "plan": {
+      "version": "step09-exploration-v1",
+      "totalUsd": 1,
+      "maxSubmissions": 10,
+      "reservePerSubmissionUsd": 0.05,
+      "concurrency": 1,
+      "initialSubmissions": 4,
+      "cases": [
+        "T01",
+        "R01"
+      ],
+      "attemptsPerCase": 2,
+      "repairsPerCase": 1,
+      "manualMinutesPerCase": 15,
+      "referenceSha256": "1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd"
+    },
+    "approval": true,
+    "submissions": 4,
+    "counters": {
+      "failed": 0,
+      "unknown": 0,
+      "unusable": 0,
+      "archived": 4,
+      "discarded": 0,
+      "retrySubmissions": 0,
+      "componentRepairs": 0,
+      "archiveRetries": 0,
+      "archiveFailures": 0
+    },
+    "quotedUsd": 0.030000000000000002,
+    "reservedUsd": 0.2,
+    "actualChargedUsd": "UNVERIFIED",
+    "entries": [
+      {
+        "taskId": "86156ed7-2cc3-4c5c-a95a-a96191746309",
+        "caseId": "T01",
+        "purpose": "initial",
+        "component": "grass",
+        "quotedUsd": 0.003,
+        "reservedUsd": 0.05,
+        "state": "ARCHIVED",
+        "events": [
+          {
+            "state": "RESERVED",
+            "at": "2026-10-18T10:49:46.558Z"
+          },
+          {
+            "state": "KNOWN",
+            "at": "2026-10-18T10:49:46.901Z"
+          },
+          {
+            "state": "ARCHIVED",
+            "at": "2026-10-18T10:49:50.536Z"
+          }
+        ],
+        "actualChargedUsd": "UNVERIFIED",
+        "at": "2026-10-18T10:49:46.558Z"
+      },
+      {
+        "taskId": "ab60e38c-3fd8-40a8-98fe-0f6bd3a0d8ca",
+        "caseId": "T01",
+        "purpose": "initial",
+        "component": "water",
+        "quotedUsd": 0.003,
+        "reservedUsd": 0.05,
+        "state": "ARCHIVED",
+        "events": [
+          {
+            "state": "RESERVED",
+            "at": "2026-10-18T10:49:51.197Z"
+          },
+          {
+            "state": "KNOWN",
+            "at": "2026-10-18T10:49:52.103Z"
+          },
+          {
+            "state": "ARCHIVED",
+            "at": "2026-10-18T10:49:56.397Z"
+          }
+        ],
+        "actualChargedUsd": "UNVERIFIED",
+        "at": "2026-10-18T10:49:51.197Z"
+      },
+      {
+        "taskId": "613739b0-0907-4eaf-a288-185bcc35ef70",
+        "caseId": "R01",
+        "purpose": "initial",
+        "component": "grass",
+        "quotedUsd": 0.012,
+        "reservedUsd": 0.05,
+        "state": "ARCHIVED",
+        "events": [
+          {
+            "state": "RESERVED",
+            "at": "2026-10-18T10:50:10.685Z"
+          },
+          {
+            "state": "KNOWN",
+            "at": "2026-10-18T10:50:11.091Z"
+          },
+          {
+            "state": "ARCHIVED",
+            "at": "2026-10-18T10:50:18.443Z"
+          }
+        ],
+        "actualChargedUsd": "UNVERIFIED",
+        "at": "2026-10-18T10:50:10.685Z"
+      },
+      {
+        "taskId": "c77584fa-8290-491a-82fd-93d72f28193c",
+        "caseId": "R01",
+        "purpose": "initial",
+        "component": "water",
+        "quotedUsd": 0.012,
+        "reservedUsd": 0.05,
+        "state": "ARCHIVED",
+        "events": [
+          {
+            "state": "RESERVED",
+            "at": "2026-10-18T10:50:20.752Z"
+          },
+          {
+            "state": "KNOWN",
+            "at": "2026-10-18T10:50:21.179Z"
+          },
+          {
+            "state": "ARCHIVED",
+            "at": "2026-10-18T10:50:26.485Z"
+          }
+        ],
+        "actualChargedUsd": "UNVERIFIED",
+        "at": "2026-10-18T10:50:20.752Z"
+      }
+    ]
+  },
+  "packs": [
+    {
+      "projectId": "454a0d5e-18de-46e6-8ea7-b3ca7c54ea80",
+      "buildId": "1ab8271346caa065b82aebeb50aaf9025fb38e3d934b77c4cf90cde04e6fe24e",
+      "providers": [
+        "wavespeed"
+      ],
+      "manifestSha256": "12faf1934ab85279cf86459a67b9513c4cc4f6d6871915e9b3ca3b47ee114378",
+      "structural": "STRUCTURAL_PASS",
+      "mz": "NOT_EXECUTED",
+      "art": "PENDING_USER_ACCEPTANCE",
+      "conversionIds": [
+        "5439b3ce3b2ffe2283830ef44958328667f01acdcdaa43fe83314260ab778a75",
+        "f6bd212036297a8cda19804756e707d33b7d379bd03799d494834949085f98fa"
+      ]
+    },
+    {
+      "projectId": "af0ba136-1345-4e6e-b425-3fdefd893bed",
+      "buildId": "7ec65b520372d46be85049050c572d18c893507cce47241dd203e4f427865b63",
+      "providers": [
+        "wavespeed"
+      ],
+      "manifestSha256": "eefea85181695771d47dea1760115b6fb349615f4e431195eb45d5a66b2aca44",
+      "structural": "STRUCTURAL_PASS",
+      "mz": "NOT_EXECUTED",
+      "art": "PENDING_USER_ACCEPTANCE",
+      "conversionIds": [
+        "15d01d30c847071fc2b753ff53f341141fdc2bdaa8b999ec6049a014f092186b",
+        "8a7530fe684a685e0be4922f967954a5b6f7af8f81c58be06add0961d2beb47b"
+      ]
+    }
+  ],
+  "actualCharges": "UNVERIFIED",
+  "limitations": "Mock Packs are excluded from real success/cost metrics. All started batches, failed, cancelled, unknown, rejected and discarded candidates remain in the denominator. Human scoring and MZ are never inferred from CPU/web checks.",
+  "allStartedPackAttempts": 2,
+  "technicalPackSuccessRate": "2/2",
+  "technicalAverageAttempts": 1,
+  "quotedUsdPerTechnicalPack": 0.015,
+  "reservedUsdPerTechnicalPack": 0.1,
+  "humanAcceptedUsablePacks": 0,
+  "humanAcceptedUsablePackRate": "PENDING_USER_ACCEPTANCE (0 accepted; no final human verdict)",
+  "qualityThresholdApproval": "PENDING_HUMAN_USER",
+  "authorObservations": {
+    "T01": "Repeated island/border-like motif at 48px scale; seam warning 33.728 >32. Technical output is not claimed artistically usable.",
+    "R01": "Both water and grass are green, conspicuous grid/four visible colors, pond silhouette hard to distinguish; three REPETITION warnings.",
+    "scope": "Author browser observation only; no AI self-score or human/MZ PASS. Stop after fixed first4, no additional paid tuning."
+  },
+  "durationSeconds": {
+    "T01": 21.565,
+    "R01": 30.033
+  },
+  "manualIntervention": {
+    "repairCount": 0,
+    "pixelEditingCount": 0,
+    "repairMinutes": 0,
+    "authorBrowserInspectionDuration": "UNVERIFIED_NOT_SEPARATELY_TIMED",
+    "maxManualMinutesPerCase": 15,
+    "humanArtAcceptance": "NOT_EXECUTED"
+  }
+}

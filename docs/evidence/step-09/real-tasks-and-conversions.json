@@ -1,0 +1,468 @@
+{
+  "records": [
+    {
+      "id": "86156ed7-2cc3-4c5c-a95a-a96191746309",
+      "projectId": "454a0d5e-18de-46e6-8ea7-b3ca7c54ea80",
+      "createdAt": "2026-10-18T10:49:45.150Z",
+      "state": "COMPLETED",
+      "predictionId": "474715e04ce14decbe84dde84413cedf",
+      "archiveState": "DURABLE",
+      "snapshotHash": "93542e98d4fd97c3ab9af1f4568a0c50620da24f76916e76a3a8e67d72945ddd",
+      "model": {
+        "provider": "wavespeed",
+        "modelId": "wavespeed-ai/flux-schnell",
+        "modelVersion": "endpoint-20261017",
+        "adapterVersion": "wavespeed-adapter-v1",
+        "parameters": {
+          "seed": 4808,
+          "size": "256*256",
+          "num_images": 1,
+          "output_format": "png",
+          "enable_sync_mode": false,
+          "enable_base64_output": false
+        }
+      },
+      "prompts": {
+        "main": "terrain-source-main@1",
+        "task": "terrain-grass@1",
+        "supplemental": ""
+      },
+      "structuredParameters": {
+        "batch": "dd564c97-e838-495c-bd90-4930eec68a0a",
+        "width": 256,
+        "caseId": "T01",
+        "height": 256,
+        "density": 1,
+        "purpose": "initial",
+        "component": "grass",
+        "conversion": "ai-periodic-source-v1",
+        "normalization": "opaque-rgb-to-rgba8-v1",
+        "studioVersion": "step09-ai-studio-v1",
+        "baseComponents": "{}"
+      },
+      "references": [],
+      "attempts": [
+        {
+          "sequence": 1,
+          "state": "KNOWN",
+          "predictionId": "474715e04ce14decbe84dde84413cedf",
+          "intentAt": "2026-10-18T10:49:45.859Z"
+        }
+      ],
+      "artifacts": [
+        {
+          "sha256": "ae4058ef799e053265d638aa9a0b32e79d91fa916283a1fdaf807d6921c24837",
+          "sourceRef": {
+            "id": "wavespeed-86156ed7-2cc3-4c5c-a95a-a96191746309-0",
+            "kind": "source",
+            "revision": 1,
+            "contentHash": "87324cc3a018589bdc30e4301d5ab38254d24d78a2aeabed3cc9262392440fc8",
+            "normalization": "opaque-rgb-to-rgba8-v1",
+            "metadataRepair": "png-text-drop-v1",
+            "originalDownload": {
+              "key": "objects/81a8286cb3b3b18c5d47cd5f95efdb156073cbc410b351a6540d4983281a276e",
+              "bytes": 125598,
+              "sha256": "81a8286cb3b3b18c5d47cd5f95efdb156073cbc410b351a6540d4983281a276e"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "ab60e38c-3fd8-40a8-98fe-0f6bd3a0d8ca",
+      "projectId": "454a0d5e-18de-46e6-8ea7-b3ca7c54ea80",
+      "createdAt": "2026-10-18T10:49:45.174Z",
+      "state": "COMPLETED",
+      "predictionId": "9468c9772a494b709f636c896b475791",
+      "archiveState": "DURABLE",
+      "snapshotHash": "a3a8c6f3a37477d6eef5c8bc9a6edd826b64362b9b3881007ebce30a0eccf502",
+      "model": {
+        "provider": "wavespeed",
+        "modelId": "wavespeed-ai/flux-schnell",
+        "modelVersion": "endpoint-20261017",
+        "adapterVersion": "wavespeed-adapter-v1",
+        "parameters": {
+          "seed": 4808,
+          "size": "256*256",
+          "num_images": 1,
+          "output_format": "png",
+          "enable_sync_mode": false,
+          "enable_base64_output": false
+        }
+      },
+      "prompts": {
+        "main": "terrain-source-main@1",
+        "task": "terrain-water-ripple@1",
+        "supplemental": ""
+      },
+      "structuredParameters": {
+        "batch": "dd564c97-e838-495c-bd90-4930eec68a0a",
+        "width": 256,
+        "caseId": "T01",
+        "height": 256,
+        "density": 1,
+        "purpose": "initial",
+        "component": "water",
+        "conversion": "ai-periodic-source-v1",
+        "normalization": "opaque-rgb-to-rgba8-v1",
+        "studioVersion": "step09-ai-studio-v1",
+        "baseComponents": "{}"
+      },
+      "references": [],
+      "attempts": [
+        {
+          "sequence": 1,
+          "state": "KNOWN",
+          "predictionId": "9468c9772a494b709f636c896b475791",
+          "intentAt": "2026-10-18T10:49:50.844Z"
+        }
+      ],
+      "artifacts": [
+        {
+          "sha256": "592444b8e937641008a2f7287ef998b4938fda2f441d97a600b195ecfbd461b0",
+          "sourceRef": {
+            "id": "wavespeed-ab60e38c-3fd8-40a8-98fe-0f6bd3a0d8ca-0",
+            "kind": "source",
+            "revision": 1,
+            "contentHash": "8097b1b05680249c98287fa68bc86a3586e3da4514c9e3371d962c0068cc8b7e",
+            "normalization": "opaque-rgb-to-rgba8-v1",
+            "metadataRepair": "png-text-drop-v1",
+            "originalDownload": {
+              "key": "objects/0dd3aa558dd8862ef86be75445e610fa89f4773a3ceb100a21ff6c925f3d3bb2",
+              "bytes": 118118,
+              "sha256": "0dd3aa558dd8862ef86be75445e610fa89f4773a3ceb100a21ff6c925f3d3bb2"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "613739b0-0907-4eaf-a288-185bcc35ef70",
+      "projectId": "af0ba136-1345-4e6e-b425-3fdefd893bed",
+      "createdAt": "2026-10-18T10:50:07.145Z",
+      "state": "COMPLETED",
+      "predictionId": "f582c841f555472fbcab000a388fa350",
+      "archiveState": "DURABLE",
+      "snapshotHash": "61cdb023030642867b65a2d01557cb857579a2b4bd4bbd77ef0a8840c93b12b4",
+      "model": {
+        "provider": "wavespeed",
+        "modelId": "wavespeed-ai/flux-dev",
+        "modelVersion": "endpoint-20261017",
+        "adapterVersion": "wavespeed-adapter-v1",
+        "parameters": {
+          "seed": 4808,
+          "size": "256*256",
+          "strength": 0.55,
+          "num_images": 1,
+          "output_format": "png",
+          "guidance_scale": 3.5,
+          "enable_sync_mode": false,
+          "num_inference_steps": 28,
+          "enable_base64_output": false
+        }
+      },
+      "prompts": {
+        "main": "terrain-source-main@1",
+        "task": "terrain-reference-edit@1",
+        "supplemental": ""
+      },
+      "structuredParameters": {
+        "batch": "440b966d-0fe7-4cc0-8dbb-599d0c28fa82",
+        "width": 256,
+        "caseId": "R01",
+        "height": 256,
+        "density": 1,
+        "purpose": "initial",
+        "component": "grass",
+        "conversion": "ai-periodic-source-v1",
+        "normalization": "opaque-rgb-to-rgba8-v1",
+        "studioVersion": "step09-ai-studio-v1",
+        "baseComponents": "{}",
+        "referencePreparation": "center-crop-square-nearest-v2"
+      },
+      "references": [
+        {
+          "assetId": "bf95e69b-4e60-4db0-a027-ff3ea8bc2622",
+          "revision": "1",
+          "sha256": "1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd"
+        },
+        {
+          "assetId": "715e9c5f-6f4e-480d-bda6-17e968ee0678",
+          "revision": "1",
+          "sha256": "9065f6bb7bf68748274b78b5b5ae67dc6dd5137e9e540718e6122e76080edcc7"
+        }
+      ],
+      "attempts": [
+        {
+          "sequence": 1,
+          "state": "KNOWN",
+          "predictionId": "f582c841f555472fbcab000a388fa350",
+          "intentAt": "2026-10-18T10:50:07.945Z"
+        }
+      ],
+      "artifacts": [
+        {
+          "sha256": "6ca597932521aa02913d775f4a2f822c0e9f0734bace03b6cbae18376cefeb11",
+          "sourceRef": {
+            "id": "wavespeed-613739b0-0907-4eaf-a288-185bcc35ef70-0",
+            "kind": "source",
+            "revision": 1,
+            "contentHash": "be2b7a3bb2ec9922eaff8b2b7bf8c6eaca3989829d9ffa193dfced2deb1ca10a",
+            "normalization": "opaque-rgb-to-rgba8-v1",
+            "metadataRepair": "png-text-drop-v1",
+            "originalDownload": {
+              "key": "objects/7773c46861878c94242331fbfe1e463796ff57051ff487bcd40f707f682d3095",
+              "bytes": 99375,
+              "sha256": "7773c46861878c94242331fbfe1e463796ff57051ff487bcd40f707f682d3095"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "c77584fa-8290-491a-82fd-93d72f28193c",
+      "projectId": "af0ba136-1345-4e6e-b425-3fdefd893bed",
+      "createdAt": "2026-10-18T10:50:07.470Z",
+      "state": "COMPLETED",
+      "predictionId": "1767d1d118644ecca6eb34fb4c518e36",
+      "archiveState": "DURABLE",
+      "snapshotHash": "0bbcd9134fe3f57f9a2070c7620ec7764880ab04ab6168aed4d437185467a822",
+      "model": {
+        "provider": "wavespeed",
+        "modelId": "wavespeed-ai/flux-dev",
+        "modelVersion": "endpoint-20261017",
+        "adapterVersion": "wavespeed-adapter-v1",
+        "parameters": {
+          "seed": 4808,
+          "size": "256*256",
+          "strength": 0.55,
+          "num_images": 1,
+          "output_format": "png",
+          "guidance_scale": 3.5,
+          "enable_sync_mode": false,
+          "num_inference_steps": 28,
+          "enable_base64_output": false
+        }
+      },
+      "prompts": {
+        "main": "terrain-source-main@1",
+        "task": "terrain-reference-edit@1",
+        "supplemental": ""
+      },
+      "structuredParameters": {
+        "batch": "440b966d-0fe7-4cc0-8dbb-599d0c28fa82",
+        "width": 256,
+        "caseId": "R01",
+        "height": 256,
+        "density": 1,
+        "purpose": "initial",
+        "component": "water",
+        "conversion": "ai-periodic-source-v1",
+        "normalization": "opaque-rgb-to-rgba8-v1",
+        "studioVersion": "step09-ai-studio-v1",
+        "baseComponents": "{}",
+        "referencePreparation": "center-crop-square-nearest-v2"
+      },
+      "references": [
+        {
+          "assetId": "bf95e69b-4e60-4db0-a027-ff3ea8bc2622",
+          "revision": "1",
+          "sha256": "1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd"
+        },
+        {
+          "assetId": "715e9c5f-6f4e-480d-bda6-17e968ee0678",
+          "revision": "1",
+          "sha256": "9065f6bb7bf68748274b78b5b5ae67dc6dd5137e9e540718e6122e76080edcc7"
+        }
+      ],
+      "attempts": [
+        {
+          "sequence": 1,
+          "state": "KNOWN",
+          "predictionId": "1767d1d118644ecca6eb34fb4c518e36",
+          "intentAt": "2026-10-18T10:50:18.952Z"
+        }
+      ],
+      "artifacts": [
+        {
+          "sha256": "8f73093d9f58565ad3542e5fffb5820dd362437600aeb4f556cf7043ad7551cc",
+          "sourceRef": {
+            "id": "wavespeed-c77584fa-8290-491a-82fd-93d72f28193c-0",
+            "kind": "source",
+            "revision": 1,
+            "contentHash": "b4172d0faf6dabe8d06c1aa481500a21baf30f4aa1348f677e6712e34e171f0f",
+            "normalization": "opaque-rgb-to-rgba8-v1",
+            "metadataRepair": "png-text-drop-v1",
+            "originalDownload": {
+              "key": "objects/75622d6c027ffd61e7be4c9da90cd051d5bb6649a28e92aa7c42be3420b37c79",
+              "bytes": 93757,
+              "sha256": "75622d6c027ffd61e7be4c9da90cd051d5bb6649a28e92aa7c42be3420b37c79"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conversions": [
+    {
+      "id": "5439b3ce3b2ffe2283830ef44958328667f01acdcdaa43fe83314260ab778a75",
+      "projectId": "454a0d5e-18de-46e6-8ea7-b3ca7c54ea80",
+      "taskId": "86156ed7-2cc3-4c5c-a95a-a96191746309",
+      "sourceId": "9e035664a1031ff941e83ab2ae51a2aac76f63846cebb530af922b93657565a9",
+      "descriptor": {
+        "crop": "largest-centered-square-integer",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 256
+        },
+        "tile": 48,
+        "input": {
+          "width": 256,
+          "height": 256,
+          "pixelHash": "ce4d66a4b784e0531002962947a0557c52a0e7ccc72a614b0af3b02b3e3b3b1c"
+        },
+        "width": 96,
+        "height": 144,
+        "sample": "nearest-explicit-24-square",
+        "status": "CONVERTED",
+        "density": 2,
+        "palette": "rgb-2bit-per-channel-round-srgb-no-color-conversion",
+        "version": "ai-periodic-source-v1",
+        "animation": "shared-base-periodic-offset-0-1-2-logical-pixels",
+        "changedFraction": 0,
+        "periodicization": "copy-opposite-edge-v1",
+        "outputPixelHashes": [
+          "63ca81a8883c41da0b4e4f4d797e4d446197dbf4ae5f9ed94487c41fe4b02cdd"
+        ]
+      },
+      "outputs": [
+        "7a19609b51738039e3a4eb23b2e1234198558f0f96a32601dfb3902933aadeb4"
+      ],
+      "createdAt": "2026-10-18T10:49:57.675Z"
+    },
+    {
+      "id": "f6bd212036297a8cda19804756e707d33b7d379bd03799d494834949085f98fa",
+      "projectId": "454a0d5e-18de-46e6-8ea7-b3ca7c54ea80",
+      "taskId": "ab60e38c-3fd8-40a8-98fe-0f6bd3a0d8ca",
+      "sourceId": "4be615d75879bd025735d614ba51976f305bdca62cd682b3f70d27f0b0bd78e9",
+      "descriptor": {
+        "crop": "largest-centered-square-integer",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 256
+        },
+        "tile": 48,
+        "input": {
+          "width": 256,
+          "height": 256,
+          "pixelHash": "78ad44c6de8829d393bec8d5575fe19c47e2b17647ba910f4b297f58936557e1"
+        },
+        "width": 96,
+        "height": 144,
+        "sample": "nearest-explicit-24-square",
+        "status": "CONVERTED",
+        "density": 2,
+        "palette": "rgb-2bit-per-channel-round-srgb-no-color-conversion",
+        "version": "ai-periodic-source-v1",
+        "animation": "shared-base-periodic-offset-0-1-2-logical-pixels",
+        "changedFraction": 0.5260416666666666,
+        "periodicization": "copy-opposite-edge-v1",
+        "outputPixelHashes": [
+          "271ff3e44e52a69dcdc04b7d3085a2b890f122fcd2e41916cfb59c5f6c80c712",
+          "bf17eefb2fc68bebbbf0f319b22d03695f2451f2a1929be8d0574d1f66908d8e",
+          "d7904f6ba7cf18ece1738f9b688b7567c3c8e14950f70928d112f3c8ced5b2aa"
+        ]
+      },
+      "outputs": [
+        "3db47f8559c59b7c35e6a1a28ed2726797b027185d6c307854b60cb88dda7db3",
+        "f9562721620cf4fd2531c7c4a0ef7f260f8ffdce56f8f41b04ed4123512f5077",
+        "41edc159bacfdf25b13bf18e19c11dd58c502a63768b9b1d1c076c9401327d33"
+      ],
+      "createdAt": "2026-10-18T10:49:58.488Z"
+    },
+    {
+      "id": "15d01d30c847071fc2b753ff53f341141fdc2bdaa8b999ec6049a014f092186b",
+      "projectId": "af0ba136-1345-4e6e-b425-3fdefd893bed",
+      "taskId": "613739b0-0907-4eaf-a288-185bcc35ef70",
+      "sourceId": "1e83569f9fb5e3461c3d8b8df994924f115c6539947ac9a3867eb97b6233afd2",
+      "descriptor": {
+        "crop": "largest-centered-square-integer",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 256
+        },
+        "tile": 48,
+        "input": {
+          "width": 256,
+          "height": 256,
+          "pixelHash": "550fc020406235eb3e9b9ab124c48cb2f618001219b3910d2e78b197487b8376"
+        },
+        "width": 96,
+        "height": 144,
+        "sample": "nearest-explicit-24-square",
+        "status": "CONVERTED",
+        "density": 2,
+        "palette": "rgb-2bit-per-channel-round-srgb-no-color-conversion",
+        "version": "ai-periodic-source-v1",
+        "animation": "shared-base-periodic-offset-0-1-2-logical-pixels",
+        "changedFraction": 0,
+        "periodicization": "copy-opposite-edge-v1",
+        "outputPixelHashes": [
+          "7c00a54d32bfc8110a60d10c3d1bf0ac13647dfb875e5526d2e56b811ac7383f"
+        ]
+      },
+      "outputs": [
+        "21ae5c2e1445269a66c28163c823c2354b55a52525ebc0e44c1dcb3aaa48980f"
+      ],
+      "createdAt": "2026-10-18T10:50:27.942Z"
+    },
+    {
+      "id": "8a7530fe684a685e0be4922f967954a5b6f7af8f81c58be06add0961d2beb47b",
+      "projectId": "af0ba136-1345-4e6e-b425-3fdefd893bed",
+      "taskId": "c77584fa-8290-491a-82fd-93d72f28193c",
+      "sourceId": "d011464fd78654dbdcff1085898dcace821f1ca1f5333bf86c94efbb60224a91",
+      "descriptor": {
+        "crop": "largest-centered-square-integer",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 256,
+          "height": 256
+        },
+        "tile": 48,
+        "input": {
+          "width": 256,
+          "height": 256,
+          "pixelHash": "96e5acc20a781e4ab67a984dda4e900bba60e2600396d41c314fd4e64ff83e3b"
+        },
+        "width": 96,
+        "height": 144,
+        "sample": "nearest-explicit-24-square",
+        "status": "CONVERTED",
+        "density": 2,
+        "palette": "rgb-2bit-per-channel-round-srgb-no-color-conversion",
+        "version": "ai-periodic-source-v1",
+        "animation": "shared-base-periodic-offset-0-1-2-logical-pixels",
+        "changedFraction": 0.1284722222222222,
+        "periodicization": "copy-opposite-edge-v1",
+        "outputPixelHashes": [
+          "52fe062b67dad3744305fc044ba81ea8bea7e9475c473d1a32f05c04c48fafe9",
+          "e59bae5d33fa4998b7cc72c33fbe34dc5c0b3a9e1baef434ccf9c0fc29d2c3ff",
+          "eab5c5cbd9a44089b30560d9a56827022fc42b09ba0e721791202d2e3091719e"
+        ]
+      },
+      "outputs": [
+        "69609347a4fae47bfe969b3cfea44c7511bc7bc698d27469dd145d947c736452",
+        "e54eb87ef0c40683c064c339fc05cda52a4099de5cce4261d1fee7d994642de0",
+        "9aa5b79926c572d4448ca69cef779194b7a69c2ad29571cc7c6f4d93f07f3f2c"
+      ],
+      "createdAt": "2026-10-18T10:50:28.718Z"
+    }
+  ]
+}

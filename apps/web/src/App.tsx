@@ -687,7 +687,7 @@ export function App() {
                   </ul>
                   {data.mockTasks.map((t) => (
                     <p key={t.id}>
-                      Mock任务 {t.id.slice(0, 8)} · {t.state} / {t.archiveState} · {t.recovery}
+                      AI任务 {t.id.slice(0, 8)} · {t.state} / {t.archiveState} · {t.recovery}
                     </p>
                   ))}
                 </section>

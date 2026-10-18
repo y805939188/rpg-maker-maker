@@ -29,7 +29,7 @@ TILESET_PROVIDER_ENV_FILE="$SHARED_PROVIDER_FILE" TILESET_AI_MODE=wavespeed pnpm
 
 ## 唯一09探索与预算
 
-固定清单见 [exploration-v1](../evidence/step-09/exploration-v1.json)，预算与正式质量阈值均待人类批准。初批T01/R01各草地+共享水面2调用，共4；总上限$1/10提交、并发1、每次保守预留$0.05，单价实时核验0.003/0.012上限。每Case最多一次完整重试和一次组件修复，重试/修复前须已有明确失败/不可用/丢弃记录；人工≤15分钟。UNKNOWN/未决预留冻结新增，归档失败仅恢复归档，不自动购买或扩额。
+固定清单见 [exploration-v1](../evidence/step-09/exploration-v1.json)，预算已获本轮用户本人明确批准（见09 budget-approval.json）；正式质量阈值仍待人类批准。原提案中的PENDING作为提出时历史保留。初批T01/R01各草地+共享水面2调用，共4；总上限$1/10提交、并发1、每次保守预留$0.05，单价实时核验0.003/0.012上限。每Case最多一次完整重试和一次组件修复，重试/修复前须已有明确失败/不可用/丢弃记录；人工≤15分钟。UNKNOWN/未决预留冻结新增，归档失败仅恢复归档，不自动购买或扩额。
 
 通过Git common-dir推导主仓库 `.local/step09-budget`，所有会话/Worktree共用；无预算root环境覆盖。`approval.json`仅能在用户本人明确批准后由操作者写入，应用没有自动批准入口。其字段为version、approvedBy=HUMAN_USER、authorization、approvedAt、totalUsd=1、maxSubmissions=10。提交前独占文件锁原子检查/写入并fsync；预留不退还，事件历史保留。锁残留/UNKNOWN由人工核对，不能删ledger重来。报价、保守预留与实际扣费分开，供应商账单不可核实时UNVERIFIED；这不是供应商侧金额硬限制。
 

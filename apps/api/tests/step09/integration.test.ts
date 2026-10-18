@@ -1,4 +1,4 @@
-import { beforeAll, afterAll, it, expect } from 'vitest';
+import { beforeAll, afterAll, it, expect, vi } from 'vitest';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { resolve } from 'node:path';
@@ -63,6 +63,7 @@ async function waitBuild(p: string) {
   throw Error('BUILD_TIMEOUT');
 }
 beforeAll(async () => {
+  vi.stubEnv('TILESET_AI_MODE', 'mock');
   await mkdir(root, { recursive: true });
   const original = process.env['DATABASE_URL']!;
   admin = new PrismaClient({ datasources: { db: { url: original } }, log: [] });
@@ -105,6 +106,7 @@ afterAll(async () => {
   await writeFile(resolve(root, 'summary.json'), JSON.stringify(evidence, null, 2));
   await running?.close();
   await admin?.$disconnect();
+  vi.unstubAllEnvs();
 });
 it('both empty-supplement workflows produce complete actual Pack; water repair preserves exact unselected revisions, fixed bank and old downloads', async () => {
   for (const reference of [false, true]) {
@@ -384,11 +386,12 @@ it('invalid reference/model overrides, UNKNOWN, cancellation and hard-invalid co
     },
     new Archiver(running.studio.store, { bytes: async () => bytes }),
   );
+  await executor.resume(flatTasks.taskIds[0]!, 'WAIT');
   await executor.resume(waterTask, 'WAIT');
   await expect(
     running.ai.apply(
       flatProject.id,
-      { expectedRevision: 0, waterTask },
+      { expectedRevision: 0, grassTask: flatTasks.taskIds[0]!, waterTask },
       new AbortController().signal,
     ),
   ).rejects.toThrow('less than 1%');
