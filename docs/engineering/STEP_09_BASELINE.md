@@ -1,3 +1,5 @@
+> **首审整改最新：** source `3cc866b4bf0fa15a1a8c8ed0baf35b245828fe86` 为本地作者整改候选。共享并发槽只由明确远端终态/旧ARCHIVED释放；本地cancel/fail/discard及未证实的归档状态不释放。MZ准备v2显式规范化缺失windowOpacity、拒绝非法值、引用canonical profileHash，新增core/Chromium启动smoke。两P2作者修复待独立复核，V09原根因未确证，正式人工材料仍NOT_READY；详见[首审整改](../reviews/step-09-fix-round-1-coding.md)。原基线与历史说明保留在下方。
+
 # 步骤09 Coding 基线
 
 当前授权只包含09实现、自测和本地候选。main基线为 `a551dd68f65d3c92dfb93a4fca8590353f4d103b`；既有01–08发布、独立PASS及失败记录保留。不启动Reviewer、不批准/合并/推送/进入10。

@@ -158,3 +158,7 @@ R3/5 REQUIRES_REVISION原报告SHA `c18e713ac7e3ee14b9b342234af5d6d4fe9225a67a54
 ## 步骤09作者候选（2026-10-18）
 
 本轮仅Coding，不将01–08重新全局审查。文字/参考空辅助完整Pack、正常texture偏好、候选选择与受控转换、共享基础三帧、局部修复保护、实际导出预览/下载、共享人工预算门禁见[09工程基线](STEP_09_BASELINE.md)与[作者报告](../reviews/step-09-coding.md)。自动化与浏览器Mock通过不等于真实AI Pack、MZ或人工美术通过；真实预算与质量阈值未获用户批准时保持NOT_EXECUTED/PENDING，10保留集未用于09调参。正式plans、历史失败和旧manifest不改写。
+
+## 步骤09首审整改候选（2026-10-18）
+
+[作者首审整改](../reviews/step-09-fix-round-1-coding.md)：共享远端并发1与MZ准备数据/canonical身份已作者修复，441项check及针对性证明保留；V09失败原因未确证、独立技术门禁未清零，正式人工材料NOT_READY。真实提交仍4、原技术Pack2/2/艺术待验，质量阈值和H02数据仍未完成，不启动10。
