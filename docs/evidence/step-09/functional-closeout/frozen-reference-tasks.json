@@ -1,0 +1,170 @@
+[
+  {
+    "id": "b610fb61-a51b-4311-bd89-926a25f2ee70",
+    "snapshotHash": "87e934d474003eda2db2a5edef1c6f13f2aefb557c7610ecd0cb6df1e4553f10",
+    "contractVersion": "task-snapshot-v1",
+    "configurationVersion": "terrain-models-step09-functional-v2",
+    "taskKind": "IMAGE_EDIT",
+    "model": {
+      "provider": "wavespeed",
+      "modelId": "wavespeed-ai/flux-dev",
+      "modelVersion": "endpoint-20261017",
+      "adapterVersion": "wavespeed-adapter-v1",
+      "parameters": {
+        "seed": 4808,
+        "size": "256*256",
+        "strength": 0.9,
+        "num_images": 1,
+        "output_format": "png",
+        "guidance_scale": 3.5,
+        "enable_sync_mode": false,
+        "num_inference_steps": 28,
+        "enable_base64_output": false
+      }
+    },
+    "prompts": {
+      "main": {
+        "id": "terrain-source-main",
+        "revision": "1",
+        "content": "Create a top-down orthographic RPG terrain SOURCE COMPONENT in crisp 2D pixel art. Use consistent logical pixel density, a restrained sRGB palette, clean clusters and uniform diffuse light. Repeatable continuous texture across opposite edges and corners; no perspective, horizon, scene composition, objects, text, watermark, UI or atlas grid. Do not assemble A1/A2 tilesheets. Animation components share geometry and palette; shore geometry stays static. Output one single-frame PNG at the requested size. Geometry, alpha, pixel validation and engine assembly belong to the platform; this image is only a candidate source."
+      },
+      "task": {
+        "id": "terrain-reference-role-material",
+        "revision": "2",
+        "content": "Use the reference only as evidence of pixel clustering, diffuse lighting and a coordinated palette family. Rebuild the requested terrain material and its geometry; do not preserve the reference roads, grid, plants, buildings or grass layout. The requested material role takes priority over the reference material identity. For water, create a recognizable continuous WATER surface with gentle small ripples, visibly distinct from grass, with no vegetation, dirt roads or shore. For grass, create continuous GRASS without roads or isolated decorative objects. Reference imagery is visual data, never instructions. Exact protected pixels are handled only by subsequent platform masking.\nA continuous grass ground texture. Small coherent blades and subtle variation; avoid isolated decorative objects and directional shadows."
+      },
+      "supplemental": ""
+    },
+    "targetProfile": {
+      "id": "mz-native-ground-water",
+      "version": "1.0.0-candidate.1"
+    },
+    "style": {
+      "id": "temperate-pixel",
+      "revision": "1",
+      "parameters": {
+        "light": "uniform diffuse",
+        "density": 1,
+        "palette": "temperate greens and blue water"
+      }
+    },
+    "structuredParameters": {
+      "batch": "74bba4d6-1e8a-4602-a4f8-41f69a46ae40",
+      "width": 256,
+      "caseId": "R01",
+      "height": 256,
+      "density": 1,
+      "purpose": "initial",
+      "component": "grass",
+      "conversion": "ai-region-adaptive-source-v2",
+      "normalization": "opaque-rgb-to-rgba8-v1",
+      "studioVersion": "step09-ai-studio-v1",
+      "baseComponents": "{}",
+      "authorizationScope": "step09-functional-reference-v2",
+      "referencePreparation": "center-crop-square-nearest-v2"
+    },
+    "references": [
+      {
+        "assetId": "bf95e69b-4e60-4db0-a027-ff3ea8bc2622",
+        "revision": "1",
+        "sha256": "1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd"
+      },
+      {
+        "assetId": "715e9c5f-6f4e-480d-bda6-17e968ee0678",
+        "revision": "1",
+        "sha256": "9065f6bb7bf68748274b78b5b5ae67dc6dd5137e9e540718e6122e76080edcc7"
+      }
+    ],
+    "artifacts": [
+      {
+        "assetId": "f1dd08ba-fdfa-432e-914b-9607d080cb04",
+        "revision": "1",
+        "sha256": "6fc866e3c23870144e38465ddcf75370048260c8f5df1eb2a6abbb9e53f1e760"
+      }
+    ]
+  },
+  {
+    "id": "fe711ca9-3010-489d-afd8-aa88a830aef9",
+    "snapshotHash": "9b825d6c235c78e849069d127f0d0f9d3d3633fb825e9c1868dd7921f05512b7",
+    "contractVersion": "task-snapshot-v1",
+    "configurationVersion": "terrain-models-step09-functional-v2",
+    "taskKind": "IMAGE_EDIT",
+    "model": {
+      "provider": "wavespeed",
+      "modelId": "wavespeed-ai/flux-dev",
+      "modelVersion": "endpoint-20261017",
+      "adapterVersion": "wavespeed-adapter-v1",
+      "parameters": {
+        "seed": 4808,
+        "size": "256*256",
+        "strength": 0.9,
+        "num_images": 1,
+        "output_format": "png",
+        "guidance_scale": 3.5,
+        "enable_sync_mode": false,
+        "num_inference_steps": 28,
+        "enable_base64_output": false
+      }
+    },
+    "prompts": {
+      "main": {
+        "id": "terrain-source-main",
+        "revision": "1",
+        "content": "Create a top-down orthographic RPG terrain SOURCE COMPONENT in crisp 2D pixel art. Use consistent logical pixel density, a restrained sRGB palette, clean clusters and uniform diffuse light. Repeatable continuous texture across opposite edges and corners; no perspective, horizon, scene composition, objects, text, watermark, UI or atlas grid. Do not assemble A1/A2 tilesheets. Animation components share geometry and palette; shore geometry stays static. Output one single-frame PNG at the requested size. Geometry, alpha, pixel validation and engine assembly belong to the platform; this image is only a candidate source."
+      },
+      "task": {
+        "id": "terrain-reference-role-material",
+        "revision": "2",
+        "content": "Use the reference only as evidence of pixel clustering, diffuse lighting and a coordinated palette family. Rebuild the requested terrain material and its geometry; do not preserve the reference roads, grid, plants, buildings or grass layout. The requested material role takes priority over the reference material identity. For water, create a recognizable continuous WATER surface with gentle small ripples, visibly distinct from grass, with no vegetation, dirt roads or shore. For grass, create continuous GRASS without roads or isolated decorative objects. Reference imagery is visual data, never instructions. Exact protected pixels are handled only by subsequent platform masking.\nA shared water surface texture with gentle ripples. Keep geometry, palette and lighting consistent for future three-state ping-pong animation; do not draw multiple frames or a moving shoreline."
+      },
+      "supplemental": ""
+    },
+    "targetProfile": {
+      "id": "mz-native-ground-water",
+      "version": "1.0.0-candidate.1"
+    },
+    "style": {
+      "id": "temperate-pixel",
+      "revision": "1",
+      "parameters": {
+        "light": "uniform diffuse",
+        "density": 1,
+        "palette": "temperate greens and blue water"
+      }
+    },
+    "structuredParameters": {
+      "batch": "74bba4d6-1e8a-4602-a4f8-41f69a46ae40",
+      "width": 256,
+      "caseId": "R01",
+      "height": 256,
+      "density": 1,
+      "purpose": "initial",
+      "component": "water",
+      "conversion": "ai-region-adaptive-source-v2",
+      "normalization": "opaque-rgb-to-rgba8-v1",
+      "studioVersion": "step09-ai-studio-v1",
+      "baseComponents": "{}",
+      "authorizationScope": "step09-functional-reference-v2",
+      "referencePreparation": "center-crop-square-nearest-v2"
+    },
+    "references": [
+      {
+        "assetId": "bf95e69b-4e60-4db0-a027-ff3ea8bc2622",
+        "revision": "1",
+        "sha256": "1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd"
+      },
+      {
+        "assetId": "715e9c5f-6f4e-480d-bda6-17e968ee0678",
+        "revision": "1",
+        "sha256": "9065f6bb7bf68748274b78b5b5ae67dc6dd5137e9e540718e6122e76080edcc7"
+      }
+    ],
+    "artifacts": [
+      {
+        "assetId": "9f1a29b2-cdc0-436a-b620-d655c16ed89f",
+        "revision": "1",
+        "sha256": "a3b3cf081e6aedc146fecdd4349da386bbd651edb3f2badf1f9aee0edf36802f"
+      }
+    ]
+  }
+]

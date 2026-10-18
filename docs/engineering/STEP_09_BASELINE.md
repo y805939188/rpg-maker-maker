@@ -1,3 +1,5 @@
+> **定向功能收尾作者候选：** 生产source `97f6cb6789402e823f51ca86d79e4513b2265941` 已接入region-v2与角色参考Prompt@2；T正式像素等于已接受A，R新增获批2调用并经一次草地选区纠正。见[本轮Coding报告](../reviews/step-09-functional-closeout-coding.md)。f613已有独立限定PASS；本轮仅作者自测/候选，不自行复审或推进10。下文为各阶段历史，不据旧待审/未冻结H02说明覆盖本轮新证据。
+
 > **首审整改最新：** source `3cc866b4bf0fa15a1a8c8ed0baf35b245828fe86` 为本地作者整改候选。共享并发槽只由明确远端终态/旧ARCHIVED释放；本地cancel/fail/discard及未证实的归档状态不释放。MZ准备v2显式规范化缺失windowOpacity、拒绝非法值、引用canonical profileHash，新增core/Chromium启动smoke。两P2作者修复待独立复核，V09原根因未确证，正式人工材料仍NOT_READY；详见[首审整改](../reviews/step-09-fix-round-1-coding.md)。原基线与历史说明保留在下方。
 
 # 步骤09 Coding 基线
