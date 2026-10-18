@@ -174,7 +174,7 @@ for (const caseId of ['T01', 'R01'] as const) {
     const originalBytes = await readFile(resolve('.local/step09-live-assets/objects', artifact.sourceRef.originalDownload.sha256));
     const bytes = await readFile(resolve('.local/step09-live-assets/objects', artifact.sha256));
     assert.equal(hashBytes(originalBytes), artifact.sourceRef.originalDownload.sha256); assert.equal(hashBytes(bytes), artifact.sha256);
-    const result = await decodeSource(new RawSource({ id: `offline-input-${caseId}-${component}`, revision: 1, role: component, density: 1, encoding: 'png', bytes,
+    const result = await decodeSource(new RawSource({ id: `offline-input-${caseId.toLowerCase()}-${component}`, revision: 1, role: component, density: 1, encoding: 'png', bytes,
       provenance: { origin: 'deterministic', author: 'Read-only existing normalized AI candidate', license: 'Original record governs', toolVersion: 'step09-offline-input-v1', parents: [ref(artifact.sourceRef)] } }));
     if (result.status !== 'validated') throw Error(result.diagnostic.code);
     inputs[component] = result.source.image; inputRefs[component] = ref(artifact.sourceRef);
