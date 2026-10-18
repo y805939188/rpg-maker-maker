@@ -13,7 +13,7 @@
 
 ## 候选与实现
 
-隔离工作树 `/Users/dingshinn/.codex/worktrees/step-09-ai-studio/rpg-maker-maker`，本地分支 `codex/step-09-ai-studio`。真实任务、Pack和MZ材料绑定功能source **`6bd9b4b47b358e88c70db4bcb6f8ffadd49aece5`**；后续仅修正负控用例以跨过正确的首套双候选门禁，显式将普通09集成固定为Mock（即使外部环境是wavespeed也不读真实key），并将实际AI任务错误标签从“Mock任务”改为“AI任务”。该显示/测试差异不改变真实任务快照、像素、Compiler、Profile或已生成Pack，不新增付费或改写旧manifest。最终候选/工程构建绑定见精简证据。
+隔离工作树 `/Users/dingshinn/.codex/worktrees/step-09-ai-studio/rpg-maker-maker`，本地分支 `codex/step-09-ai-studio`。真实任务、Pack和MZ材料绑定功能source **`6bd9b4b47b358e88c70db4bcb6f8ffadd49aece5`**；后续仅修正负控用例以跨过正确的首套双候选门禁，显式将普通09集成固定为Mock（即使外部环境是wavespeed也不读真实key），并将实际AI任务错误标签从“Mock任务”改为“AI任务”。该显示/测试差异不改变真实任务快照、像素、Compiler、Profile或已生成Pack，不新增付费或改写旧manifest。最终代码/证据候选 `1410e95bbc61efce4ef27cb43ecd8e8ab7c6d935`；工程Build `step09-1410e95bbc61-6091c96e53023ebd`，Manifest SHA `599493b7aade5eecf7257a65ad6eacbf08bce57b64a6c4a762c7e9bac9b209af`，253文件逐SHA复核PASS，见[工程绑定](../evidence/step-09/engineering.json)。本报告收尾提交仅文档，不使已验证生产代码/真实Pack失效。
 
 客户端核对为 `step_coder / gpt-6.1-sol / xhigh`，本地配置 `service_tier=default(Standard)`；会话未暴露的服务端tier/role等为UNVERIFIED，未观察到Fast/Priority/Ultrafast。Node22.21.1/pnpm10.20.0，锁文件、Profile、Pixel Contract、Compiler/Pack规则不变。
 
@@ -48,7 +48,7 @@ S08-IR1-N01定向修复text子串误拒texture/textured；正常中英文颜色/
 
 ## 探索、质量与费用
 
-人类明确批准的[固定清单](../evidence/step-09/exploration-v1.json)/[批准原文](../evidence/step-09/budget-approval.json)：1配置、T01/R01两Case、每Case草地+共享水面各1次，首次4提交；总$1/最多10次/并发1，允许失败时每Case一次完整重试和一次组件修复，人工≤15分钟。实际首批已完成并停止；没有追加剩余6次、换模型或调Prompt。独立10验收集未调用、未参与09调参。
+人类明确批准的[固定清单](../evidence/step-09/exploration-v1.json)/[批准原文](../evidence/step-09/budget-approval.json)：1配置、T01/R01两Case、每Case草地+共享水面各1次，首次4提交；总$1/最多10次/并发1，允许失败时每Case一次完整重试和一次组件修复，人工≤15分钟。实际首批已完成并停止；没有追加剩余6次、换模型或调Prompt。[独立保留场景](../evidence/step-09/holdout-status.json)未调用、未参与09调参；H01文字描述已固定，H02场景已固定但参考原图路径/SHA待用户，**参考验收数据尚未冻结，不声称完整独立验收集已冻结**。
 
 | 口径                                             | 全部实际尝试结果                                                                                        |
 | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
@@ -97,5 +97,7 @@ pnpm report:step09 <new-output.json>
 ```
 
 当前真实固定批次只授权空辅助/默认风格/固定参考SHA；其他合法辅助是正常产品输入，可用Mock验证，真实调用需被纳入用户预算批准，报“本批次未授权该输入”，不误判Prompt冲突。
+
+最终保留稳定入口：Mock `http://127.0.0.1:4399`，真实历史/实际Pack `http://127.0.0.1:4398`；后者恢复已有已完成任务，不会因凭据存在自动提交。最终只读浏览器复核AI任务标签、原真实Pack预览且零POST；共享提交数仍4。PG保持本树独立集群以供查看。
 
 用户剩余肉眼工作集中为两份已准备MZ工程的拼接/边角、三源帧往返动画、草水区分/重复纹理/参考契合，以及决定正式质量阈值。未做前仍NOT_EXECUTED/PENDING，作者不自行批准或推进10。

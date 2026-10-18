@@ -92,6 +92,24 @@
       "result": "2 PASS at unchanged thresholds in stable isolated dev service; original full run 16/18 and unknown transient cause retained, not claimed fixed",
       "log": ".local/e2e-dev-targeted-1.log",
       "sha256": "f92c338185311d13eeada7d9d38b15450224b16cb1a5305736d7094a00cd32e6"
+    },
+    {
+      "command": "pnpm build",
+      "result": "PASS clean final candidate build",
+      "log": ".local/build-candidate.log",
+      "sha256": "4ad72a5947f92eb9cd93cfb476c0e348167a45f3fd3b84dd9839fa0bbe40f7c1"
+    },
+    {
+      "command": "pnpm verify:exports",
+      "result": "PASS all 11 production packages",
+      "log": ".local/exports-candidate.log",
+      "sha256": "8aaff62338758bbd43e8c34a660d85b08efafdd0b12bf3015f58ff30386f5b25"
+    },
+    {
+      "command": "node .local/step09/final-readonly-smoke.mjs",
+      "result": "PASS correct AI label, same actual6bd Pack preview, zero POST",
+      "log": ".local/final-readonly-smoke.log",
+      "sha256": "8bd5a47078293937fc6349d89f31f5b4b8c6531c6b3b8b5b393500455d653771"
     }
   ],
   "retainedFailures": [
@@ -143,5 +161,6 @@
   "realPaidSubmissions": 4,
   "mzEditorAndRuntime": "NOT_EXECUTED",
   "humanArt": "PENDING_USER_ACCEPTANCE",
-  "developmentRegressionCaveat": "Full dev run:16 PASS/2 FAIL. Same source/pixels valid independently; two targeted original-threshold reruns PASS, without production fixes. Original 422/timing cause unconfirmed. No claim that an initial full dev run was green."
+  "developmentRegressionCaveat": "Full dev run:16 PASS/2 FAIL. Same source/pixels valid independently; two targeted original-threshold reruns PASS, without production fixes. Original 422/timing cause unconfirmed. No claim that an initial full dev run was green.",
+  "engineeringSource": "1410e95bbc61efce4ef27cb43ecd8e8ab7c6d935"
 }

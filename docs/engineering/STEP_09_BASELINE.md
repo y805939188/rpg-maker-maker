@@ -35,7 +35,7 @@ TILESET_PROVIDER_ENV_FILE="$SHARED_PROVIDER_FILE" TILESET_AI_MODE=wavespeed pnpm
 
 本批次真实调用只授权清单的空辅助/默认风格/固定R01原图SHA；其他合法偏好是正常产品输入，可在Mock使用，真实调用须纳入用户批准的预算范围，不能被当作Prompt冲突。主Prompt版本不变；S08-IR1-N01修复text子串误拒texture，结构/模型冲突仍拒绝。
 
-`pnpm report:step09 <new-output.json>`导出本树DB及共享账本统计，不读key。完整可用Pack才是成功单位；提交、失败、UNKNOWN、不可用候选、归档、丢弃、重试、修复、时间和费用保留，零分母N/A。Mock不进入真实成功率。正式质量建议、人工评分局限与未调参的10保留集均在固定清单中；尚未获批，不依据结果降低。
+`pnpm report:step09 <new-output.json>`导出本树DB及共享账本统计，不读key。完整可用Pack才是成功单位；提交、失败、UNKNOWN、不可用候选、归档、丢弃、重试、修复、时间和费用保留，零分母N/A。Mock不进入真实成功率。正式质量建议、人工评分局限与未调参的10保留集均在固定清单中；尚未获批，不依据结果降低。H01保留文字场景已固定；H02保留场景固定但参考原图路径/SHA待用户，参考数据尚未冻结，不声称完整验收数据冻结。
 
 实际Pack标准目录准备原生MZ材料：`pnpm prepare:step09 <合法原装newdata> <该Pack八文件目录> <新独立工程目录>`。会验证原装core、拒绝覆盖、注册图集并生成地图和出生点；脚本成功只表示准备完成。新产物MZ编辑器/动画/美术未执行时仍写NOT_EXECUTED/PENDING_USER_ACCEPTANCE，原装Host等旧延期保持。
 
