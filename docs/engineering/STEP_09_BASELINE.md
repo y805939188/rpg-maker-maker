@@ -1,3 +1,5 @@
+> **最终限定复审与功能交接（2026-10-18）：** 受审候选`0a55d9f960bc3093843387af82561896ef16ebdc`已获原序列最后R2独立PASS，完整check450、完整09 4/4。T接受A精确像素复用，最终R同Build的草水/拼接/动画/岸线获USER_REPORTED功能确认。补充08准备超时2/3及旧原因UNVERIFIED保留；正式数值门槛/原装Host范围不冒充通过。仅按本次预授权发布09功能基线，实际Git/CI放行回执与边界见[发布交接](../orchestration/step-09-release.md)；10保持NOT_STARTED。下文均为历史阶段记录。
+
 > **定向功能收尾作者候选：** 生产source `97f6cb6789402e823f51ca86d79e4513b2265941` 已接入region-v2与角色参考Prompt@2；T正式像素等于已接受A，R新增获批2调用并经一次草地选区纠正。见[本轮Coding报告](../reviews/step-09-functional-closeout-coding.md)。f613已有独立限定PASS；本轮仅作者自测/候选，不自行复审或推进10。下文为各阶段历史，不据旧待审/未冻结H02说明覆盖本轮新证据。
 
 > **首审整改最新：** source `3cc866b4bf0fa15a1a8c8ed0baf35b245828fe86` 为本地作者整改候选。共享并发槽只由明确远端终态/旧ARCHIVED释放；本地cancel/fail/discard及未证实的归档状态不释放。MZ准备v2显式规范化缺失windowOpacity、拒绝非法值、引用canonical profileHash，新增core/Chromium启动smoke。两P2作者修复待独立复核，V09原根因未确证，正式人工材料仍NOT_READY；详见[首审整改](../reviews/step-09-fix-round-1-coding.md)。原基线与历史说明保留在下方。

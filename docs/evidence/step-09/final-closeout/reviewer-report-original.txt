@@ -1,0 +1,62 @@
+# 步骤09限定独立复审 R2（最后允许轮次）
+
+2026-10-18，America/Chicago。独立 step_reviewer；仅审 `f61348049551c13c9eb3e17c81806e00470c2cf5 → 0a55d9f960bc3093843387af82561896ef16ebdc` 的实际差异及直接影响，复用 R1 未变范围独立 PASS。没有重新 Review 01–08，没有修改任何 tracked 实现/测试/阈值/基准，没有启动 Agent、真实模型调用、新 Review 轮次、批准、合并、推送或进入10。
+
+**结论：PASS（本冻结候选、指定差异的限定独立代码/必要自动化复审）。未发现本差异引入的 P0、P1 或硬契约 P2。** 这不代表步骤09整体批准。必需的完整 `pnpm check` 与完整 `pnpm test:step09` 均通过；额外08回归只有2/3通过，第三项在未改动的素材准备阶段发生 codec 超时，单列下文，不能声称本轮全部回归全绿或超时根因已解决。
+
+## 冻结与客户端
+
+- 独立 detached 工作树 `/Users/dingshinn/.codex/worktrees/step-09-independent-review-r2-final/rpg-maker-maker`，HEAD 精确为 `0a55d9f960bc3093843387af82561896ef16ebdc`；最后生产源码 `97f6cb6789402e823f51ca86d79e4513b2265941`。初始、最终 tracked status 均为空。
+- 当前实际 CLI 参数明确覆盖 `-m gpt-6.1-sol`、`model_reasoning_effort="ultra"`、`service_tier="default"`，developer 指令包含独立 step_reviewer 及现有角色的四条审查要求。实际 session/turn_context 的 model、effort、cwd 与此一致。角色 TOML SHA `a03e99271325fb09e79855614f9cda7dab105f3f7f89e4e32c66298e2c0b5bd7`。隐藏服务端 model/role/effort/tier 全为 **UNVERIFIED**；没有使用 Priority-only 接口或改全局配置。[preflight.json](preflight.json)
+- Node **22.21.1**、pnpm **10.20.0**；独立 frozen-lockfile 安装（显式 `--store-dir .local/pnpm-store`）、Prisma generate/七项迁移、锁定 Chromium **1248 / 156.0.8078.4**。自建 PG **14.20 / 55569** 及空库，09另建 UUID 库；API4409（09）/4479（只读 Mock UI guard）。浏览器、XDG cache、测试 TMPDIR、资产均在本树。子进程环境采用允许列表并固定 Mock，不继承真实 key、Provider 文件或其他数据库配置；仅加载本树新建 `.env`。
+- 首次 check 在 Reviewer 发现继承系统 TMPDIR 后主动中止；停止保护最初因测试已开始而拒绝中止，之后明确停止该自有命令并更正 TMPDIR。原部分单测/中止日志保留，**不计完整验证**。随后一次完整 check 通过。没有依据候选失败反复重跑求绿。[环境更正](environment-correction.json)、[原中止日志](logs/check-environment-aborted.log)
+
+## 实际命令与结果（串行）
+
+| 命令/验证 | 本轮结果 |
+|---|---|
+| `pnpm install --frozen-lockfile --store-dir .local/pnpm-store`；`pnpm db:generate`；`pnpm exec playwright install chromium`；自有 PG init / Prisma migrate deploy | PASS；隔离准备日志保留 |
+| **`pnpm check` 完整一次** | **43文件 / 450测试 PASS**；方向、类型、lint、格式、clean build、11包 exports 全通过，73.763秒总命令。[check.log](logs/check.log) |
+| **`pnpm test:step09` 完整一次** | **4/4 PASS**；173.01秒测试阶段、193.923秒总命令。[step09-full.log](logs/step09-full.log) |
+| `pnpm exec vitest run --config vitest.step08.config.ts`（共享 Prompt/default 的补充影响回归） | **2 PASS / 1 FAIL**；不重跑。前两项已覆盖旧参考准备/配置、已知ID恢复、归档重试不再购买、快照及新采用保护；第三项准备失败，见下文。[step08-direct-regression.log](logs/step08-direct-regression.log) |
+| 只读真实 Pack/原图/转换/accepted A 重放 | **PASS**：两套当前 Pack 严格重读、6份原始与归一化候选 SHA、4份完整任务快照 fingerprint、4份新转换重算、两套旧 Pack 及历史源记录。另用 Python zipfile 检查两 ZIP 的8成员/CRC/逐字节目录一致。[产物核验](artifact-verification.json)、[ZIP核验](zip-members.json) |
+| 冻结生产 Web/API 的独立 Mock 上传 guard | **PASS**：挂起 preview 时 disabled，释放后 enabled；0 POST、0 pageerror。没有生成、采用或写视觉确认。[upload-guard.json](upload-guard.json) |
+
+完整09包括：文字/参考空辅助整套实际 Pack；浏览器两个产品入口、非默认选区及转换坐标；水面和草地局部修复；未选 revision/固定岸线/旧 ZIP；UNKNOWN 禁重提、本地取消、硬错误拒绝、转换不可删除；失败发布保留成功指针和有限诊断。唯一 buildFailure observation 是预期注入的 publish / BUILD_FAILED，无09合法流程 CODEC_TIMEOUT。末态 occupied/waiting 均 false。没有用作者1/4+限定3/3拼成完整4/4。
+
+## 补充08失败的准确边界
+
+`V-R2-08-SETUP`：第三项 `unknown paid submission is durable and never retried by recovery; provider rejection is sanitized` 抛出 `AssetError: Image codec exceeded its isolated deadline`，原栈为 `packages/image-adapter/src/isolation.ts:55`。只读本树 PG 状态显示前两项目已有 revision/任务，第三项目为 **revision0、assetRevision0、logicalTask0**。[只读失败状态](step08-failure-state.json)
+
+结合该用例先执行 `const s = await setup()`、setup 先生成/解码旧 fixture 再保存资产/返回的源码顺序，可以定位在**未改动的 fixture setup、进入本用例 AiTaskService/Provider 断言之前**。精确 encode/decode、startup/operation 阶段和原因仍 **UNVERIFIED**；不能称机器负载原因、已根治或本项通过。没有重跑该测试、扩大截止、预热 codec、改任何生产/测试文件。R1 对未变08/codec范围的 PASS 仅按原范围复用，不冒充本轮重测。
+
+该失败是本轮保留的验证观察；缺少证据将其归因于本次新增 Prompt/region/budget 变化，因此不据此虚构本差异的新 P0/P1/硬契约 P2。限定 PASS 只覆盖本次实际改动与已完成的完整必要门禁，不是对未完成08第三项断言的认证。作者首次09 1/4、后续限定3/3及旧 V09 瞬时原因也继续 **UNVERIFIED**，不改写为历史全绿。
+
+## 差异核验
+
+- **region-v2 / shared palette / 正式来源**：框架无关 `ai-region-adaptive-source-v2` 由正式采用入口调用；选区为受校验的原图整数方形，默认中心保比例，UI滑块/点击与保存坐标在完整09实测一致。完整双候选共同提取最多64色；显式 nearest24、单行边处理、density2、96×144、同基础三相位和至少1%变化未放宽。描述保存选区、调色板、输入 pixelHash、paletteInputs、输出 Hash，源 provenance 引用参与原图。没有硬编码生产样例选区或宣传自动语义分割。
+- **T正式接入 / accepted A**：两份旧真实 AI 候选由正式 UI 采用，区域 `(88,84,64,64)` / `(184,176,64,64)`。本轮独立重算并与原 accepted A 逐字节比较：**ground、三合成帧、mask 全相同**，复用已接受功能观察，不要求用户重看。T无新增调用。
+- **R新 Prompt/strength/真实来源**：可选 `terrain-reference-role-material@2`、配置 `terrain-models-step09-functional-v2`、strength0.9；旧默认 strength0.55、旧模板和08调用语义保留。4份新旧完整快照 fingerprint 与冻结记录一致，原参考/准备图版本可追踪；新两候选的原下载与归一化 SHA 实际重核。原图仍有场景，明确需要选区，不宣称模型自动生成纯材质。
+- **一次 R ROI 纠正**：首次沙岸选区及 ROLE_FAIL Pack 留存；只更正同一草地候选到 `(40,70,24,24)`，水面保持 `(102,113,64,64)`。本轮核验草地改变，**water三源、mask、overlay 的精确 ref/PNG 均不变，A1字节不变**；没有付费修复/重试。每套9168次保护像素比较零差异，三帧保持变化。
+- **历史/失败/CAS**：旧源、快照、转换、Manifest 未改写；新 Pack 的历史 archive 是旧 archive 的精确前缀。旧 conversion-v1、Compiler/Profile/Pixel Contract、codec、Prisma/持久化、锁文件及母版在 f613→HEAD 无变化。采用仍检查当前项目 revision、COMPLETED/弃用状态和 repair 创建时 baseComponents；局部采用保留未选组件和岸线，完整非repair双候选才重捕 bank。失败、迟到结果和成功指针规则复用既有 Store/Executor，并由完整09及R1未变范围证据支持。[保护核验](preservation.json)
+- **共享预算**：仍由 git common-dir 定位唯一账本、独占锁内原子预留；明确远端终态前不释放并发1，UNKNOWN保留占槽且不自动解除。追加 scope 须单独 HUMAN_USER 批准，限定原参考/Prompt/config、grass1+water1、最多2、累计$1/10和价格上限；失败/UNKNOWN/preflight 拒绝持久停止，无退款/重置。450完整check覆盖旧跨进程并发及新增scope上限/停止。真实三文件前后 SHA 完全一致，本轮0真实提交。[预算保护](preservation.json)
+- **preview/download/actualPack/最后上传行**：完整09检查预览 Manifest 和下载 ZIP 绑定同一成功 Build；两实际真实 Pack 的8文件/ZIP与冻结证据一致；作者16个 actual atlas/WebGL 状态比较按产物SHA复用，未冒称本轮重做。`disabled={busy || blocked}` 另外独立测试挂起/释放预览交互通过。
+
+## 关键产物与用户观察
+
+| Case | 数据库 Build | Export / Manifest SHA256 |
+|---|---|---|
+| T01 | `0b212a2ba3d13b3fea3a37739a4d99fc6652e1de12363ea02455883f0e60732c` | `step05-pack-14843ed94e99-2fa57f2de435568d` / `56d14c0cec25ead99f88af65460b00baeb948896ab51358bb8f79280e580b84a` |
+| R01 final | `ee01997274ca2e64d86499c67463aad0cbd8880625ed52cc4fc7ff94a3c2482f` | `step05-pack-97f6cb678940-b85cd864c7abf53d` / `affd77eb50ab40aa442959ceb6c4680ccf2c95af15f90a95ba70f7ecc1738460` |
+
+只读用户记录 `/Users/dingshinn/Desktop/rpg-maker-maker/.local/step09-final-closeout/user-R01-functional-acceptance-20261018.json` 与最终R的 candidate/Build/Export/Manifest 精确一致。草水可辨、池塘/孔洞/细通道拼接、Playtest动画可接受/岸线稳定记为 **USER_REPORTED_PASS**。这是限定功能观察；不是原装 Host 认证、商用美术或数值阈值批准。T按像素相同复用已接受A。
+
+## 清单、未验事项与停止
+
+- 当前限定差异：**P0 0 / P1 0 / 硬契约P2 0**。保留验证观察 `V-R2-08-SETUP=UNVERIFIED`，本轮08不能写3/3。质量优化与正式验收政策不列为新增代码缺陷。
+- 正式数值质量阈值、实际扣费/商用美术与完整可用率仍未认证。累计6次提交/6归档、报价$0.054、保守预留$0.30；实际扣费 **UNVERIFIED**，不推导100%成功率。
+- H02-A 原图 SHA `8b8408427cd7f1a863ae5595a3c484c93e8f4e889039a43f708aa5eb94823575` 仅复用冻结记录，**NOT_RUN / NOT_USED_FOR_TUNING**；未读取运行其原图、未执行保留集。未操作用户 MZ/全局 Runtime，未新做MZ手绘/原装Host认证；既有延期保持。用户已接受同批画面不重开。
+- Reviewer 两处 ignored 取证脚本错误（Prisma模块查找、旧R输入不在当前任务子集）已定位并仅修取证脚本；原日志保留，修正后产物核验通过。未改生产代码或正式测试，不是额外 Review 轮次/候选重试。
+- 仅关闭本轮自启的 API/浏览器/PG，55569/4409/4479均已释放；DB、资产、缓存及 ignored 证据保留，最终 tracked status 为空。[final-state.json](final-state.json)
+
+**本报告交付后停止；不自行放行步骤09，不批准、合并、Push，不启动新Review轮次，不进入10。**
