@@ -1,0 +1,67 @@
+{
+  "approval": "APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR",
+  "approvedAt": "2026-10-19T14:36:34.638315+08:00",
+  "authorization": "Latest explicit user authorization: one observation-only R3, then normal merge/push and actual main CI; unknown historical startup cause is not a release prerequisite.",
+  "functionalReviewedCandidate": "0a55d9f960bc3093843387af82561896ef16ebdc",
+  "lastFunctionalSource": "97f6cb6789402e823f51ca86d79e4513b2265941",
+  "beforeObservation": "e228d09a732955aaf63b2bddd949bc0a45ac9815",
+  "observationExecutionSource": "65a8ad44d74232b0fd8fb876b1694219c8d68799",
+  "observedCiCandidate": "c8c3227d1340de9ff0c6ef4285a183ba4412eacb",
+  "frozenR3Head": "e8c14b2d529670619cfe571673b88407dee7284e",
+  "reviewVerdict": "PASS_LIMITED_OBSERVATION",
+  "blockingCounts": {
+    "P0": 0,
+    "P1": 0,
+    "hard_contract_P2": 0,
+    "total": 0
+  },
+  "nonblockingFinding": "R3-P3-01: omitted DB port is observed as unconfigured; current CI has explicit port.",
+  "reviewerOriginalReportSha256": "a74357fb173ba86493d6f86321ab8249617561cf59d91d62c2cfb6509760e5f3",
+  "summaryOriginalSha256": "4468b2cb1e59ad18cfc35afa3237fce93df44c04d6820b30486e41d731bca1e8",
+  "preflightOriginalSha256": "3c574b856a7a464649e5a3127dbdf78766cd021d1d2054252b03bdc491f5ff13",
+  "scope": [
+    ".github/workflows/ci.yml",
+    "scripts/startup-observer.mjs",
+    "tests/startup-observer.test.mjs"
+  ],
+  "sourceBindings": {
+    ".github/workflows/ci.yml": {
+      "source": "9a51f3ae90eb97564f230096af9d102ccea5d3cbffd26a73586e415c44ec528a",
+      "ci": "9a51f3ae90eb97564f230096af9d102ccea5d3cbffd26a73586e415c44ec528a",
+      "docs": "9a51f3ae90eb97564f230096af9d102ccea5d3cbffd26a73586e415c44ec528a"
+    },
+    "scripts/startup-observer.mjs": {
+      "source": "cba074e140472212c72507b2310ded639ad9a791dc0136931df49906fcb9dd53",
+      "ci": "cba074e140472212c72507b2310ded639ad9a791dc0136931df49906fcb9dd53",
+      "docs": "cba074e140472212c72507b2310ded639ad9a791dc0136931df49906fcb9dd53"
+    },
+    "tests/startup-observer.test.mjs": {
+      "source": "3fb47a0a8a75106adb60b25e9320dfc05306be521e8b9817c205bd381ddc566d",
+      "ci": "3fb47a0a8a75106adb60b25e9320dfc05306be521e8b9817c205bd381ddc566d",
+      "docs": "3fb47a0a8a75106adb60b25e9320dfc05306be521e8b9817c205bd381ddc566d"
+    }
+  },
+  "reusedEvidence": {
+    "R2": "complete pnpm check450; complete test:step09 4/4",
+    "candidateCi": {
+      "id": 39196257845,
+      "head": "c8c3227d1340de9ff0c6ef4285a183ba4412eacb",
+      "conclusion": "SUCCESS",
+      "url": "https://github.com/y805939188/rpg-maker-maker/actions/runs/39196257845"
+    }
+  },
+  "historicalFailure": {
+    "id": 39151160848,
+    "result": "FAILURE",
+    "cause": "UNVERIFIED",
+    "performanceRemediation": "NOT_IMPLEMENTED",
+    "clockWarning": "29.030s uses different epoch; exact 970ms margin is not established"
+  },
+  "publicationAtDocumentFreeze": "AUTHORIZED_PENDING_NORMAL_MAIN_PUSH_AND_ACTUAL_MAIN_CI_SUCCESS",
+  "finalReceipt": ".local/step09-final-closeout/final-publish-20261019/completion.json",
+  "realAiCalls": 0,
+  "functionalAcceptance": "T01 accepted A exact pixels; R01 USER_REPORTED acceptance, unchanged exact Build/Export/Manifest",
+  "holdout": "H02-A FROZEN_NOT_RUN_NOT_USED_FOR_TUNING",
+  "numericQualityThresholds": "PENDING_SEPARATE_USER_CONFIRMATION_BEFORE_STEP10",
+  "step10": "NOT_STARTED"
+}

@@ -1,3 +1,5 @@
+> **限定发布恢复（2026-10-19）：** 用户明确追加的观测R3已独立PASS，定向7/7，阻断0；复用功能R2完整450/09完整4/4与观测CI39196257845完整SUCCESS。Main按预授权放行正常合并/Push，最终结果以对应main CI和远端读回回执为准。旧CI39151160848保持FAILURE、原因UNVERIFIED，未实施性能整改；旧未知风险按最新授权不再作为本次发布前置。见[观测R3](../reviews/step-09-observation-r3.md)及[发布交接](../orchestration/step-09-release.md)。T/R接受和像素未变，H02-A未运行，正式数值门槛待确认，步骤10 NOT_STARTED。
+
 > **最终限定复审与功能交接（2026-10-18）：** 受审候选`0a55d9f960bc3093843387af82561896ef16ebdc`已获原序列最后R2独立PASS，完整check450、完整09 4/4。T接受A精确像素复用，最终R同Build的草水/拼接/动画/岸线获USER_REPORTED功能确认。补充08准备超时2/3及旧原因UNVERIFIED保留；正式数值门槛/原装Host范围不冒充通过。仅按本次预授权发布09功能基线，实际Git/CI放行回执与边界见[发布交接](../orchestration/step-09-release.md)；10保持NOT_STARTED。下文均为历史阶段记录。
 
 > **定向功能收尾作者候选：** 生产source `97f6cb6789402e823f51ca86d79e4513b2265941` 已接入region-v2与角色参考Prompt@2；T正式像素等于已接受A，R新增获批2调用并经一次草地选区纠正。见[本轮Coding报告](../reviews/step-09-functional-closeout-coding.md)。f613已有独立限定PASS；本轮仅作者自测/候选，不自行复审或推进10。下文为各阶段历史，不据旧待审/未冻结H02说明覆盖本轮新证据。

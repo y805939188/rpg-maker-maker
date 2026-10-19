@@ -1,19 +1,27 @@
 # 步骤09功能测试基线发布与交接
 
-2026-10-18，America/Chicago。本文件在最终CI前冻结。用户明确预授权Main在最新独立PASS、必要验证及候选CI通过后正常合并/Push；实际 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR` 决定、最后main SHA和main CI结果写入主仓 `.local/step09-final-closeout/completion.json` 及会话，不为记录自身SHA追加“最后文档提交”。当前文件不把未执行发布写成成功。
+2026-10-19，Asia/Shanghai。本文件在最终main CI之前一次冻结。最新用户明确授权：仅对3个观测文件追加限定R3，通过后正常合并/Push并核对main CI；不再等待性能修复或继续排查。**APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR** 已由 Main 在R3独立PASS后记录，范围仅为用户已接受的09功能测试基线。最终发布仍须对应main CI实际成功和三处SHA一致；实际结果写入主仓 `.local/step09-final-closeout/final-publish-20261019/completion.json` 及会话，不追加记录自身SHA的文档提交。
 
 ## 冻结对象与门禁
 
 - 已发布main起点 `a551dd68f65d3c92dfb93a4fca8590353f4d103b`；既有01–08结果按未变范围复用。
-- 最新受审文档/代码候选 `0a55d9f960bc3093843387af82561896ef16ebdc`，最后生产源码 `97f6cb6789402e823f51ca86d79e4513b2265941`。97f6之后至0a仅工程说明、Review和产物元数据/截图，无执行文件变化；本次Main提交也仅说明及脱敏证据，完整路径绑定见[release-bindings](../evidence/step-09/final-closeout/release-bindings.json)。
-- [最后限定独立PASS](../reviews/step-09-independent-final.md)：450完整check、完整09 4/4；无P0/P1/硬契约P2，无Coding整改。补充08仅2/3，准备阶段codec超时及旧原因UNVERIFIED均保留，不能声称所有回归全绿。
-- 候选分支只触发一次必要既有CI，成功后Fetch实时main并正常no-ff整合；执行字节与受审候选相同的范围复用证据。正常Push、远端读回和对应main CI必须真实成功。失败不禁用检查、不无依据重跑、不强推。
+- 功能候选 `0a55d9f960bc3093843387af82561896ef16ebdc`、最后功能source `97f6cb6789402e823f51ca86d79e4513b2265941`。[功能R2](../reviews/step-09-independent-final.md)完整check450、完整09 4/4及未变范围PASS保留，未重审或重跑。历史补充08准备超时2/3及原因UNVERIFIED保留。
+- 文档基线e228；新增执行source `65a8ad44d74232b0fd8fb876b1694219c8d68799`；观测CI候选 `c8c3227d1340de9ff0c6ef4285a183ba4412eacb`；[限定R3](../reviews/step-09-observation-r3.md)冻结HEAD `e8c14b2d529670619cfe571673b88407dee7284e`。65a→c8→e8仅作者文档，之后本轮Main提交也仅说明与脱敏证据，执行字节不变。
+- **R3 PASS_LIMITED_OBSERVATION**，P0/P1/硬契约P2为0，7/7观测自测、对应lint/format命令exit0，既有忽略项明示。非阻断P3：省略DB端口时观测记unconfigured；当前CI显式55432，不扩整改。角色Standard客户端已核对，服务端隐藏字段UNVERIFIED。[最新绑定](../evidence/step-09/observation-r3/release-bindings.json)及[原功能绑定](../evidence/step-09/final-closeout/release-bindings.json)分别保留。
+- [唯一观测CI39196257845](https://github.com/y805939188/rpg-maker-maker/actions/runs/39196257845)完整SUCCESS：check450、privacy5、API3、06=23、07=16、08=3、生产18、开发18。复用此候选CI，不再Push候选分支或新增观测CI。原启动命令、串行build/资源准备、生产→开发相邻顺序及Playwright30000ms不变。
+- 正常Fetch实时main、无冲突整合，执行字节相同范围复用证据；正常Push并等待实际main CI。不得强推、改写历史或绕过保护。若main CI失败，留原日志并停止，不盲目重跑或恢复性能排查。
+
+## 历史启动风险的明确处理
+
+原[CI39151160848](https://github.com/y805939188/rpg-maker-maker/actions/runs/39151160848)在e228的开发启动30000ms超时保持 **FAILURE**，原因 **UNVERIFIED**。新增观测不属于性能修复；本次没有改启动逻辑、缓存或门限，没有证明旧根因已解决或以后不偶发。29.030秒是另一observer epoch，不能计算970ms准确余量。原作者BLOCKED、旧停止回执、原日志和失败记录保留原字节。
+
+此前“无法定位则留证停止”已履行；最新用户明确接受其作为历史稳定性风险交接，不要求查明全部原因、性能改善证明或额外重复CI作为本次发布前置。该决定只允许本次功能基线继续门禁，不把未知写成已解决。
 
 ## 同一产物的功能接受
 
-| Case | 实际Build | Export / Manifest SHA256 | 接受范围 |
-|---|---|---|---|
-| T01 | `0b212a2ba3d13b3fea3a37739a4d99fc6652e1de12363ea02455883f0e60732c` | `step05-pack-14843ed94e99-2fa57f2de435568d` / `56d14c0cec25ead99f88af65460b00baeb948896ab51358bb8f79280e580b84a` | 独立证明地面/三合成帧/mask与已接受A完全相同，复用功能测试素材接受，不重开A/B |
+| Case         | 实际Build                                                          | Export / Manifest SHA256                                                                                         | 接受范围                                                                                   |
+| ------------ | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| T01          | `0b212a2ba3d13b3fea3a37739a4d99fc6652e1de12363ea02455883f0e60732c` | `step05-pack-14843ed94e99-2fa57f2de435568d` / `56d14c0cec25ead99f88af65460b00baeb948896ab51358bb8f79280e580b84a` | 独立证明地面/三合成帧/mask与已接受A完全相同，复用功能测试素材接受，不重开A/B               |
 | R01 final v3 | `ee01997274ca2e64d86499c67463aad0cbd8880625ed52cc4fc7ff94a3c2482f` | `step05-pack-97f6cb678940-b85cd864c7abf53d` / `affd77eb50ab40aa442959ceb6c4680ccf2c95af15f90a95ba70f7ecc1738460` | 草水可辨、池塘/孔洞/细通道无明显错格断边、Playtest动画可接受且岸线稳定：USER_REPORTED_PASS |
 
 [用户确认记录](../evidence/step-09/final-closeout/user-functional-acceptance.json)精确绑定R Build/Export/Manifest。确认不修改任何历史Manifest或数据库视觉标志。首次R误选沙岸7423仍ROLE_FAIL保留，只纠正一次grass ROI；旧绿水失败不删除。新原图仍含场景，需产品明确选区，不宣传自动语义分割。像素、动画、布局未改，就不重复要求用户看同一画面。

@@ -1,3 +1,5 @@
+> **追加限定R3（2026-10-19）：** 仅3个观测文件已独立PASS；本页保留功能R2原结论。见[观测R3](step-09-observation-r3.md)与[最新发布交接](../orchestration/step-09-release.md)。旧启动超时原因仍UNVERIFIED，未实施性能整改。
+
 # 步骤09最后限定独立复审
 
 2026-10-18，America/Chicago。原Review序列R2，最后允许的限定复审；Main仅保存索引，不以自查替代独立结论。
