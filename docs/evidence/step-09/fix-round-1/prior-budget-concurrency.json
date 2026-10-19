@@ -1,0 +1,95 @@
+{
+  "firstState": "KNOWN (no terminal event)",
+  "second": {
+    "taskId": "8e577392-17cd-40a1-a9b9-c3f24035d099",
+    "caseId": "R01",
+    "purpose": "initial",
+    "component": "grass",
+    "quotedUsd": 0.012,
+    "reservedUsd": 0.05,
+    "state": "RESERVED",
+    "events": [
+      {
+        "state": "RESERVED",
+        "at": "2026-10-18T11:34:36.140Z"
+      }
+    ],
+    "actualChargedUsd": "UNVERIFIED",
+    "at": "2026-10-18T11:34:36.140Z"
+  },
+  "summary": {
+    "plan": {
+      "version": "step09-exploration-v1",
+      "totalUsd": 1,
+      "maxSubmissions": 10,
+      "reservePerSubmissionUsd": 0.05,
+      "concurrency": 1,
+      "initialSubmissions": 4,
+      "cases": [
+        "T01",
+        "R01"
+      ],
+      "attemptsPerCase": 2,
+      "repairsPerCase": 1,
+      "manualMinutesPerCase": 15,
+      "referenceSha256": "1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd"
+    },
+    "approval": true,
+    "submissions": 2,
+    "counters": {
+      "failed": 0,
+      "unknown": 0,
+      "unusable": 0,
+      "archived": 0,
+      "discarded": 0,
+      "retrySubmissions": 0,
+      "componentRepairs": 0,
+      "archiveRetries": 0,
+      "archiveFailures": 0
+    },
+    "quotedUsd": 0.015,
+    "reservedUsd": 0.1,
+    "actualChargedUsd": "UNVERIFIED",
+    "entries": [
+      {
+        "taskId": "03f27331-a174-4722-abb2-b45804bbe284",
+        "caseId": "T01",
+        "purpose": "initial",
+        "component": "grass",
+        "quotedUsd": 0.003,
+        "reservedUsd": 0.05,
+        "state": "KNOWN",
+        "events": [
+          {
+            "state": "RESERVED",
+            "at": "2026-10-18T11:34:36.092Z"
+          },
+          {
+            "state": "KNOWN",
+            "at": "2026-10-18T11:34:36.114Z"
+          }
+        ],
+        "actualChargedUsd": "UNVERIFIED",
+        "at": "2026-10-18T11:34:36.092Z"
+      },
+      {
+        "taskId": "8e577392-17cd-40a1-a9b9-c3f24035d099",
+        "caseId": "R01",
+        "purpose": "initial",
+        "component": "grass",
+        "quotedUsd": 0.012,
+        "reservedUsd": 0.05,
+        "state": "RESERVED",
+        "events": [
+          {
+            "state": "RESERVED",
+            "at": "2026-10-18T11:34:36.140Z"
+          }
+        ],
+        "actualChargedUsd": "UNVERIFIED",
+        "at": "2026-10-18T11:34:36.140Z"
+      }
+    ]
+  },
+  "providerCalls": 0
+}

@@ -1,0 +1,46 @@
+# 限定 R3：PASS_LIMITED_OBSERVATION
+
+仅本 Reviewer，原序列追加 R3；P0/P1/硬契约 P2 **0/0/0**，阻断 **0**。本结论只确认 3 个观测文件，不批准发布；Main 按用户预授权处理发布，完成后停止，不进入10。
+
+冻结 HEAD `e8c14b2d529670619cfe571673b88407dee7284e`；执行 source `65a8ad44d74232b0fd8fb876b1694219c8d68799`；比较基线 `e228d09a732955aaf63b2bddd949bc0a45ac9815`。差异恰为 `.github/workflows/ci.yml`、`scripts/startup-observer.mjs`、`tests/startup-observer.test.mjs`。65a→c8c3227→e8c14b2 仅新增/追加 Coding Markdown 报告；3 文件字节与 source 相同。正式实现/测试未修改，tracked clean。
+
+客户端进程 allowlist 实测 `gpt-6.1-sol / ultra / service_tier=default(Standard)`，无 Fast/Priority/Ultrafast flag；turn_context 模型/effort/cwd 一致，service_tier 未暴露；隐藏服务端字段 UNVERIFIED。未改全局配置，未派生 Agent。详见 [preflight](preflight.json)。
+
+## 定向结果
+
+Node22.21.1、pnpm10.20.0。冻结锁安装 exit0，独立 store/cache/TMPDIR/virtual-store，安装脚本禁用；仅生成本树依赖。锁文件 SHA 不变。
+
+`node --test --test-timeout=10000 tests/startup-observer.test.mjs`：exit0，**7/7 PASS**，失败/取消/跳过均0。
+
+| 项 | 实际结果 |
+|---|---|
+| 固定阶段标签/排除参数和外部路径 | PASS |
+| 禁用时原输出/失败码/无观测 | PASS |
+| 启用时原成功/失败码、不滞留 | PASS |
+| 占用端口、503→200、敏感哨兵脱敏 | PASS |
+| SIGTERM 原信号、子进程不残留 | PASS |
+| HTTP 已连接无响应头，250ms 总超时 | PASS |
+| 非法配置为有限状态、正常退出 | PASS |
+
+3 文件 ESLint exit0：两个 JS 文件通过，YAML 因既有规则未匹配而忽略（1 warning）。3 文件 Prettier exit0：workflow/script 通过；正式测试位于既有 `/tests/` 忽略范围，`--file-info` 实测 ignored，**不计为已格式校验**。没有改变规则取得通过。日志和逐项结果见 [summary](summary.json)、`logs/`。
+
+## 逐项结论
+
+- **PASS**：原 `pnpm dev` 完整串行 build→资源准备→run-local 未变，CI 生产→开发两条命令仍相邻；Playwright 原30000ms、retries0、reuseExistingServer=false 保持。
+- **PASS**：没有跳 build、缓存替代、预热、启动重试或移动计时边界；package/config/run-local/resources/lock 与 e228 哈希相同。原产品未改。
+- **PASS**：不接管异常或信号、不改退出码，不吞原启动错误；只归一化探针自己的网络错误。退出码和 SIGTERM 由上述合成测试确认。
+- **PASS**：观测只报状态，不判 PASS；35秒只停止采样，门限后 health200 不能改变 Playwright 判定。
+- **PASS**：TCP/HTTP 仅127.0.0.1；每1秒采样、网络250ms、35秒停止（最后在途请求最多再250ms，受事件循环调度影响）。timer/socket unref，socket/request/response destroy；35秒停止仅静态确认，未另做采样实验。
+- **PASS**：固定标签和字段，不输出环境、argv、密钥、DB URL、HTTP正文或敏感路径；opt-in仅开发CI，禁用无输出，owner继承避免重复探针。
+
+**非阻断 P3 `R3-P3-01`**：`scripts/startup-observer.mjs:80–82,115` 的 DB URL 默认端口回退无效。省略端口时 `URL.port` 是空串，`Number('')=0`，因此记为 `unconfigured` 而非探测5432。此为静态确认；本CI显式配置55432，不影响本次观测、原就绪门禁或产品。无需本轮整改/扩轮。
+
+## 复用与限制
+
+按授权复用 R2 `0a55` 完整check450/450及完整09 4/4；复用 CI39196257845 在c8c3227的完整SUCCESS（生产18/开发18），来自用户明确事实及指定 Coding 回执，未重跑/请求CI或重新下载原始日志。补充08历史仍为2/3，不宣称全部回归全绿。
+
+旧 CI39151160848 在e228的30000ms启动超时仍 **FAILURE**；原因 **UNVERIFIED**，未实施性能整改。29.030s属另一epoch，不能计算970ms准确余量。用户已明确接受未知历史风险不作为本次功能发布前置；不再次阻塞，也不声称风险已解决。作者旧BLOCKED和stop记录保留原字节，已履行旧停止授权。
+
+T01/R01仅按未变像素复用功能接受；无新素材/看图要求。未启动产品服务、DB或浏览器，未运行full450/full09/18+18/MZ/性能采样/缓存实验；仅既有测试的合成环回服务且已自动释放。未读真实.env.local或Provider凭据，未Generate/Edit、访问预算/H02/用户数据。不宣称商用美术、原Host或数值阈值通过，不进入10。
+
+源文件及必要日志SHA见 [source-bindings](source-bindings.json) 与 [evidence-sha256](evidence-sha256.json)。最终 HEAD 未变，`git status --porcelain` 为空；无提交/Push，作者工作区未修改。

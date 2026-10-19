@@ -1,0 +1,54 @@
+{
+  "source": "0086d8805fb431c0446de5a4471859bc8d322dba",
+  "checks": [
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "result": "PASS after precise local TS narrowing/Sharp type import corrections"
+    },
+    {
+      "command": "pnpm exec eslint scripts/step09-art-offline-core.ts scripts/step09-art-offline.ts tests/step09-art-offline.test.ts",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm exec vitest run tests/step09-art-offline.test.ts",
+      "result": "4/4 PASS"
+    },
+    {
+      "command": "pnpm exec tsc",
+      "result": "PASS (root CLI build only; no clean build or API/web restart)"
+    },
+    {
+      "command": "pnpm experiment:step09:art",
+      "result": "PASS:4 new strict standard8-file Packs, six identical-topology scenes each, direct actual PNG decode, three static source states, 36672 protected pixel comparisons0 differences, profile/slots/mask unchanged"
+    },
+    {
+      "command": "four historical snapshot fingerprints reconstructed offline",
+      "result": "4/4 exact matches; proposal inactive and untested"
+    },
+    {
+      "command": "original Packs/approval/ledger integrity",
+      "result": "Original2 Packs/ZIPs and real budget files unchanged; zero provider requests/key reads"
+    },
+    {
+      "command": "full441/API/browser/DB/MZ re-review",
+      "result": "NOT_REPEATED: no production modules/defaults changed; latest independent f613 baseline reused only for unchanged scope"
+    },
+    {
+      "command": "final pnpm exec tsc --noEmit / targeted eslint / prettier / pnpm check:boundaries",
+      "result": "PASS; no source change after successful immutable render"
+    }
+  ],
+  "preservedFailures": [
+    {
+      "stage": "first local typecheck",
+      "result": "TS2339 diagnostic after assert narrowed to never; Sharp type namespace; corrected only experiment tool"
+    },
+    {
+      "stage": "first immutable CLI run",
+      "source": "e7fa887c6283",
+      "result": "REVISION_ID for uppercase new local input ID; corrected to lowercase, domain rule unchanged, ROI/config/palette unchanged",
+      "logSha256": "dd9c9a4f54961881902bfdc77a21cc1b949e04e6a943150748ced0c85a034c7b",
+      "failedRunRetained": ".local/step09-art-offline/run-e7fa887c6283"
+    }
+  ]
+}

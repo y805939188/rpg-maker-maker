@@ -1,3 +1,5 @@
+> **步骤09最终功能交接（2026-10-18）：** 最新受审0a55已独立限定PASS（check450、完整09 4/4），T已接受A像素相同、R最终产物获USER_REPORTED限定功能观察，来源/修复/历史/预算与实际Pack绑定见[09发布交接](../orchestration/step-09-release.md)。本次预授权只针对功能测试基线，正式数值阈值/H02执行需10前单独确认，10未启动。补充08准备超时与所有旧失败仍保留；下文旧状态不覆盖本次记录。
+
 # V1要求映射 — 当前06–07收尾状态
 
 ## 2026-10-17 步骤08 Edit尺寸补修当前状态
@@ -48,11 +50,11 @@
 | Mock 提交未知、重启查询、归档失败及本地取消   | 02、06    | 02 契约/快照；06 Mock runner 故障测试                 | 8a7d4b9 契约/快照测试 PASS；完整恢复 NOT_EXECUTED                                                                                                                                                                                                                                                                                              |
 | 同一快照备份恢复后重新编译                    | 06        | 干净 DB+文件恢复并重新构建                            | NOT_EXECUTED                                                                                                                                                                                                                                                                                                                                   |
 | 人工素材完整工作流、创作与实际图集动态预览    | 07、10    | 浏览器导入→编译→预览→下载；MZ 时基                    | NOT_EXECUTED；步骤 02 Pixi 壳不是交付预览                                                                                                                                                                                                                                                                                                      |
-| QA 问题定位、静态区域保护、修复/重生成        | 07、09–10 | 接缝/动画/局部保护与重建回归                          | NOT_EXECUTED                                                                                                                                                                                                                                                                                                                                   |
-| WaveSpeed 文本生成/参考图编辑与本地归档       | 08–09     | 两条受控付费真实连通和调用记录                        | NOT_EXECUTED；本步没有付费调用                                                                                                                                                                                                                                                                                                                 |
+| QA 问题定位、静态区域保护、修复/重生成        | 07、09–10 | 接缝/动画/局部保护与重建回归                          | [09作者候选](../reviews/step-09-coding.md)：Mock修复/固定岸线及未选revision保护PASS；两真实技术Pack，人工质量/MZ待验                                                                                                                                                                                                                           |
+| WaveSpeed 文本生成/参考图编辑与本地归档       | 08–09     | 两条受控付费真实连通和调用记录                        | [08发布](../reviews/step-08-release.md)继续有效；[09两路径真实完整技术Pack](../reviews/step-09-coding.md)2/2，4提交报价$0.030/实扣UNVERIFIED；不可推导美术成功                                                                                                                                                                                 |
 | 平台主 Prompt、可选补充、默认模型和模板冻结   | 02、08–09 | 快照隔离；空补充/冲突/换默认配置/模板评测             | 8a7d4b9 类型/快照 PASS；真实 Composer NOT_EXECUTED                                                                                                                                                                                                                                                                                             |
 | 文字/参考图整套 Pack 与候选/修复              | 09        | 完整 Pack 成功率、MZ/保护区验证                       | NOT_EXECUTED                                                                                                                                                                                                                                                                                                                                   |
-| 正式质量、成本、阈值/保留集、UX 和发布        | 09–10     | 预先批准阈值、独立 Review、完整 MZ/用户验收           | NOT_EXECUTED                                                                                                                                                                                                                                                                                                                                   |
+| 正式质量、成本、阈值/保留集、UX 和发布        | 09–10     | 预先批准阈值、独立 Review、完整 MZ/用户验收           | [09固定探索与统计](../reviews/step-09-coding.md)：可用套待人工验收，质量阈值PENDING_USER，10保留集未调参/未启动                                                                                                                                                                                                                                |
 | local-first 安全、无密钥/本地路径泄露         | 02、10    | Host/Origin/写请求/体积/错误/上传边界测试             | 两项 Vite P1 经第三轮独立 FIXED；5356d66 补丁 codec/EXIF 门禁 PASS，独立第四轮 PASS；步骤 03 有界 PNG policy 已随历史 a0e9f07 第二轮独立 Review PASS；784a39f 联合审查重核该政策并另发现领域标量阻断项；当前无上传，最终安全仍需步骤 10                                                                                                        |
 
 独立 Review、用户或预授权 Orchestrator 批准、STRUCTURAL_PASS、人工视觉、手绘地图和游戏运行分别记录。后续更新只增加真实证据引用，不改旧不可变 Manifest 的门禁结果。步骤 03 发布后本轮停止，步骤 04–10 未授权。
@@ -154,3 +156,11 @@ R3/5 REQUIRES_REVISION原报告SHA `c18e713ac7e3ee14b9b342234af5d6d4fe9225a67a54
 | 资源安全/原失败/审查独立性                                                 | 原预算/路径/close-release/PNG真实入口保留，原430R4验真，2951历史保护、客户端default/serverFinalUNVERIFIED；Review/CI/Release NOT_EXECUTED_BY_CODER，artifactMZ/艺术/Host/Map003仍未执行/延期 |
 
 所有新增case由既有CI命令`pnpm test:step07`及两模式`pnpm test:e2e`自动发现；远端CI本人未执行。当前V0.1人工工作台不宣称AI或V1.0完成，08–10 NOT_STARTED。
+
+## 步骤09作者候选（2026-10-18）
+
+本轮仅Coding，不将01–08重新全局审查。文字/参考空辅助完整Pack、正常texture偏好、候选选择与受控转换、共享基础三帧、局部修复保护、实际导出预览/下载、共享人工预算门禁见[09工程基线](STEP_09_BASELINE.md)与[作者报告](../reviews/step-09-coding.md)。自动化与浏览器Mock通过不等于真实AI Pack、MZ或人工美术通过；真实预算与质量阈值未获用户批准时保持NOT_EXECUTED/PENDING，10保留集未用于09调参。正式plans、历史失败和旧manifest不改写。
+
+## 步骤09首审整改候选（2026-10-18）
+
+[作者首审整改](../reviews/step-09-fix-round-1-coding.md)：共享远端并发1与MZ准备数据/canonical身份已作者修复，441项check及针对性证明保留；V09失败原因未确证、独立技术门禁未清零，正式人工材料NOT_READY。真实提交仍4、原技术Pack2/2/艺术待验，质量阈值和H02数据仍未完成，不启动10。

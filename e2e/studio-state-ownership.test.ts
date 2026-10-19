@@ -6,7 +6,7 @@ import sharp from 'sharp';
 import { StudioSchema } from '../packages/contracts/dist/index.js';
 
 const mode = process.env['E2E_MODE'] === 'dev' ? 'dev' : 'production';
-const out = resolve('.local/step07/browser', mode, 'r3-state-ownership');
+const out = resolve('.local/step07/browser', mode, 'r3-state-ownership', randomUUID());
 const api = `http://127.0.0.1:${process.env['API_PORT'] ?? 4310}`;
 const sha = (b: Uint8Array) => createHash('sha256').update(b).digest('hex');
 type Fixture = { id: string; name: string; historicalRecipe: string; grass: string[] };
@@ -90,18 +90,35 @@ async function open(page: Page, fixture: Fixture) {
   return image;
 }
 function capture(page: Page) {
+  const start = performance.now();
   const log = {
-    network: [] as { method?: string; status?: number; url: string; event: string }[],
+    network: [] as {
+      method?: string;
+      status?: number;
+      url: string;
+      event: string;
+      elapsedMs: number;
+    }[],
     errors: [] as string[],
     console: [] as { type: string; text: string }[],
   };
   page.on('request', (r) => {
     if (r.url().includes('/api/'))
-      log.network.push({ event: 'request', method: r.method(), url: r.url() });
+      log.network.push({
+        event: 'request',
+        method: r.method(),
+        url: r.url(),
+        elapsedMs: performance.now() - start,
+      });
   });
   page.on('response', (r) => {
     if (r.url().includes('/api/'))
-      log.network.push({ event: 'response', status: r.status(), url: r.url() });
+      log.network.push({
+        event: 'response',
+        status: r.status(),
+        url: r.url(),
+        elapsedMs: performance.now() - start,
+      });
   });
   page.on('pageerror', (e) => log.errors.push(e.message));
   page.on('console', (m) => log.console.push({ type: m.type(), text: m.text() }));
@@ -311,6 +328,12 @@ for (const failure of ['503', '429', 'network'] as const) {
           .every((c) => c.text.includes(failure === 'network' ? 'ERR_FAILED' : failure)),
       ).toBe(true);
     } finally {
+      // Retain request/response timing even when the original 5s Canvas assertion
+      // fails. Capture data only; do not retry, widen timeouts or alter readiness.
+      await writeFile(
+        resolve(out, `poll-${failure}-network.json`),
+        JSON.stringify(log, null, 2) + '\n',
+      );
       await page.unrouteAll({ behavior: 'ignoreErrors' });
     }
   });

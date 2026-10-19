@@ -1,0 +1,152 @@
+{
+  "version": "step09-functional-closeout-statistics-v1",
+  "unit": "A complete human-accepted usable Pack. Provider COMPLETED, structure and author role observations are separate.",
+  "newProviderSubmissions": 2,
+  "cumulativeProviderSubmissions": 6,
+  "newAttemptBatches": 1,
+  "cumulativeAIPairBatches": 3,
+  "T01NewProviderSubmissions": 0,
+  "providerFailed": 0,
+  "providerUnknown": 0,
+  "hardInvalidProviderCandidates": 0,
+  "archived": 6,
+  "discardedTaskRecords": 0,
+  "legacyR01WaterNotAdoptedForRoleMismatch": 1,
+  "newRawCandidatesContainScenesRequiringExplicitRegions": 2,
+  "newProviderRetries": 0,
+  "newProviderComponentRepairTasks": 0,
+  "newProductAdoptions": 3,
+  "newProductAdoptionOutcomes": [
+    "T01 accepted-A pixels preserved / STRUCTURAL_PASS",
+    "R01 first ROI selected sand / STRUCTURAL_PASS but ROLE_FAIL",
+    "R01 corrected grass ROI once / STRUCTURAL_PASS and author role-distinction observation; human pending"
+  ],
+  "manualRegionSelections": {
+    "T01": {
+      "count": 2,
+      "source": "reused accepted A coordinates through formal UI",
+      "areaEach": 0.0625
+    },
+    "R01": {
+      "initialCount": 2,
+      "wrongGrassRegion": [
+        18,
+        217,
+        24,
+        24
+      ],
+      "grassCorrectionCount": 1,
+      "finalGrassRegion": [
+        40,
+        70,
+        24,
+        24
+      ],
+      "finalWaterRegion": [
+        102,
+        113,
+        64,
+        64
+      ],
+      "retainedGrassArea": 0.0087890625,
+      "retainedWaterArea": 0.0625
+    }
+  },
+  "manualPixelPainting": 0,
+  "manualHumanActiveMinutes": "UNVERIFIED (operator selection scripted; no defensible human active-time measurement)",
+  "R01ScopeTiming": {
+    "firstTaskCreatedAt": "2026-10-18T16:14:41.042Z",
+    "lastArchivedAt": "2026-10-18T16:15:01.566Z",
+    "correctedPackCapturedAt": "2026-10-18T16:22:30.648Z"
+  },
+  "newQuotedUsd": 0.024,
+  "cumulativeQuotedUsd": 0.054,
+  "newReservedUsd": 0.1,
+  "cumulativeReservedUsd": 0.3,
+  "actualChargedUsd": "UNVERIFIED",
+  "providerSideHardAmountCap": "UNVERIFIED",
+  "humanUsableSuccessRate": "PENDING_NEW_R01_ACCEPTANCE; no 100% art claim",
+  "averageAIPairAttemptsPerHumanUsablePack": "N/A_PENDING_ACCEPTANCE",
+  "costPerHumanUsablePack": "N/A_PENDING_ACCEPTANCE_AND_VERIFIED_BILLING",
+  "technicalLatestPacks": 2,
+  "firstRoleFailureRetained": {
+    "build": "7423c29a67b7023a1c44bb7bdc7c0fcfb0aebf56873c6b520d70a0d0f194e554",
+    "manifestSha256": "38c06c2e86df07d58f76a9fdc41c352df70bddccec27e364eda76ac08f35268c",
+    "zipSha256": "5c11fc19386aec58a7f7678f85dbb4975a2c0b44a2179c0b0f5152ba19e046ec",
+    "path": ".local/step09-functional/production/R01.zip",
+    "reason": "Author selected sand ROI; not UI coordinate error. Corrected one grass region, exact water/shore source revisions and A1 PNG kept."
+  },
+  "sharedLedger": {
+    "path": "/Users/dingshinn/Desktop/rpg-maker-maker/.local/step09-budget/ledger.json",
+    "beforeSha256": "8cda76109c95b9a38d79c18b31fe801d67ae197f6421527416d93fd2e3a56343",
+    "afterSha256": "0c95535ff4e790a169440f50fc85881a1502a0cd4ef6ed6bfda371a1c177ac4c",
+    "legacyFirstFourEntriesExactlyPreserved": true,
+    "legacyApprovalSha256Unchanged": "3d6fcd83c6bbd51c6beea6c9a56b94021f0f7e321600f58d2238fb6b45e6cde1",
+    "scopeApprovalSha256": "3ea6dd0fce2189ac938864a9f6cc8d71ea5f2aa3f3d4ae2527216ff705ad7739",
+    "scopeStops": [],
+    "newEntries": [
+      {
+        "taskId": "b610fb61-a51b-4311-bd89-926a25f2ee70",
+        "scope": "step09-functional-reference-v2",
+        "snapshotHash": "87e934d474003eda2db2a5edef1c6f13f2aefb557c7610ecd0cb6df1e4553f10",
+        "caseId": "R01",
+        "purpose": "initial",
+        "component": "grass",
+        "quotedUsd": 0.012,
+        "reservedUsd": 0.05,
+        "state": "ARCHIVED",
+        "events": [
+          {
+            "state": "RESERVED",
+            "at": "2026-10-18T16:14:41.042Z"
+          },
+          {
+            "state": "KNOWN",
+            "at": "2026-10-18T16:14:41.286Z"
+          },
+          {
+            "state": "REMOTE_SUCCEEDED",
+            "at": "2026-10-18T16:14:49.421Z"
+          },
+          {
+            "state": "ARCHIVED",
+            "at": "2026-10-18T16:14:50.576Z"
+          }
+        ],
+        "actualChargedUsd": "UNVERIFIED",
+        "at": "2026-10-18T16:14:41.042Z"
+      },
+      {
+        "taskId": "fe711ca9-3010-489d-afd8-aa88a830aef9",
+        "scope": "step09-functional-reference-v2",
+        "snapshotHash": "9b825d6c235c78e849069d127f0d0f9d3d3633fb825e9c1868dd7921f05512b7",
+        "caseId": "R01",
+        "purpose": "initial",
+        "component": "water",
+        "quotedUsd": 0.012,
+        "reservedUsd": 0.05,
+        "state": "ARCHIVED",
+        "events": [
+          {
+            "state": "RESERVED",
+            "at": "2026-10-18T16:14:52.562Z"
+          },
+          {
+            "state": "KNOWN",
+            "at": "2026-10-18T16:14:53.089Z"
+          },
+          {
+            "state": "REMOTE_SUCCEEDED",
+            "at": "2026-10-18T16:15:00.438Z"
+          },
+          {
+            "state": "ARCHIVED",
+            "at": "2026-10-18T16:15:01.566Z"
+          }
+        ],
+        "actualChargedUsd": "UNVERIFIED",
+        "at": "2026-10-18T16:14:52.562Z"
+      }
+    ]
+  }
+}

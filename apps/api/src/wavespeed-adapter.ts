@@ -68,7 +68,9 @@ export function frozenWaveSpeedInput(snapshot: TaskSnapshot): Record<string, unk
     throw Error('REFERENCE_INPUT');
   if (
     s.structuredParameters['referencePreparation'] !== undefined &&
-    s.structuredParameters['referencePreparation'] !== 'match-output-nearest-explicit-v1'
+    !['match-output-nearest-explicit-v1', 'center-crop-square-nearest-v2'].includes(
+      String(s.structuredParameters['referencePreparation']),
+    )
   )
     throw Error('REFERENCE_PREPARATION_UNSUPPORTED');
   return { ...inputsSchema.parse(s.model.parameters), prompt: renderFrozenPrompt(s) };
@@ -214,9 +216,10 @@ export class WaveSpeedAdapter implements ProviderAdapter {
   ): Promise<Record<string, unknown>> {
     const input = frozenWaveSpeedInput(snapshot);
     if (snapshot.taskKind === 'IMAGE_EDIT') {
-      const prepared =
-        snapshot.structuredParameters['referencePreparation'] ===
-        'match-output-nearest-explicit-v1';
+      const prepared = [
+        'match-output-nearest-explicit-v1',
+        'center-crop-square-nearest-v2',
+      ].includes(String(snapshot.structuredParameters['referencePreparation']));
       input['image'] = await this.uploadReference(
         snapshot.references[prepared ? 1 : 0]!,
         signal,

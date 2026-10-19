@@ -1,0 +1,90 @@
+{
+  "review": "step09-original-sequence-R2-final",
+  "candidate": "0a55d9f960bc3093843387af82561896ef16ebdc",
+  "base": "f61348049551c13c9eb3e17c81806e00470c2cf5",
+  "lastProductionSource": "97f6cb6789402e823f51ca86d79e4513b2265941",
+  "conclusion": "PASS_LIMITED_DELTA",
+  "step09Approved": false,
+  "step10Started": false,
+  "findings": {
+    "P0": [],
+    "P1": [],
+    "hardContractP2": []
+  },
+  "requiredCompleteCommands": [
+    {
+      "command": "pnpm check",
+      "result": "PASS",
+      "files": 43,
+      "testsPassed": 450,
+      "totalSeconds": 73.763
+    },
+    {
+      "command": "pnpm test:step09",
+      "result": "PASS",
+      "testsPassed": 4,
+      "testsTotal": 4,
+      "testSeconds": 173.01,
+      "totalSeconds": 193.923
+    }
+  ],
+  "supplementalStep08": {
+    "result": "2_PASS_1_FAIL",
+    "failure": "CODEC_TIMEOUT in unchanged setup before task/asset persistence",
+    "thirdProjectRevision": 0,
+    "thirdProjectAssets": 0,
+    "thirdProjectTasks": 0,
+    "exactCodecPhaseAndRootCause": "UNVERIFIED",
+    "rerun": false,
+    "notAttributedToDelta": true,
+    "notClaimedFullPass": true
+  },
+  "observations": [
+    {
+      "id": "V-R2-08-SETUP",
+      "status": "UNVERIFIED",
+      "evidence": "step08-failure-state.json"
+    }
+  ],
+  "realPacks": "2 current + 2 old strict replay PASS; T accepted-A ground/three frames/mask exact; R A1/unselected refs/PNG exact",
+  "artifactVerification": {
+    "originalCandidates": 6,
+    "completeSnapshotFingerprints": 4,
+    "newConversionReplays": 4,
+    "zipMembers": "2/2 PASS",
+    "uploadDisabledThenEnabled": "PASS; 0 POST; 0 pageerror"
+  },
+  "userAcceptance": "USER_REPORTED_SCOPED_FUNCTIONAL_ACCEPTANCE; exact R01 Build/Export/Manifest bound; no original Host/commercial/numerical claim",
+  "holdout": "FROZEN_NOT_RUN_NOT_USED_FOR_TUNING",
+  "paidSubmissionsThisReview": 0,
+  "budgetFilesUnchanged": true,
+  "trackedChanges": false,
+  "temporaryServicesClosed": true,
+  "client": {
+    "model": "gpt-6.1-sol",
+    "effort": "ultra",
+    "tier": "default(Standard)",
+    "developerRole": "step_reviewer",
+    "hiddenServerFields": "UNVERIFIED"
+  },
+  "executionCaveats": [
+    "Initial check intentionally interrupted for TMPDIR isolation; completed run independently 450/450.",
+    "Ignored evidence helpers corrected after module lookup and task-subset errors; candidate/test code unchanged; initial logs retained."
+  ],
+  "evidenceSha256": {
+    "report.md": "2ab7e57e862b7154a2cc898b15100d0551c6646754d29d99589c5fbf6aaa09c3",
+    "preflight.json": "95df8de54466cd9c5fc16b7677456d8acdb0434909ad78e600779740088bad04",
+    "artifact-verification.json": "330562305888c596d3aab8147ca0ea6702931fc57838254a57c0254476dbda70",
+    "zip-members.json": "5324ac2ab3263b21d48fb4412916ec0f443db7563ee7fc25251067ab213d10b6",
+    "upload-guard.json": "5dd0e9738e59bd715ebad8ce48ac88bce0438000cf71e029be5b32c74beed3d1",
+    "preservation.json": "600f5a0d77c11d945eb757116815b7db021741f3769409e9adc08400fbecba22",
+    "step08-failure-state.json": "2be7c03eca28d05fb47e08584e8e3b0f69f51e6be6648144e1d3c0e7552545d6",
+    "final-state.json": "0dde5a9ee8efb1e015a088bed08f96c4e4953d708315fd8ee73ca241dbb03d6c",
+    "logs/check.log": "8bb239ec7ca13de57aec6d9c42f4a0570e010ca17c544545b48b06849b6fbe53",
+    "logs/step09-full.log": "4411b5e370682aa54dc67b09e0507a0dffcff85a86da1f534f3cf7b9438694ce",
+    "logs/step08-direct-regression.log": "eac9e91286c6021745c516e8741a727c221dd40aa4ef7ee1ad653cd397ab2aba",
+    "logs/check-environment-aborted.log": "a4c90b6cdba58fca898ea2a1ecf9c4014dc87bae47223f1c191bc80348ccc26e",
+    "logs/artifact-verification.log": "a990205afd35b3682b0903bf8885b40515d1ae0eea9ac8dae3a39081c7ef2f1d",
+    "logs/failure-state.log": "b4aff21268492dbccdfbb67f3c7f3a794f0c77318bc0a3e744f1c19531848a36"
+  }
+}

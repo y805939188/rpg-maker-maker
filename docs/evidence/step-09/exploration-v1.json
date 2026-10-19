@@ -1,0 +1,26 @@
+{
+  "version": "step09-exploration-v1",
+  "budgetApproval": "PENDING_HUMAN_USER",
+  "qualityThresholdApproval": "PENDING_HUMAN_USER",
+  "totalUsd": 1,
+  "maxSubmissions": 10,
+  "reservePerSubmissionUsd": 0.05,
+  "concurrency": 1,
+  "initialBatchSubmissions": 4,
+  "configurationCount": 1,
+  "configuration": "terrain-models-step09-v1",
+  "mainPrompt": "terrain-source-main@1",
+  "conversion": "ai-periodic-source-v1",
+  "referencePreparation": "center-crop-square-nearest-v2",
+  "cases": [
+    {"id":"T01","input":"default text","supplemental":"","model":"wavespeed-ai/flux-schnell","components":["grass","water shared base"],"firstSubmissions":2,"fullRetrySubmissions":2,"componentRepairSubmissions":1,"manualMinutesLimit":15},
+    {"id":"R01","input":"tests/fixtures/art-ground.png","referenceSha256":"1eaf10e898b7c26bc24788bf336b31842e6d292e2ade2c9de34b027a41e7c0bd","supplemental":"","model":"wavespeed-ai/flux-dev","components":["grass","water shared base"],"firstSubmissions":2,"fullRetrySubmissions":2,"componentRepairSubmissions":1,"manualMinutesLimit":15}
+  ],
+  "parameters": {"size":"256*256","num_images":1,"seed":4808,"edit":{"strength":0.55,"num_inference_steps":28,"guidance_scale":3.5}},
+  "maximumPricePerSubmissionUsd": {"wavespeed-ai/flux-schnell":0.003,"wavespeed-ai/flux-dev":0.012},
+  "stop": ["UNKNOWN freezes new paid submissions","budget/count exhausted","same blocker twice without new evidence"],
+  "proposedThresholds": {"hardChecks":"100%","protectedRegion":"pixel identical across states and water repair","visibleWaterChangeFractionMinimum":0.01,"humanMinimumOutOf5":{"style":4,"seams":4,"animation":4,"referenceFit":4},"severeVisualDefects":0,"maxCompleteAttemptsPerCase":2,"maxComponentRepairsPerCase":1,"manualMinutesPerCase":15},
+  "metrics": {"successUnit":"complete usable Pack; technical pass and human/MZ states separate","packSuccessRate":"usable complete Packs / all started case attempts including failed and discarded attempts","averageAttempts":"all case attempts / successful usable Packs; N/A if zero","costPerUsablePack":"all submitted quoted/reserved/verified actual separately / usable Packs; N/A if zero","zeroDenominator":"N/A"},
+  "holdout": {"version":"step10-holdout-v1","cases":["H01 autumn grass and quiet water without reference","H02 separate user reference warm meadow/pond without supplemental"],"policy":"not called or used for tuning in09; reference selected and frozen only at10"},
+  "actualCharges":"UNVERIFIED; application reservation is not a provider-side spend cap"
+}

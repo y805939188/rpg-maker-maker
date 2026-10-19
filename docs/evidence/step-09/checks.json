@@ -1,0 +1,166 @@
+{
+  "version": "step09-coding-checks-v1",
+  "functionalSource": "6bd9b4b47b358e88c70db4bcb6f8ffadd49aece5",
+  "sourceImpact": "post-source code delta is one UI task label; negative test fixture correction and explicit Mock env only. No model/prompt/processing/compiler/profile/output changes.",
+  "checks": [
+    {
+      "command": "pnpm check",
+      "result": "PARTIAL: boundaries/type/lint/format PASS; 435 PASS / 1 route-list expectation failure, retained",
+      "log": ".local/check-1.log",
+      "sha256": "1c80e0e99c757d789ecf1cc4f24effb16fae3686567ad1cd26be37c4564c3d0c"
+    },
+    {
+      "command": "pnpm exec vitest run packages/contracts/tests/http.test.ts apps/api/tests/step09-units.test.ts packages/material-processing/tests/ai-normalization.test.ts",
+      "result": "9 PASS; failed route-list expectation fixed precisely",
+      "log": ".local/targeted-final.log",
+      "sha256": "f71eabc8e4eba4e0f51dafbbb472ed7a8e4db2b5c81aebaa026d25d8368f0e60"
+    },
+    {
+      "command": "pnpm --filter @tileset/web build; pnpm verify:exports",
+      "result": "PASS; all 11 production export maps",
+      "log": ".local/exports-frozen-1.log",
+      "sha256": "8aaff62338758bbd43e8c34a660d85b08efafdd0b12bf3015f58ff30386f5b25"
+    },
+    {
+      "command": "pnpm exec vitest run --config vitest.step09.config.ts",
+      "result": "core first test PASS; browser cache missing and negative precondition failed, retained",
+      "log": ".local/integration-4.log",
+      "sha256": "7126baaf534bec40666c11100873977138cfb128ea18c7145c305725c09f18c9"
+    },
+    {
+      "command": "pnpm exec vitest run --config vitest.step09.config.ts -t real Chromium",
+      "result": "1 PASS; both paths/preferences/candidate/repair/history/actual download",
+      "log": ".local/browser09-final.log",
+      "sha256": "78227ef9fdb2e5618755a858f488543863886380a00db0dbafd3ffc828a8b1ca"
+    },
+    {
+      "command": "TILESET_AI_MODE=wavespeed pnpm exec vitest run --config vitest.step09.config.ts -t invalid reference/model",
+      "result": "1 PASS; explicit Mock fixture, no real key read",
+      "log": ".local/negative-env-final.log",
+      "sha256": "0907140239f8a1f438afc37c2889f8c5faf9de6dbf65ca7e3a9fa9c76d01e35c"
+    },
+    {
+      "command": "pnpm exec vitest run --config vitest.step08.config.ts",
+      "result": "3 PASS",
+      "log": ".local/regression-08.log",
+      "sha256": "4e593dcee7d8f4369531ad528f0cbccc049a616fee68dd8332c24448a80b6f1f"
+    },
+    {
+      "command": "pnpm exec vitest run --config vitest.step06.config.ts packages/persistence/tests/integration.test.ts -t retired dependencies, consistent",
+      "result": "1 PASS, 4 intentionally not selected",
+      "log": ".local/regression-backup.log",
+      "sha256": "9cb0aa1e3a62e884f3a5296402b07c252b57804ebca933a2efbfc71076a0ccaa"
+    },
+    {
+      "command": "pnpm exec vitest run --config vitest.step06.config.ts packages/local-executor/tests/integration.test.ts",
+      "result": "5 PASS",
+      "log": ".local/regression-executor.log",
+      "sha256": "0e81de1f6f2d7732945a4dd02a02a27840ff66fc647d38af30ccf99a17ff42ae"
+    },
+    {
+      "command": "pnpm exec vitest run --config vitest.step07.config.ts -t real HTTP validates|real slow/aborted|actual HTTP codec",
+      "result": "3 PASS, 13 intentionally not selected",
+      "log": ".local/regression-http.log",
+      "sha256": "0f6c2fcf755cc1812a42db549b15f8b7275c0eaf1eed920f0ee8739796ab2599"
+    },
+    {
+      "command": "node --env-file=.env .local/step09/verify-conversion-backup.mjs",
+      "result": "PASS: 6 conversion rows exact after backup/empty DB restore + database/files digest",
+      "log": ".local/conversion-backup.log",
+      "sha256": "15b28aa2c11ae5b086e1f5017702fbb3e481d310206834ba74cf7631aec85f2a"
+    },
+    {
+      "command": "pnpm test:e2e",
+      "result": "18 PASS",
+      "log": ".local/e2e-production-final.log",
+      "sha256": "1489b42d2ae11d714cae14c5ca63a6b5ee33a350d20e533547ae6e36c50f4011"
+    },
+    {
+      "command": "E2E_MODE=dev pnpm test:e2e",
+      "result": "16 PASS / 2 FAIL retained; only two failed development cases under targeted diagnosis",
+      "log": ".local/e2e-dev-final.log",
+      "sha256": "1c657e36a91bdc140c76a4b9cf3ccb5bcd4589ff8107a6ec5b593724b5c5cd7c"
+    },
+    {
+      "command": "pnpm --filter @tileset/web typecheck; targeted eslint for label/test",
+      "result": "PASS",
+      "log": ".local/type-label.log",
+      "sha256": "047c3bf4c6fbf839e3e6f256553f61a091394fecd75c0323bdcebf08d7fe1ccc"
+    },
+    {
+      "command": "E2E_MODE=dev pnpm exec playwright test e2e/studio-state-ownership.test.ts e2e/studio.test.ts -g 'late error, accepted build|deployed manual Studio'",
+      "result": "2 PASS at unchanged thresholds in stable isolated dev service; original full run 16/18 and unknown transient cause retained, not claimed fixed",
+      "log": ".local/e2e-dev-targeted-1.log",
+      "sha256": "f92c338185311d13eeada7d9d38b15450224b16cb1a5305736d7094a00cd32e6"
+    },
+    {
+      "command": "pnpm build",
+      "result": "PASS clean final candidate build",
+      "log": ".local/build-candidate.log",
+      "sha256": "4ad72a5947f92eb9cd93cfb476c0e348167a45f3fd3b84dd9839fa0bbe40f7c1"
+    },
+    {
+      "command": "pnpm verify:exports",
+      "result": "PASS all 11 production packages",
+      "log": ".local/exports-candidate.log",
+      "sha256": "8aaff62338758bbd43e8c34a660d85b08efafdd0b12bf3015f58ff30386f5b25"
+    },
+    {
+      "command": "node .local/step09/final-readonly-smoke.mjs",
+      "result": "PASS correct AI label, same actual6bd Pack preview, zero POST",
+      "log": ".local/final-readonly-smoke.log",
+      "sha256": "8bd5a47078293937fc6349d89f31f5b4b8c6531c6b3b8b5b393500455d653771"
+    }
+  ],
+  "retainedFailures": [
+    {
+      "log": ".local/unit-1.log",
+      "sha256": "2896b07d5cf390b4a6396f3bc38dedb9f24d0feec73bb869f2a77eec8a1f46fe"
+    },
+    {
+      "log": ".local/build-2.log",
+      "sha256": "56d8daa24153dbb0bce7ac1571987f24f8890ae36ccf68e26000d4a7454fb320"
+    },
+    {
+      "log": ".local/build-3.log",
+      "sha256": "ff9893aee4ff63958be31e9bff1ddc61d396976683169d76057b1630a95ce0ec"
+    },
+    {
+      "log": ".local/integration-1.log",
+      "sha256": "71955ae8158a5712fe828eb6f098b7485ea9a49042d8d4a0f10c7a18e75f95a8"
+    },
+    {
+      "log": ".local/integration-2.log",
+      "sha256": "7e9395294a7e3e2b474b4dc1ebd27ee5183df774aceead0754cd20d30ee95ffb"
+    },
+    {
+      "log": ".local/lint-targeted-1.log",
+      "sha256": "de262d001c01fa74e56307e8014d740999119054662b5f65b115731ac572bf32"
+    },
+    {
+      "log": ".local/step09/live/migrate.log",
+      "sha256": "0166e32000eb6e1049d89f32771707573067a4929fb77f05b3b2766c71593938"
+    },
+    {
+      "log": ".local/step09/live/migrate-resume.log",
+      "sha256": "4dc809363166dc8fbbf37044903fda1414966929dcb8774e312a8d7d2ce8650b"
+    },
+    {
+      "log": ".local/e2e-dev-final.log",
+      "sha256": "1c657e36a91bdc140c76a4b9cf3ccb5bcd4589ff8107a6ec5b593724b5c5cd7c",
+      "traceDirectory": ".local/step09/dev-failure-1"
+    },
+    {
+      "log": ".local/step09-cua/observations.json",
+      "sha256": "7ea938c77f0408597128aaab4aa882b35129c05496178dfa24d97953701cd835",
+      "scope": "Author CUA initial history/upload failure and stable followup; not independent Review"
+    }
+  ],
+  "ci": "NOT_EXECUTED_NO_PUSH",
+  "independentReview": "NOT_EXECUTED_BY_DESIGN",
+  "realPaidSubmissions": 4,
+  "mzEditorAndRuntime": "NOT_EXECUTED",
+  "humanArt": "PENDING_USER_ACCEPTANCE",
+  "developmentRegressionCaveat": "Full dev run:16 PASS/2 FAIL. Same source/pixels valid independently; two targeted original-threshold reruns PASS, without production fixes. Original 422/timing cause unconfirmed. No claim that an initial full dev run was green.",
+  "engineeringSource": "1410e95bbc61efce4ef27cb43ecd8e8ab7c6d935"
+}

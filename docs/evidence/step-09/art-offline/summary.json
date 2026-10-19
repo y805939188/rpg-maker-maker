@@ -1,0 +1,1870 @@
+{
+  "version": "step09-art-roi-palette-periodic-v1-experiment",
+  "sourceCommit": "0086d8805fb431c0446de5a4471859bc8d322dba",
+  "status": "OFFLINE_EXPERIMENT_NOT_PRODUCTION_ADOPTED",
+  "supplierRequests": 0,
+  "paidSubmissions": 0,
+  "realKeyRead": false,
+  "roiSelection": "Agent visually selected once, explicit coordinates; not automatic ROI or zero-intervention user capability.",
+  "protectedSourceHashes": {
+    "src/profile.ts": "c6ad575cbf1f8d919ed4dcb6e60a15d6c7412198c3d73adbcaacb04b5f4feb85",
+    "src/pixels.ts": "fa3316a3143a642b1f9ac5c6c98be40d54784143f2a62ac4f99b284fb87ff369",
+    "packages/material-processing/src/ai-normalization.ts": "d25182febdb05d3ec96f516abbb6449fa18c5537f269271447d5068907d80363",
+    "packages/ai-gateway/src/prompts.ts": "e8778c323695acb61907e5778abefb8ed35d593b05ee8091c8b1f3bde8d1a30a",
+    "pnpm-lock.yaml": "d533bbb2ae9cf77a1c91b18f9fc395af500fc55a27f7529a045a7eab6d85ce7b"
+  },
+  "budgetFileHashesUnchanged": {
+    "approval.json": "3d6fcd83c6bbd51c6beea6c9a56b94021f0f7e321600f58d2238fb6b45e6cde1",
+    "ledger.json": "8cda76109c95b9a38d79c18b31fe801d67ae197f6421527416d93fd2e3a56343"
+  },
+  "baselineManifestHashesUnchanged": {
+    "T01": "12faf1934ab85279cf86459a67b9513c4cc4f6d6871915e9b3ca3b47ee114378",
+    "R01": "eefea85181695771d47dea1760115b6fb349615f4e431195eb45d5a66b2aca44"
+  },
+  "results": [
+    {
+      "caseId": "T01",
+      "inputs": [
+        {
+          "taskId": "86156ed7-2cc3-4c5c-a95a-a96191746309",
+          "component": "grass",
+          "originalSha256": "81a8286cb3b3b18c5d47cd5f95efdb156073cbc410b351a6540d4983281a276e",
+          "normalizedSha256": "ae4058ef799e053265d638aa9a0b32e79d91fa916283a1fdaf807d6921c24837",
+          "originalSource": {
+            "kind": "source",
+            "id": "wavespeed-86156ed7-2cc3-4c5c-a95a-a96191746309-0",
+            "revision": 1,
+            "contentHash": "87324cc3a018589bdc30e4301d5ab38254d24d78a2aeabed3cc9262392440fc8"
+          },
+          "pixelHash": "ce4d66a4b784e0531002962947a0557c52a0e7ccc72a614b0af3b02b3e3b3b1c",
+          "roi": {
+            "x": 88,
+            "y": 84,
+            "width": 64,
+            "height": 64
+          },
+          "retainedAreaFraction": 0.0625,
+          "selection": "Agent selected once by inspecting existing pixels; not automatic product ROI selection."
+        },
+        {
+          "taskId": "ab60e38c-3fd8-40a8-98fe-0f6bd3a0d8ca",
+          "component": "water",
+          "originalSha256": "0dd3aa558dd8862ef86be75445e610fa89f4773a3ceb100a21ff6c925f3d3bb2",
+          "normalizedSha256": "592444b8e937641008a2f7287ef998b4938fda2f441d97a600b195ecfbd461b0",
+          "originalSource": {
+            "kind": "source",
+            "id": "wavespeed-ab60e38c-3fd8-40a8-98fe-0f6bd3a0d8ca-0",
+            "revision": 1,
+            "contentHash": "8097b1b05680249c98287fa68bc86a3586e3da4514c9e3371d962c0068cc8b7e"
+          },
+          "pixelHash": "78ad44c6de8829d393bec8d5575fe19c47e2b17647ba910f4b297f58936557e1",
+          "roi": {
+            "x": 184,
+            "y": 176,
+            "width": 64,
+            "height": 64
+          },
+          "retainedAreaFraction": 0.0625,
+          "selection": "Agent selected once by inspecting existing pixels; not automatic product ROI selection."
+        }
+      ],
+      "baselineManifestSha256": "12faf1934ab85279cf86459a67b9513c4cc4f6d6871915e9b3ca3b47ee114378",
+      "paletteDiagnostic": [
+        {
+          "component": "grass",
+          "sampledColors": 351,
+          "coarseColors": 3,
+          "adaptiveColors": 38,
+          "sameRoiMeanAbsRgbError": {
+            "old2bit": 18.32696759259259,
+            "adaptiveShared64": 0.9508101851851852
+          },
+          "note": "Pointwise color-loss diagnosis only; not an extra Pack configuration or aesthetic score."
+        },
+        {
+          "component": "water",
+          "sampledColors": 408,
+          "coarseColors": 2,
+          "adaptiveColors": 26,
+          "sameRoiMeanAbsRgbError": {
+            "old2bit": 17.96585648148148,
+            "adaptiveShared64": 0.8153935185185185
+          },
+          "note": "Pointwise color-loss diagnosis only; not an extra Pack configuration or aesthetic score."
+        }
+      ],
+      "configurations": [
+        {
+          "config": "A-roi-copy",
+          "descriptor": {
+            "version": "step09-art-roi-palette-periodic-v1-experiment",
+            "logicalSize": 24,
+            "density": 2,
+            "paletteLimit": 64,
+            "band": 4,
+            "frames": [
+              0,
+              1,
+              2
+            ]
+          },
+          "edgeMethod": "copy-one-line",
+          "palette": [
+            [
+              6,
+              79,
+              118
+            ],
+            [
+              6,
+              81,
+              120
+            ],
+            [
+              6,
+              82,
+              122
+            ],
+            [
+              6,
+              84,
+              123
+            ],
+            [
+              8,
+              82,
+              122
+            ],
+            [
+              8,
+              84,
+              123
+            ],
+            [
+              8,
+              85,
+              125
+            ],
+            [
+              8,
+              87,
+              125
+            ],
+            [
+              8,
+              88,
+              127
+            ],
+            [
+              9,
+              85,
+              122
+            ],
+            [
+              9,
+              90,
+              128
+            ],
+            [
+              10,
+              85,
+              125
+            ],
+            [
+              10,
+              88,
+              126
+            ],
+            [
+              10,
+              91,
+              131
+            ],
+            [
+              10,
+              93,
+              130
+            ],
+            [
+              10,
+              94,
+              132
+            ],
+            [
+              10,
+              98,
+              136
+            ],
+            [
+              11,
+              88,
+              128
+            ],
+            [
+              11,
+              90,
+              128
+            ],
+            [
+              12,
+              91,
+              131
+            ],
+            [
+              13,
+              93,
+              131
+            ],
+            [
+              13,
+              94,
+              134
+            ],
+            [
+              14,
+              99,
+              136
+            ],
+            [
+              14,
+              104,
+              141
+            ],
+            [
+              18,
+              108,
+              145
+            ],
+            [
+              21,
+              117,
+              150
+            ],
+            [
+              61,
+              125,
+              79
+            ],
+            [
+              70,
+              124,
+              53
+            ],
+            [
+              97,
+              151,
+              90
+            ],
+            [
+              102,
+              147,
+              63
+            ],
+            [
+              112,
+              160,
+              65
+            ],
+            [
+              112,
+              166,
+              90
+            ],
+            [
+              126,
+              169,
+              86
+            ],
+            [
+              127,
+              176,
+              97
+            ],
+            [
+              135,
+              176,
+              88
+            ],
+            [
+              136,
+              180,
+              96
+            ],
+            [
+              136,
+              181,
+              91
+            ],
+            [
+              137,
+              185,
+              97
+            ],
+            [
+              139,
+              185,
+              92
+            ],
+            [
+              139,
+              185,
+              96
+            ],
+            [
+              140,
+              178,
+              93
+            ],
+            [
+              140,
+              183,
+              96
+            ],
+            [
+              140,
+              183,
+              99
+            ],
+            [
+              140,
+              185,
+              99
+            ],
+            [
+              141,
+              186,
+              100
+            ],
+            [
+              142,
+              183,
+              95
+            ],
+            [
+              142,
+              183,
+              99
+            ],
+            [
+              142,
+              184,
+              98
+            ],
+            [
+              142,
+              184,
+              102
+            ],
+            [
+              142,
+              185,
+              97
+            ],
+            [
+              143,
+              183,
+              98
+            ],
+            [
+              143,
+              185,
+              99
+            ],
+            [
+              144,
+              183,
+              98
+            ],
+            [
+              144,
+              183,
+              101
+            ],
+            [
+              144,
+              184,
+              98
+            ],
+            [
+              144,
+              184,
+              101
+            ],
+            [
+              144,
+              186,
+              97
+            ],
+            [
+              144,
+              186,
+              99
+            ],
+            [
+              145,
+              186,
+              101
+            ],
+            [
+              145,
+              187,
+              102
+            ],
+            [
+              146,
+              180,
+              96
+            ],
+            [
+              146,
+              185,
+              98
+            ],
+            [
+              146,
+              186,
+              104
+            ],
+            [
+              147,
+              181,
+              101
+            ]
+          ],
+          "maskSha256": "baa3079c9e25fdcc2f33c274d7e6253c94c4f6d6243c014e99371ae1652ca47a",
+          "maskRef": {
+            "kind": "source",
+            "id": "studio-mask",
+            "revision": 1,
+            "contentHash": "b34f7a6829f41e8c8621c72962a1d7829067607fe64e073fc91ddf976eff3731"
+          },
+          "newBankDerivedFrom": {
+            "kind": "source",
+            "id": "offline-t01-a-roi-copy-grass",
+            "revision": 1,
+            "contentHash": "aef585b9d427324c0fdf128e98334b8b9e6bf12c68c0932471ebdfa9f99f986f"
+          },
+          "protectedComparisons": 9168,
+          "protectedDifferences": 0,
+          "manifestSha256": "9ae167a68d84acc2b47925f3de0e983efc413be0c5c25897e5f1462cf1d18496",
+          "buildId": "step05-pack-0086d8805fb4-ce44d5fd2701e114",
+          "files": {
+            "A1.png": {
+              "bytes": 7861,
+              "sha256": "7d1b6ee6b1045f3a38a318d296a4e5b98eb9856aa2eca188775996a69a89d257"
+            },
+            "A2.png": {
+              "bytes": 5825,
+              "sha256": "2b4b753f82a99c3fab99005a2c7bd0b90251c631ecb7817033396ec390f964c7"
+            },
+            "INSTALL.md": {
+              "bytes": 1485,
+              "sha256": "76197c8af626be278923387dcb7e329e1363aa6cce000330d318b45a63c0af64"
+            },
+            "history.json": {
+              "bytes": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "layout.json": {
+              "bytes": 10623,
+              "sha256": "4e70ebb4a0724a26f4213d1c85dcf5e84d6304377b88f2163dfab6f4dc64f664"
+            },
+            "pack.json": {
+              "bytes": 10723,
+              "sha256": "409ebdf99c09ed134ea0b9e161d11dcf5e729728ceb72630903a6e988273fe14"
+            },
+            "sources.json": {
+              "bytes": 30098,
+              "sha256": "d4fdd26d0d89102656c6425cae5f5647f89ee5e6f20f00de437b99d823d5b3f9"
+            }
+          },
+          "grass": {
+            "visibleColors": 37,
+            "boundaryMeanAbsRgb": 0,
+            "interiorNeighborMeanAbsRgb": 1.8637706855791962,
+            "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+          },
+          "water": [
+            {
+              "visibleColors": 26,
+              "boundaryMeanAbsRgb": 0,
+              "interiorNeighborMeanAbsRgb": 1.7236997635933806,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            },
+            {
+              "visibleColors": 26,
+              "boundaryMeanAbsRgb": 1.3402777777777777,
+              "interiorNeighborMeanAbsRgb": 1.6951832151300237,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            },
+            {
+              "visibleColors": 26,
+              "boundaryMeanAbsRgb": 1.4444444444444444,
+              "interiorNeighborMeanAbsRgb": 1.6929669030732861,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            }
+          ],
+          "waterChangedFraction": 0.7534722222222222,
+          "edgeChange": {
+            "grass": {
+              "changedFraction": 0.0798611111111111,
+              "meanAbsoluteRgbChange": 0.7314814814814815
+            },
+            "water": {
+              "changedFraction": 0.078125,
+              "meanAbsoluteRgbChange": 0.6359953703703703
+            }
+          },
+          "semanticResult": "PENDING_HUMAN: selected regions remove scene structures; not a quality or animation PASS."
+        },
+        {
+          "config": "B-roi-band",
+          "descriptor": {
+            "version": "step09-art-roi-palette-periodic-v1-experiment",
+            "logicalSize": 24,
+            "density": 2,
+            "paletteLimit": 64,
+            "band": 4,
+            "frames": [
+              0,
+              1,
+              2
+            ]
+          },
+          "edgeMethod": "paired-band",
+          "palette": [
+            [
+              6,
+              79,
+              118
+            ],
+            [
+              6,
+              81,
+              120
+            ],
+            [
+              6,
+              82,
+              122
+            ],
+            [
+              6,
+              84,
+              123
+            ],
+            [
+              8,
+              82,
+              122
+            ],
+            [
+              8,
+              84,
+              123
+            ],
+            [
+              8,
+              85,
+              125
+            ],
+            [
+              8,
+              87,
+              125
+            ],
+            [
+              8,
+              88,
+              127
+            ],
+            [
+              9,
+              85,
+              122
+            ],
+            [
+              9,
+              90,
+              128
+            ],
+            [
+              10,
+              85,
+              125
+            ],
+            [
+              10,
+              88,
+              126
+            ],
+            [
+              10,
+              91,
+              131
+            ],
+            [
+              10,
+              93,
+              130
+            ],
+            [
+              10,
+              94,
+              132
+            ],
+            [
+              10,
+              98,
+              136
+            ],
+            [
+              11,
+              88,
+              128
+            ],
+            [
+              11,
+              90,
+              128
+            ],
+            [
+              12,
+              91,
+              131
+            ],
+            [
+              13,
+              93,
+              131
+            ],
+            [
+              13,
+              94,
+              134
+            ],
+            [
+              14,
+              99,
+              136
+            ],
+            [
+              14,
+              104,
+              141
+            ],
+            [
+              18,
+              108,
+              145
+            ],
+            [
+              21,
+              117,
+              150
+            ],
+            [
+              61,
+              125,
+              79
+            ],
+            [
+              70,
+              124,
+              53
+            ],
+            [
+              97,
+              151,
+              90
+            ],
+            [
+              102,
+              147,
+              63
+            ],
+            [
+              112,
+              160,
+              65
+            ],
+            [
+              112,
+              166,
+              90
+            ],
+            [
+              126,
+              169,
+              86
+            ],
+            [
+              127,
+              176,
+              97
+            ],
+            [
+              135,
+              176,
+              88
+            ],
+            [
+              136,
+              180,
+              96
+            ],
+            [
+              136,
+              181,
+              91
+            ],
+            [
+              137,
+              185,
+              97
+            ],
+            [
+              139,
+              185,
+              92
+            ],
+            [
+              139,
+              185,
+              96
+            ],
+            [
+              140,
+              178,
+              93
+            ],
+            [
+              140,
+              183,
+              96
+            ],
+            [
+              140,
+              183,
+              99
+            ],
+            [
+              140,
+              185,
+              99
+            ],
+            [
+              141,
+              186,
+              100
+            ],
+            [
+              142,
+              183,
+              95
+            ],
+            [
+              142,
+              183,
+              99
+            ],
+            [
+              142,
+              184,
+              98
+            ],
+            [
+              142,
+              184,
+              102
+            ],
+            [
+              142,
+              185,
+              97
+            ],
+            [
+              143,
+              183,
+              98
+            ],
+            [
+              143,
+              185,
+              99
+            ],
+            [
+              144,
+              183,
+              98
+            ],
+            [
+              144,
+              183,
+              101
+            ],
+            [
+              144,
+              184,
+              98
+            ],
+            [
+              144,
+              184,
+              101
+            ],
+            [
+              144,
+              186,
+              97
+            ],
+            [
+              144,
+              186,
+              99
+            ],
+            [
+              145,
+              186,
+              101
+            ],
+            [
+              145,
+              187,
+              102
+            ],
+            [
+              146,
+              180,
+              96
+            ],
+            [
+              146,
+              185,
+              98
+            ],
+            [
+              146,
+              186,
+              104
+            ],
+            [
+              147,
+              181,
+              101
+            ]
+          ],
+          "maskSha256": "baa3079c9e25fdcc2f33c274d7e6253c94c4f6d6243c014e99371ae1652ca47a",
+          "maskRef": {
+            "kind": "source",
+            "id": "studio-mask",
+            "revision": 1,
+            "contentHash": "b34f7a6829f41e8c8621c72962a1d7829067607fe64e073fc91ddf976eff3731"
+          },
+          "newBankDerivedFrom": {
+            "kind": "source",
+            "id": "offline-t01-b-roi-band-grass",
+            "revision": 1,
+            "contentHash": "4aadcb340627ccd175ef730f308feeb1d897112d35ff9f3f180fd29d1d9a9f6d"
+          },
+          "protectedComparisons": 9168,
+          "protectedDifferences": 0,
+          "manifestSha256": "75d0be991a3bbf1488203c4ef6c95b59283e59aa779f1fe31c49919c2cf2637f",
+          "buildId": "step05-pack-0086d8805fb4-7896fc0985f3a808",
+          "files": {
+            "A1.png": {
+              "bytes": 7851,
+              "sha256": "d2b2a7001d41e7a5cfe5ffc0f4e197486c77519c436408820e41de467d62a57c"
+            },
+            "A2.png": {
+              "bytes": 5734,
+              "sha256": "ae13c82e666f416294c8685337d93dcfc916beab043c4ef3262c419ad4875b4d"
+            },
+            "INSTALL.md": {
+              "bytes": 1485,
+              "sha256": "56b48bcd12e8dcc65f3b556e00e653f311de4d600e49a3d7fc964c3f9823d04f"
+            },
+            "history.json": {
+              "bytes": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "layout.json": {
+              "bytes": 10623,
+              "sha256": "b0c0019aacbb9b735679e4342493b7992d57f148b00bd0df3762ec000df0d316"
+            },
+            "pack.json": {
+              "bytes": 10723,
+              "sha256": "a68084059d63d44e156841af5a5d665b1aea7729f0b2a773e33f49b9f706c547"
+            },
+            "sources.json": {
+              "bytes": 30010,
+              "sha256": "553926b2b490348085c0aaf2efab738fed69db2609749c1f686ce9347f1554f2"
+            }
+          },
+          "grass": {
+            "visibleColors": 35,
+            "boundaryMeanAbsRgb": 0,
+            "interiorNeighborMeanAbsRgb": 1.5685579196217494,
+            "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+          },
+          "water": [
+            {
+              "visibleColors": 26,
+              "boundaryMeanAbsRgb": 0,
+              "interiorNeighborMeanAbsRgb": 1.5085697399527187,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            },
+            {
+              "visibleColors": 26,
+              "boundaryMeanAbsRgb": 0.9583333333333334,
+              "interiorNeighborMeanAbsRgb": 1.488179669030733,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            },
+            {
+              "visibleColors": 26,
+              "boundaryMeanAbsRgb": 0.9513888888888888,
+              "interiorNeighborMeanAbsRgb": 1.4883274231678487,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            }
+          ],
+          "waterChangedFraction": 0.7604166666666666,
+          "edgeChange": {
+            "grass": {
+              "changedFraction": 0.4565972222222222,
+              "meanAbsoluteRgbChange": 1.4739583333333333
+            },
+            "water": {
+              "changedFraction": 0.5121527777777778,
+              "meanAbsoluteRgbChange": 1.384837962962963
+            }
+          },
+          "semanticResult": "PENDING_HUMAN: selected regions remove scene structures; not a quality or animation PASS."
+        }
+      ]
+    },
+    {
+      "caseId": "R01",
+      "inputs": [
+        {
+          "taskId": "613739b0-0907-4eaf-a288-185bcc35ef70",
+          "component": "grass",
+          "originalSha256": "7773c46861878c94242331fbfe1e463796ff57051ff487bcd40f707f682d3095",
+          "normalizedSha256": "6ca597932521aa02913d775f4a2f822c0e9f0734bace03b6cbae18376cefeb11",
+          "originalSource": {
+            "kind": "source",
+            "id": "wavespeed-613739b0-0907-4eaf-a288-185bcc35ef70-0",
+            "revision": 1,
+            "contentHash": "be2b7a3bb2ec9922eaff8b2b7bf8c6eaca3989829d9ffa193dfced2deb1ca10a"
+          },
+          "pixelHash": "550fc020406235eb3e9b9ab124c48cb2f618001219b3910d2e78b197487b8376",
+          "roi": {
+            "x": 104,
+            "y": 132,
+            "width": 48,
+            "height": 48
+          },
+          "retainedAreaFraction": 0.03515625,
+          "selection": "Agent selected once by inspecting existing pixels; not automatic product ROI selection."
+        },
+        {
+          "taskId": "c77584fa-8290-491a-82fd-93d72f28193c",
+          "component": "water",
+          "originalSha256": "75622d6c027ffd61e7be4c9da90cd051d5bb6649a28e92aa7c42be3420b37c79",
+          "normalizedSha256": "8f73093d9f58565ad3542e5fffb5820dd362437600aeb4f556cf7043ad7551cc",
+          "originalSource": {
+            "kind": "source",
+            "id": "wavespeed-c77584fa-8290-491a-82fd-93d72f28193c-0",
+            "revision": 1,
+            "contentHash": "b4172d0faf6dabe8d06c1aa481500a21baf30f4aa1348f677e6712e34e171f0f"
+          },
+          "pixelHash": "96e5acc20a781e4ab67a984dda4e900bba60e2600396d41c314fd4e64ff83e3b",
+          "roi": {
+            "x": 104,
+            "y": 112,
+            "width": 80,
+            "height": 80
+          },
+          "retainedAreaFraction": 0.09765625,
+          "selection": "Agent selected once by inspecting existing pixels; not automatic product ROI selection."
+        }
+      ],
+      "baselineManifestSha256": "eefea85181695771d47dea1760115b6fb349615f4e431195eb45d5a66b2aca44",
+      "paletteDiagnostic": [
+        {
+          "component": "grass",
+          "sampledColors": 300,
+          "coarseColors": 2,
+          "adaptiveColors": 54,
+          "sameRoiMeanAbsRgbError": {
+            "old2bit": 18.09664351851852,
+            "adaptiveShared64": 0.5202546296296297
+          },
+          "note": "Pointwise color-loss diagnosis only; not an extra Pack configuration or aesthetic score."
+        },
+        {
+          "component": "water",
+          "sampledColors": 404,
+          "coarseColors": 3,
+          "adaptiveColors": 63,
+          "sameRoiMeanAbsRgbError": {
+            "old2bit": 17.644675925925927,
+            "adaptiveShared64": 0.7563657407407407
+          },
+          "note": "Pointwise color-loss diagnosis only; not an extra Pack configuration or aesthetic score."
+        }
+      ],
+      "configurations": [
+        {
+          "config": "A-roi-copy",
+          "descriptor": {
+            "version": "step09-art-roi-palette-periodic-v1-experiment",
+            "logicalSize": 24,
+            "density": 2,
+            "paletteLimit": 64,
+            "band": 4,
+            "frames": [
+              0,
+              1,
+              2
+            ]
+          },
+          "edgeMethod": "copy-one-line",
+          "palette": [
+            [
+              66,
+              116,
+              44
+            ],
+            [
+              69,
+              123,
+              45
+            ],
+            [
+              76,
+              124,
+              54
+            ],
+            [
+              78,
+              129,
+              54
+            ],
+            [
+              80,
+              130,
+              57
+            ],
+            [
+              81,
+              129,
+              61
+            ],
+            [
+              83,
+              135,
+              61
+            ],
+            [
+              84,
+              133,
+              60
+            ],
+            [
+              85,
+              131,
+              65
+            ],
+            [
+              86,
+              132,
+              65
+            ],
+            [
+              86,
+              134,
+              66
+            ],
+            [
+              86,
+              134,
+              70
+            ],
+            [
+              86,
+              136,
+              62
+            ],
+            [
+              87,
+              136,
+              71
+            ],
+            [
+              87,
+              137,
+              66
+            ],
+            [
+              88,
+              138,
+              69
+            ],
+            [
+              88,
+              140,
+              65
+            ],
+            [
+              88,
+              140,
+              68
+            ],
+            [
+              89,
+              134,
+              68
+            ],
+            [
+              89,
+              135,
+              70
+            ],
+            [
+              89,
+              136,
+              64
+            ],
+            [
+              89,
+              136,
+              66
+            ],
+            [
+              89,
+              138,
+              71
+            ],
+            [
+              89,
+              138,
+              73
+            ],
+            [
+              89,
+              139,
+              64
+            ],
+            [
+              90,
+              135,
+              72
+            ],
+            [
+              90,
+              137,
+              68
+            ],
+            [
+              90,
+              138,
+              66
+            ],
+            [
+              90,
+              138,
+              70
+            ],
+            [
+              90,
+              139,
+              67
+            ],
+            [
+              90,
+              140,
+              70
+            ],
+            [
+              90,
+              141,
+              68
+            ],
+            [
+              90,
+              142,
+              66
+            ],
+            [
+              90,
+              142,
+              68
+            ],
+            [
+              90,
+              144,
+              68
+            ],
+            [
+              91,
+              136,
+              70
+            ],
+            [
+              91,
+              137,
+              74
+            ],
+            [
+              91,
+              138,
+              70
+            ],
+            [
+              91,
+              140,
+              67
+            ],
+            [
+              91,
+              140,
+              69
+            ],
+            [
+              92,
+              137,
+              70
+            ],
+            [
+              92,
+              137,
+              72
+            ],
+            [
+              92,
+              140,
+              67
+            ],
+            [
+              92,
+              140,
+              69
+            ],
+            [
+              92,
+              140,
+              70
+            ],
+            [
+              92,
+              140,
+              72
+            ],
+            [
+              92,
+              140,
+              73
+            ],
+            [
+              92,
+              141,
+              72
+            ],
+            [
+              92,
+              142,
+              68
+            ],
+            [
+              92,
+              142,
+              70
+            ],
+            [
+              92,
+              145,
+              71
+            ],
+            [
+              93,
+              137,
+              74
+            ],
+            [
+              93,
+              141,
+              68
+            ],
+            [
+              93,
+              142,
+              70
+            ],
+            [
+              93,
+              145,
+              68
+            ],
+            [
+              94,
+              141,
+              70
+            ],
+            [
+              94,
+              141,
+              73
+            ],
+            [
+              94,
+              142,
+              71
+            ],
+            [
+              95,
+              141,
+              75
+            ],
+            [
+              95,
+              146,
+              70
+            ],
+            [
+              96,
+              146,
+              73
+            ],
+            [
+              98,
+              149,
+              74
+            ],
+            [
+              99,
+              147,
+              79
+            ],
+            [
+              102,
+              154,
+              81
+            ]
+          ],
+          "maskSha256": "baa3079c9e25fdcc2f33c274d7e6253c94c4f6d6243c014e99371ae1652ca47a",
+          "maskRef": {
+            "kind": "source",
+            "id": "studio-mask",
+            "revision": 1,
+            "contentHash": "b34f7a6829f41e8c8621c72962a1d7829067607fe64e073fc91ddf976eff3731"
+          },
+          "newBankDerivedFrom": {
+            "kind": "source",
+            "id": "offline-r01-a-roi-copy-grass",
+            "revision": 1,
+            "contentHash": "c8c6f1c97b5217aabca743b8ffcdcef770281b5bea3340a40880d202072ef430"
+          },
+          "protectedComparisons": 9168,
+          "protectedDifferences": 0,
+          "manifestSha256": "7be737b8fa12c3add84f7318a4218d00a1116fe1bb3b3c0cdd3253deb29f5902",
+          "buildId": "step05-pack-0086d8805fb4-7b9b17340725af4f",
+          "files": {
+            "A1.png": {
+              "bytes": 8436,
+              "sha256": "b4ac4ff30888d2b48c86ce02939ba89fa829d2ef5ce11ba8a3786ed5978ea83a"
+            },
+            "A2.png": {
+              "bytes": 5872,
+              "sha256": "31ba7d2eec9be959a7b5064f05262efedf9322d9265b18f7ebbbb646c65a33ef"
+            },
+            "INSTALL.md": {
+              "bytes": 1485,
+              "sha256": "97443d77da1ff33b445e362e478a2013e5863f65be3f9b2eb2ecf892f8ad2018"
+            },
+            "history.json": {
+              "bytes": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "layout.json": {
+              "bytes": 10623,
+              "sha256": "41099f902d2dcfcf049f14d6e653a07d0ea15f03bd37b0f58b70facdab853e0a"
+            },
+            "pack.json": {
+              "bytes": 10723,
+              "sha256": "d06c348b2f010005c401694d6d47b311f0d60b51df1dc3f2988a3796cdbbb5ae"
+            },
+            "sources.json": {
+              "bytes": 31300,
+              "sha256": "657a3fae9dcbb9532eed13930115d45fb61c55a536f30c28d2e1afc696a27478"
+            }
+          },
+          "grass": {
+            "visibleColors": 54,
+            "boundaryMeanAbsRgb": 0,
+            "interiorNeighborMeanAbsRgb": 1.2337470449172576,
+            "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+          },
+          "water": [
+            {
+              "visibleColors": 61,
+              "boundaryMeanAbsRgb": 0,
+              "interiorNeighborMeanAbsRgb": 1.5924940898345155,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            },
+            {
+              "visibleColors": 61,
+              "boundaryMeanAbsRgb": 1.0347222222222223,
+              "interiorNeighborMeanAbsRgb": 1.5704787234042554,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            },
+            {
+              "visibleColors": 61,
+              "boundaryMeanAbsRgb": 1,
+              "interiorNeighborMeanAbsRgb": 1.5712174940898345,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            }
+          ],
+          "waterChangedFraction": 0.8836805555555556,
+          "edgeChange": {
+            "grass": {
+              "changedFraction": 0.08159722222222222,
+              "meanAbsoluteRgbChange": 0.3090277777777778
+            },
+            "water": {
+              "changedFraction": 0.0798611111111111,
+              "meanAbsoluteRgbChange": 0.2847222222222222
+            }
+          },
+          "semanticResult": "SOURCE_LIMITATION: input water is grass; this un-recolored output is not accepted as water."
+        },
+        {
+          "config": "B-roi-band",
+          "descriptor": {
+            "version": "step09-art-roi-palette-periodic-v1-experiment",
+            "logicalSize": 24,
+            "density": 2,
+            "paletteLimit": 64,
+            "band": 4,
+            "frames": [
+              0,
+              1,
+              2
+            ]
+          },
+          "edgeMethod": "paired-band",
+          "palette": [
+            [
+              66,
+              116,
+              44
+            ],
+            [
+              69,
+              123,
+              45
+            ],
+            [
+              76,
+              124,
+              54
+            ],
+            [
+              78,
+              129,
+              54
+            ],
+            [
+              80,
+              130,
+              57
+            ],
+            [
+              81,
+              129,
+              61
+            ],
+            [
+              83,
+              135,
+              61
+            ],
+            [
+              84,
+              133,
+              60
+            ],
+            [
+              85,
+              131,
+              65
+            ],
+            [
+              86,
+              132,
+              65
+            ],
+            [
+              86,
+              134,
+              66
+            ],
+            [
+              86,
+              134,
+              70
+            ],
+            [
+              86,
+              136,
+              62
+            ],
+            [
+              87,
+              136,
+              71
+            ],
+            [
+              87,
+              137,
+              66
+            ],
+            [
+              88,
+              138,
+              69
+            ],
+            [
+              88,
+              140,
+              65
+            ],
+            [
+              88,
+              140,
+              68
+            ],
+            [
+              89,
+              134,
+              68
+            ],
+            [
+              89,
+              135,
+              70
+            ],
+            [
+              89,
+              136,
+              64
+            ],
+            [
+              89,
+              136,
+              66
+            ],
+            [
+              89,
+              138,
+              71
+            ],
+            [
+              89,
+              138,
+              73
+            ],
+            [
+              89,
+              139,
+              64
+            ],
+            [
+              90,
+              135,
+              72
+            ],
+            [
+              90,
+              137,
+              68
+            ],
+            [
+              90,
+              138,
+              66
+            ],
+            [
+              90,
+              138,
+              70
+            ],
+            [
+              90,
+              139,
+              67
+            ],
+            [
+              90,
+              140,
+              70
+            ],
+            [
+              90,
+              141,
+              68
+            ],
+            [
+              90,
+              142,
+              66
+            ],
+            [
+              90,
+              142,
+              68
+            ],
+            [
+              90,
+              144,
+              68
+            ],
+            [
+              91,
+              136,
+              70
+            ],
+            [
+              91,
+              137,
+              74
+            ],
+            [
+              91,
+              138,
+              70
+            ],
+            [
+              91,
+              140,
+              67
+            ],
+            [
+              91,
+              140,
+              69
+            ],
+            [
+              92,
+              137,
+              70
+            ],
+            [
+              92,
+              137,
+              72
+            ],
+            [
+              92,
+              140,
+              67
+            ],
+            [
+              92,
+              140,
+              69
+            ],
+            [
+              92,
+              140,
+              70
+            ],
+            [
+              92,
+              140,
+              72
+            ],
+            [
+              92,
+              140,
+              73
+            ],
+            [
+              92,
+              141,
+              72
+            ],
+            [
+              92,
+              142,
+              68
+            ],
+            [
+              92,
+              142,
+              70
+            ],
+            [
+              92,
+              145,
+              71
+            ],
+            [
+              93,
+              137,
+              74
+            ],
+            [
+              93,
+              141,
+              68
+            ],
+            [
+              93,
+              142,
+              70
+            ],
+            [
+              93,
+              145,
+              68
+            ],
+            [
+              94,
+              141,
+              70
+            ],
+            [
+              94,
+              141,
+              73
+            ],
+            [
+              94,
+              142,
+              71
+            ],
+            [
+              95,
+              141,
+              75
+            ],
+            [
+              95,
+              146,
+              70
+            ],
+            [
+              96,
+              146,
+              73
+            ],
+            [
+              98,
+              149,
+              74
+            ],
+            [
+              99,
+              147,
+              79
+            ],
+            [
+              102,
+              154,
+              81
+            ]
+          ],
+          "maskSha256": "baa3079c9e25fdcc2f33c274d7e6253c94c4f6d6243c014e99371ae1652ca47a",
+          "maskRef": {
+            "kind": "source",
+            "id": "studio-mask",
+            "revision": 1,
+            "contentHash": "b34f7a6829f41e8c8621c72962a1d7829067607fe64e073fc91ddf976eff3731"
+          },
+          "newBankDerivedFrom": {
+            "kind": "source",
+            "id": "offline-r01-b-roi-band-grass",
+            "revision": 1,
+            "contentHash": "08bdae1cb5f4b3af38430cc5df7910c3bd7e8ae81704fa7f4d178c589631f100"
+          },
+          "protectedComparisons": 9168,
+          "protectedDifferences": 0,
+          "manifestSha256": "27daccf89204d4b1de5186bc4e9d093977b27212b9b644874038b8576a6f5067",
+          "buildId": "step05-pack-0086d8805fb4-2138514ff7e29558",
+          "files": {
+            "A1.png": {
+              "bytes": 8347,
+              "sha256": "959c1d51c461030cb0a0ad56867602bcfb7e62e4b9879710bec9d1be328b61c0"
+            },
+            "A2.png": {
+              "bytes": 5737,
+              "sha256": "b4328b541ec4a3dc7ce0c004fc5555f9b594885dea87ddf42b7d2a3fe91e424c"
+            },
+            "INSTALL.md": {
+              "bytes": 1485,
+              "sha256": "47f5fceffcb0c149a2a3812a2cab00d8869de47e690b200b65a2e53afed90557"
+            },
+            "history.json": {
+              "bytes": 3,
+              "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+            },
+            "layout.json": {
+              "bytes": 10623,
+              "sha256": "fda6de9a220892f296b01029ff7bb40ca73080eee3a07745942cd575bbb8ecc4"
+            },
+            "pack.json": {
+              "bytes": 10723,
+              "sha256": "9224104d7a32c0cd271b8887dbaac838c5512b555459e34fa7b02f6513adeae8"
+            },
+            "sources.json": {
+              "bytes": 31236,
+              "sha256": "accee26f9d05b52aecef77b84686e45e5ffc10ecb255d5075269d00ad7359f39"
+            }
+          },
+          "grass": {
+            "visibleColors": 49,
+            "boundaryMeanAbsRgb": 0,
+            "interiorNeighborMeanAbsRgb": 1.1510047281323876,
+            "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+          },
+          "water": [
+            {
+              "visibleColors": 63,
+              "boundaryMeanAbsRgb": 0,
+              "interiorNeighborMeanAbsRgb": 1.5014775413711583,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            },
+            {
+              "visibleColors": 63,
+              "boundaryMeanAbsRgb": 0.8402777777777778,
+              "interiorNeighborMeanAbsRgb": 1.4835992907801419,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            },
+            {
+              "visibleColors": 63,
+              "boundaryMeanAbsRgb": 0.8263888888888888,
+              "interiorNeighborMeanAbsRgb": 1.4838947990543736,
+              "note": "Descriptive only. Endpoint equality / periodic repetition does not establish visual quality or animation naturalness."
+            }
+          ],
+          "waterChangedFraction": 0.8819444444444444,
+          "edgeChange": {
+            "grass": {
+              "changedFraction": 0.4357638888888889,
+              "meanAbsoluteRgbChange": 0.6793981481481481
+            },
+            "water": {
+              "changedFraction": 0.4496527777777778,
+              "meanAbsoluteRgbChange": 0.5775462962962963
+            }
+          },
+          "semanticResult": "SOURCE_LIMITATION: input water is grass; this un-recolored output is not accepted as water."
+        }
+      ]
+    }
+  ],
+  "animationAcceptance": "NOT_EXECUTED (only static source states)",
+  "mzAcceptance": "NOT_EXECUTED",
+  "humanArtAcceptance": "PENDING_USER",
+  "thresholds": "UNCHANGED_NOT_NEWLY_APPROVED"
+}

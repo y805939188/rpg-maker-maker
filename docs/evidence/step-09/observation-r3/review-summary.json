@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "verdict": "PASS_LIMITED_OBSERVATION",
+  "review_sequence": "R3 explicitly appended to original sequence; no new sequence or review round",
+  "role": "step_reviewer",
+  "reviewer_count": 1,
+  "child_agents": 0,
+  "head": "e8c14b2d529670619cfe571673b88407dee7284e",
+  "execution_source": "65a8ad44d74232b0fd8fb876b1694219c8d68799",
+  "comparison_base": "e228d09a732955aaf63b2bddd949bc0a45ac9815",
+  "scope": [
+    ".github/workflows/ci.yml",
+    "scripts/startup-observer.mjs",
+    "tests/startup-observer.test.mjs"
+  ],
+  "documentation_only_tail": {
+    "65a8ad44d74232b0fd8fb876b1694219c8d68799..c8c3227d1340de9ff0c6ef4285a183ba4412eacb": "A\tdocs/reviews/step-09-startup-coding.md",
+    "c8c3227d1340de9ff0c6ef4285a183ba4412eacb..e8c14b2d529670619cfe571673b88407dee7284e": "M\tdocs/reviews/step-09-startup-coding.md"
+  },
+  "client": {
+    "model": "gpt-6.1-sol",
+    "effort": "ultra",
+    "requested_service_tier": "default (Standard)",
+    "process_allowlist_verified": true,
+    "turn_context_model_effort_verified": true,
+    "turn_context_service_tier": "NOT_EXPOSED",
+    "hidden_server_fields": "UNVERIFIED",
+    "global_config_modified": false,
+    "fast_flag_present": false
+  },
+  "toolchain": {
+    "node": "22.21.1",
+    "pnpm": "10.20.0"
+  },
+  "blocking_counts": {
+    "P0": 0,
+    "P1": 0,
+    "hard_contract_P2": 0,
+    "total": 0
+  },
+  "nonblocking_findings": [
+    {
+      "id": "R3-P3-01",
+      "severity": "P3",
+      "blocking": false,
+      "file": "scripts/startup-observer.mjs",
+      "lines": [80, 81, 82, 115],
+      "title": "DB URL omitted port does not use intended 5432 fallback",
+      "basis": "URL.port is an empty string when omitted; Number(value ?? fallback) converts it to 0, so port(url.port, 5432) returns undefined and emits unconfigured. Static source finding; no extra probe or service run.",
+      "impact": "Missing database TCP observation only for an omitted-port URL. Frozen CI explicitly configures port 55432; no impact on its readiness gate, product or release prerequisite.",
+      "action": "Informational within limited observation review; no implementation/test edits or extra round requested."
+    }
+  ],
+  "directed_test": {
+    "command": [
+      "/Users/dingshinn/.nvm/versions/node/v22.21.1/bin/node",
+      "--test",
+      "--test-timeout=10000",
+      "tests/startup-observer.test.mjs"
+    ],
+    "exit_code": 0,
+    "started_at": "2026-10-19T06:30:43.653759+00:00",
+    "ended_at": "2026-10-19T06:30:46.338277+00:00",
+    "log": "logs/startup-observer-test.log",
+    "log_sha256": "4877bf6d04b1ce60b757da5a6ad1982439d42cc86f0b376bde4d345dc44d7ec7",
+    "tests": 7,
+    "pass": 7,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "subtests": [
+      {
+        "number": 1,
+        "name": "stage labels are allowlisted; command arguments and foreign paths are never labels",
+        "result": "PASS"
+      },
+      {
+        "number": 2,
+        "name": "disabled preload leaves stdout, failure code and telemetry unchanged",
+        "result": "PASS"
+      },
+      {
+        "number": 3,
+        "name": "observed startup success and failure keep original exits and do not linger",
+        "result": "PASS"
+      },
+      {
+        "number": 4,
+        "name": "probes report occupied ports and health transitions without bodies, keys, paths or DB credentials",
+        "result": "PASS"
+      },
+      {
+        "number": 5,
+        "name": "SIGTERM cancellation retains the original signal and leaves no observer process",
+        "result": "PASS"
+      },
+      {
+        "number": 6,
+        "name": "an accepted HTTP connection without headers reaches the total 250ms probe deadline",
+        "result": "PASS"
+      },
+      {
+        "number": 7,
+        "name": "unreachable or invalid configuration is reduced to finite states, without delaying exit",
+        "result": "PASS"
+      }
+    ]
+  },
+  "static_checks": {
+    "eslint": {
+      "exit_code": 0,
+      "javascript_files": "PASS (2)",
+      "ci_yaml": "NOT_APPLICABLE: no matching ESLint configuration; one warning",
+      "log": "logs/eslint.log"
+    },
+    "prettier": {
+      "exit_code": 0,
+      "workflow_and_script": "PASS",
+      "formal_test_file": "IGNORED_BY_EXISTING_CONFIG: /tests/; verified by --file-info",
+      "log": "logs/prettier.log",
+      "file_info_log": "logs/prettier-test-file-info.log"
+    }
+  },
+  "checklist": [
+    {
+      "item": "Original startup commands and production→development adjacency",
+      "result": "PASS",
+      "evidence": ".github/workflows/ci.yml:44-48; package.json and playwright.config.ts baseline SHA equal. Only dev step env adds opt-in preload."
+    },
+    {
+      "item": "Full build/resource chain; no cache replacement/prewarm/retry/timing-boundary move",
+      "result": "PASS",
+      "evidence": "package.json, run-local.mjs, studio-resources.ts and lockfile byte-identical; original serial dev chain untouched. No launch, build, service prepare, retry or readiness-control operation in observer."
+    },
+    {
+      "item": "Original error output, exit status and signals",
+      "result": "PASS",
+      "evidence": "No exception/rejection/signal handler or exitCode mutation in observer; only its own probe errors reduced to finite states. Tests 2/3/5 verify original output/status/SIGTERM."
+    },
+    {
+      "item": "Original Playwright 30000ms readiness gate; no late-readiness PASS",
+      "result": "PASS",
+      "evidence": "playwright.config.ts unchanged: timeout 30000, retries 0, reuseExistingServer false. Observer emits probe states only; 35000ms controls observation lifetime, never readiness or PASS."
+    },
+    {
+      "item": "Loopback probes, bounded timeout/sampling/resource lifetime",
+      "result": "PASS",
+      "evidence": "Literal 127.0.0.1 for TCP/HTTP; DB host and protocol allowlist. 1s sampling, socket/HTTP 250ms limit, sampling cleared at 35s; final in-flight probe can finish within 250ms thereafter subject to event-loop scheduling. Timers/sockets unref; sockets/request/response destroyed. 35s stop statically reviewed, not measured in an extra run."
+    },
+    {
+      "item": "No secret/environment/argv/DB URL/body/sensitive-path telemetry",
+      "result": "PASS",
+      "evidence": "startupStage fixed labels; JSON fixed fields only. No body reader, credential file reader or raw native-error logging. Synthetic sentinel tests 1/4/7 pass."
+    },
+    {
+      "item": "Opt-in/disabled behavior and ordinary product unchanged",
+      "result": "PASS",
+      "evidence": "Automatic observer only when TILESET_STARTUP_OBSERVE === 1 and known stage; NODE_OPTIONS set only on CI dev E2E step. Owner inherited to prevent duplicate probe loops. Test 2 disables cleanly; product bytes unchanged in authorized diff."
+    },
+    {
+      "item": "Frozen execution source and documentation-only tail",
+      "result": "PASS",
+      "evidence": "e228→65a touches exactly 3 scoped files. 65a→c8c3227 adds docs/reviews/step-09-startup-coding.md; c8c3227→e8c14b2 only edits that regular Markdown file. Scoped HEAD bytes match 65a."
+    }
+  ],
+  "authorized_reused_evidence": {
+    "R2": {
+      "candidate": "0a55d9f960bc3093843387af82561896ef16ebdc",
+      "complete_check": "450/450 PASS, reused, NOT_RERUN",
+      "complete_step09": "4/4 PASS, reused, NOT_RERUN",
+      "supplemental_step08": "historical 2/3, setup timeout cause UNVERIFIED; not claimed fully green"
+    },
+    "observed_ci": {
+      "run": 39196257845,
+      "commit": "c8c3227d1340de9ff0c6ef4285a183ba4412eacb",
+      "conclusion": "SUCCESS (complete production18/development18), reused from authorized user statement and required Coding receipt, NOT_RERUN_OR_FETCHED",
+      "raw_job_sha256": "eb93eda8c824aa733c993d3ec784fc59710fd71319e7c672bfb7d7cc4abed2c7"
+    },
+    "T01_R01": "Reuse limited functional/pixel acceptance for unchanged pixels; no new material/image/MZ/art review."
+  },
+  "historical_risk": {
+    "old_ci": 39151160848,
+    "commit": "e228d09a732955aaf63b2bddd949bc0a45ac9815",
+    "conclusion": "FAILURE: 30000ms startup timeout",
+    "cause": "UNVERIFIED",
+    "performance_remediation": "NOT_IMPLEMENTED",
+    "29.030s": "Different observer epoch; cannot compute exact 970ms margin",
+    "release_precondition": "Explicit latest user decision: unknown historical risk is not a prerequisite for this functional release; no renewed block and no claim resolved",
+    "old_author_BLOCKED_and_stop_records": "PRESERVED_UNMODIFIED; prior stop fulfilled"
+  },
+  "limits": [
+    "Limited review of three observation files only; no broader functional review.",
+    "No build/full450/full09/18+18/MZ/performance sampling/cache experiments/CI requests.",
+    "No real .env.local/provider credentials/Generate/Edit/budget/H02/user-data access.",
+    "No production service, DB or browser started; only existing tests used synthetic loopback servers.",
+    "No commercial art, original Host or numeric quality-threshold approval; step10 NOT_STARTED / NOT_AUTHORIZED.",
+    "Reviewer does not approve release. Main handles preauthorized release separately."
+  ],
+  "tracked_clean": true,
+  "git_status_porcelain": "",
+  "report": "report.md",
+  "preflight": "preflight.json",
+  "source_bindings": "source-bindings.json",
+  "scope_audit": "scope-audit.json",
+  "final_status": "final-status.json"
+}

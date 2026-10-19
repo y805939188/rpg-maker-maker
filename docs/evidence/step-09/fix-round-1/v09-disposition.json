@@ -1,0 +1,98 @@
+{
+  "V09-01": {
+    "firstRun": "2 FAIL / 2 PASS",
+    "controlledPublicationExpected": "publish/BUILD_FAILED",
+    "controlledPublicationActual": [
+      {
+        "buildFailures": [
+          {
+            "jobId": "719f932a-e74d-4db5-87de-7e53b5a6da92",
+            "stage": "prepare-build",
+            "code": "CODEC_TIMEOUT",
+            "exceptionType": "AssetError",
+            "frames": [
+              "isolation:54:18"
+            ]
+          }
+        ]
+      }
+    ],
+    "otherFailure": "CANDIDATE_TIMEOUT; same cause not confirmed",
+    "secondFocusedRun": "2 PASS / 2 unselected",
+    "controlledPublicationProof": [
+      {
+        "failureObservation": {
+          "jobId": "a83e76c9-37dd-4721-b22a-baf40a5bdd44",
+          "stage": "publish",
+          "code": "BUILD_FAILED",
+          "exceptionType": "Error",
+          "frames": [
+            "store:661:16",
+            "gate:170:23",
+            "gate:169:14",
+            "studio-service:802:11",
+            "gate:170:23",
+            "gate:169:14"
+          ]
+        },
+        "preservedSuccessfulBuild": "e7696f5630a3cef6bbcae43807fdb56507c9559ea4439da3e67941d371a9b033"
+      },
+      {
+        "buildFailures": [
+          {
+            "jobId": "a83e76c9-37dd-4721-b22a-baf40a5bdd44",
+            "stage": "publish",
+            "code": "BUILD_FAILED",
+            "exceptionType": "Error",
+            "frames": [
+              "store:661:16",
+              "gate:170:23",
+              "gate:169:14",
+              "studio-service:802:11",
+              "gate:170:23",
+              "gate:169:14"
+            ]
+          }
+        ]
+      }
+    ],
+    "timeoutPhase": "UNVERIFIED; no second timeout sample after startup/operation instrumentation",
+    "rootCause": "UNVERIFIED; not claimed fixed",
+    "repeatPolicy": "stopped after this focused diagnostic attempt; no green-loop"
+  },
+  "V09-02": {
+    "result": "PASS original continuous503 focused once",
+    "originalCanvasTimeoutMs": 5000,
+    "retries": 0,
+    "networkLog": ".local/step07/browser/dev/r3-state-ownership/532de600-27ad-43de-9a0b-f1f23ca0bf6d/poll-503-network.json",
+    "previewEvents": [
+      {
+        "event": "request",
+        "method": "GET",
+        "url": "http://127.0.0.1:5359/api/projects/855666bd-99f0-420f-919d-0a35e4f4037d/builds/ba2f8e3e05df3eba6d51ec5c5b307fefabb1608859e0e25a21efd61651318b0b/preview?scene=pond",
+        "elapsedMs": 778.3948329999985
+      },
+      {
+        "event": "response",
+        "status": 200,
+        "url": "http://127.0.0.1:5359/api/projects/855666bd-99f0-420f-919d-0a35e4f4037d/builds/ba2f8e3e05df3eba6d51ec5c5b307fefabb1608859e0e25a21efd61651318b0b/preview?scene=pond",
+        "elapsedMs": 2506.8441249999996
+      },
+      {
+        "event": "request",
+        "method": "GET",
+        "url": "http://127.0.0.1:5359/api/projects/855666bd-99f0-420f-919d-0a35e4f4037d/builds/9e0217ab4a3c3e350efaf5ab15ace5ad93d9d9d80ab00b9426c80c35fc385f9f/preview?scene=pond",
+        "elapsedMs": 11891.727416999998
+      },
+      {
+        "event": "response",
+        "status": 200,
+        "url": "http://127.0.0.1:5359/api/projects/855666bd-99f0-420f-919d-0a35e4f4037d/builds/9e0217ab4a3c3e350efaf5ab15ace5ad93d9d9d80ab00b9426c80c35fc385f9f/preview?scene=pond",
+        "elapsedMs": 13636.200874999999
+      }
+    ],
+    "oldFailureRootCause": "UNVERIFIED; new run did not reproduce; not claimed fixed",
+    "noConcurrentMzBuildOrCodecWork": true
+  },
+  "independentDisposition": "PENDING; author supplemental tests do not close reviewer validation blockers"
+}

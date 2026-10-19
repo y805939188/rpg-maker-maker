@@ -56,7 +56,7 @@ export function localRequestBoundary(config: ServerConfig): RequestHandler {
       const upload =
         /^\/api\/projects\/[a-f0-9-]{36}\/sources\/(grass|water-[012]|mask|overlay)\/upload$/.test(
           req.path,
-        );
+        ) || /^\/api\/projects\/[a-f0-9-]{36}\/ai\/reference\/upload$/.test(req.path);
       if (upload && (req.method !== 'POST' || req.headers['content-type'] !== 'image/png')) {
         deny(415, 'UNSUPPORTED_MEDIA_TYPE', 'PNG upload requires image/png.');
         return;

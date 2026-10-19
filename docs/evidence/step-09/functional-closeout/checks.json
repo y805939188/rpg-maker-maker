@@ -1,0 +1,134 @@
+{
+  "sourceCommit": "97f6cb6789402e823f51ca86d79e4513b2265941",
+  "priorSourceCommit": "14843ed94e998bb9f52f569e1e33d1a657f73c46",
+  "logs": [
+    {
+      "path": ".local/functional-check-full-1.log",
+      "sha256": "2f144964eed07f9eed8004ccc6e8b76f7b978a038037896b0a119044cc82a49a",
+      "result": "PASS 43 files / 450 tests + type/lint/format/build/11 exports (before final narrow UI/guard followups)"
+    },
+    {
+      "path": ".local/functional-step09-full-1.log",
+      "sha256": "a798f153361275dc02702512bb8075a72d33ba8e30fed1323d217c7c5c2b2eda",
+      "result": "1/4 PASS; browser completion notice timeout then BUSY on two remaining tests; preserved"
+    },
+    {
+      "path": ".local/functional-step09-failed-2.log",
+      "sha256": "2a00d7c006e12ca01356d1d1b2a4aaa5025293ee8f4ae4691693fa18e19465d9",
+      "result": "Targeted original failures 3/3 PASS; primary original test skipped; old cause UNVERIFIED, no full4/4 claim"
+    },
+    {
+      "path": ".local/functional-step08-regression.log",
+      "sha256": "0106285665320166d67e5bde190fa6b6c9dae05241cb09a5f8880838891535cd",
+      "result": "3/3 PASS, network Mock, fresh09 UUID DB"
+    },
+    {
+      "path": ".local/functional-conversion-restore.log",
+      "sha256": "db6610a85a97eae23115078fc7fa85c360176217da81d9163e53ed4617c3044d",
+      "result": "8 immutable conversion rows exact + full DB/file digest PASS"
+    },
+    {
+      "path": ".local/functional-incremental-check.log",
+      "sha256": "17aa973d3f004560237d9a95171210b0671deff23d61628eecf7322ff5938f20",
+      "result": "Late guard/diagnostic/API/Web lint + format PASS"
+    },
+    {
+      "path": ".local/functional-upload-guard-check.log",
+      "sha256": "dfa659183f4790b9de4fecbbec7bed2b8cb9ce7b230a142bfc9872ea9f6a6b1c",
+      "result": "Upload blocked guard lint/typecheck/Web build PASS"
+    },
+    {
+      "path": ".local/step09-functional/verify-canvas-and-upload.log",
+      "sha256": "57185bde79cff67f38ea1b7283c8c7a66df725f7d9eac9da60dd62862f3179ce",
+      "result": "16 exact actual ZIP-atlas/WebGL Canvas comparisons, 2 source clocks, upload blocked->enabled2/2, 0 POST/0 pageerror"
+    },
+    {
+      "path": ".local/step09-functional/mz-T01-boot.log",
+      "sha256": "95bac6ebd78b8668dfcf6ef2c567291c36bfb689886a0abc9c9418557fa2d5fc",
+      "result": "Native1.10.0 core+Chromium boot PASS; original Host/editor/human NOT_EXECUTED"
+    },
+    {
+      "path": ".local/step09-functional/mz-R01-boot.log",
+      "sha256": "cf77702d97ee6413c8702cb6b756fd3441024b405d410bf06c48858c5a13d198",
+      "result": "Native1.10.0 core+Chromium boot PASS; original Host/editor/human NOT_EXECUTED"
+    },
+    {
+      "path": ".local/step09-functional/R01-create.log",
+      "sha256": "c063c67a1fb9978af075a6109b4429b7ed820467fd5f8a5119791d0881a2ef15",
+      "result": "Initial reference upload BUSY while preview occupied; no create/submission"
+    },
+    {
+      "path": ".local/step09-functional/R01-create-after-guard.log",
+      "sha256": "a962af9a107f4319d4eeeb3f364010c31778726661c39335f99a621b22634531",
+      "result": "Operator inspector response-body collector failed before create; no submit"
+    },
+    {
+      "path": ".local/step09-functional/R01-create-after-collector-fix.log",
+      "sha256": "8924c69afd90b002f84f6063b44235c03370630e4de0846c327671aca587203e",
+      "result": "Exactly two approved R tasks archived; no retries or expansion"
+    },
+    {
+      "path": ".local/step09-functional/verify-real-packs.log",
+      "sha256": "26fc439b87b14dd9de1ff57af01d37e4abd91ab8f661c738b6d9af4dbbbf6326",
+      "result": "First author verification helper used wrong readPackExport shape; fixed to documented archive replay; no product failure"
+    },
+    {
+      "path": ".local/step09-functional/verify-real-packs-corrected.log",
+      "sha256": "7ca3c1d9f396498937d6caa9e52d47cf4e4981aad29bd609e7c11065dbdae445",
+      "result": "Both original adoption technical checks; R first remains ROLE_FAIL despite structure PASS"
+    },
+    {
+      "path": ".local/step09-functional/verify-final-r01.log",
+      "sha256": "4fabae7f4d13e9f957189d6bf8724a3da23257dd1ca681bf6352bda209e1cac5",
+      "result": "Corrected R structure/96x144/source/three frames/shore PASS; T accepted-A equality preserved"
+    }
+  ],
+  "firstIntegrationRun": ".local/step09/integration/a1408d62-f9d6-4cbe-87de-596d4b4727c5",
+  "targetedRun": ".local/step09/integration/6bef014e-ed50-4b81-8951-8c404f59b2f3",
+  "traceSha256": "c642cfe929b3e425e610e0f46bfb33dd4bc37613da60daa98fd203deff9a4ed7",
+  "originalTransientCause": "UNVERIFIED; no timeout change, no green-seeking full rerun",
+  "engineering": {
+    "buildId": "step09-97f6cb678940-9b6501a8bb9ea9dc",
+    "commit": "97f6cb6789402e823f51ca86d79e4513b2265941",
+    "manifestSha256": "a9a3290cc8685b57a88b61085d16d7f86e3994b9331c02f619c0f77ac23ff02e"
+  },
+  "engineeringFileCount": 266,
+  "role": "step_coder",
+  "clientModel": "gpt-6.1-sol",
+  "effectiveTurnEffort": "xhigh",
+  "clientServiceTier": "default(Standard)",
+  "hiddenServerModelRoleTier": "UNVERIFIED",
+  "independentReviewThisSession": "NOT_EXECUTED",
+  "manualGuide": {
+    "path": "/Users/dingshinn/.codex/worktrees/step-09-ai-studio/rpg-maker-maker/.local/step09-functional/manual-review-guide.md",
+    "sha256": "8684a1585f15a5816c540c6713b2a7325c94ee37cdac99200453e7bc4edc83df"
+  },
+  "preparedProjects": {
+    "T01": {
+      "path": "/Users/dingshinn/.codex/worktrees/step-09-ai-studio/rpg-maker-maker/.local/mz/step09-functional-T01-97f6cb6",
+      "keyFileSha256": {
+        "game.rmmzproject": "d999ef7df90cc897cccd4bfa8f86811224e61a8c61b6fe7e13f8321c7932e97d",
+        "step09-build-reference.json": "ce3479cf5c0aaab0ec3da0db3d051e27cba51fb4e1184724e15a2dc71d8de73e",
+        "data/System.json": "7fb78904e14eb1aaad4e9d7b8d01a4705c97ee7c55f6a16307f5dffa28228550",
+        "data/Map001.json": "2bfa221b16138c8ab478d24e6b8563ad4f82230921fe5b2d833b1f96171c0cc9",
+        "data/MapInfos.json": "913b940e2f15a74b50d1d77e5842174081601cb12a531d1274a784608ca4b0ad",
+        "data/Tilesets.json": "f037665263cea5075279f0388851070730331fabec522c27040830e0b8bb7c13",
+        "img/tilesets/step09_A1.png": "7d1b6ee6b1045f3a38a318d296a4e5b98eb9856aa2eca188775996a69a89d257",
+        "img/tilesets/step09_A2.png": "2b4b753f82a99c3fab99005a2c7bd0b90251c631ecb7817033396ec390f964c7"
+      }
+    },
+    "R01": {
+      "path": "/Users/dingshinn/.codex/worktrees/step-09-ai-studio/rpg-maker-maker/.local/mz/step09-functional-R01-97f6cb6",
+      "keyFileSha256": {
+        "game.rmmzproject": "d999ef7df90cc897cccd4bfa8f86811224e61a8c61b6fe7e13f8321c7932e97d",
+        "step09-build-reference.json": "17ae94e2718b4c53c934fb2e1ae834b24ef01c35a8edca84fb5676edca1812da",
+        "data/System.json": "54fc1a939d86c41d5bc79f9da08bd1753c25c5c617e93eb7120b9f2a2b70b3f1",
+        "data/Map001.json": "2bfa221b16138c8ab478d24e6b8563ad4f82230921fe5b2d833b1f96171c0cc9",
+        "data/MapInfos.json": "913b940e2f15a74b50d1d77e5842174081601cb12a531d1274a784608ca4b0ad",
+        "data/Tilesets.json": "f037665263cea5075279f0388851070730331fabec522c27040830e0b8bb7c13",
+        "img/tilesets/step09_A1.png": "baab35ac22c3e37b2d9583fedc3915bb56765753cb54e44166d6b8942244833e",
+        "img/tilesets/step09_A2.png": "89ec8cb4a2d15c40509475a17fe6a8a8d36f36c0033c6a4ea1dda6cf9895168f"
+      }
+    }
+  }
+}
