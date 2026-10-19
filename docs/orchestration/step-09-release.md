@@ -1,34 +1,39 @@
 # 步骤09功能测试基线：CI整理与发布交接
 
-2026-10-19。当前授权只整理CI/准备复用/测试拆分并正常发布09功能测试基线，不改产品功能，不进入10。受审执行source `b00e4b709d5103c44a86b2111f53edcc7f82983e`；作者文档HEAD `10e43e4340e482654f050537c4bd4138e0c08e21` 相对source仅新增Coding报告。最终文档HEAD、候选CI、main CI和三处main读回写会话及ignored `.local/step09-final-closeout/ci-consolidation-final/completion.json`，不为自身SHA再提交文档。
+2026-10-19。当前授权只整理CI/准备复用/测试拆分并正常发布09功能测试基线，不改产品功能，不进入10。最新受审执行source `7254dfe93ba72976dd0e593f00582c30de01ed5c`（只追加workflow组织整改）；作者文档HEAD `ff5d44b4841123094275e858f8649642e7845148` 仅新增本轮报告。R7原执行source `b00e4b709d5103c44a86b2111f53edcc7f82983e` 的其余实现未变。最终文档HEAD、两次候选CI、main CI和三处main读回写会话及ignored `.local/step09-final-closeout/ci-consolidation-final/completion.json`，不为自身SHA再提交文档。
 
 ## 当前技术门禁
 
-- 本轮限定独立R7：**PASS_LIMITED_CI_CONSOLIDATION**，P0/P1/硬契约P2均0，独立prepared7/cleanup3、真实双模式R4及事务/恢复验证通过。仅审 `b0c48ab→b00e4b7` 的9执行文件及直接影响；不重审01–09。见[本轮Coding](../reviews/step-09-ci-consolidation-coding.md)与[限定确认](../reviews/step-09-ci-consolidation-r7.md)。原R4/R5/R6轮次、缺陷和失败保持。
-- 功能R2 `0a55d9f` 的完整check450/09完整4/4、R5启动链PASS和R6独立Git夹具PASS按未变范围复用；它们不代替本轮差异确认或尚未执行的CI。T01/R01接受与产物绑定不变。
-- 只有最新限定PASS、零P0/P1/硬契约P2及完整候选CI实际SUCCESS后，Main才按本轮用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常整合/Push并等待完整main CI。此为用户预授权委托放行，不写成用户逐轮亲审。
-- 不强推、改写历史、跳检查或重跑同SHA碰运气。任何实际失败先读当次日志，范围外问题留证停止。最终main CI成功及local main/origin/main/live remote一致前，不宣称功能基线发布完成。
+- 限定R7 **PASS_LIMITED_CI_CONSOLIDATION**，R8 **PASS_LIMITED_CI_GATES**，均P0/P1/硬契约P2为0。R7审b0c48ab→b00e4b7九文件，R8只审6dac43c→7254dfe的workflow及直接影响，未全审01–09。见[R7 Coding](../reviews/step-09-ci-consolidation-coding.md)/[R7](../reviews/step-09-ci-consolidation-r7.md)、[集中整改](../reviews/step-09-ci-consolidation-r8-coding.md)/[R8](../reviews/step-09-ci-consolidation-r8.md)。一次集中整改/定向R8额度已使用，不自动扩轮。
+- 功能R2 `0a55d9f` 的完整check450/09完整4/4、R5启动链PASS和R6独立Git夹具PASS按未变范围复用。它们不代替本轮差异确认或新SHA完整CI。T01/R01接受与产物绑定不变。
+- 最新限定PASS、零P0/P1/硬契约P2及新SHA完整候选workflow整体 **completed/success** 后，Main才按本轮用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常整合/Push并等待完整main CI。必须同时核对core/development/baseline，不用局部绿色改写cancelled。该放行是用户预授权委托，不写成用户逐轮亲审。
+- 不强推、改写历史、跳检查或重跑同SHA碰运气。实际失败先读当次日志，范围外或达到本窗口限制时留证停止。main CI真实成功及local main/origin/main/live remote一致前，不宣称发布完成。
 
 ## 检查执行位置与计时
 
 | 原检查 | 当前执行位置 |
 | --- | --- |
-| check内及API/06/07/08前置重复构建 | 一次显式 `ci:prepare` 运行原完整clean build，逐文件绑定本轮输入/工具链/输出；每个 `ci:run` 前后验证，不用旧dist判断成功 |
-| 方向/types/lint/format/unit/build/exports | 同项仍阻断；prepared types/unit/exports去掉重复构建，生产JS与包声明导出保留；公共本地命令独立能力不变 |
-| check的privacy5及额外privacy5 | default Vitest只执行一次，独立本地命令保留 |
-| Studio原R4两模式一例 | 生产/开发独立用例，各新DB/资产/API/浏览器/输出，52条每模式matcher及真实COMMIT、迟到历史、实际PNG/Manifest/ZIP/preview身份断言保留；原其余15项未删除 |
-| API、06/07/08、生产18 | 原配置完整执行，复用当次验证过的准备产物；真实PG/备份恢复/任务恢复仍阻断 |
-| startup26、显式开发准备、开发18 | 原启动专项、最后冷准备及真实服务E2E保留；新prepared7与cleanup3验证不替代业务检查 |
+| check及API/06/07/08前置重复构建 | core一次ci:prepare运行原完整clean build，绑定当次源码/锁/配置/工具链及完整输出；ci:run每项前后验证，不凭旧dist存在放行 |
+| 方向/types/lint/format/unit/build/exports | core同项仍阻断，prepared执行去掉重复build，生产JS/包导出和资源身份检查保留；公共本地命令独立能力不变 |
+| check中的privacy5及第二次privacy5 | core default Vitest一次执行，原本地独立命令保留 |
+| Studio原R4两模式一例 | core生产/dev独立状态用例，各新DB/资产/API/浏览器/输出；52条每模式matcher及真实COMMIT、迟到历史、实际PNG/Manifest/ZIP/preview断言保留；其余15项不删 |
+| API、06/07/08、生产18、prepared7、startup26 | core原命令和顺序完整执行，真实PG/备份/任务恢复仍阻断 |
+| 显式开发准备与开发18 | 独立development job同事件SHA/frozen工具链、新PG/新库/空输出/七迁移、原dev:prepare→原dev E2E及observer；无core产物或数据库依赖 |
+| 原单个baseline job | core40分钟与development20分钟隔离并行；原名baseline2分钟严格needs/always汇总，双success才成功，失败/取消/跳过/缺失均拒绝 |
 
-旧失败CI39248620783日志实证：失败前10包各build7次、API/Web各2；R4开发历史末段在合并180秒窗口超时，后续未执行。新组织预计常规prepare一组、最后开发冷prepare一组，实际完整构建次数和分阶段/总耗时以新候选/main日志回执为准，不把代码推断当测量。原失败流程未完成，与新完整成功流程不构成等条件总耗时对比。
+原b0失败CI39248620783实证：失败前10包各build7次、API/Web各2；R4开发历史末段在合并180秒窗口超时，后续未执行。第一整合候选[CI39263767830](https://github.com/y805939188/rpg-maker-maker/actions/runs/39263767830)/6dac实测10包/API各2、Web1，privacy文件仅一次；453、API3、06=23、07=17、08=3、双18、prepared7、startup26均通过，仍因新增45分钟整体job上限 **cancelled**，官方注释确认，45m2s job/45m5s workflow保持原结论。不能因全部测试局部成功将该run写PASS。
 
-R5已授权将开发准备移出真实服务就绪等待：准备120秒，真实API/前端及监听归属就绪30秒；该计时语义变化保留。本轮没有修改其实现/门限。R4原一个180秒窗口涵盖两模式，现每模式独立180秒，局部断言期限不增加；新增有界阶段/清理与workflow45分钟上限，无固定sleep或自动重试。
+这次实际预算冲突是新增隔离并行的依据。新两个执行job各有真实PG/DB/资产/TMP/cache/输出，同一事件SHA但不跨job复制dist/receipt，不建产品缓存；依赖及浏览器工具在两runner各安装一次，开销未消失。development在dist/config.js尚不存在时直接使用公共wrapper内部相同Prisma CLI/schema迁移固定合法环回新库，实际启动仍用同一prepare/start实现和原配置验证。
+
+R7保持一次常规完整prepare、一次开发冷prepare，第一整合候选实测两组；新workflow预计仍两组，实际新候选/main构建次数、各阶段/总耗时及排队以对应日志回执为准。b0未完成全流程，不能与新完整流程作等覆盖总耗时比较；也不把配置并行或局部一次通过宣传成永久稳定、全部历史根因已明或预设提速比例。
+
+core40/development20/baseline2分钟预算预先固定，关键执行路径约42分钟不含runner排队，不是实际总时长保证。R5已授权开发准备与真实服务就绪分开计时：prepare120秒、真实API/前端及监听归属30秒；本轮保持其实现/门限。R4原一例180秒涵盖两模式，现每模式独立180秒，局部阈值保持，production target仍600000ms，无固定sleep或自动重试。
 
 ## 历史失败与未证实原因
 
-原CI39151160848/e228开发30000ms超时保持FAILURE、原原因UNVERIFIED；观测CI39196257845/c8c3227成功只证明当次原门禁通过，29.030秒来自不同epoch，不计算970ms准确余量。main CI39211027987的格式失败、39212002450的开发就绪失败、39233755132的Git夹具失败和39248620783的R4超时均保留原记录，不回写旧FAIL为PASS。夹具原Git stderr未保留，不补写推测错误文字。
+原CI39151160848/e228开发30000ms超时保持FAILURE、原原因UNVERIFIED；观测CI39196257845/c8c3227成功只证明当次原门禁通过，29.030秒来自不同epoch，不计算970ms准确余量。main CI39211027987格式失败、39212002450开发就绪失败、39233755132 Git夹具失败、39248620783 R4超时及本次39263767830整体45分钟取消均保留，不回写FAIL/cancelled为PASS。夹具原Git stderr未保留，不补写推测错误。
 
-后续R5启动设计、R6夹具和本轮CI整理分别只证明各自范围；未查明所有历史超时细因，没有永久稳定或预设提速比例承诺。原作者停止记录、R4/R5/R6报告、调度遗漏记录和所有旧CI日志保持。当前CI与远端事实优先于历史发布计划。
+R5、R6、R7及R8分别只证明各自范围。旧startup/R4细因仍UNVERIFIED；本次新45分钟超限有独立官方注释确认，两类原因不能混称。原作者停止记录、全部旧Review/调度遗漏记录及CI日志保留，当前CI与远端事实优先于历史发布计划。
 
 ## 同一产物的功能接受
 
