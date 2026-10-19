@@ -12,6 +12,17 @@ try {
   server.keepAliveTimeout = 5000;
   server.maxConnections = 16;
   await running.app.listen(config.API_PORT, config.API_HOST);
+  const launch = process.env['TILESET_STARTUP_LAUNCH'];
+  const bound = server.address();
+  if (
+    launch &&
+    /^[a-f0-9]{32}$/.test(launch) &&
+    bound &&
+    typeof bound !== 'string' &&
+    bound.address === config.API_HOST &&
+    bound.port === config.API_PORT
+  )
+    console.log(`[local-listening:${launch}:api:${bound.port}]`);
   console.log(
     `AI Tileset Studio (${config.NODE_ENV}) ready at http://127.0.0.1:${config.API_PORT}`,
   );

@@ -282,12 +282,12 @@ async function freePorts() {
   await close(second);
   return { api, web };
 }
-function fakeServer(port, body, lifetime) {
+function fakeServer(port, body, lifetime, role = 'api', proof = 'valid') {
   return [
     process.execPath,
     [
       '-e',
-      `require('http').createServer((req,res)=>res.end(${JSON.stringify(body)})).listen(${port},'127.0.0.1');${lifetime ? `setTimeout(()=>process.exit(7),${lifetime});` : ''}`,
+      `require('http').createServer((req,res)=>res.end(${JSON.stringify(body)})).listen(${port},'127.0.0.1',()=>{if(${JSON.stringify(proof)}!=='missing')console.log('[local-listening:'+(${JSON.stringify(proof)}==='valid'?process.env.TILESET_STARTUP_LAUNCH:'wrong-launch')+':${role}:${port}]')});${lifetime ? `setTimeout(()=>process.exit(7),${lifetime});` : ''}`,
     ],
   ];
 }
@@ -310,7 +310,7 @@ test('both real HTTP gates are required before the ready event; cancellation cle
         ports,
         commands: [
           fakeServer(ports.api, '{"status":"ok","database":"connected"}'),
-          fakeServer(ports.web, '<script src="/src/main.tsx">import</script>'),
+          fakeServer(ports.web, '<script src="/src/main.tsx">import</script>', undefined, 'web'),
         ],
         timeout: 3000,
       },
@@ -340,7 +340,7 @@ test('service exit, spawn failure and frontend-not-ready never emit ready from a
         serve('dev', processes, controller, (event) => events.push(event), {
           root,
           ports,
-          commands: [api, fakeServer(ports.web, 'not-the-frontend')],
+          commands: [api, fakeServer(ports.web, 'not-the-frontend', undefined, 'web')],
           timeout: 800,
         }),
         scenario === 'web' ? /30000ms/ : /service exited/,
@@ -391,3 +391,103 @@ test('repeated SIGINT/SIGTERM forwarding keeps cancellation handlers until desce
     await rm(directory, { recursive: true });
   }
 });
+
+for (const [mode, contender] of [
+  ['dev', 'api'],
+  ['dev', 'web'],
+  ['production', 'api'],
+]) {
+  test(`post-precheck ${mode} ${contender} contender cannot substitute for an owned listener`, async () => {
+    await fixture(async ({ root, prepare, processes, controller }) => {
+      await prepare();
+      const ports = await freePorts(),
+        events = [];
+      const foreign = createServer((_, response) =>
+        response.end(
+          contender === 'api'
+            ? '{"status":"ok","database":"connected","foreign":true}'
+            : '<script src="/src/main.tsx">import foreign</script>',
+        ),
+      );
+      const delayed = (role, body) => [
+        process.execPath,
+        [
+          '-e',
+          `setTimeout(()=>{require('http').createServer((req,res)=>res.end(${JSON.stringify(body)})).listen(${ports[role]},'127.0.0.1',()=>{if(process.env.TILESET_STARTUP_LAUNCH)console.log('[local-listening:'+process.env.TILESET_STARTUP_LAUNCH+':${role}:${ports[role]}]')})},${contender === role ? 1500 : 0});`,
+        ],
+      ];
+      try {
+        await assert.rejects(
+          serve(
+            mode,
+            processes,
+            controller,
+            (event) => {
+              events.push(event);
+              if (event === 'services-start') foreign.listen(ports[contender], '127.0.0.1');
+            },
+            {
+              root,
+              ports,
+              commands: [
+                delayed('api', '{"status":"ok","database":"connected"}'),
+                ...(mode === 'dev'
+                  ? [delayed('web', '<script src="/src/main.tsx">import</script>')]
+                  : []),
+              ],
+              timeout: 4000,
+            },
+          ),
+          /Local service exited/,
+        );
+        controller.abort();
+        await processes.close();
+        assert.equal(
+          await requestReady(ports[contender], '/', (body) => body.includes('foreign')),
+          true,
+        );
+        assert.ok(
+          !events.includes('services-ready'),
+          'foreign HTTP must not produce services-ready or the ready marker',
+        );
+      } finally {
+        controller.abort();
+        await processes.close();
+        await close(foreign);
+        await assertPortsFree([ports.api, ports.web]);
+      }
+    });
+  });
+}
+
+for (const proof of ['missing', 'wrong-launch']) {
+  test(`valid HTTP without this launch's owned listening proof rejects (${proof})`, async () => {
+    await fixture(async ({ root, prepare, processes, controller }) => {
+      await prepare();
+      const ports = await freePorts(),
+        events = [];
+      await assert.rejects(
+        serve('dev', processes, controller, (event) => events.push(event), {
+          root,
+          ports,
+          commands: [
+            fakeServer(
+              ports.api,
+              '{"status":"ok","database":"connected"}',
+              undefined,
+              'api',
+              proof,
+            ),
+            fakeServer(ports.web, '<script src="/src/main.tsx">import</script>', undefined, 'web'),
+          ],
+          timeout: 1200,
+        }),
+        /30000ms/,
+      );
+      assert.ok(!events.includes('services-ready'));
+      controller.abort();
+      await processes.close();
+      await assertPortsFree([ports.api, ports.web]);
+    });
+  });
+}

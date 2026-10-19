@@ -6,12 +6,29 @@ import { fileURLToPath } from 'node:url';
 import { parseEnv } from 'node:util';
 import { setTimeout as delay } from 'node:timers/promises';
 import { clearTimeout } from 'node:timers';
+import { randomBytes } from 'node:crypto';
 import { LocalProcesses, localCancellation } from './local-processes.mjs';
 import { prepareDevelopment, verifyDevelopment } from './dev-preparation.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url)).replace(/\/$/, '');
 const emit = (event, fields = {}) =>
   console.log('[local-startup] ' + JSON.stringify({ event, ...fields }));
+
+function listeningProof(entry, launch, role, port) {
+  const marker = `[local-listening:${launch}:${role}:${port}]\n`;
+  return new Promise((resolve) => {
+    let tail = '';
+    const observe = (chunk) => {
+      tail += chunk.toString();
+      if (tail.includes(marker)) {
+        entry.child.stdout.removeListener('data', observe);
+        resolve();
+      } else tail = tail.slice(-marker.length);
+    };
+    // This is the stdout pipe of this owned command, never a URL or another process's log.
+    entry.child.stdout.on('data', observe);
+  });
+}
 
 export async function assertPortsFree(ports) {
   for (const port of ports) {
@@ -84,9 +101,15 @@ export async function serve(mode, processes, controller, report = emit, options 
     await assertPortsFree(mode === 'dev' ? [ports.api, ports.web] : [ports.api]);
     controller.signal.throwIfAborted();
     report('services-start', { budget_ms: 30000 });
+    const launch = randomBytes(16).toString('hex');
     const childOptions = {
       cwd: options.root ?? root,
-      env: { ...processes.environment, NODE_ENV: mode === 'dev' ? 'development' : 'production' },
+      env: {
+        ...processes.environment,
+        NODE_ENV: mode === 'dev' ? 'development' : 'production',
+        TILESET_STARTUP_LAUNCH: launch,
+      },
+      stdio: ['ignore', 'pipe', 'inherit'],
     };
     const commands = options.commands ?? [
       [
@@ -105,6 +128,13 @@ export async function serve(mode, processes, controller, report = emit, options 
     const failed = Promise.race(children.map(({ finished }) => finished)).then(() => {
       throw new Error('Local service exited.');
     });
+    const listening = children.map((entry, index) => {
+      const role = index === 0 ? 'api' : 'web';
+      const proof = listeningProof(entry, launch, role, ports[role]);
+      entry.child.stdout.pipe(process.stdout);
+      return proof;
+    });
+    await processes.wait(Promise.race([Promise.all(listening), failed]));
     const ready = async () => {
       while (true) {
         controller.signal.throwIfAborted();
@@ -129,7 +159,7 @@ export async function serve(mode, processes, controller, report = emit, options 
         ? { prepare_ms: receipt.duration_ms, total_ms: Date.now() - receipt.startedAt }
         : {}),
     });
-    if (mode === 'dev') console.log('LOCAL_DEV_READY');
+    console.log(mode === 'dev' ? 'LOCAL_DEV_READY' : 'LOCAL_PRODUCTION_READY');
     await processes.wait(failed);
   } finally {
     clearTimeout(timer);

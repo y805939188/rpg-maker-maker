@@ -15,9 +15,8 @@ export default defineConfig({
   },
   webServer: {
     command: dev ? 'pnpm dev:start' : 'pnpm start',
-    ...(dev
-      ? { wait: { stdout: /^LOCAL_DEV_READY$/m }, stdout: 'pipe' as const }
-      : { url: `http://127.0.0.1:${environment.API_PORT}/api/health` }),
+    wait: { stdout: dev ? /^LOCAL_DEV_READY$/m : /^LOCAL_PRODUCTION_READY$/m },
+    stdout: 'pipe',
     gracefulShutdown: { signal: 'SIGTERM', timeout: 5000 },
     reuseExistingServer: false,
     timeout: 30000,
