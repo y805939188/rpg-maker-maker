@@ -5,6 +5,7 @@ permissions:
 jobs:
   baseline:
     runs-on: ubuntu-24.04
+    timeout-minutes: 45
     services:
       postgres:
         image: postgres:14.20
@@ -18,6 +19,7 @@ jobs:
           --health-cmd "pg_isready -U tileset -d tileset_ci"
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
+      TILESET_AI_MODE: mock
       DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
@@ -34,15 +36,22 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm db:generate
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm check
-      - run: pnpm test:dev-privacy
-      - run: pnpm db:migrate
-      - run: pnpm test:integration
-      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06
-      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07
-      - run: pnpm test:step08
-      - run: pnpm test:e2e
+      - run: pnpm check:boundaries
+      - run: pnpm ci:prepare
+      - run: pnpm ci:run typecheck
+      - run: pnpm lint
+      - run: pnpm format:check
+      # Default Vitest includes dev-privacy's five cases; do not execute them twice.
+      - run: pnpm ci:run unit
+      - run: pnpm ci:run exports
+      - run: pnpm ci:run migrate
+      - run: pnpm ci:run integration
+      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm ci:run step06
+      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm ci:run step07
+      - run: pnpm ci:run step08
+      - run: pnpm ci:run production
       # Build/resources have their own 120s budget; the service gate remains 30s.
+      - run: pnpm test:ci-prepared
       - run: pnpm test:startup
       - run: pnpm dev:prepare
       - run: E2E_MODE=dev pnpm test:e2e

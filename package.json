@@ -71,7 +71,10 @@
     "build:step09": "pnpm build && node scripts/build-engineering.mjs step09",
     "prepare:step09": "node dist/scripts/prepare-step09.js",
     "report:step09": "node scripts/step09-report.mjs",
-    "experiment:step09:art": "node dist/scripts/step09-art-offline.js"
+    "experiment:step09:art": "node dist/scripts/step09-art-offline.js",
+    "ci:prepare": "node scripts/ci-prepared.mjs prepare",
+    "ci:run": "node scripts/ci-prepared.mjs run",
+    "test:ci-prepared": "node --test --test-concurrency=1 --test-timeout=120000 tests/ci-preparation.test.mjs"
   },
   "dependencies": {
     "sharp": "0.35.5"
