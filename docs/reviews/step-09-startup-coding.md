@@ -33,3 +33,35 @@
 全部作者证据在本树 `.local/step09-startup-coding/`：`summary.json`、`evidence-sha256.json`、基线/观测时间线与结果、最终Playwright日志/JSON、首次失败/修正、7项测试、静态检查、构建/逐文件SHA、preflight、final-services。Main发起器的活动cli-events等不纳入作者固定哈希。独立.env/PG/缓存/日志全部保留；本轮API/Vite/PG已关闭。旧PID49192:4398 / PID12517:55529继续监听，旧Studio health200；未触碰旧工程、DB、历史或全局runtime。
 
 **停点：BLOCKED，等待 Main 读取 `.local/step09-startup-coding/main-request.json`，安排一次绑定本候选、保留原前置顺序的CI观测并保存原始日志。** 本地证据不能定位CI卡在哪个阶段；Main取得新证据后再决定是否需要本角色最小整改及限定R3。不得无新证据重复CI或把本报告当独立确认/发布批准。
+
+## 唯一观测 CI 回执追加（CI 日志日期 2026-10-19 UTC）
+
+本节是同一授权 Coding 窗口的后续留证，保留上文 BLOCKED、原 CI39151160848 FAILURE、全部准备/诊断失败及原 summary/main-request 的冻结字节。Main 已履行旧请求，唯一观测 [CI39196257845](https://github.com/y805939188/rpg-maker-maker/actions/runs/39196257845) / job117879568433 绑定 `c8c3227d1340de9ff0c6ef4285a183ba4412eacb`，**完整 SUCCESS，生产18/开发18均 PASS**。原始 job SHA256 `eb93eda8c824aa733c993d3ec784fc59710fd71319e7c672bfb7d7cc4abed2c7`，开发日志 `93e23677d35d581234fc3f9b5c3dae9943ce4778e4aee25a448a67bf71ca1034`；Main 的95个结构化事件与原始开发日志逐项一致。
+
+本次恢复客户端 CLI 仍显式 `gpt-6.1-sol / xhigh / service_tier=default`，同一会话与 step_coder developer 角色，turn_context 一致，隐藏 server 字段 UNVERIFIED。没有新 Agent/Review 或 Push。
+
+| observer test:e2e 时间轴 | 本次事实 |
+| --- | --- |
+| dev enter 0.904s | 完整原 `pnpm dev` 链进入 |
+| 依赖构建 1.431→16.647s | 15.216s，十个不同包的 tsc 各一次，退出0 |
+| prototype 1.168→18.668s | 17.500s，包含上行依赖构建，不能重复相加；根 tsc 一次 |
+| API build 18.716→21.774s | 端点差3.058s，退出0（进程独立 duration 字段3.059s） |
+| 资源准备 21.819→26.676s | 4.857s，退出0 |
+| run-local 26.719s；API main 27.302s | 资源准备之后才进入服务启动 |
+| 首次 observer health200 29.030s | 独立探针的采样时间，不是 Playwright 就绪判定瞬间 |
+
+初始0.175s探针 API/Vite TCP 均 unreachable、DB TCP listening，排除该次采样点原端口仍监听的情况；不证明原失败 CI 的端口状态、生产进程已完全退出或 SQL 认证/迁移状态。全部已记录构建/资源阶段退出0，没有该次阶段错误。
+
+**计时边界对齐及限制。** 核对同锁 Playwright1.64.0 本地安装实现：`setup` 先 await `_startProcess()`（已有 URL 探针、launchProcess 启动 shell 子进程），再进入 `_waitForProcess()`，此处用 `monotonicTime()+30000` 建立 deadline，并以自己的 URL 轮询竞速。observer 更早在外层 `pnpm test:e2e` preload 用 `Date.now()` 建立 epoch，子进程继承该 epoch；两者起点/时钟不相同。这是原实现的边界说明，本次没有改变边界。
+
+CI 没有 `_waitForProcess` 建立 deadline 的单调时间打点，也没有其成功 URL 请求的时间打点，故精确 epoch 偏移、门限内实际耗时和余量仍 **UNVERIFIED**。程序顺序表明 plugin setup 完成后才进入报告/运行测试；原始日志在04:14:00.6790368Z已输出 `Running 18 tests`，距 observer入口日志接收时间约28.920s，早于29.030s的独立探针。这个日志接收时间差只是顺序锚点，不是门限时钟测量；不能计算 `30000−29030=970ms` 并宣称准确余量。完整18项通过证明本次原30000ms门禁实际通过，无需由 observer 换算来冒充判定。
+
+**因果层级与 Coding 决定。** 阶段事件和源码共同证明：串行构建/资源准备占据本次启动关键路径；从dev observer进入到run-local进入相差25.815s，服务尚未由run-local启动。这能定位本次时间花在哪里，不能证明原超时卡在同一阶段或机器慢。该次开发链中未观察到同一步骤反复执行；十二次 tsc 标签分别为十个依赖、prototype、API，资源生成一次。
+
+完整 job 确认前面测试阶段也执行过构建，这是跨命令重复执行的事实。它不等于当前开发入口存在可安全跳过的工作：现有入口没有覆盖源文件/依赖/配置/逐输出的复用验证与失效契约；`studio-resources` 还绑定当前 commit、锁文件、Node/codec，并生成 art/diagnostic 两份不同档案。仅凭先前 build、同 commit 或存在 dist，不能证明可复用输出仍完整正确。现有证据不足以证明具体可删的重复工作实际造成旧失败，或支撑在本窗口引入复用机制；本次**不实施启动逻辑、缓存或构建整改**。
+
+原 CI39151160848 的失败阶段、当时端口/DB/codec/负载/调度状态仍 UNVERIFIED；新绿不能改写旧失败原因，不能证明某个整改有效、30秒持续稳定或可以发布。作者当前状态保持 **BLOCKED（诊断未定位，缺少可验证的最小整改依据）**；本次 CI SUCCESS 是独立记录的事实，两者不互相替代。本次没有新增启动尝试、测试运行、构建、图像处理或第二次 CI 请求，只验证原日志/结构化事件/源码顺序与证据哈希，并检查追加文档格式。原7项自测、源65a8ad4构建、完整09/T01/R01按未变范围复用，产品执行文件与c8c3227逐字节相同。
+
+追加证据在本树 `.local/step09-startup-coding/ci-followup-summary.json`、`ci-followup-causal-analysis.json`、`ci-followup-playwright-boundary.txt`、`ci-followup-preflight.json` 及哈希清单，原 summary/main-request/final-seal 不修改。本次未读真实key/Provider文件、未访问预算/holdout、未改 Compiler/Profile/Pixel Contract/素材，也未操作旧API/PG。本次未启停任何服务，本树49279/4479/55579未监听；全部独有ignored数据保留。
+
+**留证停止，不再申请观测 CI 或盲目启动尝试。** Main 依本回执决定已授权一次限定R3的后续安排；原R2序列不重置。作者没有独立PASS、批准、合并、Push或步骤10动作。
