@@ -1,15 +1,16 @@
-# 步骤09功能测试基线：workflow上下文修复与发布交接
+# 步骤09功能测试基线：撤销生产套件新增总期限与发布交接
 
-2026-10-19，America/Chicago。本轮追加授权只修四处非法workflow上下文、补实际语义校验、限定R9及正常发布；不改产品，不进入10。执行source `3c2d405ecb9ce3e8d69ef325cf6213991ad5f7a8`；作者文档HEAD `aa9e5555a8ca45b0bcbffc5f2e91e0e77efb8a8b` 仅新增报告。R7/R8的其余执行内容未变。最终文档HEAD、候选/main CI和三处main读回写会话及ignored `.local/step09-final-closeout/workflow-context-final/completion.json`，不为自身SHA再提交文档。
+2026-10-19，America/Chicago。本轮追加授权只撤销CI整理新增的production600秒套件总计时器、补直接回归、限定R10及正常发布；不改产品、不继续性能或测试组织整改、不进入10。执行source `af26495e5901f96e5b9b8f4ffff0736c951ad9e3`；作者文档HEAD `b023aa020c14550787232c50acaef484979f8f64` 仅新增报告。R9和此前其余执行内容按未变范围复用。最终文档HEAD、候选/main CI和三处main读回写会话及ignored `.local/step09-final-closeout/production-wrapper-final/completion.json`，不为自身SHA再提交文档。
 
 ## 当前技术门禁
 
-- 本轮限定R9 **PASS_LIMITED_WORKFLOW_CONTEXT**，P0/P1/硬契约P2为0。见[R9独立确认](../reviews/step-09-workflow-context-r9.md)。见[本轮Coding](../reviews/step-09-workflow-context-coding.md)。删除core/development job.env四处不支持的runner.temp；现有早期shell step使用RUNNER_TEMP创建隔离目录，以GITHUB_ENV向后续步骤传递TMPDIR/XDG_CACHE_HOME。完整workflow在本地及两job早期运行同一个固定actionlint1.7.12入口，核对官方固定发布资产SHA，无忽略规则或自动重试。
-- 作者完整修复版本通过；仅临时副本恢复原四处表达式，准确报四条非法runner上下文并退出1。独立R9已自行验证完整正控/四错负控、两初始化正控/八缺值负控及门禁等价；Main另实跑Push前公共入口通过。YAML、Prettier或字符串检查不能替代上下文语义检查，CI自检不能替代Push前本地检查。
-- CI39276281752在创建任何job前因上述四处表达式被平台拒绝，保持failure；R7/R8未发现此错误，原报告原样保留，其限定PASS不覆盖这个已知阻断。本轮追加授权覆盖旧数值轮次限制，仅在有明确定位、修复或验证进展的当前范围内继续，不无限重跑或扩大产品范围。
-- 功能R2 `0a55d9f` 的完整check450/09完整4/4、R5启动链、R6独立Git夹具以及R7/R8仍适用部分按未变范围复用。见[R7](../reviews/step-09-ci-consolidation-r7.md)、[R8](../reviews/step-09-ci-consolidation-r8.md)。它们不代替本轮差异确认或新SHA完整CI。T01/R01接受与产物绑定不变。
-- 最新限定PASS、零P0/P1/硬契约P2及新SHA完整候选workflow整体 **completed/success** 后，Main才按本轮用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常整合/Push并等待完整main CI。core/development/baseline必须全部实际success，不能用局部绿色改写失败、取消或跳过。该放行是用户预授权委托，不写成用户逐轮亲审。
-- 不强推、改写历史、跳检查或重跑同SHA碰运气。实际失败先读当次日志，有新定位才作必要修正；重复失败无新证据或范围外问题则留证停止。main CI真实成功及local main/origin/main/live remote一致前，不宣称发布完成。
+- 本轮限定R10 **PASS_LIMITED_PRODUCTION_WRAPPER**，P0/P1/硬契约P2为0。见[R10独立确认](../reviews/step-09-production-wrapper-r10.md)。见[本轮Coding](../reviews/step-09-production-wrapper-coding.md)。production显式timeout:null，在runPrepared完全跳过套件setTimeout/clearTimeout；其他九target期限、prepare120秒、真实服务30秒、原单用例期限/retries及core40/development20/baseline2分钟原样。
+- 原main直接执行完整生产E2E；600000ms套件wrapper由b00e4b7新增。最新旧候选[CI39282826278](https://github.com/y805939188/rpg-maker-maker/actions/runs/39282826278)/1a2580c现已正式completed/failure：development18通过；core原453/API3/06=23/07=17/08=3通过，生产只打印16项成功后触发新增600秒guard，prepared/startup跳过，baseline严格拒绝。没有证据把它写成第17项自身期限或业务断言失败。
+- 作者定向10/10：原7项保留，新增3项覆盖实际不创建production计时器、其他九期限、前后源/输出核验、真实失败子命令和SIGTERM后代/锁清理；完整18项仍由原pnpm test:e2e执行，短时合成测试不替代当前SHA完整CI。本次撤销额外套件限时由用户明确授权，不修改原产品要求、单用例门限或重试策略。
+- [R9](../reviews/step-09-workflow-context-r9.md) **PASS_LIMITED_WORKFLOW_CONTEXT**继续有效，四处非法job.env已改运行时RUNNER_TEMP mkdir及GITHUB_ENV传递；固定actionlint1.7.12本地正反检查通过，39282826278两job实际Linux检查成功。旧CI39276281752零job failure以及R7/R8遗漏原样保留。本次workflow、校验入口、job/gate对象和数据库/资产隔离字节不改。
+- 功能R2 `0a55d9f` 的完整check450/09完整4/4、R5启动链、R6独立Git夹具及R7/R8仍适用部分按未变范围复用。见[R7](../reviews/step-09-ci-consolidation-r7.md)、[R8](../reviews/step-09-ci-consolidation-r8.md)。它们不代替R10或新SHA完整CI，T01/R01接受与产物绑定不变。
+- 最新限定PASS、零P0/P1/硬契约P2及新SHA完整候选workflow整体 **completed/success** 后，Main才按本轮用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常整合/Push并等待完整main CI。必须实际完成生产18、prepared/startup、core/development/baseline全部success，不用旧通过或局部绿色改写失败/取消/跳过。该放行是用户预授权委托，不写成用户逐轮亲审。
+- 不强推、改写历史、跳检查或同SHA重跑碰运气。实际失败先读日志，明确范围内修正才提交新候选；无新定位或需扩大范围则留证停止，不按Review旧编号机械停，也不无限扩轮。main CI成功及local main/origin/main/live remote一致前，不宣称发布完成。
 
 ## 检查执行位置与计时
 
@@ -19,7 +20,7 @@
 | 方向/types/lint/format/unit/build/exports | core同项仍阻断，prepared执行去掉重复build，生产JS/包导出和资源身份检查保留；公共本地命令独立能力不变 |
 | check中的privacy5及第二次privacy5 | core default Vitest一次执行，原本地独立命令保留 |
 | Studio原R4两模式一例 | core生产/dev独立状态用例，各新DB/资产/API/浏览器/输出；52条每模式matcher及真实COMMIT、迟到历史、实际PNG/Manifest/ZIP/preview断言保留；其余15项不删 |
-| API、06/07/08、生产18、prepared7、startup26 | core原命令和顺序完整执行，真实PG/备份/任务恢复仍阻断 |
+| API、06/07/08、生产18、prepared10、startup26 | core原命令和顺序完整执行，真实PG/备份/任务恢复仍阻断 |
 | 显式开发准备与开发18 | 独立development job同事件SHA/frozen工具链、新PG/新库/空输出/七迁移、原dev:prepare→原dev E2E及observer；无core产物或数据库依赖 |
 | 原单个baseline job | core40分钟与development20分钟隔离并行；原名baseline2分钟严格needs/always汇总，双success才成功，失败/取消/跳过/缺失均拒绝 |
 
@@ -29,7 +30,7 @@
 
 R7保持一次常规完整prepare、一次开发冷prepare，第一整合候选实测两组；新workflow预计仍两组，实际新候选/main构建次数、各阶段/总耗时及排队以对应日志回执为准。b0未完成全流程，不能与新完整流程作等覆盖总耗时比较；也不把配置并行或局部一次通过宣传成永久稳定、全部历史根因已明或预设提速比例。
 
-core40/development20/baseline2分钟预算预先固定，关键执行路径约42分钟不含runner排队，不是实际总时长保证。R5已授权开发准备与真实服务就绪分开计时：prepare120秒、真实API/前端及监听归属30秒；本轮保持其实现/门限。R4原一例180秒涵盖两模式，现每模式独立180秒，局部阈值保持，production target仍600000ms，无固定sleep或自动重试。
+core40/development20/baseline2分钟预算预先固定，关键执行路径约42分钟不含runner排队，不是实际总时长保证。R5已授权开发准备与真实服务就绪分开计时：prepare120秒、真实API/前端及监听归属30秒；本轮保持其实现/门限。R4原一例180秒涵盖两模式，现每模式独立180秒，局部阈值保持，原R7新增production target600000ms整套wrapper，本轮R10仅撤销这一层，以显式null记录无套件计时器；不改原生产18项的用例期限、retries0、真实服务30秒或core40分钟job界限。prepared原7项加3项为10项，无固定sleep或自动重试。
 
 ## 历史失败与未证实原因
 
