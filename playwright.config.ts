@@ -14,8 +14,11 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
   webServer: {
-    command: dev ? 'pnpm dev' : 'pnpm start',
-    url: `http://127.0.0.1:${environment.API_PORT}/api/health`,
+    command: dev ? 'pnpm dev:start' : 'pnpm start',
+    ...(dev
+      ? { wait: { stdout: /^LOCAL_DEV_READY$/m }, stdout: 'pipe' as const }
+      : { url: `http://127.0.0.1:${environment.API_PORT}/api/health` }),
+    gracefulShutdown: { signal: 'SIGTERM', timeout: 5000 },
     reuseExistingServer: false,
     timeout: 30000,
   },

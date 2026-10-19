@@ -1,0 +1,354 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { createServer } from 'node:http';
+import { mkdtemp, mkdir, readFile, writeFile, rm, access } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { resolve, join } from 'node:path';
+import { setTimeout as delay } from 'node:timers/promises';
+import { execFileSync } from 'node:child_process';
+import { LocalProcesses } from '../scripts/local-processes.mjs';
+import { prepareDevelopment, verifyDevelopment } from '../scripts/dev-preparation.mjs';
+import { assertPortsFree, requestReady, serve } from '../scripts/run-local.mjs';
+
+const environment = {
+  PATH: process.env.PATH,
+  HOME: process.env.HOME,
+  TMPDIR: process.env.TMPDIR,
+  TILESET_AI_MODE: 'mock',
+};
+const packages = [
+  'contracts',
+  'ai-gateway',
+  'asset-core',
+  'material-processing',
+  'image-adapter',
+  'mz-compiler',
+  'pack-assembly',
+  'pack-export',
+  'persistence',
+  'local-executor',
+];
+const quiet = () => {};
+async function fixture(run) {
+  const root = await mkdtemp(join(tmpdir(), 'startup-chain-'));
+  const controller = new globalThis.AbortController();
+  await writeFile(resolve(root, 'empty-npmrc'), '');
+  const processes = new LocalProcesses(controller.signal, {
+    ...environment,
+    npm_config_userconfig: resolve(root, 'empty-npmrc'),
+    npm_config_globalconfig: resolve(root, 'empty-npmrc'),
+  });
+  const put = async (path, value = 'fixture') => {
+    await mkdir(resolve(root, path, '..'), { recursive: true });
+    await writeFile(resolve(root, path), value);
+  };
+  try {
+    for (const path of ['src', 'scripts', 'tests', 'packages', 'apps/api', 'e2e'])
+      await mkdir(resolve(root, path), { recursive: true });
+    await put('src/input.ts');
+    await put('pnpm-lock.yaml');
+    await put('package.json', '{}');
+    await put('tsconfig.json', '{}');
+    await put('node_modules/.pnpm/lock.yaml');
+    await put('node_modules/.modules.yaml');
+    await put('dist/scripts/studio-resources.js');
+    await put('apps/api/dist/main.js');
+    await put('apps/api/dist/resources/studio.json', '{}');
+    for (const name of packages) {
+      await put(
+        `packages/${name}/package.json`,
+        JSON.stringify({
+          exports: { '.': { import: './dist/index.js', types: './dist/index.d.ts' } },
+        }),
+      );
+      await put(`packages/${name}/src/index.ts`);
+      await put(`packages/${name}/dist/index.js`);
+      await put(`packages/${name}/dist/index.d.ts`);
+    }
+    const prepare = (options = {}) =>
+      prepareDevelopment(root, processes, controller, quiet, { commands: [], ...options });
+    await run({ root, put, controller, processes, prepare });
+  } finally {
+    controller.abort();
+    await processes.close();
+    await rm(root, { recursive: true, force: true });
+  }
+}
+const receiptFile = (root) => resolve(root, '.local/dev-preparation.json');
+const verify = (root, processes) => verifyDevelopment(root, processes);
+
+// These .mjs cases are deliberately outside the existing Vitest *.test.ts collection.
+test('current successful preparation accepts exact outputs; env credentials are not inventoried', async () => {
+  await fixture(async ({ root, put, prepare, processes }) => {
+    await put('apps/api/.env.local', 'SYNTHETIC_SECRET=never-inventory');
+    await prepare();
+    const receipt = await verify(root, processes);
+    assert.ok(Object.keys(receipt.outputs).length >= 23);
+    assert.ok(!JSON.stringify(receipt.inputs).includes('SYNTHETIC_SECRET'));
+    assert.ok(!Object.keys(receipt.inputs.files).some((path) => path.includes('.env.local')));
+  });
+});
+
+test('missing, malformed and incomplete preparation never accept old dist', async () => {
+  await fixture(async ({ root, put, prepare, processes }) => {
+    await assert.rejects(verify(root, processes), /missing or stale/);
+    await put('.local/dev-preparation.json', '{broken');
+    await assert.rejects(verify(root, processes), /missing or stale/);
+    await put('.local/dev-preparation.json', '{}');
+    await assert.rejects(verify(root, processes), /missing or stale/);
+    await prepare();
+    await rm(resolve(root, 'packages/contracts/dist/index.js'));
+    await assert.rejects(verify(root, processes), /missing or stale/);
+    await assert.rejects(prepare());
+    await assert.rejects(access(receiptFile(root)));
+  });
+});
+
+test('changed or added outputs and source/lock/config/installed toolchain all invalidate', async () => {
+  await fixture(async ({ root, put, prepare, processes }) => {
+    for (const path of [
+      'dist/scripts/studio-resources.js',
+      'apps/api/dist/resources/studio.json',
+      'packages/contracts/dist/extra.js',
+      'src/input.ts',
+      'src/new.ts',
+      'pnpm-lock.yaml',
+      'tsconfig.json',
+      'node_modules/.pnpm/lock.yaml',
+      'node_modules/.modules.yaml',
+    ]) {
+      await prepare();
+      await put(path, 'changed-' + path);
+      await assert.rejects(verify(root, processes), /missing or stale/, path);
+    }
+    await prepare();
+    await rm(resolve(root, 'src/input.ts'));
+    await assert.rejects(verify(root, processes), /missing or stale/);
+  });
+});
+
+test('a failed rebuild removes an earlier successful receipt even with all old outputs present', async () => {
+  await fixture(async ({ root, prepare, processes }) => {
+    await prepare();
+    await assert.rejects(
+      prepare({ commands: [[process.execPath, ['-e', 'process.exit(7)']]] }),
+      /command failed/,
+    );
+    await assert.rejects(access(receiptFile(root)));
+    await assert.rejects(verify(root, processes), /missing or stale/);
+  });
+});
+
+test('source changes during preparation cannot publish a successful receipt', async () => {
+  await fixture(async ({ root, prepare }) => {
+    await assert.rejects(
+      prepare({
+        commands: [
+          [
+            process.execPath,
+            ['-e', "require('fs').writeFileSync('src/input.ts','mid-build-change')"],
+          ],
+        ],
+      }),
+      /changed during preparation/,
+    );
+    await assert.rejects(access(receiptFile(root)));
+  });
+});
+
+test('preparation timeout and cancellation invalidate earlier success and terminate descendants', async () => {
+  for (const cancel of [false, true]) {
+    await fixture(async ({ root, prepare, controller, processes }) => {
+      await prepare();
+      const source = `const {spawn}=require('child_process'); const fs=require('fs'); const child=spawn(process.execPath,['-e',"process.on('SIGTERM',()=>{}); setInterval(()=>{},1000)"],{stdio:'ignore'}); fs.writeFileSync('descendant.pid',String(child.pid)); process.on('SIGTERM',()=>{}); setInterval(()=>{},1000);`;
+      const pending = prepare({
+        timeout: cancel ? 5000 : 1200,
+        commands: [[process.execPath, ['-e', source]]],
+      });
+      if (cancel) {
+        await eventually(async () => {
+          await access(resolve(root, 'descendant.pid'));
+        });
+        controller.abort(new Error('synthetic cancellation'));
+      }
+      await assert.rejects(pending, cancel ? /cancellation/ : /120000ms/);
+      await assert.rejects(access(receiptFile(root)));
+      // fixture's finally owns group cleanup; check it explicitly before returning.
+      const pid = Number(await readFile(resolve(root, 'descendant.pid'), 'utf8'));
+      assert.ok(pid > 0);
+      await processes.close();
+      await eventually(() => assert.equal(alive(pid), false));
+    });
+  }
+});
+
+async function eventually(check, timeout = 3000) {
+  const start = Date.now();
+  while (true) {
+    try {
+      await check();
+      return;
+    } catch (error) {
+      if (Date.now() - start > timeout) throw error;
+      await delay(30);
+    }
+  }
+}
+function alive(pid) {
+  try {
+    return !execFileSync('ps', ['-o', 'stat=', '-p', String(pid)], { encoding: 'utf8' })
+      .trim()
+      .startsWith('Z');
+  } catch {
+    return false;
+  }
+}
+async function listen(server) {
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  return server.address().port;
+}
+async function close(server) {
+  await new Promise((resolve) => server.close(resolve));
+}
+
+test('occupied ports reject without killing or reusing the existing server', async () => {
+  const server = createServer((_, response) => response.end('other-session'));
+  const port = await listen(server);
+  try {
+    await assert.rejects(assertPortsFree([port]), /occupied/);
+    assert.equal(await requestReady(port, '/', (body) => body === 'other-session'), true);
+  } finally {
+    await close(server);
+  }
+});
+
+test('HTTP readiness rejects unhealthy DB, malformed bodies, incomplete and hanging responses', async () => {
+  let body = '{"status":"ok","database":"disconnected"}';
+  const server = createServer((_, response) => {
+    if (body !== 'hang') response.end(body);
+  });
+  const port = await listen(server);
+  const health = (text) => JSON.parse(text).database === 'connected';
+  try {
+    assert.equal(await requestReady(port, '/api/health', health), false);
+    body = '{broken';
+    assert.equal(await requestReady(port, '/api/health', health), false);
+    body = '{"status":"ok","database":"connected"}';
+    assert.equal(await requestReady(port, '/api/health', health), true);
+    body = 'hang';
+    const start = Date.now();
+    assert.equal(await requestReady(port, '/api/health', health), false);
+    assert.ok(Date.now() - start < 1500);
+  } finally {
+    server.closeAllConnections();
+    await close(server);
+  }
+});
+
+test('cleanup kills a TERM-resistant grandchild after its leader has exited, preserving unrelated server', async () => {
+  const controller = new globalThis.AbortController(),
+    owner = new LocalProcesses(controller.signal, environment);
+  const directory = await mkdtemp(join(tmpdir(), 'startup-process-'));
+  const server = createServer((_, response) => response.end('untouched'));
+  const port = await listen(server);
+  try {
+    const entry = owner.start(
+      process.execPath,
+      [
+        '-e',
+        `const {spawn}=require('child_process'); const fs=require('fs'); const child=spawn(process.execPath,['-e',"process.on('SIGTERM',()=>{});setInterval(()=>{},1000)"],{stdio:'ignore'});fs.writeFileSync('pid',String(child.pid));setTimeout(()=>process.exit(0),200);`,
+      ],
+      { cwd: directory, stdio: 'ignore' },
+    );
+    await entry.finished;
+    const pid = Number(await readFile(resolve(directory, 'pid'), 'utf8'));
+    assert.equal(alive(pid), true);
+    await owner.close();
+    await eventually(() => assert.equal(alive(pid), false));
+    assert.equal(await requestReady(port, '/', (body) => body === 'untouched'), true);
+  } finally {
+    await owner.close();
+    await close(server);
+    await rm(directory, { recursive: true });
+  }
+});
+
+async function freePorts() {
+  const first = createServer(),
+    second = createServer();
+  const api = await listen(first),
+    web = await listen(second);
+  await close(first);
+  await close(second);
+  return { api, web };
+}
+function fakeServer(port, body, lifetime) {
+  return [
+    process.execPath,
+    [
+      '-e',
+      `require('http').createServer((req,res)=>res.end(${JSON.stringify(body)})).listen(${port},'127.0.0.1');${lifetime ? `setTimeout(()=>process.exit(7),${lifetime});` : ''}`,
+    ],
+  ];
+}
+
+test('both real HTTP gates are required before the ready event; cancellation cleans both services', async () => {
+  await fixture(async ({ root, prepare, processes, controller }) => {
+    await prepare();
+    const ports = await freePorts(),
+      events = [];
+    const running = serve(
+      'dev',
+      processes,
+      controller,
+      (event) => {
+        events.push(event);
+        if (event === 'services-ready') controller.abort(new Error('synthetic stop after ready'));
+      },
+      {
+        root,
+        ports,
+        commands: [
+          fakeServer(ports.api, '{"status":"ok","database":"connected"}'),
+          fakeServer(ports.web, '<script src="/src/main.tsx">import</script>'),
+        ],
+        timeout: 3000,
+      },
+    );
+    await assert.rejects(running, /synthetic stop after ready/);
+    assert.deepEqual(events, ['services-start', 'services-ready']);
+    await processes.close();
+    await assertPortsFree([ports.api, ports.web]);
+  });
+});
+
+test('service exit, spawn failure and frontend-not-ready never emit ready from an old preparation', async () => {
+  for (const scenario of ['exit', 'spawn', 'web']) {
+    await fixture(async ({ root, prepare, processes, controller }) => {
+      await prepare();
+      const ports = await freePorts(),
+        events = [];
+      const api =
+        scenario === 'spawn'
+          ? ['/definitely-absent-startup-program', []]
+          : fakeServer(
+              ports.api,
+              '{"status":"ok","database":"connected"}',
+              scenario === 'exit' ? 150 : undefined,
+            );
+      await assert.rejects(
+        serve('dev', processes, controller, (event) => events.push(event), {
+          root,
+          ports,
+          commands: [api, fakeServer(ports.web, 'not-the-frontend')],
+          timeout: 800,
+        }),
+        scenario === 'web' ? /30000ms/ : /service exited/,
+      );
+      assert.ok(!events.includes('services-ready'));
+      controller.abort();
+      await processes.close();
+      await assertPortsFree([ports.api, ports.web]);
+    });
+  }
+});
