@@ -1,21 +1,34 @@
-# 步骤09功能测试基线发布与交接
+# 步骤09功能测试基线：CI整理与发布交接
 
-2026-10-19，Asia/Shanghai。本文件在最终main CI之前一次冻结。最新用户明确授权：仅对3个观测文件追加限定R3，通过后正常合并/Push并核对main CI；不再等待性能修复或继续排查。**APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR** 已由 Main 在R3独立PASS后记录，范围仅为用户已接受的09功能测试基线。最终发布仍须对应main CI实际成功和三处SHA一致；实际结果写入主仓 `.local/step09-final-closeout/final-publish-20261019/completion.json` 及会话，不追加记录自身SHA的文档提交。
+2026-10-19。当前授权只整理CI/准备复用/测试拆分并正常发布09功能测试基线，不改产品功能，不进入10。受审执行source `b00e4b709d5103c44a86b2111f53edcc7f82983e`；作者文档HEAD `10e43e4340e482654f050537c4bd4138e0c08e21` 相对source仅新增Coding报告。最终文档HEAD、候选CI、main CI和三处main读回写会话及ignored `.local/step09-final-closeout/ci-consolidation-final/completion.json`，不为自身SHA再提交文档。
 
-## 冻结对象与门禁
+## 当前技术门禁
 
-- 已发布main起点 `a551dd68f65d3c92dfb93a4fca8590353f4d103b`；既有01–08结果按未变范围复用。
-- 功能候选 `0a55d9f960bc3093843387af82561896ef16ebdc`、最后功能source `97f6cb6789402e823f51ca86d79e4513b2265941`。[功能R2](../reviews/step-09-independent-final.md)完整check450、完整09 4/4及未变范围PASS保留，未重审或重跑。历史补充08准备超时2/3及原因UNVERIFIED保留。
-- 文档基线e228；新增执行source `65a8ad44d74232b0fd8fb876b1694219c8d68799`；观测CI候选 `c8c3227d1340de9ff0c6ef4285a183ba4412eacb`；[限定R3](../reviews/step-09-observation-r3.md)冻结HEAD `e8c14b2d529670619cfe571673b88407dee7284e`。65a→c8→e8仅作者文档，之后本轮Main提交也仅说明与脱敏证据，执行字节不变。
-- **R3 PASS_LIMITED_OBSERVATION**，P0/P1/硬契约P2为0，7/7观测自测、对应lint/format命令exit0，既有忽略项明示。非阻断P3：省略DB端口时观测记unconfigured；当前CI显式55432，不扩整改。角色Standard客户端已核对，服务端隐藏字段UNVERIFIED。[最新绑定](../evidence/step-09/observation-r3/release-bindings.json)及[原功能绑定](../evidence/step-09/final-closeout/release-bindings.json)分别保留。
-- [唯一观测CI39196257845](https://github.com/y805939188/rpg-maker-maker/actions/runs/39196257845)完整SUCCESS：check450、privacy5、API3、06=23、07=16、08=3、生产18、开发18。复用此候选CI，不再Push候选分支或新增观测CI。原启动命令、串行build/资源准备、生产→开发相邻顺序及Playwright30000ms不变。
-- 正常Fetch实时main、无冲突整合，执行字节相同范围复用证据；正常Push并等待实际main CI。不得强推、改写历史或绕过保护。若main CI失败，留原日志并停止，不盲目重跑或恢复性能排查。
+- 本轮限定独立R7：**PASS_LIMITED_CI_CONSOLIDATION**，P0/P1/硬契约P2均0，独立prepared7/cleanup3、真实双模式R4及事务/恢复验证通过。仅审 `b0c48ab→b00e4b7` 的9执行文件及直接影响；不重审01–09。见[本轮Coding](../reviews/step-09-ci-consolidation-coding.md)与[限定确认](../reviews/step-09-ci-consolidation-r7.md)。原R4/R5/R6轮次、缺陷和失败保持。
+- 功能R2 `0a55d9f` 的完整check450/09完整4/4、R5启动链PASS和R6独立Git夹具PASS按未变范围复用；它们不代替本轮差异确认或尚未执行的CI。T01/R01接受与产物绑定不变。
+- 只有最新限定PASS、零P0/P1/硬契约P2及完整候选CI实际SUCCESS后，Main才按本轮用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常整合/Push并等待完整main CI。此为用户预授权委托放行，不写成用户逐轮亲审。
+- 不强推、改写历史、跳检查或重跑同SHA碰运气。任何实际失败先读当次日志，范围外问题留证停止。最终main CI成功及local main/origin/main/live remote一致前，不宣称功能基线发布完成。
 
-## 历史启动风险的明确处理
+## 检查执行位置与计时
 
-原[CI39151160848](https://github.com/y805939188/rpg-maker-maker/actions/runs/39151160848)在e228的开发启动30000ms超时保持 **FAILURE**，原因 **UNVERIFIED**。新增观测不属于性能修复；本次没有改启动逻辑、缓存或门限，没有证明旧根因已解决或以后不偶发。29.030秒是另一observer epoch，不能计算970ms准确余量。原作者BLOCKED、旧停止回执、原日志和失败记录保留原字节。
+| 原检查 | 当前执行位置 |
+| --- | --- |
+| check内及API/06/07/08前置重复构建 | 一次显式 `ci:prepare` 运行原完整clean build，逐文件绑定本轮输入/工具链/输出；每个 `ci:run` 前后验证，不用旧dist判断成功 |
+| 方向/types/lint/format/unit/build/exports | 同项仍阻断；prepared types/unit/exports去掉重复构建，生产JS与包声明导出保留；公共本地命令独立能力不变 |
+| check的privacy5及额外privacy5 | default Vitest只执行一次，独立本地命令保留 |
+| Studio原R4两模式一例 | 生产/开发独立用例，各新DB/资产/API/浏览器/输出，52条每模式matcher及真实COMMIT、迟到历史、实际PNG/Manifest/ZIP/preview身份断言保留；原其余15项未删除 |
+| API、06/07/08、生产18 | 原配置完整执行，复用当次验证过的准备产物；真实PG/备份恢复/任务恢复仍阻断 |
+| startup26、显式开发准备、开发18 | 原启动专项、最后冷准备及真实服务E2E保留；新prepared7与cleanup3验证不替代业务检查 |
 
-此前“无法定位则留证停止”已履行；最新用户明确接受其作为历史稳定性风险交接，不要求查明全部原因、性能改善证明或额外重复CI作为本次发布前置。该决定只允许本次功能基线继续门禁，不把未知写成已解决。
+旧失败CI39248620783日志实证：失败前10包各build7次、API/Web各2；R4开发历史末段在合并180秒窗口超时，后续未执行。新组织预计常规prepare一组、最后开发冷prepare一组，实际完整构建次数和分阶段/总耗时以新候选/main日志回执为准，不把代码推断当测量。原失败流程未完成，与新完整成功流程不构成等条件总耗时对比。
+
+R5已授权将开发准备移出真实服务就绪等待：准备120秒，真实API/前端及监听归属就绪30秒；该计时语义变化保留。本轮没有修改其实现/门限。R4原一个180秒窗口涵盖两模式，现每模式独立180秒，局部断言期限不增加；新增有界阶段/清理与workflow45分钟上限，无固定sleep或自动重试。
+
+## 历史失败与未证实原因
+
+原CI39151160848/e228开发30000ms超时保持FAILURE、原原因UNVERIFIED；观测CI39196257845/c8c3227成功只证明当次原门禁通过，29.030秒来自不同epoch，不计算970ms准确余量。main CI39211027987的格式失败、39212002450的开发就绪失败、39233755132的Git夹具失败和39248620783的R4超时均保留原记录，不回写旧FAIL为PASS。夹具原Git stderr未保留，不补写推测错误文字。
+
+后续R5启动设计、R6夹具和本轮CI整理分别只证明各自范围；未查明所有历史超时细因，没有永久稳定或预设提速比例承诺。原作者停止记录、R4/R5/R6报告、调度遗漏记录和所有旧CI日志保持。当前CI与远端事实优先于历史发布计划。
 
 ## 同一产物的功能接受
 
@@ -38,10 +51,10 @@ H02-A由用户选定，原SHA `8b8408427cd7f1a863ae5595a3c484c93e8f4e889039a43f7
 
 MZ原生core1.10.0+锁定Chromium启动证据保留；用户Playtest观察记USER_REPORTED。编辑器手绘、未经修改原装Host认证仍按原NOT_EXECUTED/延期范围记录，不互相冒充，不操作全局Runtime。
 
-## 工作台与停止
+## 工作台、数据与停止
 
-既有工作台 **http://127.0.0.1:4398** 保持在Coding工作树运行，实际软件97f6执行字节与受审候选相同，无需为纯文档发布重启。PG55529、`tileset_step09_live_v1`、`.local/step09-live-assets`、历史/备份/预算及两独立MZ工程保留；Mock4399当前未启动。保留旧Studio及所有含独有ignored数据的工作树，不因Git clean删除。仅停止Reviewer本轮自有临时服务。
+原工作台 **http://127.0.0.1:4398**、PG55529/`tileset_step09_live_v1`及原功能进程继续保留，不为本轮CI/测试发布重启。原进程对应97f6功能源码；后续启动整改与本轮CI代码单独验证，不把现存进程说成运行最新启动实现。所有DB、资产、历史、预算、备份、MZ工程、共享`.env.local`及含独有ignored数据的工作树保留；只关闭本轮明确创建的临时服务。
 
-后续需要源码启动时，沿用[配置加载说明](../reviews/step-09-functional-closeout-coding.md)：Provider共享文件只通过显式 `TILESET_PROVIDER_ENV_FILE`，进程显式值优先，工作树DB/端口/资产独立；不复制/输出key、不source/eval、不放入VITE_/前端/日志/快照。普通测试固定Mock；本批2次已用尽，不能再Generate/Edit。
+共享Provider机制不变：只后端显式 `TILESET_PROVIDER_ENV_FILE`，进程显式值优先，Worktree DB/端口/资产独立；不复制/输出key，不source/eval，不进入VITE_/前端/日志/任务快照。普通测试固定Mock；本轮新增素材AI调用0，H02-A不运行、不调参。
 
-必要发布门禁与回执全部完成即停止，不新增优化或调用。**步骤10：NOT_STARTED / NOT_AUTHORIZED。**
+正式数值质量阈值、正式评测/重试/人工干预预算仍待步骤10前单独确认；不因本批功能素材接受而批准商用美术或稳定成功率。所有本轮必要门禁完成后立即停止。**STEP_10 = NOT_STARTED。**
