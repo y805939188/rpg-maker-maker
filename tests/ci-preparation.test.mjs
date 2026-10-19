@@ -1,6 +1,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, readFile, writeFile, rm, access, realpath } from 'node:fs/promises';
+import {
+  mkdtemp,
+  mkdir,
+  readFile,
+  writeFile,
+  rm,
+  access,
+  realpath,
+  copyFile,
+} from 'node:fs/promises';
+import { setTimeout as delay } from 'node:timers/promises';
 import { tmpdir } from 'node:os';
 import { resolve, join, dirname } from 'node:path';
 import { createHash } from 'node:crypto';
@@ -213,6 +223,189 @@ test('prepared runner executes only after validation and rejects changed artifac
     await assert.rejects(
       runPrepared(root, processes, controller, 'exports', [], () => {}),
       /missing or stale/,
+    );
+  });
+});
+
+test('production creates no suite timer; every other target retains its exact deadline', async (t) => {
+  const budgets = {
+    typecheck: 120000,
+    unit: 300000,
+    integration: 120000,
+    step06: 600000,
+    step07: 1080000,
+    step08: 300000,
+    step09: 600000,
+    exports: 30000,
+    migrate: 60000,
+  };
+  assert.equal(preparedTargets.production.timeout, null);
+  assert.deepEqual(
+    Object.fromEntries(
+      Object.entries(preparedTargets)
+        .filter(([name]) => name !== 'production')
+        .map(([name, spec]) => [name, spec.timeout]),
+    ),
+    budgets,
+  );
+  await fixture(async ({ root, processes, controller, prepare }) => {
+    await prepare();
+    processes.run = async () => {};
+    const events = [];
+    const timer = t.mock.method(globalThis, 'setTimeout');
+    try {
+      await runPrepared(root, processes, controller, 'production', [], (event, fields) =>
+        events.push({ event, ...fields }),
+      );
+      assert.equal(timer.mock.callCount(), 0);
+      assert.equal(events.find((event) => event.event === 'check-start').budget_ms, null);
+      assert.equal(events.at(-1).event, 'check-pass');
+      for (const [target, budget] of Object.entries(budgets)) {
+        const before = timer.mock.callCount();
+        await runPrepared(root, processes, controller, target, [], () => {});
+        assert.equal(timer.mock.callCount(), before + 1);
+        assert.equal(timer.mock.calls.at(-1).arguments[1], budget);
+      }
+      // Trigger the real bounded-target callback, without waiting for its 30s deadline.
+      processes.run = async () => {
+        timer.mock.calls.at(-1).arguments[0]();
+        await processes.wait(Promise.resolve());
+      };
+      await assert.rejects(
+        runPrepared(root, processes, controller, 'exports', [], () => {}),
+        /bounded deadline/,
+      );
+      assert.ok(controller.signal.aborted);
+    } finally {
+      timer.mock.restore();
+    }
+  });
+});
+
+test('production preserves before/after verification and real pnpm subcommand failure', async () => {
+  await fixture(async ({ root, processes, controller, prepare, put }) => {
+    await put('package.json', JSON.stringify({ scripts: { 'test:e2e': 'node scripts/e2e.mjs' } }));
+    await put(
+      'scripts/e2e.mjs',
+      `import { readFile, writeFile } from 'node:fs/promises';
+const action = (await readFile('.local/action', 'utf8')).trim();
+await writeFile('.local/production-ran', String(process.pid));
+if (action === 'source') await writeFile('src/index.ts', 'source drift');
+if (action === 'output') await writeFile('apps/api/dist/main.js', 'output drift');
+if (action === 'fail') process.exit(7);
+`,
+    );
+    const events = [];
+    const run = () =>
+      runPrepared(root, processes, controller, 'production', [], (event) => events.push(event));
+    await assert.rejects(run(), /missing or stale/);
+    await assert.rejects(access(resolve(root, '.local/production-ran')));
+    await prepare();
+    await put('.local/action', 'success');
+    await run();
+    assert.equal(events.at(-1), 'check-pass');
+    await verifyChecks(root, processes);
+    for (const path of ['src/index.ts', 'apps/api/dist/main.js']) {
+      await prepare();
+      await rm(resolve(root, '.local/production-ran'), { force: true });
+      await put(path, 'pre-execution drift');
+      await assert.rejects(run(), /missing or stale/);
+      await assert.rejects(access(resolve(root, '.local/production-ran')));
+    }
+    for (const action of ['source', 'output', 'fail']) {
+      await prepare();
+      await put('.local/action', action);
+      events.length = 0;
+      await assert.rejects(run(), action === 'fail' ? /command failed/ : /missing or stale/);
+      assert.ok((await readFile(resolve(root, '.local/production-ran'), 'utf8')).length > 0);
+      assert.ok(events.includes('command-start'));
+      assert.ok(!events.includes('check-pass'));
+    }
+    // A real nonzero command is still a failure even when it leaves valid outputs.
+    await verifyChecks(root, processes);
+  });
+});
+
+async function until(check) {
+  const deadline = Date.now() + 10000;
+  while (!(await check())) {
+    assert.ok(Date.now() < deadline, 'Synthetic child observation deadline exceeded.');
+    await delay(20);
+  }
+}
+
+test('production CLI propagates failure and external cancellation, reaps descendants and releases its lock', async () => {
+  await fixture(async ({ root, processes, prepare, put }) => {
+    for (const name of ['ci-prepared.mjs', 'dev-preparation.mjs', 'local-processes.mjs'])
+      await copyFile(
+        new URL('../scripts/' + name, import.meta.url),
+        resolve(root, 'scripts', name),
+      );
+    await put('package.json', JSON.stringify({ scripts: { 'test:e2e': 'node scripts/e2e.mjs' } }));
+    await put(
+      'scripts/e2e.mjs',
+      `import { spawn } from 'node:child_process';
+import { readFile, writeFile } from 'node:fs/promises';
+if ((await readFile('.local/action', 'utf8')).trim() === 'fail') process.exit(7);
+process.on('SIGTERM', () => {});
+const child = spawn(process.execPath, ['-e', \
+  "process.on('SIGTERM',()=>{}); require('node:fs').writeFileSync('.local/descendant-ready',String(process.pid)); setInterval(()=>{},1000)"], { stdio: 'inherit' });
+await writeFile('.local/production-pids.json', JSON.stringify([process.pid, child.pid]));
+setInterval(() => {}, 1000);
+`,
+    );
+    await prepare();
+    const start = () => {
+      const entry = processes.start(
+        process.execPath,
+        [resolve(root, 'scripts/ci-prepared.mjs'), 'run', 'production'],
+        { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] },
+      );
+      let output = '';
+      for (const stream of [entry.child.stdout, entry.child.stderr])
+        stream.on('data', (chunk) => (output += chunk));
+      return { ...entry, output: () => output };
+    };
+    await put('.local/action', 'fail');
+    const failed = start();
+    assert.equal((await processes.wait(failed.finished)).code, 1);
+    assert.match(failed.output(), /command failed/);
+    assert.ok(!failed.output().includes('"event":"check-pass"'));
+    await assert.rejects(access(resolve(root, '.local/ci-checks.lock')));
+    await put('.local/action', 'cancel');
+    const cancelled = start();
+    await until(async () => {
+      try {
+        await access(resolve(root, '.local/descendant-ready'));
+        await access(resolve(root, '.local/production-pids.json'));
+        return true;
+      } catch (error) {
+        if (error.code !== 'ENOENT') throw error;
+        return false;
+      }
+    });
+    const pids = JSON.parse(await readFile(resolve(root, '.local/production-pids.json'), 'utf8'));
+    assert.equal(Number(await readFile(resolve(root, '.local/descendant-ready'), 'utf8')), pids[1]);
+    await access(resolve(root, '.local/ci-checks.lock'));
+    assert.equal(cancelled.child.kill('SIGTERM'), true);
+    assert.equal((await processes.wait(cancelled.finished)).code, 143);
+    assert.ok(!cancelled.output().includes('"event":"check-pass"'));
+    await assert.rejects(access(resolve(root, '.local/ci-checks.lock')));
+    await until(async () =>
+      pids.every((pid) => {
+        try {
+          process.kill(pid, 0);
+          return false;
+        } catch (error) {
+          if (error.code !== 'ESRCH') throw error;
+          return true;
+        }
+      }),
+    );
+    await verifyChecks(root, processes);
+    console.log(
+      '[production-wrapper-cleanup] ' +
+        JSON.stringify({ pids, failureExit: 1, cancelExit: 143, reaped: true, lockAbsent: true }),
     );
   });
 });

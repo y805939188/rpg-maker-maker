@@ -117,7 +117,8 @@ export const preparedTargets = {
   },
   exports: { timeout: 30000, commands: [['pnpm', ['verify:exports']]] },
   migrate: { timeout: 60000, commands: [['pnpm', ['db:migrate']]] },
-  production: { timeout: 600000, commands: [['pnpm', ['test:e2e']]] },
+  // Production keeps Playwright's case/service limits and the CI job limit, without a suite timer.
+  production: { timeout: null, commands: [['pnpm', ['test:e2e']]] },
 };
 
 async function outputInventory(directory, signal) {
@@ -241,10 +242,14 @@ export async function runPrepared(
   if (!spec || (extra.length && !spec.test))
     throw new Error('Unknown prepared target or unsupported arguments.');
   const started = Date.now(),
-    timer = setTimeout(
-      () => controller.abort(new Error('Prepared check phase exceeded its bounded deadline.')),
-      spec.timeout,
-    );
+    timer =
+      spec.timeout === null
+        ? null
+        : setTimeout(
+            () =>
+              controller.abort(new Error('Prepared check phase exceeded its bounded deadline.')),
+            spec.timeout,
+          );
   try {
     const receipt = await verifyChecks(directory, processes);
     report('check-start', { target, budget_ms: spec.timeout, commit: receipt.inputs.commit });
@@ -255,7 +260,7 @@ export async function runPrepared(
     await verifyChecks(directory, processes);
     report('check-pass', { target, duration_ms: Date.now() - started });
   } finally {
-    clearTimeout(timer);
+    if (timer !== null) clearTimeout(timer);
   }
 }
 
