@@ -3,7 +3,7 @@ import { basename, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createConnection } from 'node:net';
 import { get } from 'node:http';
-import { setInterval, clearInterval, setTimeout } from 'node:timers';
+import { setInterval, clearInterval, setTimeout, clearTimeout } from 'node:timers';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const packages = new Set([
@@ -61,13 +61,19 @@ function tcp(port) {
 
 function health(port) {
   return new Promise((resolve) => {
+    const finish = (state) => {
+      clearTimeout(timer);
+      request.destroy();
+      resolve(state);
+    };
     const request = get({ host: '127.0.0.1', port, path: '/api/health' }, (response) => {
-      response.resume();
-      resolve(response.statusCode);
+      response.destroy();
+      finish(response.statusCode);
     });
+    const timer = setTimeout(() => finish('timeout'), 250);
+    timer.unref();
     request.on('socket', (socket) => socket.unref());
-    request.setTimeout(250, () => request.destroy());
-    request.once('error', () => resolve('unreachable'));
+    request.once('error', () => finish('unreachable'));
   });
 }
 

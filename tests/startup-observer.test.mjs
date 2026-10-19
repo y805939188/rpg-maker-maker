@@ -111,6 +111,26 @@ test('SIGTERM cancellation retains the original signal and leaves no observer pr
   });
 });
 
+test('an accepted HTTP connection without headers reaches the total 250ms probe deadline', async () => {
+  const server = createServer(() => {});
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const port = server.address().port;
+  const source = `import { observeStartup } from ${JSON.stringify('file://' + observer)};
+    observeStartup('dev'); setTimeout(() => {}, 600);`;
+  const running = launch(['--input-type=module', '-e', source], { API_PORT: String(port), WEB_PORT: String(port) });
+  try {
+    const result = await running.done;
+    assert.equal(result.code, 0);
+    const probe = result.events.find(event => event.event === 'probe');
+    assert.equal(probe.api_health, 'timeout');
+    assert.equal(probe.api_tcp, 'listening');
+    assert.ok(probe.elapsed_ms >= 250 && probe.elapsed_ms < 1000);
+  } finally {
+    if (running.child.exitCode === null) running.child.kill('SIGKILL');
+    await new Promise(resolve => server.close(resolve));
+  }
+});
+
 test('unreachable or invalid configuration is reduced to finite states, without delaying exit', async () => {
   const source = `import { observeStartup } from ${JSON.stringify('file://' + observer)};
     observeStartup('dev'); setTimeout(() => {}, 300);`;
