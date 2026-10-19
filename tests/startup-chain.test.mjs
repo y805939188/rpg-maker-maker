@@ -1,21 +1,21 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { mkdtemp, mkdir, readFile, writeFile, rm, access } from 'node:fs/promises';
+import { mkdtemp, mkdir, readFile, writeFile, rm, access, realpath } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { resolve, join } from 'node:path';
+import { resolve, join, dirname } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
 import { execFileSync, spawn } from 'node:child_process';
 import { LocalProcesses } from '../scripts/local-processes.mjs';
 import { prepareDevelopment, verifyDevelopment } from '../scripts/dev-preparation.mjs';
 import { assertPortsFree, requestReady, serve } from '../scripts/run-local.mjs';
+import {
+  fixtureGit,
+  initializeFixtureGit,
+  startupFixtureEnvironment,
+} from './helpers/startup-fixture-git.mjs';
 
-const environment = {
-  PATH: process.env.PATH,
-  HOME: process.env.HOME,
-  TMPDIR: process.env.TMPDIR,
-  TILESET_AI_MODE: 'mock',
-};
+const environment = startupFixtureEnvironment();
 const packages = [
   'contracts',
   'ai-gateway',
@@ -37,12 +37,14 @@ async function fixture(run) {
     ...environment,
     npm_config_userconfig: resolve(root, 'empty-npmrc'),
     npm_config_globalconfig: resolve(root, 'empty-npmrc'),
+    GIT_CEILING_DIRECTORIES: dirname(await realpath(root)),
   });
   const put = async (path, value = 'fixture') => {
     await mkdir(resolve(root, path, '..'), { recursive: true });
     await writeFile(resolve(root, path), value);
   };
   try {
+    const git = await initializeFixtureGit(root, processes.environment);
     for (const path of ['src', 'scripts', 'tests', 'packages', 'apps/api', 'e2e'])
       await mkdir(resolve(root, path), { recursive: true });
     await put('src/input.ts');
@@ -67,7 +69,7 @@ async function fixture(run) {
     }
     const prepare = (options = {}) =>
       prepareDevelopment(root, processes, controller, quiet, { commands: [], ...options });
-    await run({ root, put, controller, processes, prepare });
+    await run({ root, put, controller, processes, prepare, git });
   } finally {
     controller.abort();
     await processes.close();
@@ -79,15 +81,54 @@ const verify = (root, processes) => verifyDevelopment(root, processes);
 
 // These .mjs cases are deliberately outside the existing Vitest *.test.ts collection.
 test('current successful preparation accepts exact outputs; env credentials are not inventoried', async () => {
-  await fixture(async ({ root, put, prepare, processes }) => {
+  await fixture(async ({ root, put, prepare, processes, git }) => {
     await put('apps/api/.env.local', 'SYNTHETIC_SECRET=never-inventory');
     await prepare();
     const receipt = await verify(root, processes);
+    assert.equal(receipt.inputs.commit, git.head);
+    const sanitized = startupFixtureEnvironment({
+      ...environment,
+      GIT_DIR: root,
+      GIT_WORK_TREE: root,
+      GIT_CONFIG_COUNT: '1',
+      GIT_CONFIG_GLOBAL: resolve(root, 'foreign-config'),
+      GIT_AUTHOR_NAME: 'Untrusted inherited identity',
+    });
+    for (const key of ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_CONFIG_COUNT'])
+      assert.equal(sanitized[key], undefined);
+    assert.equal(sanitized.GIT_CONFIG_GLOBAL, '/dev/null');
+    assert.equal(sanitized.GIT_AUTHOR_NAME, 'Synthetic Startup Fixture');
     assert.ok(Object.keys(receipt.outputs).length >= 23);
     assert.ok(!JSON.stringify(receipt.inputs).includes('SYNTHETIC_SECRET'));
     assert.ok(!Object.keys(receipt.inputs.files).some((path) => path.includes('.env.local')));
   });
 });
+
+for (const invalid of ['missing repository', 'unborn HEAD']) {
+  test(`formal preparation rejects fixture Git with ${invalid}`, async () => {
+    await fixture(async ({ root, prepare, processes }) => {
+      await prepare();
+      if (invalid === 'missing repository') await rm(resolve(root, '.git'), { recursive: true });
+      else
+        fixtureGit(root, processes.environment, ['update-ref', '-d', 'refs/heads/startup-fixture']);
+      assert.throws(() =>
+        fixtureGit(root, processes.environment, ['rev-parse', '--verify', 'HEAD^{commit}']),
+      );
+      await assert.rejects(prepare(), /Preparation toolchain probe failed/);
+      await assert.rejects(access(receiptFile(root)));
+      await assert.rejects(verify(root, processes), /missing or stale/);
+      console.log(
+        '[startup-fixture-negative] ' +
+          JSON.stringify({
+            root: await realpath(root),
+            invalid,
+            formalPrepareRejected: true,
+            receiptAbsent: true,
+          }),
+      );
+    });
+  });
+}
 
 test('missing, malformed and incomplete preparation never accept old dist', async () => {
   await fixture(async ({ root, put, prepare, processes }) => {
