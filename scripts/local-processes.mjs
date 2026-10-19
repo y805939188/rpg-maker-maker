@@ -1,6 +1,25 @@
 import { spawn } from 'node:child_process';
 import { setTimeout as delay } from 'node:timers/promises';
 
+// pnpm/shell wrappers can forward the same signal again while cleanup is awaiting children.
+// Keep both handlers installed until every owned group has been stopped.
+export function localCancellation(controller) {
+  const state = { signal: undefined };
+  const interrupt = (signal) => {
+    state.signal ??= signal;
+    controller.abort(new Error('Local startup cancelled.'));
+  };
+  const onInt = () => interrupt('SIGINT'),
+    onTerm = () => interrupt('SIGTERM');
+  process.on('SIGINT', onInt);
+  process.on('SIGTERM', onTerm);
+  state.dispose = () => {
+    process.removeListener('SIGINT', onInt);
+    process.removeListener('SIGTERM', onTerm);
+  };
+  return state;
+}
+
 // Every child has its own POSIX process group. Only groups created here are signalled.
 export class LocalProcesses {
   children = [];

@@ -5,7 +5,7 @@ import { mkdtemp, mkdir, readFile, writeFile, rm, access } from 'node:fs/promise
 import { tmpdir } from 'node:os';
 import { resolve, join } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import { LocalProcesses } from '../scripts/local-processes.mjs';
 import { prepareDevelopment, verifyDevelopment } from '../scripts/dev-preparation.mjs';
 import { assertPortsFree, requestReady, serve } from '../scripts/run-local.mjs';
@@ -350,5 +350,44 @@ test('service exit, spawn failure and frontend-not-ready never emit ready from a
       await processes.close();
       await assertPortsFree([ports.api, ports.web]);
     });
+  }
+});
+
+test('repeated SIGINT/SIGTERM forwarding keeps cancellation handlers until descendant cleanup finishes', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'startup-signals-'));
+  const helper = new URL('../scripts/local-processes.mjs', import.meta.url).href;
+  const source = `import {LocalProcesses,localCancellation} from ${JSON.stringify(helper)};
+    import {writeFile} from 'node:fs/promises';
+    const controller=new AbortController(), cancellation=localCancellation(controller), owner=new LocalProcesses(controller.signal);
+    const entry=owner.start(process.execPath,['-e',"process.on('SIGTERM',()=>{});setInterval(()=>{},1000)"],{stdio:'ignore'});
+    await writeFile('pid',String(entry.child.pid)); console.log('SIGNALS_READY');
+    try { await owner.wait(entry.finished); } catch {} finally { await owner.close(); console.log('CLEANED_'+cancellation.signal); cancellation.dispose(); process.exitCode=130; }`;
+  const child = spawn(process.execPath, ['--input-type=module', '-e', source], {
+    cwd: directory,
+    env: environment,
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let stdout = '';
+  child.stdout.on('data', (data) => {
+    stdout += data;
+  });
+  const finished = new Promise((resolve) =>
+    child.once('close', (code, signal) => resolve({ code, signal })),
+  );
+  try {
+    await eventually(() => assert.ok(stdout.includes('SIGNALS_READY')));
+    const pid = Number(await readFile(resolve(directory, 'pid'), 'utf8'));
+    child.kill('SIGINT');
+    await delay(30);
+    child.kill('SIGINT');
+    await delay(30);
+    child.kill('SIGTERM');
+    assert.deepEqual(await finished, { code: 130, signal: null });
+    assert.ok(stdout.includes('CLEANED_SIGINT'));
+    await eventually(() => assert.equal(alive(pid), false));
+  } finally {
+    child.kill('SIGTERM');
+    await finished;
+    await rm(directory, { recursive: true });
   }
 });

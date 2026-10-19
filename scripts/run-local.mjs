@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { parseEnv } from 'node:util';
 import { setTimeout as delay } from 'node:timers/promises';
 import { clearTimeout } from 'node:timers';
-import { LocalProcesses } from './local-processes.mjs';
+import { LocalProcesses, localCancellation } from './local-processes.mjs';
 import { prepareDevelopment, verifyDevelopment } from './dev-preparation.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url)).replace(/\/$/, '');
@@ -142,16 +142,7 @@ export async function main(mode) {
   const controller = new globalThis.AbortController();
   const processes = new LocalProcesses(controller.signal);
   let lock;
-  let signal;
-  const interrupt = (name) => {
-    signal = name;
-    process.exitCode = name === 'SIGINT' ? 130 : 143;
-    controller.abort(new Error('Local startup cancelled.'));
-  };
-  const onInt = () => interrupt('SIGINT'),
-    onTerm = () => interrupt('SIGTERM');
-  process.once('SIGINT', onInt);
-  process.once('SIGTERM', onTerm);
+  const cancellation = localCancellation(controller);
   try {
     await mkdir(resolve(root, '.local'), { recursive: true });
     try {
@@ -172,17 +163,18 @@ export async function main(mode) {
     if (lock && (mode === 'dev' || mode === 'prepare-dev'))
       await rm(resolve(root, '.local/dev-preparation.json'), { force: true });
     console.error(error instanceof Error ? error.message : 'Local startup failed.');
-    process.exitCode = signal === 'SIGINT' ? 130 : signal === 'SIGTERM' ? 143 : 1;
+    process.exitCode =
+      cancellation.signal === 'SIGINT' ? 130 : cancellation.signal === 'SIGTERM' ? 143 : 1;
   } finally {
     await processes.close();
-    if (signal && (mode === 'dev' || mode === 'prepare-dev'))
+    if (cancellation.signal && (mode === 'dev' || mode === 'prepare-dev'))
       await rm(resolve(root, '.local/dev-preparation.json'), { force: true });
     if (lock) {
       await lock.close();
       await rm(resolve(root, '.local/dev-startup.lock'));
     }
-    process.removeListener('SIGINT', onInt);
-    process.removeListener('SIGTERM', onTerm);
+    if (cancellation.signal) process.exitCode = cancellation.signal === 'SIGINT' ? 130 : 143;
+    cancellation.dispose();
     emit('stopped', { exit_code: process.exitCode ?? 0 });
   }
 }
