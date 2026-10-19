@@ -42,6 +42,7 @@
     "prepare:mz": "pnpm build:prototype && node dist/scripts/prepare-mz.js",
     "build:engineering": "pnpm build && node scripts/build-engineering.mjs",
     "check:boundaries": "node scripts/check-boundaries.mjs",
+    "check:workflows": "node scripts/check-workflows.mjs",
     "verify:exports": "node scripts/verify-exports.mjs",
     "test:step03": "pnpm build:contracts && vitest run packages/asset-core/tests packages/material-processing/tests packages/image-adapter/tests",
     "build:step03": "pnpm build && node scripts/build-engineering.mjs step03",

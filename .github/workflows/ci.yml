@@ -22,14 +22,19 @@ jobs:
       TILESET_AI_MODE: mock
       DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci_core
       TILESET_ASSET_ROOT: ${{ github.workspace }}/.local/ci-core/assets
-      TMPDIR: ${{ runner.temp }}/tileset-core
-      XDG_CACHE_HOME: ${{ runner.temp }}/tileset-core-cache
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         # The step07 regression reads the published step06 writer with git show.
         with:
           fetch-depth: 0
-      - run: mkdir -p "$TMPDIR" "$XDG_CACHE_HOME"
+      - name: Initialize isolated runtime directories
+        run: |
+          : "${RUNNER_TEMP:?}" "${GITHUB_ENV:?}"
+          mkdir -p "$RUNNER_TEMP/tileset-core" "$RUNNER_TEMP/tileset-core-cache"
+          {
+            printf 'TMPDIR=%s/tileset-core\n' "$RUNNER_TEMP"
+            printf 'XDG_CACHE_HOME=%s/tileset-core-cache\n' "$RUNNER_TEMP"
+          } >> "$GITHUB_ENV"
       - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
         with:
           version: 10.20.0
@@ -37,6 +42,8 @@ jobs:
         with:
           node-version: 22.21.1
           cache: pnpm
+      - name: Validate full workflow contexts
+        run: node scripts/check-workflows.mjs
       - run: pnpm install --frozen-lockfile
       - run: pnpm db:generate
       - run: pnpm exec playwright install --with-deps chromium
@@ -78,11 +85,16 @@ jobs:
       TILESET_AI_MODE: mock
       DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci_development
       TILESET_ASSET_ROOT: ${{ github.workspace }}/.local/ci-development/assets
-      TMPDIR: ${{ runner.temp }}/tileset-development
-      XDG_CACHE_HOME: ${{ runner.temp }}/tileset-development-cache
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - run: mkdir -p "$TMPDIR" "$XDG_CACHE_HOME"
+      - name: Initialize isolated runtime directories
+        run: |
+          : "${RUNNER_TEMP:?}" "${GITHUB_ENV:?}"
+          mkdir -p "$RUNNER_TEMP/tileset-development" "$RUNNER_TEMP/tileset-development-cache"
+          {
+            printf 'TMPDIR=%s/tileset-development\n' "$RUNNER_TEMP"
+            printf 'XDG_CACHE_HOME=%s/tileset-development-cache\n' "$RUNNER_TEMP"
+          } >> "$GITHUB_ENV"
       - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
         with:
           version: 10.20.0
@@ -90,6 +102,8 @@ jobs:
         with:
           node-version: 22.21.1
           cache: pnpm
+      - name: Validate full workflow contexts
+        run: node scripts/check-workflows.mjs
       - run: pnpm install --frozen-lockfile
       - name: Assert independent empty outputs
         run: |
