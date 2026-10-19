@@ -42,4 +42,8 @@ jobs:
       - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07
       - run: pnpm test:step08
       - run: pnpm test:e2e
+      - run: node --test --test-timeout=10000 tests/startup-observer.test.mjs
       - run: E2E_MODE=dev pnpm test:e2e
+        env:
+          TILESET_STARTUP_OBSERVE: '1'
+          NODE_OPTIONS: --import=${{ github.workspace }}/scripts/startup-observer.mjs
