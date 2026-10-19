@@ -40,15 +40,15 @@
 
 本次恢复客户端 CLI 仍显式 `gpt-6.1-sol / xhigh / service_tier=default`，同一会话与 step_coder developer 角色，turn_context 一致，隐藏 server 字段 UNVERIFIED。没有新 Agent/Review 或 Push。
 
-| observer test:e2e 时间轴 | 本次事实 |
-| --- | --- |
-| dev enter 0.904s | 完整原 `pnpm dev` 链进入 |
-| 依赖构建 1.431→16.647s | 15.216s，十个不同包的 tsc 各一次，退出0 |
-| prototype 1.168→18.668s | 17.500s，包含上行依赖构建，不能重复相加；根 tsc 一次 |
-| API build 18.716→21.774s | 端点差3.058s，退出0（进程独立 duration 字段3.059s） |
-| 资源准备 21.819→26.676s | 4.857s，退出0 |
-| run-local 26.719s；API main 27.302s | 资源准备之后才进入服务启动 |
-| 首次 observer health200 29.030s | 独立探针的采样时间，不是 Playwright 就绪判定瞬间 |
+| observer test:e2e 时间轴            | 本次事实                                             |
+| ----------------------------------- | ---------------------------------------------------- |
+| dev enter 0.904s                    | 完整原 `pnpm dev` 链进入                             |
+| 依赖构建 1.431→16.647s              | 15.216s，十个不同包的 tsc 各一次，退出0              |
+| prototype 1.168→18.668s             | 17.500s，包含上行依赖构建，不能重复相加；根 tsc 一次 |
+| API build 18.716→21.774s            | 端点差3.058s，退出0（进程独立 duration 字段3.059s）  |
+| 资源准备 21.819→26.676s             | 4.857s，退出0                                        |
+| run-local 26.719s；API main 27.302s | 资源准备之后才进入服务启动                           |
+| 首次 observer health200 29.030s     | 独立探针的采样时间，不是 Playwright 就绪判定瞬间     |
 
 初始0.175s探针 API/Vite TCP 均 unreachable、DB TCP listening，排除该次采样点原端口仍监听的情况；不证明原失败 CI 的端口状态、生产进程已完全退出或 SQL 认证/迁移状态。全部已记录构建/资源阶段退出0，没有该次阶段错误。
 
