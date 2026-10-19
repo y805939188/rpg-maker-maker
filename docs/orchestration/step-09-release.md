@@ -1,13 +1,15 @@
-# 步骤09功能测试基线：CI整理与发布交接
+# 步骤09功能测试基线：workflow上下文修复与发布交接
 
-2026-10-19。当前授权只整理CI/准备复用/测试拆分并正常发布09功能测试基线，不改产品功能，不进入10。最新受审执行source `7254dfe93ba72976dd0e593f00582c30de01ed5c`（只追加workflow组织整改）；作者文档HEAD `ff5d44b4841123094275e858f8649642e7845148` 仅新增本轮报告。R7原执行source `b00e4b709d5103c44a86b2111f53edcc7f82983e` 的其余实现未变。最终文档HEAD、两次候选CI、main CI和三处main读回写会话及ignored `.local/step09-final-closeout/ci-consolidation-final/completion.json`，不为自身SHA再提交文档。
+2026-10-19，America/Chicago。本轮追加授权只修四处非法workflow上下文、补实际语义校验、限定R9及正常发布；不改产品，不进入10。执行source `3c2d405ecb9ce3e8d69ef325cf6213991ad5f7a8`；作者文档HEAD `aa9e5555a8ca45b0bcbffc5f2e91e0e77efb8a8b` 仅新增报告。R7/R8的其余执行内容未变。最终文档HEAD、候选/main CI和三处main读回写会话及ignored `.local/step09-final-closeout/workflow-context-final/completion.json`，不为自身SHA再提交文档。
 
 ## 当前技术门禁
 
-- 限定R7 **PASS_LIMITED_CI_CONSOLIDATION**，R8 **PASS_LIMITED_CI_GATES**，均P0/P1/硬契约P2为0。R7审b0c48ab→b00e4b7九文件，R8只审6dac43c→7254dfe的workflow及直接影响，未全审01–09。见[R7 Coding](../reviews/step-09-ci-consolidation-coding.md)/[R7](../reviews/step-09-ci-consolidation-r7.md)、[集中整改](../reviews/step-09-ci-consolidation-r8-coding.md)/[R8](../reviews/step-09-ci-consolidation-r8.md)。一次集中整改/定向R8额度已使用，不自动扩轮。
-- 功能R2 `0a55d9f` 的完整check450/09完整4/4、R5启动链PASS和R6独立Git夹具PASS按未变范围复用。它们不代替本轮差异确认或新SHA完整CI。T01/R01接受与产物绑定不变。
-- 最新限定PASS、零P0/P1/硬契约P2及新SHA完整候选workflow整体 **completed/success** 后，Main才按本轮用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常整合/Push并等待完整main CI。必须同时核对core/development/baseline，不用局部绿色改写cancelled。该放行是用户预授权委托，不写成用户逐轮亲审。
-- 不强推、改写历史、跳检查或重跑同SHA碰运气。实际失败先读当次日志，范围外或达到本窗口限制时留证停止。main CI真实成功及local main/origin/main/live remote一致前，不宣称发布完成。
+- 本轮限定R9 **PASS_LIMITED_WORKFLOW_CONTEXT**，P0/P1/硬契约P2为0。见[R9独立确认](../reviews/step-09-workflow-context-r9.md)。见[本轮Coding](../reviews/step-09-workflow-context-coding.md)。删除core/development job.env四处不支持的runner.temp；现有早期shell step使用RUNNER_TEMP创建隔离目录，以GITHUB_ENV向后续步骤传递TMPDIR/XDG_CACHE_HOME。完整workflow在本地及两job早期运行同一个固定actionlint1.7.12入口，核对官方固定发布资产SHA，无忽略规则或自动重试。
+- 作者完整修复版本通过；仅临时副本恢复原四处表达式，准确报四条非法runner上下文并退出1。独立R9已自行验证完整正控/四错负控、两初始化正控/八缺值负控及门禁等价；Main另实跑Push前公共入口通过。YAML、Prettier或字符串检查不能替代上下文语义检查，CI自检不能替代Push前本地检查。
+- CI39276281752在创建任何job前因上述四处表达式被平台拒绝，保持failure；R7/R8未发现此错误，原报告原样保留，其限定PASS不覆盖这个已知阻断。本轮追加授权覆盖旧数值轮次限制，仅在有明确定位、修复或验证进展的当前范围内继续，不无限重跑或扩大产品范围。
+- 功能R2 `0a55d9f` 的完整check450/09完整4/4、R5启动链、R6独立Git夹具以及R7/R8仍适用部分按未变范围复用。见[R7](../reviews/step-09-ci-consolidation-r7.md)、[R8](../reviews/step-09-ci-consolidation-r8.md)。它们不代替本轮差异确认或新SHA完整CI。T01/R01接受与产物绑定不变。
+- 最新限定PASS、零P0/P1/硬契约P2及新SHA完整候选workflow整体 **completed/success** 后，Main才按本轮用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常整合/Push并等待完整main CI。core/development/baseline必须全部实际success，不能用局部绿色改写失败、取消或跳过。该放行是用户预授权委托，不写成用户逐轮亲审。
+- 不强推、改写历史、跳检查或重跑同SHA碰运气。实际失败先读当次日志，有新定位才作必要修正；重复失败无新证据或范围外问题则留证停止。main CI真实成功及local main/origin/main/live remote一致前，不宣称发布完成。
 
 ## 检查执行位置与计时
 
