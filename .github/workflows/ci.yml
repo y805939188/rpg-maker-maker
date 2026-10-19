@@ -3,27 +3,38 @@ on: [push, pull_request]
 permissions:
   contents: read
 jobs:
-  baseline:
+  core:
     runs-on: ubuntu-24.04
+    timeout-minutes: 40
     services:
       postgres:
         image: postgres:14.20
         env:
           POSTGRES_USER: tileset
-          POSTGRES_DB: tileset_ci
+          POSTGRES_DB: tileset_ci_core
           POSTGRES_HOST_AUTH_METHOD: trust
         ports:
           - 127.0.0.1:55432:5432
         options: >-
-          --health-cmd "pg_isready -U tileset -d tileset_ci"
+          --health-cmd "pg_isready -U tileset -d tileset_ci_core"
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
-      DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci
+      TILESET_AI_MODE: mock
+      DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci_core
+      TILESET_ASSET_ROOT: ${{ github.workspace }}/.local/ci-core/assets
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         # The step07 regression reads the published step06 writer with git show.
         with:
           fetch-depth: 0
+      - name: Initialize isolated runtime directories
+        run: |
+          : "${RUNNER_TEMP:?}" "${GITHUB_ENV:?}"
+          mkdir -p "$RUNNER_TEMP/tileset-core" "$RUNNER_TEMP/tileset-core-cache"
+          {
+            printf 'TMPDIR=%s/tileset-core\n' "$RUNNER_TEMP"
+            printf 'XDG_CACHE_HOME=%s/tileset-core-cache\n' "$RUNNER_TEMP"
+          } >> "$GITHUB_ENV"
       - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
         with:
           version: 10.20.0
@@ -31,18 +42,103 @@ jobs:
         with:
           node-version: 22.21.1
           cache: pnpm
+      - name: Validate full workflow contexts
+        run: node scripts/check-workflows.mjs
       - run: pnpm install --frozen-lockfile
       - run: pnpm db:generate
       - run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm check
-      - run: pnpm test:dev-privacy
-      - run: pnpm db:migrate
-      - run: pnpm test:integration
-      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step06
-      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm test:step07
-      - run: pnpm test:step08
-      - run: pnpm test:e2e
+      - run: pnpm check:boundaries
+      - run: pnpm ci:prepare
+      - run: pnpm ci:run typecheck
+      - run: pnpm lint
+      - run: pnpm format:check
+      # Default Vitest includes dev-privacy's five cases; do not execute them twice.
+      - run: pnpm ci:run unit
+      - run: pnpm ci:run exports
+      - run: pnpm ci:run migrate
+      - run: pnpm ci:run integration
+      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm ci:run step06
+      - run: TILESET_PG_BIN=/usr/lib/postgresql/16/bin pnpm ci:run step07
+      - run: pnpm ci:run step08
+      - run: pnpm ci:run production
+      # Build/resources have their own 120s budget; the service gate remains 30s.
+      - run: pnpm test:ci-prepared
+      - run: pnpm test:startup
+
+  # Independent runner: no core outputs, receipts, database or test state are transferred.
+  development:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:14.20
+        env:
+          POSTGRES_USER: tileset
+          POSTGRES_DB: tileset_ci_development
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 127.0.0.1:55432:5432
+        options: >-
+          --health-cmd "pg_isready -U tileset -d tileset_ci_development"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TILESET_AI_MODE: mock
+      DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci_development
+      TILESET_ASSET_ROOT: ${{ github.workspace }}/.local/ci-development/assets
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - name: Initialize isolated runtime directories
+        run: |
+          : "${RUNNER_TEMP:?}" "${GITHUB_ENV:?}"
+          mkdir -p "$RUNNER_TEMP/tileset-development" "$RUNNER_TEMP/tileset-development-cache"
+          {
+            printf 'TMPDIR=%s/tileset-development\n' "$RUNNER_TEMP"
+            printf 'XDG_CACHE_HOME=%s/tileset-development-cache\n' "$RUNNER_TEMP"
+          } >> "$GITHUB_ENV"
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
+        with:
+          version: 10.20.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.21.1
+          cache: pnpm
+      - name: Validate full workflow contexts
+        run: node scripts/check-workflows.mjs
+      - run: pnpm install --frozen-lockfile
+      - name: Assert independent empty outputs
+        run: |
+          for output in dist apps/*/dist packages/*/dist .local/ci-preparation.json .local/dev-preparation.json; do
+            if [ -e "$output" ]; then
+              echo "Unexpected pre-existing output: $output" >&2
+              exit 1
+            fi
+          done
+      - run: pnpm db:generate
+      # The public migration wrapper needs dist/config.js. A fresh database can
+      # deploy the same seven schema migrations before any application is built.
+      - run: pnpm --filter @tileset/api exec prisma migrate deploy --schema prisma/schema.prisma
+      - run: pnpm exec playwright install --with-deps chromium
+      # Build/resources retain 120s; dev:start retains its owned-listener/HTTP 30s gate.
+      - run: pnpm dev:prepare
       - run: E2E_MODE=dev pnpm test:e2e
         env:
           TILESET_STARTUP_OBSERVE: '1'
           NODE_OPTIONS: --import=${{ github.workspace }}/scripts/startup-observer.mjs
+
+  # Preserve the branch-protection check name. Every required job must really succeed.
+  baseline:
+    needs: [core, development]
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Require both isolated jobs to succeed
+        env:
+          CORE_RESULT: ${{ needs.core.result }}
+          DEVELOPMENT_RESULT: ${{ needs.development.result }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'core=%s development=%s\n' "$CORE_RESULT" "$DEVELOPMENT_RESULT"
+          test "$CORE_RESULT" = success
+          test "$DEVELOPMENT_RESULT" = success

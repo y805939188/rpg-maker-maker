@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
-import { defineConfig, loadEnv, type CorsOptions } from 'vite';
+import { defineConfig, loadEnv, type CorsOptions, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { localWebBoundary } from './dev-boundary.js';
 const webRoot = fileURLToPath(new URL('.', import.meta.url));
@@ -24,10 +24,28 @@ export default defineConfig(({ mode }) => {
     // Vite installs CORS before plugin middleware. Preflights must reach the Origin boundary.
     preflightContinue: true,
   };
+  const launch = env['TILESET_STARTUP_LAUNCH'];
+  const listening: Plugin = {
+    name: 'owned-startup-listener',
+    apply: 'serve',
+    configureServer(server) {
+      if (!launch || !/^[a-f0-9]{32}$/.test(launch)) return;
+      server.httpServer?.once('listening', () => {
+        const bound = server.httpServer?.address();
+        if (
+          bound &&
+          typeof bound !== 'string' &&
+          bound.address === '127.0.0.1' &&
+          bound.port === web
+        )
+          console.log(`[local-listening:${launch}:web:${bound.port}]`);
+      });
+    },
+  };
   return {
     // Assets are imported from src; avoid a second static directory that skips Vite's fs checks.
     publicDir: false,
-    plugins: [localWebBoundary(webRoot, allowedRoots, web), react()],
+    plugins: [localWebBoundary(webRoot, allowedRoots, web), react(), listening],
     server: {
       host: '127.0.0.1',
       port: web,

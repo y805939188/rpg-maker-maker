@@ -17,6 +17,14 @@ pnpm dev
 
 开发 Web 在 `http://127.0.0.1:5173`，API 在 `http://127.0.0.1:4310`。退出开发后执行 `pnpm start`，独立 Node 运行编译后的 API，同源提供构建后的 Web，访问 `http://127.0.0.1:4310`。生产启动不使用 tsx 或源码解析。`pnpm start` 不自动迁移数据库。
 
+启动链整改：`pnpm dev` 每次清理并重新构建开发所需输出、生成 Studio 资源，再启动 API/Vite。准备阶段预算为120000ms；验证准备产物、启动服务并等待真实 DB health 与 Vite 页面/入口模块的预算为30000ms。API 以 development 环境直接运行 tsx，不再用会掩盖应用退出的 watch 宿主；修改 API/共享包后重新执行 `pnpm dev`，Vite 仍保留前端热更新。
+
+CI 及定向开发 E2E 先执行 `pnpm dev:prepare`，再由 Playwright 调用 `pnpm dev:start`。两条路径共用同一准备/启动实现。`dev:start` 必须验证当前源文件（含新增/删除）、锁、配置、Node/pnpm及逐文件输出与本树成功准备凭据一致；失败或取消准备先使旧凭据失效，不以环境开关或 dist 存在跳过。准备不读 Provider 文件；服务环境策略保持既有后端边界。准备与服务启动分开计时，日志分别记录 prepare_ms、service_ms、total_ms；total_ms 是从该次准备开始到就绪的墙钟耗时，包含独立命令之间的间隔，不能与旧 Playwright 包含全部准备的30秒边界混称。
+
+端口占用及同树并行启动拒绝；SIGINT/SIGTERM和子服务异常会清理本入口创建的进程组。Playwright 保留30000ms并等待真实两端检查后的标记，退出给启动器5000ms清理窗口。`.local/dev-startup.lock` 为独占锁；异常强杀后遗留锁须先核实本树进程/端口再人工处理，入口不自动复用残留服务。`pnpm test:startup` 仅运行独立 Node 合成用例与既有7项 observer 回归，不进入 Vitest 普通测试集合。
+
+R4端口竞争整改：启动器为每次服务启动生成随机关联标识，分别从自有API/Vite子命令的stdout收取匹配标识、角色及实际端口的监听成功信号。API在await listen成功并核对server.address后发出；Vite仅在自身HTTP server的listening事件且实际地址/端口匹配后发出。取得必需的自有监听证据后仍执行原真实HTTP检查，预检后抢占端口的其他实例不能替代信号。关联标识只用于本地启动握手，不进入HTTP JSON、健康检查或前端业务环境。生产同样要求自有API监听证据和DB health；生产Playwright等待 `LOCAL_PRODUCTION_READY`，开发等待 `LOCAL_DEV_READY`，二者均保留30000ms且不以URL探测绕过归属校验。120000ms准备、计时字段、退出清理和开发API须手动重启的说明均保持。
+
 `pnpm db:local init` 仅创建当前工作树内 `.local/postgres/data`，拒绝已有集群和已有 `.env`，使用独立端口 `55432`、环回 TCP、SCRAM 密码验证、不开放 Unix socket。随机密码只写入被忽略且权限 0600 的 `.env` / `.local/postgres/ownership.json`。不删除数据库，不操作 Homebrew 服务或已有 5432 集群。初始化失败后保留现场，由操作者检查，禁止为了重试删除未知数据。
 
 后续启动/停止：`pnpm db:local start` / `pnpm db:local stop`；状态：`pnpm db:local status`。独立 Review 使用另一个工作树与 `TILESET_PG_PORT=55433 pnpm db:local init`。Linux 或不同 Homebrew 位置可用 `TILESET_PG_BIN` 指定包含 `initdb` / `pg_ctl` / `createdb` 的 PostgreSQL 14 二进制目录。这两个变量仅作用于本次命令，不修改系统环境。初始化时写入的端口不可在已有集群中静默更改。
@@ -35,6 +43,7 @@ pnpm test:integration
 pnpm test:dev-privacy
 pnpm exec playwright install chromium
 pnpm test:e2e
+pnpm dev:prepare
 E2E_MODE=dev pnpm test:e2e
 ```
 
