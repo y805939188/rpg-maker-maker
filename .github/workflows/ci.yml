@@ -3,29 +3,33 @@ on: [push, pull_request]
 permissions:
   contents: read
 jobs:
-  baseline:
+  core:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    timeout-minutes: 40
     services:
       postgres:
         image: postgres:14.20
         env:
           POSTGRES_USER: tileset
-          POSTGRES_DB: tileset_ci
+          POSTGRES_DB: tileset_ci_core
           POSTGRES_HOST_AUTH_METHOD: trust
         ports:
           - 127.0.0.1:55432:5432
         options: >-
-          --health-cmd "pg_isready -U tileset -d tileset_ci"
+          --health-cmd "pg_isready -U tileset -d tileset_ci_core"
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
       TILESET_AI_MODE: mock
-      DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci
+      DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci_core
+      TILESET_ASSET_ROOT: ${{ github.workspace }}/.local/ci-core/assets
+      TMPDIR: ${{ runner.temp }}/tileset-core
+      XDG_CACHE_HOME: ${{ runner.temp }}/tileset-core-cache
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         # The step07 regression reads the published step06 writer with git show.
         with:
           fetch-depth: 0
+      - run: mkdir -p "$TMPDIR" "$XDG_CACHE_HOME"
       - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
         with:
           version: 10.20.0
@@ -53,8 +57,74 @@ jobs:
       # Build/resources have their own 120s budget; the service gate remains 30s.
       - run: pnpm test:ci-prepared
       - run: pnpm test:startup
+
+  # Independent runner: no core outputs, receipts, database or test state are transferred.
+  development:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:14.20
+        env:
+          POSTGRES_USER: tileset
+          POSTGRES_DB: tileset_ci_development
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 127.0.0.1:55432:5432
+        options: >-
+          --health-cmd "pg_isready -U tileset -d tileset_ci_development"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TILESET_AI_MODE: mock
+      DATABASE_URL: postgresql://tileset@127.0.0.1:55432/tileset_ci_development
+      TILESET_ASSET_ROOT: ${{ github.workspace }}/.local/ci-development/assets
+      TMPDIR: ${{ runner.temp }}/tileset-development
+      XDG_CACHE_HOME: ${{ runner.temp }}/tileset-development-cache
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - run: mkdir -p "$TMPDIR" "$XDG_CACHE_HOME"
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
+        with:
+          version: 10.20.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22.21.1
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Assert independent empty outputs
+        run: |
+          for output in dist apps/*/dist packages/*/dist .local/ci-preparation.json .local/dev-preparation.json; do
+            if [ -e "$output" ]; then
+              echo "Unexpected pre-existing output: $output" >&2
+              exit 1
+            fi
+          done
+      - run: pnpm db:generate
+      # The public migration wrapper needs dist/config.js. A fresh database can
+      # deploy the same seven schema migrations before any application is built.
+      - run: pnpm --filter @tileset/api exec prisma migrate deploy --schema prisma/schema.prisma
+      - run: pnpm exec playwright install --with-deps chromium
+      # Build/resources retain 120s; dev:start retains its owned-listener/HTTP 30s gate.
       - run: pnpm dev:prepare
       - run: E2E_MODE=dev pnpm test:e2e
         env:
           TILESET_STARTUP_OBSERVE: '1'
           NODE_OPTIONS: --import=${{ github.workspace }}/scripts/startup-observer.mjs
+
+  # Preserve the branch-protection check name. Every required job must really succeed.
+  baseline:
+    needs: [core, development]
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - name: Require both isolated jobs to succeed
+        env:
+          CORE_RESULT: ${{ needs.core.result }}
+          DEVELOPMENT_RESULT: ${{ needs.development.result }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'core=%s development=%s\n' "$CORE_RESULT" "$DEVELOPMENT_RESULT"
+          test "$CORE_RESULT" = success
+          test "$DEVELOPMENT_RESULT" = success
