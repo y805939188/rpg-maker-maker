@@ -1,16 +1,17 @@
-# 步骤09功能测试基线：撤销生产套件新增总期限与发布交接
+# 步骤09功能测试基线：开发E2E准备预算归属与发布交接
 
-2026-10-19，America/Chicago。本轮追加授权只撤销CI整理新增的production600秒套件总计时器、补直接回归、限定R10及正常发布；不改产品、不继续性能或测试组织整改、不进入10。执行source `af26495e5901f96e5b9b8f4ffff0736c951ad9e3`；作者文档HEAD `b023aa020c14550787232c50acaef484979f8f64` 仅新增报告。R9和此前其余执行内容按未变范围复用。最终文档HEAD、候选/main CI和三处main读回写会话及ignored `.local/step09-final-closeout/production-wrapper-final/completion.json`，不为自身SHA再提交文档。
+2026-10-20，Asia/Shanghai。本轮从已合并main `802ac69d6219d849d23b67fda7e422595e497952` 新建codex/step-09-dev-fixture，只定位开发E2E公共准备失败、最小生命周期整改、必要失败证据、限定R11及正常发布；不重复合并旧分支，不重做600秒整改或产品/素材开发，不进入10。执行source `88a7a067e82aaecd93ce323e04d91fbc8cfcca86`；作者文档HEAD `252943e5472d8fee329baf59498b7a4ac828b80e` 仅新增报告。最终候选/main SHA、CI与三处远端读回只写会话及ignored `.local/step09-final-closeout/dev-fixture-final/completion.json`，不为自身SHA追加提交。
 
 ## 当前技术门禁
 
-- 本轮限定R10 **PASS_LIMITED_PRODUCTION_WRAPPER**，P0/P1/硬契约P2为0。见[R10独立确认](../reviews/step-09-production-wrapper-r10.md)。见[本轮Coding](../reviews/step-09-production-wrapper-coding.md)。production显式timeout:null，在runPrepared完全跳过套件setTimeout/clearTimeout；其他九target期限、prepare120秒、真实服务30秒、原单用例期限/retries及core40/development20/baseline2分钟原样。
-- 原main直接执行完整生产E2E；600000ms套件wrapper由b00e4b7新增。最新旧候选[CI39282826278](https://github.com/y805939188/rpg-maker-maker/actions/runs/39282826278)/1a2580c现已正式completed/failure：development18通过；core原453/API3/06=23/07=17/08=3通过，生产只打印16项成功后触发新增600秒guard，prepared/startup跳过，baseline严格拒绝。没有证据把它写成第17项自身期限或业务断言失败。
-- 作者定向10/10：原7项保留，新增3项覆盖实际不创建production计时器、其他九期限、前后源/输出核验、真实失败子命令和SIGTERM后代/锁清理；完整18项仍由原pnpm test:e2e执行，短时合成测试不替代当前SHA完整CI。本次撤销额外套件限时由用户明确授权，不修改原产品要求、单用例门限或重试策略。
-- [R9](../reviews/step-09-workflow-context-r9.md) **PASS_LIMITED_WORKFLOW_CONTEXT**继续有效，四处非法job.env已改运行时RUNNER_TEMP mkdir及GITHUB_ENV传递；固定actionlint1.7.12本地正反检查通过，39282826278两job实际Linux检查成功。旧CI39276281752零job failure以及R7/R8遗漏原样保留。本次workflow、校验入口、job/gate对象和数据库/资产隔离字节不改。
-- 功能R2 `0a55d9f` 的完整check450/09完整4/4、R5启动链、R6独立Git夹具及R7/R8仍适用部分按未变范围复用。见[R7](../reviews/step-09-ci-consolidation-r7.md)、[R8](../reviews/step-09-ci-consolidation-r8.md)。它们不代替R10或新SHA完整CI，T01/R01接受与产物绑定不变。
-- 最新限定PASS、零P0/P1/硬契约P2及新SHA完整候选workflow整体 **completed/success** 后，Main才按本轮用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常整合/Push并等待完整main CI。必须实际完成生产18、prepared/startup、core/development/baseline全部success，不用旧通过或局部绿色改写失败/取消/跳过。该放行是用户预授权委托，不写成用户逐轮亲审。
-- 不强推、改写历史、跳检查或同SHA重跑碰运气。实际失败先读日志，明确范围内修正才提交新候选；无新定位或需扩大范围则留证停止，不按Review旧编号机械停，也不无限扩轮。main CI成功及local main/origin/main/live remote一致前，不宣称发布完成。
+- 本轮限定R11 **PASS_LIMITED_DEV_FIXTURE**，P0/P1/硬契约P2为0。见[R11独立确认](../reviews/step-09-dev-fixture-r11.md)。见[本轮Coding](../reviews/step-09-dev-fixture-coding.md)。执行差异仅ownership E2E的准备生命周期/有限诊断及workflow窄范围失败产物上传；原六项正文逐字节保留，完整开发列表18项。业务构建、DB/不可变文件/下载/浏览器像素断言、原单case/retries0/服务30秒/prepare120秒及job40/20/2分钟门禁保持。
+- 已确认预算归属缺陷：原单个默认30秒beforeAll串行准备两个项目；每个terminal另有30秒poll，但matcher会被父slot剩余deadline裁剪。原503标签下正文0ms，失败发生在第二个fixture。旧CI未留提交/阶段时间和trace，第二job精确年龄及旧阶段仍UNKNOWN；不能把相邻日志间隔或本轮控制测量冒充旧CI完整时序。
+- 作者正常诊断两fixture7474/7237ms、真实job终态观察5024/4908ms，队列gate约5ms，durable及after-db-commit实际到达；不据此判定旧CI负载或排除所有业务故障。单次明确控制将第二项目起始排到hook年龄24秒，父hook29702ms截止时第二job响应后只观察3452ms，503正文0ms；保留了本轮真实负控trace/报告，不声称取回旧trace。
+- 最小修复将PNG加载及两个项目分别注册准备hook，每项目独占原默认30秒slot，terminal30秒仍受本项目hook剩余预算裁剪，未换更大数值或保证所有poll必获完整30秒。整体准备不再错误共用单一30秒上限。作者原始文件6/6一次通过、184070ms；独立R11已验证同24秒调度下旧形状FAIL/修复形状PASS，以及原始正式文件6/6；每个新hook仍在原30秒内，整体setup32592ms完成。短时本地验证不替代新SHA完整CI。
+- 固定官方upload-artifact v4.6.2仅在开发job失败后上传明确的合成JSON、trace/error-context文件，7天；不上传whole.local、env、DB或用户素材，不加continue-on-error。该证据step在成功job中应按failure条件跳过，所有必需测试与严格baseline仍须实际success。实际完整workflow已用固定actionlint校验，上传本身没有被宣称端到端执行成功。
+- 旧候选[CI39296981494](https://github.com/y805939188/rpg-maker-maker/actions/runs/39296981494)/a5cf54f完整success；与已合并802ac69整棵tree相同。随后[main CI39301826626](https://github.com/y805939188/rpg-maker-maker/actions/runs/39301826626)完整failure：core成功（生产18/prepared10/startup26及PG回归），development12pass/1fail/5notrun，baseline严格拒绝。树相同用于缩小定位，不将真实失败改写无效；main旧失败与全部证据保持。
+- R10 production timeout:null及R9上下文整改、R2功能/原check450和09完整4/4、R5/R6/R7/R8及T01/R01确认均仅按未变范围复用，不全审01–09或重复MZ。新候选限定PASS、零P0/P1/硬阻P2、完整core/development/baseline成功（含开发18项）后，才按本次用户预授权记录 `APPROVED_BY_PREAUTHORIZED_ORCHESTRATOR`，正常合并本轮新分支、Push并等待完整main CI；不写成用户逐轮亲审。
+- 不强推/改写历史、不重复整合旧分支、删/skip/改成功状态或同SHA盲目重跑。每次诊断回答明确问题；有新证据再作必要修正/定向复核，连续两次无进展或需扩大范围则留证。完整main CI与local/origin/live remote对应最终SHA一致前，不宣称09发布完成。
 
 ## 检查执行位置与计时
 
