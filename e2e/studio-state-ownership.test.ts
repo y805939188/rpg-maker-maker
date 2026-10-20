@@ -25,12 +25,17 @@ async function post<T = { id: string }>(path: string, body: unknown): Promise<T>
   expect(r.ok).toBe(true);
   return r.json() as Promise<T>;
 }
-async function terminal(project: string, job: string) {
+async function terminal(
+  project: string,
+  job: string,
+  observe?: (state: JobState | undefined) => void,
+) {
   let result: Awaited<ReturnType<typeof state>>['jobs'][number] | undefined;
   await expect
     .poll(
       async () => {
         result = (await state(project)).jobs.find((j) => j.id === job);
+        observe?.(result?.state);
         return result?.state;
       },
       { timeout: 30000, intervals: [100] },
@@ -170,14 +175,43 @@ async function targetUnchanged(
   ).toBeEnabled();
   return image;
 }
-test.beforeAll(async () => {
-  await mkdir(out, { recursive: true });
-  png = await readFile('tests/fixtures/art-ground.png');
-  async function fixture(label: string) {
+type JobState = Awaited<ReturnType<typeof state>>['jobs'][number]['state'];
+type SetupFields = {
+  project?: string;
+  job?: string;
+  state?: JobState | undefined;
+  job_elapsed_ms?: number;
+};
+const setupStarted = performance.now();
+const setupPhases: (SetupFields & {
+  role: string;
+  phase: string;
+  mono_ms: number;
+  elapsed_ms: number;
+})[] = [];
+
+async function fixture(role: 'origin' | 'destination', label: string) {
+  const started = performance.now();
+  const phase = (name: string, fields: SetupFields = {}) => {
+    if (setupPhases.length >= 64) return;
+    const entry = {
+      role,
+      phase: name,
+      mono_ms: Math.round(performance.now() - setupStarted),
+      elapsed_ms: Math.round(performance.now() - started),
+      ...fields,
+    };
+    setupPhases.push(entry);
+    console.log('[fixture-setup] ' + JSON.stringify(entry));
+  };
+  phase('start');
+  try {
     const p = await post<{ id: string; name: string }>('/api/projects', {
       name: label + randomUUID(),
     });
+    phase('project-created', { project: p.id });
     await post(`/api/projects/${p.id}/preset`, { family: 'art' });
+    phase('preset-adopted', { project: p.id });
     let s = await state(p.id);
     const sources = Object.fromEntries(
       ['grass', 'water-0', 'water-1', 'water-2', 'mask', 'overlay'].map((c) => [
@@ -192,12 +226,39 @@ test.beforeAll(async () => {
     });
     s = await state(p.id);
     const historicalRecipe = s.recipes.find((r) => r.current)!.id;
+    phase('recipe-adopted', { project: p.id });
     const job = await post(`/api/projects/${p.id}/builds`, {
       expectedRevision: s.revision,
       recipeId: historicalRecipe,
       mode: 'update',
     });
-    expect((await terminal(p.id, job.id)).state).toBe('COMPLETED');
+    const submitted = performance.now();
+    let observed: JobState | undefined;
+    phase('job-submitted', { project: p.id, job: job.id });
+    try {
+      expect(
+        (
+          await terminal(p.id, job.id, (value) => {
+            if (value !== observed) {
+              observed = value;
+              phase('job-state', {
+                project: p.id,
+                job: job.id,
+                state: value,
+                job_elapsed_ms: Math.round(performance.now() - submitted),
+              });
+            }
+          })
+        ).state,
+      ).toBe('COMPLETED');
+    } finally {
+      phase('job-poll-ended', {
+        project: p.id,
+        job: job.id,
+        state: observed,
+        job_elapsed_ms: Math.round(performance.now() - submitted),
+      });
+    }
     const uploaded = await fetch(`${api}/api/projects/${p.id}/sources/grass/upload?density=2`, {
       method: 'POST',
       headers: { Origin: api, 'X-Tileset-Client': 'local-v1', 'Content-Type': 'image/png' },
@@ -205,17 +266,45 @@ test.beforeAll(async () => {
     });
     expect(uploaded.status).toBe(201);
     s = await state(p.id);
+    phase('complete', { project: p.id });
     return {
       ...p,
       historicalRecipe,
       grass: s.sources.filter((a) => a.component === 'grass').map((a) => a.id),
     };
+  } catch (error) {
+    phase('rejected');
+    throw error;
   }
-  origin = await fixture('R3来源-');
-  destination = await fixture('R3目标-');
+}
+
+// Each real project preparation owns the existing default30s hook slot.
+// The terminal poll remains capped by30s and its own project's remaining hook budget.
+test.beforeAll('load synthetic source', async () => {
+  await mkdir(out, { recursive: true });
+  png = await readFile('tests/fixtures/art-ground.png');
+});
+test.beforeAll('prepare origin project', async () => {
+  origin = await fixture('origin', 'R3来源-');
+});
+test.beforeAll('prepare destination project', async () => {
+  destination = await fixture('destination', 'R3目标-');
   await writeFile(
     resolve(out, 'fixtures.json'),
     JSON.stringify({ origin, destination, pngSha: sha(png) }, null, 2) + '\n',
+  );
+});
+test.afterAll('retain bounded synthetic fixture phases', async () => {
+  const directory = resolve('.local/e2e/fixture-setup');
+  await mkdir(directory, { recursive: true });
+  await writeFile(
+    resolve(directory, mode + '-' + randomUUID() + '.json'),
+    JSON.stringify({
+      version: 1,
+      mode,
+      clock: 'monotonic-ms; job_elapsed_ms since submit response',
+      phases: setupPhases,
+    }) + '\n',
   );
 });
 

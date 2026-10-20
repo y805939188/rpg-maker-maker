@@ -124,6 +124,19 @@ jobs:
         env:
           TILESET_STARTUP_OBSERVE: '1'
           NODE_OPTIONS: --import=${{ github.workspace }}/scripts/startup-observer.mjs
+      - name: Preserve synthetic development failure evidence
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: development-e2e-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            .local/e2e/dev.json
+            .local/e2e/fixture-setup/dev-*.json
+            test-results/**/trace.zip
+            test-results/**/error-context.md
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
 
   # Preserve the branch-protection check name. Every required job must really succeed.
   baseline:
